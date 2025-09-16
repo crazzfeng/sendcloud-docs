@@ -5,4 +5,4 @@ hidden: false
 metadata:
   robots: index
 ---
-<br />
+<Glossary>Amount requested on the same day</Glossary>
