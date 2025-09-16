@@ -12,8 +12,6 @@ metadata:
     - Aurora SendCloud Sign up
   robots: index
 ---
-# Sign up and Log in
-
 ## How to Sign up for an Account
 
 If you have not registered an account on Aurora SendCloud, you can register via email or Google account. Click <Anchor label="here" target="_blank" href="https://www.aurorasendcloud.com/web/#/register">here</Anchor> to register.
@@ -24,6 +22,8 @@ If you have not registered an account on Aurora SendCloud, you can register via 
 2. Activate.
    After successful registration, the system will send a verification code to your email. Enter the correct verification code to activate your account.
 
+<Glossary>parliament</Glossary>
+
 Didn't receive the email?
 Check if your email account has been entered correctly.If it is correct, please check all your mailboxes or click Resend verification code to retrieve. If it is incorrect, click Change email address to re-enter the correct email address.
 
@@ -31,7 +31,9 @@ Check if your email account has been entered correctly.If it is correct, please 
 
 If you have already completed account registration, you can log in to our website to use the services. SendCloud supports user login and mailbox login. For more secure login, you can open _login 2fa_ in account / security setup.
 
-> **If the password is wrong for 10 consecutive times, the account will be locked. Please contact customer service to unlock it.**
+<Callout icon="📘" theme="info">
+  If the password is wrong for 10 consecutive times, the account will be locked. Please contact customer service to unlock it.
+</Callout>
 
 If you have a Google account, you can also sign in using your Google account.
 
