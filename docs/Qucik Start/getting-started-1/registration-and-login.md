@@ -3,15 +3,20 @@ title: Registration and Login
 deprecated: false
 hidden: false
 metadata:
+  title: How to Register & Login Aurora SendCloud Account
+  description: >-
+    Aurora SendCloud account registration and login tutorial. SendCloud is a
+    SaaS platform that provides customers with a one-stop global email delivery
+    solution.
+  keywords:
+    - Aurora SendCloud Sign up
   robots: index
 ---
-<br />
-
 # Sign up and Log in
 
 ## How to Sign up for an Account
 
-If you have not registered an account on Aurora SendCloud, you can register via email or Google account. Click [here]([Professional Email Delivery Platform](https://www.aurorasendcloud.com/web/#/register)) to register.
+If you have not registered an account on Aurora SendCloud, you can register via email or Google account. Click <Anchor label="here" target="_blank" href="https://www.aurorasendcloud.com/web/#/register">here</Anchor> to register.
 
 1. Sign up via email: Click the Sign Up Free at the top right corner of the website.
    Enter the correct email address and password, then click the Sign Up Free button.
@@ -52,4 +57,4 @@ What should I do if I forget my login password?
 
 <br />
 
-**Still need some help? Our customer success team has your back! [Contact us]([Contact Us -Aurora SendCloud](https://www.aurorasendcloud.com/contact))!**
+**Still need some help? Our customer success team has your back! <Anchor label="Contact us" target="_blank" href="https://www.aurorasendcloud.com/contact">Contact us</Anchor>!**
