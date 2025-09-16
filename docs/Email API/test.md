@@ -1,5 +1,5 @@
 ---
-title: Test
+title: API Test
 deprecated: false
 hidden: false
 metadata:
