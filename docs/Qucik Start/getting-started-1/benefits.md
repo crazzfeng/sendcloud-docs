@@ -56,3 +56,9 @@ metadata:
     Here's content that's only inside the third Tab.
   </Tab>
 </Tabs>
+
+<Image align="center" src="https://files.readme.io/fde9778d5645d034d4d994f47e293d363cd07e3bb08ab5e3383e559e28689521-580904392.png" />
+
+<Embed typeOfEmbed="youtube" url="" />
+
+<br />
