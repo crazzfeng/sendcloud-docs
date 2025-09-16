@@ -22,7 +22,7 @@ If you have not registered an account on Aurora SendCloud, you can register via 
 2. Activate.
    After successful registration, the system will send a verification code to your email. Enter the correct verification code to activate your account.
 
-<Glossary>parliament</Glossary>
+<br />
 
 Didn't receive the email?
 Check if your email account has been entered correctly.If it is correct, please check all your mailboxes or click Resend verification code to retrieve. If it is incorrect, click Change email address to re-enter the correct email address.
