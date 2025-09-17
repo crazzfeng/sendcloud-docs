@@ -1,5 +1,5 @@
 ---
-title: API_USER
+title: How to Create an API_USER
 deprecated: false
 hidden: false
 metadata:
