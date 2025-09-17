@@ -1,5 +1,5 @@
 ---
-title: Amount requested on the same day
+title: Glossary List
 deprecated: false
 hidden: false
 metadata:
