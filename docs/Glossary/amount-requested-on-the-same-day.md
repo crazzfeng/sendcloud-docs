@@ -5,3 +5,8 @@ hidden: false
 metadata:
   robots: index
 ---
+# Variable
+
+# Credibility
+
+# Amount Requested
