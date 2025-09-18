@@ -1,5 +1,5 @@
 ---
-title: How to add teammates
+title: How to Add Teammates
 deprecated: false
 hidden: false
 metadata:
