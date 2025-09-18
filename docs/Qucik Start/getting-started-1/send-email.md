@@ -1,5 +1,5 @@
 ---
-title: Send Email
+title: How to Send the First Email
 deprecated: false
 hidden: false
 metadata:
