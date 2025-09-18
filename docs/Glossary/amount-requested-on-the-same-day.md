@@ -10,3 +10,9 @@ metadata:
 # Credibility
 
 # Amount Requested
+
+# Triggered Email
+
+# Bulk Email
+
+<br />
