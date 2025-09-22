@@ -1,5 +1,5 @@
 ---
-title: How to Set Up a 2-Factor Authentication App at Login
+title: Set Up a 2-Factor Authentication App at Login
 deprecated: false
 hidden: false
 metadata:
