@@ -15,4 +15,6 @@ metadata:
 
 # Bulk Email
 
+# BIMI Certification
+
 <br />
