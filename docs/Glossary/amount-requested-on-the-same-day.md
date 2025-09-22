@@ -15,6 +15,6 @@ metadata:
 
 # Bulk Email
 
-# BIMI Certification
+# Dedicated IP
 
 <br />
