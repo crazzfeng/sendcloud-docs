@@ -22,7 +22,7 @@ json
 
 **HTTP Request Method**
 
-```bash
+```
 POST    
 ```
 
@@ -37,11 +37,16 @@ POST
 | timestamp     | string | no              | UNIX timestamp                                                                                                                                                      |
 | tag           | string | no              | The value is in JSON format, and the maximum character length is 128, for example: `{"key1": "value1", "key2": "Value2"}`                                           |
 
-*Sample of vars format:*
-
+_Sample of vars format:_
 
 ```
 {"name": "lucy"} or {"%money%": "100"}
 ```
 
-<br />
+`Note`:
+
+1. Variables in SMS template will be replaced by parameters in vars. All recipients users will receive the same replaced content. If the parameter content submitted by each mobile phone number is different, the interface needs to be called multiple times.Parameters in vars may contain special characters, marked with `urlencode`.
+
+2. Value of the variable is formatted with string and cannot be longer than 32 characters. HTTP links are not allowed in variables.
+
+3. `urlencode` is not required when generating signature but calling API.
