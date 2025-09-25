@@ -12,7 +12,7 @@
   "tags": [],
   "paths": {
     "/api/sms/send": {
-      "get": {
+      "post": {
         "summary": "New Endpoint",
         "description": "This is your first endpoint! Edit this page to start documenting your API.",
         "operationId": "get_new-endpoint",
