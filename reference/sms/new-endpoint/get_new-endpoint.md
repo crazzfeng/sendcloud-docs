@@ -37,4 +37,11 @@ POST
 | timestamp     | string | no              | UNIX timestamp                                                                                                                                                      |
 | tag           | string | no              | The value is in JSON format, and the maximum character length is 128, for example: `{"key1": "value1", "key2": "Value2"}`                                           |
 
+*Sample of vars format:*
+
+
+```
+{"name": "lucy"} or {"%money%": "100"}
+```
+
 <br />
