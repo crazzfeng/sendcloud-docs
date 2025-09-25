@@ -2,11 +2,11 @@
   "openapi": "3.0.0",
   "info": {
     "version": "1.0.0",
-    "title": "send"
+    "title": "短信"
   },
   "servers": [
     {
-      "url": "https://api2.sendcloud.net/api"
+      "url": "https://api2.sendcloud.net"
     }
   ],
   "tags": [],
