@@ -1,4 +1,4 @@
 ---
-title: /api/sms/send
+title: send
 hidden: false
 ---
