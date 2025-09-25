@@ -20,7 +20,77 @@
           "200": {
             "description": "Successful response"
           }
-        }
+        },
+        "parameters": [
+          {
+            "in": "query",
+            "name": "smsUser",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "smsUser"
+          },
+          {
+            "in": "query",
+            "name": "templateId",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "template ID"
+          },
+          {
+            "in": "query",
+            "name": "phone",
+            "schema": {
+              "type": "string"
+            },
+            "description": "phone numbers of recipients, separated by commas; the amount cannot be more 2,000 each time. Contact list will be suggested when the recipients are more than 2000.",
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "vars",
+            "schema": {
+              "type": "string",
+              "default": "json string of substitution variable"
+            }
+          },
+          {
+            "in": "query",
+            "name": "sendRequestId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "supports up to 128 characters, multiple requests with the same sendRequestId within 1 hour will only be processed for the first time"
+          },
+          {
+            "in": "query",
+            "name": "signature",
+            "schema": {
+              "type": "string"
+            },
+            "description": "signature, validity verification",
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "timestamp",
+            "schema": {
+              "type": "string"
+            },
+            "description": "UNIX timestamp"
+          },
+          {
+            "in": "query",
+            "name": "tag",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The value is in JSON format, and the maximum character length is 128, for example: {\"key1\": \"value1\", \"key2\": \"Value2\"}"
+          }
+        ]
       }
     }
   },
