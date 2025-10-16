@@ -11,7 +11,7 @@
   ],
   "tags": [],
   "paths": {
-    "/api/sms/send": {
+    "/smsapi/send": {
       "post": {
         "summary": "New Endpoint",
         "description": "This is your first endpoint! Edit this page to start documenting your API.",
