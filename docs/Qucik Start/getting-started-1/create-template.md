@@ -1,5 +1,5 @@
 ---
-title: Send Email by API
+title: Send Emails via API
 deprecated: false
 hidden: false
 metadata:
