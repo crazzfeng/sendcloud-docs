@@ -11,7 +11,7 @@ hidden: false
 **URL**
 
 ```
-https://api2.sendcloud.net/api/sms/send
+https://api2.sendcloud.net/smsapi/send
 ```
 
 **Format of returned data**
