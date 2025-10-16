@@ -11,7 +11,6 @@ This section is used to manage your basic account information.
 
 ## Email
 
-
 Your registered email address is the core credential for your account and is used to log in and receive important system notifications.
 
 ### How to change your registered email address
@@ -28,18 +27,9 @@ For security reasons, changing your email address requires verifying ownership o
 
 5. Click "Save."
 
-<br />
-
 <Accordion title="Note" icon="fa-info-circle">
-The new email address must be in the correct format (e.g., name@example.com).
-The new email address cannot already be associated with another account.
+The new email address must be in the correct format (e.g., name@example.com) and must not already be associated with another account.
 </Accordion>
-
-Please note:
-
-The new email address must be in the correct format (e.g., name@example.com).
-
-The new email address cannot already be associated with another account.
 
 ## Password
 
@@ -80,8 +70,11 @@ If you have forgotten your current password, you can reset it using your registe
 · Character Types: Must contain at least three of the following character types:
 
 * Length: 6-16 characters.
+
 * Spaces: No spaces allowed.
+
 * Character Types: Must contain at least three of the following character types:
+
 * > Lowercase letters (a-z)
   >
   > Uppercase letters (A-Z)
@@ -89,11 +82,10 @@ If you have forgotten your current password, you can reset it using your registe
   > Numbers (0-9)
   >
   > Special characters (e.g., ! @ # $ % & *)
+
 * Allowed Characters: Only numbers, letters, and special characters are supported.
 
- 
-
-## Phone Number
+## Phone
 
 Linking your phone number can be used for 2FA login verification, receiving SMS verification codes, and receiving important system notifications, enhancing account security.
 
@@ -105,7 +97,7 @@ If your phone number isn't linked to your account yet, please follow these steps
 
 2. Select the area code for your country or region (e.g., United States +1).
 
-3. Enter your phone number in the field. 
+3. Enter your phone number in the field.
 
 4. Click "SMS Verification." The system will send a text message verification code to the phone number you registered.
 
@@ -125,7 +117,5 @@ If your phone number isn't linked to your account yet, please follow these steps
 <Accordion title="Note" icon="fa-info-circle">
   The new phone number cannot already be registered with another account.
 </Accordion>
-
-Please note: The new phone number cannot already be registered with another account.
 
 # Region
