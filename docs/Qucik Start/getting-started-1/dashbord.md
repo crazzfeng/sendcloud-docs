@@ -31,9 +31,21 @@ This section guides you through the process of setting up and starting to send e
 
 The quota that users can request every day is the maximum number of emails that can be requested to Aurora SendCloud daily. The daily quota is a variable value, which will be increased or decreased according to the reputation and recent requested number.
 
-> When the account's request number exceeds this value, the user will receive an error prompt of 'request quota exceeded'
+> When the account's request number exceeds this value, the user will receive an error prompt of 'request quota exceeded'.
+
+The initial value of daily quota
+
+| Paid User        | Free User     |
+| :--------------- | :------------ |
+| 3,000 emails/day | 50 emails/day |
 
 ### How to increase daily quota?
 
+**For paid user**
+
 * Your account's reputation increases, as your daily quota will increase too.
 * Apply for Temporary quota increase.
+
+**For free user**
+
+* Now the daily quota can not be more than 50 emails/day.
