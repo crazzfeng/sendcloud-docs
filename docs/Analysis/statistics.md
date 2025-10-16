@@ -175,7 +175,7 @@ Here are the dimensions by which you can perform filtering and screening.
 | Request Period   | It is the time period that you requested Aurora SendCloud to send emails. By default, it is the last 7 days .    |
 | Send Tags        | The tags used for the API request.                                                                               |
 
-# Categorys of Email Statistics
+# Categories of Email Statistics
 
 The sending and tracking statistics can be grouped by 4 categories that you can choose in the filter.
 
