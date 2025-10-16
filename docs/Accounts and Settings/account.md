@@ -28,7 +28,7 @@ For security reasons, changing your email address requires verifying ownership o
 5. Click "Save."
 
 <Accordion title="Note" icon="fa-info-circle">
-The new email address must be in the correct format (e.g., name@example.com) and must not already be associated with another account.
+  The new email address must be in the correct format (e.g., [name@example.com](mailto:name@example.com)) and must not already be associated with another account.
 </Accordion>
 
 ## Password
@@ -62,12 +62,6 @@ If you have forgotten your current password, you can reset it using your registe
 5. Click "Confirm Reset."
 
 **New Password Requirements:**
-
-· Length: 6-16 characters.
-
-· Spaces: No spaces allowed.
-
-· Character Types: Must contain at least three of the following character types:
 
 * Length: 6-16 characters.
 
