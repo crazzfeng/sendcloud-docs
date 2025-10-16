@@ -38,7 +38,7 @@ metadata:
       </td>
 
       <td style={{ textAlign: "left" }}>
-        Number of successfully delivered emails. 
+        Number of successfully delivered emails.
         Ratio=Delivered/Requested.
       </td>
     </tr>
@@ -49,7 +49,7 @@ metadata:
       </td>
 
       <td style={{ textAlign: "left" }}>
-        Number of failed delivery emails. 
+        Number of failed delivery emails.
         Ratio=Invalid Email/Requested.
       </td>
     </tr>
@@ -124,7 +124,7 @@ metadata:
       </td>
 
       <td style={{ textAlign: "left" }}>
-        Number of emails reported as spam. 
+        Number of emails reported as spam.
         Ratio=Spam/Delivered.
       </td>
     </tr>
@@ -135,21 +135,24 @@ metadata:
       </td>
 
       <td style={{ textAlign: "left" }}>
-        Number of emails that users clicked to unsubscribe. 
+        Number of emails that users clicked to unsubscribe.
         Ratio=Unsubscribe/Delivered.
       </td>
     </tr>
   </tbody>
 </Table>
 
-<Accordion title="The tracking statistic example" icon="fa-info-circle">
- Customer sent a mail to X and Y respectively and both were delivered
-X has opened the  twice, and clicks the M link twice, and clicks the N link once
-Y has opened the 3 times, and click the M link once and click N link twice
-Open: 2 + 3 = 5 
-Unique Open: 1 + 1 = 2 
-Click: 2 + 1 + 1 + 2 = 6 
-Unique Click: 1 + 1 + 1 + 1 = 4 
-</Accordion>
+<br />
+
+> 📘 The example of tracking statistics
+>
+> Customer sent a mail to X and Y respectively and both were delivered
+> X has opened the  twice, and clicks the M link twice, and clicks the N link once
+> Y has opened the 3 times, and click the M link once and click N link twice
+>
+> * Open: 2 + 3 = 5
+> * Unique Open: 1 + 1 = 2
+> * Click: 2 + 1 + 1 + 2 = 6
+> * Unique Click: 1 + 1 + 1 + 1 = 4
 
 <br />
