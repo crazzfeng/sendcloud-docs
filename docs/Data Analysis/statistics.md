@@ -80,7 +80,7 @@ metadata:
       </td>
 
       <td style={{ textAlign: "left" }}>
-        Number of email opens. 
+        Number of email opens. Each open is counted, without deduplication.
         Ratio=Open/Delivered.
       </td>
     </tr>
@@ -91,7 +91,7 @@ metadata:
       </td>
 
       <td style={{ textAlign: "left" }}>
-        Number of recipients who opened the email. 
+        The number of recipients who opened the email is counted, and one email only counts once.
         Ratio=Unique Open/Delivered.
       </td>
     </tr>
@@ -102,7 +102,7 @@ metadata:
       </td>
 
       <td style={{ textAlign: "left" }}>
-        Number of email clicks. 
+        Number of email clicks. Each click is counted, without deduplication.
         Ratio=Click/Delivered.
       </td>
     </tr>
@@ -113,7 +113,7 @@ metadata:
       </td>
 
       <td style={{ textAlign: "left" }}>
-        Number of recipients who clicked the email. 
+        The number of recipients who clicked a specific link in the email is counted, and one link in an email only counts once.
         Ratio=Unique Click/Delivered
       </td>
     </tr>
