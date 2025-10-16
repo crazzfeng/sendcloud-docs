@@ -10,181 +10,117 @@ link:
 metadata:
   robots: index
 ---
-<Image align="center" alt="Email Statistics" border={false} caption="Email Statistics" src="https://files.readme.io/4880c0cfb7250a8230597943b747944de1b37c3c84834bc61ecad65652eff51d-_20251016191511.png" />
+# Aurora SendCloud Email Statistics
 
-# Email Statistics Metrics
+<Image align="center" alt="Email Statistics Dashboard" border={false} caption="Email Statistics Dashboard" src="https://files.readme.io/4880c0cfb7250a8230597943b747944de1b37c3c84834bc61ecad65652eff51d-_20251016191511.png" />
+
+Aurora SendCloud provides comprehensive email statistics to help you track the performance of your email campaigns. Monitor delivery rates, engagement metrics, and recipient behavior across different dimensions and time periods.
+
+## Understanding Your Email Metrics
+
+Track your email performance with these key metrics:
 
 <Table align={["left","left"]}>
   <thead>
     <tr>
-      <th>
-        Metric
-      </th>
-
-      <th>
-        Description
-      </th>
+      <th>Metric</th>
+      <th>Description</th>
     </tr>
   </thead>
-
   <tbody>
     <tr>
-      <td>
-        Requested
-      </td>
-
-      <td>
-        The number of email requests received by Aurora SendCloud.
-      </td>
+      <td><strong>Requested</strong></td>
+      <td>Total number of email send requests submitted to Aurora SendCloud</td>
     </tr>
-
     <tr>
-      <td>
-        Delivered
-      </td>
-
-      <td>
-        The number of emails successfully delivered.
-        Ratio = Delivered/Requested.
-      </td>
+      <td><strong>Delivered</strong></td>
+      <td>Emails successfully delivered to recipient inboxes<br/>
+      <em>Rate = Delivered ÷ Requested</em></td>
     </tr>
-
     <tr>
-      <td>
-        Invalid Email
-      </td>
-
-      <td>
-        The number of emails that failed delivery due to invalid email addresses.
-        Ratio = Invalid Email/Requested.
-      </td>
+      <td><strong>Invalid Email</strong></td>
+      <td>Emails rejected due to invalid or malformed email addresses<br/>
+      <em>Rate = Invalid Email ÷ Requested</em></td>
     </tr>
-
     <tr>
-      <td>
-        Soft Bounce
-      </td>
-
-      <td>
-        The number of emails that were temporarily rejected after delivery attempt. Ratio = Soft Bounce/Requested.
-      </td>
+      <td><strong>Soft Bounce</strong></td>
+      <td>Emails temporarily rejected (full mailbox, server issues, etc.)<br/>
+      <em>Rate = Soft Bounce ÷ Requested</em></td>
     </tr>
-
     <tr>
-      <td>
-        Billing Counts
-      </td>
-
-      <td>
-        The number of emails that will be charged to your account.
-      </td>
+      <td><strong>Billing Counts</strong></td>
+      <td>Number of emails that count toward your account usage and billing</td>
     </tr>
-
     <tr>
-      <td>
-        Open
-      </td>
-
-      <td>
-        The total number of email opens. Each open is counted individually without deduplication.
-        Ratio = Open/Delivered.
-      </td>
+      <td><strong>Opens</strong></td>
+      <td>Total email opens, including multiple opens by the same recipient<br/>
+      <em>Rate = Opens ÷ Delivered</em></td>
     </tr>
-
     <tr>
-      <td>
-        Unique Open
-      </td>
-
-      <td>
-        The number of unique recipients who opened the email. Each email is counted only once per recipient.
-        Ratio = Unique Open/Delivered.
-      </td>
+      <td><strong>Unique Opens</strong></td>
+      <td>Number of individual recipients who opened the email at least once<br/>
+      <em>Rate = Unique Opens ÷ Delivered</em></td>
     </tr>
-
     <tr>
-      <td>
-        Click
-      </td>
-
-      <td>
-        The total number of email clicks. Each click is counted individually without deduplication.
-        Ratio = Click/Delivered.
-      </td>
+      <td><strong>Clicks</strong></td>
+      <td>Total link clicks, including multiple clicks by the same recipient<br/>
+      <em>Rate = Clicks ÷ Delivered</em></td>
     </tr>
-
     <tr>
-      <td>
-        Unique Click
-      </td>
-
-      <td>
-        The number of unique recipients who clicked any link in the email. Each link in an email is counted only once per recipient.
-        Ratio = Unique Click/Delivered.
-      </td>
+      <td><strong>Unique Clicks</strong></td>
+      <td>Number of individual recipients who clicked at least one link<br/>
+      <em>Rate = Unique Clicks ÷ Delivered</em></td>
     </tr>
-
     <tr>
-      <td>
-        Report Spam
-      </td>
-
-      <td>
-        The number of emails reported as spam by recipients.
-        Ratio = Spam/Delivered.
-      </td>
+      <td><strong>Spam Reports</strong></td>
+      <td>Emails marked as spam by recipients<br/>
+      <em>Rate = Spam Reports ÷ Delivered</em></td>
     </tr>
-
     <tr>
-      <td>
-        Unsubscribe
-      </td>
-
-      <td>
-        The number of recipients who clicked the unsubscribe link in the email.
-        Ratio = Unsubscribe/Delivered.
-      </td>
+      <td><strong>Unsubscribes</strong></td>
+      <td>Recipients who clicked unsubscribe links<br/>
+      <em>Rate = Unsubscribes ÷ Delivered</em></td>
     </tr>
   </tbody>
 </Table>
 
-<br />
+### Tracking Statistics Example
 
-> 📘 Tracking Statistics Example
+> 📊 **Example Calculation**
 >
-> You send an email to recipients X and Y, and both emails are delivered successfully.
-> Recipient X opens the email twice and clicks link M twice and link N once.
-> Recipient Y opens the email 3 times and clicks link M once and link N twice.
+> **Scenario:** You send emails to recipients X and Y. Both emails are successfully delivered.
+> 
+> **Activity:**
+> - Recipient X: Opens email 2 times, clicks link M twice, clicks link N once
+> - Recipient Y: Opens email 3 times, clicks link M once, clicks link N twice
 >
-> The resulting statistics would be:
-> * Open: 2 + 3 = 5
-> * Unique Open: 1 + 1 = 2
-> * Click: 2 + 1 + 1 + 2 = 6
-> * Unique Click: 1 + 1 + 1 + 1 = 4
+> **Results:**
+> - **Opens:** 2 + 3 = **5 total opens**
+> - **Unique Opens:** 1 + 1 = **2 unique recipients**
+> - **Clicks:** 2 + 1 + 1 + 2 = **6 total clicks**
+> - **Unique Clicks:** 1 + 1 = **2 unique recipients**
 
-<br />
+## Statistics Filtering Options
 
-# Email Statistics Dimensions
+Analyze your email performance using these filtering dimensions:
 
-Here are the dimensions you can use to filter and analyze your email statistics.
+| **Dimension** | **Description** |
+|:--------------|:----------------|
+| **Email Type** | Filter by Trigger emails (transactional) or Batch emails (marketing campaigns) |
+| **API User** | View statistics for a specific API user configuration |
+| **Label** | Filter by custom labels assigned to your email sends |
+| **Campaign** | Analyze performance of specific email campaigns |
+| **Receiving Domain** | Break down results by recipient email providers (Gmail, Yahoo, Outlook, etc.) |
+| **Request Period** | Select the timeframe for your analysis (default: last 7 days) |
+| **Send Tags** | Filter by custom tags included in your API requests |
 
-| Dimension        | Description                                                                                                      |
-| :--------------- | :--------------------------------------------------------------------------------------------------------------- |
-| Email Type       | Filter by Trigger or Batch emails. The email type is determined by the API_USER type used to send the emails. |
-| API_USER         | Filter by a specific API_USER that was used to send emails.                                                         |
-| Label            | Filter by a specific label that was used to send emails.                                                             |
-| Campaign         | Filter by a specific campaign that is currently sending or has completed sending.                                |
-| Receiving Domain | Filter by the recipient's email provider domain (e.g., gmail.com, yahoo.com).                              |
-| Request Period   | The time period when you requested Aurora SendCloud to send emails. Defaults to the last 7 days.    |
-| Send Tags        | Filter by the tags used in the API request.                                                                               |
+## Statistics Grouping Options
 
-# Email Statistics Categories
+Organize your email statistics data by selecting one of these grouping methods:
 
-Email sending and tracking statistics can be grouped into 4 categories for analysis:
+- **📅 Group by Day** *(default)* - Daily performance breakdown
+- **📊 Group by Week** - Weekly performance trends  
+- **📈 Group by Month** - Monthly performance overview
+- **🌐 Group by Receiving Domain** - Performance by email provider
 
-* **Group by day** (default)
-* **Group by week**
-* **Group by month**
-* **Group by receiving domain**
-
-<br />
+Choose the grouping that best matches your reporting needs and analysis goals.
