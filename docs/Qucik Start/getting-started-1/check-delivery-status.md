@@ -1,7 +1,7 @@
 ---
 title: Send Emails via SMTP
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
