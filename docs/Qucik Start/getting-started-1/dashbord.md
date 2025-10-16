@@ -46,10 +46,8 @@ The initial value of daily quota
 * Your account's reputation increases, as your daily quota will increase too.
 * You can apply for temporary quota increase when your reputation is more than 70%.
   * The quota is available for two days. You will either use it or lose it. Please be sensitive to the timeline
-  * The daily quota can be temporarily increased twice a month. 
+  * The daily quota can be temporarily increased twice a month.
 * [Contact Us](https://www.aurorasendcloud.com/contact)
-
-
 
 **For free user**
 
@@ -57,24 +55,17 @@ The initial value of daily quota
 
 ## Reputation
 
-The account's reputation score in Aurora SendCloud is important for you. The initial score is 60%. 
+The account's reputation score in Aurora SendCloud is important for you. The initial score is 60%.
 
 <Cards columns={2}>
-  <Card title="First Card" href="https://readme.com" icon="fa-home" target="_blank">
-   High quality of “delivery rate”, “open rate” and “click through rate” will lead to bonus points. 
+  <Card title="Increase" >
+    High quality of “delivery rate”, “open rate” and “click through rate” will lead to bonus points.
   </Card>
 
-  <Card title="Second Card" icon="fa-user">
-   A large number of “invalid addresses”, “spam reports” and “unsubscriptions” will result in score reduction.
+  <Card title="Reduce">
+    A large number of “invalid addresses”, “spam reports” and “unsubscriptions” will result in score reduction.
   </Card>
 
-  <Card title="Third Card" icon="fa-star">
-    > Ut enim ad minim veniam, quis nostrud ullamco
-  </Card>
-
-  <Card title="Fourth Card" icon="fa-question">
-    **Excepteur sint occaecat cupidatat non proident**
-  </Card>
 </Cards>
 
 High quality of “delivery rate”, “open rate” and “click through rate” will lead to bonus points. A large number of “invalid addresses”, “spam reports” and “unsubscriptions” will result in score reduction.
