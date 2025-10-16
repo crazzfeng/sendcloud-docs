@@ -6,8 +6,6 @@ hidden: false
 metadata:
   robots: index
 ---
-<br />
-
 ## SMSHook
 
 #### SMSHook mechanism
@@ -98,3 +96,54 @@ Authentication method is as below:
       If the retry count is exceeded, SendCloud will save the message for 15 days. If necessary, please contact us for a re push.
 
       You need to return HTTP Code 200 within 3 seconds for each event handling.
+
+<br />
+
+#### Event Description
+
+SMSHook now supports request, deliver, process failure, send failure and reply.
+
+** Request ( request )**
+
+Parameter Description
+
+| parameter  | type   | description                                                  |
+| :--------- | :----- | :----------------------------------------------------------- |
+| event      | string | event type: ”request”                                        |
+| eventType  | int    | event type code:1                                            |
+| message    | string | SMS content                                                  |
+| smsUser    | string | smsUser                                                      |
+| smsIds     | list   | SMS (Voice SMS) IDs                                          |
+| templateId | int    | template ID                                                  |
+| phones     | list   | phone numbers                                                |
+| timestamp  | long   | timestamp                                                    |
+| token      | string | random string of 50 characters                               |
+| signature  | string | signature string                                             |
+| userId     | int    | user ID                                                      |
+| labelId    | int    | reserved, temporarily out of use                             |
+| tag        | string | User defined tag                                             |
+| msgCount   | int    | Number of SMS                                                |
+| msgType    | int    | "0"SMS, "1"MMS, "2"International SMS, "3"International Voice |
+| smsType    | int    | "0"Verification Code, "1"Notice, "2"Marketing                |
+
+POST data example
+
+```
+{
+"msgType":0,
+"signature":"1ff237043487aeb4dc1b21c22b5ead9e4df94a31a3afa0ad53238eb38c2cbeea",
+"phones":"[\"13888888888\"]",
+"eventType":1,
+"templateId":29999,
+"message":"request",
+"userId":19999,
+"smsUser":"App",
+"smsIds":"[\"1652150994014_9373_14466_36735_99drnc$13888888888\"]",
+"token":"VDymF6ihuJkKZjHiJZkLKGmY6q9qAQ2WGopLh7mBsDeAO6GKV5",
+"labelId":0,
+"smsType":0,
+"tag":0,
+"event":"request",
+"timestamp":1652150994087
+}
+```
