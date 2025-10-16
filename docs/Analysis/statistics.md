@@ -10,7 +10,7 @@ metadata:
 ---
 <Image align="center" alt="Email Statistics" border={false} caption="Email Statistics" src="https://files.readme.io/4880c0cfb7250a8230597943b747944de1b37c3c84834bc61ecad65652eff51d-_20251016191511.png" />
 
-# Metrics of Sending and Tracking Statistics
+# Metrics of Email Statistics
 
 <Table align={["left","left"]}>
   <thead>
@@ -161,7 +161,7 @@ metadata:
 
 <br />
 
-# &#x20;Dimensions of Statistics
+# &#x20;Dimensions of Email Statistics
 
 Here are the dimensions by which you can perform filtering and screening.
 
@@ -175,7 +175,7 @@ Here are the dimensions by which you can perform filtering and screening.
 | Request Period   | It is the time period that you requested Aurora SendCloud to send emails. By default, it is the last 7 days .    |
 | Send Tags        | The tags used for the API request.                                                                               |
 
-# Categorys of Statistics
+# Categorys of Email Statistics
 
 The sending and tracking statistics can be grouped by 4 categories that you can choose in the filter.
 
