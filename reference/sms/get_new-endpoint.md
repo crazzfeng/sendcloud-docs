@@ -1,5 +1,5 @@
 ---
-title: send sms
+title: Send SMS Message
 excerpt: Send a SMS template to one or more users
 api:
   file: send.json
