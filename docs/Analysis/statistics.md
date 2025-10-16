@@ -34,7 +34,7 @@ metadata:
       </td>
 
       <td>
-        Number of requests received by Aurora SendCloud.
+        The number of email requests received by Aurora SendCloud.
       </td>
     </tr>
 
@@ -44,7 +44,7 @@ metadata:
       </td>
 
       <td>
-        Number of successfully delivered emails.
+        The number of emails successfully delivered.
         Ratio = Delivered/Requested.
       </td>
     </tr>
@@ -55,7 +55,7 @@ metadata:
       </td>
 
       <td>
-        Number of emails that failed delivery.
+        The number of emails that failed delivery due to invalid email addresses.
         Ratio = Invalid Email/Requested.
       </td>
     </tr>
@@ -66,7 +66,7 @@ metadata:
       </td>
 
       <td>
-        Number of emails that were returned after successful delivery. Ratio = Soft Bounce/Requested.
+        The number of emails that were temporarily rejected after delivery attempt. Ratio = Soft Bounce/Requested.
       </td>
     </tr>
 
@@ -76,7 +76,7 @@ metadata:
       </td>
 
       <td>
-        Number of emails that will be charged.
+        The number of emails that will be charged to your account.
       </td>
     </tr>
 
@@ -86,7 +86,7 @@ metadata:
       </td>
 
       <td>
-        Number of email opens. Each open is counted without deduplication.
+        The total number of email opens. Each open is counted individually without deduplication.
         Ratio = Open/Delivered.
       </td>
     </tr>
@@ -97,7 +97,7 @@ metadata:
       </td>
 
       <td>
-        Number of recipients who opened the email. Each email is counted only once per recipient.
+        The number of unique recipients who opened the email. Each email is counted only once per recipient.
         Ratio = Unique Open/Delivered.
       </td>
     </tr>
@@ -108,7 +108,7 @@ metadata:
       </td>
 
       <td>
-        Number of email clicks. Each click is counted without deduplication.
+        The total number of email clicks. Each click is counted individually without deduplication.
         Ratio = Click/Delivered.
       </td>
     </tr>
@@ -119,7 +119,7 @@ metadata:
       </td>
 
       <td>
-        Number of recipients who clicked a specific link in the email. Each link in an email is counted only once per recipient.
+        The number of unique recipients who clicked any link in the email. Each link in an email is counted only once per recipient.
         Ratio = Unique Click/Delivered.
       </td>
     </tr>
@@ -130,7 +130,7 @@ metadata:
       </td>
 
       <td>
-        Number of emails reported as spam.
+        The number of emails reported as spam by recipients.
         Ratio = Spam/Delivered.
       </td>
     </tr>
@@ -141,7 +141,7 @@ metadata:
       </td>
 
       <td>
-        Number of emails from which users clicked to unsubscribe.
+        The number of recipients who clicked the unsubscribe link in the email.
         Ratio = Unsubscribe/Delivered.
       </td>
     </tr>
@@ -153,9 +153,10 @@ metadata:
 > 📘 Tracking Statistics Example
 >
 > You send an email to recipients X and Y, and both emails are delivered successfully.
-> X opens the email twice and clicks link M twice and link N once.
-> Y opens the email 3 times and clicks link M once and link N twice.
+> Recipient X opens the email twice and clicks link M twice and link N once.
+> Recipient Y opens the email 3 times and clicks link M once and link N twice.
 >
+> The resulting statistics would be:
 > * Open: 2 + 3 = 5
 > * Unique Open: 1 + 1 = 2
 > * Click: 2 + 1 + 1 + 2 = 6
@@ -165,25 +166,25 @@ metadata:
 
 # Email Statistics Dimensions
 
-Here are the dimensions you can use for filtering and screening your statistics.
+Here are the dimensions you can use to filter and analyze your email statistics.
 
 | Dimension        | Description                                                                                                      |
 | :--------------- | :--------------------------------------------------------------------------------------------------------------- |
-| Email Type       | Choose between Trigger or Batch. The email type is determined by the API_USER type used to send emails. |
-| API_USER         | Choose an API_USER that was used to send emails.                                                         |
-| Label            | Choose a label that was used to send emails.                                                             |
-| Campaign         | Choose a campaign that is currently sending or has finished sending.                                |
-| Receiving Domain | Enter the email provider's domain to search, such as gmail.com or yahoo.com.                              |
+| Email Type       | Filter by Trigger or Batch emails. The email type is determined by the API_USER type used to send the emails. |
+| API_USER         | Filter by a specific API_USER that was used to send emails.                                                         |
+| Label            | Filter by a specific label that was used to send emails.                                                             |
+| Campaign         | Filter by a specific campaign that is currently sending or has completed sending.                                |
+| Receiving Domain | Filter by the recipient's email provider domain (e.g., gmail.com, yahoo.com).                              |
 | Request Period   | The time period when you requested Aurora SendCloud to send emails. Defaults to the last 7 days.    |
-| Send Tags        | The tags used for the API request.                                                                               |
+| Send Tags        | Filter by the tags used in the API request.                                                                               |
 
 # Email Statistics Categories
 
-The sending and tracking statistics can be grouped into 4 categories that you can select in the filter:
+Email sending and tracking statistics can be grouped into 4 categories for analysis:
 
-* Group by day (default)
-* Group by week
-* Group by month
-* Group by receiving domain
+* **Group by day** (default)
+* **Group by week**
+* **Group by month**
+* **Group by receiving domain**
 
 <br />
