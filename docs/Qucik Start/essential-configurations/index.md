@@ -1,5 +1,5 @@
 ---
-title: Essential Configurations
+title: Necessary Config
 deprecated: false
 hidden: false
 metadata:
