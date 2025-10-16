@@ -163,100 +163,17 @@ metadata:
 
 Here are the conditions by which you can perform filtering and screening.
 
-<Table align={["left","left"]}>
-  <thead>
-    <tr>
-      <th>
-        Item
-      </th>
+| Item             | Description                                                                                                            |
+| :--------------- | :--------------------------------------------------------------------------------------------------------------------- |
+| Email Type       | You can choose Trigger or Batch. The email type is decided by the type of API_USER that you used to send emails.       |
+| API_USER         | You can choose an API_USER that was used to send emails.                                                               |
+| Label Name       | You can choose a label that was used to send emails.                                                                   |
+| Campagin         | You can choose a campaign that is in the process of sending or has been finished.                                      |
+| Break Down       | By default, the statistics is broken down by day. You can change it to "by week", "by month" or "by receiving domain". |
+| Receiving Domain | You can enter the mail provider's domain to search, such as gmail.com.                                                 |
+| Request Period   | By default, it is last 7 days .                                                                                        |
+| Send Tags        | The tags used for the API request.                                                                                     |
 
-      <th>
-        Description
-      </th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        Email Type
-      </td>
-
-      <td>
-        * By default, it is all . You can choose Trigger or Batch. The email type is decided by the type of API_USER that you used to send emails.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        API_USER
-      </td>
-
-      <td>
-        By default, it is all . 
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        Label Name
-      </td>
-
-      <td>
-        By default, it is all .
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        Campagin
-      </td>
-
-      <td>
-        By default, it is all .
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        Dimension
-      </td>
-
-      <td>
-        By default, it is broken down by day.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        Receiving Domain
-      </td>
-
-      <td>
-        By default, it is all .
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        Request Period
-      </td>
-
-      <td>
-        By default, it is last 7 days .
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        Send Tags
-      </td>
-
-      <td>
-        The tags used for the API request.
-      </td>
-    </tr>
-  </tbody>
-</Table>
+<br />
 
 <br />
