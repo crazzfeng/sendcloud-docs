@@ -16,22 +16,48 @@ metadata:
 
 ## Your First Email
 
-We have created a test sending domain and API_USER for every account, allowing you to test email sending directly. There are two ways to send your first email: "Send by template" or "Send by code".
+Getting started with Aurora SendCloud is easy! We've automatically created a test sending domain and API_USER for your account, so you can begin testing email delivery right away without any initial setup.
+
+Choose from two simple methods to send your first email:
+- **Send by Template**: Use our pre-built email templates for quick setup
+- **Send by Code**: Integrate directly with our API for custom implementations
 
 <Image align="center" alt="Send the first email" border={false} src="https://files.readme.io/130c44edc33214aa01f8760e045b1f323f41d9bc155a8351ca91ce057a29cbbb-_20251016180205.png" />
 
 ## Create & Verify Sending Domain
 
-The sending domain serves as the "ID" for an email.
+Your sending domain acts as your email identity and is crucial for deliverability. This domain appears in your email's "From" address and helps establish trust with recipients and email providers.
+
+**Key Benefits:**
+- Improves email deliverability rates
+- Builds sender reputation
+- Ensures consistent branding across all communications
+
+Make sure to complete the domain verification process to unlock full sending capabilities and maintain high delivery rates.
 
 <br />
 
 ## Create API_USER
 
-You will use the API_USER to send emails.
+The API_USER serves as your authentication credential for sending emails through Aurora SendCloud. This secure token allows your applications to connect with our email service safely.
+
+**What you'll need it for:**
+- Authenticating API requests
+- Tracking email statistics
+- Managing sending limits and quotas
+
+Keep your API_USER credentials secure and never share them publicly.
 
 ## Start Sending
 
-This is the final step to begin sending emails. Click "Use API" to start sending emails via API, or click "Create Campaign" to create an email campaign for sending.
+You're now ready to begin your email journey! Choose the method that best fits your needs:
+
+**Option 1: Use API**
+Perfect for developers who want to integrate email functionality directly into their applications. Our comprehensive API documentation will guide you through the implementation process.
+
+**Option 2: Create Campaign**
+Ideal for marketing teams and those who prefer a user-friendly interface. Create, customize, and send email campaigns using our intuitive campaign builder.
+
+Both options provide powerful analytics and delivery tracking to help you monitor your email performance.
 
 <br />
