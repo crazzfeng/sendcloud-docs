@@ -9,44 +9,44 @@ metadata:
 ---
 # Daily Quota
 
-The daily quota represents the maximum number of emails that users can send through Aurora SendCloud each day. This quota is a variable value that increases or decreases based on your account's reputation and recent sending activity.
+The quota that users can request every day is the maximum number of emails that can be requested to Aurora SendCloud daily. The daily quota is a variable value, which will be increased or decreased according to the reputation and recent requested number.
 
-> When your account's request count exceeds the daily quota, you will receive an error message stating 'request quota exceeded'.
+> When the account's request number exceeds this value, the user will receive an error prompt of 'request quota exceeded'.
 
-**Initial daily quota values:**
+The initial value of daily quota
 
 | Paid User        | Free User     |
 | :--------------- | :------------ |
 | 3,000 emails/day | 50 emails/day |
 
-## How to Increase Daily Quota
+## How to increase daily quota?
 
-**For paid users:**
+**For paid user**
 
-* Your daily quota will increase as your account's reputation improves.
-* You can apply for a temporary quota increase when your reputation exceeds 70%. Daily quota can only be temporarily increased twice per month.
+* Your account's reputation increases, as your daily quota will increase too.
+* You can apply for temporary quota increase when your reputation is more than 70%. The daily quota can only be temporarily increased twice in a month.
 * [Contact Us](https://www.aurorasendcloud.com/contact)
 
-**For free users:**
+**For free user**
 
-* Currently, the daily quota cannot exceed 50 emails/day.
+* Now the daily quota can not be more than 50 emails/day.
 
 # Reputation
 
-Your account's reputation score in Aurora SendCloud is crucial for maintaining good deliverability. The initial reputation score is 60%.
+The account's reputation score in Aurora SendCloud is important for you. The initial score is 60%.
 
 <Cards columns={2}>
   <Card title="Increase">
-    High-quality metrics such as "delivery rate," "open rate," and "click-through rate" will increase your reputation score.
+    High quality of “delivery rate”, “open rate” and “click through rate” will lead to bonus points.
   </Card>
 
-  <Card title="Decrease">
-    A large number of "invalid addresses," "spam reports," and "unsubscriptions" will reduce your reputation score.
+  <Card title="Reduce">
+    A large number of “invalid addresses”, “spam reports” and “unsubscriptions” will result in score reduction.
   </Card>
 </Cards>
 
 <Callout icon="❗️" theme="error">
-  A rapid increase in "invalid addresses" and "spam reports" within a short period will directly result in negative reputation, preventing you from continuing to send emails.
+  The proliferation of "invalid addresses" and "spam reports" in a short period of time will directly lead to negative reputation, and you cannot continue to request.
 </Callout>
 
 <br />
