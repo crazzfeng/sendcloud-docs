@@ -1,5 +1,5 @@
 ---
-title: How to Send the First Email
+title: Send Emails via a campaign
 deprecated: false
 hidden: false
 metadata:
