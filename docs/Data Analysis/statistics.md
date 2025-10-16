@@ -161,7 +161,7 @@ metadata:
 
 # Statistics Filter
 
-Here are the conditions by which you can perform filtering and screening.
+Here are the dimensions by which you can perform filtering and screening.
 
 | Item             | Description                                                                                                            |
 | :--------------- | :--------------------------------------------------------------------------------------------------------------------- |
