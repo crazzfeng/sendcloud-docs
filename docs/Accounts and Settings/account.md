@@ -115,7 +115,7 @@ Note:
 
 > The new phone number cannot already be registered with another account.
 
-# Region
+# Preferences
 
 "Preferences" allows you to customize your account experience so that the information displayed (such as time and report categories) is more relevant to your context. These settings generally relate to report analysis, data presentation, and recommendations.
 
@@ -137,86 +137,34 @@ Note :
 
 Please select the industry that best represents your company's primary business. This helps us provide you with more relevant industry insights and customized services.
 
-To set:
+### How to set industry
 
-Click the "Industry" drop-down box.
+1. Select one of the following options:
 
-Select one of the following options:
+> Electronic Commerce, Community Forum, Games, Human Resources, IT Services, Sports Health, Training and Education, Art and Literature, Finance, Logistics, Biopharma, Cross-border E-commerce
 
-Electronic Commerce
+2. Click "Save" to save your selection.
 
-Community Forum
+**Special Scenario: Select "Other"**
 
-Games
+If you cannot find an exact match for your industry in the list, select "Other." After selecting, a text input box will appear below the drop-down box. Please manually enter your specific industry name in this input box. After entering, click "Save" to save your selection.
 
-Human Resources
-
-IT Services
-
-Sports Health
-
-Training and Education
-
-Art and Literature
-
-Finance
-
-Logistics
-
-Biopharma
-
-Cross-border E-commerce
-
-Others
-
-Click "Save" to save your selection.
-
-Special Scenario: Select "Other"
-
-If you find an exact match for your industry in the list, select "Other."
-
-After selecting, a text input box will appear below the drop-down box. Please manually enter your specific industry name in this input box.
-
-After entering, click "Save" to save your selection.
-
-3. Channels
+## Channels
 
 Please tell us how you learned about our services. This information will help us refine our marketing strategies.
 
-How to set this option:
+### How to set channels
 
-Click the "Channels" drop-down box.
+1.Select one of the following options:
 
-Select one of the following options:
+> Search Engines, Advertising, SAE Service Recommendation, Media Coverage, Social Platforms, Friend Recommendation
 
-Search Engines
+2. Click "Save" to save your selection.
 
-Advertising
+**Special Scenario: Select "Other"**
 
-SAE Service Recommendation
+If none of the above channels apply, please select "Other." After selecting this option, a text input box will appear. Please manually enter the specific method you learned about us in this input box. After entering your information, click "Save" to save your selection.
 
-Media Coverage
+# Region
 
-Social Platforms
-
-Friend Recommendation
-
-Others
-
-Click "Save" to save your selection.
-
-Special Scenario: Select "Other"
-
-If none of the above channels apply, please select "Other."
-
-After selecting this option, a text input box will appear.
-
-Please manually enter the specific method you learned about us in this input box.
-
-After entering your information, click "Save" to save your selection.
-
-Important Notice
-
-Edit Permissions: You can return to this page at any time to update your preferences.
-
-Data Usage: The industry and channel information you provide will be used for aggregated analysis to help us improve our products and services. All individual information will be kept strictly confidential. For more information, please refer to our Privacy Policy.
+<br />
