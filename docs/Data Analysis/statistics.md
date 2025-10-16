@@ -74,7 +74,7 @@ metadata:
       </td>
 
       <td>
-        Number of emails with Delivered, Soft Bounce, Address Format Error, Address Does Not Exist, Spam, and Sender/Recipient Rejected.
+        Number of emails that will be charged.
       </td>
     </tr>
 
