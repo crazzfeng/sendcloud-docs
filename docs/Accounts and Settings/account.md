@@ -35,7 +35,9 @@ For security reasons, changing your email address requires verifying ownership o
 
 Regularly updating your password is an important part of account security.
 
-### Scenario 1: Remember your current password
+### How to change your password
+
+**Scenario 1: Remember your current password**
 
 1. Next to the "Password" field, click the "Modify" button.
 
@@ -47,7 +49,7 @@ Regularly updating your password is an important part of account security.
 
 5. Click "Confirm Change."
 
-### Scenario 2: Forgot your current password
+**Scenario 2: Forgot your current password**
 
 If you have forgotten your current password, you can reset it using your registered email address:
 
