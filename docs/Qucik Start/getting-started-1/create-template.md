@@ -1,5 +1,5 @@
 ---
-title: How to Create a Template
+title: Send Email by API
 deprecated: false
 hidden: false
 metadata:
