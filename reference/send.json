@@ -33,6 +33,14 @@
           },
           {
             "in": "query",
+            "name": "smsKey",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "in": "query",
             "name": "templateId",
             "schema": {
               "type": "integer"
@@ -59,20 +67,18 @@
           },
           {
             "in": "query",
+            "name": "senderID",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
             "name": "sendRequestId",
             "schema": {
               "type": "string"
             },
             "description": "supports up to 128 characters, multiple requests with the same sendRequestId within 1 hour will only be processed for the first time"
-          },
-          {
-            "in": "query",
-            "name": "signature",
-            "schema": {
-              "type": "string"
-            },
-            "description": "signature, validity verification",
-            "required": true
           },
           {
             "in": "query",
@@ -84,7 +90,7 @@
           },
           {
             "in": "query",
-            "name": "tag",
+            "name": "customArgs",
             "schema": {
               "type": "string"
             },
