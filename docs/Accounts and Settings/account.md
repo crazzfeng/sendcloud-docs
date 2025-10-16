@@ -5,9 +5,13 @@ hidden: false
 metadata:
   robots: index
 ---
+**Access**
+
+After logging in, click your profile picture in the lower left corner and select "Info" from the drop-down menu to access your account information management page.
+
 # Info
 
-This section is used to manage your basic account information.
+This section will guide you through managing your core account information, including your registered email address, login password, and associated phone number. You can update your information here to ensure account security and receive timely important notifications.
 
 ## Email
 
@@ -113,3 +117,109 @@ If your phone number isn't linked to your account yet, please follow these steps
 </Accordion>
 
 # Region
+
+"Preferences" allows you to customize your account experience so that the information displayed (such as time and report categories) is more relevant to your context. These settings generally relate to report analysis, data presentation, and recommendations.
+
+## Time Zone
+
+This setting determines the display basis for all time-related data in the system (for example, report generation time, operation logs, etc.). Selecting the correct time zone ensures that the time information you view is accurate.
+
+### To set it
+
+1. Click the "Time Zone" drop-down box.
+2. Select your UTC time zone from the list. For example, if you are in Mainland China, select UTC+8.
+3. Click "Save" to save your selection.
+
+Note :
+
+> The system defaults to UTC+8 (Eastern Time Zone). If you do not modify it, all time information will be displayed in this zone.
+
+
+
+## Industry
+
+Please select the industry that best represents your company's primary business. This helps us provide you with more relevant industry insights and customized services.
+
+To set:
+
+Click the "Industry" drop-down box.
+
+Select one of the following options:
+
+Electronic Commerce
+
+Community Forum
+
+Games
+
+Human Resources
+
+IT Services
+
+Sports Health
+
+Training and Education
+
+Art and Literature
+
+Finance
+
+Logistics
+
+Biopharma
+
+Cross-border E-commerce
+
+Others
+
+Click "Save" to save your selection.
+
+Special Scenario: Select "Other"
+
+If you find an exact match for your industry in the list, select "Other."
+
+After selecting, a text input box will appear below the drop-down box. Please manually enter your specific industry name in this input box.
+
+After entering, click "Save" to save your selection.
+
+3. Channels
+
+Please tell us how you learned about our services. This information will help us refine our marketing strategies.
+
+How to set this option:
+
+Click the "Channels" drop-down box.
+
+Select one of the following options:
+
+Search Engines
+
+Advertising
+
+SAE Service Recommendation
+
+Media Coverage
+
+Social Platforms
+
+Friend Recommendation
+
+Others
+
+Click "Save" to save your selection.
+
+Special Scenario: Select "Other"
+
+If none of the above channels apply, please select "Other."
+
+After selecting this option, a text input box will appear.
+
+Please manually enter the specific method you learned about us in this input box.
+
+After entering your information, click "Save" to save your selection.
+
+Important Notice
+
+Edit Permissions: You can return to this page at any time to update your preferences.
+
+Data Usage: The industry and channel information you provide will be used for aggregated analysis to help us improve our products and services. All individual information will be kept strictly confidential. For more information, please refer to our Privacy Policy.
