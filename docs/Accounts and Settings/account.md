@@ -31,9 +31,9 @@ For security reasons, changing your email address requires verifying ownership o
 
 5. Click "Save."
 
-<Accordion title="Note" icon="fa-info-circle">
-  The new email address must be in the correct format (e.g., [name@example.com](mailto:name@example.com)) and must not already be associated with another account.
-</Accordion>
+Note
+
+> The new email address must be in the correct format (e.g., name@example.com ) and must not already be associated with another account.
 
 ## Password
 
@@ -74,14 +74,13 @@ If you have forgotten your current password, you can reset it using your registe
 * Spaces: No spaces allowed.
 
 * Character Types: Only numbers, letters, and special characters are supported. Must contain at least three of the following character types:
-
-> Lowercase letters (a-z)
->
-> Uppercase letters (A-Z)
->
-> Numbers (0-9)
->
-> Special characters (e.g., ! @ # $ % & *)
+  > Lowercase letters (a-z)
+  >
+  > Uppercase letters (A-Z)
+  >
+  > Numbers (0-9)
+  >
+  > Special characters (e.g., ! @ # $ % & *)
 
 ## Phone
 
@@ -112,9 +111,9 @@ If your phone number isn't linked to your account yet, please follow these steps
 5. Enter the verification code sent to your new phone number.
 6. Click "Confirm Change."
 
-<Accordion title="Note" icon="fa-info-circle">
-  The new phone number cannot already be registered with another account.
-</Accordion>
+Note:
+
+> The new phone number cannot already be registered with another account.
 
 # Region
 
@@ -133,8 +132,6 @@ This setting determines the display basis for all time-related data in the syste
 Note :
 
 > The system defaults to UTC+8 (Eastern Time Zone). If you do not modify it, all time information will be displayed in this zone.
-
-
 
 ## Industry
 
