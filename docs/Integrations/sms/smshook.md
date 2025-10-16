@@ -6,8 +6,6 @@ hidden: false
 metadata:
   robots: index
 ---
- ## SMSHook
-
 #### SMSHook mechanism
 
 When users submit SMS or voice  request to SendCloud, 「request result」 will be simultaneously returned to users; SMS or voice 「sending result」 and 「results of other event」 will be asynchronously returned to users via SMSHook.
