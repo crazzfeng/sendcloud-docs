@@ -86,6 +86,14 @@ function verify($appkey,$token,$timestamp,$signature){
 }
 ```
 
+**Retry mechanism**
+
+If encountering URL access errors or timeouts, SendCloud will retry up to 7 times The fastest time interval for each retry is 3 minutes, 10 minutes, 30 minutes, 1 hour, 6 hours, 12 hours, 24 hours. This means that you have enough time to fix the URL before the message is lost.
+
+If the retry count is exceeded, SendCloud will save the message for 15 days. If necessary, please contact us for a re push.
+
+You need to return HTTP Code 200 within 3 seconds for each event handling.
+
 #### Event Description
 
 SMSHook now supports request, deliver, process failure, send failure and reply.
