@@ -44,8 +44,17 @@ The initial value of daily quota
 **For paid user**
 
 * Your account's reputation increases, as your daily quota will increase too.
-* Apply for Temporary quota increase.
+* You can apply for temporary quota increase when your reputation is more than 70%.
+  * The quota is available for two days. You will either use it or lose it. Please be sensitive to the timeline
+  * The daily quota can be temporarily increased twice a month. 
+* [Contact Us](https://www.aurorasendcloud.com/contact)
+
+
 
 **For free user**
 
 * Now the daily quota can not be more than 50 emails/day.
+
+## Reputation
+
+<br />
