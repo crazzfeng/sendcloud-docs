@@ -10,13 +10,13 @@ metadata:
 ---
 <Image align="center" alt="Email Statistics" border={false} caption="Email Statistics" src="https://files.readme.io/4880c0cfb7250a8230597943b747944de1b37c3c84834bc61ecad65652eff51d-_20251016191511.png" />
 
-# Sending and Tracking Metrics
+# Metrics of Statistics
 
 <Table align={["left","left"]}>
   <thead>
     <tr>
       <th>
-        Item
+        Metric
       </th>
 
       <th>
@@ -159,11 +159,13 @@ metadata:
 > * Click: 2 + 1 + 1 + 2 = 6
 > * Unique Click: 1 + 1 + 1 + 1 = 4
 
-# Statistics Filter
+# Filter of Statistics
+
+## &#x20;Dimensions of Statistics
 
 Here are the dimensions by which you can perform filtering and screening.
 
-| Item             | Description                                                                                                            |
+| Dimension        | Description                                                                                                            |
 | :--------------- | :--------------------------------------------------------------------------------------------------------------------- |
 | Email Type       | You can choose Trigger or Batch. The email type is decided by the type of API_USER that you used to send emails.       |
 | API_USER         | You can choose an API_USER that was used to send emails.                                                               |
@@ -174,6 +176,11 @@ Here are the dimensions by which you can perform filtering and screening.
 | Request Period   | By default, it is the last 7 days .You can choose the period you want, but it can't be beyond 6 months ago.            |
 | Send Tags        | The tags used for the API request.                                                                                     |
 
-<br />
+## Categorys of Statistics
 
-<br />
+The sending and tracking statistics can be grouped by 4 categories that you can choose in the filter.
+
+* Group by day
+* Group by week
+* Group by month
+* Group by receiving doamin
