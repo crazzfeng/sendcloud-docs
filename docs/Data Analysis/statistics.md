@@ -171,7 +171,7 @@ Here are the conditions by which you can perform filtering and screening.
 | Campagin         | You can choose a campaign that is in the process of sending or has been finished.                                      |
 | Break Down       | By default, the statistics is broken down by day. You can change it to "by week", "by month" or "by receiving domain". |
 | Receiving Domain | You can enter the mail provider's domain to search, such as gmail.com.                                                 |
-| Request Period   | By default, it is last 7 days .                                                                                        |
+| Request Period   | By default, it is the last 7 days .You can choose the period you want, but it can't be beyond 6 months ago.            |
 | Send Tags        | The tags used for the API request.                                                                                     |
 
 <br />
