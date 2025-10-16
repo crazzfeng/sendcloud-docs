@@ -159,9 +159,9 @@ metadata:
 > * Click: 2 + 1 + 1 + 2 = 6
 > * Unique Click: 1 + 1 + 1 + 1 = 4
 
-# Filter of Statistics
+<br />
 
-## &#x20;Dimensions of Statistics
+# &#x20;Dimensions of Statistics
 
 Here are the dimensions by which you can perform filtering and screening.
 
@@ -169,13 +169,13 @@ Here are the dimensions by which you can perform filtering and screening.
 | :--------------- | :--------------------------------------------------------------------------------------------------------------- |
 | Email Type       | You can choose Trigger or Batch. The email type is decided by the type of API_USER that you used to send emails. |
 | API_USER         | You can choose an API_USER that was used to send emails.                                                         |
-| Label Name       | You can choose a label that was used to send emails.                                                             |
+| Label            | You can choose a label that was used to send emails.                                                             |
 | Campagin         | You can choose a campaign that is in the process of sending or has been finished.                                |
-| Receiving Domain | You can enter the mail provider's domain to search, such as gmail.com.                                           |
-| Request Period   | By default, it is the last 7 days .You can choose the period you want, but it can't be beyond 6 months ago.      |
+| Receiving Domain | You can enter the mail provider's domain to search, such as gmail.com or yahoo.com.                              |
+| Request Period   | The time period that you requested Aurora SendCloud to send emails. By default, it is the last 7 days .          |
 | Send Tags        | The tags used for the API request.                                                                               |
 
-## Categorys of Statistics
+# Categorys of Statistics
 
 The sending and tracking statistics can be grouped by 4 categories that you can choose in the filter.
 
@@ -183,3 +183,5 @@ The sending and tracking statistics can be grouped by 4 categories that you can 
 * Group by week
 * Group by month
 * Group by receiving doamin
+
+<br />
