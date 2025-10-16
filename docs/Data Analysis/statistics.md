@@ -179,7 +179,7 @@ Here are the dimensions by which you can perform filtering and screening.
 
 The sending and tracking statistics can be grouped by 4 categories that you can choose in the filter.
 
-* Group by day
+* Group by day (defualt)
 * Group by week
 * Group by month
 * Group by receiving doamin
