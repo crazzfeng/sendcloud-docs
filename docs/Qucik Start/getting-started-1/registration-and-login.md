@@ -1,5 +1,5 @@
 ---
-title: Registration and Login
+title: 'Sign Up and Login '
 deprecated: false
 hidden: false
 metadata:
