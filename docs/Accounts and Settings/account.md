@@ -69,17 +69,15 @@ If you have forgotten your current password, you can reset it using your registe
 
 * Spaces: No spaces allowed.
 
-* Character Types: Must contain at least three of the following character types:
+* Character Types: Only numbers, letters, and special characters are supported. Must contain at least three of the following character types:
 
-* > Lowercase letters (a-z)
-  >
-  > Uppercase letters (A-Z)
-  >
-  > Numbers (0-9)
-  >
-  > Special characters (e.g., ! @ # $ % & *)
-
-* Allowed Characters: Only numbers, letters, and special characters are supported.
+> Lowercase letters (a-z)
+>
+> Uppercase letters (A-Z)
+>
+> Numbers (0-9)
+>
+> Special characters (e.g., ! @ # $ % & *)
 
 ## Phone
 
