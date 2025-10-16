@@ -1,5 +1,5 @@
 ---
-title: Check Delivery Status
+title: Send Emails via SMTP
 deprecated: false
 hidden: false
 metadata:
