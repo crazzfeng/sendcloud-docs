@@ -10,54 +10,90 @@ link:
 metadata:
   robots: index
 ---
-<br />
+# Newbie Guide
 
 <Image align="center" alt="Newbie Guide" border={false} caption="Newbie Guide" src="https://files.readme.io/5322762865d78e49f001d44d7fbc889eccde52b8d111a55a314c30b786cea7cf-_20251016164129.png" />
 
-## Your First Email
+Welcome to Aurora SendCloud! This guide will walk you through everything you need to start sending emails successfully. We've made it simple with automatic setup and multiple options to fit your needs.
 
-Getting started with Aurora SendCloud is easy! We've automatically created a test sending domain and API_USER for your account, so you can begin testing email delivery right away without any initial setup.
+## Quick Start Options
 
-Choose from two simple methods to send your first email:
-- **Send by Template**: Use our pre-built email templates for quick setup
-- **Send by Code**: Integrate directly with our API for custom implementations
+<Cards columns={2}>
+  <Card title="Send by Template" icon="envelope-open">
+    Use our pre-built email templates for quick setup and immediate sending
+  </Card>
+  <Card title="Send by Code" icon="code">
+    Integrate directly with our API for custom implementations and advanced features
+  </Card>
+</Cards>
 
 <Image align="center" alt="Send the first email" border={false} src="https://files.readme.io/130c44edc33214aa01f8760e045b1f323f41d9bc155a8351ca91ce057a29cbbb-_20251016180205.png" />
 
-## Create & Verify Sending Domain
+## Setup Requirements
 
-Your sending domain acts as your email identity and is crucial for deliverability. This domain appears in your email's "From" address and helps establish trust with recipients and email providers.
+<Tabs>
+  <Tab title="Domain Setup">
+    ### Create & Verify Sending Domain
+    
+    Your sending domain acts as your email identity and is crucial for deliverability. This domain appears in your email's "From" address and helps establish trust with recipients and email providers.
 
-**Key Benefits:**
-- Improves email deliverability rates
-- Builds sender reputation
-- Ensures consistent branding across all communications
+    **Key Benefits:**
+    - Improves email deliverability rates
+    - Builds sender reputation  
+    - Ensures consistent branding across all communications
 
-Make sure to complete the domain verification process to unlock full sending capabilities and maintain high delivery rates.
+    Make sure to complete the domain verification process to unlock full sending capabilities and maintain high delivery rates.
+  </Tab>
+  
+  <Tab title="API Credentials">
+    ### Create API_USER
+    
+    The API_USER serves as your authentication credential for sending emails through Aurora SendCloud. This secure token allows your applications to connect with our email service safely.
 
-<br />
+    **What you'll need it for:**
+    - Authenticating API requests
+    - Tracking email statistics
+    - Managing sending limits and quotas
 
-## Create API_USER
+    **Important:** Keep your API_USER credentials secure and never share them publicly.
+  </Tab>
+</Tabs>
 
-The API_USER serves as your authentication credential for sending emails through Aurora SendCloud. This secure token allows your applications to connect with our email service safely.
+## Getting Started
 
-**What you'll need it for:**
-- Authenticating API requests
-- Tracking email statistics
-- Managing sending limits and quotas
+<Accordion title="Good News!" icon="check-circle">
+  We've automatically created a test sending domain and API_USER for your account, so you can begin testing email delivery right away without any initial setup required!
+</Accordion>
 
-Keep your API_USER credentials secure and never share them publicly.
+## Choose Your Sending Method
 
-## Start Sending
+You're now ready to begin your email journey! Select the approach that best fits your needs:
 
-You're now ready to begin your email journey! Choose the method that best fits your needs:
+<Cards columns={2}>
+  <Card title="Use API Integration" icon="code-branch">
+    Perfect for developers who want to integrate email functionality directly into their applications. Our comprehensive API documentation will guide you through the implementation process.
+    
+    **Best for:**
+    - Custom applications
+    - Automated email workflows
+    - Advanced integrations
+  </Card>
+  
+  <Card title="Create Email Campaign" icon="bullhorn">
+    Ideal for marketing teams and those who prefer a user-friendly interface. Create, customize, and send email campaigns using our intuitive campaign builder.
+    
+    **Best for:**
+    - Marketing campaigns
+    - Newsletter sending
+    - User-friendly interface
+  </Card>
+</Cards>
 
-**Option 1: Use API**
-Perfect for developers who want to integrate email functionality directly into their applications. Our comprehensive API documentation will guide you through the implementation process.
-
-**Option 2: Create Campaign**
-Ideal for marketing teams and those who prefer a user-friendly interface. Create, customize, and send email campaigns using our intuitive campaign builder.
-
-Both options provide powerful analytics and delivery tracking to help you monitor your email performance.
-
-<br />
+<Accordion title="Analytics & Tracking" icon="chart-line">
+  Both sending methods provide powerful analytics and delivery tracking to help you monitor your email performance, including:
+  
+  - Delivery rates and bounce tracking
+  - Open and click-through statistics
+  - Real-time sending status updates
+  - Detailed performance reports
+</Accordion>
