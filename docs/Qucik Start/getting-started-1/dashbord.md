@@ -5,10 +5,6 @@ hidden: false
 metadata:
   robots: index
 ---
-<br />
-
-<Image align="center" border={false} src="https://files.readme.io/853c2681a3668c0bdb54701e79d6774595ff65945b0e7e1d683373bbce35618f-_20251016171026.png" />
-
 # Daily Quota
 
 The quota that users can request every day is the maximum number of emails that can be requested to Aurora SendCloud daily. The daily quota is a variable value, which will be increased or decreased according to the reputation and recent requested number.
