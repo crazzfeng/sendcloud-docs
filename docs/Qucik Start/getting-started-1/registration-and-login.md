@@ -58,4 +58,4 @@ What should I do if I forget my login password?
 
 <br />
 
-**Still need some help? Our customer success team has your back! <Anchor label="Contact us" target="_blank" href="https://www.aurorasendcloud.com/contact">Contact us</Anchor>!**
+**Still need some help? Our customer success team has your back! <Anchor label="Contact us" target="_blank" href="https://www.aurorasendcloud.com/contact">Contact us</Anchor>**
