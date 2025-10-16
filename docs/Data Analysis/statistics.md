@@ -16,7 +16,7 @@ metadata:
   <thead>
     <tr>
       <th>
-        Metric
+        Item
       </th>
 
       <th>
@@ -158,5 +158,22 @@ metadata:
 > * Unique Open: 1 + 1 = 2
 > * Click: 2 + 1 + 1 + 2 = 6
 > * Unique Click: 1 + 1 + 1 + 1 = 4
+
+# Statistics Filter
+
+Here are the conditions by which you can perform filtering and screening.
+
+<br />
+
+| Item             | Description                        |
+| :--------------- | :--------------------------------- |
+| Email Type       |                                    |
+| API_USER         |                                    |
+| Label Name       |                                    |
+| Campagin         |                                    |
+| Dimension        |                                    |
+| Receiving Domain |                                    |
+| Request Period   |                                    |
+| Send Tags        | The tags used for the API request. |
 
 <br />
