@@ -172,7 +172,7 @@ Here are the dimensions by which you can perform filtering and screening.
 | Label            | You can choose a label that was used to send emails.                                                             |
 | Campagin         | You can choose a campaign that is in the process of sending or has been finished.                                |
 | Receiving Domain | You can enter the mail provider's domain to search, such as gmail.com or yahoo.com.                              |
-| Request Period   | The time period that you requested Aurora SendCloud to send emails. By default, it is the last 7 days .          |
+| Request Period   | It is the time period that you requested Aurora SendCloud to send emails. By default, it is the last 7 days .    |
 | Send Tags        | The tags used for the API request.                                                                               |
 
 # Categorys of Statistics
