@@ -10,7 +10,7 @@ metadata:
 ---
 <Image align="center" alt="Email Statistics" border={false} caption="Email Statistics" src="https://files.readme.io/4880c0cfb7250a8230597943b747944de1b37c3c84834bc61ecad65652eff51d-_20251016191511.png" />
 
-# What metrics of sending and tracking statistics do Aurora SendCloud have?
+# Metrics of Statistics
 
 <Table align={["left","left"]}>
   <thead>
