@@ -165,16 +165,15 @@ metadata:
 
 Here are the dimensions by which you can perform filtering and screening.
 
-| Dimension        | Description                                                                                                            |
-| :--------------- | :--------------------------------------------------------------------------------------------------------------------- |
-| Email Type       | You can choose Trigger or Batch. The email type is decided by the type of API_USER that you used to send emails.       |
-| API_USER         | You can choose an API_USER that was used to send emails.                                                               |
-| Label Name       | You can choose a label that was used to send emails.                                                                   |
-| Campagin         | You can choose a campaign that is in the process of sending or has been finished.                                      |
-| Break Down       | By default, the statistics is broken down by day. You can change it to "by week", "by month" or "by receiving domain". |
-| Receiving Domain | You can enter the mail provider's domain to search, such as gmail.com.                                                 |
-| Request Period   | By default, it is the last 7 days .You can choose the period you want, but it can't be beyond 6 months ago.            |
-| Send Tags        | The tags used for the API request.                                                                                     |
+| Dimension        | Description                                                                                                      |
+| :--------------- | :--------------------------------------------------------------------------------------------------------------- |
+| Email Type       | You can choose Trigger or Batch. The email type is decided by the type of API_USER that you used to send emails. |
+| API_USER         | You can choose an API_USER that was used to send emails.                                                         |
+| Label Name       | You can choose a label that was used to send emails.                                                             |
+| Campagin         | You can choose a campaign that is in the process of sending or has been finished.                                |
+| Receiving Domain | You can enter the mail provider's domain to search, such as gmail.com.                                           |
+| Request Period   | By default, it is the last 7 days .You can choose the period you want, but it can't be beyond 6 months ago.      |
+| Send Tags        | The tags used for the API request.                                                                               |
 
 ## Categorys of Statistics
 
