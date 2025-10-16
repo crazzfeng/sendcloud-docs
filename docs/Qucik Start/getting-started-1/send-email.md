@@ -1,5 +1,5 @@
 ---
-title: Send Emails via a campaign
+title: Send Emails via Campaigns
 deprecated: false
 hidden: false
 metadata:
