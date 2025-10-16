@@ -163,17 +163,100 @@ metadata:
 
 Here are the conditions by which you can perform filtering and screening.
 
-<br />
+<Table align={["left","left"]}>
+  <thead>
+    <tr>
+      <th>
+        Item
+      </th>
 
-| Item             | Description                        |
-| :--------------- | :--------------------------------- |
-| Email Type       |                                    |
-| API_USER         |                                    |
-| Label Name       |                                    |
-| Campagin         |                                    |
-| Dimension        |                                    |
-| Receiving Domain |                                    |
-| Request Period   |                                    |
-| Send Tags        | The tags used for the API request. |
+      <th>
+        Description
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        Email Type
+      </td>
+
+      <td>
+        * By default, it is all . You can choose Trigger or Batch. The email type is decided by the type of API_USER that you used to send emails.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        API_USER
+      </td>
+
+      <td>
+        By default, it is all . 
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Label Name
+      </td>
+
+      <td>
+        By default, it is all .
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Campagin
+      </td>
+
+      <td>
+        By default, it is all .
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Dimension
+      </td>
+
+      <td>
+        By default, it is broken down by day.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Receiving Domain
+      </td>
+
+      <td>
+        By default, it is all .
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Request Period
+      </td>
+
+      <td>
+        By default, it is last 7 days .
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Send Tags
+      </td>
+
+      <td>
+        The tags used for the API request.
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 <br />
