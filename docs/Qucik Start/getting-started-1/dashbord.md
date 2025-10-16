@@ -57,4 +57,24 @@ The initial value of daily quota
 
 ## Reputation
 
-<br />
+The account's reputation score in Aurora SendCloud is important for you. The initial score is 60%. 
+
+<Cards columns={2}>
+  <Card title="First Card" href="https://readme.com" icon="fa-home" target="_blank">
+   High quality of “delivery rate”, “open rate” and “click through rate” will lead to bonus points. 
+  </Card>
+
+  <Card title="Second Card" icon="fa-user">
+   A large number of “invalid addresses”, “spam reports” and “unsubscriptions” will result in score reduction.
+  </Card>
+
+  <Card title="Third Card" icon="fa-star">
+    > Ut enim ad minim veniam, quis nostrud ullamco
+  </Card>
+
+  <Card title="Fourth Card" icon="fa-question">
+    **Excepteur sint occaecat cupidatat non proident**
+  </Card>
+</Cards>
+
+High quality of “delivery rate”, “open rate” and “click through rate” will lead to bonus points. A large number of “invalid addresses”, “spam reports” and “unsubscriptions” will result in score reduction.
