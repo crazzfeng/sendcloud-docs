@@ -7,8 +7,6 @@ link:
 metadata:
   robots: index
 ---
-## Access
-
 After logging in, click your profile picture in the lower left corner and select "Info" from the dropdown menu to access your account information management page.
 
 # Info
