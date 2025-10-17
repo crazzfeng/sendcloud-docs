@@ -26,6 +26,8 @@ metadata:
     - SMTP service
   robots: index
 ---
+<title>Sign Up for Aurora SendCloud Email Delivery Service - Login</title>
+
 # Getting Started with Aurora SendCloud
 
 Welcome to Aurora SendCloud! This guide will walk you through creating your account and accessing our email delivery platform.
