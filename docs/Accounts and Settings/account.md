@@ -13,12 +13,11 @@ metadata:
 
 After logging in, click your profile picture in the lower left corner and select "Info" from the dropdown menu to access your account information management page.
 
-# Info
+<Tabs>
+  <Tab title="Info">
+    This section guides you through managing your core account information, including your registered email address, login password, and associated phone number. You can update your information here to ensure account security and receive timely important notifications.
 
-This section guides you through managing your core account information, including your registered email address, login password, and associated phone number. You can update your information here to ensure account security and receive timely important notifications.
-
-## Email
-
+<Accordion title="Email Management" icon="envelope">
 Your registered email address is the core credential for your account and is used for login and receiving important system notifications.
 
 ### How to change your registered email address
@@ -26,56 +25,56 @@ Your registered email address is the core credential for your account and is use
 For security reasons, changing your email address requires verifying ownership of both your current and new email addresses. Please follow these steps:
 
 1. Next to the "Email" field, click the "Modify" button.
-
 2. **Verify your current email address:** The system will send an email with a verification code to your current registered email address. Enter the 6-digit verification code you received in the field.
-
 3. **Enter your new email address:** Enter your desired new email address in the designated field.
-
 4. **Verify your new email address:** Click "Next." The system will send an email with a verification code to your new email address. Enter the 6-digit verification code you received in the field.
-
 5. Click "Save."
 
 > **Note:** The new email address must be in the correct format (e.g., name@example.com) and must not already be associated with another account.
+</Accordion>
 
-## Password
-
+<Accordion title="Password Security" icon="lock">
 Regularly updating your password is an important part of account security.
 
 ### How to change your password
 
-**Scenario 1: You remember your current password**
+<Columns layout="auto">
+  <Column>
+    **Scenario 1: You remember your current password**
 
-1. Next to the "Password" field, click the "Modify" button.
-2. Enter your current password.
-3. Enter a new password that meets the requirements.
-4. Re-enter your new password to confirm.
-5. Click "Confirm Change."
+    1. Next to the "Password" field, click the "Modify" button.
+    2. Enter your current password.
+    3. Enter a new password that meets the requirements.
+    4. Re-enter your new password to confirm.
+    5. Click "Confirm Change."
+  </Column>
+  <Column>
+    **Scenario 2: You forgot your current password**
 
-**Scenario 2: You forgot your current password**
+    If you have forgotten your current password, you can reset it using your registered email address:
 
-If you have forgotten your current password, you can reset it using your registered email address:
-
-1. Click "Forgot password?" on the login page or password change page.
-2. Enter your registered email address. A verification code will be sent to that email address.
-3. Enter the correct email verification code.
-4. Set and confirm your new password.
-5. Click "Confirm Reset."
+    1. Click "Forgot password?" on the login page or password change page.
+    2. Enter your registered email address. A verification code will be sent to that email address.
+    3. Enter the correct email verification code.
+    4. Set and confirm your new password.
+    5. Click "Confirm Reset."
+  </Column>
+</Columns>
 
 **New Password Requirements:**
-
 * **Length:** 6-16 characters
 * **Spaces:** No spaces allowed
 * **Character Types:** Only numbers, letters, and special characters are supported. Must contain at least three of the following character types:
   > Lowercase letters (a-z)
-  >
+  > 
   > Uppercase letters (A-Z)
-  >
+  > 
   > Numbers (0-9)
-  >
+  > 
   > Special characters (e.g., ! @ # $ % & *)
+</Accordion>
 
-## Phone
-
+<Accordion title="Phone Number" icon="phone">
 Linking your phone number enables 2FA login verification, SMS verification codes, and important system notifications, enhancing account security.
 
 ### Connect your phone number
@@ -99,51 +98,60 @@ If your phone number isn't linked to your account yet, please follow these steps
 6. Click "Confirm Change."
 
 > **Note:** The new phone number cannot already be registered with another account.
+</Accordion>
+  </Tab>
 
-# Preferences
+  <Tab title="Preferences">
+    "Preferences" allows you to customize your account experience so that displayed information (such as time and report categories) is more relevant to your context. These settings generally relate to report analysis, data presentation, and recommendations.
 
-"Preferences" allows you to customize your account experience so that displayed information (such as time and report categories) is more relevant to your context. These settings generally relate to report analysis, data presentation, and recommendations.
+<Cards columns="3">
+  <Card title="Time Zone" icon="clock">
+    This setting determines the display format for all time-related data in the system (such as report generation time, operation logs, etc.). Selecting the correct time zone ensures that the time information you view is accurate.
 
-## Time Zone
+    ### How to set your time zone
 
-This setting determines the display format for all time-related data in the system (such as report generation time, operation logs, etc.). Selecting the correct time zone ensures that the time information you view is accurate.
+    1. Click the "Time Zone" dropdown box.
+    2. Select your UTC time zone from the list. For example, if you are in Mainland China, select UTC+8.
+    3. Click "Save" to save your selection.
 
-### How to set your time zone
+    > **Note:** The system defaults to UTC+8 (Eastern Time Zone). If you do not modify it, all time information will be displayed in this time zone.
+  </Card>
 
-1. Click the "Time Zone" dropdown box.
-2. Select your UTC time zone from the list. For example, if you are in Mainland China, select UTC+8.
-3. Click "Save" to save your selection.
+  <Card title="Industry" icon="building">
+    Please select the industry that best represents your company's primary business. This helps us provide you with more relevant industry insights and customized services.
 
-> **Note:** The system defaults to UTC+8 (Eastern Time Zone). If you do not modify it, all time information will be displayed in this time zone.
+    ### How to set your industry
 
-## Industry
+    1. Select one of the following options:
+       > Electronic Commerce, Community Forum, Games, Human Resources, IT Services, Sports Health, Training and Education, Art and Literature, Finance, Logistics, Biopharma, Cross-border E-commerce
 
-Please select the industry that best represents your company's primary business. This helps us provide you with more relevant industry insights and customized services.
+    2. Click "Save" to save your selection.
 
-### How to set your industry
+    **Special Scenario: Selecting "Other"**
 
-1. Select one of the following options:
-   > Electronic Commerce, Community Forum, Games, Human Resources, IT Services, Sports Health, Training and Education, Art and Literature, Finance, Logistics, Biopharma, Cross-border E-commerce
+    If you cannot find an exact match for your industry in the list, select "Other." After selecting, a text input box will appear below the dropdown. Please manually enter your specific industry name in this input box. After entering, click "Save" to save your selection.
+  </Card>
 
-2. Click "Save" to save your selection.
+  <Card title="Channels" icon="share-alt">
+    Please tell us how you learned about our services. This information helps us refine our marketing strategies.
 
-**Special Scenario: Selecting "Other"**
+    ### How to set channels
 
-If you cannot find an exact match for your industry in the list, select "Other." After selecting, a text input box will appear below the dropdown. Please manually enter your specific industry name in this input box. After entering, click "Save" to save your selection.
+    1. Select one of the following options:
+       > Search Engines, Advertising, SAE Service Recommendation, Media Coverage, Social Platforms, Friend Recommendation
 
-## Channels
+    2. Click "Save" to save your selection.
 
-Please tell us how you learned about our services. This information helps us refine our marketing strategies.
+    **Special Scenario: Selecting "Other"**
 
-### How to set channels
+    If none of the above channels apply, please select "Other." After selecting this option, a text input box will appear. Please manually enter the specific method by which you learned about us in this input box. After entering your information, click "Save" to save your selection.
+  </Card>
+</Cards>
+  </Tab>
 
-1. Select one of the following options:
-   > Search Engines, Advertising, SAE Service Recommendation, Media Coverage, Social Platforms, Friend Recommendation
+  <Tab title="Region">
+    Regional settings help customize your experience based on your geographic location and local requirements.
 
-2. Click "Save" to save your selection.
-
-**Special Scenario: Selecting "Other"**
-
-If none of the above channels apply, please select "Other." After selecting this option, a text input box will appear. Please manually enter the specific method by which you learned about us in this input box. After entering your information, click "Save" to save your selection.
-
-# Region
+    > This section is currently being developed. Additional regional customization options will be available soon.
+  </Tab>
+</Tabs>
