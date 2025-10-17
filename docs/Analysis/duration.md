@@ -7,38 +7,72 @@ link:
 metadata:
   robots: index
 ---
-# What is Duration
+# Email Delivery Duration Analytics
 
 <Image align="center" alt="Time Consumption" border={false} caption="Time Consumption" src="https://files.readme.io/43b733cb72e1907e0a1279bc481e92a7cff9dc5767e91b3b02b34addbba18225-image.png" />
 
-The time required to deliver an email from request to recipient is crucial for transactional emails, such as registration confirmations. Email delivery time statistics reflect the sending efficiency of your email delivery provider. Here, you can view time consumption statistics for all your emails to determine whether they meet your expectations.
+Email delivery speed is a critical performance metric that directly impacts user experience and business operations. For time-sensitive communications like registration confirmations, password resets, and transaction alerts, every second counts.
 
-## Time Consumption Gradients
+The Duration feature in Aurora SendCloud provides comprehensive analytics on email delivery times, helping you monitor and optimize your email infrastructure's performance.
 
-In Aurora SendCloud, trigger emails and batch emails use different time gradients for measurement.
+## Why Email Delivery Speed Matters
 
-**Trigger Email Gradients:**
+Fast email delivery ensures:
+- **Better User Experience**: Users receive critical information promptly
+- **Higher Engagement**: Quick delivery improves open and click-through rates
+- **Reduced Support Tickets**: Timely notifications prevent user confusion
+- **Improved Conversion**: Faster transactional emails lead to better conversion rates
 
-* 0s–3s
-* 3s–10s
-* 10s–1min
-* 1min–5min
-* More than 5min
+## Time Measurement Gradients
 
-**Batch Email Gradients:**
+Aurora SendCloud uses different time gradients based on email type to provide relevant performance insights:
 
-* 0–10min
-* 10min–1h
-* 1h–3h
-* 3h–24h
-* More than 24h
+### Trigger Emails
+Real-time, automated emails triggered by user actions:
 
-## Grouping Options
+* **0s–3s** - Excellent performance
+* **3s–10s** - Good performance  
+* **10s–1min** - Acceptable performance
+* **1min–5min** - Slow performance
+* **More than 5min** - Poor performance requiring attention
 
-Organize your duration statistics by selecting one of these grouping methods:
+### Batch Emails
+Scheduled or bulk emails sent to multiple recipients:
 
-* **Group by null** _(default)_ - View the overall proportion distribution across different time gradients
-* **Group by Receiving Domain** - Analyze performance by email provider
-* **Group by Day** - Review daily performance breakdown
+* **0–10min** - Excellent performance
+* **10min–1h** - Good performance
+* **1h–3h** - Acceptable performance
+* **3h–24h** - Slow performance
+* **More than 24h** - Poor performance requiring investigation
 
-Select the grouping option that best matches your reporting needs and analysis goals.
+## Analytics and Grouping Options
+
+Customize your duration analysis with these powerful grouping options:
+
+<Tabs>
+  <Tab title="Overall Performance">
+    **Group by null** _(default)_
+    
+    View the complete performance distribution across all time gradients. This overview helps you understand your general delivery performance and identify patterns.
+  </Tab>
+  <Tab title="Domain Analysis">
+    **Group by Receiving Domain**
+    
+    Analyze performance by email providers (Gmail, Outlook, Yahoo, etc.). This view helps you identify which providers may be causing delivery delays and optimize accordingly.
+  </Tab>
+  <Tab title="Daily Trends">
+    **Group by Day**
+    
+    Review daily performance trends to identify peak times, system issues, or improvements over time. Perfect for monitoring the impact of infrastructure changes.
+  </Tab>
+</Tabs>
+
+## Using Duration Analytics Effectively
+
+1. **Set Performance Benchmarks**: Define acceptable delivery times for different email types
+2. **Monitor Regularly**: Check duration statistics weekly to catch performance issues early
+3. **Investigate Anomalies**: When emails consistently fall into slower gradients, investigate potential causes
+4. **Optimize Based on Data**: Use domain-specific data to adjust sending strategies
+5. **Track Improvements**: Monitor how infrastructure changes affect delivery times
+
+Select the grouping option that aligns with your specific monitoring needs and business objectives.
