@@ -11,7 +11,9 @@ The Teammate Management function allows the Account Owner or Administrators to i
 
 After logging in, click your profile picture in the top-right corner -> ​​Account​​ -> Click ​​Teammates​​.
 
-## Adding and Activating a Teammate​​
+## How to Add, Edit, and Remove Teammates
+
+### Adding a Teammate​​
 
 Account Owners or Administrators can add new teammates by following these steps:
 
@@ -26,7 +28,7 @@ Account Owners or Administrators can add new teammates by following these steps:
 > * Permissions are isolated per Region and must be set separately for each.
 > * Paid accounts can invite up to ​​50 teammates​​.
 
-## Editing or Removing a Teammate​​
+### Editing or Removing a Teammate​​
 
 In the teammate list on the ​​Teammate Management​​ page, you can find the corresponding teammate and:
 
