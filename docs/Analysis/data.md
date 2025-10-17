@@ -32,11 +32,11 @@ Track your email performance across four key status categories to understand you
   </Card>
 
   <Card title="Soft Bounce" icon="fa-exclamation-triangle">
-    t the begaining the mailbox provider recieved the email,but can not delivery the email into the recieptent's inbox,then return back the email. Common causes include full mailboxes or temporary server issues.
+   At the beginning, the mailbox provider received the email, but can't deliver the email into the recipient's inbox, then returns the email. Common causes include full mailboxes or temporary server issues.
   </Card>
 
   <Card title="Invalid Email" icon="fa-times-circle">
-     Delivery failure due to invalid email addresses, hard bounces, or suppression list matches.
+    Delivery failure due to invalid email addresses, hard bounces, or suppression list matches.
   </Card>
 </Cards>
 
