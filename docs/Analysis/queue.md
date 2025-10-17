@@ -31,3 +31,7 @@ A paused queue indicates that mail delivery is blocked. The reason is related to
 * Frequency of IP connections
 
 If the pause duration is unreasonably long (2-3 days), please contact us for assistance.
+
+## Manage the Queue
+
+<br />
