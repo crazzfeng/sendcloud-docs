@@ -20,11 +20,11 @@ Aurora SendCloud uses intelligent queue management to optimize email delivery ac
 
 The queue dashboard provides real-time insights into your email delivery:
 
-- **Queue Status**: Current state of your email queue
-- **API User**: The API user associated with the queue
-- **Receiving Domain**: Destination email provider (e.g., gmail.com, outlook.com)
-- **Email Count**: Total emails pending delivery
-- **Sending Rate**: Current throughput (In, Try out, Out)
+* **Queue Status**: Current state of your email queue
+* **API User**: The API user associated with the queue
+* **Receiving Domain**: Destination email provider (e.g., gmail.com, outlook.com)
+* **Email Count**: Total emails pending delivery
+* **Sending Rate**: Current throughput (In, Try out, Out)
 
 ### Real-Time Analytics
 
@@ -33,15 +33,17 @@ View sending rates with customizable intervals (5s, 15s, 30s) and track trends t
 ### Queue Pauses
 
 When a queue pauses, you'll see:
-- **Pause Reason**: Why delivery was suspended
-- **Next Send Time**: When delivery will resume
-- **Recovery Button**: Manual option to resume immediately
+
+* **Pause Reason**: Why delivery was suspended
+* **Next Send Time**: When delivery will resume
+* **Recovery Button**: Manual option to resume immediately
 
 **Common pause reasons:**
-- Manual pause by user
-- Domain-specific limitations
-- IP reputation restrictions
-- Connection frequency limits
+
+* Manual pause by user
+* Domain-specific limitations
+* IP reputation restrictions
+* Connection frequency limits
 
 > **Need Help?** If your queue is paused for more than 2-3 days, contact our support team for assistance.
 
@@ -54,27 +56,31 @@ Made a mistake? No problem. You can pause or delete queues to prevent unwanted d
 <Image align="center" alt="Pause the email sending queue" border={false} caption="Pause the email sending queue" src="https://files.readme.io/caca3b5b91f6a7c46a62034db643287d9b928769379854357622e53f59c2a055-image.png" />
 
 **Required:**
-- **API User**: Select the API user that sent the emails
+
+* **API User**: Select the API user that sent the emails
 
 **Optional:**
-- **Receiving Domain**: Target specific email providers (leave empty to pause all domains)
-- **Recovery Time**: When to automatically resume (maximum 15 days)
+
+* **Receiving Domain**: Target specific email providers (leave empty to pause all domains)
+* **Recovery Time**: When to automatically resume (maximum 15 days)
 
 > **Important:** Emails suspended for more than 15 days without a recovery time will be automatically deleted.
 
 ### Delete a Queue
 
-<Callout icon="❗️">
+<Callout icon="❗️" theme="error">
   **Warning:** Queue deletion is permanent and cannot be undone. Proceed with caution.
 </Callout>
 
 <Image align="center" alt="Delete the email sending queue" border={false} caption="Delete the email sending queue" src="https://files.readme.io/bf70de4aab56ad6b5a17e58a00ddd763f8126d29f6dd201f791159f4fe1df9c1-image.png" />
 
 **Required:**
-- **API User**: Select the API user that sent the emails
+
+* **API User**: Select the API user that sent the emails
 
 **Optional:**
-- **Receiving Domain**: Target specific email providers (leave empty to delete all domains)
-- **Request Time**: Specify the time range of emails to delete
+
+* **Receiving Domain**: Target specific email providers (leave empty to delete all domains)
+* **Request Time**: Specify the time range of emails to delete
 
 > **Best Practice:** Use pause instead of delete when possible to avoid permanent data loss.
