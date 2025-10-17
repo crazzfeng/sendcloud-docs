@@ -23,46 +23,140 @@ metadata:
     - email service provider
   robots: index
 ---
-# Daily Quota
+# Daily Quota & Reputation Management
 
-The daily quota represents the maximum number of emails that users can send through Aurora SendCloud each day. This quota is a variable value that increases or decreases based on your account's reputation and recent sending activity.
+Effective email delivery through Aurora SendCloud depends on two critical factors: your daily sending quota and account reputation. This guide explains how these systems work together to ensure optimal email deliverability.
 
-> When your account's request count exceeds the daily quota, you will receive an error message stating 'request quota exceeded'.
+## Understanding Daily Quota
 
-**Initial daily quota values:**
+Your daily quota represents the maximum number of emails you can send through Aurora SendCloud within a 24-hour period. This isn't a fixed number—it dynamically adjusts based on your account reputation and sending patterns.
 
-| Paid User        | Free User     |
-| :--------------- | :------------ |
-| 3,000 emails/day | 50 emails/day |
+<Callout icon="⚠️" theme="warning">
+When you exceed your daily quota, Aurora SendCloud returns a **'request quota exceeded'** error. Plan your email campaigns accordingly to stay within limits.
+</Callout>
 
-## How to Increase Daily Quota
+### Initial Quota Limits
 
-**For paid users:**
+Your starting quota depends on your account type:
 
-* Your daily quota will increase as your account's reputation improves.
-* You can apply for a temporary quota increase when your reputation exceeds 70%. Daily quota can only be temporarily increased twice per month.
-* [Contact Us](https://www.aurorasendcloud.com/contact)
+| Account Type | Initial Daily Quota |
+|:-------------|:-------------------|
+| **Paid User** | 3,000 emails/day   |
+| **Free User** | 50 emails/day     |
 
-**For free users:**
+## How to Increase Your Daily Quota
 
-* Currently, the daily quota cannot exceed 50 emails/day.
+### For Paid Users
 
-# Reputation
-
-Your account's reputation score in Aurora SendCloud is crucial for maintaining good deliverability. The initial reputation score is 60%.
+Your quota can grow significantly as your account matures:
 
 <Cards columns={2}>
-  <Card title="Increase">
-    High-quality metrics such as "delivery rate," "open rate," and "click-through rate" will increase your reputation score.
+  <Card title="Automatic Increases" icon="trending-up">
+    Your daily quota increases automatically as your account reputation improves through consistent, high-quality sending practices.
   </Card>
-
-  <Card title="Decrease">
-    A large number of "invalid addresses," "spam reports," and "unsubscriptions" will reduce your reputation score.
+  
+  <Card title="Temporary Boosts" icon="clock">
+    Request temporary quota increases when your reputation exceeds 70%. Limited to twice per month.
   </Card>
 </Cards>
 
-<Callout icon="❗️" theme="error">
-  A rapid increase in "invalid addresses" and "spam reports" within a short period will directly result in negative reputation, preventing you from continuing to send emails.
+**Need a quota increase?** [Contact our support team](https://www.aurorasendcloud.com/contact) to discuss your requirements.
+
+### For Free Users
+
+Free accounts are currently limited to a maximum of 50 emails per day. Consider upgrading to a paid plan for higher quotas and additional features.
+
+---
+
+## Account Reputation System
+
+Your reputation score is Aurora SendCloud's measure of your sending quality and directly impacts your daily quota and email deliverability. All accounts start with a **60% reputation score**.
+
+### What Improves Your Reputation
+
+<Cards columns={1}>
+  <Card title="Positive Signals" icon="thumbs-up">
+    
+    **High delivery rates** - Emails reaching intended recipients  
+    **Strong engagement** - High open and click-through rates  
+    **Quality lists** - Low bounce and complaint rates  
+    **Consistent sending** - Regular, predictable email patterns
+    
+  </Card>
+</Cards>
+
+### What Hurts Your Reputation
+
+<Cards columns={1}>
+  <Card title="Warning Signals" icon="thumbs-down">
+    
+    **Invalid email addresses** - High bounce rates from bad data  
+    **Spam complaints** - Recipients marking emails as spam  
+    **High unsubscribe rates** - Content or frequency issues  
+    **Sudden volume spikes** - Inconsistent sending patterns
+    
+  </Card>
+</Cards>
+
+<Callout icon="🚨" theme="danger">
+**Critical Warning:** A rapid increase in invalid addresses and spam reports can immediately trigger negative reputation status, temporarily blocking your ability to send emails. Always maintain clean email lists and follow best practices.
 </Callout>
 
-<br />
+## Best Practices for Quota & Reputation Management
+
+<Accordion title="Maintaining Healthy Sending Patterns" icon="chart-line">
+
+**Gradual Volume Increases**
+- Start with smaller volumes and gradually increase over time
+- Avoid sudden spikes in sending volume
+- Maintain consistent sending schedules
+
+**List Hygiene**
+- Regularly clean your email lists
+- Remove invalid and bouncing addresses promptly
+- Implement double opt-in for new subscribers
+
+</Accordion>
+
+<Accordion title="Monitoring Your Performance" icon="eye">
+
+**Key Metrics to Track**
+- Daily quota usage and remaining capacity
+- Reputation score trends
+- Delivery rates and bounce rates
+- Engagement metrics (opens, clicks)
+
+**Early Warning Signs**
+- Increasing bounce rates
+- Rising spam complaint rates
+- Declining engagement metrics
+- Quota exhaustion patterns
+
+</Accordion>
+
+<Accordion title="Recovery Strategies" icon="refresh">
+
+**If Your Reputation Drops**
+- Audit your email lists for quality issues
+- Review content for potential spam triggers
+- Reduce sending volume temporarily
+- Focus on highly engaged segments
+- Contact support for guidance
+
+**Quota Management**
+- Monitor usage throughout the day
+- Prioritize critical email campaigns
+- Consider spreading sends across multiple days
+- Plan for seasonal volume changes
+
+</Accordion>
+
+## Next Steps
+
+- **Monitor Your Metrics**: Regularly check your reputation score and quota usage in your Aurora SendCloud dashboard
+- **Implement Best Practices**: Use the strategies above to maintain healthy sending patterns
+- **Need Help?**: [Contact our support team](https://www.aurorasendcloud.com/contact) for personalized guidance on improving your reputation and quota limits
+
+---
+
+*Last updated: October 2025*
