@@ -31,4 +31,12 @@ In Aurora SendCloud, trigger emails and batch emails have different time gradien
 * 3h~24h
 * More than 24h
 
-##
+## Grouping Options
+
+Organize your duration statistics data by selecting one of these grouping methods:
+
+* **Group by null** _(default)_ - You will obtain the overall proportion distribution of different gradients.
+* **Group by Receiving Domain** - Performance by email provider
+* **Group by Day** - Performance by day
+
+Choose the grouping that best matches your reporting needs and analysis goals.
