@@ -30,3 +30,5 @@ In Aurora SendCloud, trigger emails and batch emails have different time gradien
 * 1h~3h
 * 3h~24h
 * More than 24h
+
+##
