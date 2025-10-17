@@ -20,12 +20,13 @@ The Duration feature in Aurora SendCloud provides comprehensive analytics on ema
 <Cards columns={2}>
   <Card title="User Experience" icon="users">
     **Better User Experience**: Users receive critical information promptly
-    
+
     **Higher Engagement**: Quick delivery improves open and click-through rates
   </Card>
+
   <Card title="Business Impact" icon="chart-line">
     **Reduced Support Tickets**: Timely notifications prevent user confusion
-    
+
     **Improved Conversion**: Faster transactional emails lead to better conversion rates
   </Card>
 </Cards>
@@ -44,6 +45,7 @@ Aurora SendCloud uses different time gradients based on email type to provide re
     * **1min–5min** - Slow performance
     * **More than 5min** - Poor performance requiring attention
   </Tab>
+
   <Tab title="Batch Emails">
     Scheduled or bulk emails sent to multiple recipients:
 
@@ -73,47 +75,18 @@ Customize your duration analysis with these powerful grouping options:
   </Card>
 
   <Card title="Daily Trends" icon="calendar-alt">
-   **Group by Day**
+    **Group by Day**
 
     Review daily performance trends to identify peak times, system issues, or improvements over time. Perfect for monitoring the impact of infrastructure changes.
   </Card>
 </Cards>
 
-## Best Practices
+<br />
 
-<Accordion title="Performance Optimization Guide" icon="cog">
+ **Selecting the Right View**
 
-### Setting Up Monitoring
+  Choose the grouping option that aligns with your specific monitoring needs:
 
-1. **Set Performance Benchmarks**: Define acceptable delivery times for different email types
-2. **Monitor Regularly**: Check duration statistics weekly to catch performance issues early
-3. **Track Improvements**: Monitor how infrastructure changes affect delivery times
-
-### Troubleshooting Performance Issues
-
-<Columns layout="auto">
-  <Column>
-    **Investigate Anomalies**: When emails consistently fall into slower gradients, investigate potential causes:
-    
-    * Check server load and capacity
-    * Review sending reputation
-    * Analyze domain-specific patterns
-  </Column>
-  <Column>
-    **Optimize Based on Data**: Use domain-specific data to adjust sending strategies:
-    
-    * Adjust sending rates for specific providers
-    * Implement retry logic for slow domains
-    * Consider alternative routing for critical emails
-  </Column>
-</Columns>
-
-### Selecting the Right View
-
-Choose the grouping option that aligns with your specific monitoring needs:
-
-* Use **Overall Performance** for general health checks
-* Use **MP Analysis** when troubleshooting provider-specific issues  
-* Use **Daily Trends** for identifying patterns and measuring improvements
-
-</Accordion>
+  * Use **Overall Performance** for general health checks
+  * Use **MP Analysis** when troubleshooting provider-specific issues
+  * Use **Daily Trends** for identifying patterns and measuring improvements
