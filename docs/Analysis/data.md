@@ -12,7 +12,7 @@ metadata:
 ---
 # Aurora SendCloud Email Data
 
-Get comprehensive insights into your email performance with Aurora SendCloud's detailed tracking and analytics system. Monitor every aspect of your email campaigns from send to delivery with real-time status updates and performance metrics. 
+Get comprehensive insights into your email performance with Aurora SendCloud's detailed tracking and analytics system. Monitor every aspect of your email campaigns from send to delivery with real-time status updates and performance metrics.
 
 Our platform provides complete visibility into your email delivery lifecycle with full-link event tracking including: request, delivery, open, click, unsubscribe, invalid email, soft bounce, spam reports, and routing information.
 
@@ -32,11 +32,11 @@ Track your email performance across four key status categories to understand you
   </Card>
 
   <Card title="Soft Bounce" icon="fa-exclamation-triangle">
-    Temporary delivery failure that may resolve automatically. Common causes include full mailboxes or temporary server issues.
+    At the begaining the mailbox provider recieved the email,but can not delivery the email into the recieptent's inbox,then return back the email. Common causes include full mailboxes or temporary server issues.
   </Card>
 
   <Card title="Invalid Email" icon="fa-times-circle">
-    Permanent delivery failure due to invalid email addresses, hard bounces, or suppression list matches.
+     Delivery failure due to invalid email addresses, hard bounces, or suppression list matches.
   </Card>
 </Cards>
 
@@ -44,53 +44,62 @@ Track your email performance across four key status categories to understand you
 
 Understanding why emails fail helps you maintain a clean mailing list and improve deliverability:
 
-<Cards columns={3}>
-  <Card title="Hard Bounce" icon="fa-ban">
-    Permanent delivery failures due to invalid email addresses, non-existent domains, or blocked recipients.
-  </Card>
+* **Blacklist** : the email address is in the sendcloud blacklist and will not be delivered
+* **Unsubscribe** : once a user clicks the unsubscribe link, he will enter the unsubscribe list, and sendcloud will not deliver such e-mail addresses
+* **Server Error** : temporary or permanent connection of sendcloud sending pool cannot access MX service of receiving domain
+* **Format Error** : sendcloud or MP determines that the email address format is illegal
+* **Not Exist** : MP returns to inform this email address does not exist
+* **Junk Mail** : MP returns to inform that the sending behavior or content of this email is determined as spam
+* **Rejected** : MP returns to inform the sender that the email was rejected abnormally or because of recipient settings
+* **Others** : other reasons. You can see the detail log by clicking the record.
 
-  <Card title="Suppression" icon="fa-user-slash">
-    Emails blocked due to previous unsubscribes, spam complaints, or addresses on your suppression list.
-  </Card>
+## Soft Bounce Categories
 
-  <Card title="Policy Rejection" icon="fa-shield-alt">
-    Emails rejected by recipient servers due to content filtering, reputation issues, or security policies.
-  </Card>
-</Cards>
+Understanding why emails fail helps you maintain a clean mailing list and improve deliverability:
+
+* Sever Error : MP internal service cannot be delivered
+* IP rejection : MP returns to inform that the email sending is rejected due to IP or domain name related reasons
+* Not Exist : MP returns to inform this email address does not exist
+* Spam Rejected : MP returns to inform that the sending behavior or content of this email is determined as spam
+* Rejected : MP returns to inform the sender that the email was rejected abnormally or because of recipient settings
+* Others : other reasons
+
+<br />
 
 ## Event Tracking
 
 Monitor detailed engagement metrics and delivery events:
 
 <Accordion title="Available Tracking Events" icon="fa-chart-line">
+  ### Delivery Events
 
-### Delivery Events
-- **Request**: Email submission received by Aurora SendCloud
-- **Delivery**: Successful delivery to recipient's mail server
-- **Bounce**: Failed delivery with reason codes
+  * **Request**: Email submission received by Aurora SendCloud
+  * **Delivery**: Successful delivery to recipient's mail server
+  * **Bounce**: Failed delivery with reason codes
 
-### Engagement Events  
-- **Open**: Email opened by recipient (pixel tracking)
-- **Click**: Links clicked within the email content
-- **Unsubscribe**: Recipient opted out via unsubscribe link
+  ### Engagement Events
 
-### Administrative Events
-- **Route**: Delivery path and server routing information
-- **Report**: Spam complaints or abuse reports received
+  * **Open**: Email opened by recipient (pixel tracking)
+  * **Click**: Links clicked within the email content
+  * **Unsubscribe**: Recipient opted out via unsubscribe link
 
+  ### Administrative Events
+
+  * **Route**: Delivery path and server routing information
+  * **Report**: Spam complaints or abuse reports received
 </Accordion>
 
 ## Data Access and Reporting
 
 Access your email data through multiple channels:
 
-- **Real-time Dashboard**: Monitor campaign performance as it happens
-- **API Integration**: Programmatic access to delivery and engagement data
-- **Webhooks**: Receive instant notifications for email events
-- **CSV Reports**: Download comprehensive data for analysis
+* **Real-time Dashboard**: Monitor campaign performance as it happens
+* **API Integration**: Programmatic access to delivery and engagement data
+* **Webhooks**: Receive instant notifications for email events
+* **CSV Reports**: Download comprehensive data for analysis
 
 <br />
 
----
+***
 
-*Need help setting up tracking or accessing your data? Contact our support team for assistance with implementation and troubleshooting.*
+_Need help setting up tracking or accessing your data? Contact our support team for assistance with implementation and troubleshooting._
