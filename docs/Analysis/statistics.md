@@ -155,6 +155,12 @@ Track your email performance with these key metrics:
   </tbody>
 </Table>
 
+<br />
+
+<Callout icon="📘" theme="info">
+  Open, Click, Unsubscribe statistics can only be counted after you have opened the tracking switch.
+</Callout>
+
 ### Tracking Statistics Example
 
 <Callout icon="📊" theme="default">
