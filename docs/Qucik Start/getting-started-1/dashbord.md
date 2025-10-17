@@ -5,6 +5,22 @@ hidden: false
 link:
   new_tab: false
 metadata:
+  title: Email Delivery Quota & Reputation Management - Aurora SendCloud
+  description: >-
+    Learn about Aurora SendCloud's daily email delivery quota limits, reputation
+    scoring system, and how to increase your sending capacity for better email
+    delivery performance.
+  keywords:
+    - email delivery
+    - daily quota
+    - email sending limits
+    - reputation score
+    - Aurora SendCloud
+    - email deliverability
+    - sending capacity
+    - email marketing quota
+    - delivery rate
+    - email service provider
   robots: index
 ---
 # Daily Quota
