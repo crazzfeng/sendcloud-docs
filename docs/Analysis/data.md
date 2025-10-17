@@ -84,7 +84,18 @@ Understanding why emails fail helps you maintain a clean mailing list and improv
 
 Records with all the information that you need.
 
-<br />
+<Callout icon="📘" theme="info">
+  Open or Click event only can be recorded after you have opened the tracking switch.
+</Callout>
+
+* Event: Open or Click
+* API_USER: The API_USER that you used to send the email.
+* Recipient: The address that you send your email to.
+* Request Time: The time that you successfully requested Aurora SendCloud to send the email.
+* Trigger Time: The time that the recipient open the email or click the link in the email.
+* IP:  The IP address that the recipient open or click the email
+* Device:  When the email was been opened or clicked ,we recorded the system,brand,browser of the device.
+* Link: Only click event has the link information.
 
 <br />
 
