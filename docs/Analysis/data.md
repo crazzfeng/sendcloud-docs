@@ -12,7 +12,7 @@ metadata:
 ---
 # Aurora SendCloud Email Data
 
-Get comprehensive insights into your email performance with Aurora SendCloud's detailed tracking and analytics system. Monitor every aspect of your email campaigns from send to delivery with real-time status updates and performance metrics.Support full-link events: request, delivery, open, click, unsubscribe, invalid email, soft bounce, report, route.
+Get comprehensive insights into your email performance with Aurora SendCloud's detailed tracking and analytics system. Monitor every aspect of your email campaigns from send to delivery with real-time status updates and performance metrics. Supports full-link events: request, delivery, open, click, unsubscribe, invalid email, soft bounce, report, and route.
 
 <br />
 
@@ -30,11 +30,11 @@ Track your email performance across four key status categories:
   </Card>
 
   <Card title="Soft Bounce" icon="fa-exclamation-triangle">
-    after the mail is delivered, it is soft returned.
+    After the email is delivered, it experiences a soft return.
   </Card>
 
   <Card title="Invalid Email" icon="fa-times-circle">
-    mail delivery failed.May cause by hard bounce or supression.
+    Email delivery failed. May be caused by hard bounce or suppression.
   </Card>
 </Cards>
 
