@@ -185,15 +185,15 @@ Track your email performance with these key metrics:
 
 Analyze your email performance using these filtering dimensions:
 
-| **Dimension**        | **Description**                                                                |
-| :------------------- | :----------------------------------------------------------------------------- |
-| **Email Type**       | Filter by Trigger emails (transactional) or Batch emails (marketing campaigns) |
-| **API_USER**         | View statistics for a specific API_USER                                        |
-| **Label**            | Filter by custom labels assigned to your email sends                           |
-| **Campaign**         | Analyze performance of specific email campaigns                                |
-| **Receiving Domain** | Break down results by recipient email providers (Gmail, Yahoo, Outlook, etc.)  |
-| **Request Period**   | Select the timeframe for your analysis (default: last 7 days)                  |
-| **Send Tags**        | Filter by custom tags included in your API requests                            |
+| **Dimension**        | **Description**                                                                          |
+| :------------------- | :--------------------------------------------------------------------------------------- |
+| **Email Type**       | Filter by Trigger emails (transactional) or Batch emails (marketing campaigns)           |
+| **API_USER**         | View statistics for a specific API_USER                                                  |
+| **Label**            | Filter by custom labels assigned to your email sends                                     |
+| **Campaign**         | Analyze performance of specific email campaigns                                          |
+| **Receiving Domain** | Break down results by recipient email providers' domains  (gmail.com , yahoo.com,  etc.) |
+| **Request Period**   | Select the timeframe for your analysis (default: last 7 days)                            |
+| **Send Tags**        | Filter by custom tags included in your API requests                                      |
 
 ## Statistics Grouping Options
 
