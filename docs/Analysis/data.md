@@ -21,18 +21,23 @@ Get comprehensive insights into your email performance with Aurora SendCloud's d
 Track your email performance across four key status categories:
 
 <Cards columns={4}>
-	<Card title="Delivered" icon="fa-check-circle">
+  <Card title="Delivered" icon="fa-check-circle">
     Email successfully delivered to the recipient's mailbox provider and accepted for final delivery.
   </Card>
+
   <Card title="Sending" icon="fa-paper-plane">
-    Your email has been received by SendCloud and is either queued for delivery or currently being processed through our retry system.
+    Your email has been received by Aurora SendCloud and is either queued for delivery or currently being processed through our system.
   </Card>
+
   <Card title="Soft Bounce" icon="fa-exclamation-triangle">
-    Temporary delivery issue occurred after initial acceptance. SendCloud categorizes soft bounces into six detailed subcategories based on bounce notification analysis.
+    after the mail is delivered, it is soft returned.
   </Card>
+
   <Card title="Invalid Email" icon="fa-times-circle">
-    Permanent delivery failure detected. Our system analyzes mailbox provider feedback to classify failures into eight specific subcategories for better troubleshooting.
+    mail delivery failed.May cause by hard bounce or supression.
   </Card>
 </Cards>
 
 ### Invalid Email Categories
+
+<br />
