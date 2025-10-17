@@ -8,6 +8,27 @@ hidden: false
 link:
   new_tab: false
 metadata:
+  title: 'Email Delivery Guide: Get Started with Aurora SendCloud | Newbie Tutorial'
+  description: >-
+    Learn email delivery with Aurora SendCloud's comprehensive newbie guide. Set
+    up sending domains, create API users, and start delivering emails through
+    templates or API integration.
+  keywords:
+    - email delivery
+    - Aurora SendCloud
+    - email marketing
+    - API integration
+    - sending domain verification
+    - email templates
+    - SMTP service
+    - email campaigns
+    - deliverability
+    - email authentication
+    - bulk email delivery
+    - transactional emails
+    - email API
+    - sender reputation
+    - email infrastructure
   robots: index
 ---
 <br />
