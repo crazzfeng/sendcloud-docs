@@ -9,280 +9,191 @@ metadata:
 ---
 # Account Management
 
-Your centralized hub for managing account security, preferences, and regional settings.
+## Access
 
-## Quick Access
+After logging in, click your profile picture in the lower left corner and select "Info" from the dropdown menu to access your account information management page.
 
-<Cards columns="4">
-  <Card title="Security Settings" href="#security" icon="shield-alt">
-    Update email, password, and 2FA settings
-  </Card>
-  <Card title="Personal Preferences" href="#preferences" icon="user-cog">
-    Customize timezone, industry, and notifications
-  </Card>
-  <Card title="Regional Settings" href="#regions" icon="globe-americas">
-    Manage multi-region deployments
-  </Card>
-  <Card title="Support" href="#help" icon="question-circle">
-    Get help with account issues
-  </Card>
-</Cards>
+# Info
 
----
+This section guides you through managing your core account information, including your registered email address, login password, and associated phone number. You can update your information here to ensure account security and receive timely important notifications.
 
-## How to Access Settings
+## Email
 
-Click your **profile picture** (bottom-left corner) → Select **"Info"** → Choose your desired settings section.
+Your registered email address is the core credential for your account and is used for login and receiving important system notifications.
 
-<Tabs>
-  <Tab title="🔐 Security">
+### How to change your registered email address
 
-<Accordion title="Email Address - Your Primary Credential" icon="at">
-**Current Status:** Your email is your login username and notification endpoint.
+For security reasons, changing your email address requires verifying ownership of both your current and new email addresses. Please follow these steps:
 
-### ✉️ Change Email Address
-<Columns layout="auto">
-  <Column>
-    **Steps:**
-    1. Click **Modify** → Verify current email (6-digit code)
-    2. Enter new email → Verify new email (6-digit code)
-    3. **Save** changes
-  </Column>
-  <Column>
-    **⚠️ Important:**
-    - Must be a valid email format
-    - Cannot be used by another account
-    - Verification codes expire in 10 minutes
-    - You'll be logged out after change
-  </Column>
-</Columns>
-</Accordion>
+1. Next to the "Email" field, click the "Modify" button.
 
-<Accordion title="Password - Keep Your Account Secure" icon="lock">
-**Security Tip:** Change your password every 3-6 months for optimal security.
+2. **Verify your current email address:** The system will send an email with a verification code to your current registered email address. Enter the 6-digit verification code you received in the field.
 
-### 🔑 Password Change Options
+3. **Enter your new email address:** Enter your desired new email address in the designated field.
 
-<Columns layout="auto">
-  <Column>
-    **✅ I Know My Current Password**
-    1. Click **Modify** next to Password
-    2. Enter current password
-    3. Create new secure password
-    4. Confirm new password
-    5. **Confirm Change**
-  </Column>
-  <Column>
-    **🔄 I Forgot My Password**
-    1. On login page → **Forgot password?**
-    2. Enter registered email address
-    3. Check email for verification code
-    4. Set new password
-    5. **Confirm Reset**
-  </Column>
-</Columns>
+4. **Verify your new email address:** Click "Next." The system will send an email with a verification code to your new email address. Enter the 6-digit verification code you received in the field.
 
-### Password Requirements Checklist
-- ✅ 6-16 characters long
-- ❌ No spaces allowed  
-- ✅ At least 3 character types:
-  - Lowercase letters (a-z)
-  - Uppercase letters (A-Z)  
-  - Numbers (0-9)
-  - Special characters (!@#$%&*)
+5. Click "Save."
 
-> **💡 Pro Tip:** Use a password manager to generate and store secure passwords.
-</Accordion>
+> **Note:** The new email address must be in the correct format (e.g., [name@example.com](mailto:name@example.com)) and must not already be associated with another account.
 
-<Accordion title="Phone Number - Enhanced Security & Notifications" icon="mobile-alt">
-**Benefits:** Two-factor authentication, SMS notifications, account recovery.
+## Password
 
-### 📱 First-Time Phone Setup
-1. **Connect** → Select country code → Enter number
-2. **SMS Verification** → Enter received code
-3. **Confirm** setup
+Regularly updating your password is an important part of account security.
 
-### 🔄 Change Phone Number  
-1. **Modify** → Verify current number (SMS code)
-2. Enter new number + country code
-3. **Get Verification Code** → Enter SMS code
-4. **Confirm Change**
+### How to change your password
 
-**⚠️ Limitations:**
-- One phone per account only
-- Must be able to receive SMS
-- International rates may apply
-</Accordion>
+**Scenario 1: You remember your current password**
 
-  </Tab>
+1. Next to the "Password" field, click the "Modify" button.
+2. Enter your current password.
+3. Enter a new password that meets the requirements.
+4. Re-enter your new password to confirm.
+5. Click "Confirm Change."
 
-  <Tab title="⚙️ Preferences">
+**Scenario 2: You forgot your current password**
 
-<Cards columns="2">
-  <Card title="🌍 Time Zone" icon="clock">
-    **Purpose:** Ensures all timestamps match your local time.
-    
-    **Setup:**
-    1. Select UTC timezone from dropdown
-    2. Click **Save**
-    
-    **Default:** UTC+8 (Eastern Time)
-    
-    > Affects: Reports, logs, notifications, scheduling
-  </Card>
+If you have forgotten your current password, you can reset it using your registered email address:
 
-  <Card title="🏢 Industry" icon="building">
-    **Purpose:** Enables industry-specific insights and recommendations.
-    
-    **Available Industries:**
-    - E-commerce & Cross-border  
-    - Gaming & Entertainment
-    - HR & Training/Education
-    - IT Services & Tech
-    - Finance & Fintech
-    - Healthcare & Biopharma
-    - Sports & Arts/Literature
-    - Community & Social
-    - Logistics & Supply Chain
-    
-    **Can't find yours?** Select "Other" and specify.
-  </Card>
+1. Click "Forgot password?" on the login page or password change page.
+2. Enter your registered email address. A verification code will be sent to that email address.
+3. Enter the correct email verification code.
+4. Set and confirm your new password.
+5. Click "Confirm Reset."
 
-  <Card title="📈 Discovery Channel" icon="chart-line">
-    **Purpose:** Helps us improve our marketing and outreach.
-    
-    **How did you find us?**
-    - Search Engines (Google, Bing, etc.)
-    - Online Advertising
-    - SAE Service Recommendation  
-    - Media Coverage/Press
-    - Social Media Platforms
-    - Friend/Colleague Recommendation
-    
-    **Other sources?** Select "Other" and describe.
-  </Card>
+**New Password Requirements:**
 
-  <Card title="🔔 Notifications" icon="bell">
-    **Status:** Coming Soon
-    
-    **Planned Features:**
-    - Email notification preferences
-    - SMS alert settings  
-    - Push notification controls
-    - Frequency preferences
-    
-    *Stay tuned for these customization options!*
-  </Card>
-</Cards>
+* **Length:** 6-16 characters
+* **Spaces:** No spaces allowed
+* **Character Types:** Only numbers, letters, and special characters are supported. Must contain at least three of the following character types:
+  > Lowercase letters (a-z)
+  >
+  > Uppercase letters (A-Z)
+  >
+  > Numbers (0-9)
+  >
+  > Special characters (e.g., ! @ # $ % & *)
 
-  </Tab>
+## Phone
 
-  <Tab title="🌐 Regions">
+Linking your phone number enables 2FA login verification, SMS verification codes, and important system notifications, enhancing account security.
 
-### Understanding Regions
+### Connect your phone number
 
-<Accordion title="What Are Regions?" icon="info-circle">
-**Definition:** Independent geographical data centers that host your services closer to your users.
+If your phone number isn't linked to your account yet, please follow these steps:
 
-**Key Characteristics:**
-- 🏢 **Isolated Infrastructure:** Each region runs independently
-- 💾 **Separate Data Storage:** No automatic data synchronization  
-- 💰 **Independent Billing:** Costs calculated per region
-- 📊 **Unique Quotas:** Resource limits apply per region
-- 🚀 **Performance Benefits:** Lower latency for nearby users
-</Accordion>
+1. Next to the "Phone" field, click the "Connect" button.
+2. Select the country or region code (e.g., United States +1).
+3. Enter your phone number in the field.
+4. Click "SMS Verification." The system will send a text message verification code to the phone number you registered.
+5. Enter the received text message verification code.
+6. Click "Confirm."
 
-### Available Regions & Activation
+### Modify phone number
 
-<Cards columns="3">
-  <Card title="🇸🇬 Singapore" icon="check-circle">
-    **Status:** ✅ Active (Default)
-    
-    **Best For:**
-    - Southeast Asian users
-    - APAC headquarters  
-    - Regional compliance needs
-    
-    **Activated:** Automatically upon registration
-  </Card>
+1. Next to the "Phone" field, click "Modify."
+2. **Verify your original phone number:** The system will send a text message verification code to your currently registered phone number. Enter the correct verification code.
+3. **Enter your new phone number:** Select a new country code and enter your new phone number.
+4. Click "Get Verification Code." You will receive a text message verification code at your new phone number.
+5. Enter the verification code sent to your new phone number.
+6. Click "Confirm Change."
 
-  <Card title="🇺🇸 US (Silicon Valley)" icon="plus-circle">
-    **Status:** Available for Activation
-    
-    **Best For:**
-    - North/South American users
-    - US-based operations
-    - Lower latency for Americas
-    
-    **To Activate:** Info → Regions → Add US Region
-  </Card>
+> **Note:** The new phone number cannot already be registered with another account.
 
-  <Card title="🇭🇰 CN (Hong Kong SAR)" icon="plus-circle">
-    **Status:** Available for Activation
-    
-    **Best For:**
-    - Greater China region users
-    - China mainland proximity
-    - Asian financial centers
-    
-    **To Activate:** Info → Regions → Add HK Region
-  </Card>
-</Cards>
+# Preferences
 
-### Region Activation Process
+"Preferences" allows you to customize your account experience so that displayed information (such as time and report categories) is more relevant to your context. These settings generally relate to report analysis, data presentation, and recommendations.
 
-<Accordion title="How to Add New Regions" icon="plus">
-**Steps:**
-1. Navigate to **Info** → **Regions**
-2. Find "Add Region" dropdown menu
-3. Select desired region (US Silicon Valley or CN Hong Kong)  
-4. Click **Add** button
-5. **Confirm** activation in popup dialog
-6. Wait for activation completion
-7. Switch to new region and begin deploying services
+## Time Zone
 
-**💰 Cost:** Free to activate, pay only for services you use in each region.
+This setting determines the display format for all time-related data in the system (such as report generation time, operation logs, etc.). Selecting the correct time zone ensures that the time information you view is accurate.
 
-**⏱️ Time:** Usually completes within minutes.
-</Accordion>
+### How to set your time zone
 
-### Important Regional Considerations
+1. Click the "Time Zone" dropdown box.
+2. Select your UTC time zone from the list. For example, if you are in Mainland China, select UTC+8.
+3. Click "Save" to save your selection.
 
-> **🚨 Critical:** Resources don't transfer between regions. You must:
-> - Set up services separately in each region
-> - Manage data backups/sync manually if needed
-> - Monitor billing for each region independently
-> - Configure region-specific settings
+> **Note:** The system defaults to UTC+8 (Eastern Time Zone). If you do not modify it, all time information will be displayed in this time zone.
 
-**💡 Best Practice:** Choose your primary region based on where most of your users are located, then add additional regions as your user base grows globally.
+## Industry
 
-  </Tab>
-</Tabs>
+Please select the industry that best represents your company's primary business. This helps us provide you with more relevant industry insights and customized services.
 
-## 🆘 Need Help?
+### How to set your industry
 
-<Cards columns="2">
-  <Card title="Technical Support" icon="headset">
-    Having trouble with account settings or region management?
-    
-    **Contact Options:**
-    - Submit support ticket
-    - Live chat (business hours)  
-    - Email support team
-    - Check documentation
-  </Card>
-  
-  <Card title="Security Issues" icon="exclamation-triangle">
-    Concerned about account security or suspicious activity?
-    
-    **Immediate Actions:**
-    - Change password immediately
-    - Review recent login activity
-    - Contact security team
-    - Enable 2FA if not already active
-  </Card>
-</Cards>
+1. Select one of the following options:
+   > Electronic Commerce, Community Forum, Games, Human Resources, IT Services, Sports Health, Training and Education, Art and Literature, Finance, Logistics, Biopharma, Cross-border E-commerce
 
----
+2. Click "Save" to save your selection.
 
-**Last Updated:** Account management features are continuously improved. Check back for new options and enhancements.
+**Special Scenario: Selecting "Other"**
+
+If you cannot find an exact match for your industry in the list, select "Other." After selecting, a text input box will appear below the dropdown. Please manually enter your specific industry name in this input box. After entering, click "Save" to save your selection.
+
+## Channels
+
+Please tell us how you learned about our services. This information helps us refine our marketing strategies.
+
+### How to set channels
+
+1. Select one of the following options:
+   > Search Engines, Advertising, SAE Service Recommendation, Media Coverage, Social Platforms, Friend Recommendation
+
+2. Click "Save" to save your selection.
+
+**Special Scenario: Selecting "Other"**
+
+If none of the above channels apply, please select "Other." After selecting this option, a text input box will appear. Please manually enter the specific method by which you learned about us in this input box. After entering your information, click "Save" to save your selection.
+
+# Region
+
+<br />
+
+To meet your global business needs for low latency and high availability, our services support multiple geographic regions.
+
+<br />
+
+What is a region?
+
+A region is a specific geographic location where our infrastructure is located. Each region is an independently deployed site.
+
+Default Region:
+
+After successfully registering your account, the Singapore Region will be automatically activated for you. You can immediately purchase and use services in this region.
+
+Optional Regions
+
+Based on your business needs, you can request the following additional regions:
+
+US (Silicon Valley) Region: The US (Silicon Valley) Region is suitable for businesses with primary users in the Americas.
+
+CN (Hong Kong SAR) Region: The China (Hong Kong) Region is suitable for businesses with primary users in Greater China.
+
+Activating a New Region
+
+If you need to deploy your service to a different region, please follow these steps:
+
+Go to the "Info - Regions" page.
+
+In the "Add Region:" drop-down list, locate the region you want to activate (for example, US (Silicon Valley)). Click the "Add" button next to the region.
+You will be asked to confirm again, after which activation will begin.
+Once activation is successful, the region will become active, and you can switch to it and begin purchasing services.
+Please note: Activating a region is free, but you will incur charges for services deployed and used within it.
+⚠️ Important Note: Regional Independence
+Understanding the independence between regions is crucial; it directly impacts your resources, data, and billing.
+Core Principle: Quotas, data, and services within the same account are isolated and operate independently across regions.
+This means:
+Resource and Quota Independence:
+Each region has its own independent resource quota limits. For example, your used resource quota in the Singapore region will not affect your available quota in the US or Hong Kong regions.
+You will need to manage your services and resources separately in each region.
+Data Isolation:
+Data stored in one region is not automatically replicated or synchronized to other regions. For example, a file in your object storage in the Singapore region will not be visible in the Hong Kong region. Independent Services and Billing:
+
+You must purchase and configure services for each region separately. Service packages purchased in a region are valid only in that region.
+
+Billing is performed separately by region, and you can view the detailed consumption for each region in your bill.
+
+Suggestions:
+
+Please choose the most appropriate region for deployment based on the geographic location of your target users. If you serve global users, consider opening multiple regions and utilizing services like global acceleration to optimize the access experience.
