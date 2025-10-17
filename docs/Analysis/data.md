@@ -14,10 +14,10 @@ metadata:
 
 Get comprehensive insights into your email performance with Aurora SendCloud's detailed tracking and analytics system. Monitor every aspect of your email campaigns from send to delivery with real-time status updates and performance metrics.
 
-Our platform provides complete visibility into your email delivery lifecycle with full-link event tracking including: request, delivery, open, click, unsubscribe, invalid email, soft bounce, spam reports, and routing information.
+Our platform provides complete visibility into your email delivery lifecycle with full-link event tracking including: requests, delivery, opens, clicks, unsubscribes, invalid emails, soft bounces, spam reports, and routing information.
 
 <Callout icon="📘">
-  The email status and event data in Aurora SendCloud is stored by default for 6 months.
+  Email status and event data in Aurora SendCloud is stored by default for 6 months.
 </Callout>
 
 ## Email Status Categories
@@ -34,7 +34,7 @@ Track your email performance across four key status categories to understand you
   </Card>
 
   <Card title="Soft Bounce" icon="fa-exclamation-triangle">
-    At the beginning, the mailbox provider received the email, but can't deliver the email into the recipient's inbox, then returns the email. Common causes include full mailboxes or temporary server issues.
+    The mailbox provider initially received the email but could not deliver it to the recipient's inbox and returned it. Common causes include full mailboxes or temporary server issues.
   </Card>
 
   <Card title="Invalid Email" icon="fa-times-circle">
@@ -48,50 +48,50 @@ Track your email performance across four key status categories to understand you
 
 Understanding why emails fail helps you maintain a clean mailing list and improve deliverability:
 
-* **Blacklist** : the email address is in the Aurora SendCloud blacklist and will not be sent.
-* **Unsubscribe** : once a user clicks the unsubscribe link, he will enter the unsubscribe list, and sendcloud will not deliver such e-mail addresses
-* **Server Error** : temporary or permanent connection of sendcloud sending pool cannot access MX service of receiving domain
-* **Format Error** : Aurora SendCloud or MP determines that the email address format is illegal
-* **Not Exist** : MP returns to inform this email address does not exist
-* **Junk Mail** : MP returns to inform that the sending behavior or content of this email is determined as spam
-* **Rejected** : MP returns to inform the sender that the email was rejected abnormally or because of recipient settings
-* **Others** : other reasons. You can see the detail log by clicking the record.
+* **Blacklist**: The email address is in the Aurora SendCloud blacklist and will not be sent.
+* **Unsubscribe**: Once a user clicks the unsubscribe link, they will enter the unsubscribe list, and SendCloud will not deliver emails to such addresses.
+* **Server Error**: Temporary or permanent connection issues prevent SendCloud's sending pool from accessing the MX service of the receiving domain.
+* **Format Error**: Aurora SendCloud or the Mail Provider (MP) determines that the email address format is invalid.
+* **Not Exist**: The MP returns notification that this email address does not exist.
+* **Junk Mail**: The MP returns notification that the sending behavior or content of this email is determined to be spam.
+* **Rejected**: The MP returns notification that the email was rejected abnormally or due to recipient settings.
+* **Others**: Other reasons. You can see detailed logs by clicking the record.
 
 <br />
 
-#### What is Aurora SendCloud blacklist
+#### What is the Aurora SendCloud Blacklist?
 
-If the type of invalid mail is "in the blacklist", it is because the address is in "Complaint List", "Block List" or "Bounce List". If you insist on sending a letter to an address, you can delete the address in the corresponding "Complaint" / "Block" / "Bounce" or set no interception.
+If an invalid email type shows "in the blacklist," it means the address is in the "Complaint List," "Block List," or "Bounce List." If you need to send an email to such an address, you can delete the address from the corresponding "Complaint," "Block," or "Bounce" list, or configure it to bypass interception.
 
 ### Soft Bounce Categories
 
-Understanding why emails fail helps you maintain a clean mailing list and improve deliverability:
+Understanding soft bounces helps you maintain email deliverability and troubleshoot temporary issues:
 
-* Sever Error : MP internal service cannot be delivered
-* IP rejection : MP returns to inform that the email sending is rejected due to IP or domain name related reasons
-* Not Exist : MP returns to inform this email address does not exist
-* Spam Rejected : MP returns to inform that the sending behavior or content of this email is determined as spam
-* Rejected : MP returns to inform the sender that the email was rejected abnormally or because of recipient settings
-* Others : other reasons
+* **Server Error**: MP internal service cannot complete delivery.
+* **IP Rejection**: MP returns notification that email sending is rejected due to IP or domain-related reasons.
+* **Not Exist**: MP returns notification that this email address does not exist.
+* **Spam Rejected**: MP returns notification that the sending behavior or content of this email is determined to be spam.
+* **Rejected**: MP returns notification that the email was rejected abnormally or due to recipient settings.
+* **Others**: Other reasons.
 
 <br />
 
 ## Open and Click Records
 
-Records with all the information that you need.
+Complete records with all the information you need.
 
 <Callout icon="📘" theme="info">
-  Open or Click event only can be recorded after you have opened the tracking switch.
+  Open or Click events can only be recorded after you have enabled the tracking switch.
 </Callout>
 
-* Event: Open or Click
-* API_USER: The API_USER that you used to send the email.
-* Recipient: The address that you send your email to.
-* Request Time: The time that you successfully requested Aurora SendCloud to send the email.
-* Trigger Time: The time that the recipient open the email or click the link in the email.
-* IP:  The IP address that the recipient open or click the email
-* Device:  When the email was been opened or clicked ,we recorded the system,brand,browser of the device.
-* Link: Only click event has the link information.
+* **Event**: Open or Click
+* **API_USER**: The API_USER that you used to send the email
+* **Recipient**: The address to which you sent your email
+* **Request Time**: The time you successfully requested Aurora SendCloud to send the email
+* **Trigger Time**: The time the recipient opened the email or clicked a link in the email
+* **IP**: The IP address from which the recipient opened or clicked the email
+* **Device**: When the email was opened or clicked, we recorded the system, brand, and browser of the device
+* **Link**: Only click events include link information
 
 <br />
 
@@ -99,7 +99,7 @@ Records with all the information that you need.
 
 Access your email data through multiple channels:
 
-* **Real-time record**:  as it happens
+* **Real-time Records**: View data as it happens
 * **API Integration**: Programmatic access to delivery and engagement data
 * **Webhooks**: Receive instant notifications for email events
 * **CSV Reports**: Download comprehensive data for analysis
