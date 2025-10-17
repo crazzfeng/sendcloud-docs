@@ -42,16 +42,11 @@ The system offers three default roles and supports custom permissions for granul
 
 <br />
 
-| Paid User        | Free User     |
-| :--------------- | :------------ |
-| 3,000 emails/day | 50 emails/day |
-
-| Permission Level | Description
-|
-| --------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Administrator    | Has ​​full permissions​​ to manage all data, settings, and teammates within the account.                                                                                                                                          |
-| Visitor          | Has ​​view-only access​​ to all features. Cannot create, modify, delete, or download any data.                                                                                                                                    |
-| Custom           | Allows for granular permission settings for each feature (e.g., View, Edit, Manage). Quick-set templates like "Developer", "Operator", and "Finance" are available for easy application, with options for further customization.  |
+| Permission Level | Description                                                                                                                                                                                                                        |
+| :--------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Administrator    | Has ​​full permissions​​ to manage all data, settings, and teammates within the account.                                                                                                                                           |
+| Visitor          | Has ​​view-only access​​ to all features. Cannot create, modify, delete, or download any data.                                                                                                                                     |
+| Custom           | Allows for granular permission settings for each feature (e.g., View, Edit, Manage). Quick-set templates like "Developer", "Operator", and "Finance" are available for easy application, with options for further customization.   |
 
 ## Common Issues​​
 
