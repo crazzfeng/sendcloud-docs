@@ -53,7 +53,7 @@ When emails fail to deliver, understanding the specific reason helps you maintai
 * **Blacklist**: Address exists on Aurora SendCloud's suppression lists and will be automatically blocked
 * **Unsubscribe**: Recipient has opted out; SendCloud will not deliver future emails to this address
 * **Server Error**: Connection issues prevent our servers from reaching the recipient's mail provider
-* **Format Error**: Email address format is invalid according to SendCloud or the receiving mail provider
+* **Format Error**: Email address format is invalid according to Aurora SendCloud or the receiving mail provider
 * **Non-existent**: The receiving mail provider confirmed this email address doesn't exist
 * **Spam Filter**: Content or sending behavior flagged as spam by the receiving mail provider
 * **Recipient Rejection**: Email rejected due to recipient-specific settings or provider policies
