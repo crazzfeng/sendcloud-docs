@@ -37,6 +37,6 @@ Organize your duration statistics data by selecting one of these grouping method
 
 * **Group by null** _(default)_ - You will obtain the overall proportion distribution of different gradients.
 * **Group by Receiving Domain** - Performance by email provider
-* **Group by Day** - Performance by day
+* **Group by Day** - Daily performance breakdown
 
 Choose the grouping that best matches your reporting needs and analysis goals.
