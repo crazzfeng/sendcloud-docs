@@ -18,18 +18,18 @@ The current status of email can be divided into four categories: sending , deliv
 
 <Cards columns={4}>
   <Card title="Sending" icon="fa-home" target="_blank">
-    Neque porro quisquam est qui dolorem ipsum quia
+    the email requested by the customer has been successfully received by sendcloud, queued for sending or retrying sending 
   </Card>
 
   <Card title="Delivered" icon="fa-user">
-    *Lorem ipsum dolor sit amet, consectetur adipiscing elit*
+    successfully delivered to MP (mailbox provider)
   </Card>
 
   <Card title="Soft Bounce" icon="fa-star">
-    > Ut enim ad minim veniam, quis nostrud ullamco
+    After the mail is delivered, it is soft returned. Sendcloud divides the soft return reasons into six sub categories by analyzing the content of the soft return email
   </Card>
 
   <Card title="Invalid email" icon="fa-question">
-    **Excepteur sint occaecat cupidatat non proident**
+    Email delivery failed. Sendcloud divides the failure reasons into eight sub categories by analyzing the MP feedback delivery information
   </Card>
 </Cards>
