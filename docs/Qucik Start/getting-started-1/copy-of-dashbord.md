@@ -1,9 +1,8 @@
 ---
-title: 'Email Delivery Guide: Get Started with Aurora SendCloud'
+title: Newbie Guide
 excerpt: >-
-  Master professional email delivery with Aurora SendCloud's complete guide.
-  Learn domain setup, API configuration, and optimization strategies for
-  superior email delivery performance and inbox placement.
+  This section guides you through the process of setting up and starting to send
+  emails in Aurora SendCloud
 deprecated: false
 hidden: false
 link:
@@ -11,54 +10,54 @@ link:
 metadata:
   robots: index
 ---
-# Email Delivery Made Simple: Your Complete Aurora SendCloud Guide
+<br />
 
-<Image align="center" alt="Email Delivery Guide" border={false} caption="Email Delivery Guide" src="https://files.readme.io/5322762865d78e49f001d44d7fbc889eccde52b8d111a55a314c30b786cea7cf-_20251016164129.png" />
+<Image align="center" alt="Newbie Guide" border={false} caption="Newbie Guide" src="https://files.readme.io/5322762865d78e49f001d44d7fbc889eccde52b8d111a55a314c30b786cea7cf-_20251016164129.png" />
 
-## Start Your Email Delivery Journey
+## Your First Email
 
-Getting started with professional email delivery through Aurora SendCloud is effortless! We've automatically configured a test sending domain and API_USER for your account, enabling you to begin testing email delivery immediately without complex setup procedures.
+Getting started with Aurora SendCloud is easy! We've automatically created a test sending domain and API_USER for your account, so you can begin testing email delivery right away without any initial setup.
 
-Choose from two streamlined approaches for your first email delivery:
-- **Send by Template**: Leverage our pre-built email templates for rapid email delivery setup
-- **Send by Code**: Integrate directly with our email delivery API for custom implementations
+Choose from two simple methods to send your first email:
+- **Send by Template**: Use our pre-built email templates for quick setup
+- **Send by Code**: Integrate directly with our API for custom implementations
 
 <Image align="center" alt="Send the first email" border={false} src="https://files.readme.io/130c44edc33214aa01f8760e045b1f323f41d9bc155a8351ca91ce057a29cbbb-_20251016180205.png" />
 
-## Create & Verify Your Email Delivery Domain
+## Create & Verify Sending Domain
 
-Your sending domain serves as your email delivery identity and is fundamental for successful email delivery performance. This domain appears in your email's "From" address and establishes credibility with recipients and email delivery providers.
+Your sending domain acts as your email identity and is crucial for deliverability. This domain appears in your email's "From" address and helps establish trust with recipients and email providers.
 
-**Email Delivery Benefits:**
-- Significantly improves email delivery rates and inbox placement
-- Builds strong sender reputation for consistent email delivery
-- Ensures professional branding across all email delivery communications
-- Reduces email delivery issues and spam folder placement
+**Key Benefits:**
+- Improves email deliverability rates
+- Builds sender reputation
+- Ensures consistent branding across all communications
 
-Complete the domain verification process to unlock full email delivery capabilities and maintain optimal delivery rates across all your campaigns.
+Make sure to complete the domain verification process to unlock full sending capabilities and maintain high delivery rates.
 
-## Configure Your Email Delivery API_USER
+<br />
 
-The API_USER functions as your secure authentication credential for email delivery through Aurora SendCloud. This protected token enables your applications to connect with our email delivery service safely and efficiently.
+## Create API_USER
 
-**Essential for Email Delivery:**
-- Authenticating all email delivery API requests
-- Tracking comprehensive email delivery statistics
-- Managing email delivery limits and sending quotas
-- Monitoring email delivery performance metrics
+The API_USER serves as your authentication credential for sending emails through Aurora SendCloud. This secure token allows your applications to connect with our email service safely.
 
-Protect your API_USER credentials and never expose them publicly to ensure secure email delivery operations.
+**What you'll need it for:**
+- Authenticating API requests
+- Tracking email statistics
+- Managing sending limits and quotas
 
-## Launch Your Email Delivery Strategy
+Keep your API_USER credentials secure and never share them publicly.
 
-You're now prepared to excel in professional email delivery! Select the approach that aligns with your email delivery requirements:
+## Start Sending
 
-**Option 1: Email Delivery API Integration**
-Perfect for developers seeking to embed email delivery functionality directly into applications. Our detailed email delivery API documentation provides complete implementation guidance for robust email delivery solutions.
+You're now ready to begin your email journey! Choose the method that best fits your needs:
 
-**Option 2: Email Delivery Campaign Builder**
-Ideal for marketing teams preferring intuitive interfaces for email delivery management. Create, customize, and execute email delivery campaigns using our user-friendly campaign builder with advanced email delivery optimization features.
+**Option 1: Use API**
+Perfect for developers who want to integrate email functionality directly into their applications. Our comprehensive API documentation will guide you through the implementation process.
 
-Both email delivery options include powerful analytics and delivery tracking to monitor your email delivery performance, optimize engagement rates, and ensure maximum email delivery success.
+**Option 2: Create Campaign**
+Ideal for marketing teams and those who prefer a user-friendly interface. Create, customize, and send email campaigns using our intuitive campaign builder.
 
-Transform your communication strategy with Aurora SendCloud's reliable email delivery platform today!
+Both options provide powerful analytics and delivery tracking to help you monitor your email performance.
+
+<br />
