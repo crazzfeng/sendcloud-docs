@@ -36,7 +36,7 @@ In the teammate list on the ​​Teammate Management​​ page, you can find t
 
 ​​**Remove​​:** Revoke their access to the account. Once removed, the teammate will no longer be able to access any account data.
 
-## Permission Levels​​
+## Understanding Permission Levels​​
 
 The system offers three default roles and supports custom permissions for granular management.
 
@@ -46,16 +46,16 @@ The system offers three default roles and supports custom permissions for granul
 | Visitor          | Has ​​view-only access​​ to all features. Cannot create, modify, delete, or download any data.|
 | Custom           | Allows for granular permission settings for each feature (e.g., View, Edit, Manage). Quick-set templates like "Developer", "Operator", and "Finance" are available for easy application, with options for further customization.|
 
-## Common Issues & System Messages​​
+## Common Issues​​
 
 When a teammate attempts an action beyond their permissions, the system will display a clear message.
 
 * **Scenario 1**:  Insufficient Permissions (View-Only)​​
 
 ​​When a teammate tries to edit, download, or perform any action other than viewing:​​
-​​"Sorry, you do not have permission to use this feature. Please contact your team administrator if needed."​​
+​​"Sorry, you don’t have permission to use this feature. If access is required, please reach out to your team administrator."​​
 
 * **​​Scenario 2**: Permission Disabled​​
 
 When a teammate tries to access a page for a feature that has been completely disabled for them:​​
-​​"Sorry, you do not have permission to use this feature. Please contact your team administrator if needed."​
+​​"Sorry, you don’t have permission to use this feature. If access is required, please reach out to your team administrator."​
