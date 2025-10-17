@@ -16,13 +16,9 @@ Get comprehensive insights into your email performance with Aurora SendCloud's d
 
 Our platform provides complete visibility into your email delivery lifecycle with full-link event tracking including: request, delivery, open, click, unsubscribe, invalid email, soft bounce, spam reports, and routing information.
 
-<Callout icon="😀" theme="default">
+<Callout icon="📘">
   The email status and event data in Aurora SendCloud is stored by default for 6 months.
 </Callout>
-
-<br />
-
-<br />
 
 ## Email Status Categories
 
@@ -103,7 +99,7 @@ Records with all the information that you need.
 
 Access your email data through multiple channels:
 
-* **Real-time Dashboard**: Monitor campaign performance as it happens
+* **Real-time record**:  as it happens
 * **API Integration**: Programmatic access to delivery and engagement data
 * **Webhooks**: Receive instant notifications for email events
 * **CSV Reports**: Download comprehensive data for analysis
