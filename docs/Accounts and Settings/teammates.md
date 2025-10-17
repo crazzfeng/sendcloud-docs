@@ -13,7 +13,7 @@ After logging in, click your profile picture in the top-right corner -> ​​Ac
 
 ## How to Add, Edit, and Remove Teammates
 
-### Adding a Teammate​​
+### Add a Teammate​​
 
 Account Owners or Administrators can add new teammates by following these steps:
 
@@ -28,7 +28,7 @@ Account Owners or Administrators can add new teammates by following these steps:
 > * Permissions are isolated per Region and must be set separately for each.
 > * Paid accounts can invite up to ​​50 teammates​​.
 
-### Editing or Removing a Teammate​​
+### Edit or Remove a Teammate​​
 
 In the teammate list on the ​​Teammate Management​​ page, you can find the corresponding teammate and:
 
