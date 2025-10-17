@@ -8,3 +8,6 @@ hidden: false
 metadata:
   robots: index
 ---
+# Aurora SendCloud Email Sending Queue
+
+<br />
