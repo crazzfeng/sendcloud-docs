@@ -26,6 +26,7 @@ When the queue is paused, the reason that caused the pause and the next sending 
 
 A paused queue indicates that mail delivery is blocked. The reason is related to the receiving mechanism of the MP (Mailbox Provider). Common reasons for suspension include:
 
+* You made a human pause about the queue
 * Limitations caused by the domain
 * Limitations caused by IP reputation
 * Frequency of IP connections
@@ -33,5 +34,18 @@ A paused queue indicates that mail delivery is blocked. The reason is related to
 If the pause duration is unreasonably long (2-3 days), please contact us for assistance.
 
 ## Manage the Queue
+
+We know humans make mistakes. In some cases you may send the wrong content or send to wrong recipients. Don't worry, Aurora SendCloud has solutions. **You can pause or delete the sending queue**.
+
+### Pause the Queue
+
+<Image align="center" alt="Pause the email sending queue" border={false} caption="Pause the email sending queue" src="https://files.readme.io/caca3b5b91f6a7c46a62034db643287d9b928769379854357622e53f59c2a055-image.png" />
+
+<br />
+
+You can Pause the email sending queue by
+
+* API_USER: Mandatory. The API_USER that you used to send emails.
+* Receiving Domain: 
 
 <br />
