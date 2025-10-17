@@ -5,31 +5,33 @@ excerpt: >-
   of each email
 deprecated: false
 hidden: false
+link:
+  new_tab: false
 metadata:
   robots: index
 ---
 # Aurora SendCloud Email Data
 
-Provide detailed status data of the entire lifecycle of each email, like email status, recipient, sending domain, API_USER, request time, sending time, request IP, delivery IP, sending content, sending logs.And we automatically analyze delivery logs, categorize failures, and optimize performance.
+Aurora SendCloud provides detailed status data for the entire lifecycle of each email, including email status, recipient information, sending domain, API_USER, request time, sending time, request IP, delivery IP, sending content, and sending logs. We automatically analyze delivery logs, categorize failures, and optimize performance.
 
 ## Understand Your Email Status
 
-The current status of email can be divided into four categories: sending , delivered, soft bounce, invalid email.
+The current status of emails can be divided into four categories: sending, delivered, soft bounce, and invalid email.
 
 <Cards columns={4}>
   <Card title="Sending" icon="fa-home" target="_blank">
-    the email requested by the customer has been successfully received by sendcloud, queued for sending or retrying sending 
+    The email requested by the customer has been successfully received by SendCloud and is queued for sending or currently being retried.
   </Card>
 
   <Card title="Delivered" icon="fa-user">
-    successfully delivered to MP (mailbox provider)
+    Successfully delivered to the mailbox provider (MP).
   </Card>
 
   <Card title="Soft Bounce" icon="fa-star">
-    After the mail is delivered, it is soft returned. Sendcloud divides the soft return reasons into six sub categories by analyzing the content of the soft return email
+    After the email is delivered, it experiences a soft bounce. SendCloud divides soft bounce reasons into six subcategories by analyzing the content of the bounce notification.
   </Card>
 
-  <Card title="Invalid email" icon="fa-question">
-    Email delivery failed. Sendcloud divides the failure reasons into eight sub categories by analyzing the MP feedback delivery information
+  <Card title="Invalid Email" icon="fa-question">
+    Email delivery failed. SendCloud divides failure reasons into eight subcategories by analyzing the mailbox provider feedback and delivery information.
   </Card>
 </Cards>
