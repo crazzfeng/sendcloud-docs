@@ -12,26 +12,47 @@ metadata:
 ---
 # Aurora SendCloud Email Data
 
-Aurora SendCloud provides detailed status data for the entire lifecycle of each email, including email status, recipient information, sending domain, API_USER, request time, sending time, request IP, delivery IP, sending content, and sending logs. We automatically analyze delivery logs, categorize failures, and optimize performance.
+Get comprehensive insights into your email performance with Aurora SendCloud's detailed tracking and analytics system. Monitor every aspect of your email campaigns from send to delivery with real-time status updates and performance metrics.
 
-## Understand Your Email Status
+## What Data We Track
 
-The current status of emails can be divided into four categories: sending, delivered, soft bounce, and invalid email.
+Our platform captures complete lifecycle data for every email you send, including:
+
+- **Email Status** - Real-time delivery status updates
+- **Recipient Information** - Detailed recipient analytics and engagement
+- **Sending Domain & API User** - Track performance by domain and user
+- **Timing Data** - Request time, sending time, and delivery timestamps  
+- **IP Information** - Request IP and delivery IP tracking
+- **Content Analysis** - Full sending content and log analysis
+- **Intelligent Analytics** - Automated log analysis with failure categorization and performance optimization
+
+## Email Status Categories
+
+Track your email performance across four key status categories:
 
 <Cards columns={4}>
-  <Card title="Sending" icon="fa-home" target="_blank">
-    The email requested by the customer has been successfully received by SendCloud and is queued for sending or currently being retried.
+  <Card title="Sending" icon="fa-paper-plane">
+    Your email has been received by SendCloud and is either queued for delivery or currently being processed through our retry system.
   </Card>
 
-  <Card title="Delivered" icon="fa-user">
-    Successfully delivered to the mailbox provider (MP).
+  <Card title="Delivered" icon="fa-check-circle">
+    Email successfully delivered to the recipient's mailbox provider and accepted for final delivery.
   </Card>
 
-  <Card title="Soft Bounce" icon="fa-star">
-    After the email is delivered, it experiences a soft bounce. SendCloud divides soft bounce reasons into six subcategories by analyzing the content of the bounce notification.
+  <Card title="Soft Bounce" icon="fa-exclamation-triangle">
+    Temporary delivery issue occurred after initial acceptance. SendCloud categorizes soft bounces into six detailed subcategories based on bounce notification analysis.
   </Card>
 
-  <Card title="Invalid Email" icon="fa-question">
-    Email delivery failed. SendCloud divides failure reasons into eight subcategories by analyzing the mailbox provider feedback and delivery information.
+  <Card title="Invalid Email" icon="fa-times-circle">
+    Permanent delivery failure detected. Our system analyzes mailbox provider feedback to classify failures into eight specific subcategories for better troubleshooting.
   </Card>
 </Cards>
+
+## Advanced Analytics
+
+SendCloud automatically processes all delivery logs and bounce notifications to provide actionable insights that help you:
+
+- **Identify Issues** - Understand why emails fail and how to fix them
+- **Optimize Performance** - Get recommendations to improve delivery rates
+- **Track Trends** - Monitor performance patterns over time
+- **Troubleshoot Problems** - Access detailed logs for debugging
