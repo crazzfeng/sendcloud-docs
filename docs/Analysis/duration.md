@@ -5,6 +5,24 @@ hidden: false
 link:
   new_tab: false
 metadata:
+  title: >-
+    Email Delivery Duration Analytics - Monitor Performance & Speed | Aurora
+    SendCloud
+  description: >-
+    Track email delivery performance with comprehensive duration analytics.
+    Monitor delivery times, identify bottlenecks, and optimize your email
+    infrastructure for faster delivery.
+  keywords:
+    - email delivery
+    - email delivery analytics
+    - email delivery speed
+    - email performance monitoring
+    - email delivery duration
+    - email infrastructure optimization
+    - transactional email delivery
+    - bulk email delivery
+    - email delivery metrics
+    - email analytics dashboard
   robots: index
 ---
 # Email Delivery Duration Analytics
