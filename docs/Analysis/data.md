@@ -16,6 +16,12 @@ Get comprehensive insights into your email performance with Aurora SendCloud's d
 
 Our platform provides complete visibility into your email delivery lifecycle with full-link event tracking including: request, delivery, open, click, unsubscribe, invalid email, soft bounce, spam reports, and routing information.
 
+<Callout icon="😀">
+  The email status and event data in Aurora SendCloud is stored by default for 6 months.
+</Callout>
+
+<br />
+
 <br />
 
 ## Email Status Categories
@@ -40,7 +46,7 @@ Track your email performance across four key status categories to understand you
   </Card>
 </Cards>
 
-## Invalid Email Categories
+### Invalid Email Categories
 
 Understanding why emails fail helps you maintain a clean mailing list and improve deliverability:
 
@@ -53,11 +59,13 @@ Understanding why emails fail helps you maintain a clean mailing list and improv
 * **Rejected** : MP returns to inform the sender that the email was rejected abnormally or because of recipient settings
 * **Others** : other reasons. You can see the detail log by clicking the record.
 
-### What is Aurora SendCloud blacklist
+<br />
+
+#### What is Aurora SendCloud blacklist
 
 If the type of invalid mail is "in the blacklist", it is because the address is in "Complaint List", "Block List" or "Bounce List". If you insist on sending a letter to an address, you can delete the address in the corresponding "Complaint" / "Block" / "Bounce" or set no interception.
 
-## Soft Bounce Categories
+### Soft Bounce Categories
 
 Understanding why emails fail helps you maintain a clean mailing list and improve deliverability:
 
@@ -70,28 +78,11 @@ Understanding why emails fail helps you maintain a clean mailing list and improv
 
 <br />
 
-## Event Tracking Records
+## Open and Click Records
 
-Support full-link events with device information
+Records with all the information that you need.
 
-<Accordion title="Available Tracking Events" icon="fa-chart-line">
-  ### Delivery Events
-
-  * **Request**: Email submission received by Aurora SendCloud
-  * **Delivery**: Successful delivery to recipient's mail server
-  * **Bounce**: Failed delivery with reason codes
-
-  ### Engagement Events
-
-  * **Open**: Email opened by recipient (pixel tracking)
-  * **Click**: Links clicked within the email content
-  * **Unsubscribe**: Recipient opted out via unsubscribe link
-
-  ### Administrative Events
-
-  * **Route**: Delivery path and server routing information
-  * **Report**: Spam complaints or abuse reports received
-</Accordion>
+### open records
 
 ## Data Access and Reporting
 
