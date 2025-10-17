@@ -44,7 +44,7 @@ Track your email performance across four key status categories to understand you
 
 Understanding why emails fail helps you maintain a clean mailing list and improve deliverability:
 
-* **Blacklist** : the email address is in the Aurora SendCloud blacklist and will not be delivered
+* **Blacklist** : the email address is in the Aurora SendCloud blacklist and will not be sent.
 * **Unsubscribe** : once a user clicks the unsubscribe link, he will enter the unsubscribe list, and sendcloud will not deliver such e-mail addresses
 * **Server Error** : temporary or permanent connection of sendcloud sending pool cannot access MX service of receiving domain
 * **Format Error** : Aurora SendCloud or MP determines that the email address format is illegal
@@ -72,7 +72,7 @@ Understanding why emails fail helps you maintain a clean mailing list and improv
 
 ## Event Tracking Records
 
-Monitor detailed engagement metrics and delivery events:
+Support full-link events with device information
 
 <Accordion title="Available Tracking Events" icon="fa-chart-line">
   ### Delivery Events
