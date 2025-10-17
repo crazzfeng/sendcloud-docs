@@ -1,8 +1,9 @@
 ---
 title: Data
 excerpt: >-
-  Data contains the status of the requested email sending and detailed data
-  related to the logs.
+  Aurora SendCloud's Data provide detailed status data of the entire lifecycle
+  of each email and automatically analyze delivery logs, categorize failures,
+  and optimize performance.
 deprecated: false
 hidden: false
 metadata:
