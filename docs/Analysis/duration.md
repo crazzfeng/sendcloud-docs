@@ -11,34 +11,34 @@ metadata:
 
 <Image align="center" alt="Time Consumption" border={false} caption="Time Consumption" src="https://files.readme.io/43b733cb72e1907e0a1279bc481e92a7cff9dc5767e91b3b02b34addbba18225-image.png" />
 
-The time taken from requesting to delivering an email is crucial for transactional emails, such as registration confirmations. Email delivery time statistics represent the sending efficiency of an email delivery provider. Here you can view the time consumption statistics for all your emails to determine if they meet your expectations.
+The time required to deliver an email from request to recipient is crucial for transactional emails, such as registration confirmations. Email delivery time statistics reflect the sending efficiency of your email delivery provider. Here, you can view time consumption statistics for all your emails to determine whether they meet your expectations.
 
 ## Time Consumption Gradients
 
-In Aurora SendCloud, trigger emails and batch emails have different time gradients.
+In Aurora SendCloud, trigger emails and batch emails use different time gradients for measurement.
 
 **Trigger Email Gradients:**
 
-* 0s~3s
-* 3s~10s
-* 10s~1min
-* 1min~5min
+* 0s–3s
+* 3s–10s
+* 10s–1min
+* 1min–5min
 * More than 5min
 
 **Batch Email Gradients:**
 
-* 0~10min
-* 10min~1h
-* 1h~3h
-* 3h~24h
+* 0–10min
+* 10min–1h
+* 1h–3h
+* 3h–24h
 * More than 24h
 
 ## Grouping Options
 
-Organize your duration statistics data by selecting one of these grouping methods:
+Organize your duration statistics by selecting one of these grouping methods:
 
-* **Group by null** _(default)_ - You will obtain the overall proportion distribution of different gradients.
-* **Group by Receiving Domain** - Performance by email provider
-* **Group by Day** - Daily performance breakdown
+* **Group by null** _(default)_ - View the overall proportion distribution across different time gradients
+* **Group by Receiving Domain** - Analyze performance by email provider
+* **Group by Day** - Review daily performance breakdown
 
-Choose the grouping that best matches your reporting needs and analysis goals.
+Select the grouping option that best matches your reporting needs and analysis goals.
