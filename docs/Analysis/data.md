@@ -10,102 +10,119 @@ link:
 metadata:
   robots: index
 ---
-# Aurora SendCloud Email Data
+# Aurora SendCloud Email Data & Analytics
 
-Get comprehensive insights into your email performance with Aurora SendCloud's detailed tracking and analytics system. Monitor every aspect of your email campaigns from send to delivery with real-time status updates and performance metrics.
+Gain complete visibility into your email performance with Aurora SendCloud's comprehensive tracking and analytics platform. Monitor every stage of your email campaigns—from initial send through final delivery—with real-time status updates and detailed performance metrics.
 
-Our platform provides complete visibility into your email delivery lifecycle with full-link event tracking including: requests, delivery, opens, clicks, unsubscribes, invalid emails, soft bounces, spam reports, and routing information.
+Our advanced tracking system captures the complete email delivery lifecycle, providing full-link event monitoring for requests, deliveries, opens, clicks, unsubscribes, bounces, spam reports, and routing data.
 
 <Callout icon="📘">
-  Email status and event data in Aurora SendCloud is stored by default for 6 months.
+  All email status and event data in Aurora SendCloud is retained for 6 months by default, giving you extensive historical insights.
 </Callout>
 
-## Email Status Categories
+## Email Delivery Status Overview
 
-Track your email performance across four key status categories to understand your delivery success and identify areas for improvement:
+Monitor your email performance across four essential status categories to optimize delivery success and identify improvement opportunities:
 
 <Cards columns={4}>
   <Card title="Delivered" icon="fa-check-circle">
-    Email successfully delivered to the recipient's mailbox provider and accepted for final delivery. This indicates successful inbox placement.
+    Successfully delivered to the recipient's inbox. The email reached its final destination and was accepted by the mailbox provider.
   </Card>
 
   <Card title="Sending" icon="fa-paper-plane">
-    Your email has been received by Aurora SendCloud and is either queued for delivery or currently being processed through our delivery infrastructure.
+    Currently in progress. Your email is queued or being processed through our delivery infrastructure.
   </Card>
 
   <Card title="Soft Bounce" icon="fa-exclamation-triangle">
-    The mailbox provider initially received the email but could not deliver it to the recipient's inbox and returned it. Common causes include full mailboxes or temporary server issues.
+    Temporarily failed delivery. The receiving server accepted but couldn't deliver the email, often due to full mailboxes or server issues.
   </Card>
 
   <Card title="Invalid Email" icon="fa-times-circle">
-    Delivery failure due to invalid email addresses, hard bounces, or suppression list matches.
+    Permanent delivery failure. Issues include invalid addresses, hard bounces, or suppression list blocks.
   </Card>
 </Cards>
 
 <br />
 
-### Invalid Email Categories
+## Understanding Email Failures
 
-Understanding why emails fail helps you maintain a clean mailing list and improve deliverability:
+### Invalid Email Classifications
 
-* **Blacklist**: The email address is in the Aurora SendCloud blacklist and will not be sent.
-* **Unsubscribe**: Once a user clicks the unsubscribe link, they will enter the unsubscribe list, and SendCloud will not deliver emails to such addresses.
-* **Server Error**: Temporary or permanent connection issues prevent SendCloud's sending pool from accessing the MX service of the receiving domain.
-* **Format Error**: Aurora SendCloud or the Mail Provider (MP) determines that the email address format is invalid.
-* **Not Exist**: The MP returns notification that this email address does not exist.
-* **Junk Mail**: The MP returns notification that the sending behavior or content of this email is determined to be spam.
-* **Rejected**: The MP returns notification that the email was rejected abnormally or due to recipient settings.
-* **Others**: Other reasons. You can see detailed logs by clicking the record.
+When emails fail to deliver, understanding the specific reason helps you maintain list hygiene and improve deliverability:
 
-<br />
-
-#### What is the Aurora SendCloud Blacklist?
-
-If an invalid email type shows "in the blacklist," it means the address is in the "Complaint List," "Block List," or "Bounce List." If you need to send an email to such an address, you can delete the address from the corresponding "Complaint," "Block," or "Bounce" list, or configure it to bypass interception.
-
-### Soft Bounce Categories
-
-Understanding soft bounces helps you maintain email deliverability and troubleshoot temporary issues:
-
-* **Server Error**: MP internal service cannot complete delivery.
-* **IP Rejection**: MP returns notification that email sending is rejected due to IP or domain-related reasons.
-* **Not Exist**: MP returns notification that this email address does not exist.
-* **Spam Rejected**: MP returns notification that the sending behavior or content of this email is determined to be spam.
-* **Rejected**: MP returns notification that the email was rejected abnormally or due to recipient settings.
-* **Others**: Other reasons.
+* **Blacklist**: Address exists on Aurora SendCloud's suppression lists and will be automatically blocked
+* **Unsubscribe**: Recipient has opted out; SendCloud will not deliver future emails to this address
+* **Server Error**: Connection issues prevent our servers from reaching the recipient's mail provider
+* **Format Error**: Email address format is invalid according to SendCloud or the receiving mail provider
+* **Non-existent**: The receiving mail provider confirmed this email address doesn't exist
+* **Spam Filter**: Content or sending behavior flagged as spam by the receiving mail provider
+* **Recipient Rejection**: Email rejected due to recipient-specific settings or provider policies
+* **Other Issues**: Additional failure reasons—view detailed logs by clicking individual records
 
 <br />
 
-## Open and Click Records
+#### Managing the Aurora SendCloud Blacklist
 
-Complete records with all the information you need.
+When an email shows as "blacklisted," the address appears on one of our suppression lists: Complaint List, Block List, or Bounce List. To resume sending to these addresses:
+
+1. Remove the address from the relevant suppression list
+2. Configure bypass rules for specific scenarios
+3. Contact support for assistance with list management
+
+### Soft Bounce Classifications
+
+Soft bounces indicate temporary delivery issues that may resolve on subsequent attempts:
+
+* **Server Error**: Recipient's mail provider experienced internal service disruptions
+* **IP/Domain Rejection**: Your sending IP or domain is temporarily blocked by the recipient's provider
+* **Address Verification**: Recipient's mail provider couldn't verify the email address exists
+* **Spam Filtering**: Email content or sending patterns triggered spam filters
+* **Policy Rejection**: Email rejected due to recipient settings or provider policies
+* **Miscellaneous**: Other temporary issues preventing delivery
+
+<br />
+
+## Email Engagement Tracking
+
+Access comprehensive engagement data to understand how recipients interact with your emails.
 
 <Callout icon="📘" theme="info">
-  Open or Click events can only be recorded after you have enabled the tracking switch.
+  Open and click tracking must be enabled in your account settings to record engagement events.
 </Callout>
 
-* **Event**: Open or Click
-* **API_USER**: The API_USER that you used to send the email
-* **Recipient**: The address to which you sent your email
-* **Request Time**: The time you successfully requested Aurora SendCloud to send the email
-* **Trigger Time**: The time the recipient opened the email or clicked a link in the email
-* **IP**: The IP address from which the recipient opened or clicked the email
-* **Device**: When the email was opened or clicked, we recorded the system, brand, and browser of the device
-* **Link**: Only click events include link information
+### Engagement Data Points
+
+* **Event Type**: Whether the recipient opened the email or clicked a link
+* **API User**: The sending account used for the email
+* **Recipient**: Target email address
+* **Send Time**: When Aurora SendCloud successfully processed your send request
+* **Engagement Time**: Exact timestamp when the recipient opened or clicked
+* **IP Address**: Location data from the recipient's engagement
+* **Device Information**: Detailed system, browser, and device data captured during engagement
+* **Link Details**: For click events, specific URL information is recorded
 
 <br />
 
-## Data Access and Reporting
+## Accessing Your Data
 
-Access your email data through multiple channels:
+Choose from multiple methods to access and analyze your email performance data:
 
-* **Real-time Records**: View data as it happens
-* **API Integration**: Programmatic access to delivery and engagement data
-* **Webhooks**: Receive instant notifications for email events
-* **CSV Reports**: Download comprehensive data for analysis
+### Real-Time Monitoring
+* **Live Dashboard**: Monitor email performance as events occur
+* **Instant Alerts**: Get immediate notifications for critical delivery issues
+
+### Integration Options
+* **REST API**: Programmatically access delivery and engagement data
+* **Webhooks**: Receive real-time event notifications directly to your systems
+* **CSV Exports**: Download comprehensive datasets for offline analysis
+
+### Reporting Tools
+* **Custom Reports**: Build tailored reports for specific metrics
+* **Scheduled Exports**: Automate regular data downloads
+* **Historical Analysis**: Access up to 6 months of historical performance data
 
 <br />
 
 ***
 
-_Need help setting up tracking or accessing your data? Contact our support team for assistance with implementation and troubleshooting._
+_Ready to optimize your email performance? Contact our support team for assistance with tracking setup, data analysis, and deliverability improvements._
