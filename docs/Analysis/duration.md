@@ -9,6 +9,8 @@ metadata:
 ---
 # What is Duration
 
+<Image align="center" alt="Time Consumption" border={false} caption="Time Consumption" src="https://files.readme.io/43b733cb72e1907e0a1279bc481e92a7cff9dc5767e91b3b02b34addbba18225-image.png" />
+
 The time taken from requesting to delivering an email is crucial for transactional emails, such as registration confirmations. Email delivery time statistics represent the sending efficiency of an email delivery provider. Here you can view the time consumption statistics for all your emails to determine if they meet your expectations.
 
 ## Time Consumption Gradients
