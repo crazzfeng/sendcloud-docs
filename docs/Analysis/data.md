@@ -16,7 +16,7 @@ Get comprehensive insights into your email performance with Aurora SendCloud's d
 
 Our platform provides complete visibility into your email delivery lifecycle with full-link event tracking including: request, delivery, open, click, unsubscribe, invalid email, soft bounce, spam reports, and routing information.
 
-<Callout icon="😀">
+<Callout icon="😀" theme="default">
   The email status and event data in Aurora SendCloud is stored by default for 6 months.
 </Callout>
 
@@ -38,13 +38,15 @@ Track your email performance across four key status categories to understand you
   </Card>
 
   <Card title="Soft Bounce" icon="fa-exclamation-triangle">
-   At the beginning, the mailbox provider received the email, but can't deliver the email into the recipient's inbox, then returns the email. Common causes include full mailboxes or temporary server issues.
+    At the beginning, the mailbox provider received the email, but can't deliver the email into the recipient's inbox, then returns the email. Common causes include full mailboxes or temporary server issues.
   </Card>
 
   <Card title="Invalid Email" icon="fa-times-circle">
     Delivery failure due to invalid email addresses, hard bounces, or suppression list matches.
   </Card>
 </Cards>
+### Status record field
+
 
 ### Invalid Email Categories
 
