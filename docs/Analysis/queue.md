@@ -10,57 +10,71 @@ link:
 metadata:
   robots: index
 ---
-# Aurora SendCloud Email Sending Queue
+# Email Sending Queue
 
-Aurora SendCloud masters mainstream mailbox provider (MP) receiving strategies and employs an adaptive sending queue. Our scalable infrastructure adapts to your business growth, featuring intelligent queuing systems and real-time optimization algorithms that ensure fast and stable email delivery. We provide 24-hour monitoring with intelligent analysis of sending status and continuous optimization of the sending scheduling mechanism.
+Aurora SendCloud uses intelligent queue management to optimize email delivery across all major mailbox providers. Our adaptive sending system automatically adjusts to recipient domain requirements, ensuring fast and reliable email delivery with 24/7 monitoring and real-time optimization.
 
 <Image align="center" alt="Email Sending Queue" border={false} caption="Email Sending Queue" src="https://files.readme.io/49ff5fe507e784ffb56d4eb91f52dd8843939080bb43e45ea7ff1a5c9efaef67-analytics_data.556bbc59.png" />
 
-## Understanding the Sending Queue
+## Monitor Your Queue
 
-On the queue page, you can view specific queue data including status, API_USER, receiving domain, total number of emails to be sent, and rate (In, Try out, Out).
+The queue dashboard provides real-time insights into your email delivery:
 
-You can change the rate and view the average rate every 5s, 15s, and 30s. The change trend can be viewed through the chart, which refreshes data every 5 seconds.
+- **Queue Status**: Current state of your email queue
+- **API User**: The API user associated with the queue
+- **Receiving Domain**: Destination email provider (e.g., gmail.com, outlook.com)
+- **Email Count**: Total emails pending delivery
+- **Sending Rate**: Current throughput (In, Try out, Out)
 
-When the queue is paused, the reason that caused the pause and the next sending time will be displayed. Click the "Recover" button to trigger sending immediately.
+### Real-Time Analytics
 
-A paused queue indicates that email delivery is blocked. The reason is related to the receiving mechanism of the mailbox provider (MP). Common reasons for suspension include:
+View sending rates with customizable intervals (5s, 15s, 30s) and track trends through live charts that update every 5 seconds.
 
-* You manually paused the queue
-* Limitations caused by the domain
-* Limitations caused by IP reputation  
-* Frequency of IP connections
+### Queue Pauses
 
-If the pause duration is unreasonably long (2-3 days), please contact us for assistance.
+When a queue pauses, you'll see:
+- **Pause Reason**: Why delivery was suspended
+- **Next Send Time**: When delivery will resume
+- **Recovery Button**: Manual option to resume immediately
 
-## Manage the Queue
+**Common pause reasons:**
+- Manual pause by user
+- Domain-specific limitations
+- IP reputation restrictions
+- Connection frequency limits
 
-We know humans make mistakes. In some cases, you may send the wrong content or send to wrong recipients. Don't worry, Aurora SendCloud has solutions. **You can pause or delete the sending queue**.
+> **Need Help?** If your queue is paused for more than 2-3 days, contact our support team for assistance.
 
-### Pause the Queue
+## Queue Management
+
+Made a mistake? No problem. You can pause or delete queues to prevent unwanted deliveries.
+
+### Pause a Queue
 
 <Image align="center" alt="Pause the email sending queue" border={false} caption="Pause the email sending queue" src="https://files.readme.io/caca3b5b91f6a7c46a62034db643287d9b928769379854357622e53f59c2a055-image.png" />
 
-You can pause the email sending queue by specifying:
+**Required:**
+- **API User**: Select the API user that sent the emails
 
-* **API_USER**: Mandatory. The API_USER that you used to send emails.
-* **Receiving Domain**: Optional. The recipient email providers' domains, like gmail.com. If left empty, it means you want to pause the sending queue for the API_USER with all receiving domains.
+**Optional:**
+- **Receiving Domain**: Target specific email providers (leave empty to pause all domains)
+- **Recovery Time**: When to automatically resume (maximum 15 days)
 
-**Recovery Time** is the time you want to resume the paused queue.
+> **Important:** Emails suspended for more than 15 days without a recovery time will be automatically deleted.
 
-1. The recovery time should not be more than 15 days.
-2. If the recovery time is not set and delivery is not resumed after 15 days, the suspended emails will be deleted automatically.
-
-### Delete the Queue
+### Delete a Queue
 
 <Callout icon="❗️">
-  Deletion is not recoverable. Please be cautious.
+  **Warning:** Queue deletion is permanent and cannot be undone. Proceed with caution.
 </Callout>
 
 <Image align="center" alt="Delete the email sending queue" border={false} caption="Delete the email sending queue" src="https://files.readme.io/bf70de4aab56ad6b5a17e58a00ddd763f8126d29f6dd201f791159f4fe1df9c1-image.png" />
 
-You can delete the email sending queue by specifying:
+**Required:**
+- **API User**: Select the API user that sent the emails
 
-* **API_USER**: Mandatory. The API_USER that you used to send emails.
-* **Receiving Domain**: Optional. The recipient email providers' domains, like gmail.com. If left empty, it means you want to delete the sending queue for the API_USER with all receiving domains.
-* **Request Time**: The time period of emails that you want to delete.
+**Optional:**
+- **Receiving Domain**: Target specific email providers (leave empty to delete all domains)
+- **Request Time**: Specify the time range of emails to delete
+
+> **Best Practice:** Use pause instead of delete when possible to avoid permanent data loss.
