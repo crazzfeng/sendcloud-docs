@@ -12,19 +12,19 @@ metadata:
 ---
 # Aurora SendCloud Email Data
 
-Get comprehensive insights into your email performance with Aurora SendCloud's detailed tracking and analytics system. Monitor every aspect of your email campaigns from send to delivery with real-time status updates and performance metrics.
+Get comprehensive insights into your email performance with Aurora SendCloud's detailed tracking and analytics system. Monitor every aspect of your email campaigns from send to delivery with real-time status updates and performance metrics.Support full-link events: request, delivery, open, click, unsubscribe, invalid email, soft bounce, report, route.
 
 ## What Data We Track
 
 Our platform captures complete lifecycle data for every email you send, including:
 
-- **Email Status** - Real-time delivery status updates
-- **Recipient Information** - Detailed recipient analytics and engagement
-- **Sending Domain & API User** - Track performance by domain and user
-- **Timing Data** - Request time, sending time, and delivery timestamps  
-- **IP Information** - Request IP and delivery IP tracking
-- **Content Analysis** - Full sending content and log analysis
-- **Intelligent Analytics** - Automated log analysis with failure categorization and performance optimization
+* **Email Status** - Real-time delivery status updates
+* **Recipient Information** - Detailed recipient analytics and engagement
+* **Sending Domain & API User** - Track performance by domain and user
+* **Timing Data** - Request time, sending time, and delivery timestamps
+* **IP Information** - Request IP and delivery IP tracking
+* **Content Analysis** - Full sending content and log analysis
+* **Intelligent Analytics** - Automated log analysis with failure categorization and performance optimization
 
 ## Email Status Categories
 
@@ -48,11 +48,4 @@ Track your email performance across four key status categories:
   </Card>
 </Cards>
 
-## Advanced Analytics
-
-SendCloud automatically processes all delivery logs and bounce notifications to provide actionable insights that help you:
-
-- **Identify Issues** - Understand why emails fail and how to fix them
-- **Optimize Performance** - Get recommendations to improve delivery rates
-- **Track Trends** - Monitor performance patterns over time
-- **Troubleshoot Problems** - Access detailed logs for debugging
+<br />
