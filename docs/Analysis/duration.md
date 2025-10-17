@@ -54,37 +54,24 @@ Customize your duration analysis with these powerful grouping options:
 
 <Cards columns={3}>
   <Card title="Overall Performance">
-     **Group by null** *(default)*
+    **Group by null** *(default)*
 
     View the complete performance distribution across all time gradients. This overview helps you understand your general delivery performance and identify patterns.
   </Card>
 
   <Card title="MP Analysis">
-     **Group by Receiving Domain**
+    **Group by Receiving Domain**
 
     Analyze performance by email providers (Gmail, Outlook, Yahoo, etc.). This view helps you identify which providers may be causing delivery delays and optimize accordingly.
   </Card>
 
-  <Card title="Third Card">
-    > Ut enim ad minim veniam, quis nostrud ullamco
+  <Card title="Daily Trends">
+   **Group by Day**
+
+    Review daily performance trends to identify peak times, system issues, or improvements over time. Perfect for monitoring the impact of infrastructure changes.
   </Card>
 </Cards>
 
-<Tabs>
-  <Tab title="Overall Performance">
-   
-  </Tab>
-
-  <Tab title="">
-   
-  </Tab>
-
-  <Tab title="Daily Trends">
-    **Group by Day**
-
-    Review daily performance trends to identify peak times, system issues, or improvements over time. Perfect for monitoring the impact of infrastructure changes.
-  </Tab>
-</Tabs>
 
 ## Using Duration Analytics Effectively
 
