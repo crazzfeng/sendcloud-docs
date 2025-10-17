@@ -26,51 +26,127 @@ metadata:
     - SMTP service
   robots: index
 ---
-# How to Sign Up for an Account
+# Getting Started with Aurora SendCloud
 
-If you haven't registered an account with Aurora SendCloud, you can register using your email or Google account. Click <Anchor label="here" target="_blank" href="https://www.aurorasendcloud.com/web/#/register">here</Anchor> to register.
+Welcome to Aurora SendCloud! This guide will walk you through creating your account and accessing our email delivery platform.
 
-## Sign Up via Email
+## Quick Start
 
-1. Click **Sign Up Free** in the top right corner of the website.
-2. Enter a valid email address and create a password.
-3. Click the **Sign Up Free** button.
+New to Aurora SendCloud? Get started in just a few minutes:
 
-## Account Activation
+<Cards columns="2">
+  <Card title="Sign Up" href="#create-your-account" icon="user-plus">
+    Create a new account with email or Google
+  </Card>
+  <Card title="Log In" href="#log-in-to-your-account" icon="sign-in-alt">
+    Access your existing account
+  </Card>
+</Cards>
 
-After successful registration, the system will send a verification code to your email address. Enter the verification code to activate your account.
+---
 
-> **Didn't receive the email?**
->
-> * Check if your email address was entered correctly. If correct, please check all your mailboxes or click **Resend verification code**.
-> * If the email address is incorrect, click **Change email address** to enter the correct email address.
+# Create Your Account
 
-# How to Log In to Aurora SendCloud
+## Sign Up Options
 
-If you have already completed account registration, you can log in to our website to access our services. SendCloud supports both username and email login. For enhanced security, you can enable **2FA login** in your account security settings.
+Choose the method that works best for you:
 
-<Callout icon="📘" theme="info">
-  If you enter an incorrect password 10 consecutive times, your account will be locked. Please contact customer service to unlock it.
+<Tabs>
+  <Tab title="Email Registration">
+    
+**Step 1: Start Registration**
+1. Visit our [registration page](https://www.aurorasendcloud.com/web/#/register) or click **Sign Up Free** in the top right corner
+2. Enter your email address and create a secure password
+3. Click **Sign Up Free**
+
+**Step 2: Verify Your Email**
+After registration, we'll send a verification code to your email address:
+1. Check your inbox for the verification email
+2. Enter the verification code to activate your account
+3. You're ready to start using Aurora SendCloud!
+
+<Callout icon="📧" theme="info">
+**Email Troubleshooting**
+- **Didn't receive the email?** Check your spam folder and verify your email address is correct
+- **Need a new code?** Click **Resend verification code**
+- **Wrong email?** Click **Change email address** to update it
 </Callout>
 
-## Sign In with Google
+  </Tab>
+  <Tab title="Google Sign-Up">
+    
+**Quick Setup with Google**
+1. Click **Sign up with Google** on our registration page
+2. Select your Google account or sign in if prompted
+3. Authorize Aurora SendCloud to access your Google account
+4. Complete any additional profile information
+5. Start using our services immediately!
 
-If you have a Google account, you can also sign in using your Google credentials:
+  </Tab>
+</Tabs>
 
-1. Click **Sign in with Google**.
-2. Select your Google account.
-3. Sign in to aurorasendcloud.com.
+---
 
-After successful login, you can start using our services.
+# Log In to Your Account
 
-# What to Do If You Forget Your Password
+## Sign In Methods
 
-1. Click **Forgot Password** above the login button.
-2. Enter your username or email address in the input field, ensuring the information is accurate.
-3. Click **Send verification code**.
-4. Enter the email verification code you received and create a new password. If you don't receive the verification code, click **Get code** to request it again.
-5. Click **Reset**. After the reset is complete, you can log in using your new password.
+<Accordion title="Email/Username Login" icon="envelope">
 
-***
+1. Go to the [Aurora SendCloud login page](https://www.aurorasendcloud.com/web/#/login)
+2. Enter your registered email address or username
+3. Enter your password
+4. Click **Sign In**
 
-**Still need help? Our customer success team is here to assist you! <Anchor label="Contact us" target="_blank" href="https://www.aurorasendcloud.com/contact">Contact us</Anchor>**
+**Security Features:**
+- Enable **Two-Factor Authentication (2FA)** in your account settings for enhanced security
+- Your account will be temporarily locked after 10 consecutive failed login attempts
+
+</Accordion>
+
+<Accordion title="Google Sign-In" icon="google">
+
+1. Click **Sign in with Google** on the login page
+2. Select your Google account
+3. You'll be automatically signed in to Aurora SendCloud
+
+This method is perfect if you registered using Google or have linked your Google account.
+
+</Accordion>
+
+---
+
+# Forgot Your Password?
+
+Don't worry! Resetting your password is simple:
+
+1. **Click "Forgot Password"** on the login page
+2. **Enter your email or username** - make sure it's accurate
+3. **Get your verification code** - click "Send verification code"
+4. **Check your email** and enter the verification code
+5. **Create a new password** and click "Reset"
+6. **Log in** with your new credentials
+
+<Callout icon="⏰" theme="warning">
+**Didn't receive the reset code?** Click **Get code** to request it again, and check your spam folder.
+</Callout>
+
+---
+
+# Next Steps
+
+Once you're logged in, you can:
+- Set up your first email campaign
+- Configure your sender domains
+- Explore our API documentation
+- Access analytics and reporting tools
+
+<Callout icon="🚀" theme="success">
+**Ready to send your first email?** Check out our [Quick Start Guide](#) to begin sending emails in minutes.
+</Callout>
+
+---
+
+**Need additional help?** Our customer success team is ready to assist you!
+
+<Anchor label="Contact Support" target="_blank" href="https://www.aurorasendcloud.com/contact">Get Help →</Anchor>
