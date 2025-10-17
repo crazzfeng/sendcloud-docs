@@ -17,3 +17,43 @@ MP Monitor (Mailbox Provider Monitor) is a dedicated monitoring feature for feed
 * Provides direct support for email delivery optimization, serving as a practical feature section to improve email sending performance.
 * Outputs valuable data analysis results, offering data basis for optimizing email performance  (such as delivery and inbox placement performance).
 * Helps improve email delivery rate and inbox placement rate, reducing the chance of emails being marked as spam or blocked.
+
+## Google Postmaster
+
+Google Postmaster provides valuable analytics insights that can optimize your email performance, improve your email deliverability, and increase the chances of your messages reaching your audience's inbox. You can find out the information like Spam Rate, IP Reputation, Domain Reputation, Feedback Loop, Authentication, Encryption, Delivery Errors about the emails that you send.
+
+### Google Postmaster Setup
+
+After completing this guide, it may take a few hours to link your Postmaster Tools account and start collecting data
+
+1. Register and log in to <Anchor label="Google Postmaster Tool" target="_blank" href="https://postmaster.google.com/">Google Postmaster Tool</Anchor>
+2. In the Google Postmaster Tool, add the domain to be configured and verify it.
+   1. Click the “+” in the bottom right corner of the homepage, enter the domain name you want to configure, and click the “Next” button.
+   2. After adding the generated TXT record value to the domain's DNS server configuration, click the “Verify” button.
+3. Add SendCloud's monitoring email “sendcloudfbl@gmail.com”
+   1. Hover over the verified domain awaiting configuration on the homepage, click on the “More⋮” button on the right, then select “Manage Users”
+   2. Click the “+” in the bottom right corner of the page, add the Aurora SendCloud monitoring email address sendcloudfbl@gmail.com to your domain.
+
+<Callout>
+  Aurora SendCloud has read-only access and will not have any adverse effects on your business.
+</Callout>
+
+## Yahoo CFL
+
+Yahoo Complaint Feedback Loop can identify opportunities to improve how well your emails are received and protect your sending reputation. This allows you to optimize who you target and how often.You can monitor and aggregate user spam complaints from Yahoo to protect sender reputation and improve inbox placement rate.
+
+### Yahoo CFL Setup
+
+1. Pick one of your sending domain. And the domain must already exist in Aurora SendCloud.
+2. Copy the the generated TXT record value and add it to your domain's DNS server configuration.
+3. Click the 'Verify' button.
+
+<br />
+
+<Callout theme="default">
+  You might need to wait a few minutes before Yahoo sees your changes to the TXT records.
+</Callout>
+
+<br />
+
+<br />
