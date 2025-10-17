@@ -2,22 +2,22 @@
 title: Duration
 deprecated: false
 hidden: false
+link:
+  new_tab: false
 metadata:
   robots: index
 ---
-# What is Duration 
+# What is Duration
 
- The time taken from requesting to delivering an email is crucial for transactional emails such as registration.The delivery time statistics of emails represent the sending efficiency of an email delivery provider.Here you can view the time consumption statistics of all your emails to determine if this meets your expectations.
+The time taken from requesting to delivering an email is crucial for transactional emails, such as registration confirmations. Email delivery time statistics represent the sending efficiency of an email delivery provider. Here you can view the time consumption statistics for all your emails to determine if they meet your expectations.
 
-## Gradients divided by time consumption
+## Time Consumption Gradients
 
-In Aurora SendCloud  trigger emails and batch emails have different gradients.
+In Aurora SendCloud, trigger emails and batch emails have different time gradients.
 
-* Trigger Emails Gradients:
-  * 0s~3s
-  * 3s~10s
-  * 10s~1min
-  * 1min~5min
-  * more than 5min
-
-<br />
+**Trigger Email Gradients:**
+* 0s~3s
+* 3s~10s
+* 10s~1min
+* 1min~5min
+* More than 5min
