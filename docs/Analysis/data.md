@@ -44,14 +44,18 @@ Track your email performance across four key status categories to understand you
 
 Understanding why emails fail helps you maintain a clean mailing list and improve deliverability:
 
-* **Blacklist** : the email address is in the sendcloud blacklist and will not be delivered
+* **Blacklist** : the email address is in the Aurora SendCloud blacklist and will not be delivered
 * **Unsubscribe** : once a user clicks the unsubscribe link, he will enter the unsubscribe list, and sendcloud will not deliver such e-mail addresses
 * **Server Error** : temporary or permanent connection of sendcloud sending pool cannot access MX service of receiving domain
-* **Format Error** : sendcloud or MP determines that the email address format is illegal
+* **Format Error** : Aurora SendCloud or MP determines that the email address format is illegal
 * **Not Exist** : MP returns to inform this email address does not exist
 * **Junk Mail** : MP returns to inform that the sending behavior or content of this email is determined as spam
 * **Rejected** : MP returns to inform the sender that the email was rejected abnormally or because of recipient settings
 * **Others** : other reasons. You can see the detail log by clicking the record.
+
+### What is Aurora SendCloud blacklist
+
+If the type of invalid mail is "in the blacklist", it is because the address is in "Complaint List", "Block List" or "Bounce List". If you insist on sending a letter to an address, you can delete the address in the corresponding "Complaint" / "Block" / "Bounce" or set no interception.
 
 ## Soft Bounce Categories
 
@@ -66,7 +70,7 @@ Understanding why emails fail helps you maintain a clean mailing list and improv
 
 <br />
 
-## Event Tracking
+## Event Tracking Records
 
 Monitor detailed engagement metrics and delivery events:
 
