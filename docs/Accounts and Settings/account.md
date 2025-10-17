@@ -13,11 +13,12 @@ metadata:
 
 After logging in, click your profile picture in the lower left corner and select "Info" from the dropdown menu to access your account information management page.
 
-# Info
-
+<Tabs>
+  <Tab title="Account Info">
+    
 This section guides you through managing your core account information, including your registered email address, login password, and associated phone number. You can update your information here to ensure account security and receive timely important notifications.
 
-## Email
+<Accordion title="Email Management" icon="envelope">
 
 Your registered email address is the primary credential for your account and is used for login and receiving important system notifications.
 
@@ -37,7 +38,9 @@ For security reasons, changing your email address requires verifying ownership o
 
 > **Note:** The new email address must be in the correct format (e.g., name@example.com) and must not already be associated with another account.
 
-## Password
+</Accordion>
+
+<Accordion title="Password Security" icon="lock">
 
 Regularly updating your password is an important part of maintaining account security.
 
@@ -74,7 +77,9 @@ If you have forgotten your current password, you can reset it using your registe
   >
   > Special characters (e.g., ! @ # $ % & *)
 
-## Phone
+</Accordion>
+
+<Accordion title="Phone Number" icon="phone">
 
 Linking your phone number enables 2FA login verification, SMS verification codes, and important system notifications, which enhances account security.
 
@@ -100,11 +105,15 @@ If your phone number isn't linked to your account yet, please follow these steps
 
 > **Note:** The new phone number cannot already be registered with another account.
 
-# Preferences
+</Accordion>
 
+  </Tab>
+  
+  <Tab title="Preferences">
+    
 "Preferences" allows you to customize your account experience so that displayed information (such as time and report categories) is more relevant to your context. These settings generally relate to report analysis, data presentation, and recommendations.
 
-## Time Zone
+<Accordion title="Time Zone Settings" icon="clock">
 
 This setting determines the display format for all time-related data in the system (such as report generation time, operation logs, etc.). Selecting the correct time zone ensures that the time information you view is accurate.
 
@@ -116,7 +125,9 @@ This setting determines the display format for all time-related data in the syst
 
 > **Note:** The system defaults to UTC+8 (Eastern Time Zone). If you do not modify it, all time information will be displayed in this time zone.
 
-## Industry
+</Accordion>
+
+<Accordion title="Industry Selection" icon="industry">
 
 Please select the industry that best represents your company's primary business. This helps us provide you with more relevant industry insights and customized services.
 
@@ -131,7 +142,9 @@ Please select the industry that best represents your company's primary business.
 
 If you cannot find an exact match for your industry in the list, select "Other." After selecting this option, a text input box will appear below the dropdown. Please manually enter your specific industry name in this input box. After entering, click "Save" to save your selection.
 
-## Channels
+</Accordion>
+
+<Accordion title="Discovery Channels" icon="bullhorn">
 
 Please tell us how you learned about our services. This information helps us refine our marketing strategies.
 
@@ -146,9 +159,15 @@ Please tell us how you learned about our services. This information helps us ref
 
 If none of the above channels apply, please select "Other." After selecting this option, a text input box will appear. Please manually enter the specific method by which you learned about us in this input box. After entering your information, click "Save" to save your selection.
 
-# Region
+</Accordion>
 
+  </Tab>
+  
+  <Tab title="Regions">
+    
 To meet your global business needs for low latency and high availability, our services support multiple geographic regions.
+
+<Accordion title="Understanding Regions" icon="globe">
 
 ## What is a Region?
 
@@ -158,13 +177,26 @@ A region is a specific geographic location where our infrastructure is located. 
 
 After successfully registering your account, the Singapore Region will be automatically activated for you. You can immediately purchase and use services in this region.
 
+</Accordion>
+
+<Accordion title="Available Regions" icon="map-marked-alt">
+
 ## Optional Regions
 
 Based on your business needs, you can request the following additional regions:
 
-**US (Silicon Valley) Region:** The US (Silicon Valley) Region is suitable for businesses with primary users in the Americas.
+<Cards columns="2">
+  <Card title="US (Silicon Valley)" icon="flag-usa">
+    Suitable for businesses with primary users in the Americas.
+  </Card>
+  <Card title="CN (Hong Kong SAR)" icon="building">
+    Suitable for businesses with primary users in Greater China.
+  </Card>
+</Cards>
 
-**CN (Hong Kong SAR) Region:** The China (Hong Kong) Region is suitable for businesses with primary users in Greater China.
+</Accordion>
+
+<Accordion title="Region Activation" icon="plus-circle">
 
 ## Activating a New Region
 
@@ -179,6 +211,10 @@ If you need to deploy your service to a different region, please follow these st
 4. Once activation is successful, the region will become active, and you can switch to it and begin purchasing services.
 
 Please note: Activating a region is free, but you will incur charges for services deployed and used within it.
+
+</Accordion>
+
+<Accordion title="Important: Regional Independence" icon="exclamation-triangle">
 
 ## ⚠️ Important Note: Regional Independence
 
@@ -202,3 +238,8 @@ This means:
 ## Suggestions
 
 Please choose the most appropriate region for deployment based on the geographic location of your target users. If you serve global users, consider opening multiple regions and utilizing services like global acceleration to optimize the access experience.
+
+</Accordion>
+
+  </Tab>
+</Tabs>
