@@ -26,7 +26,7 @@ metadata:
     - SMTP service
   robots: index
 ---
-<title>Sign Up for Aurora SendCloud Email Delivery Service - Login</title>
+<br />
 
 # Getting Started with Aurora SendCloud
 
