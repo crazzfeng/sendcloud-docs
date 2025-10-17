@@ -5,13 +5,25 @@ hidden: false
 link:
   new_tab: false
 metadata:
-  title: How to Register & Login Aurora SendCloud Account
+  title: Sign Up for Aurora SendCloud Email Delivery Service - Login
   description: >-
-    Aurora SendCloud account registration and login tutorial. SendCloud is a
-    SaaS platform that provides customers with a one-stop global email delivery
-    solution.
+    Sign up for Aurora SendCloud email delivery service and access powerful
+    email marketing tools. Register with email or Google account, activate your
+    account, and start sending emails with our reliable delivery platform.
   keywords:
-    - Aurora SendCloud Sign up
+    - Aurora SendCloud
+    - email delivery service
+    - email marketing
+    - sign up
+    - login
+    - account registration
+    - email verification
+    - Google sign in
+    - password reset
+    - email delivery platform
+    - transactional emails
+    - marketing emails
+    - SMTP service
   robots: index
 ---
 # How to Sign Up for an Account
