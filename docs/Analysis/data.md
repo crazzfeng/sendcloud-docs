@@ -45,8 +45,8 @@ Track your email performance across four key status categories to understand you
     Delivery failure due to invalid email addresses, hard bounces, or suppression list matches.
   </Card>
 </Cards>
-### Status record field
 
+<br />
 
 ### Invalid Email Categories
 
@@ -84,7 +84,9 @@ Understanding why emails fail helps you maintain a clean mailing list and improv
 
 Records with all the information that you need.
 
-### open records
+<br />
+
+<br />
 
 ## Data Access and Reporting
 
