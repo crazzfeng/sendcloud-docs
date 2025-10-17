@@ -46,6 +46,27 @@ We know humans make mistakes. In some cases you may send the wrong content or se
 You can Pause the email sending queue by
 
 * API_USER: Mandatory. The API_USER that you used to send emails.
-* Receiving Domain: 
+* Receiving Domain:  Optional .The recipient email providers' domains,like gmail.com. If it is empty means you want pause the sending queue by The API_USER with all receiving domains.
+
+**Recovery Time** is time you want resume the paused queue.
+
+1. The recovery time should not be more than 15 days.
+2. If the recovery time is not set and the delivery is not resumed after 15 days, the suspended mail will be deleted automatically
+
+<br />
+
+### Detele the Queue
+
+<Callout icon="❗️">
+  Deletion is not recoverable. Please be cautious.
+</Callout>
+
+<Image align="center" alt="You can Pause the email sending queue by" border={false} caption="Delete the email sending queue" src="https://files.readme.io/bf70de4aab56ad6b5a17e58a00ddd763f8126d29f6dd201f791159f4fe1df9c1-image.png" />
+
+You can delete the email sending queue by:
+
+* API_USER: Mandatory. The API_USER that you used to send emails.
+* Receiving Domain: Optional .The recipient email providers' domains, like gmail.com. If it is empty, it means you want to delete the sending queue by The API_USER with all receiving domains.
+* Request Time: The emails' requested time period that you want to delete.
 
 <br />
