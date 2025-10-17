@@ -35,7 +35,7 @@ For security reasons, changing your email address requires verifying ownership o
 
 5. Click "Save."
 
-> **Note:** The new email address must be in the correct format (e.g., name@example.com) and must not already be associated with another account.
+> **Note:** The new email address must be in the correct format (e.g., [name@example.com](mailto:name@example.com)) and must not already be associated with another account.
 
 ## Password
 
@@ -147,3 +147,49 @@ Please tell us how you learned about our services. This information helps us ref
 If none of the above channels apply, please select "Other." After selecting this option, a text input box will appear. Please manually enter the specific method by which you learned about us in this input box. After entering your information, click "Save" to save your selection.
 
 # Region
+
+To meet your global business needs for low latency and high availability, our services support multiple geographic regions.
+
+What is a region?
+
+A region is a specific geographic location where our infrastructure is located. Each region is an independently deployed site.
+
+Default Region:
+
+After successfully registering your account, the Singapore Region will be automatically activated for you. You can immediately purchase and use services in this region.
+
+Optional Regions
+
+Based on your business needs, you can request the following additional regions:
+
+US (Silicon Valley) Region: The US (Silicon Valley) Region is suitable for businesses with primary users in the Americas.
+
+CN (Hong Kong SAR) Region: The China (Hong Kong) Region is suitable for businesses with primary users in Greater China.
+
+Activating a New Region
+
+If you need to deploy your service to a different region, please follow these steps:
+
+Go to the "Info - Regions" page.
+
+In the "Add Region:" drop-down list, locate the region you want to activate (for example, US (Silicon Valley)). Click the "Add" button next to the region.
+You will be asked to confirm again, after which activation will begin.
+Once activation is successful, the region will become active, and you can switch to it and begin purchasing services.
+Please note: Activating a region is free, but you will incur charges for services deployed and used within it.
+⚠️ Important Note: Regional Independence
+Understanding the independence between regions is crucial; it directly impacts your resources, data, and billing.
+Core Principle: Quotas, data, and services within the same account are isolated and operate independently across regions.
+This means:
+Resource and Quota Independence:
+Each region has its own independent resource quota limits. For example, your used resource quota in the Singapore region will not affect your available quota in the US or Hong Kong regions.
+You will need to manage your services and resources separately in each region.
+Data Isolation:
+Data stored in one region is not automatically replicated or synchronized to other regions. For example, a file in your object storage in the Singapore region will not be visible in the Hong Kong region. Independent Services and Billing:
+
+You must purchase and configure services for each region separately. Service packages purchased in a region are valid only in that region.
+
+Billing is performed separately by region, and you can view the detailed consumption for each region in your bill.
+
+Suggestions:
+
+Please choose the most appropriate region for deployment based on the geographic location of your target users. If you serve global users, consider opening multiple regions and utilizing services like global acceleration to optimize the access experience.
