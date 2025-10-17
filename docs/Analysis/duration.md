@@ -17,68 +17,103 @@ The Duration feature in Aurora SendCloud provides comprehensive analytics on ema
 
 ## Why Email Delivery Speed Matters
 
-Fast email delivery ensures:
-
-* **Better User Experience**: Users receive critical information promptly
-* **Higher Engagement**: Quick delivery improves open and click-through rates
-* **Reduced Support Tickets**: Timely notifications prevent user confusion
-* **Improved Conversion**: Faster transactional emails lead to better conversion rates
+<Cards columns={2}>
+  <Card title="User Experience" icon="users">
+    **Better User Experience**: Users receive critical information promptly
+    
+    **Higher Engagement**: Quick delivery improves open and click-through rates
+  </Card>
+  <Card title="Business Impact" icon="chart-line">
+    **Reduced Support Tickets**: Timely notifications prevent user confusion
+    
+    **Improved Conversion**: Faster transactional emails lead to better conversion rates
+  </Card>
+</Cards>
 
 ## Time Measurement Gradients
 
 Aurora SendCloud uses different time gradients based on email type to provide relevant performance insights:
 
-### Trigger Emails
+<Tabs>
+  <Tab title="Trigger Emails">
+    Real-time, automated emails triggered by user actions:
 
-Real-time, automated emails triggered by user actions:
+    * **0s–3s** - Excellent performance
+    * **3s–10s** - Good performance
+    * **10s–1min** - Acceptable performance
+    * **1min–5min** - Slow performance
+    * **More than 5min** - Poor performance requiring attention
+  </Tab>
+  <Tab title="Batch Emails">
+    Scheduled or bulk emails sent to multiple recipients:
 
-* **0s–3s** - Excellent performance
-* **3s–10s** - Good performance
-* **10s–1min** - Acceptable performance
-* **1min–5min** - Slow performance
-* **More than 5min** - Poor performance requiring attention
-
-### Batch Emails
-
-Scheduled or bulk emails sent to multiple recipients:
-
-* **0–10min** - Excellent performance
-* **10min–1h** - Good performance
-* **1h–3h** - Acceptable performance
-* **3h–24h** - Slow performance
-* **More than 24h** - Poor performance requiring investigation
+    * **0–10min** - Excellent performance
+    * **10min–1h** - Good performance
+    * **1h–3h** - Acceptable performance
+    * **3h–24h** - Slow performance
+    * **More than 24h** - Poor performance requiring investigation
+  </Tab>
+</Tabs>
 
 ## Analytics and Grouping Options
 
 Customize your duration analysis with these powerful grouping options:
 
 <Cards columns={3}>
-  <Card title="Overall Performance">
+  <Card title="Overall Performance" icon="chart-bar">
     **Group by null** *(default)*
 
     View the complete performance distribution across all time gradients. This overview helps you understand your general delivery performance and identify patterns.
   </Card>
 
-  <Card title="MP Analysis">
+  <Card title="MP Analysis" icon="envelope">
     **Group by Receiving Domain**
 
     Analyze performance by email providers (Gmail, Outlook, Yahoo, etc.). This view helps you identify which providers may be causing delivery delays and optimize accordingly.
   </Card>
 
-  <Card title="Daily Trends">
+  <Card title="Daily Trends" icon="calendar-alt">
    **Group by Day**
 
     Review daily performance trends to identify peak times, system issues, or improvements over time. Perfect for monitoring the impact of infrastructure changes.
   </Card>
 </Cards>
 
+## Best Practices
 
-## Using Duration Analytics Effectively
+<Accordion title="Performance Optimization Guide" icon="cog">
+
+### Setting Up Monitoring
 
 1. **Set Performance Benchmarks**: Define acceptable delivery times for different email types
 2. **Monitor Regularly**: Check duration statistics weekly to catch performance issues early
-3. **Investigate Anomalies**: When emails consistently fall into slower gradients, investigate potential causes
-4. **Optimize Based on Data**: Use domain-specific data to adjust sending strategies
-5. **Track Improvements**: Monitor how infrastructure changes affect delivery times
+3. **Track Improvements**: Monitor how infrastructure changes affect delivery times
 
-Select the grouping option that aligns with your specific monitoring needs and business objectives.
+### Troubleshooting Performance Issues
+
+<Columns layout="auto">
+  <Column>
+    **Investigate Anomalies**: When emails consistently fall into slower gradients, investigate potential causes:
+    
+    * Check server load and capacity
+    * Review sending reputation
+    * Analyze domain-specific patterns
+  </Column>
+  <Column>
+    **Optimize Based on Data**: Use domain-specific data to adjust sending strategies:
+    
+    * Adjust sending rates for specific providers
+    * Implement retry logic for slow domains
+    * Consider alternative routing for critical emails
+  </Column>
+</Columns>
+
+### Selecting the Right View
+
+Choose the grouping option that aligns with your specific monitoring needs:
+
+* Use **Overall Performance** for general health checks
+* Use **MP Analysis** when troubleshooting provider-specific issues  
+* Use **Daily Trends** for identifying patterns and measuring improvements
+
+</Accordion>
