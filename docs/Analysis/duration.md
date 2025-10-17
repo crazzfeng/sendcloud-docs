@@ -18,25 +18,28 @@ The Duration feature in Aurora SendCloud provides comprehensive analytics on ema
 ## Why Email Delivery Speed Matters
 
 Fast email delivery ensures:
-- **Better User Experience**: Users receive critical information promptly
-- **Higher Engagement**: Quick delivery improves open and click-through rates
-- **Reduced Support Tickets**: Timely notifications prevent user confusion
-- **Improved Conversion**: Faster transactional emails lead to better conversion rates
+
+* **Better User Experience**: Users receive critical information promptly
+* **Higher Engagement**: Quick delivery improves open and click-through rates
+* **Reduced Support Tickets**: Timely notifications prevent user confusion
+* **Improved Conversion**: Faster transactional emails lead to better conversion rates
 
 ## Time Measurement Gradients
 
 Aurora SendCloud uses different time gradients based on email type to provide relevant performance insights:
 
 ### Trigger Emails
+
 Real-time, automated emails triggered by user actions:
 
 * **0s–3s** - Excellent performance
-* **3s–10s** - Good performance  
+* **3s–10s** - Good performance
 * **10s–1min** - Acceptable performance
 * **1min–5min** - Slow performance
 * **More than 5min** - Poor performance requiring attention
 
 ### Batch Emails
+
 Scheduled or bulk emails sent to multiple recipients:
 
 * **0–10min** - Excellent performance
@@ -49,20 +52,36 @@ Scheduled or bulk emails sent to multiple recipients:
 
 Customize your duration analysis with these powerful grouping options:
 
+<Cards columns={3}>
+  <Card title="Overall Performance">
+     **Group by null** *(default)*
+
+    View the complete performance distribution across all time gradients. This overview helps you understand your general delivery performance and identify patterns.
+  </Card>
+
+  <Card title="MP Analysis">
+     **Group by Receiving Domain**
+
+    Analyze performance by email providers (Gmail, Outlook, Yahoo, etc.). This view helps you identify which providers may be causing delivery delays and optimize accordingly.
+  </Card>
+
+  <Card title="Third Card">
+    > Ut enim ad minim veniam, quis nostrud ullamco
+  </Card>
+</Cards>
+
 <Tabs>
   <Tab title="Overall Performance">
-    **Group by null** _(default)_
-    
-    View the complete performance distribution across all time gradients. This overview helps you understand your general delivery performance and identify patterns.
+   
   </Tab>
-  <Tab title="Domain Analysis">
-    **Group by Receiving Domain**
-    
-    Analyze performance by email providers (Gmail, Outlook, Yahoo, etc.). This view helps you identify which providers may be causing delivery delays and optimize accordingly.
+
+  <Tab title="">
+   
   </Tab>
+
   <Tab title="Daily Trends">
     **Group by Day**
-    
+
     Review daily performance trends to identify peak times, system issues, or improvements over time. Perfect for monitoring the impact of infrastructure changes.
   </Tab>
 </Tabs>
