@@ -31,8 +31,8 @@ For security reasons, changing your email address requires verifying ownership o
 
 5. Click "Save."
 
-<Callout icon="❗️">
-  The new email address must be in the correct format (e.g., name@example.com) and must not already be associated with another account.
+<Callout icon="❗️" theme="error">
+  The new email address must be in the correct format (e.g., [name@example.com](mailto:name@example.com)) and must not already be associated with another account.
 </Callout>
 
 ## Password
@@ -47,7 +47,7 @@ Regularly updating your password is an important part of maintaining account sec
     2. Enter your current password.
     3. Enter a new password that meets the requirements.
     4. Re-enter your new password to confirm.
-       5\. Click "Confirm Change."
+    5. Click "Confirm Change."
   </Tab>
 
   <Tab title="Forgot Your Current Password">
@@ -192,17 +192,17 @@ This means:
 
 <Tabs>
   <Tab title="Resource and Quota Independence">
-Each region has its own independent resource quota limits. For example, your used resource quota in the Singapore region will not affect your available quota in the US or Hong Kong regions.
-You will need to manage your services and resources separately in each region.
+    Each region has its own independent resource quota limits. For example, your used resource quota in the Singapore region will not affect your available quota in the US or Hong Kong regions.
+    You will need to manage your services and resources separately in each region.
   </Tab>
 
   <Tab title="Data Isolation">
-Data stored in one region is not automatically replicated or synchronized to other regions. For example, a file in your object storage in the Singapore region will not be visible in the Hong Kong region.
+    Data stored in one region is not automatically replicated or synchronized to other regions. For example, a file in your object storage in the Singapore region will not be visible in the Hong Kong region.
   </Tab>
 
   <Tab title="Independent Services and Billing">
-You must purchase and configure services for each region separately. Service packages purchased in a region are valid only in that region.
-Billing is performed separately by region, and you can view the detailed consumption for each region in your bill.
+    You must purchase and configure services for each region separately. Service packages purchased in a region are valid only in that region.
+    Billing is performed separately by region, and you can view the detailed consumption for each region in your bill.
   </Tab>
 </Tabs>
 
