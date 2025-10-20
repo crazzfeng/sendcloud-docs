@@ -9,11 +9,11 @@ metadata:
 ---
 # API_USER
 
-This section describes the concept and management of the API_USER, which is the primary credential for authenticating your requests when using our Email Delivery API or SMTP service.
+This section describes the concept and management of API_USER, which serves as the primary credential for authenticating requests when using our Email Delivery API or SMTP service.
 
 ## Overview of API_USER
 
-An **API_USER** is a dedicated account identity used exclusively for authenticating requests when calling our email-sending interfaces (API or SMTP). It is separate from your main platform login account and is designed specifically for programmatic access.
+An **API_USER** is a dedicated account identity used exclusively for authenticating requests when calling our email-sending interfaces (API or SMTP). It operates separately from your main platform login account and is designed specifically for programmatic access.
 
 <Accordion title="Creating an API_USER" icon="plus-circle">
 
@@ -32,11 +32,11 @@ When creating an API_USER, you must configure the following three key properties
 
 ### Sending Domain
 
-You must select and bind an **authenticated sending domain** to the API_USER. All emails sent using this API_USER's credentials will originate from this domain, which is crucial for sender reputation and deliverability.
+You must select and bind an **authenticated sending domain** to the API_USER. All emails sent using this API_USER's credentials will originate from this domain, which is crucial for maintaining sender reputation and ensuring deliverability.
 
 ### Tracking Options
 
-When enabled, SendCloud will automatically collect and provide tracking data for the emails sent by this API_USER. This typically includes metrics such as:
+When enabled, SendCloud will automatically collect and provide tracking data for emails sent by this API_USER. This typically includes metrics such as:
 
 - Opens
 - Clicks
@@ -53,9 +53,9 @@ The **API_KEY** serves as the password for the API_USER and must be included in 
   <Tab title="Generation & Security">
     **Generation:** After successful platform registration, you must log into your account and **manually generate** an API_KEY for your API_USER(s).
 
-    **Security:** The API_KEY is a sensitive credential. For security reasons, **it will be displayed only once** upon generation. Please store it securely immediately. It cannot be retrieved again in full; it must be reset if lost.
+    **Security:** The API_KEY is a sensitive credential. For security reasons, **it will be displayed only once** upon generation. Store it securely immediately, as it cannot be retrieved again in full and must be reset if lost.
 
-    **Uniqueness:** Each API_USER has its own corresponding API_KEY. The keys for different API_USERs can be the same or different.
+    **Uniqueness:** Each API_USER has its own corresponding API_KEY. The keys for different API_USERs may be the same or different.
   </Tab>
   
   <Tab title="Resetting Keys">
@@ -65,7 +65,7 @@ The **API_KEY** serves as the password for the API_USER and must be included in 
     
     > **Important:** A batch reset will assign the **same new API_KEY** to all selected API_USERs.
 
-    **Key Rotation Grace Period:** After a reset, the new API_KEY becomes effective immediately. However, to prevent disruption to your ongoing email streams, the **old API_KEY will remain valid for a grace period of 15 minutes**. This allows you to update your applications smoothly.
+    **Key Rotation Grace Period:** After a reset, the new API_KEY becomes effective immediately. However, to prevent disruption to your ongoing email streams, the **old API_KEY will remain valid for a 15-minute grace period**. This allows you to update your applications smoothly.
   </Tab>
 </Tabs>
 
@@ -73,13 +73,13 @@ The **API_KEY** serves as the password for the API_USER and must be included in 
 
 <Accordion title="Security Best Practices" icon="shield-alt">
 
-The combination of your **API_USER** and **API_KEY** is the primary credential for authenticating your send requests. Treat them with the same level of security as a username and password.
+The combination of your **API_USER** and **API_KEY** serves as the primary credential for authenticating your send requests. Treat them with the same level of security as a username and password.
 
 <Cards columns="1">
   <Card title="Security Guidelines" icon="exclamation-triangle">
-    - Keep them confidential and never hard-code them directly into client-side applications or public code repositories
+    - Keep credentials confidential and never hard-code them directly into client-side applications or public code repositories
     - Store credentials securely using environment variables or secure credential management systems
-    - If compromised, reset the API_KEY immediately
+    - If credentials are compromised, reset the API_KEY immediately
     - Regularly rotate your API_KEYs as part of your security practices
   </Card>
 </Cards>
