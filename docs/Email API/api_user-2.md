@@ -19,6 +19,17 @@ When creating an API_USER, you must configure the following three key properties
 
 ### Email Types
 
+<Cards columns={2}>
+  <Card title="Trigger Type" icon="fa-home">
+    API\_USERs of this type can **only send transactional/triggered emails** (e.g., password resets, order confirmations).
+  </Card>
+
+  <Card title="Batch Type" icon="fa-user">
+    API\_USERs of this type can **only send bulk marketing emails** (e.g., newsletters, promotions).
+  </Card>
+
+</Cards>
+
 <Cards columns="2">
   <Card title="Trigger Type" icon="bolt">
     API\_USERs of this type can **only send transactional/triggered emails** (e.g., password resets, order confirmations).
@@ -28,6 +39,7 @@ When creating an API_USER, you must configure the following three key properties
     API\_USERs of this type can **only send bulk marketing emails** (e.g., newsletters, promotions).
   </Card>
 </Cards>
+
 
 ### Sending Domain
 
