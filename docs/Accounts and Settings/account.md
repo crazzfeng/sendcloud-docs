@@ -31,7 +31,9 @@ For security reasons, changing your email address requires verifying ownership o
 
 5. Click "Save."
 
-> **Note:** The new email address must be in the correct format (e.g., [name@example.com](mailto:name@example.com)) and must not already be associated with another account.
+<Callout icon="❗️">
+  The new email address must be in the correct format (e.g., name@example.com) and must not already be associated with another account.
+</Callout>
 
 ## Password
 
@@ -41,29 +43,27 @@ Regularly updating your password is an important part of maintaining account sec
 
 <Tabs>
   <Tab title="Remember Your Current Password">
-1. Next to the "Password" field, click the "Modify" button.
-2. Enter your current password.
-3. Enter a new password that meets the requirements.
-4. Re-enter your new password to confirm.
-    5. Click "Confirm Change."
+    1. Next to the "Password" field, click the "Modify" button.
+    2. Enter your current password.
+    3. Enter a new password that meets the requirements.
+    4. Re-enter your new password to confirm.
+       5\. Click "Confirm Change."
   </Tab>
 
   <Tab title="Forgot Your Current Password">
     If you have forgotten your current password, you can reset it using your registered email address:
 
-1. Click "Forgot password?" on the login page or password change page.
-2. Enter your registered email address. A verification code will be sent to that email address.
-3. Enter the correct email verification code.
-4. Set and confirm your new password.
-5. Click "Confirm Reset."
+    1. Click "Forgot password?" on the login page or password change page.
+    2. Enter your registered email address. A verification code will be sent to that email address.
+    3. Enter the correct email verification code.
+    4. Set and confirm your new password.
+    5. Click "Confirm Reset."
   </Tab>
 </Tabs>
 
 **New Password Requirements:**
 
-<Callout icon="📘">
-
-
+<Callout icon="📘" theme="info">
   **Length:** 6-16 characters
 
   **Spaces:** No spaces allowed
@@ -187,6 +187,24 @@ If you need to deploy your service to a different region, please follow these st
 Understanding the independence between regions is crucial, as it directly impacts your resources, data, and billing.
 
 **Core Principle:** Quotas, data, and services within the same account are isolated and operate independently across regions.
+
+This means:
+
+<Tabs>
+  <Tab title="Resource and Quota Independence">
+Each region has its own independent resource quota limits. For example, your used resource quota in the Singapore region will not affect your available quota in the US or Hong Kong regions.
+You will need to manage your services and resources separately in each region.
+  </Tab>
+
+  <Tab title="Data Isolation">
+Data stored in one region is not automatically replicated or synchronized to other regions. For example, a file in your object storage in the Singapore region will not be visible in the Hong Kong region.
+  </Tab>
+
+  <Tab title="Independent Services and Billing">
+You must purchase and configure services for each region separately. Service packages purchased in a region are valid only in that region.
+Billing is performed separately by region, and you can view the detailed consumption for each region in your bill.
+  </Tab>
+</Tabs>
 
 This means:
 
