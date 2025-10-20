@@ -25,27 +25,43 @@ Supports uploading address files in **.CSV**, **.TXT**, **.XLS** and **.XLSX** f
 
 Each Address List has a unique **Alias** used in API requests to specify the recipient list and must be **globally unique**.
 
-**Example:** Set a list alias to `monthly_newsletter_us` and use it directly in your sending API calls.
+<Callout icon="📘" theme="info">
+  **Example:** Set a list alias to `monthly_newsletter_us` and use it directly in your sending API calls.
+</Callout>
 
 ### Upload Processing & Limitations
 
+<br />
+
 **Automatic Processing:** During upload, the system automatically performs:
 
-* **Deduplication:** Removes duplicate email addresses
-* **Format Validation:** Checks the basic validity of email address formats
+<Callout icon="🚧">
+  **Deduplication:** Removes duplicate email addresses
+
+  **Format Validation:** Checks the basic validity of email address formats
+</Callout>
 
 **Capacity Limits:**
 
-* File size for a single upload must not exceed **100MB**
-* A single Address List cannot contain more than **1 million** email addresses
+<Callout icon="❗️">
+  File size for a single upload must not exceed **100MB**
 
-**Permission Note:** The Address List feature is only available to **paying customers**.
+  A single Address List cannot contain more than **1 million** email addresses
+</Callout>
+
+**Permission Note:** 
+
+<Callout icon="❗️">
+  The Address List feature is only available to **paying customers**.
+</Callout>
 
 ## Subscription Management
 
 The Subscription Management feature allows you to quickly and easily build an email subscription system on your website to legally collect potential leads' contact information.
 
 ### How It Works
+
+<br />
 
 Step 1: Get the Code
 
