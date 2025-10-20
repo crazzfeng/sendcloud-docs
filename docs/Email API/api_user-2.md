@@ -7,11 +7,9 @@ link:
 metadata:
   robots: index
 ---
-# API_USER
-
 This section describes the concept and management of API_USER, which serves as the primary credential for authenticating requests when using our Email Delivery API or SMTP service.
 
-## Overview of API_USER
+## Overview
 
 An **API_USER** is a dedicated account identity used exclusively for authenticating requests when calling our email-sending interfaces (API or SMTP). It operates separately from your main platform login account and is designed specifically for programmatic access.
 
