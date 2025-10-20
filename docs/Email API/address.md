@@ -7,39 +7,42 @@ link:
 metadata:
   robots: index
 ---
-# Address Management
-
 This section explains how to manage your contact email addresses, with a focus on the **Address List** feature for bulk sending and the **Subscription Management** feature for collecting leads directly from your website.
 
-## Address Lists
+## Address
 
 The Address List function is designed for **bulk email sending** scenarios, such as marketing campaigns and newsletters. It supports variable replacement, allowing you to personalize email content for different recipients within the same batch.
 
 ### Key Features & Specifications
 
 #### File Upload Support
-- Supports uploading address files in **.CSV** and **.TXT** formats for batch import
-- **Recommended CSV format:** The first column should contain email addresses, followed by columns for custom variables (e.g., %name%, %company%)
+
+* Supports uploading address files in **.CSV** and **.TXT** formats for batch import
+* **Recommended CSV format:** The first column should contain email addresses, followed by columns for custom variables (e.g., %name%, %company%)
 
 #### List Alias
-- Each Address List has a unique **Alias**
-- This alias is used in API requests to specify the recipient list and must be **globally unique**
-- **Example:** You can set a list alias to `monthly_newsletter_us` and use it directly in your sending API calls
+
+* Each Address List has a unique **Alias**
+* This alias is used in API requests to specify the recipient list and must be **globally unique**
+* **Example:** You can set a list alias to `monthly_newsletter_us` and use it directly in your sending API calls
 
 #### Upload Processing & Limitations
 
 **Automatic Processing:** During upload, the system automatically performs:
-- **Deduplication:** Removes duplicate email addresses
-- **Format Validation:** Checks the basic validity of email address formats
+
+* **Deduplication:** Removes duplicate email addresses
+* **Format Validation:** Checks the basic validity of email address formats
 
 **Capacity Limits:**
-- File size for a single upload must not exceed **100MB**
-- A single Address List cannot contain more than **1 million** email addresses
+
+* File size for a single upload must not exceed **100MB**
+* A single Address List cannot contain more than **1 million** email addresses
 
 #### Permission Note
+
 The Address List feature is only available to **paying customers**.
 
-## Subscription Management
+## Subscription
 
 The Subscription Management feature allows you to quickly and easily build an email subscription system on your website to legally collect potential leads' contact information.
 
