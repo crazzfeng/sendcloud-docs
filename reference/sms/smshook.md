@@ -22,9 +22,9 @@ Supported events are as follows:
 | Events                             | Triggering Conditions                    |
 | :--------------------------------- | :--------------------------------------- |
 | Requested                          | Request was successful                   |
-| deliver (deliver)                  | Message delivered                        |
-| process failure (workererror)      | Processing failed                        |
-| delivery failure (delivererror)    | Delivery failed                          |
+| Delivered                          | Message is delivered                     |
+| Suppressed                         | Message is suppressed                    |
+| Failed                             | Message is sent failed                   |
 | Template approval (templateVerify) | Approval result message for SMS template |
 
 ## Usage Method
