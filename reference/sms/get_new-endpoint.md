@@ -5,49 +5,60 @@ api:
   file: send.json
   operationId: get_new-endpoint
 hidden: false
+link:
+  new_tab: false
 ---
-<br />
+# Send SMS Message
+
+Send an SMS template to one or more users.
+
+## API Endpoint
 
 **URL**
-
 ```
 https://api2.sendcloud.net/smsapi/send
 ```
 
-**Format of returned data**
-
+**Response Format**
 ```
 json
 ```
 
 **HTTP Request Method**
-
 ```
 POST    
 ```
 
-| parameter     | type   | required or not | description                                                                                                                                                         |
-| :------------ | :----- | :-------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| smsUser       | string | yes             | sms user                                                                                                                                                            |
-| smsKey        | string | yes             | sms key                                                                                                                                                             |
-| templateId    | int    | yes             | template ID                                                                                                                                                         |
-| phone         | string | yes             | phone numbers of recipients, separated by commas; the amount cannot be more 2,000 each time. Contact list will be suggested when the recipients are more than 2000. |
-| vars          | string | no              | json string of substitution variable                                                                                                                                |
-| senderID      | string | no              | Sender ID                                                                                                                                                           |
-| sendRequestId | string | no              | supports up to 128 characters, multiple requests with the same sendRequestId within 1 hour will only be processed for the first time                                |
-| timestamp     | string | no              | UNIX timestamp                                                                                                                                                      |
-| customArgs    | string | no              | The value is in JSON format, and the maximum character length is 128, for example: `{"key1": "value1", "key2": "Value2"}`                                           |
+## Parameters
 
-_Sample of vars format:_
+| Parameter     | Type   | Required | Description                                                                                                                                                         |
+| :------------ | :----- | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| smsUser       | string | Yes      | SMS user                                                                                                                                                            |
+| smsKey        | string | Yes      | SMS key                                                                                                                                                             |
+| templateId    | int    | Yes      | Template ID                                                                                                                                                         |
+| phone         | string | Yes      | Phone numbers of recipients, separated by commas. Maximum of 2,000 recipients per request. For more than 2,000 recipients, consider using a contact list instead. |
+| vars          | string | No       | JSON string containing substitution variables                                                                                                                       |
+| senderID      | string | No       | Sender ID                                                                                                                                                           |
+| sendRequestId | string | No       | Unique identifier (up to 128 characters). Multiple requests with the same sendRequestId within 1 hour will only process the first request                         |
+| timestamp     | string | No       | UNIX timestamp                                                                                                                                                      |
+| customArgs    | string | No       | Custom arguments in JSON format with a maximum length of 128 characters. Example: `{"key1": "value1", "key2": "value2"}`                                          |
 
+## Variable Format Examples
+
+**Sample vars format:**
+```json
+{"name": "lucy"}
 ```
-{"name": "lucy"} or {"%money%": "100"}
+
+**Or with percentage placeholders:**
+```json
+{"%money%": "100"}
 ```
 
-`Note`:
+## Important Notes
 
-1. Variables in SMS template will be replaced by parameters in vars. All recipients users will receive the same replaced content. If the parameter content submitted by each mobile phone number is different, the interface needs to be called multiple times.Parameters in vars may contain special characters, marked with `urlencode`.
+1. **Variable Replacement**: Variables in the SMS template will be replaced by parameters in the `vars` field. All recipients will receive the same replaced content. If different content is needed for each phone number, make separate API calls for each recipient. Parameters in `vars` may contain special characters and should be URL-encoded.
 
-2. Value of the variable is formatted with string and cannot be longer than 32 characters. HTTP links are not allowed in variables.
+2. **Variable Constraints**: Variable values must be strings with a maximum length of 32 characters. HTTP links are not allowed in variables.
 
-3. `urlencode` is not required when generating signature but calling API.
+3. **URL Encoding**: URL encoding (`urlencode`) is not required when generating the signature, but it is required when calling the API.
