@@ -42,7 +42,7 @@ You must select and bind an **authenticated sending domain** to the API_USER. Al
 
 ### Tracking Options
 
-When enabled, SendCloud will automatically collect and provide tracking data for emails sent by this API_USER. This typically includes metrics such as:
+When enabled, Aurora SendCloud will automatically collect and provide tracking data for emails sent by this API_USER. This typically includes metrics such as:
 
 * Opens
 * Clicks
@@ -79,7 +79,7 @@ The combination of your **API_USER** and **API_KEY** serves as the primary crede
 
 ### Security Guidelines
 
-<Callout icon="🚧">
+<Callout icon="🚧" theme="warn">
   * Keep credentials confidential and never hard-code them directly into client-side applications or public code repositories
   * Store credentials securely using environment variables or secure credential management systems
   * If credentials are compromised, reset the API_KEY immediately
