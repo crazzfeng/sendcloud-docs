@@ -72,7 +72,11 @@ The combination of your **API_USER** and **API_KEY** serves as the primary crede
 
 ### Security Guidelines
 
-* Keep credentials confidential and never hard-code them directly into client-side applications or public code repositories
-* Store credentials securely using environment variables or secure credential management systems
-* If credentials are compromised, reset the API_KEY immediately
-* Regularly rotate your API_KEYs as part of your security practices
+<Callout icon="🚧">
+  * Keep credentials confidential and never hard-code them directly into client-side applications or public code repositories
+  * Store credentials securely using environment variables or secure credential management systems
+  * If credentials are compromised, reset the API_KEY immediately
+  * Regularly rotate your API_KEYs as part of your security practices
+</Callout>
+
+<br />
