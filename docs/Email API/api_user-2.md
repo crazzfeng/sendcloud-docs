@@ -5,13 +5,16 @@ hidden: false
 metadata:
   robots: index
 ---
-<br />
-
-API_USER Management​​
 This section describes the concept and management of the API_USER, which is the primary credential for authenticating your requests when using our Email Delivery API or SMTP service.
+
+
 ​​Overview of API_USER​​
 An ​​API_USER​​ is a dedicated account identity used exclusively for authenticating requests when calling our email-sending interfaces (API or SMTP). It is separate from your main platform login account and is designed specifically for programmatic access.
+
+
 ​​Creating an API_USER​​
+
+
 When creating an API_USER, you must configure the following three key properties:
 ​​Type​​
 Specify the type of email this API_USER is authorized to send. This ensures the correct sending infrastructure and policies are applied.
