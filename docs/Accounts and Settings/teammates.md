@@ -40,8 +40,6 @@ In the teammate list on the ​​Teammate Management​​ page, you can find t
 
 The system offers three default roles and supports custom permissions for granular management.
 
-<br />
-
 | Permission    | Description                                                                                                                                                                                                                      |
 | :------------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Administrator | Has ​​full permissions​​ to manage all data, settings, and teammates within the account.                                                                                                                                         |
