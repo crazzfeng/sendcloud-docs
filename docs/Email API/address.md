@@ -15,9 +15,11 @@ The Address List function is designed for **bulk email sending** scenarios, such
 
 ### File Upload Support
 
-Supports uploading address files in **.CSV** and **.TXT** formats for batch import.
+Supports uploading address files in **.CSV**, **.TXT**, **.XLS** and **.XLSX** formats for batch import.
 
-**Recommended CSV format:** The first column should contain email addresses, followed by columns for custom variables (e.g., %name%, %company%).
+<Callout icon="👍">
+  **Recommended CSV format:** The first column should contain email addresses, followed by columns for custom variables (e.g., %name%, %company%).
+</Callout>
 
 ### List Alias
 
@@ -67,4 +69,3 @@ Typical Workflow Example
 2. Navigate to the "Subscription Management" feature and generate a subscription code for the "Website Subscribers" list
 3. Embed the generated code on your website
 4. Start collecting subscriber emails and send marketing emails directly to the "Website Subscribers" list
-
