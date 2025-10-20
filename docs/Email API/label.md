@@ -5,6 +5,19 @@ hidden: false
 link:
   new_tab: false
 metadata:
+  title: 'Manage Email Labels: Track & Segment Campaigns | Aurora SendCloud'
+  description: >-
+    Learn how to use SendCloud's ​​Email Labels​​ to categorize, track, and
+    analyze your email campaigns. This guide shows you how to create labels,
+    assign Label IDs via API, and segment data for effective ​​A/B testing​​ and
+    campaign performance analysis. Improve your email strategy with precise
+    tracking. Start your free trial today.
+  keywords:
+    - email labels
+    - email tags
+    - label id api segment email campaigns
+    - email a/b testing
+    - track email performance
   robots: index
 ---
 Labels are a powerful feature designed to help you categorize and track your email messages. They are particularly useful for scenarios such as A/B testing, campaign segmentation, and performance analysis.
