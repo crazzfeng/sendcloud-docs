@@ -324,7 +324,6 @@ SMSHook is Aurora SendCloud's webhook mechanism that provides real-time notifica
 
     ### Common Status Codes
 
-    * **590**: General delivery failure
     * **430**: Number in unsubscribe list
     * **440**: Invalid phone number
     * **450**: Carrier rejection
@@ -335,6 +334,43 @@ SMSHook is Aurora SendCloud's webhook mechanism that provides real-time notifica
     {
       "event": "Suppressed",
       "eventType": 4,
+      "message": "REJECTED(其他)",
+      "encodeMessage": "UkVKRUNURCjlhbbku5Yp",
+      "statusCode": 490,
+      "smsId": "1652146271665_19999_8755_3883_37059m$13888888888",
+      "phone": "13888888888",
+      "outboundTime": "2022-05-10 09:31:12",
+      "receiptTime": "2022-05-10 09:31:17",
+      "timestamp": 1652146277000
+    }
+    ```
+  </Tab>
+  
+  <Tab title="Failed Event">
+    Triggered when SMS delivery failed.
+
+    ### Parameters
+
+    | Parameter       | Type   | Description                  |
+    | :-------------- | :----- | :--------------------------- |
+    | `event`         | string | Always "Failed"              |
+    | `eventType`     | int    | Always 5                     |
+    | `message`       | string | Failure reason               |
+    | `encodeMessage` | string | Base64-encoded error message |
+    | `statusCode`    | int    | Error status code            |
+    | `receiptTime`   | string | When failure was detected    |
+
+    ### Common Status Codes
+
+    * **530**: Phone busy
+    * **590**: General delivery failure
+
+    ### Example Payload
+
+    ```json
+    {
+      "event": "Failed",
+      "eventType": 5,
       "message": "REJECTED(其他)",
       "encodeMessage": "UkVKRUNURCjlhbbku5Yp",
       "statusCode": 590,
