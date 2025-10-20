@@ -71,19 +71,7 @@ An **API_USER** is a dedicated account identity used exclusively for authenticat
 <Accordion title="Security Best Practices" icon="shield-alt">
   The combination of your **API\_USER** and **API\_KEY** serves as the primary credential for authenticating your send requests. Treat them with the same level of security as a username and password.
 
-  <Cards columns="1">
-    <Card title="Security Guidelines" icon="exclamation-triangle">
-      * Keep credentials confidential and never hard-code them directly into client-side applications or public code repositories
-      * Store credentials securely using environment variables or secure credential management systems
-      * If credentials are compromised, reset the API\_KEY immediately
-      * Regularly rotate your API\_KEYs as part of your security practices
-    </Card>
-  </Cards>
-</Accordion>
-
-<Accordion title="Security Best Practices" icon="shield-alt">
-  The combination of your **API\_USER** and **API\_KEY** serves as the primary credential for authenticating your send requests. Treat them with the same level of security as a username and password.
-  \*\* Security Guidelines \*\*
+### Security Guidelines 
 
   * Keep credentials confidential and never hard-code them directly into client-side applications or public code repositories
   * Store credentials securely using environment variables or secure credential management systems
