@@ -5,6 +5,13 @@ hidden: false
 link:
   new_tab: false
 metadata:
+  title: ' ​​Create API User for Email API & SMTP Authentication | Aurora SendCloud'
+  description: >-
+    Learn how to create and manage your ​​API_USER​​ and ​​API_KEY​​ for
+    authenticating requests to the YourPlatformName ​​Email Delivery API​​ and
+    ​​SMTP​​ service. This guide covers setting trigger/batch types, binding
+    sending domains, and securely resetting your ​​API_KEY​​. Secure your
+    integration and start sending today.
   robots: index
 ---
 This section describes the concept and management of API_USER, which serves as the primary credential for authenticating requests when using our Email Delivery API or SMTP service.
