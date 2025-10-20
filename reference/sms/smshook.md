@@ -21,7 +21,7 @@ Supported events are as follows:
 
 | Events                             | Triggering Conditions                    |
 | :--------------------------------- | :--------------------------------------- |
-| request (request)                  | Request was successful                   |
+| Requested                          | Request was successful                   |
 | deliver (deliver)                  | Message delivered                        |
 | process failure (workererror)      | Processing failed                        |
 | delivery failure (delivererror)    | Delivery failed                          |
