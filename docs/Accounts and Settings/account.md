@@ -39,36 +39,42 @@ Regularly updating your password is an important part of maintaining account sec
 
 ### How to Change Your Password
 
-**Scenario 1: You Remember Your Current Password**
-
+<Tabs>
+  <Tab title="Remember Your Current Password">
 1. Next to the "Password" field, click the "Modify" button.
 2. Enter your current password.
 3. Enter a new password that meets the requirements.
 4. Re-enter your new password to confirm.
-5. Click "Confirm Change."
+    5. Click "Confirm Change."
+  </Tab>
 
-**Scenario 2: You Forgot Your Current Password**
-
-If you have forgotten your current password, you can reset it using your registered email address:
+  <Tab title="Forgot Your Current Password">
+    If you have forgotten your current password, you can reset it using your registered email address:
 
 1. Click "Forgot password?" on the login page or password change page.
 2. Enter your registered email address. A verification code will be sent to that email address.
 3. Enter the correct email verification code.
 4. Set and confirm your new password.
 5. Click "Confirm Reset."
+  </Tab>
+</Tabs>
 
 **New Password Requirements:**
 
-* **Length:** 6-16 characters
-* **Spaces:** No spaces allowed
-* **Character Types:** Only numbers, letters, and special characters are supported. Must contain at least three of the following character types:
-  > Lowercase letters (a-z)
-  >
-  > Uppercase letters (A-Z)
-  >
-  > Numbers (0-9)
-  >
-  > Special characters (e.g., ! @ # $ % & *)
+<Callout icon="📘">
+
+
+  **Length:** 6-16 characters
+
+  **Spaces:** No spaces allowed
+
+  **Character Types:** Only numbers, letters, and special characters are supported. Must contain at least three of the following character types:
+
+  * Lowercase letters (a-z)
+  * Uppercase letters (A-Z)
+  * Numbers (0-9)
+  * Special characters (e.g., ! @ # $ % & *)
+</Callout>
 
 ## Phone
 
