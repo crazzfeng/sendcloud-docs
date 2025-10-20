@@ -210,17 +210,27 @@ This means:
 
 **Resource and Quota Independence:**
 
-* Each region has its own independent resource quota limits. For example, your used resource quota in the Singapore region will not affect your available quota in the US or Hong Kong regions.
-* You will need to manage your services and resources separately in each region.
+<Callout>
+  Each region has its own independent resource quota limits. For example, your used resource quota in the Singapore region will not affect your available quota in the US or Hong Kong regions.
+
+  You will need to manage your services and resources separately in each region.
+</Callout>
 
 **Data Isolation:**
 
-* Data stored in one region is not automatically replicated or synchronized to other regions. For example, a file in your object storage in the Singapore region will not be visible in the Hong Kong region.
+<Callout>
+  Data stored in one region is not automatically replicated or synchronized to other regions. For example, a file in your object storage in the Singapore region will not be visible in the Hong Kong region.
+</Callout>
 
 **Independent Services and Billing:**
 
-* You must purchase and configure services for each region separately. Service packages purchased in a region are valid only in that region.
-* Billing is performed separately by region, and you can view the detailed consumption for each region in your bill.
+<Callout>
+  You must purchase and configure services for each region separately. Service packages purchased in a region are valid only in that region.
+
+  Billing is performed separately by region, and you can view the detailed consumption for each region in your bill.
+</Callout>
+
+<br />
 
 ### Suggestions
 
