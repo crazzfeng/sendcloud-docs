@@ -7,8 +7,6 @@ link:
 metadata:
   robots: index
 ---
-# Labels
-
 Labels are a powerful feature designed to help you categorize and track your email messages. They are particularly useful for scenarios such as A/B testing, campaign segmentation, and performance analysis.
 
 ## Overview
@@ -33,8 +31,8 @@ This action effectively "tags" the email with that specific label.
 
 Once emails are sent with a Label, you can use this dimension for analysis:
 
-- In the platform's statistics or analytics section, you can filter data by selecting a specific **Label**.
-- This allows you to view aggregated sending statistics (e.g., delivery rates, open rates, click-through rates) and detailed statuses (e.g., processed, delivered, clicked) for all emails associated with that Label.
+* In the platform's statistics or analytics section, you can filter data by selecting a specific **Label**.
+* This allows you to view aggregated sending statistics (e.g., delivery rates, open rates, click-through rates) and detailed statuses (e.g., processed, delivered, clicked) for all emails associated with that Label.
 
 ## Typical Use Cases
 
