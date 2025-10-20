@@ -99,7 +99,7 @@ If the retry count is exceeded, SendCloud will save the message for 15 days. If 
 
 ## Event Descriptions
 
-SMSHook currently supports request, deliver, process failure, delivery failure, and template approval events.
+SMSHook currently supports requested, delived, suppressed, failed, and template approval events.
 
 ### Requested Event
 
