@@ -190,41 +190,23 @@ Understanding the independence between regions is crucial, as it directly impact
 
 This means:
 
-<Tabs>
-  <Tab title="Resource and Quota Independence">
-    Each region has its own independent resource quota limits. For example, your used resource quota in the Singapore region will not affect your available quota in the US or Hong Kong regions.
-    You will need to manage your services and resources separately in each region.
-  </Tab>
+**Resource and Quota Independence**
 
-  <Tab title="Data Isolation">
-    Data stored in one region is not automatically replicated or synchronized to other regions. For example, a file in your object storage in the Singapore region will not be visible in the Hong Kong region.
-  </Tab>
-
-  <Tab title="Independent Services and Billing">
-    You must purchase and configure services for each region separately. Service packages purchased in a region are valid only in that region.
-    Billing is performed separately by region, and you can view the detailed consumption for each region in your bill.
-  </Tab>
-</Tabs>
-
-This means:
-
-**Resource and Quota Independence:**
-
-<Callout>
+<Callout theme="default">
   Each region has its own independent resource quota limits. For example, your used resource quota in the Singapore region will not affect your available quota in the US or Hong Kong regions.
 
   You will need to manage your services and resources separately in each region.
 </Callout>
 
-**Data Isolation:**
+**Data Isolation**
 
-<Callout>
+<Callout theme="default">
   Data stored in one region is not automatically replicated or synchronized to other regions. For example, a file in your object storage in the Singapore region will not be visible in the Hong Kong region.
 </Callout>
 
-**Independent Services and Billing:**
+**Independent Services and Billing**
 
-<Callout>
+<Callout theme="default">
   You must purchase and configure services for each region separately. Service packages purchased in a region are valid only in that region.
 
   Billing is performed separately by region, and you can view the detailed consumption for each region in your bill.
