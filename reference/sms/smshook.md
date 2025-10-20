@@ -11,7 +11,7 @@ metadata:
 
 ## SMSHook Mechanism
 
-When users submit SMS or voice requests to SendCloud, a **request result** is immediately returned to users. The SMS or voice **sending results** and **results from other events** are asynchronously returned to users via SMSHook.
+When users submit SMS requests to Aurora SendCloud, a **request result** is immediately returned to users. The SMS  **sending results** and **results from other events** are asynchronously returned to users via SMSHook.
 
 * SendCloud provides several events for users to choose from
 * When an event occurs, SendCloud triggers the configured URL to send data (POST request)
@@ -30,17 +30,17 @@ Supported events are as follows:
 ## Usage Method
 
 * Users write an HTTP service to process events, parse data, and expose a URL
-* Choose interested events in **【SMS and Voice SMS】-【Settings】-【SMSHook】** and configure the URL
+* Choose interested events in **【SMSHook】** and configure the URL
 
 > **Note:** SendCloud will test the user's URL to ensure the HTTP service responds to GET/POST requests and returns HTTP status code 200.
 
 ## Signature Verification
 
-To ensure that messages are sent from SendCloud, you can choose to verify the source of the POST data. (You can also parse POST data without authentication).
+To ensure that messages are sent from Aurora SendCloud, you can choose to verify the source of the POST data. (You can also parse POST data without authentication).
 
 Authentication method:
 
-* Acquire `APP KEY` in **【SMS and Voice SMS】- 【Delivery Settings】-【SMSHook】**
+* Acquire `APP KEY` in **【SMSHook】**
 * Parse `token`, `timestamp`, and `signature` from POST data
 * Generate a signature using `APP KEY`, `token`, and `timestamp`; compare it with the `signature` in POST data (signature algorithm: [SHA256](http://en.wikipedia.org/wiki/SHA-2))
 
@@ -56,7 +56,8 @@ def verify(appkey, token, timestamp, signature):
 ```
 
 ### Java Code Example
-*Requires [Apache Codec](http://commons.apache.org/proper/commons-codec/download_codec.cgi)*
+
+_Requires [Apache Codec](http://commons.apache.org/proper/commons-codec/download_codec.cgi)_
 
 ```java
 import javax.crypto.Mac;
@@ -93,31 +94,32 @@ If SendCloud encounters URL access errors or timeouts, it will retry up to 7 tim
 If the retry count is exceeded, SendCloud will save the message for 15 days. If necessary, please contact us for a re-push.
 
 **Requirements:**
+
 * You must return HTTP Code 200 within 3 seconds for each event handling
 
 ## Event Descriptions
 
 SMSHook currently supports request, deliver, process failure, delivery failure, and template approval events.
 
-### Request Event
+### Requested Event
 
 **Parameter Description**
 
-| Parameter  | Type   | Description                     |
-| :--------- | :----- | :------------------------------ |
-| event      | string | Event type: "request"           |
-| eventType  | int    | Event type code: 1              |
-| message    | string | Request message                 |
-| userId     | int    | User ID                         |
-| smsUser    | string | SMS user                        |
-| smsIds     | list   | SMS (Voice SMS) IDs             |
-| templateId | int    | Template ID                     |
-| phones     | list   | Phone numbers                   |
-| msgCount   | int    | Number of SMS messages          |
-| timestamp  | long   | Timestamp                       |
+| Parameter  | Type   | Description                    |
+| :--------- | :----- | :----------------------------- |
+| event      | string | Event type: "requested"        |
+| eventType  | int    | Event type code: 1             |
+| message    | string | Request message                |
+| userId     | int    | User ID                        |
+| smsUser    | string | SMS user                       |
+| smsIds     | list   | SMS (Voice SMS) IDs            |
+| templateId | int    | Template ID                    |
+| phones     | list   | Phone numbers                  |
+| msgCount   | int    | Number of SMS messages         |
+| timestamp  | long   | Timestamp                      |
 | token      | string | Random string of 50 characters |
-| signature  | string | Signature string                |
-| customArgs | string | User-defined custom arguments   |
+| signature  | string | Signature string               |
+| customArgs | string | User-defined custom arguments  |
 
 **POST Data Example**
 
@@ -138,27 +140,27 @@ SMSHook currently supports request, deliver, process failure, delivery failure, 
 }
 ```
 
-### Deliver Event
+### Delivered Event
 
 **Parameter Description**
 
-| Parameter    | Type   | Description                     |
-| :----------- | :----- | :------------------------------ |
-| event        | string | Event type: "deliver"           |
-| eventType    | int    | Event type code: 2              |
-| message      | string | Successfully delivered          |
-| userId       | int    | User ID                         |
-| smsUser      | string | SMS user                        |
-| smsId        | string | SMS (Voice SMS) ID              |
-| templateId   | int    | Template ID                     |
-| phone        | string | Phone number                    |
-| timestamp    | long   | Timestamp                       |
+| Parameter    | Type   | Description                    |
+| :----------- | :----- | :----------------------------- |
+| event        | string | Event type: "delivered "       |
+| eventType    | int    | Event type code: 2             |
+| message      | string | Successfully delivered         |
+| userId       | int    | User ID                        |
+| smsUser      | string | SMS user                       |
+| smsId        | string | SMS (Voice SMS) ID             |
+| templateId   | int    | Template ID                    |
+| phone        | string | Phone number                   |
+| timestamp    | long   | Timestamp                      |
 | token        | string | Random string of 50 characters |
-| signature    | string | Signature string                |
-| customArgs   | string | User-defined custom arguments   |
-| msgCount     | int    | Number of SMS messages          |
-| outboundTime | string | Channel time                    |
-| receiptTime  | string | Receipt time                    |
+| signature    | string | Signature string               |
+| customArgs   | string | User-defined custom arguments  |
+| msgCount     | int    | Number of SMS messages         |
+| outboundTime | string | Channel time                   |
+| receiptTime  | string | Receipt time                   |
 
 **POST Data Example**
 
@@ -182,28 +184,28 @@ SMSHook currently supports request, deliver, process failure, delivery failure, 
 }
 ```
 
-### Process Failure Event
+### Suppressed Event
 
 **Parameter Description**
 
-| Parameter     | Type   | Description                       |
-| :------------ | :----- | :-------------------------------- |
-| event         | string | Event type: "workererror"         |
-| eventType     | int    | Event type code: 4                |
-| message       | string | Error message                     |
-| encodeMessage | string | Error message in base64 encoding  |
-| userId        | int    | User ID                           |
-| statusCode    | int    | Error code                        |
-| smsUser       | string | SMS user                          |
-| smsId         | string | SMS (Voice SMS) ID                |
-| templateId    | int    | Template ID                       |
-| phone         | string | Phone number                      |
-| timestamp     | long   | Timestamp                         |
+| Parameter     | Type   | Description                      |
+| :------------ | :----- | :------------------------------- |
+| event         | string | Event type: "suppressed"         |
+| eventType     | int    | Event type code: 4               |
+| message       | string | Error message                    |
+| encodeMessage | string | Error message in base64 encoding |
+| userId        | int    | User ID                          |
+| statusCode    | int    | Error code                       |
+| smsUser       | string | SMS user                         |
+| smsId         | string | SMS (Voice SMS) ID               |
+| templateId    | int    | Template ID                      |
+| phone         | string | Phone number                     |
+| timestamp     | long   | Timestamp                        |
 | token         | string | Random string of 50 characters   |
-| signature     | string | Signature string                  |
-| customArgs    | string | User-defined custom arguments     |
-| msgCount      | int    | Number of SMS messages            |
-| outboundTime  | string | Channel time                      |
+| signature     | string | Signature string                 |
+| customArgs    | string | User-defined custom arguments    |
+| msgCount      | int    | Number of SMS messages           |
+| outboundTime  | string | Channel time                     |
 
 **POST Data Example**
 
@@ -228,29 +230,29 @@ SMSHook currently supports request, deliver, process failure, delivery failure, 
 }
 ```
 
-### Delivery Failure Event
+### Failed Event
 
 **Parameter Description**
 
-| Parameter     | Type   | Description                       |
-| :------------ | :----- | :-------------------------------- |
-| event         | string | Event type: "delivererror"        |
-| eventType     | int    | Event type code: 5                |
-| message       | string | Error message                     |
-| encodeMessage | string | Error message in base64 encoding  |
-| userId        | int    | User ID                           |
-| statusCode    | int    | Error code                        |
-| smsUser       | string | SMS user                          |
-| smsId         | string | SMS (Voice SMS) ID                |
-| templateId    | int    | Template ID                       |
-| phone         | string | Phone number                      |
-| timestamp     | long   | Timestamp                         |
+| Parameter     | Type   | Description                      |
+| :------------ | :----- | :------------------------------- |
+| event         | string | Event type: "failed"             |
+| eventType     | int    | Event type code: 5               |
+| message       | string | Error message                    |
+| encodeMessage | string | Error message in base64 encoding |
+| userId        | int    | User ID                          |
+| statusCode    | int    | Error code                       |
+| smsUser       | string | SMS user                         |
+| smsId         | string | SMS (Voice SMS) ID               |
+| templateId    | int    | Template ID                      |
+| phone         | string | Phone number                     |
+| timestamp     | long   | Timestamp                        |
 | token         | string | Random string of 50 characters   |
-| signature     | string | Signature string                  |
-| customArgs    | string | User-defined custom arguments     |
-| msgCount      | int    | Number of SMS messages            |
-| outboundTime  | string | Channel time                      |
-| receiptTime   | string | Receipt time                      |
+| signature     | string | Signature string                 |
+| customArgs    | string | User-defined custom arguments    |
+| msgCount      | int    | Number of SMS messages           |
+| outboundTime  | string | Channel time                     |
+| receiptTime   | string | Receipt time                     |
 
 **POST Data Example**
 
@@ -281,15 +283,15 @@ SMSHook currently supports request, deliver, process failure, delivery failure, 
 
 | Parameter     | Type   | Description                                                                         |
 | :------------ | :----- | :---------------------------------------------------------------------------------- |
-| event         | string | Event type: "templateVerify"                                                       |
-| eventType     | int    | Event type code: 8                                                                 |
+| event         | string | Event type: "templateVerify"                                                        |
+| eventType     | int    | Event type code: 8                                                                  |
 | userId        | int    | User ID                                                                             |
 | templateId    | int    | Template ID                                                                         |
 | name          | string | Template name                                                                       |
 | timestamp     | long   | Timestamp                                                                           |
-| token         | string | Random string of 50 characters                                                     |
+| token         | string | Random string of 50 characters                                                      |
 | signature     | string | Signature string                                                                    |
-| verfiyResult  | int    | Review result: 0 under review, 1 approved, -1 rejected                             |
+| verfiyResult  | int    | Review result: 0 under review, 1 approved, -1 rejected                              |
 | verfiyComment | string | Review comments. Verification comments are provided when the review is not approved |
 
 **POST Data Example**
