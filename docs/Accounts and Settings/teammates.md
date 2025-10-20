@@ -55,9 +55,15 @@ When a teammate attempts an action beyond their permissions, the system will dis
 * **Scenario 1**:  Insufficient Permissions (View-Only)​​
 
 ​​When a teammate tries to edit, download, or perform any action other than viewing:​​
-​​"Sorry, you don’t have permission to use this feature. If access is required, please reach out to your team administrator."​​
+
+<Callout icon="⚠️" theme="warning">
+  Sorry, you don’t have permission to use this feature. If access is required, please reach out to your team administrator.
+</Callout>
 
 * **​​Scenario 2**: Permission Disabled​​
 
 When a teammate tries to access a page for a feature that has been completely disabled for them:​​
-​​"Sorry, you don’t have permission to use this feature. If access is required, please reach out to your team administrator."​
+
+<Callout icon="⚠️" theme="warning">
+  Sorry, you don’t have permission to use this feature. If access is required, please reach out to your team administrator.
+</Callout>
