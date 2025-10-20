@@ -345,7 +345,7 @@ SMSHook is Aurora SendCloud's webhook mechanism that provides real-time notifica
     }
     ```
   </Tab>
-  
+
   <Tab title="Failed Event">
     Triggered when SMS delivery failed.
 
@@ -390,7 +390,7 @@ SMSHook is Aurora SendCloud's webhook mechanism that provides real-time notifica
 
     | Parameter       | Type   | Description                                         |
     | :-------------- | :----- | :-------------------------------------------------- |
-    | `event`         | string | Always "templateVerify"                             |
+    | `event`         | string | Always "Template Verify"                             |
     | `eventType`     | int    | Always 8                                            |
     | `templateId`    | int    | Template ID                                         |
     | `name`          | string | Template name                                       |
@@ -401,7 +401,7 @@ SMSHook is Aurora SendCloud's webhook mechanism that provides real-time notifica
 
     ```json
     {
-      "event": "templateVerify",
+      "event": "Template Verify",
       "eventType": 8,
       "templateId": 6255,
       "name": "Thank you for visiting the Shanghai Auto Show booth",
