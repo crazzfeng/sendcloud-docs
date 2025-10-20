@@ -78,5 +78,3 @@ The combination of your **API_USER** and **API_KEY** serves as the primary crede
   * If credentials are compromised, reset the API_KEY immediately
   * Regularly rotate your API_KEYs as part of your security practices
 </Callout>
-
-<br />
