@@ -63,25 +63,27 @@ The Subscription Management feature allows you to quickly and easily build an em
 
 <br />
 
-Step 1: Get the Code
+**Step 1: Get the Code**
 
 Aurora SendCloud provides you with a unique piece of **JavaScript code**
 
-Step 2: Embed on Your Website
+**Step 2: Embed on Your Website**
 
 Copy and paste this code into the HTML of the webpage where you want the subscription form to appear (e.g., homepage footer, blog sidebar)
 
-Step 3: Frontend Display
+**Step 3: Frontend Display**
 
 After embedding, an email input field will be displayed at the corresponding location on your website
 
-Step 4: Address Collection
+**Step 4: Address Collection**
 
 When a visitor enters their email address and submits the form, it is automatically collected into a specified **target Address List** within your Aurora SendCloud account
 
-Typical Workflow Example
+### Typical Workflow Example
 
-1. Create a new Address List in SendCloud (e.g., name it "Website Subscribers")
+1. Create a new Address List in Aurora SendCloud (e.g., name it "Website Subscribers")
 2. Navigate to the "Subscription Management" feature and generate a subscription code for the "Website Subscribers" list
 3. Embed the generated code on your website
 4. Start collecting subscriber emails and send marketing emails directly to the "Website Subscribers" list
+
+<br />
