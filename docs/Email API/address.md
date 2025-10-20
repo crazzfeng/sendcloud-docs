@@ -7,8 +7,6 @@ link:
 metadata:
   robots: index
 ---
-<br />
-
 This section explains how to manage your contact email addresses, with a focus on the **Address List** feature for bulk sending and the **Subscription Management** feature for collecting leads directly from your website.
 
 ## Address
