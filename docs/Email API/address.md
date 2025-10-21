@@ -17,7 +17,7 @@ The Address List function is designed for **bulk email sending** scenarios, such
 
 Supports uploading address files in **.CSV**, **.TXT**, **.XLS** and **.XLSX** formats for batch import.
 
-<Callout icon="👍">
+<Callout icon="👍" theme="okay">
   **Recommended CSV format:** The first column should contain email addresses, followed by columns for custom variables (e.g., %name%, %company%).
 </Callout>
 
@@ -35,7 +35,7 @@ Each Address List has a unique **Alias** used in API requests to specify the rec
 
 **Automatic Processing:** During upload, the system automatically performs:
 
-<Callout icon="🚧">
+<Callout icon="🚧" theme="warn">
   **Deduplication:** Removes duplicate email addresses
 
   **Format Validation:** Checks the basic validity of email address formats
@@ -43,15 +43,15 @@ Each Address List has a unique **Alias** used in API requests to specify the rec
 
 **Capacity Limits:**
 
-<Callout icon="❗️">
+<Callout icon="❗️" theme="error">
   File size for a single upload must not exceed **100MB**
 
   A single Address List cannot contain more than **1 million** email addresses
 </Callout>
 
-**Permission Note:** 
+**Permission Note:**
 
-<Callout icon="❗️">
+<Callout icon="❗️" theme="error">
   The Address List feature is only available to **paying customers**.
 </Callout>
 
@@ -82,7 +82,7 @@ When a visitor enters their email address and submits the form, it is automatica
 ### Typical Workflow Example
 
 1. Create a new Address List in Aurora SendCloud (e.g., name it "Website Subscribers")
-2. Navigate to the "Subscription Management" feature and generate a subscription code for the "Website Subscribers" list
+2. Navigate to the "Subscription" feature and generate a subscription code for the "Website Subscribers" list
 3. Embed the generated code on your website
 4. Start collecting subscriber emails and send marketing emails directly to the "Website Subscribers" list
 
