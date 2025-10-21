@@ -10,144 +10,219 @@ link:
 metadata:
   robots: index
 ---
-## Adding Contacts to Your Audience List
+# Audience Management Guide
 
-Whether adding contacts individually or in bulk, please ensure that your contacts are collected legally and in compliance with data protection regulations. There are two ways to add contacts to your audience:
+Build and manage your email audience effectively with powerful tools for contact management, organization, and targeting.
 
-### Add Individual Contacts
+## Adding Contacts to Your Audience
 
-You can add contacts one by one by filling out a contact form. The **Email field is required**, while all other fields are optional.
+<Accordion title="Legal Compliance Reminder" icon="shield-alt">
+Always ensure your contacts are collected legally and comply with data protection regulations like GDPR and CAN-SPAM before adding them to your audience.
+</Accordion>
+
+<Tabs>
+<Tab title="Individual Contacts">
+
+### Add One Contact at a Time
+
+Perfect for adding new contacts as they sign up or when you meet them personally.
+
+**How to add:**
+1. Navigate to your audience list
+2. Click "Add Contact" 
+3. Fill out the contact form
+4. **Email is required** - all other fields are optional
+5. Save the contact
+
+</Tab>
+<Tab title="Bulk Import">
 
 ### Import Multiple Contacts
 
-#### 1. Choose the method to add multiple contacts
+Efficiently add hundreds or thousands of contacts at once using two methods:
 
-**Upload CSV File**
+#### Method 1: Upload CSV File
+- **Email column is mandatory**
+- Each column represents a contact field (Name, Phone, etc.)
+- Use proper formatting for successful import
+- Download our CSV template for best results
 
-* Email is a required field in your CSV file
-* Each column represents a different contact field
-* Ensure proper formatting for successful import
+#### Method 2: Copy and Paste
+- Email is required for each contact
+- Separate fields with commas (,)
+- Place each contact on a new line
+- Example: `john@example.com, John Doe, 555-0123`
 
-**Copy and Paste**
+</Tab>
+</Tabs>
 
-* Email is required for each contact
-* Separate fields with commas (,)
-* Place each contact on a new line
+### Import Process Walkthrough
 
-**Handling Duplicate Contacts**
+<Cards columns="2">
+<Card title="Step 1: Handle Duplicates" icon="users">
+Choose how to manage existing contacts:
+- **Update**: Replace existing data with new information
+- **Skip**: Keep original data, ignore duplicates
+</Card>
 
-When importing contacts that already exist in your list, you can choose how to handle duplicates:
+<Card title="Step 2: Assign Tags" icon="tags">
+Organize your imports with tags:
+- **Replace**: Swap existing tags with new ones
+- **Add**: Keep existing tags, add new ones
+- **Skip**: Maintain current tags only
+</Card>
 
-* **Update**: Automatically replace existing contact information with new data from your import
-* **Skip**: Keep existing contact information unchanged and skip duplicate entries
+<Card title="Step 3: Match Fields" icon="link">
+The system auto-matches columns to contact fields. Verify and adjust the mapping to ensure accuracy.
+</Card>
 
-#### 2. Choose Tags
+<Card title="Step 4: Review & Import" icon="check-circle">
+Double-check your settings and click "Confirm Import" to add your contacts.
+</Card>
+</Cards>
 
-If you want to add tags to multiple contacts, you can select one or more tags.
+---
 
-**Handling Tags**
+## Organizing Your Audience
 
-* **Replace**: If the imported contact is already in your contact list, we will automatically replace the existing contact's tag with your newly selected tag.
-* **Add**: If the imported contact is already in your contact list, we will automatically add your newly selected tag while keeping the existing tags.
-* **Skip**: If the imported contact is already in your contact list, we will automatically skip the new tag and only keep the existing tags.
+### Contact Fields
 
-#### 3. Contact Field Matching
+Fields store information about your subscribers and help you understand your audience better.
 
-The system will recognize each column of the contacts you have imported and automatically match some fields. You only need to verify that they are correct and adjust the matching to the appropriate field.
+<Accordion title="Default Contact Fields" icon="table">
 
-#### 4. Final Check and Confirm Import
+| Field Name | Type | Can Delete? |
+|------------|------|-------------|
+| Email | Email | ❌ No |
+| Name | Text | ❌ No |
+| Phone | Phone | ❌ No |
+| Gender | Text | ✅ Yes |
+| Birthday | Date | ✅ Yes |
+| Age | Number | ✅ Yes |
 
-Review your import settings and confirm to complete the process.
+</Accordion>
 
-<br />
+#### Custom Fields
+- Add up to **50 total fields** per audience list
+- Supported types: Text, Number, Date, Birthday, Dropdown
+- Reorder fields by dragging in **Manage → Fields**
 
-## Managing Your Audience
+**Example Contact Profile:**
+```
+📧 Email: anna@example.com
+👤 Name: Anna Johnson  
+📱 Phone: +1-555-0123
+🎂 Birthday: March 1st
+🎯 Interest: Japanese Cuisine, Desserts
+```
 
-### Fields
+### Tags: Simple Contact Organization
 
-Fields help you identify and categorize your subscribers' characteristics.
+Tags are flexible labels that help you categorize contacts into meaningful groups.
 
-**Example:**
-Anna's profile might include:
+<Cards columns="2">
+<Card title="Tag Benefits" icon="lightbulb">
+- Create unlimited tags
+- Apply multiple tags per contact
+- Filter audiences instantly  
+- Send targeted campaigns
+- Easy bulk management
+</Card>
 
-* **Email**: [Anna@example.com](mailto:Anna@example.com)
-* **Name**: Anna
-* **Gender**: Female
-* **Birthday**: 03/01
+<Card title="Example: Food Blog" icon="utensils">
+**Tags Created:**
+- "Dessert Lovers"
+- "Japanese Cuisine" 
+- "Chinese Cuisine"
+- "Weekly Newsletter"
 
-#### Default Contact Fields
+**Usage:** Send dessert recipes only to "Dessert Lovers" tag
+</Card>
+</Cards>
 
-Aurora SendCloud provides these default fields:
+### Segments: Advanced Audience Filtering
 
-| Field Name | Field Type |
-| ---------- | ---------- |
-| Email      | Email      |
-| Name       | Name       |
-| Phone      | Phone      |
-| Gender     | Text       |
-| Birthday   | Birthday   |
-| Age        | Number     |
+Segments are smart, dynamic groups that automatically update based on the conditions you set.
 
-**Important Notes:**
+#### How Segments Work
 
-* Email, Name, and Phone fields cannot be deleted or hidden
-* You can add or remove custom fields as needed
-* When creating new fields, define the attribute name and select the appropriate type
-* Supported field types: Text, Number, Date, Birthday, Dropdown
-* Maximum of **50 fields** per list
+<Columns layout="auto">
+<Column>
 
-**Customizing Field Order**
-To adjust the display order of contact fields, go to **Manage → Fields** and drag fields to reorder them.
+**Creating a Segment:**
+1. Name your segment descriptively
+2. Choose matching logic:
+   - **All conditions** = AND logic
+   - **Any condition** = OR logic  
+3. Add up to 10 filter conditions
+4. Preview and save
 
-### Tags
+</Column>
+<Column>
 
-Tags are labels you can assign to categorize contacts into groups. They consist of text strings and help you organize your audience for targeted campaigns.
+**Segment Conditions:**
+- Contact fields (age, gender, location)
+- Tag assignments
+- Engagement history
+- Custom field values
+- Date-based criteria
 
-**Key Features:**
+</Column>
+</Columns>
 
-* Create tags independently and apply them as needed
-* Tag contacts individually or in bulk
-* Filter contacts by tags
-* **Send targeted emails to tagged contacts**
+#### Real-World Example
 
-#### Example Use Case
+**Goal:** Survey women aged 25-30 about product preferences
 
-Imagine you run a food-related website:
+**Segment Setup:**
+- Name: "Women 25-30 Survey Group"
+- Logic: "All conditions must match"
+- Conditions:
+  - Age ≥ 25
+  - Age ≤ 30  
+  - Gender = "Female"
+  - Tag = "Active Subscriber"
 
-1. **Create tags**: "Desserts", "Japanese Cuisine", "Chinese Cuisine"
-2. **Tag your contacts**:
-   * Anna: "Desserts" + "Japanese Cuisine"
-   * Emma: "Desserts" + "Chinese Cuisine"
-3. **Send targeted campaigns**: When promoting new desserts, select the "Desserts" tag to reach all dessert enthusiasts
+**Result:** Dynamic list that automatically includes/excludes contacts as their data changes.
 
-### Segments
+### Tags vs. Segments: When to Use Each
 
-Segments are dynamic contact groups created by filtering your audience based on specific rules and conditions. Think of them as advanced contact filters that automatically update based on your criteria.
+<Cards columns="2">
+<Card title="Use Tags When..." icon="tag">
+- Simple categorization needed
+- Manual contact organization
+- Campaign targeting by interest
+- Quick filtering required
+- Static grouping works
+</Card>
 
-#### Creating a Segment
+<Card title="Use Segments When..." icon="filter">
+- Complex filtering needed
+- Automatic updates required
+- Multiple conditions necessary
+- Behavioral targeting
+- Advanced automation workflows
+</Card>
+</Cards>
 
-1. **Name your segment**
-2. **Choose matching logic**:
-   * **All conditions**: Contacts must meet every condition
-   * **Any condition**: Contacts need to meet at least one condition
-3. **Set up to 10 conditions** based on contact properties and tags
+---
 
-#### Example Use Case
+## Best Practices
 
-To conduct a user survey targeting women aged 25-30:
+<Accordion title="Data Quality Tips" icon="star">
+- Regularly clean your audience list
+- Remove invalid email addresses
+- Keep contact information up-to-date
+- Use consistent naming for tags
+- Create meaningful segment names
+</Accordion>
 
-1. Create a segment named "Women 25-30 User Survey"
-2. Set matching condition to "All conditions"
-3. Add conditions:
-   * Age ≥ 25
-   * Age ≤ 30
-   * Gender = Female
-4. Preview filtered contacts and save
-5. Send campaigns directly to this segment
+<Accordion title="Compliance Guidelines" icon="gavel">
+- Obtain explicit consent before adding contacts
+- Provide easy unsubscribe options
+- Respect data retention policies  
+- Follow regional privacy laws (GDPR, CCPA)
+- Document consent methods
+</Accordion>
 
-**Benefits of Segments:**
-
-* More precise targeting than tags alone
-* Automatic updates as contact data changes
-* Enable sophisticated marketing automation
-* Support complex filtering logic
+Ready to start building your audience? Begin by adding your first contacts and organizing them with tags that match your marketing strategy.
