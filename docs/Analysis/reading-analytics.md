@@ -3,12 +3,14 @@ title: Reading
 excerpt: Drive engagement with ​​subscriber behavior analysis​
 deprecated: false
 hidden: false
+link:
+  new_tab: false
 metadata:
   robots: index
 ---
 # Email Reading Analytics
 
-By monitoring metrics like ​​reading time​​ and ​​click rates​​, gain profound ​​insight into audience engagement​​.
+By monitoring metrics like reading time and click rates, you can gain profound insights into audience engagement.
 
 <br />
 
@@ -28,25 +30,25 @@ Analyze your email performance using these filtering dimensions:
 
 ## Analytics and Grouping Options
 
-### Statistics by regions
+### Statistics by Regions
 
-The geographical location distribution of email reading is provided, and the data of each country can be viewed one by one according to the world map. You will know the geographical distribution of recipients who enjoy reading your emails.
+The geographical location distribution of email reading is provided, and you can view data for each country individually according to the world map. You will understand the geographical distribution of recipients who engage with your emails.
 
 <Image border={false} src="https://files.readme.io/4141411333902e7c785155d3d797366763c33d243196859ba88553e43f2d1336-image.png" />
 
 <br />
 
-### Link statistics
+### Link Statistics
 
-provide daily distribution of links and clicks in the email and the link data with the top 10 clicking most.You will learn from a global perspective which links in your email are most popular
+This provides daily distribution of links and clicks in your emails, along with data for the top 10 most-clicked links. You will learn from a global perspective which links in your emails are most popular.
 
-### Device statistics
+### Device Statistics
 
-provide statistics of opening devices, operating systems, wireless brands and browser distribution of the email.Device data will help you design your email template, telling you which devices, browsers, and displays in applications you should pay the most attention to
+This provides statistics on opening devices, operating systems, wireless carriers, and browser distribution for your emails. Device data will help you design your email templates by showing you which devices, browsers, and applications you should prioritize.
 
 ### Reading Time Statistics
 
-Aurora SendCloud separates one day into twenty - four hour - points. When the recipient reads the email, we will count each of them by these hour - points.This way, you can know when your recipient likes to read your email the most. So sending during this time period will give you the maximum return.
+Aurora SendCloud divides each day into twenty-four hour segments. When recipients read emails, we track engagement for each of these time periods. This way, you can identify when your recipients are most likely to read your emails, allowing you to send during these optimal time periods for maximum engagement.
 
 <Image border={false} src="https://files.readme.io/333a184a72cb3c92f997ede9d577cf55db833fbc7425021203868d8fd247fe4b-image.png" />
 
