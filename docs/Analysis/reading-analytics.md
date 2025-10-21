@@ -38,11 +38,13 @@ The geographical location distribution of email reading is provided, and the dat
 
 ### Link statistics
 
-provides daily distribution of links and clicks in the email and the link data with the top 10 clicking most.
+provide daily distribution of links and clicks in the email and the link data with the top 10 clicking most.
+
+<br />
 
 ### Device statistics
 
-provides statistics of opening devices, operating systems, wireless brands and browser distribution of the email
+provide statistics of opening devices, operating systems, wireless brands and browser distribution of the email
 
 ### Reading Time Statistics
 
