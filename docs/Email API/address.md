@@ -7,83 +7,280 @@ link:
 metadata:
   robots: index
 ---
-This section explains how to manage your contact email addresses, with a focus on the **Address List** feature for bulk sending and the **Subscription Management** feature for collecting leads directly from your website.
+# Address Management
 
-## Address Lists
+Manage your contact email addresses effectively with powerful tools for bulk campaigns and lead collection. Choose between **Address Lists** for marketing campaigns or **Subscription Management** for growing your subscriber base.
 
-The Address List function is designed for **bulk email sending** scenarios, such as marketing campaigns and newsletters. It supports variable replacement, allowing you to personalize email content for different recipients within the same batch
+<Tabs>
+  <Tab title="Address Lists">
+    
+The Address List function is your powerhouse for **bulk email sending** scenarios, including marketing campaigns, newsletters, and automated sequences. It supports advanced variable replacement for personalized messaging at scale.
 
-### File Upload Support
+## Key Features
 
-Supports uploading address files in **.CSV**, **.TXT**, **.XLS** and **.XLSX** formats for batch import.
+<Cards columns={3}>
+  <Card title="Bulk Import" icon="upload">
+    Upload thousands of contacts instantly with support for multiple file formats and automatic validation.
+  </Card>
+  
+  <Card title="Variable Replacement" icon="magic">
+    Personalize emails with custom variables like %name%, %company%, %location% for higher engagement.
+  </Card>
+  
+  <Card title="API Integration" icon="plug">
+    Seamlessly integrate with your existing systems using our robust API and unique list aliases.
+  </Card>
+</Cards>
 
-<Callout icon="👍" theme="okay">
-  **Recommended CSV format:** The first column should contain email addresses, followed by columns for custom variables (e.g., %name%, %company%).
-</Callout>
+## File Upload & Formats
 
-### List Alias
+<Accordion title="Supported File Formats" icon="file">
 
-Each Address List has a unique **Alias** used in API requests to specify the recipient list and must be **globally unique**.
+**Supported Formats:**
+- **.CSV** (Comma Separated Values) - Recommended
+- **.TXT** (Plain Text Files)
+- **.XLS** (Excel 97-2003)
+- **.XLSX** (Excel 2007+)
 
-<Callout icon="📘" theme="info">
-  **Example:** Set a list alias to `monthly_newsletter_us` and use it directly in your sending API calls.
-</Callout>
+**CSV Format Best Practices:**
+```
+email,name,company,location
+john@example.com,John Doe,Acme Corp,New York
+jane@example.com,Jane Smith,Tech Inc,California
+```
 
-### Upload Processing & Limitations
+**File Structure Tips:**
+- First column: Email addresses (required)
+- Additional columns: Custom variables for personalization
+- Header row: Use descriptive names that match your email templates
+- Encoding: Use UTF-8 to support international characters
 
-<br />
+</Accordion>
 
-**Automatic Processing:** During upload, the system automatically performs:
+<Accordion title="Upload Processing Details" icon="cog">
 
-<Callout icon="🚧" theme="warn">
-  **Deduplication:** Removes duplicate email addresses
+**Automatic Processing Features:**
 
-  **Format Validation:** Checks the basic validity of email address formats
-</Callout>
+✅ **Smart Deduplication**: Removes duplicate email addresses across uploads
+✅ **Format Validation**: Verifies email address syntax and domain validity  
+✅ **Data Sanitization**: Cleans up formatting issues and extra whitespace
+✅ **Progress Tracking**: Real-time upload status and error reporting
 
-**Capacity Limits:**
+**Processing Limits:**
+- Maximum file size: **100MB** per upload
+- Maximum contacts per list: **1 million addresses**
+- Concurrent uploads: Up to 3 files simultaneously
+- Processing time: ~1 minute per 10,000 contacts
 
-<Callout icon="❗️" theme="error">
-  File size for a single upload must not exceed **100MB**
+</Accordion>
 
-  A single Address List cannot contain more than **1 million** email addresses
-</Callout>
+## List Management
 
-**Permission Note:**
+<Cards columns={2}>
+  <Card title="Unique Aliases" icon="tag">
+    **Global Uniqueness Required**
+    
+    Each list needs a unique alias for API identification. Choose descriptive names like:
+    - `newsletter_subscribers_2024`
+    - `webinar_attendees_march`
+    - `customer_segment_premium`
+  </Card>
+  
+  <Card title="List Analytics" icon="chart-line">
+    **Track Performance**
+    
+    Monitor your list health with:
+    - Open rates by list segment
+    - Click-through rates
+    - Bounce and unsubscribe tracking
+    - Growth analytics over time
+  </Card>
+</Cards>
 
-<Callout icon="❗️" theme="error">
-  The Address List feature is only available to **paying customers**.
-</Callout>
+<Accordion title="Pricing & Access" icon="credit-card">
 
-## Subscription Management
+**Feature Availability:**
+- Address Lists are available to **paying customers only**
+- Free tier includes basic contact management for up to 100 contacts
+- Paid plans start with 10,000 contacts and scale based on your needs
 
-The Subscription Management feature allows you to quickly and easily build an email subscription system on your website to legally collect potential leads' contact information.
+**Upgrade Benefits:**
+- Advanced segmentation tools
+- Automated list hygiene
+- Priority customer support
+- Enhanced analytics dashboard
 
-### How It Works
+</Accordion>
 
-<br />
+  </Tab>
+  
+  <Tab title="Subscription Management">
+    
+Transform your website visitors into engaged subscribers with our easy-to-implement subscription system. Collect leads legally and efficiently while maintaining compliance with privacy regulations.
 
-**Step 1: Get the Code**
+## Implementation Process
 
-Aurora SendCloud provides you with a unique piece of **JavaScript code**
+<Cards columns={1}>
+  <Card title="1. Generate Your Code" icon="code">
+    **Get Custom JavaScript**
+    
+    Navigate to Subscription Management in your dashboard and generate a unique JavaScript snippet tailored to your target Address List. The code includes:
+    - Automatic form validation
+    - GDPR compliance features  
+    - Customizable styling options
+    - Success/error messaging
+  </Card>
+  
+  <Card title="2. Website Integration" icon="globe">
+    **Strategic Placement**
+    
+    Embed your subscription form in high-conversion areas:
+    - Homepage header or footer
+    - Blog post sidebars
+    - About page
+    - Pop-up modals (with timing controls)
+    - Thank you pages
+  </Card>
+  
+  <Card title="3. Visual Display" icon="eye">
+    **User Experience**
+    
+    The form automatically displays with:
+    - Clean, responsive design
+    - Mobile-optimized layout
+    - Accessible form controls
+    - Real-time validation feedback
+  </Card>
+  
+  <Card title="4. Data Collection" icon="database">
+    **Automated Processing**
+    
+    Collected emails are instantly:
+    - Added to your target Address List
+    - Validated for format and deliverability
+    - Timestamped for tracking
+    - Ready for your next campaign
+  </Card>
+</Cards>
 
-**Step 2: Embed on Your Website**
+## Advanced Features
 
-Copy and paste this code into the HTML of the webpage where you want the subscription form to appear (e.g., homepage footer, blog sidebar)
+<Columns layout="auto">
+  <Column>
+    
+### Customization Options
 
-**Step 3: Frontend Display**
+<Accordion title="Form Styling" icon="paint-brush">
 
-After embedding, an email input field will be displayed at the corresponding location on your website
+**Visual Customization:**
+- Custom colors and fonts
+- Branded button styles
+- Form field placeholders
+- Success message personalization
 
-**Step 4: Address Collection**
+**CSS Override Examples:**
+```css
+.sendcloud-form {
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 20px;
+}
 
-When a visitor enters their email address and submits the form, it is automatically collected into a specified **target Address List** within your Aurora SendCloud account
+.sendcloud-button {
+  background: #007bff;
+  color: white;
+  border-radius: 4px;
+}
+```
 
-### Typical Workflow Example
+</Accordion>
 
-1. Create a new Address List in Aurora SendCloud (e.g., name it "Website Subscribers")
-2. Navigate to the "Subscription" feature and generate a subscription code for the "Website Subscribers" list
-3. Embed the generated code on your website
-4. Start collecting subscriber emails and send marketing emails directly to the "Website Subscribers" list
+  </Column>
+  
+  <Column>
+    
+### Compliance & Privacy
 
-<br />
+<Accordion title="GDPR & Legal Compliance" icon="shield-alt">
+
+**Built-in Compliance:**
+- Double opt-in confirmation emails
+- Automatic unsubscribe links
+- Privacy policy integration
+- Consent tracking and storage
+
+**Legal Protection:**
+- Timestamped consent records
+- IP address logging
+- Audit trail maintenance
+- Data portability support
+
+</Accordion>
+
+  </Column>
+</Columns>
+
+## Implementation Example
+
+<Accordion title="Complete Setup Walkthrough" icon="play-circle">
+
+**Step-by-Step Implementation:**
+
+1. **Create Target List**
+   - Go to Address Lists → New List
+   - Name: "Website Subscribers 2024"
+   - Alias: `website_subscribers_2024`
+
+2. **Generate Subscription Code**
+   - Navigate to Subscription Management
+   - Select your target list
+   - Customize form appearance
+   - Copy generated JavaScript
+
+3. **Website Integration**
+   ```html
+   <!-- Place before closing </body> tag -->
+   <script>
+   (function() {
+     // Your unique SendCloud subscription code here
+     var script = document.createElement('script');
+     script.src = 'https://api.sendcloud.com/subscribe/abc123.js';
+     document.head.appendChild(script);
+   })();
+   </script>
+   ```
+
+4. **Test & Optimize**
+   - Submit test email addresses
+   - Verify list population
+   - Check email confirmations
+   - Monitor conversion rates
+
+</Accordion>
+
+<Accordion title="Best Practices for Lead Generation" icon="lightbulb">
+
+**Conversion Optimization Tips:**
+
+**Incentive Strategies:**
+- Offer exclusive content or discounts
+- Promise valuable weekly insights
+- Provide free resources or tools
+- Create urgency with limited-time offers
+
+**Form Placement:**
+- Above the fold on high-traffic pages
+- End of valuable blog posts
+- Exit-intent popups
+- Social media landing pages
+
+**Content Strategy:**
+- Clear value proposition
+- Minimal required fields
+- Strong call-to-action buttons
+- Social proof and testimonials
+
+</Accordion>
+
+  </Tab>
+</Tabs>
