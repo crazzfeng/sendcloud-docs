@@ -5,28 +5,32 @@ excerpt: >-
   marketing module is the tool you need to grow your business.
 deprecated: false
 hidden: false
+link:
+  new_tab: false
 metadata:
   robots: index
 ---
 # Email Marketing
 
-Email marketing is much more than merely sending promotional messages to a list of contacts. It is a permission-based email marketing strategy that entails sending to individuals who have specifically signed up to receive communications from your company.It is a relationship-building device that cultivates prospects and customers in the long term.
+Email marketing is much more than simply sending promotional messages to a list of contacts. It is a permission-based marketing strategy that involves sending emails to individuals who have specifically signed up to receive communications from your company. It serves as a relationship-building tool that cultivates prospects and customers over the long term.
 
 ## Benefits of Email Marketing
 
-* High ROI : As previously discussed, email marketing provides outstanding returns.
-* Direct Access to Your Audience : Your email list is something you own fully.
-* Personalization and Targeting : Splitting up your target audience into interest, behavior, and demographic groups.
-* Measurable Results : You will be able to measure every component of your email campaigns, including the number of opens and the number of clicks in real time.
+* **High ROI**: Email marketing provides outstanding returns on investment.
+* **Direct Access to Your Audience**: Your email list is an asset you own completely.
+* **Personalization and Targeting**: Segment your target audience based on interests, behavior, and demographics.
+* **Measurable Results**: Track every component of your email campaigns, including opens and clicks, in real time.
 
 ## Guide to Start Email Marketing
 
-1. Build Your audience list
+1. **Build Your Audience List**
 
-   You can mange the audience fields,tags and segements.Learn how to use it in [Audience](doc:audience) 
-2. Create your email sender
+   You can manage audience fields, tags, and segments. Learn how to use it in [Audience](doc:audience).
 
-   An email sender will tell the recipients who send the emails to them.Learn how to use it in [Senders](doc:senders).
-3. Create a email campaign
+2. **Create Your Email Sender**
 
-   You can schedule anytime you want to send an email Campaign ,no mattter it's a regular one or A/B Test campaign. Learn how to use in [Campaigns](doc:campaigns).
+   An email sender identifies who is sending the emails to recipients. Learn how to set this up in [Senders](doc:senders).
+
+3. **Create an Email Campaign**
+
+   You can schedule email campaigns to send anytime you want, whether it's a regular campaign or an A/B test campaign. Learn how to use this feature in [Campaigns](doc:campaigns).
