@@ -10,56 +10,57 @@ link:
 metadata:
   robots: index
 ---
-# Audience Management
-
-When you start marketing, you may already have an audience. You can manage them effectively using our built-in CRM features.
-
 ## Adding Contacts to Your Audience List
 
 There are two ways to add contacts to your audience:
 
 ### Add Individual Contacts
+
 You can add contacts one by one by filling out a contact form. The **Email field is required**, while all other fields are optional.
 
 ### Import Multiple Contacts
+
 You have two import options:
 
 **Upload CSV File**
-- Email is a required field in your CSV file
-- Each column represents a different contact field
-- Ensure proper formatting for successful import
+
+* Email is a required field in your CSV file
+* Each column represents a different contact field
+* Ensure proper formatting for successful import
 
 **Copy and Paste**
-- Email is required for each contact
-- Separate fields with commas (,)
-- Place each contact on a new line
+
+* Email is required for each contact
+* Separate fields with commas (,)
+* Place each contact on a new line
 
 ### Handling Duplicate Contacts
 
 When importing contacts that already exist in your list, you can choose how to handle duplicates:
 
-- **Update**: Automatically replace existing contact information with new data from your import
-- **Skip**: Keep existing contact information unchanged and skip duplicate entries
+* **Update**: Automatically replace existing contact information with new data from your import
+* **Skip**: Keep existing contact information unchanged and skip duplicate entries
 
 ## Managing Your Audience
 
 ### Fields
 
-Fields help you identify and categorize your subscribers' characteristics. 
+Fields help you identify and categorize your subscribers' characteristics.
 
 **Example:**
 Anna's profile might include:
-- **Email**: Anna@example.com
-- **Name**: Anna  
-- **Gender**: Female
-- **Birthday**: 03/01
+
+* **Email**: [Anna@example.com](mailto:Anna@example.com)
+* **Name**: Anna
+* **Gender**: Female
+* **Birthday**: 03/01
 
 #### Default Contact Fields
 
 Aurora SendCloud provides these default fields:
 
 | Field Name | Field Type |
-|------------|------------|
+| ---------- | ---------- |
 | Email      | Email      |
 | Name       | Name       |
 | Phone      | Phone      |
@@ -68,11 +69,12 @@ Aurora SendCloud provides these default fields:
 | Age        | Number     |
 
 **Important Notes:**
-- Email, Name, and Phone fields cannot be deleted or hidden
-- You can add or remove custom fields as needed
-- When creating new fields, define the attribute name and select the appropriate type
-- Supported field types: Text, Number, Date, Birthday, Dropdown
-- Maximum of **50 fields** per list
+
+* Email, Name, and Phone fields cannot be deleted or hidden
+* You can add or remove custom fields as needed
+* When creating new fields, define the attribute name and select the appropriate type
+* Supported field types: Text, Number, Date, Birthday, Dropdown
+* Maximum of **50 fields** per list
 
 **Customizing Field Order**
 To adjust the display order of contact fields, go to **Manage → Fields** and drag fields to reorder them.
@@ -82,10 +84,11 @@ To adjust the display order of contact fields, go to **Manage → Fields** and d
 Tags are labels you can assign to categorize contacts into groups. They're composed of text strings and help you organize your audience for targeted campaigns.
 
 **Key Features:**
-- Create tags independently and apply them as needed
-- Tag contacts individually or in bulk
-- Filter contacts by tags
-- **Send targeted emails to tagged contacts**
+
+* Create tags independently and apply them as needed
+* Tag contacts individually or in bulk
+* Filter contacts by tags
+* **Send targeted emails to tagged contacts**
 
 #### Example Use Case
 
@@ -93,8 +96,8 @@ Imagine you run a food-related website:
 
 1. **Create tags**: "Desserts", "Japanese Cuisine", "Chinese Cuisine"
 2. **Tag your contacts**:
-   - Anna: "Desserts" + "Japanese Cuisine"
-   - Emma: "Desserts" + "Chinese Cuisine"
+   * Anna: "Desserts" + "Japanese Cuisine"
+   * Emma: "Desserts" + "Chinese Cuisine"
 3. **Send targeted campaigns**: When promoting new desserts, select the "Desserts" tag to reach all dessert enthusiasts
 
 ### Segments
@@ -105,8 +108,8 @@ Segments are dynamic contact groups created by filtering your audience based on 
 
 1. **Name your segment**
 2. **Choose matching logic**:
-   - **All conditions**: Contacts must meet every condition
-   - **Any condition**: Contacts need to meet at least one condition
+   * **All conditions**: Contacts must meet every condition
+   * **Any condition**: Contacts need to meet at least one condition
 3. **Set up to 10 conditions** based on contact properties and tags
 
 #### Example Use Case
@@ -116,14 +119,15 @@ To conduct a user survey targeting women aged 25-30:
 1. Create a segment named "Women 25-30 User Survey"
 2. Set matching condition to "All conditions"
 3. Add conditions:
-   - Age ≥ 25
-   - Age ≤ 30  
-   - Gender = Female
+   * Age ≥ 25
+   * Age ≤ 30
+   * Gender = Female
 4. Preview filtered contacts and save
 5. Send campaigns directly to this segment
 
 **Benefits of Segments:**
-- More precise targeting than tags alone
-- Automatic updates as contact data changes
-- Enable sophisticated marketing automation
-- Support complex filtering logic
+
+* More precise targeting than tags alone
+* Automatic updates as contact data changes
+* Enable sophisticated marketing automation
+* Support complex filtering logic
