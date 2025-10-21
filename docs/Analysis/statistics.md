@@ -187,7 +187,7 @@ Analyze your email performance using these filtering dimensions:
 
 | **Dimension**        | **Description**                                                                          |
 | :------------------- | :--------------------------------------------------------------------------------------- |
-| **Email Type**       | Filter by Trigger emails (transactional) or Batch emails (marketing campaigns)           |
+| **Email Type**       | Filter by Trigger emails (transactional) or Batch emails (marketing)                     |
 | **API_USER**         | View statistics for a specific API_USER                                                  |
 | **Label**            | Filter by custom labels assigned to your email sends                                     |
 | **Campaign**         | Analyze performance of specific email campaigns                                          |
