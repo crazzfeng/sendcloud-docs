@@ -52,7 +52,7 @@ To enable this feature:
   **Caution**: To avoid locking yourself out, add all necessary IP addresses and confirm they are correct before turning on the main switch.
 </Callout>
 
-## Viewing Request IP Logs and Blocking History
+## Request IP Logs and Blocking History
 
 Aurora SendCloud records API request logs for the past 30 days to help you manage and troubleshoot issues.
 
@@ -76,7 +76,7 @@ If your sending service receives a "Request Rejected" error, verify that the sen
 
 **Principle of Least Privilege**
 
- Only add the minimum number of IP addresses necessary for your business to the allowlist to minimize security risks
+Only add the minimum number of IP addresses necessary for your business to the allowlist to minimize security risks
 
 **Regular Review**
 
@@ -84,4 +84,4 @@ Regularly review the request IP history and interception log, and promptly remov
 
 **Pre-configuration**
 
- Before enabling this feature, complete the allowlist configuration and testing to ensure business continuity
+Before enabling this feature, complete the allowlist configuration and testing to ensure business continuity
