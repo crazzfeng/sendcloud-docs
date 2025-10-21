@@ -95,7 +95,6 @@ Enable tracking to monitor email performance:
 * Click-through tracking
 * Unsubscribe monitoring
 * Spam complaint tracking
-* Real-time delivery status
 
 **Privacy Considerations:**
 
@@ -226,21 +225,21 @@ The API_KEY functions as the "password" for your API_USER and requires careful h
 ### Security Framework
 
 <Cards columns="3">
-  <Card title="Credential Protection" icon="shield-alt">
+  <Card title="Credential Protection">
     • Secure storage practices
     • Regular key rotation
     • Access logging and monitoring
     • Immediate compromise response
   </Card>
 
-  <Card title="Network Security" icon="network-wired">
+  <Card title="Network Security">
     • HTTPS/TLS encryption required
     • IP allowlisting available
     • Rate limiting protection
     • DDoS mitigation
   </Card>
 
-  <Card title="Compliance Ready" icon="check-circle">
+  <Card title="Compliance Ready">
     • GDPR compliance features
     • CAN-SPAM compliance tools
     • Audit trail maintenance
@@ -258,12 +257,11 @@ The API_KEY functions as the "password" for your API_USER and requires careful h
 ## Next Steps
 
 <Cards columns="2">
-
-  <Card title="API Integration Guide" href="/api/integration-guide" icon="code">
+  <Card title="API Integration Guide" href="https://www.aurorasendcloud.com/docs/API/index/">
     Learn how to integrate your API\_USER with your application
   </Card>
 
-  <Card title="SMTP Setup Guide" href="/smtp/configuration" icon="server">
+  <Card title="SMTP Setup Guide" href="https://www.aurorasendcloud.com/docs/SendCloudSMTP/SMTPAccess/">
     Configure SMTP sending using your API\_USER credentials
   </Card>
 </Cards>
