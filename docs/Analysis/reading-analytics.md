@@ -13,6 +13,10 @@ metadata:
 
 Unlock powerful insights into your audience engagement with comprehensive email reading analytics. Monitor critical metrics such as reading time, click rates, and geographical distribution to optimize your email campaigns and drive better results.
 
+<Callout icon="📘" theme="info">
+  Open, Click, Unsubscribe statistics can only be counted after you have opened the tracking switch.
+</Callout>
+
 ## Regional Performance Analysis
 
 Understand your global reach with detailed geographical insights:
