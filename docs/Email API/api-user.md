@@ -257,40 +257,9 @@ The API_KEY functions as the "password" for your API_USER and requires careful h
 * **Audit Trails:** Keep records of email sending activities
 * **Geographic Restrictions:** Understand regional sending limitations
 
-## Advanced Configuration
-
-### Multi-Environment Setup
-
-For production applications, consider this API_USER structure:
-
-```
-Production Environment:
-├── prod-transactional-api-user (Trigger Type)
-├── prod-marketing-api-user (Batch Type)
-
-Staging Environment:
-├── staging-transactional-api-user (Trigger Type)
-├── staging-marketing-api-user (Batch Type)
-
-Development Environment:
-├── dev-api-user (Trigger Type for testing)
-```
-
-### Monitoring and Alerting
-
-Set up monitoring for:
-
-* API_KEY usage patterns
-* Authentication failure rates
-* Sending volume anomalies
-* Domain reputation changes
-
 ## Next Steps
 
 <Cards columns="2">
-  <Card title="Create Your First API_USER" href="/getting-started/create-api-user" icon="plus-circle">
-    Follow our step-by-step guide to create and configure your first API\_USER
-  </Card>
 
   <Card title="API Integration Guide" href="/api/integration-guide" icon="code">
     Learn how to integrate your API\_USER with your application
@@ -299,10 +268,7 @@ Set up monitoring for:
   <Card title="SMTP Setup Guide" href="/smtp/configuration" icon="server">
     Configure SMTP sending using your API\_USER credentials
   </Card>
-
-  <Card title="Security Best Practices" href="/security/best-practices" icon="lock">
-    Comprehensive security guidelines for production deployments
-  </Card>
+  
 </Cards>
 
 ***
