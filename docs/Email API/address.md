@@ -1,5 +1,8 @@
 ---
 title: Address
+excerpt: >-
+  Manage email lists for bulk sending using the API and collect email addresses
+  of potential users on your website using the subscription feature.
 deprecated: false
 hidden: false
 link:
