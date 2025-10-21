@@ -10,7 +10,7 @@ link:
 metadata:
   robots: index
 ---
-# Inbox Insight
+## What is Inbox Insight ?
 
 **Eliminate email delivery uncertainty with real-time inbox placement analytics across Gmail, Outlook,  and other providers.**
 
