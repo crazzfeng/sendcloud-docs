@@ -15,7 +15,7 @@ Unlock powerful insights into your audience engagement with comprehensive email 
 
 <br />
 
-## Powerful Filtering Options
+## Filtering Options
 
 Dive deep into your email performance data with comprehensive filtering capabilities:
 
