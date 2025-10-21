@@ -73,7 +73,7 @@ This comprehensive feature provides daily distribution analysis of links and cli
 
 <br />
 
-### Device & Platform Analytics
+### Device Performance Analytics
 
 Optimize your email design for maximum compatibility and engagement:
 
@@ -86,11 +86,11 @@ Optimize your email design for maximum compatibility and engagement:
     Understand which OS versions your audience uses to ensure compatibility and optimal rendering.
   </Tab>
 
-  <Tab title="Email Clients">
-    See which email clients (Gmail, Outlook, Apple Mail, etc.) your audience prefers for better template optimization.
+  <Tab title="Mobile Brands">
+    Sh email clients (Gmail, Outlook, Apple Mail, etc.) your audience prefers for better template optimization.
   </Tab>
 
-  <Tab title="Wireless Carriers">
+  <Tab title="Browsers">
     Analyze mobile carrier data to understand connectivity patterns and optimize for mobile users.
   </Tab>
 </Tabs>
