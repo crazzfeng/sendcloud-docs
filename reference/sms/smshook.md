@@ -278,7 +278,7 @@ SMSHook is Aurora SendCloud's webhook mechanism that provides real-time notifica
     | `event`        | string | Always "Delivered"            |
     | `eventType`    | int    | Always 20                     |
     | `message`      | string | Delivery confirmation message |
-    | `smsId`        | string | Individual SMS message ID     |
+    | `smsId`        | string | Deliver SMS message ID        |
     | `phone`        | string | Recipient phone number        |
     | `userId`       | int    | Your user ID                  |
     | `smsUser`      | string | SMS user identifier           |
@@ -302,7 +302,6 @@ SMSHook is Aurora SendCloud's webhook mechanism that provides real-time notifica
       "templateId": 29999,
       "smsUser": "APP",
       "smsId": "1652117371408_19999_376_4631_qrwnpq$13888888888",
-      "templateId": 29999,
       "phone": "13888888888",
       "outboundTime": "2022-05-10 01:29:31",
       "receiptTime": "2022-05-10 01:29:50",
@@ -325,12 +324,19 @@ SMSHook is Aurora SendCloud's webhook mechanism that provides real-time notifica
     | :-------------- | :----- | :--------------------------- |
     | `event`         | string | Always "Suppressed"          |
     | `eventType`     | int    | Always 4                     |
+    | `smsId`         | string | Individual SMS message ID    |
     | `phone`         | string | Recipient phone number       |
+    | `userId`        | int    | Your user ID                 |
+    | `smsUser`       | string | SMS user identifier          |
+    | `templateId`    | int    | Template used for the SMS    |
     | `message`       | string | Failure reason               |
     | `encodeMessage` | string | Base64-encoded error message |
     | `statusCode`    | int    | Error status code            |
-    | `receiptTime`   | string | When failure was detected    |
-    | `timestamp`  | long      | Event timestamp              |
+    | `outboundTime`  | string | When message left SendCloud  |
+    | `timestamp`     | long   | Event timestamp              |
+    | `token`         | string | Random 50-character string   |
+    | `signature`     | string | Verification signature       |
+    | `customArgs`    | object | Your custom parameters       |
 
     ### Common Status Codes
 
@@ -344,14 +350,20 @@ SMSHook is Aurora SendCloud's webhook mechanism that provides real-time notifica
     {
       "event": "Suppressed",
       "eventType": 4,
+      "userId": 19999,
+      "templateId": 29999,
+      "smsUser": "APP",
       "message": "REJECTED(其他)",
       "encodeMessage": "UkVKRUNURCjlhbbku5Yp",
       "statusCode": 490,
       "smsId": "1652146271665_19999_8755_3883_37059m$13888888888",
       "phone": "13888888888",
       "outboundTime": "2022-05-10 09:31:12",
-      "receiptTime": "2022-05-10 09:31:17",
-      "timestamp": 1652146277000
+      "timestamp": 1652146277000,
+      "token": "4mRG9lGhVb3jZhOMnksFPBtX1OLDMNZMfXTFHkFd9eybfdRiHM",
+      "signature": "9ca96fa072bfa048969aa0cb7bf7baf64100234640a1b9793cca1a419afb9cb8",
+      "customArgs": {}
+
     }
     ```
   </Tab>
@@ -366,11 +378,20 @@ SMSHook is Aurora SendCloud's webhook mechanism that provides real-time notifica
     | `event`         | string | Always "Failed"              |
     | `eventType`     | int    | Always 5                     |
     | `phone`         | string | Recipient phone number       |
+    | `smsId`         | string | Fail SMS message ID          |
+    | `userId`        | int    | Your user ID                 |
+    | `smsUser`       | string | SMS user identifier          |
+    | `templateId`    | int    | Template used for the SMS    |
     | `message`       | string | Failure reason               |
     | `encodeMessage` | string | Base64-encoded error message |
     | `statusCode`    | int    | Error status code            |
     | `receiptTime`   | string | When failure was detected    |
+    | `outboundTime`  | string | When message left SendCloud  |
+    | `msgCount`      | int    | Number of SMS segments       |
     | `timestamp`     | long   | Event timestamp              |
+    | `token`         | string | Random 50-character string   |
+    | `signature`     | string | Verification signature       |
+    | `customArgs`    | object | Your custom parameters       |
 
     ### Common Status Codes
 
@@ -383,6 +404,9 @@ SMSHook is Aurora SendCloud's webhook mechanism that provides real-time notifica
     {
       "event": "Failed",
       "eventType": 5,
+      "userId": 19999,
+      "templateId": 29999,
+      "smsUser": "APP",
       "message": "REJECTED(其他)",
       "encodeMessage": "UkVKRUNURCjlhbbku5Yp",
       "statusCode": 590,
@@ -390,7 +414,11 @@ SMSHook is Aurora SendCloud's webhook mechanism that provides real-time notifica
       "phone": "13888888888",
       "outboundTime": "2022-05-10 09:31:12",
       "receiptTime": "2022-05-10 09:31:17",
-      "timestamp": 1652146277000
+      "msgCount": 1,
+      "timestamp": 1652146277000,
+      "token": "4mRG9lGhVb3jZhOMnksFPBtX1OLDMNZMfXTFHkFd9eybfdRiHM",
+      "signature": "9ca96fa072bfa048969aa0cb7bf7baf64100234640a1b9793cca1a419afb9cb8",
+      "customArgs": {}
     }
     ```
   </Tab>
@@ -404,10 +432,14 @@ SMSHook is Aurora SendCloud's webhook mechanism that provides real-time notifica
     | :-------------- | :----- | :-------------------------------------------------- |
     | `event`         | string | Always "Template Verify"                            |
     | `eventType`     | int    | Always 8                                            |
+    | `userId`        | int    | Your user ID                                        |
     | `templateId`    | int    | Template ID                                         |
     | `name`          | string | Template name                                       |
     | `verfiyResult`  | int    | Review result: 0=reviewing, 1=approved, -1=rejected |
     | `verfiyComment` | string | Review comments (if rejected)                       |
+    | `timestamp`     | long   | Event timestamp                                     |
+    | `token`         | string | Random 50-character string                          |
+    | `signature`     | string | Verification signature                              |
 
     ### Example Payload
 
