@@ -69,8 +69,6 @@ In Aurora SendCloud, all sender addresses must end with your verified sending do
 * `hello@yourdomain.com` (for general communication)
 * `firstname@yourdomain.com` (for personal outreach)
 
-**Important:** I
-
 ## Best Practices for Sender Identity
 
 ### Consistency is Key
