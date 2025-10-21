@@ -5,15 +5,17 @@ excerpt: >-
   plays a crucial role in deliverability and brand recognition. 
 deprecated: false
 hidden: false
+link:
+  new_tab: false
 metadata:
   robots: index
 ---
 ## What constitutes an email sender?
 
-* **From Name**
+* **From Name**  
   The display name that appears in the recipient's inbox, which can be a person's name, a company name, or a department.
-* **From Address**
-  The actual, unique email address where the message is sent from, such as [john.doe@example.com](mailto:john.doe@example.com)
+* **From Address**  
+  The actual, unique email address from which the message is sent, such as [john.doe@example.com](mailto:john.doe@example.com)
 
 Together, they form the sender's identity, with the name providing a quick, recognizable way to see who sent the email and the address confirming its authenticity. For example, an email might show as "John Doe" (from name) [john.doe@example.com](mailto:john.doe@example.com) (from address).
 
@@ -25,10 +27,10 @@ Ensure you have at least one verified sending domain in Aurora SendCloud. If you
 
 ### Step 2: Customize Your From Name
 
-To make the sender immediately recognizable and to create a sense of trust with the recipient.
+Customize your from name to make the sender immediately recognizable and create a sense of trust with the recipient.
 
 ### Step 3: Customize Your From Address
 
-To provide the technical routing for the email and to assure the recipient of its legitimacy. A custom domain is often preferred for branding and to increase the chance of emails landing in the inbox rather than spam.
+Set up your from address to provide the technical routing for the email and assure the recipient of its legitimacy. A custom domain is often preferred for branding and to increase the chance of emails landing in the inbox rather than spam.
 
-In Aurora SendCloud the sender's from address must be ended with the sending domain.like @domain.com.
+In Aurora SendCloud, the sender's from address must end with the sending domain, like @domain.com.
