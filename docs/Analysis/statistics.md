@@ -197,67 +197,11 @@ Analyze your email performance using these filtering dimensions:
 
 ## Grouping Options
 
-Organize your email statistics data by selecting the most appropriate grouping method for your analysis needs. Each grouping option provides different insights into your email performance patterns.
+Organize your email statistics data by selecting one of these grouping methods:
 
-<Cards columns={2}>
-  <Card title="Group by Day" icon="calendar-day">
-    **Default Option**
-    
-    Get detailed daily breakdowns of your email performance. Perfect for:
-    - Monitoring recent campaign performance
-    - Identifying daily sending patterns
-    - Tracking immediate response to email sends
-    - Analyzing short-term trends and fluctuations
-    
-    *Best for: Daily monitoring and immediate performance insights*
-  </Card>
+* **Group by Day** _(default)_ - Daily performance breakdown
+* **Group by Week** - Weekly performance trends
+* **Group by Month** - Monthly performance overview
+* **Group by Receiving Domain** - Performance by email provider
 
-  <Card title="Group by Week" icon="calendar-week">
-    **Weekly Trends**
-    
-    View performance aggregated by week to understand broader patterns. Ideal for:
-    - Identifying weekly performance cycles
-    - Comparing week-over-week improvements
-    - Smoothing out daily variations
-    - Planning weekly email schedules
-    
-    *Best for: Medium-term trend analysis and weekly reporting*
-  </Card>
-
-  <Card title="Group by Month" icon="calendar-alt">
-    **Monthly Overview**
-    
-    Analyze long-term performance with monthly aggregations. Great for:
-    - Executive reporting and high-level insights
-    - Year-over-year performance comparisons
-    - Seasonal trend identification
-    - Budget and resource planning
-    
-    *Best for: Strategic planning and long-term performance review*
-  </Card>
-
-  <Card title="Group by Receiving Domain" icon="at">
-    **Provider Analysis**
-    
-    Break down performance by email service providers. Essential for:
-    - Understanding deliverability across different providers
-    - Identifying provider-specific issues
-    - Optimizing content for different email clients
-    - Troubleshooting delivery problems
-    
-    *Best for: Deliverability optimization and provider-specific insights*
-  </Card>
-</Cards>
-
-### Choosing the Right Grouping
-
-Select your grouping method based on your specific analysis goals:
-
-- **📊 Real-time Monitoring**: Use daily grouping to track immediate campaign performance
-- **📈 Trend Analysis**: Choose weekly grouping to identify patterns and cycles  
-- **📋 Executive Reporting**: Select monthly grouping for high-level strategic insights
-- **🔧 Technical Troubleshooting**: Use domain grouping to diagnose deliverability issues
-
-<Callout icon="💡" theme="success">
-  **Pro Tip**: You can switch between different grouping options within the same report to gain multiple perspectives on your email performance data.
-</Callout>
+Choose the grouping that best matches your reporting needs and analysis goals.
