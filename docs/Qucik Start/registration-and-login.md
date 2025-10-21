@@ -1,5 +1,8 @@
 ---
 title: 'Sign Up and Login '
+excerpt: >-
+  Welcome to Aurora SendCloud! This guide will walk you through creating your
+  account and accessing our email delivery platform.
 deprecated: false
 hidden: false
 link:
@@ -26,12 +29,6 @@ metadata:
     - SMTP service
   robots: index
 ---
-<br />
-
-# Getting Started with Aurora SendCloud
-
-Welcome to Aurora SendCloud! This guide will walk you through creating your account and accessing our email delivery platform.
-
 ## Quick Start
 
 New to Aurora SendCloud? Get started in just a few minutes:
@@ -48,9 +45,9 @@ New to Aurora SendCloud? Get started in just a few minutes:
 
 ***
 
-# Create Your Account
+## Create Your Account
 
-## Sign Up Options
+### Sign Up Options
 
 Choose the method that works best for you:
 
@@ -91,9 +88,9 @@ Choose the method that works best for you:
 
 ***
 
-# Log In to Your Account
+## Log In to Your Account
 
-## Sign In Methods
+### Sign In Methods
 
 <Accordion title="Email/Username Login" icon="envelope">
   1. Go to the [Aurora SendCloud login page](https://www.aurorasendcloud.com/web/#/login)
@@ -117,7 +114,7 @@ Choose the method that works best for you:
 
 ***
 
-# Forgot Your Password?
+## Forgot Your Password?
 
 Don't worry! Resetting your password is simple:
 
