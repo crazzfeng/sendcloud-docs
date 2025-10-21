@@ -9,7 +9,7 @@ metadata:
   description: Drive engagement with ​​subscriber behavior analysis​
   robots: index
 ---
-# Email Reading Analytics
+## What is Email Reading Analytics
 
 Unlock powerful insights into your audience engagement with comprehensive email reading analytics. Monitor critical metrics such as reading time, click rates, and geographical distribution to optimize your email campaigns and drive better results.
 
