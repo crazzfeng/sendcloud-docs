@@ -35,12 +35,12 @@ An **API_USER** is a specialized credential system designed exclusively for prog
 
 When setting up an API_USER, you'll configure three essential properties that determine its capabilities and behavior.
 
-### 1. Email Type Classification
+### 1. Email Type
 
 Choose the appropriate type based on your sending needs:
 
 <Cards columns="2">
-  <Card title="Trigger Type" icon="zap">
+  <Card title="Trigger Type">
     **Best for:** Transactional emails
 
     • Password resets
@@ -51,7 +51,7 @@ Choose the appropriate type based on your sending needs:
     **Restrictions:** Cannot send marketing emails
   </Card>
 
-  <Card title="Batch Type" icon="mail-bulk">
+  <Card title="Batch Type">
     **Best for:** Marketing campaigns
 
     • Newsletters
