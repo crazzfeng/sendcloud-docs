@@ -11,59 +11,123 @@ metadata:
   robots: index
 ---
 # Inbox Insight
+**Take the guesswork out of email delivery with comprehensive inbox placement insights across Gmail, Outlook, and more.**
 
-Get comprehensive insights and analysis on email delivery data to help you optimize your sending strategy and enhance the effectiveness of your global business operations.
+---
 
-<br />
+## Why Inbox Insight?
 
-Are your emails actually reaching the inbox?
+<Cards columns={3}>
+  <Card title="Delivery Transparency" icon="eye">
+    See exactly where your emails land - inbox, spam, or promotions folder - with detailed distribution analytics across all major email providers.
+  </Card>
+  <Card title="Domain Health Monitoring" icon="shield-alt">
+    Stay ahead of deliverability issues with real-time monitoring of your sending domain's reputation across anti-spam organizations.
+  </Card>
+  <Card title="Intelligent Automation" icon="brain">
+    Automated domain warm-up with AI-powered content generation and dynamic sending rhythm optimization.
+  </Card>
+</Cards>
 
-Is your sending domain healthy?
+---
 
-How can you improve your sender reputation, increase inbox placement, and reduce spam?
+## Solve Critical Email Challenges
 
-Inbox Insight provides senders with comprehensive insights and analytics into email deliverability, answering these critical questions and helping you optimize your strategies to drive global business growth.
+<Accordion title="Email Deliverability Issues" icon="exclamation-triangle">
 
-• Provides distribution ratios of emails across inbox, spam folder, and other categories, with support for viewing data by receiving domain.
+**The Problem:** Your carefully crafted emails are ending up in spam folders instead of reaching your customers' inboxes.
 
-• Monitors sending domains within anti-spam organizations for convenient and efficient visibility into your sending domain health.
+**The Solution:** Inbox Insight provides real-time visibility into email placement across different folders and receiving domains, helping you identify and resolve deliverability issues before they impact your business.
 
-• Intelligently warms up domains and content to improve reputation, increase inbox placement, and reduce spam filtering.
+</Accordion>
 
-<br />
+<Accordion title="Domain Reputation Blind Spots" icon="question-circle">
 
-<br />
+**The Problem:** Domain blacklisting can happen without warning, causing sudden drops in email delivery rates that are difficult to diagnose.
 
-A three-in-one tool designed specifically for email sending scenarios including Gmail and Outlook, featuring "delivery data + domain health + intelligent warm-up", embedded in Aurora SendCloud and ready to use out of the box.
+**The Solution:** Continuous monitoring of mainstream anti-spam organizations ensures you're immediately alerted to any reputation issues, allowing for quick remediation.
 
-## Three Major Email Business Challenges:
-- Emails mistakenly filtered to spam folders
-- Domain health status lacks transparency - domains may be blocked by anti-spam organizations without your knowledge
-- New domain reputation requires a difficult cold start with long warm-up cycles, frequent errors, and inability to quantify effectiveness (manual warm-up is inefficient and ineffective)
+</Accordion>
 
-## Three Core Capabilities:
-**Data Insight:** Visual representation of email folder distribution  
-**Health Monitoring:** Real-time domain security alerts  
-**Intelligent Warm-up:** Automated domain reputation enhancement  
+<Accordion title="Ineffective Domain Warm-up" icon="thermometer-half">
 
-### Data Insights:
-- Email classification distribution (inbox/spam/other)
-- Data segmentation by receiving domain (independent analysis for Gmail/Outlook, etc.)
-- Historical trend comparison and abnormal fluctuation identification
+**The Problem:** New domains require lengthy manual warm-up processes that are time-consuming, error-prone, and difficult to measure for effectiveness.
 
-### Health Monitoring
-- Real-time monitoring of mainstream anti-spam organization status
-- Domain blacklist record checking
+**The Solution:** Fully automated warm-up with intelligent content generation, dynamic sending patterns, and simulated user interactions that genuinely improve sender reputation.
 
-### Intelligent Warm-up
-- Fully automated warm-up process → automatic generation of personalized warm-up content → dynamic sending rhythm adjustment
-- Interactive simulation technology → automatic spam folder removal → simulation of open/mark important/reply behaviors → genuine improvement of email interaction rates
+</Accordion>
 
-## Operation Guide (How to Use)
-**Three-step simplified setup:**
+---
 
-1. Configure your sending domain name
-2. Activate the Inbox Insight service on Aurora SendCloud
-3. Navigate to the 'Data Analysis' menu to view reports
+## Core Features
 
-**Zero learning curve:** Effective immediately upon activation with fully automated warm-up execution
+<Tabs>
+  <Tab title="📊 Data Insights">
+### Comprehensive Email Analytics
+
+• **Folder Distribution Analysis:** Visual breakdown of email placement across inbox, spam, promotions, and other categories
+
+• **Domain-Specific Reporting:** Independent analysis for Gmail, Outlook, Yahoo, and other major providers
+
+• **Trend Analysis:** Historical data comparison with anomaly detection to identify delivery pattern changes
+
+• **Performance Metrics:** Detailed statistics on open rates, click-through rates, and engagement by placement location
+  </Tab>
+  <Tab title="🛡️ Health Monitoring">
+### Real-Time Domain Protection
+
+• **Blacklist Monitoring:** Continuous scanning across major anti-spam databases and reputation services
+
+• **Reputation Scoring:** Real-time sender reputation tracking with actionable insights
+
+• **Alert System:** Instant notifications when domain health issues are detected
+
+• **Compliance Tracking:** Monitor adherence to email authentication standards (SPF, DKIM, DMARC)
+  </Tab>
+  <Tab title="🚀 Intelligent Warm-up">
+### Automated Reputation Building
+
+• **Smart Content Generation:** AI-powered creation of personalized, engaging warm-up emails
+
+• **Dynamic Sending Patterns:** Adaptive scheduling that mimics natural sending behavior
+
+• **Interactive Simulation:** Automated engagement activities including opens, replies, and folder management
+
+• **Progress Tracking:** Quantifiable metrics showing warm-up effectiveness and reputation improvement
+  </Tab>
+</Tabs>
+
+---
+
+## Getting Started
+
+<Columns layout="auto">
+  <Column>
+### Quick Setup Process
+
+1. **Domain Configuration**  
+   Add your sending domain to the Aurora SendCloud platform
+   
+2. **Service Activation**  
+   Enable Inbox Insight with a single click - no complex setup required
+   
+3. **Start Monitoring**  
+   Access your comprehensive delivery analytics through the Data Analysis dashboard
+  </Column>
+  <Column>
+### Key Benefits
+
+✅ **Zero Learning Curve** - Intuitive interface with immediate insights  
+✅ **Automated Operation** - Set it once, runs continuously in the background  
+✅ **Real-Time Data** - Live updates on delivery performance and domain health  
+✅ **Actionable Insights** - Clear recommendations for improving deliverability
+  </Column>
+</Columns>
+
+---
+
+## Ready to Optimize Your Email Delivery?
+
+Transform your email marketing effectiveness with data-driven insights that ensure your messages reach the right inboxes at the right time. Inbox Insight integrates seamlessly with Aurora SendCloud, providing enterprise-grade email intelligence without the complexity.
+
+**Start improving your inbox placement today.**
