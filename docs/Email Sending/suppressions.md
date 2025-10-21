@@ -10,8 +10,6 @@ link:
 metadata:
   robots: index
 ---
-# Suppressions
-
 The system automatically manages four core lists: Complaint List, Block List, Bounce List, and Unsubscribe List.
 
 ## Complaint List
