@@ -10,11 +10,11 @@ link:
 metadata:
   robots: index
 ---
-## What is Inbox Insight ?
+## What is Inbox Insight?
 
-**Eliminate email delivery uncertainty with real-time inbox placement analytics across Gmail, Outlook,  and other providers.**
+**Eliminate email delivery uncertainty with real-time inbox placement analytics across Gmail, Outlook, and other providers.**
 
-Stop wondering where your emails land. Inbox Insight provides instant visibility into your email delivery performance, automated domain reputation management, and intelligent warm-up processes—all integrated seamlessly with Aurora SendCloud.
+Stop wondering where your emails land. Inbox Insight provides instant visibility into your email delivery performance, automated domain reputation management, and intelligent warm-up processes—all seamlessly integrated with Aurora SendCloud.
 
 <br />
 
@@ -41,7 +41,7 @@ Stop wondering where your emails land. Inbox Insight provides instant visibility
 ## The Email Delivery Problems We Solve
 
 <Accordion title="📍 Where Are My Emails Actually Going?" icon="location-dot">
-  **The Challenge:** You send thousands of emails but have no visibility into whether they're reaching inboxes, getting filtered to promotions, or landing in spam folders.
+  **The Challenge:** You send thousands of emails but have no visibility into whether they're reaching inboxes, being filtered to promotions, or landing in spam folders.
 
   **Our Solution:** Real-time placement tracking across Gmail, Outlook, Yahoo, Apple Mail, and 12 other major providers. See exactly where each email lands with detailed folder-level analytics and provider-specific insights.
 
@@ -67,7 +67,7 @@ Stop wondering where your emails land. Inbox Insight provides instant visibility
 </Accordion>
 
 <Accordion title="🐌 Manual Domain Warm-Up Is Painfully Slow" icon="hourglass">
-  **The Challenge:** New domains need weeks or months of careful manual warm-up that's time-consuming, error-prone, and difficult to optimize.
+  **The Challenge:** New domains require weeks or months of careful manual warm-up that is time-consuming, error-prone, and difficult to optimize.
 
   **Our Solution:** Fully automated warm-up system with AI-generated content, intelligent sending patterns, and simulated user interactions that actually improve your sender reputation.
 
@@ -87,11 +87,11 @@ Ready to get started? Here's how to activate Inbox Insight in under 5 minutes:
 
 ### Step 1: Verify Your Sending Domain
 
-Ensure you have at least one verified sending domain in Aurora SendCloud. If you haven't set this up yet, head to your Domain Settings first.
+Ensure you have at least one verified sending domain in Aurora SendCloud. If you haven't set this up yet, navigate to your Domain Settings first.
 
 ### Step 2: Add Your Email Template (Optional)
 
-Upload one of your email templates for more effective warm-up. We'll use your actual content in a controlled proportion to build authentic sending patterns.
+Upload one of your email templates for more effective warm-up. We'll use your actual content in controlled proportions to build authentic sending patterns.
 
 ### Step 3: Activate Inbox Insight
 
