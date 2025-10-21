@@ -81,7 +81,7 @@ Efficiently add hundreds or thousands of contacts at once using two methods:
 
 Fields store information about your subscribers and help you understand your audience better.
 
-<Accordion title="Default Contact Fields" icon="table">
+#### Default Contact Fields
   | Field Name | Type   | Can Delete? |
   | ---------- | ------ | ----------- |
   | Email      | Email  | ❌ No        |
@@ -90,7 +90,6 @@ Fields store information about your subscribers and help you understand your aud
   | Gender     | Text   | ✅ Yes       |
   | Birthday   | Date   | ✅ Yes       |
   | Age        | Number | ✅ Yes       |
-</Accordion>
 
 #### Custom Fields
 
