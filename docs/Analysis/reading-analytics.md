@@ -32,8 +32,14 @@ Statistics by regions:
 
 The geographical location distribution of email reading is provided, and the data of each country can be viewed one by one according to the world map.
 
-Link statistics: provides daily distribution of links and clicks in the email and the link data with the top 10 clicking most.
+Link statistics: 
 
-Device statistics: provides statistics of opening devices, operating systems, wireless brands and browser distribution of the email
+provides daily distribution of links and clicks in the email and the link data with the top 10 clicking most.
 
-Reading Time Statistics：the time when users read emails.
+Device statistics:
+
+ provides statistics of opening devices, operating systems, wireless brands and browser distribution of the email
+
+Reading Time Statistics：
+
+Aurora SendCloud separates one day into twenty - four hour - points. When the recipient reads the email, we will count each of them by these hour - points.
