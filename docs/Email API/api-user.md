@@ -14,8 +14,6 @@ metadata:
     integration and start sending today.
   robots: index
 ---
-# API_USER Management Guide
-
 This comprehensive guide covers everything you need to know about API_USER credentials, which serve as your primary authentication method for accessing our Email Delivery API and SMTP services.
 
 ## What is an API_USER?
