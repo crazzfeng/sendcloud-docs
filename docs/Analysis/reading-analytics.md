@@ -26,19 +26,19 @@ Analyze your email performance using these filtering dimensions:
 
 <br />
 
-<br />
+## Analytics and Grouping Options
 
 Statistics by regions:
 
 The geographical location distribution of email reading is provided, and the data of each country can be viewed one by one according to the world map.
 
-Link statistics: 
+Link statistics:
 
 provides daily distribution of links and clicks in the email and the link data with the top 10 clicking most.
 
 Device statistics:
 
- provides statistics of opening devices, operating systems, wireless brands and browser distribution of the email
+provides statistics of opening devices, operating systems, wireless brands and browser distribution of the email
 
 Reading Time Statistics：
 
