@@ -16,36 +16,35 @@ metadata:
   Always ensure your contacts are collected legally and comply with data protection regulations like GDPR and CAN-SPAM before adding them to your audience.
 </Accordion>
 
-    ### Add One Contact at a Time
+### Add One Contact at a Time
 
-    Perfect for adding new contacts as they sign up or when you meet them personally.
+Perfect for adding new contacts as they sign up or when you meet them personally.
 
-    **How to add:**
+**How to add:**
 
-    1. Navigate to your audience list
-    2. Click "Add Contact"
-    3. Fill out the contact form
-    4. **Email is required** - all other fields are optional
-    5. Save the contact
+1. Navigate to your audience list
+2. Click "Add Contact"
+3. Fill out the contact form
+4. **Email is required** - all other fields are optional
+5. Save the contact
 
-    ### Import Multiple Contacts
+### Import Multiple Contacts
 
-    Efficiently add hundreds or thousands of contacts at once using two methods:
+Efficiently add hundreds or thousands of contacts at once using two methods:
 
-    #### Method 1: Upload CSV File
+#### Method 1: Upload CSV File
 
-    * **Email column is mandatory**
-    * Each column represents a contact field (Name, Phone, etc.)
-    * Use proper formatting for successful import
-    * Download our CSV template for best results
+* **Email column is mandatory**
+* Each column represents a contact field (Name, Phone, etc.)
+* Use proper formatting for successful import
+* Download our CSV template for best results
 
-    #### Method 2: Copy and Paste
+#### Method 2: Copy and Paste
 
-    * Email is required for each contact
-    * Separate fields with commas (,)
-    * Place each contact on a new line
-    * Example: `john@example.com, John Doe, 555-0123`
-
+* Email is required for each contact
+* Separate fields with commas (,)
+* Place each contact on a new line
+* Example: `john@example.com, John Doe, 555-0123`
 
 <br />
 
@@ -109,7 +108,7 @@ Fields store information about your subscribers and help you understand your aud
 🎯 Interest: Japanese Cuisine, Desserts
 ```
 
-### Tags: Simple Contact Organization
+### Tags
 
 Tags are flexible labels that help you categorize contacts into meaningful groups.
 
@@ -134,7 +133,7 @@ Tags are flexible labels that help you categorize contacts into meaningful group
   </Card>
 </Cards>
 
-### Segments: Advanced Audience Filtering
+### Segments
 
 Segments are smart, dynamic groups that automatically update based on the conditions you set.
 
@@ -163,21 +162,27 @@ Segments are smart, dynamic groups that automatically update based on the condit
   </Column>
 </Columns>
 
-#### Real-World Example
+<br />
 
-**Goal:** Survey women aged 25-30 about product preferences
+<Callout>
+  #### Real-World Example
 
-**Segment Setup:**
+  **Goal:** Survey women aged 25-30 about product preferences
 
-* Name: "Women 25-30 Survey Group"
-* Logic: "All conditions must match"
-* Conditions:
-  * Age ≥ 25
-  * Age ≤ 30
-  * Gender = "Female"
-  * Tag = "Active Subscriber"
+  **Segment Setup:**
 
-**Result:** Dynamic list that automatically includes/excludes contacts as their data changes.
+  * Name: "Women 25-30 Survey Group"
+  * Logic: "All conditions must match"
+  * Conditions:
+    * Age ≥ 25
+    * Age ≤ 30
+    * Gender = "Female"
+    * Tag = "Active Subscriber"
+
+  **Result:** Dynamic list that automatically includes/excludes contacts as their data changes.
+</Callout>
+
+<br />
 
 ### Tags vs. Segments: When to Use Each
 
