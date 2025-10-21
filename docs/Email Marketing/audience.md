@@ -16,6 +16,12 @@ metadata:
 * Import contacts
   * Import by upload a csv file,and Email is a required field. In the csv file ,each colum is a field.
   * Copy or Paste in the input box.Email is a required field,and each field is seperated by ','. Each record is seperated line break.
+  <br />
+
+If the contacts are already in the list, you can choose update or skip:
+
+* Update. if any imported emails are already in your list, we'll automatically replace their information with the data from your import.
+* Skip. If any imported emails are already in your list, we'll automatically skip and don't update their information.
 
 ## Manage the Audience
 
