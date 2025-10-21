@@ -10,9 +10,9 @@ metadata:
 ---
 # IP Access
 
-IP access control is a key security feature that enhances account protection. Once enabled, only IP addresses or IP ranges that you explicitly whitelist can call Aurora SendCloud's email sending API or send emails via the SMTP service. All requests from non-whitelisted IP addresses are automatically blocked, effectively preventing unauthorized access and resource abuse caused by API key leaks.
+IP access control is a key security feature that enhances account protection. Once enabled, only IP addresses or IP ranges that you explicitly add to the allowlist can call Aurora SendCloud's email sending API or send emails via the SMTP service. All requests from non-allowed IP addresses are automatically blocked, effectively preventing unauthorized access and resource abuse caused by API key leaks.
 
-## Configuring IP Whitelisting
+## Configuring IP Allowlisting
 
 To enable this feature:
 
@@ -20,9 +20,9 @@ To enable this feature:
 
 2. Switch the feature to "On."
 
-### Adding an IP Whitelist
+### Adding an IP Allowlist
 
-1. Click the "Add IP" button in the IP Whitelist section.
+1. Click the "Add IP" button in the IP Allowlist section.
 2. In the input box, you can add IP addresses using the following formats (one entry per row):
    - **Single IP**: xxx.xxx.xxx.xxx (e.g., 220.181.12.241)
    - **IP range**: xxx.xxx.xxx.xxx-xxx.xxx.xxx.xxx (e.g., 220.181.12.241-220.181.12.255)
@@ -37,7 +37,7 @@ To enable this feature:
 
 ### Important Notes
 
-**Immediate Effect**: Rules take effect immediately after they are added or modified. Before enabling this feature, ensure that all legitimate sending server IP addresses (including those used in production and test environments) have been whitelisted. Failure to do so may result in service interruption due to IP blocking.
+**Immediate Effect**: Rules take effect immediately after they are added or modified. Before enabling this feature, ensure that all legitimate sending server IP addresses (including those used in production and test environments) have been added to the allowlist. Failure to do so may result in service interruption due to IP blocking.
 
 **Caution**: To avoid locking yourself out, add all necessary IP addresses and confirm they are correct before turning on the main switch.
 
@@ -49,16 +49,16 @@ On the "IP Access Control" page, you can find the "Request IP History" or "Block
 
 - **Request IP Address**: The source IP address that initiated API or SMTP requests
 - **Last Request Time**: The timestamp when this IP last initiated a request  
-- **Interception Count**: The number of times this IP was blocked due to not being on the whitelist after IP control was enabled
+- **Interception Count**: The number of times this IP was blocked due to not being on the allowlist after IP control was enabled
 
 ### Use Cases
 
 **Security Audit**: By checking the request IP list, you can identify unknown or suspicious IP addresses attempting to call your API, which may indicate an API key leak.
 
-**Troubleshooting**: If your sending service receives a "Request Rejected" error, verify that the sending server's IP address has been correctly added to the whitelist and identify issues based on the interception log.
+**Troubleshooting**: If your sending service receives a "Request Rejected" error, verify that the sending server's IP address has been correctly added to the allowlist and identify issues based on the interception log.
 
 ## Best Practices
 
-- **Principle of Least Privilege**: Only add the minimum number of IP addresses necessary for your business to the whitelist to minimize security risks
+- **Principle of Least Privilege**: Only add the minimum number of IP addresses necessary for your business to the allowlist to minimize security risks
 - **Regular Review**: Regularly review the request IP history and interception log, and promptly remove unused IP addresses
-- **Pre-configuration**: Before enabling this feature, complete the whitelist configuration and testing to ensure business continuity
+- **Pre-configuration**: Before enabling this feature, complete the allowlist configuration and testing to ensure business continuity
