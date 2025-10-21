@@ -131,7 +131,7 @@ Don't worry! Resetting your password is simple:
 
 ***
 
-# Next Steps
+## Next Steps
 
 Once you're logged in, you can:
 
