@@ -39,11 +39,11 @@ These components create your complete sender identity. For example, recipients m
 
 ### 1. Choose Your Sending Domain
 
-<br />
+Ensure you have at least one verified sending domain in Aurora SendCloud. If you haven't set this up yet, navigate to your Domain Settings first.
 
 ### 2. Configure Your From Name
 
-Choose a from name that recipients will immediately recognize and trust:
+Choose a from name that recipients will immediately recognize and trust.
 
 **Best Practices:**
 
