@@ -5,108 +5,125 @@ excerpt: >-
   them as a small CRM.
 deprecated: false
 hidden: false
+link:
+  new_tab: false
 metadata:
   robots: index
 ---
-## Add contacts into Audience List
+# Audience Management
 
-* Add a contact
+When you start marketing, you may already have an audience. You can manage them effectively using our built-in CRM features.
 
-  You can add contact one by one. When you choose thie way to add a contact,you need to fill in the Email Field at least. And other fields is optional.
-* Import contacts
-  * Import by upload a csv file,and Email is a required field. In the csv file ,each colum is a field.
-  * Copy or Paste in the input box.Email is a required field,and each field is seperated by ','. Each record is seperated line break.
-  <br />
+## Adding Contacts to Your Audience List
 
-If the contacts are already in the list, you can choose update or skip:
+There are two ways to add contacts to your audience:
 
-* Update. if any imported emails are already in your list, we'll automatically replace their information with the data from your import.
-* Skip. If any imported emails are already in your list, we'll automatically skip and don't update their information.
+### Add Individual Contacts
+You can add contacts one by one by filling out a contact form. The **Email field is required**, while all other fields are optional.
 
-## Manage the Audience
+### Import Multiple Contacts
+You have two import options:
+
+**Upload CSV File**
+- Email is a required field in your CSV file
+- Each column represents a different contact field
+- Ensure proper formatting for successful import
+
+**Copy and Paste**
+- Email is required for each contact
+- Separate fields with commas (,)
+- Place each contact on a new line
+
+### Handling Duplicate Contacts
+
+When importing contacts that already exist in your list, you can choose how to handle duplicates:
+
+- **Update**: Automatically replace existing contact information with new data from your import
+- **Skip**: Keep existing contact information unchanged and skip duplicate entries
+
+## Managing Your Audience
 
 ### Fields
 
-Fields are used to identify your subscriber's own characteristics . For example :
+Fields help you identify and categorize your subscribers' characteristics. 
 
-What's Anna's email subscription address Anna@example.com , a female paying user, whose birthday is March 1 every year.
+**Example:**
+Anna's profile might include:
+- **Email**: Anna@example.com
+- **Name**: Anna  
+- **Gender**: Female
+- **Birthday**: 03/01
 
-> Anna's fields
->
-> Email :Anna@example.com
->
-> Name:Anna
->
-> Gender :Female
->
-> Birthday :03/01
+#### Default Contact Fields
 
-The default contact fields provided by Aurora SendCloud are as follows
+Aurora SendCloud provides these default fields:
 
-| Fields   | Type     |
-| -------- | -------- |
-| Email    | Email    |
-| Name     | Name     |
-| Phone    | Phone    |
-| Gender   | Text     |
-| Birthday | Birthday |
-| Age      | Num      |
+| Field Name | Field Type |
+|------------|------------|
+| Email      | Email      |
+| Name       | Name       |
+| Phone      | Phone      |
+| Gender     | Text       |
+| Birthday   | Birthday   |
+| Age        | Number     |
 
-Email, name and phone cannot be deleted or set invisible.
+**Important Notes:**
+- Email, Name, and Phone fields cannot be deleted or hidden
+- You can add or remove custom fields as needed
+- When creating new fields, define the attribute name and select the appropriate type
+- Supported field types: Text, Number, Date, Birthday, Dropdown
+- Maximum of **50 fields** per list
 
-Fields can be added or deleted according to the situation .
-When creating a new field, you can define the name of the attribute and select the appropriate type .
-The main types we support are：Text,Num,Date,Birthday,Dropdown
-
-If you want to adjust the display order of contact attributes, you can enter "manage - Fields" and drag attributes to adjust the display order.
-
-`The maximum number of fields supported by a list is 50`
+**Customizing Field Order**
+To adjust the display order of contact fields, go to **Manage → Fields** and drag fields to reorder them.
 
 ### Tags
 
-Tag is your classification of a type of contacts. It is composed of strings and can be used to manage your contacts.
-Tag can be created independently and used on demand. After creating tag and tagging tag to contact person, you can filter contact person through tag and **send email by using tag related contact person**.
-In SendCloud, you can tag a contact individually or operate in batch.
+Tags are labels you can assign to categorize contacts into groups. They're composed of text strings and help you organize your audience for targeted campaigns.
 
-**Examples of application**
+**Key Features:**
+- Create tags independently and apply them as needed
+- Tag contacts individually or in bulk
+- Filter contacts by tags
+- **Send targeted emails to tagged contacts**
 
-Suppose you run a website related to food, and your contacts Anna and Emma like desserts very much. In addition, Anna often browses Japanese food, while Emma shows great interest in Chinese food.
-Then you can do the following
+#### Example Use Case
 
-> 1. Create three tags of desserts, Japanese cuisine and Chinese cuisine
->
-> 2. Mark Anna with two Tags: dessert and Japanese food
->
-> 3. Mark Emma with two Tags: dessert and Chinese cuisine
+Imagine you run a food-related website:
 
-Recently, you are going to introduce new desserts to members by email.
-After you edit the content of the email, you can find the tag named dessert and send it directly. Then you can send your new product to all the dessert lovers in your contacts.
-Of course, you can also select a tag named dessert to send when creating a new task.
+1. **Create tags**: "Desserts", "Japanese Cuisine", "Chinese Cuisine"
+2. **Tag your contacts**:
+   - Anna: "Desserts" + "Japanese Cuisine"
+   - Emma: "Desserts" + "Chinese Cuisine"
+3. **Send targeted campaigns**: When promoting new desserts, select the "Desserts" tag to reach all dessert enthusiasts
 
-### Segment
+### Segments
 
-Segment is a mapping generated by filtering from contacts according to set rules, which is equivalent to a contact filter of a specific rule.
-You can segment by their properties and tags.
+Segments are dynamic contact groups created by filtering your audience based on specific rules and conditions. Think of them as advanced contact filters that automatically update based on your criteria.
 
-**Create a segment**
+#### Creating a Segment
 
-1. Name a segment
-2. Select matching conditions type: all or any
-3. Set conditions, support up to 10 conditions
+1. **Name your segment**
+2. **Choose matching logic**:
+   - **All conditions**: Contacts must meet every condition
+   - **Any condition**: Contacts need to meet at least one condition
+3. **Set up to 10 conditions** based on contact properties and tags
 
-When the matching condition is set to meet all conditions, it means that only the contacts who meet all conditions at the same time will enter the segment.
-When the matching condition is set to meet any test, the contact will enter the segment when any condition is met.
+#### Example Use Case
 
-Segment can help you complete more detailed contact management than tag, so as to complete precision marketing.
+To conduct a user survey targeting women aged 25-30:
 
-**Examples of application**
+1. Create a segment named "Women 25-30 User Survey"
+2. Set matching condition to "All conditions"
+3. Add conditions:
+   - Age ≥ 25
+   - Age ≤ 30  
+   - Gender = Female
+4. Preview filtered contacts and save
+5. Send campaigns directly to this segment
 
-You plan to conduct a user survey. The target population is women aged 25-30. Now you can use groups to find these contacts and send your user research email.
-
-> 1. Create a new segment called "user survey for women aged 25-30".
-> 2. Set the matching condition to meet all the requirements.
-> 3. Set the first condition Age > = 25
-> 4. Add a new condition, set Age < = 30
-> 5. Add a new condition, and set it to Gender = Female
-> 6. Click next to preview the screened contacts. After saving, the segment can be created successfully.
-> 7. Send directly by segment, or select this segment to send when creating a new task.
+**Benefits of Segments:**
+- More precise targeting than tags alone
+- Automatic updates as contact data changes
+- Enable sophisticated marketing automation
+- Support complex filtering logic
