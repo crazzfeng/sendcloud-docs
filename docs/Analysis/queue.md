@@ -10,7 +10,7 @@ link:
 metadata:
   robots: index
 ---
-# Email Sending Queue
+## Email Sending Queue
 
 Aurora SendCloud uses intelligent queue management to optimize email delivery across all major mailbox providers. Our adaptive sending system automatically adjusts to recipient domain requirements, ensuring fast and reliable email delivery with 24/7 monitoring and real-time optimization.
 
