@@ -26,7 +26,7 @@ To enable this feature:
 
 2. In the input box, you can add IP addresses using the following formats (one entry per row):
 
-<Callout icon="👍">
+<Callout icon="👍" theme="okay">
   **Single IP**: xxx.xxx.xxx.xxx (e.g., 220.181.12.241)
 
   **IP Range**: xxx.xxx.xxx.xxx-xxx.xxx.xxx.xxx (e.g., 220.181.12.241-220.181.12.255)
@@ -36,7 +36,7 @@ To enable this feature:
 
 **Note**: Internal IP addresses are not allowed, including:
 
-<Callout icon="❗️">
+<Callout icon="❗️" theme="error">
   * 192.168.0.0-192.168.255.255
   * 172.16.0.0-172.31.255.255
   * 10.0.0.0-10.255.255.255
@@ -46,7 +46,7 @@ To enable this feature:
 
 ### Important Notes
 
-<Callout icon="🚧">
+<Callout icon="🚧" theme="warn">
   **Immediate Effect**: Rules take effect immediately after they are added or modified. Before enabling this feature, ensure that all legitimate sending server IP addresses (including those used in production and test environments) have been added to the allowlist. Failure to do so may result in service interruption due to IP blocking.
 
   **Caution**: To avoid locking yourself out, add all necessary IP addresses and confirm they are correct before turning on the main switch.
@@ -64,12 +64,24 @@ On the "IP Access Control" page, you can find the "Request IP History" or "Block
 
 ### Use Cases
 
-**Security Audit**: By checking the request IP list, you can identify unknown or suspicious IP addresses attempting to call your API, which may indicate an API key leak.
+**Security Audit**
 
-**Troubleshooting**: If your sending service receives a "Request Rejected" error, verify that the sending server's IP address has been correctly added to the allowlist and identify issues based on the interception log.
+By checking the request IP list, you can identify unknown or suspicious IP addresses attempting to call your API, which may indicate an API key leak.
+
+**Troubleshooting**
+
+If your sending service receives a "Request Rejected" error, verify that the sending server's IP address has been correctly added to the allowlist and identify issues based on the interception log.
 
 ## Best Practices
 
-* **Principle of Least Privilege**: Only add the minimum number of IP addresses necessary for your business to the allowlist to minimize security risks
-* **Regular Review**: Regularly review the request IP history and interception log, and promptly remove unused IP addresses
-* **Pre-configuration**: Before enabling this feature, complete the allowlist configuration and testing to ensure business continuity
+**Principle of Least Privilege**
+
+ Only add the minimum number of IP addresses necessary for your business to the allowlist to minimize security risks
+
+**Regular Review**
+
+Regularly review the request IP history and interception log, and promptly remove unused IP addresses
+
+**Pre-configuration**
+
+ Before enabling this feature, complete the allowlist configuration and testing to ensure business continuity
