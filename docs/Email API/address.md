@@ -10,8 +10,6 @@ link:
 metadata:
   robots: index
 ---
-# Address Management
-
 Effectively manage your contact email addresses with powerful tools designed for bulk campaigns and lead collection. Choose between **Address Lists** for marketing campaigns or **Subscription Management** for growing your subscriber base.
 
 # Address Lists
@@ -63,9 +61,9 @@ The Address List function serves as your powerhouse for **bulk email sending** s
 <Accordion title="Upload Processing Details">
   **Automatic Processing Features:**
 
-  ✅ **Smart Deduplication**: Removes duplicate email addresses across uploads  
-  ✅ **Format Validation**: Verifies email address syntax and domain validity  
-  ✅ **Data Sanitization**: Cleans up formatting issues and removes extra whitespace  
+  ✅ **Smart Deduplication**: Removes duplicate email addresses across uploads\
+  ✅ **Format Validation**: Verifies email address syntax and domain validity\
+  ✅ **Data Sanitization**: Cleans up formatting issues and removes extra whitespace\
   ✅ **Progress Tracking**: Provides real-time upload status and error reporting
 
   **Processing Limits:**
@@ -74,7 +72,7 @@ The Address List function serves as your powerhouse for **bulk email sending** s
   * Maximum contacts per list: **1 million addresses**
 </Accordion>
 
-## Subscription Management
+# Subscription
 
 Transform your website visitors into engaged subscribers with our easy-to-implement subscription system. Collect leads legally and efficiently while maintaining compliance with privacy regulations.
 
