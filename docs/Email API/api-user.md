@@ -165,57 +165,10 @@ The API_KEY functions as the "password" for your API_USER and requires careful h
     * Limit who can generate/reset keys
     * Use separate API\_USERs for different environments
     * Monitor key usage patterns for anomalies
-
-
   </Tab>
 </Tabs>
 
-## Integration Examples
-
-### API Integration
-
-```bash
-# Example API call using your API_USER credentials
-curl -X POST "https://api.sendcloud.net/v3/mail/send" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "api_user": "your_api_user_name",
-    "api_key": "your_api_key",
-    "to": ["recipient@example.com"],
-    "from": "sender@yourdomain.com",
-    "subject": "Test Email",
-    "html": "<p>Hello from SendCloud!</p>"
-  }'
-```
-
-### SMTP Integration
-
-```python
-import smtplib
-from email.mime.text import MIMEText
-from email.mime.multipart import MIMEMultipart
-
-# SMTP configuration using API_USER credentials
-smtp_server = "smtp.sendcloud.net"
-smtp_port = 587
-api_user = "your_api_user_name"  
-api_key = "your_api_key"
-
-# Create and send email
-msg = MIMEMultipart()
-msg['From'] = "sender@yourdomain.com"
-msg['To'] = "recipient@example.com"
-msg['Subject'] = "Test Email via SMTP"
-
-body = "Hello from SendCloud SMTP!"
-msg.attach(MIMEText(body, 'plain'))
-
-server = smtplib.SMTP(smtp_server, smtp_port)
-server.starttls()
-server.login(api_user, api_key)
-server.send_message(msg)
-server.quit()
-```
+<br />
 
 ## Troubleshooting Common Issues
 
