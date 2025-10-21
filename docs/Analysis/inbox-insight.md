@@ -58,5 +58,13 @@ Fully automatic preheating process → automatic generation of personalized preh
 Interactive simulation technology → Automatic removal of trash bin → Simulation of opening/marking important/reply behaviors → Real improvement of email interaction rate
 
 Operation Guide (How to Use)
-Three step minimalist access: 1 ️⃣  Configure the sending domain name 2 on Aurora SendCloud ️⃣  Activate S+Container Insight Service 3 ️⃣  Go to the 'Data Analysis' menu to view the report
+Three step minimalist access: 
+
+1Configure the sending domain name 
+
+2 on Aurora SendCloud Activate S+Container Insight Service 
+
+3 Go to the 'Data Analysis' menu to view the report
+
+
 Zero learning cost: effective upon activation, fully automated preheating execution
