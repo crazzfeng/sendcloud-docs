@@ -85,8 +85,7 @@ Analyze your email performance using these filtering dimensions:
 | :----------------- | :----------------------------------------------------------------------------- |
 | **Email Type**     | Filter by Trigger emails (transactional) or Batch emails (marketing campaigns) |
 | **API_USER**       | View statistics for a specific API_USER                                        |
-| **Label**          | Filter by custom labels assigned to your email sends                           |
-| **Campaign**       | Analyze performance of specific email campaigns                                |
+|                    |                                                                                |
 | **Request Period** | Select the timeframe for your analysis (default: last 7 days)                  |
 
 ## Analytics and Grouping Options
