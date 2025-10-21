@@ -30,7 +30,7 @@ Analyze your email performance using these filtering dimensions:
 
 ### Statistics by regions
 
-The geographical location distribution of email reading is provided, and the data of each country can be viewed one by one according to the world map.
+The geographical location distribution of email reading is provided, and the data of each country can be viewed one by one according to the world map. You will know the geographical distribution of recipients who enjoy reading your emails.
 
 <Image border={false} src="https://files.readme.io/4141411333902e7c785155d3d797366763c33d243196859ba88553e43f2d1336-image.png" />
 
@@ -38,13 +38,11 @@ The geographical location distribution of email reading is provided, and the dat
 
 ### Link statistics
 
-provide daily distribution of links and clicks in the email and the link data with the top 10 clicking most.
-
-<br />
+provide daily distribution of links and clicks in the email and the link data with the top 10 clicking most.You will learn from a global perspective which links in your email are most popular
 
 ### Device statistics
 
-provide statistics of opening devices, operating systems, wireless brands and browser distribution of the email
+provide statistics of opening devices, operating systems, wireless brands and browser distribution of the email.Device data will help you design your email template, telling you which devices, browsers, and displays in applications you should pay the most attention to
 
 ### Reading Time Statistics
 
