@@ -1,5 +1,9 @@
 ---
 title: Daily Quota & Reputation
+excerpt: >-
+  Effective email delivery through Aurora SendCloud depends on two critical
+  factors: your daily sending quota and account reputation. This guide explains
+  how these systems work together to ensure optimal email deliverability.
 deprecated: false
 hidden: false
 link:
@@ -23,10 +27,6 @@ metadata:
     - email service provider
   robots: index
 ---
-# Daily Quota & Reputation Management
-
-Effective email delivery through Aurora SendCloud depends on two critical factors: your daily sending quota and account reputation. This guide explains how these systems work together to ensure optimal email deliverability.
-
 ## Understanding Daily Quota
 
 Your daily quota represents the maximum number of emails you can send through Aurora SendCloud within a 24-hour period. This isn't a fixed number—it dynamically adjusts based on your account reputation and sending patterns.
