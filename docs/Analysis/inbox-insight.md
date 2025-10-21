@@ -16,7 +16,7 @@ metadata:
 
 <br />
 
-<Image border={false} src="https://files.readme.io/897d32fe614aa2886292a5a0c9afdd11576076d73611e2a9c681586b4596c561-image.png" />
+<Image align="center" alt="Inbox Insight Overview" border={false} caption="Inbox Insight Overview" src="https://files.readme.io/897d32fe614aa2886292a5a0c9afdd11576076d73611e2a9c681586b4596c561-image.png" />
 
 <br />
 
@@ -82,6 +82,8 @@ metadata:
 
 4. **Start Monitoring**
    Access your comprehensive delivery analytics through the Data Analysis dashboard
+
+   <Image align="center" alt="Inbox Insight Trend" border={false} caption="Inbox Insight Trend" src="https://files.readme.io/bee6f00ec284f3de8ba1b44a8e2adde52cee68644ed962144c24f4ed89358025-image.png" />
 
 ***
 
