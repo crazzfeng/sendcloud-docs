@@ -13,7 +13,7 @@ metadata:
     marketing module is the tool you need to grow your business.
   robots: index
 ---
-# Email Marketing
+## Email Marketing
 
 Email marketing is one of the most powerful and cost-effective digital marketing strategies available today. Far more than simply sending promotional messages, it's a permission-based approach that builds meaningful relationships with individuals who have explicitly opted in to receive communications from your business. This strategic tool helps you nurture prospects, retain customers, and drive sustainable business growth over time.
 
@@ -23,12 +23,15 @@ Email marketing is one of the most powerful and cost-effective digital marketing
   <Card title="Exceptional ROI" icon="chart-line">
     Email marketing delivers an average ROI of $42 for every $1 spent, making it one of the highest-performing marketing channels available.
   </Card>
+
   <Card title="Direct Customer Connection" icon="users">
     Your email list is a valuable asset you own completely, providing direct access to your audience without relying on third-party platforms.
   </Card>
+
   <Card title="Advanced Personalization" icon="bullseye">
     Segment audiences based on behavior, preferences, demographics, and purchase history to deliver highly targeted, relevant content.
   </Card>
+
   <Card title="Real-Time Analytics" icon="analytics">
     Track opens, clicks, conversions, and engagement metrics in real time to optimize your campaigns for better performance.
   </Card>
