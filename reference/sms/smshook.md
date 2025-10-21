@@ -243,7 +243,6 @@ SMSHook is Aurora SendCloud's webhook mechanism that provides real-time notifica
     | `smsIds`     | array  | List of SMS message IDs    |
     | `templateId` | int    | Template used for the SMS  |
     | `phones`     | array  | Recipient phone numbers    |
-    | `msgCount`   | int    | Number of SMS segments     |
     | `timestamp`  | long   | Event timestamp            |
     | `token`      | string | Random 50-character string |
     | `signature`  | string | Verification signature     |
@@ -261,7 +260,6 @@ SMSHook is Aurora SendCloud's webhook mechanism that provides real-time notifica
       "smsIds": ["1652150994014_9373_14466_36735_99drnc$13888888888"],
       "templateId": 29999,
       "phones": ["13888888888"],
-      "msgCount": 1,
       "timestamp": 1652150994087,
       "token": "VDymF6ihuJkKZjHiJZkLKGmY6q9qAQ2WGopLh7mBsDeAO6GKV5",
       "signature": "1ff237043487aeb4dc1b21c22b5ead9e4df94a31a3afa0ad53238eb38c2cbeea",
@@ -282,9 +280,16 @@ SMSHook is Aurora SendCloud's webhook mechanism that provides real-time notifica
     | `message`      | string | Delivery confirmation message |
     | `smsId`        | string | Individual SMS message ID     |
     | `phone`        | string | Recipient phone number        |
+    | `userId`       | int    | Your user ID                  |
+    | `smsUser`      | string | SMS user identifier           |
+    | `templateId`   | int    | Template used for the SMS     |
     | `outboundTime` | string | When message left SendCloud   |
     | `receiptTime`  | string | When delivery was confirmed   |
     | `msgCount`     | int    | Number of SMS segments        |
+    | `timestamp`    | long   | Event timestamp               |
+    | `token`        | string | Random 50-character string    |
+    | `signature`    | string | Verification signature        |
+    | `customArgs`   | object | Your custom parameters        |
 
     ### Example Payload
 
@@ -294,6 +299,7 @@ SMSHook is Aurora SendCloud's webhook mechanism that provides real-time notifica
       "eventType": 20,
       "message": "Successfully delivered",
       "userId": 19999,
+      "templateId": 29999,
       "smsUser": "APP",
       "smsId": "1652117371408_19999_376_4631_qrwnpq$13888888888",
       "templateId": 29999,
@@ -303,7 +309,9 @@ SMSHook is Aurora SendCloud's webhook mechanism that provides real-time notifica
       "msgCount": 1,
       "timestamp": 1652117390000,
       "token": "4mRG9lGhVb3jZhOMnksFPBtX1OLDMNZMfXTFHkFd9eybfdRiHM",
-      "signature": "9ca96fa072bfa048969aa0cb7bf7baf64100234640a1b9793cca1a419afb9cb8"
+      "signature": "9ca96fa072bfa048969aa0cb7bf7baf64100234640a1b9793cca1a419afb9cb8",
+      "customArgs": {}
+
     }
     ```
   </Tab>
@@ -317,10 +325,12 @@ SMSHook is Aurora SendCloud's webhook mechanism that provides real-time notifica
     | :-------------- | :----- | :--------------------------- |
     | `event`         | string | Always "Suppressed"          |
     | `eventType`     | int    | Always 4                     |
+    | `phone`         | string | Recipient phone number       |
     | `message`       | string | Failure reason               |
     | `encodeMessage` | string | Base64-encoded error message |
     | `statusCode`    | int    | Error status code            |
     | `receiptTime`   | string | When failure was detected    |
+    | `timestamp`  | long      | Event timestamp              |
 
     ### Common Status Codes
 
@@ -355,10 +365,12 @@ SMSHook is Aurora SendCloud's webhook mechanism that provides real-time notifica
     | :-------------- | :----- | :--------------------------- |
     | `event`         | string | Always "Failed"              |
     | `eventType`     | int    | Always 5                     |
+    | `phone`         | string | Recipient phone number       |
     | `message`       | string | Failure reason               |
     | `encodeMessage` | string | Base64-encoded error message |
     | `statusCode`    | int    | Error status code            |
     | `receiptTime`   | string | When failure was detected    |
+    | `timestamp`     | long   | Event timestamp              |
 
     ### Common Status Codes
 
@@ -390,7 +402,7 @@ SMSHook is Aurora SendCloud's webhook mechanism that provides real-time notifica
 
     | Parameter       | Type   | Description                                         |
     | :-------------- | :----- | :-------------------------------------------------- |
-    | `event`         | string | Always "Template Verify"                             |
+    | `event`         | string | Always "Template Verify"                            |
     | `eventType`     | int    | Always 8                                            |
     | `templateId`    | int    | Template ID                                         |
     | `name`          | string | Template name                                       |
