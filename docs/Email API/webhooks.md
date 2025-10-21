@@ -8,6 +8,8 @@ link:
 metadata:
   robots: index
 ---
+# WebHooks
+
 After you submit an email delivery request to Aurora SendCloud, the system synchronously returns the request result (such as whether the request was accepted). The final delivery result of the email (such as whether it was successfully delivered) and other interaction events (such as opens and clicks) are asynchronously pushed to your specified server via webhook.
 
 Instead of requiring you to poll for updates, Aurora SendCloud actively pushes data to you in real-time when key events occur. This enables subsequent processes like data synchronization, statistical analysis, and triggering business workflows.
