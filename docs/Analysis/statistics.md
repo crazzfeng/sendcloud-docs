@@ -181,7 +181,7 @@ Track your email performance with these key metrics:
   * **Unique Clicks:** 1 + 1 = **2 unique recipients**
 </Callout>
 
-## Statistics Filtering Options
+## Filtering Options
 
 Analyze your email performance using these filtering dimensions:
 
@@ -195,7 +195,7 @@ Analyze your email performance using these filtering dimensions:
 | **Request Period**   | Select the timeframe for your analysis (default: last 7 days)                            |
 | **Send Tags**        | Filter by custom tags included in your API requests                                      |
 
-## Statistics Grouping Options
+## Grouping Options
 
 Organize your email statistics data by selecting one of these grouping methods:
 
