@@ -14,7 +14,7 @@ metadata:
 
 The system automatically manages four core lists: Complaint List, Block List, Bounce List, and Unsubscribe List.
 
-## Complaint List 
+## Complaint List
 
 **Trigger Conditions:**
 
@@ -33,7 +33,7 @@ The system automatically manages four core lists: Complaint List, Block List, Bo
 * Manual deletion is supported but **generally not recommended**
 * Avoid sending to complained users to prevent further negative perception
 
-## Block List 
+## Block List
 
 **Function:**
 
@@ -42,16 +42,16 @@ The system automatically manages four core lists: Complaint List, Block List, Bo
 
 **List Data Includes:**
 
-*  Email Address / Domain
-*  Associated API_USER
-*  Creation Time, Expiration Time
+* Email Address / Domain
+* Associated API_USER
+* Creation Time, Expiration Time
 
 **Use Cases:**
 
 * Proactively block invalid or high-risk addresses
 * Implement custom sending policies
 
-## Bounce List 
+## Bounce List
 
 **Trigger Mechanism:**
 
@@ -60,20 +60,20 @@ The system automatically manages four core lists: Complaint List, Block List, Bo
 
 **Expiration Rules:**
 
-| Mailbox Type               | Expiration Policy                | Max Duration |
-| -------------------------- | -------------------------------- | ------------ |
-| **Tencent Mailboxes**      | 2^(n-1) days                     | 30 days      |
-| **Non-Tencent Mailboxes**  | 1h → 4h → 8h → 1d → 2^(n-1) days | 180 days     |
+| Mailbox Type              | Expiration Policy                | Max Duration |
+| ------------------------- | -------------------------------- | ------------ |
+| **Tencent Mailboxes**     | 2^(n-1) days                     | 30 days      |
+| **Non-Tencent Mailboxes** | 1h → 4h → 8h → 1d → 2^(n-1) days | 180 days     |
 
 _n = Number of times a "non-existent address" bounce is received for that mailbox._
 
 **Key Advantages:**
 
-*  Emails failing due to "Blacklist: Bounce" are **not charged**
-*  Effectively filters invalid addresses, helping maintain sending reputation
-*  Supports querying and setting specific addresses to not be blocked
+* Emails failing due to "Blacklist: Bounce" are **not charged**
+* Effectively filters invalid addresses, helping maintain sending reputation
+* Supports querying and setting specific addresses to not be blocked
 
-## Unsubscribe List 
+## Unsubscribe List
 
 **Description:**
 
@@ -82,17 +82,17 @@ _n = Number of times a "non-existent address" bounce is received for that mailbo
 
 **Unsubscribe Reason Categories:**
 
-*  **I don't want to receive such mail anymore**
-*  **This is not my subscription**
-*  **This is spam**
-*  **This is a fraudulent email**
+* **I don't want to receive such mail anymore**
+* **This is not my subscription**
+* **This is spam**
+* **This is a fraudulent email**
 
 **Value:**
 
 * Respects user choice and maintains brand reputation
 * Avoids unnecessary sends, reducing costs
 
-## 💡Best Practices 
+## 💡Best Practices
 
 **Data Monitoring:**
 
@@ -111,7 +111,7 @@ _n = Number of times a "non-existent address" bounce is received for that mailbo
 * Understand the expiration policies for different lists
 * Establish a proactive address hygiene process
 
-## User Guide 
+## User Guide
 
 **Data Querying:**
 
