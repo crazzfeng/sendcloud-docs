@@ -81,12 +81,12 @@ Aurora SendCloud uses different time gradients based on email type to provide re
 
 Analyze your email performance using these filtering dimensions:
 
-| **Dimension**      | **Description**                                                                |
-| :----------------- | :----------------------------------------------------------------------------- |
-| **Email Type**     | Filter by Trigger emails (transactional) or Batch emails (marketing campaigns) |
-| **API_USER**       | View statistics for a specific API_USER                                        |
-|                    |                                                                                |
-| **Request Period** | Select the timeframe for your analysis (default: last 7 days)                  |
+| **Dimension**        | **Description**                                                                          |
+| :------------------- | :--------------------------------------------------------------------------------------- |
+| **Email Type**       | Filter by Trigger emails (transactional) or Batch emails (marketing campaigns)           |
+| **API_USER**         | View statistics for a specific API_USER                                                  |
+| **Receiving Domain** | Break down results by recipient email providers' domains  (gmail.com , yahoo.com,  etc.) |
+| **Request Period**   | Select the timeframe for your analysis (default: last 7 days)                            |
 
 ## Analytics and Grouping Options
 
