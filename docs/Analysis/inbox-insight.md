@@ -71,17 +71,17 @@ metadata:
 
 ## How to use Inbox Insight
 
+Before use inbox insight ,you should have sucessfully verifed one of your sending domain in Aurora SendCloud.
 
+1. **Choose one of verified sending domain** 
 
-    1. **Domain Configuration**
-       Add your sending domain to the Aurora SendCloud platform
+2. <br />
 
-    2. **Service Activation**
-       Enable Inbox Insight with a single click - no complex setup required
+3. **Service Activation**
+   Enable Inbox Insight with a single click - no complex setup required
 
-    3. **Start Monitoring**
-       Access your comprehensive delivery analytics through the Data Analysis dashboard
-
+4. **Start Monitoring**
+   Access your comprehensive delivery analytics through the Data Analysis dashboard
 
 ***
 
