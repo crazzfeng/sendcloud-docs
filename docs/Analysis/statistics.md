@@ -10,7 +10,7 @@ link:
 metadata:
   robots: index
 ---
-# Aurora SendCloud Email Statistics
+## Aurora SendCloud Email Statistics
 
 <Image align="center" alt="Email Statistics Dashboard" border={false} caption="Email Statistics Dashboard" src="https://files.readme.io/4880c0cfb7250a8230597943b747944de1b37c3c84834bc61ecad65652eff51d-_20251016191511.png" />
 
