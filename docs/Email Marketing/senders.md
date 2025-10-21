@@ -89,12 +89,11 @@ In Aurora SendCloud, all sender addresses must end with your verified sending do
 * Monitor your sender reputation regularly
 * Avoid misleading or deceptive sender information
 
-## Common Mistakes to Avoid
+### Common Mistakes to Avoid
 
 * **Generic addresses:** Avoid `admin@` or `webmaster@` for customer-facing emails
 * **Long names:** Keep from names concise for better mobile display
 * **Inconsistent branding:** Don't mix different brand names or styles
-* **Unverified domains:** Always verify domains before sending emails
 * **Misleading information:** Ensure sender details accurately represent your organization
 
 By properly configuring your email senders, you'll improve deliverability, build trust with recipients, and create a professional email experience that supports your business goals.
