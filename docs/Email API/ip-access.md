@@ -1,6 +1,9 @@
 ---
-title: IP Access
-excerpt: IP access control is a key feature that enhances account security.
+title: IP Access Control & Allowlist Management - Aurora SendCloud
+excerpt: >-
+  Configure IP access control and allowlist management to enhance email API
+  security. Learn how to set up IP restrictions, monitor access logs, and
+  implement best practices for Aurora SendCloud.
 deprecated: false
 hidden: false
 link:
@@ -8,80 +11,123 @@ link:
 metadata:
   robots: index
 ---
-# IP Access
+# IP Access Control & Allowlist Management
 
-IP access control is a key security feature that enhances account protection. Once enabled, only IP addresses or IP ranges that you explicitly add to the allowlist can call Aurora SendCloud's email sending API or send emails via the SMTP service. All requests from non-allowed IP addresses are automatically blocked, effectively preventing unauthorized access and resource abuse caused by API key leaks.
+IP access control is a key security feature that enhances account protection for Aurora SendCloud users. Once enabled, only IP addresses or IP ranges that you explicitly add to the allowlist can call Aurora SendCloud's email sending API or send emails via the SMTP service. All requests from non-allowed IP addresses are automatically blocked, effectively preventing unauthorized access and resource abuse caused by API key leaks.
 
-## Configuring IP Allowlisting
+<Tabs>
+  <Tab title="Configuration">
+    ## Getting Started with IP Access Control
 
-To enable this feature:
+    <Cards columns="2">
+      <Card title="Enable IP Access Control" icon="shield-alt">
+        1. Log in to the Aurora SendCloud console
+        2. Navigate to "IP Access Control" under "Security Settings"
+        3. Switch the feature to "On"
+      </Card>
+      <Card title="Add IP Addresses" icon="plus-circle">
+        1. Click the "Add IP" button in the IP Allowlist section
+        2. Enter IP addresses in the supported formats
+        3. Click "Confirm" to save
+      </Card>
+    </Cards>
 
-1. Log in to the Aurora SendCloud console and navigate to the "IP Access Control" page under "Security Settings" or "Account Settings."
+    ## Supported IP Address Formats
 
-2. Switch the feature to "On."
+    <Accordion title="IP Address Format Examples" icon="list">
+      You can add IP addresses using the following formats (one entry per row):
 
-### Adding an IP Allowlist
+      <Callout icon="👍">
+        **Single IP**: xxx.xxx.xxx.xxx (e.g., 220.181.12.241)
 
-1. Click the "Add IP" button in the IP Allowlist section.
+        **IP Range**: xxx.xxx.xxx.xxx-xxx.xxx.xxx.xxx (e.g., 220.181.12.241-220.181.12.255)
 
-2. In the input box, you can add IP addresses using the following formats (one entry per row):
+        **IP Segment**: xxx.xxx.xxx.xxx/N (e.g., 220.181.12.0/24)
+      </Callout>
 
-<Callout icon="👍" theme="okay">
-  **Single IP**: xxx.xxx.xxx.xxx (e.g., 220.181.12.241)
+      **Note**: Internal IP addresses are not allowed, including:
 
-  **IP Range**: xxx.xxx.xxx.xxx-xxx.xxx.xxx.xxx (e.g., 220.181.12.241-220.181.12.255)
+      <Callout icon="❗️">
+        * 192.168.0.0-192.168.255.255
+        * 172.16.0.0-172.31.255.255
+        * 10.0.0.0-10.255.255.255
+      </Callout>
+    </Accordion>
 
-  **IP Segment**: xxx.xxx.xxx.xxx/N (e.g., 220.181.12.0/24)
-</Callout>
+    ## Important Security Warnings
 
-**Note**: Internal IP addresses are not allowed, including:
+    <Callout icon="🚧">
+      **Immediate Effect**: Rules take effect immediately after they are added or modified. Before enabling this feature, ensure that all legitimate sending server IP addresses (including those used in production and test environments) have been added to the allowlist. Failure to do so may result in service interruption due to IP blocking.
 
-<Callout icon="❗️" theme="error">
-  * 192.168.0.0-192.168.255.255
-  * 172.16.0.0-172.31.255.255
-  * 10.0.0.0-10.255.255.255
-</Callout>
+      **Caution**: To avoid locking yourself out, add all necessary IP addresses and confirm they are correct before turning on the main switch.
+    </Callout>
+  </Tab>
 
-3. Click "Confirm" to save. You can add multiple IP entries at once.
+  <Tab title="Monitoring & Logs">
+    ## Request IP Logs and Blocking History
 
-### Important Notes
+    Aurora SendCloud records API request logs for the past 30 days to help you manage and troubleshoot IP access control issues.
 
-<Callout icon="🚧" theme="warn">
-  **Immediate Effect**: Rules take effect immediately after they are added or modified. Before enabling this feature, ensure that all legitimate sending server IP addresses (including those used in production and test environments) have been added to the allowlist. Failure to do so may result in service interruption due to IP blocking.
+    <Cards columns="1">
+      <Card title="Access Monitoring Dashboard" icon="chart-line">
+        On the "IP Access Control" page, navigate to the "Request IP History" or "Blocking History" tabs to view detailed logs and analytics.
+      </Card>
+    </Cards>
 
-  **Caution**: To avoid locking yourself out, add all necessary IP addresses and confirm they are correct before turning on the main switch.
-</Callout>
+    <Accordion title="Available Log Information" icon="database">
+      <Columns layout="auto">
+        <Column>
+          **Request IP Address**
+          
+          The source IP address that initiated API or SMTP requests
+        </Column>
+        <Column>
+          **Last Request Time**
+          
+          The timestamp when this IP last initiated a request
+        </Column>
+        <Column>
+          **Interception Count**
+          
+          The number of times this IP was blocked due to not being on the allowlist
+        </Column>
+      </Columns>
+    </Accordion>
 
-## Viewing Request IP Logs and Blocking History
+    ## Common Use Cases for IP Monitoring
 
-Aurora SendCloud records API request logs for the past 30 days to help you manage and troubleshoot issues.
+    <Cards columns="2">
+      <Card title="Security Audit" icon="search">
+        Check the request IP list to identify unknown or suspicious IP addresses attempting to call your API, which may indicate an API key leak.
+      </Card>
+      <Card title="Troubleshooting" icon="tools">
+        If your sending service receives a "Request Rejected" error, verify that the sending server's IP address has been correctly added to the allowlist.
+      </Card>
+    </Cards>
+  </Tab>
 
-On the "IP Access Control" page, you can find the "Request IP History" or "Blocking History" tabs, where you can view:
+  <Tab title="Best Practices">
+    ## Email API Security Recommendations
 
-* **Request IP Address**: The source IP address that initiated API or SMTP requests
-* **Last Request Time**: The timestamp when this IP last initiated a request
-* **Interception Count**: The number of times this IP was blocked due to not being on the allowlist after IP control was enabled
+    <Cards columns="1">
+      <Card title="Principle of Least Privilege" icon="lock">
+        Only add the minimum number of IP addresses necessary for your business to the allowlist to minimize security risks.
+      </Card>
+      <Card title="Regular Review" icon="sync-alt">
+        Regularly review the request IP history and interception log, and promptly remove unused IP addresses from your allowlist.
+      </Card>
+      <Card title="Pre-configuration Testing" icon="check-circle">
+        Before enabling this feature, complete the allowlist configuration and testing to ensure business continuity and avoid service interruptions.
+      </Card>
+    </Cards>
 
-### Use Cases
-
-**Security Audit**
-
-By checking the request IP list, you can identify unknown or suspicious IP addresses attempting to call your API, which may indicate an API key leak.
-
-**Troubleshooting**
-
-If your sending service receives a "Request Rejected" error, verify that the sending server's IP address has been correctly added to the allowlist and identify issues based on the interception log.
-
-## Best Practices
-
-**Principle of Least Privilege**
-
- Only add the minimum number of IP addresses necessary for your business to the allowlist to minimize security risks
-
-**Regular Review**
-
-Regularly review the request IP history and interception log, and promptly remove unused IP addresses
-
-**Pre-configuration**
-
- Before enabling this feature, complete the allowlist configuration and testing to ensure business continuity
+    <Accordion title="Implementation Checklist" icon="clipboard-check">
+      - [ ] Identify all production and test environment IP addresses
+      - [ ] Add all necessary IP addresses to the allowlist
+      - [ ] Test API connectivity from all approved IP addresses
+      - [ ] Enable IP access control
+      - [ ] Monitor logs for any unexpected blocks
+      - [ ] Set up regular review schedule for IP allowlist maintenance
+    </Accordion>
+  </Tab>
+</Tabs>
