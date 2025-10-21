@@ -75,6 +75,20 @@ Aurora SendCloud uses different time gradients based on email type to provide re
   </Tab>
 </Tabs>
 
+<br />
+
+## Filtering Options
+
+Analyze your email performance using these filtering dimensions:
+
+| **Dimension**      | **Description**                                                                |
+| :----------------- | :----------------------------------------------------------------------------- |
+| **Email Type**     | Filter by Trigger emails (transactional) or Batch emails (marketing campaigns) |
+| **API_USER**       | View statistics for a specific API_USER                                        |
+| **Label**          | Filter by custom labels assigned to your email sends                           |
+| **Campaign**       | Analyze performance of specific email campaigns                                |
+| **Request Period** | Select the timeframe for your analysis (default: last 7 days)                  |
+
 ## Analytics and Grouping Options
 
 Customize your duration analysis with these powerful grouping options:
@@ -101,10 +115,10 @@ Customize your duration analysis with these powerful grouping options:
 
 <br />
 
- **Selecting the Right View**
+**Selecting the Right View**
 
-  Choose the grouping option that aligns with your specific monitoring needs:
+Choose the grouping option that aligns with your specific monitoring needs:
 
-  * Use **Overall Performance** for general health checks
-  * Use **MP Analysis** when troubleshooting provider-specific issues
-  * Use **Daily Trends** for identifying patterns and measuring improvements
+* Use **Overall Performance** for general health checks
+* Use **MP Analysis** when troubleshooting provider-specific issues
+* Use **Daily Trends** for identifying patterns and measuring improvements
