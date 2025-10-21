@@ -10,11 +10,11 @@ link:
 metadata:
   robots: index
 ---
-# Email Address Management: Bulk Campaigns & Lead Generation Tools
+# Email Address
 
 Effectively manage your contact email addresses with powerful tools designed for bulk campaigns and lead collection. Choose between **Address Lists** for marketing campaigns or **Subscription Management** for growing your subscriber base.
 
-## Email Address Lists for Bulk Marketing Campaigns
+## Email Address Lists for Bulk Sending via the API
 
 The Address List function serves as your powerhouse for **bulk email sending** scenarios, including marketing campaigns, newsletters, and automated sequences. It supports advanced variable replacement for personalized messaging at scale.
 
@@ -63,9 +63,9 @@ The Address List function serves as your powerhouse for **bulk email sending** s
 <Accordion title="Automated Email List Processing & Validation">
   **Automatic Processing Features:**
 
-  ✅ **Smart Deduplication**: Removes duplicate email addresses across uploads  
-  ✅ **Format Validation**: Verifies email address syntax and domain validity  
-  ✅ **Data Sanitization**: Cleans up formatting issues and removes extra whitespace  
+  ✅ **Smart Deduplication**: Removes duplicate email addresses across uploads\
+  ✅ **Format Validation**: Verifies email address syntax and domain validity\
+  ✅ **Data Sanitization**: Cleans up formatting issues and removes extra whitespace\
   ✅ **Progress Tracking**: Provides real-time upload status and error reporting
 
   **Processing Limits:**
@@ -74,7 +74,7 @@ The Address List function serves as your powerhouse for **bulk email sending** s
   * Maximum contacts per list: **1 million addresses**
 </Accordion>
 
-## Website Subscription Forms for Lead Generation
+## Website Subscription Forms
 
 Transform your website visitors into engaged subscribers with our easy-to-implement subscription system. Collect leads legally and efficiently while maintaining compliance with privacy regulations.
 
