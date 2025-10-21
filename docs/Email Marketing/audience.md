@@ -12,7 +12,7 @@ metadata:
 ---
 ## Adding Contacts to Your Audience List
 
-Whether adding contacts individually or in bulk, please ensure that your contacts are collected legally and compliantly.There are two ways to add contacts to your audience:
+Whether adding contacts individually or in bulk, please ensure that your contacts are collected legally and in compliance with data protection regulations. There are two ways to add contacts to your audience:
 
 ### Add Individual Contacts
 
@@ -20,7 +20,7 @@ You can add contacts one by one by filling out a contact form. The **Email field
 
 ### Import Multiple Contacts
 
-#### 1. choose the way to add multiple contacts.
+#### 1. Choose the method to add multiple contacts
 
 **Upload CSV File**
 
@@ -34,7 +34,7 @@ You can add contacts one by one by filling out a contact form. The **Email field
 * Separate fields with commas (,)
 * Place each contact on a new line
 
- **Handling Contacts**
+**Handling Duplicate Contacts**
 
 When importing contacts that already exist in your list, you can choose how to handle duplicates:
 
@@ -43,22 +43,21 @@ When importing contacts that already exist in your list, you can choose how to h
 
 #### 2. Choose Tags
 
-If you want add tags to the multiple contacts,you can select one tag or more.
+If you want to add tags to multiple contacts, you can select one or more tags.
 
 **Handling Tags**
 
-* Replace 
-  If the imported contact is already in your contact list, we will automatically replace the tag of the existing contact with your newly selected tag.
-* Add
-  If the imported contact is already in your contact list, we will automatically add your newly selected tag and keep the existing tag of your existing contact.
-* Skip
-  If the imported contact is already in your contact list, we will automatically skip and only keep the existing tag of your existing contact.
+* **Replace**: If the imported contact is already in your contact list, we will automatically replace the existing contact's tag with your newly selected tag.
+* **Add**: If the imported contact is already in your contact list, we will automatically add your newly selected tag while keeping the existing tags.
+* **Skip**: If the imported contact is already in your contact list, we will automatically skip the new tag and only keep the existing tags.
 
-#### 3. Contact fields matching
+#### 3. Contact Field Matching
 
-The system will recognize each column of the contacts you have imported and automatically match some field fields. You only need to check if they are correct and adjust the matching to the correct field
+The system will recognize each column of the contacts you have imported and automatically match some fields. You only need to verify that they are correct and adjust the matching to the appropriate field.
 
-#### 4. Final check and confirm import
+#### 4. Final Check and Confirm Import
+
+Review your import settings and confirm to complete the process.
 
 <br />
 
@@ -102,7 +101,7 @@ To adjust the display order of contact fields, go to **Manage → Fields** and d
 
 ### Tags
 
-Tags are labels you can assign to categorize contacts into groups. They're composed of text strings and help you organize your audience for targeted campaigns.
+Tags are labels you can assign to categorize contacts into groups. They consist of text strings and help you organize your audience for targeted campaigns.
 
 **Key Features:**
 
