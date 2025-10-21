@@ -197,94 +197,11 @@ Analyze your email performance using these filtering dimensions:
 
 ## Grouping Options
 
-Organize your email statistics data by selecting the most appropriate grouping method for your analysis needs. Choose from four different grouping options, each designed for specific use cases and reporting requirements.
+Organize your email statistics data by selecting one of these grouping methods:
 
-### Time-Based Grouping
+* **Group by Day** _(default)_ - Daily performance breakdown
+* **Group by Week** - Weekly performance trends
+* **Group by Month** - Monthly performance overview
+* **Group by Receiving Domain** - Performance by email provider
 
-<Columns layout="auto">
-  <Column>
-    ### 📅 **Group by Day** _(Default)_
-    
-    **Perfect for:**
-    - Daily campaign monitoring
-    - Immediate performance feedback
-    - Short-term trend analysis
-    - Real-time optimization decisions
-    
-    **Data granularity:** Individual daily performance
-    **Best timeframe:** Last 7-30 days
-    **Update frequency:** Real-time
-  </Column>
-  
-  <Column>
-    ### 📊 **Group by Week**
-    
-    **Perfect for:**
-    - Weekly performance cycles
-    - Smoothing daily fluctuations  
-    - Week-over-week comparisons
-    - Regular team reporting
-    
-    **Data granularity:** Weekly aggregates
-    **Best timeframe:** Last 3-6 months  
-    **Update frequency:** Weekly
-  </Column>
-</Columns>
-
-<Columns layout="auto">
-  <Column>
-    ### 📈 **Group by Month**
-    
-    **Perfect for:**
-    - Strategic planning
-    - Executive reporting
-    - Seasonal trend analysis
-    - Budget performance review
-    
-    **Data granularity:** Monthly summaries
-    **Best timeframe:** 6 months to 2 years
-    **Update frequency:** Monthly
-  </Column>
-  
-  <Column>
-    ### 🌐 **Group by Receiving Domain**
-    
-    **Perfect for:**
-    - Deliverability troubleshooting
-    - Provider-specific optimization
-    - Reputation monitoring
-    - Technical diagnosis
-    
-    **Data granularity:** By email provider
-    **Best timeframe:** Any period
-    **Update frequency:** As needed
-  </Column>
-</Columns>
-
-### Quick Selection Guide
-
-Use this guide to choose the right grouping option for your specific needs:
-
-| **Your Goal** | **Recommended Grouping** | **Why This Works Best** |
-|:-------------|:------------------------|:------------------------|
-| 🚀 **Monitor live campaigns** | Group by Day | Real-time insights for immediate adjustments |
-| 📋 **Weekly team reports** | Group by Week | Balanced view without daily noise |
-| 🎯 **Quarterly business reviews** | Group by Month | High-level trends for strategic decisions |
-| 🔧 **Fix delivery issues** | Group by Receiving Domain | Identify problematic email providers |
-| 💡 **Optimize send timing** | Group by Day | See daily engagement patterns |
-| 📊 **Compare seasonal performance** | Group by Month | Identify year-over-year trends |
-
-### Advanced Tips
-
-<Callout icon="💡" theme="success">
-  **Pro Tips for Better Analysis:**
-  
-  - **Start broad, then narrow:** Begin with monthly grouping to spot trends, then drill down to daily for details
-  - **Cross-reference domains:** Use receiving domain grouping when you notice unusual delivery rate changes
-  - **Combine with filters:** Apply email type or campaign filters before selecting your grouping method
-  - **Export data:** Use different grouping options to create comprehensive reports for stakeholders
-</Callout>
-
-<Callout icon="⚡" theme="warning">
-  **Performance Note:** Larger date ranges with daily grouping may take longer to load. For analysis spanning several months, consider weekly or monthly grouping for faster results.
-</Callout>
+Choose the grouping that best matches your reporting needs and analysis goals.
