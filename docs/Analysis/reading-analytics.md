@@ -27,7 +27,7 @@ Dive deep into your email performance data with comprehensive filtering capabili
 | **Campaign**       | Analyze performance of specific email campaigns                                |
 | **Request Period** | Select the timeframe for your analysis (default: last 7 days)                  |
 
-> **Pro Tip:** Combine multiple filters to create highly targeted analysis views. For example, filter by specific campaigns within a date range to track performance trends over time.
+<br />
 
 <br />
 
@@ -41,10 +41,10 @@ Transform raw data into actionable insights with our advanced analytics features
 
 Understand your global reach with detailed geographical insights:
 
-- **Interactive world map** showing email engagement by country
-- **Regional performance metrics** to identify your strongest markets  
-- **Localization opportunities** based on engagement patterns
-- **Geographic segmentation** for targeted campaigns
+* **Interactive world map** showing email engagement by country
+* **Regional performance metrics** to identify your strongest markets
+* **Localization opportunities** based on engagement patterns
+* **Geographic segmentation** for targeted campaigns
 
 The geographical location distribution of email reading provides valuable insights, allowing you to view data for each country individually through an intuitive world map interface. This helps you understand the geographical distribution of recipients who actively engage with your emails.
 
@@ -60,6 +60,7 @@ Maximize your email effectiveness with detailed link analytics:
   <Card title="Daily Click Distribution" icon="chart-line">
     Track how link clicks vary throughout the day and week to identify optimal engagement windows.
   </Card>
+
   <Card title="Top 10 Links Analysis" icon="trophy">
     Discover which links drive the most engagement and replicate successful content strategies.
   </Card>
@@ -67,10 +68,10 @@ Maximize your email effectiveness with detailed link analytics:
 
 This comprehensive feature provides daily distribution analysis of links and clicks in your emails, along with detailed data for the top 10 most-clicked links. You'll gain a global perspective on which links in your emails are most popular, enabling you to:
 
-- **Optimize call-to-action placement** based on performance data
-- **Identify high-value content** that resonates with your audience  
-- **Improve email design** by understanding click patterns
-- **Replicate successful elements** across future campaigns
+* **Optimize call-to-action placement** based on performance data
+* **Identify high-value content** that resonates with your audience
+* **Improve email design** by understanding click patterns
+* **Replicate successful elements** across future campaigns
 
 <br />
 
@@ -78,54 +79,49 @@ This comprehensive feature provides daily distribution analysis of links and cli
 
 Optimize your email design for maximum compatibility and engagement across all platforms and devices.
 
-#### Device Types & Usage Patterns
+#### Device Types Analytics
 
 Get detailed breakdowns of desktop, mobile, and tablet opens to prioritize your responsive design efforts. Understanding device distribution helps you allocate resources effectively and ensure optimal user experience across all platforms.
 
 **Key Insights:**
-- **Desktop vs. Mobile split** - See how your audience prefers to access emails
-- **Tablet engagement** - Identify growing tablet usage trends
-- **Cross-device behavior** - Understand multi-device usage patterns
+
+* **Desktop vs. Mobile split** - See how your audience prefers to access emails
+* **Tablet engagement** - Identify growing tablet usage trends
 
 #### Operating System Analytics
 
 Understand which operating systems your audience uses to ensure compatibility and optimal rendering across different platforms.
 
 **Coverage Includes:**
-- **iOS vs. Android distribution** - Critical for mobile optimization
-- **Windows, macOS, Linux** - Desktop operating system preferences  
-- **Version tracking** - Identify which OS versions to support
-- **Update patterns** - Monitor how quickly your audience adopts new OS versions
+
+* **iOS vs. Android distribution** - Critical for mobile optimization
+* **Windows, macOS, Linux** - Desktop operating system preferences
 
 #### Mobile Brand Intelligence
 
 Analyze engagement patterns across different mobile device manufacturers to understand your audience's hardware preferences and optimize accordingly.
 
 **Strategic Applications:**
-- **Apple vs. Android distribution** - See the split between iOS and Android users
-- **Brand popularity rankings** - Identify which manufacturers (Samsung, Apple, Google, Huawei, etc.) your audience prefers
-- **Device-specific optimization** - Tailor your email designs for the most popular device brands
-- **Market insights** - Understand premium vs. budget device usage patterns
+
+* **Apple vs. Android distribution** - See the split between iOS and Android users
+* **Brand popularity rankings** - Identify which manufacturers (Samsung, Apple, Google, Huawei, etc.) your audience prefers
+* **Device-specific optimization** - Tailor your email designs for the most popular device brands
+* **Market insights** - Understand premium vs. budget device usage patterns
 
 This data helps you prioritize testing across different mobile brands and optimize your email rendering for the devices your audience actually uses.
 
-#### Browser & Email Client Analysis
+#### Browser Analysis
 
-Discover which web browsers and email clients your audience uses for better template compatibility and enhanced user experience.
-
-**Comprehensive Coverage:**
-- **Email client breakdown** - Gmail, Outlook, Apple Mail, Yahoo Mail usage statistics
-- **Web browser analysis** - Chrome, Safari, Firefox, Edge performance data
-- **Mobile app vs. web** - Understanding how users access their emails
-- **Version tracking** - Identify which browser versions to support for optimal rendering
+Discover which web browsers  your audience uses for better template compatibility and enhanced user experience.
 
 Browser data is crucial for ensuring your emails display correctly across all platforms and helps you make informed decisions about which advanced CSS features and email techniques to implement.
 
 **Key Applications:**
-- **Design Priority:** Focus template optimization on your audience's primary devices
-- **Testing Strategy:** Prioritize testing on the most popular email clients  
-- **Mobile Optimization:** Understand mobile usage patterns for responsive design
-- **Compatibility Planning:** Ensure your emails render perfectly across all platforms
+
+* **Design Priority:** Focus template optimization on your audience's primary devices
+* **Testing Strategy:** Prioritize testing on the most popular email clients
+* **Mobile Optimization:** Understand mobile usage patterns for responsive design
+* **Compatibility Planning:** Ensure your emails render perfectly across all platforms
 
 <br />
 
@@ -136,6 +132,7 @@ Maximize engagement with data-driven send time optimization:
 Aurora SendCloud divides each day into twenty-four hour segments, creating precise engagement tracking windows. When recipients read emails, we track engagement for each of these time periods, providing you with granular insights into audience behavior patterns.
 
 **How It Works:**
+
 1. **24-hour segmentation** tracks engagement across all hours of the day
 2. **Pattern recognition** identifies consistent engagement trends
 3. **Audience-specific insights** reveal when your subscribers are most active
@@ -146,10 +143,11 @@ This powerful timing analysis enables you to identify when your recipients are m
 <Image border={false} src="https://files.readme.io/333a184a72cb3c92f997ede9d577cf55db833fbc7425021203868d8fd247fe4b-image.png" />
 
 **Strategic Benefits:**
-- **Increased open rates** through optimal timing
-- **Better engagement** by reaching audiences when they're active
-- **Improved ROI** from well-timed campaigns  
-- **Audience insights** for future marketing strategies
+
+* **Increased open rates** through optimal timing
+* **Better engagement** by reaching audiences when they're active
+* **Improved ROI** from well-timed campaigns
+* **Audience insights** for future marketing strategies
 
 <br />
 
