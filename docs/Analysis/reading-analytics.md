@@ -32,6 +32,10 @@ Analyze your email performance using these filtering dimensions:
 
 The geographical location distribution of email reading is provided, and the data of each country can be viewed one by one according to the world map.
 
+<Image border={false} src="https://files.readme.io/4141411333902e7c785155d3d797366763c33d243196859ba88553e43f2d1336-image.png" />
+
+<br />
+
 ### Link statistics
 
 provides daily distribution of links and clicks in the email and the link data with the top 10 clicking most.
