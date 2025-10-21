@@ -1,5 +1,9 @@
 ---
 title: Label
+excerpt: >-
+  Labels are a powerful feature designed to help you categorize and track your
+  email messages. They are particularly useful for scenarios such as A/B
+  testing, campaign segmentation, and performance analysis.
 deprecated: false
 hidden: false
 link:
@@ -20,9 +24,7 @@ metadata:
     - track email performance
   robots: index
 ---
-Labels are a powerful feature designed to help you categorize and track your email messages. They are particularly useful for scenarios such as A/B testing, campaign segmentation, and performance analysis.
-
-## Overview
+# Label
 
 A Label allows you to assign a custom identifier to your emails. By using Labels, you can easily filter and query the sending status and performance metrics for a specific group of emails directly within the system.
 
