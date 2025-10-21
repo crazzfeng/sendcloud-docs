@@ -12,7 +12,7 @@ metadata:
 ---
 # Inbox Insight
 
-**Eliminate email delivery uncertainty with real-time inbox placement analytics across Gmail, Outlook, Yahoo, and 15+ major providers.** 
+**Eliminate email delivery uncertainty with real-time inbox placement analytics across Gmail, Outlook,  and other providers.**
 
 Stop wondering where your emails land. Inbox Insight provides instant visibility into your email delivery performance, automated domain reputation management, and intelligent warm-up processes—all integrated seamlessly with Aurora SendCloud.
 
@@ -46,10 +46,11 @@ Stop wondering where your emails land. Inbox Insight provides instant visibility
   **Our Solution:** Real-time placement tracking across Gmail, Outlook, Yahoo, Apple Mail, and 12 other major providers. See exactly where each email lands with detailed folder-level analytics and provider-specific insights.
 
   **What You Get:**
-  - Live placement distribution charts
-  - Provider-specific delivery rates  
-  - Folder categorization analytics
-  - Delivery trend analysis over time
+
+  * Live placement distribution charts
+  * Provider-specific delivery rates
+  * Folder categorization analytics
+  * Delivery trend analysis over time
 </Accordion>
 
 <Accordion title="🚨 Reputation Issues You Can't See Coming" icon="triangle-exclamation">
@@ -58,10 +59,11 @@ Stop wondering where your emails land. Inbox Insight provides instant visibility
   **Our Solution:** Continuous monitoring of 25+ anti-spam organizations and reputation databases, with automated scanning every 15 minutes and instant alerts when issues arise.
 
   **What You Get:**
-  - Real-time blacklist monitoring
-  - Reputation score tracking
-  - Automated alert system
-  - Step-by-step remediation guides
+
+  * Real-time blacklist monitoring
+  * Reputation score tracking
+  * Automated alert system
+  * Step-by-step remediation guides
 </Accordion>
 
 <Accordion title="🐌 Manual Domain Warm-Up Is Painfully Slow" icon="hourglass">
@@ -70,10 +72,11 @@ Stop wondering where your emails land. Inbox Insight provides instant visibility
   **Our Solution:** Fully automated warm-up system with AI-generated content, intelligent sending patterns, and simulated user interactions that actually improve your sender reputation.
 
   **What You Get:**
-  - Zero-effort automated process
-  - AI-generated warm-up content
-  - Dynamic sending optimization
-  - Measurable reputation improvement
+
+  * Zero-effort automated process
+  * AI-generated warm-up content
+  * Dynamic sending optimization
+  * Measurable reputation improvement
 </Accordion>
 
 <br />
@@ -83,15 +86,19 @@ Stop wondering where your emails land. Inbox Insight provides instant visibility
 Ready to get started? Here's how to activate Inbox Insight in under 5 minutes:
 
 ### Step 1: Verify Your Sending Domain
+
 Ensure you have at least one verified sending domain in Aurora SendCloud. If you haven't set this up yet, head to your Domain Settings first.
 
 ### Step 2: Add Your Email Template (Optional)
+
 Upload one of your email templates for more effective warm-up. We'll use your actual content in a controlled proportion to build authentic sending patterns.
 
-### Step 3: Activate Inbox Insight  
+### Step 3: Activate Inbox Insight
+
 Click "Enable Inbox Insight" in your dashboard. No complex configuration needed—we handle the setup automatically.
 
 ### Step 4: Start Monitoring
+
 Access your comprehensive delivery analytics through the Data Analysis dashboard within minutes of activation.
 
 <br />
@@ -104,30 +111,20 @@ Access your comprehensive delivery analytics through the Data Analysis dashboard
 
 <Columns layout="auto">
   <Column>
-    **🎯 Instant Results**  
-    See delivery data within minutes, not hours
-
-    **🔄 Automated Everything**  
+    **Automated Everything**\
     Set once, runs continuously in the background
 
-    **📊 Actionable Data**  
-    Clear recommendations, not just numbers
-
-    **⚡ Zero Learning Curve**  
+    **Zero Learning Curve**\
     Intuitive dashboard with immediate insights
   </Column>
-  <Column>
-    **🛡️ Proactive Protection**  
-    Catch reputation issues before they hurt delivery
 
-    **🤖 AI-Powered Optimization**  
+  <Column>
+    **AI-Powered Optimization**\
     Smart warm-up that actually improves results
 
-    **📱 Real-Time Alerts**  
+    **Real-Time Alerts**\
     Instant notifications when attention is needed
 
-    **🔧 Seamless Integration**  
-    Works perfectly with Aurora SendCloud
   </Column>
 </Columns>
 
@@ -135,6 +132,8 @@ Access your comprehensive delivery analytics through the Data Analysis dashboard
 
 Transform your email marketing effectiveness with data-driven insights that ensure your messages reach the right inboxes at the right time. Start your free trial today and see the difference real visibility makes.
 
----
+***
 
-> 💡 **Pro Tip**: Inbox Insight works best when combined with Aurora SendCloud's advanced sending features. The integration provides enterprise-grade email intelligence without the complexity of managing multiple tools.
+<Callout icon="💡" theme="default">
+  ### **Pro Tip**: Inbox Insight works best when combined with Aurora SendCloud's advanced sending features. The integration provides enterprise-grade email intelligence without the complexity of managing multiple tools.
+</Callout>
