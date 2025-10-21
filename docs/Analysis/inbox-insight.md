@@ -36,7 +36,7 @@ metadata:
   </Card>
 </Cards>
 
-## Solve Critical Email Challenges
+### Solve Critical Email Challenges
 
 <Accordion title="Email Deliverability Issues" icon="exclamation-triangle">
   **The Problem:** Your carefully crafted emails are ending up in spam folders instead of reaching your customers' inboxes.
@@ -56,49 +56,9 @@ metadata:
   **The Solution:** Fully automated warm-up with intelligent content generation, dynamic sending patterns, and simulated user interactions that genuinely improve sender reputation.
 </Accordion>
 
-## Core Features
-
-<Tabs>
-  <Tab title="📊 Data Insights">
-    ### Comprehensive Email Analytics
-
-    • **Folder Distribution Analysis:** Visual breakdown of email placement across inbox, spam, promotions, and other categories
-
-    • **Domain-Specific Reporting:** Independent analysis for Gmail, Outlook, Yahoo, and other major providers
-
-    • **Trend Analysis:** Historical data comparison with anomaly detection to identify delivery pattern changes
-
-    • **Performance Metrics:** Detailed statistics on open rates, click-through rates, and engagement by placement location
-  </Tab>
-
-  <Tab title="🛡️ Health Monitoring">
-    ### Real-Time Domain Protection
-
-    • **Blacklist Monitoring:** Continuous scanning across major anti-spam databases and reputation services
-
-    • **Reputation Scoring:** Real-time sender reputation tracking with actionable insights
-
-    • **Alert System:** Instant notifications when domain health issues are detected
-
-    • **Compliance Tracking:** Monitor adherence to email authentication standards (SPF, DKIM, DMARC)
-  </Tab>
-
-  <Tab title="🚀 Intelligent Warm-up">
-    ### Automated Reputation Building
-
-    • **Smart Content Generation:** AI-powered creation of personalized, engaging warm-up emails
-
-    • **Dynamic Sending Patterns:** Adaptive scheduling that mimics natural sending behavior
-
-    • **Interactive Simulation:** Automated engagement activities including opens, replies, and folder management
-
-    • **Progress Tracking:** Quantifiable metrics showing warm-up effectiveness and reputation improvement
-  </Tab>
-</Tabs>
-
 <br />
 
-## Key Benefits
+### Key Benefits
 
 <Columns layout="auto">
   <Column>
@@ -109,31 +69,19 @@ metadata:
   </Column>
 </Columns>
 
-## Getting Started
+## How to use Inbox Insight
 
-<Columns layout="auto">
-  <Column>
-    ### Quick Setup Process
 
-    1. **Domain Configuration**\
+
+    1. **Domain Configuration**
        Add your sending domain to the Aurora SendCloud platform
 
-    2. **Service Activation**\
+    2. **Service Activation**
        Enable Inbox Insight with a single click - no complex setup required
 
-    3. **Start Monitoring**\
+    3. **Start Monitoring**
        Access your comprehensive delivery analytics through the Data Analysis dashboard
-  </Column>
 
-  <Column>
-    ### Key Benefits
-
-    ✅ **Zero Learning Curve** - Intuitive interface with immediate insights\
-    ✅ **Automated Operation** - Set it once, runs continuously in the background\
-    ✅ **Real-Time Data** - Live updates on delivery performance and domain health\
-    ✅ **Actionable Insights** - Clear recommendations for improving deliverability
-  </Column>
-</Columns>
 
 ***
 
