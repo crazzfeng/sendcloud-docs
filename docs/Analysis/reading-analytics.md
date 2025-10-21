@@ -28,18 +28,18 @@ Analyze your email performance using these filtering dimensions:
 
 ## Analytics and Grouping Options
 
-Statistics by regions:
+### Statistics by regions
 
 The geographical location distribution of email reading is provided, and the data of each country can be viewed one by one according to the world map.
 
-Link statistics:
+### Link statistics
 
 provides daily distribution of links and clicks in the email and the link data with the top 10 clicking most.
 
-Device statistics:
+### Device statistics
 
 provides statistics of opening devices, operating systems, wireless brands and browser distribution of the email
 
-Reading Time Statistics：
+### Reading Time Statistics
 
 Aurora SendCloud separates one day into twenty - four hour - points. When the recipient reads the email, we will count each of them by these hour - points.This way, you can know when your recipient likes to read your email the most. So sending during this time period will give you the maximum return.
