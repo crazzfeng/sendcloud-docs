@@ -85,7 +85,7 @@ Stop wondering where your emails land. Inbox Insight provides instant visibility
 
 Ready to get started? Here's how to activate Inbox Insight in under 5 minutes:
 
-### Step 1: Verify Your Sending Domain
+### Step 1: Choose Your Sending Domain
 
 Ensure you have at least one verified sending domain in Aurora SendCloud. If you haven't set this up yet, navigate to your Domain Settings first.
 
