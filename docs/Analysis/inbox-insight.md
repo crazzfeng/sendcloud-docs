@@ -83,6 +83,9 @@ metadata:
 4. **Start Monitoring**
    Access your comprehensive delivery analytics through the Data Analysis dashboard
 
+
+   <Image border={false} src="https://files.readme.io/1cbdb086466b8fd0fd95748f98c4175cc22931926780e6a0dc5e4c5403252342-image.png" />
+
 ***
 
 <br />
