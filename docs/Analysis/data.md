@@ -10,7 +10,7 @@ link:
 metadata:
   robots: index
 ---
-# Aurora SendCloud Email Data & Analytics
+## Email Data & Analytics
 
 Gain complete visibility into your email performance with Aurora SendCloud's comprehensive tracking and analytics platform. Monitor every stage of your email campaigns—from initial send through final delivery—with real-time status updates and detailed performance metrics.
 
@@ -19,8 +19,6 @@ Our advanced tracking system captures the complete email delivery lifecycle, pro
 <Callout icon="📘" theme="info">
   All email status and event data in Aurora SendCloud is retained for 6 months by default, giving you extensive historical insights.
 </Callout>
-
-## Email Delivery Status Overview
 
 Monitor your email performance across four essential status categories to optimize delivery success and identify improvement opportunities:
 
