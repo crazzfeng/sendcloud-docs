@@ -34,8 +34,6 @@ metadata:
   </Card>
 </Cards>
 
-***
-
 ## Solve Critical Email Challenges
 
 <Accordion title="Email Deliverability Issues" icon="exclamation-triangle">
@@ -55,8 +53,6 @@ metadata:
 
   **The Solution:** Fully automated warm-up with intelligent content generation, dynamic sending patterns, and simulated user interactions that genuinely improve sender reputation.
 </Accordion>
-
-***
 
 ## Core Features
 
@@ -98,7 +94,19 @@ metadata:
   </Tab>
 </Tabs>
 
-***
+<br />
+
+## Key Benefits
+
+<Columns layout="auto">
+<Column>
+  ✅ **Zero Learning Curve** - Intuitive interface with immediate insights\
+  ✅ **Automated Operation** - Set it once, runs continuously in the background\
+  ✅ **Real-Time Data** - Live updates on delivery performance and domain health\
+  ✅ **Actionable Insights** - Clear recommendations for improving deliverability
+  </Column>
+</Columns>
+
 
 ## Getting Started
 
