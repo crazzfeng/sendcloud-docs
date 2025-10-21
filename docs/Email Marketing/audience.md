@@ -16,8 +16,6 @@ metadata:
   Always ensure your contacts are collected legally and comply with data protection regulations like GDPR and CAN-SPAM before adding them to your audience.
 </Accordion>
 
-<Tabs>
-  <Tab title="Individual Contacts">
     ### Add One Contact at a Time
 
     Perfect for adding new contacts as they sign up or when you meet them personally.
@@ -29,9 +27,7 @@ metadata:
     3. Fill out the contact form
     4. **Email is required** - all other fields are optional
     5. Save the contact
-  </Tab>
 
-  <Tab title="Bulk Import">
     ### Import Multiple Contacts
 
     Efficiently add hundreds or thousands of contacts at once using two methods:
@@ -49,10 +45,9 @@ metadata:
     * Separate fields with commas (,)
     * Place each contact on a new line
     * Example: `john@example.com, John Doe, 555-0123`
-  </Tab>
-</Tabs>
 
-### Import Process Walkthrough
+
+<br />
 
 <Cards columns="2">
   <Card title="Step 1: Handle Duplicates" icon="users">
