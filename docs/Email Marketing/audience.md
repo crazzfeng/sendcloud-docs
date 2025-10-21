@@ -12,7 +12,7 @@ metadata:
 ---
 ## Adding Contacts to Your Audience List
 
-There are two ways to add contacts to your audience:
+Whether adding contacts individually or in bulk, please ensure that your contacts are collected legally and compliantly.There are two ways to add contacts to your audience:
 
 ### Add Individual Contacts
 
@@ -20,7 +20,7 @@ You can add contacts one by one by filling out a contact form. The **Email field
 
 ### Import Multiple Contacts
 
-You have two import options:
+#### 1. choose the way to add multiple contacts.
 
 **Upload CSV File**
 
@@ -34,12 +34,33 @@ You have two import options:
 * Separate fields with commas (,)
 * Place each contact on a new line
 
-### Handling Duplicate Contacts
+ **Handling Contacts**
 
 When importing contacts that already exist in your list, you can choose how to handle duplicates:
 
 * **Update**: Automatically replace existing contact information with new data from your import
 * **Skip**: Keep existing contact information unchanged and skip duplicate entries
+
+#### 2. Choose Tags
+
+If you want add tags to the multiple contacts,you can select one tag or more.
+
+**Handling Tags**
+
+* Replace 
+  If the imported contact is already in your contact list, we will automatically replace the tag of the existing contact with your newly selected tag.
+* Add
+  If the imported contact is already in your contact list, we will automatically add your newly selected tag and keep the existing tag of your existing contact.
+* Skip
+  If the imported contact is already in your contact list, we will automatically skip and only keep the existing tag of your existing contact.
+
+#### 3. Contact fields matching
+
+The system will recognize each column of the contacts you have imported and automatically match some field fields. You only need to check if they are correct and adjust the matching to the correct field
+
+#### 4. Final check and confirm import
+
+<br />
 
 ## Managing Your Audience
 
