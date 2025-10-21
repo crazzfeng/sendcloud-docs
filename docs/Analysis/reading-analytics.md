@@ -87,11 +87,11 @@ Optimize your email design for maximum compatibility and engagement:
   </Tab>
 
   <Tab title="Mobile Brands">
-    Sh email clients (Gmail, Outlook, Apple Mail, etc.) your audience prefers for better template optimization.
+    
   </Tab>
 
   <Tab title="Browsers">
-    Analyze mobile carrier data to understand connectivity patterns and optimize for mobile users.
+    
   </Tab>
 </Tabs>
 
