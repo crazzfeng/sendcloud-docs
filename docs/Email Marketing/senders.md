@@ -25,6 +25,10 @@ Ensure you have at least one verified sending domain in Aurora SendCloud. If you
 
 ### Step 2: Customize Your From Name
 
-<br />
+To make the sender immediately recognizable and to create a sense of trust with the recipient.
 
 ### Step 3: Customize Your From Address
+
+To provide the technical routing for the email and to assure the recipient of its legitimacy. A custom domain is often preferred for branding and to increase the chance of emails landing in the inbox rather than spam.
+
+In Aurora SendCloud the sender's from address must be ended with the sending domain.like @domain.com.
