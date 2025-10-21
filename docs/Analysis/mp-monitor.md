@@ -10,17 +10,17 @@ link:
 metadata:
   robots: index
 ---
-## What is MP Monitor ?
+## What is MP Monitor?
 
 <Image align="center" alt="MP Monitor" border={false} caption="MP Monitor Dashboard" src="https://files.readme.io/948724cd1ce55938b3c30b5a32b4c7bed148989df824373dd8209ad2db3f6bae-image.png" />
 
-MP Monitor (Mailbox Provider Monitor) is Aurora SendCloud's professional monitoring solution designed to track and analyze feedback data from major mailbox providers. This comprehensive tool enables you to maintain optimal email deliverability by monitoring reputation scores, spam complaints, and delivery performance metrics directly from mailbox providers.
+MP Monitor (Mailbox Provider Monitor) is Aurora SendCloud's professional monitoring solution designed to track and analyze feedback data from major mailbox providers. This comprehensive tool helps you maintain optimal email deliverability by monitoring reputation scores, spam complaints, and delivery performance metrics directly from mailbox providers.
 
 ## Why Use MP Monitor?
 
 <Cards columns={2}>
   <Card title="Delivery Optimization" icon="rocket">
-    Get direct insights from mailbox providers to optimize your email delivery performance and reduce bounce rates.
+    Gain direct insights from mailbox providers to optimize your email delivery performance and reduce bounce rates.
   </Card>
 
   <Card title="Reputation Protection" icon="shield-alt">
@@ -69,7 +69,7 @@ MP Monitor (Mailbox Provider Monitor) is Aurora SendCloud's professional monitor
   </Tab>
 
   <Tab title="Yahoo CFL">
-    Yahoo Complaint Feedback Loop helps monitor spam complaints and protect your sender reputation specifically for Yahoo Mail recipients.
+    Yahoo Complaint Feedback Loop helps monitor spam complaints and protects your sender reputation specifically for Yahoo Mail recipients.
   </Tab>
 </Tabs>
 
@@ -97,7 +97,7 @@ Google Postmaster provides valuable analytics insights that can optimize your em
 5. Return to Google Postmaster and click "**Verify**"
 
 <Callout theme="warning">
-  **DNS Propagation**: It may take up to 24 hours for DNS changes to propagate. You can check propagation status using online DNS checker tools.
+  **DNS Propagation**: DNS changes may take up to 24 hours to propagate. You can check propagation status using online DNS checker tools.
 </Callout>
 
 **Step 3: Grant Access to SendCloud**
@@ -138,7 +138,7 @@ Yahoo Complaint Feedback Loop monitors spam complaints from Yahoo Mail users, he
 
 1. Return to the Aurora SendCloud MP Monitor interface
 2. Click the "**Verify**" button
-3. The system will check for the TXT record and confirm setup
+3. The system will check for the TXT record and confirm the setup
 
 <Callout theme="warning">
   **Verification Timing**: DNS changes may take 5-15 minutes to be recognized by Yahoo's systems. If verification fails, wait a few minutes and try again.
