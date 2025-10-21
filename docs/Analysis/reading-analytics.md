@@ -27,7 +27,7 @@ Dive deep into your email performance data with comprehensive filtering capabili
 | **Campaign**       | Analyze performance of specific email campaigns                                |
 | **Request Period** | Select the timeframe for your analysis (default: last 7 days)                  |
 
-> **Pro Tip:** Combine multiple filters to create highly targeted analysis views. For example, filter by specific campaigns within a date range to track performance trends over time.
+<br />
 
 <br />
 
