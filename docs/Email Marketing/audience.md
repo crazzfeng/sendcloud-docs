@@ -56,7 +56,7 @@ Email, name and phone cannot be deleted or set invisible.
 
 Fields can be added or deleted according to the situation .
 When creating a new field, you can define the name of the attribute and select the appropriate type .
-The main types we support are：Text、Num、Date、Birthday、Dropdown
+The main types we support are：Text,Num,Date,Birthday,Dropdown
 
 If you want to adjust the display order of contact attributes, you can enter "manage - Fields" and drag attributes to adjust the display order.
 
