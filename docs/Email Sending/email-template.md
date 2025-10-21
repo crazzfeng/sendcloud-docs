@@ -12,61 +12,67 @@ metadata:
 
 Email templates allow you to create reusable email content frameworks that are ideal for scenarios requiring repetitive emails with personalized content, such as marketing campaigns, system notifications, and verification codes. By using variable substitution, you can achieve personalized email delivery with a single template.
 
-To access the template management page, log in to the SendCloud platform and navigate to **Send Content > Email Templates** from the left menu.
+To access the template management page, log in to the Aurora SendCloud platform and navigate to **Content > Email Template** from the left menu.
 
-## Template List Overview
+## Template List
 
 The Template List page displays comprehensive information for all templates in your account:
 
-- **Template Name** - Template identification name for quick identification
-- **Type** - Template classification type  
-- **Call Name** - Unique identifier used when making API calls
-- **Email Subject** - Email subject line (maximum 256 characters)
-- **Update Time** - Last modified time (automatically logged)
+* **Template Name** - Template identification name for quick identification
+* **Type** - Template classification type
+* **Call Name** - Unique identifier used when making API calls
+* **Email Subject** - Email subject line (maximum 256 characters)
+* **Update Time** - Last modified time (automatically logged)
 
 ## Template Editors
 
-SendCloud provides two editing modes to meet different user needs:
+Aurora SendCloud provides two editing modes to meet different user needs:
 
 **ShanEdit (Visual Editor)**
-- Features: Visual drag-and-drop editing, easy to use
-- Target audience: Marketing and operations professionals with non-technical backgrounds
-- Functions:
-  - Directly drag and drop text, images, and other elements
-  - Use a library of pre-designed professional templates
-  - Real-time preview functionality
-  - One-click copy and use existing templates
+
+* Features: Visual drag-and-drop editing, easy to use
+* Target audience: Marketing and operations professionals with non-technical backgrounds
+* Functions:
+  * Directly drag and drop text, images, and other elements
+  * Use a library of pre-designed professional templates
+  * Real-time preview functionality
+  * One-click copy and use existing templates
 
 **Source Code Editor**
-- Features: Direct HTML source code or rich text content editing with high flexibility
-- Target audience: Developers and professional users
-- Operation:
-  - Click the "Source" button on the right to switch modes
-  - Supports direct pasting of external HTML code
-  - Full code control capabilities
+
+* Features: Direct HTML source code or rich text content editing with high flexibility
+* Target audience: Developers and professional users
+* Operation:
+  * Click the "Source" button on the right to switch modes
+  * Supports direct pasting of external HTML code
+  * Full code control capabilities
 
 ## Usage Guidelines
 
 ### Content Restrictions
-- JavaScript is not allowed
-- Styles and content should be concise and clear
-- Responsive table static layout is recommended
-- Email subject character limit: 256 characters
+
+* JavaScript is not allowed
+* Styles and content should be concise and clear
+* Responsive table static layout is recommended
+* Email subject character limit: 256 characters
 
 ### Template Type Matching
-- **Batch templates:** Called by batch type API_USER
-- **Trigger templates:** Called by trigger type API_USER
-- **Important:** Ensure that the template type matches the API_USER type
+
+* **Batch templates:** Called by batch type API_USER
+* **Trigger templates:** Called by trigger type API_USER
+* **Important:** Ensure that the template type matches the API_USER type
 
 ## Best Practices
 
 ### Template Design Tips
-- Use clear naming conventions to facilitate team collaboration
-- Utilize variable substitution for personalization
-- Regularly optimize and update template content
-- Test display effects on different devices
+
+* Use clear naming conventions to facilitate team collaboration
+* Utilize variable substitution for personalization
+* Regularly optimize and update template content
+* Test display effects on different devices
 
 ### Recommended Workflow
+
 1. Select the appropriate editor mode
 2. Design or edit the template content
 3. Set the template type and call name
