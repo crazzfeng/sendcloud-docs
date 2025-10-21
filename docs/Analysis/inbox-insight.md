@@ -73,9 +73,10 @@ metadata:
 
 Before use inbox insight ,you should have sucessfully verifed one of your sending domain in Aurora SendCloud.
 
-1. **Choose one of verified sending domain** 
+1. **Choose one of verified sending domain**
 
-2. <br />
+2. Add a sample email if you want
+   You can choose one of your email template.,and we will use the email template to warm-up in a certain proportion.
 
 3. **Service Activation**
    Enable Inbox Insight with a single click - no complex setup required
