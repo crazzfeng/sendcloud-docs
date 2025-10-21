@@ -10,15 +10,6 @@ metadata:
 
 By monitoring metrics like ​​reading time​​ and ​​click rates​​, gain profound ​​insight into audience engagement​​.
 
-Opens
-The starting point of user interaction, indicating initial interest and email deliverability effectiveness.
-
-Clicks
-A marker of deeper engagement, directly correlating with conversion and user intent.
-
-Reading Time
-Send emails during the time when users read emails.
-
 <br />
 
 ## Filtering Options
@@ -34,3 +25,15 @@ Analyze your email performance using these filtering dimensions:
 | **Request Period** | Select the timeframe for your analysis (default: last 7 days)                  |
 
 <br />
+
+<br />
+
+Statistics by regions:
+
+The geographical location distribution of email reading is provided, and the data of each country can be viewed one by one according to the world map.
+
+Link statistics: provides daily distribution of links and clicks in the email and the link data with the top 10 clicking most.
+
+Device statistics: provides statistics of opening devices, operating systems, wireless brands and browser distribution of the email
+
+Reading Time Statistics：the time when users read emails.
