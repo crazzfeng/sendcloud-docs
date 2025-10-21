@@ -106,7 +106,7 @@ You plan to conduct a user survey. The target population is women aged 25-30. No
 > 1. Create a new segment called "user survey for women aged 25-30".
 > 2. Set the matching condition to meet all the requirements.
 > 3. Set the first condition Age > = 25
-> 4. Add a new condition, set Age \< = 30
+> 4. Add a new condition, set Age < = 30
 > 5. Add a new condition, and set it to Gender = Female
 > 6. Click next to preview the screened contacts. After saving, the segment can be created successfully.
 > 7. Send directly by segment, or select this segment to send when creating a new task.
