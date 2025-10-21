@@ -12,171 +12,163 @@ metadata:
 ---
 # Address Management
 
-Manage your contact email addresses effectively with powerful tools for bulk campaigns and lead collection. Choose between **Address Lists** for marketing campaigns or **Subscription Management** for growing your subscriber base.
+Effectively manage your contact email addresses with powerful tools designed for bulk campaigns and lead collection. Choose between **Address Lists** for marketing campaigns or **Subscription Management** for growing your subscriber base.
 
 # Address Lists
 
+The Address List function serves as your powerhouse for **bulk email sending** scenarios, including marketing campaigns, newsletters, and automated sequences. It supports advanced variable replacement for personalized messaging at scale.
 
-  
-    The Address List function is your powerhouse for **bulk email sending** scenarios, including marketing campaigns, newsletters, and automated sequences. It supports advanced variable replacement for personalized messaging at scale.
+## Key Features
 
-    ## Key Features
+<Cards columns={3}>
+  <Card title="Bulk Import">
+    Upload thousands of contacts instantly with support for multiple file formats and automatic validation.
+  </Card>
 
-    <Cards columns={3}>
-      <Card title="Bulk Import">
-        Upload thousands of contacts instantly with support for multiple file formats and automatic validation.
-      </Card>
+  <Card title="Variable Replacement">
+    Personalize emails with custom variables like %name%, %company%, %location% for higher engagement rates.
+  </Card>
 
-      <Card title="Variable Replacement">
-        Personalize emails with custom variables like %name%, %company%, %location% for higher engagement.
-      </Card>
+  <Card title="API Integration">
+    Seamlessly integrate with your existing systems using our robust API and unique list aliases.
+  </Card>
+</Cards>
 
-      <Card title="API Integration">
-        Seamlessly integrate with your existing systems using our robust API and unique list aliases.
-      </Card>
-    </Cards>
+## File Upload & Formats
 
-    ## File Upload & Formats
+<Accordion title="Supported File Formats">
+  **Supported Formats:**
 
-    <Accordion title="Supported File Formats">
-      **Supported Formats:**
+  * **.CSV** (Comma Separated Values) - Recommended
+  * **.TXT** (Plain Text Files)
+  * **.XLS** (Excel 97-2003)
+  * **.XLSX** (Excel 2007+)
 
-      * **.CSV** (Comma Separated Values) - Recommended
-      * **.TXT** (Plain Text Files)
-      * **.XLS** (Excel 97-2003)
-      * **.XLSX** (Excel 2007+)
+  **CSV Format Best Practices:**
 
-      **CSV Format Best Practices:**
+  ```
+  email,name,company,location
+  john@example.com,John Doe,Acme Corp,New York
+  jane@example.com,Jane Smith,Tech Inc,California
+  ```
 
-      ```
-      email,name,company,location
-      john@example.com,John Doe,Acme Corp,New York
-      jane@example.com,Jane Smith,Tech Inc,California
-      ```
+  **File Structure Guidelines:**
 
-      **File Structure Tips:**
+  * First column: Email addresses (required)
+  * Additional columns: Custom variables for personalization
+  * Header row: Use descriptive names that match your email templates
+  * Encoding: Use UTF-8 to support international characters
+</Accordion>
 
-      * First column: Email addresses (required)
-      * Additional columns: Custom variables for personalization
-      * Header row: Use descriptive names that match your email templates
-      * Encoding: Use UTF-8 to support international characters
-    </Accordion>
+<Accordion title="Upload Processing Details">
+  **Automatic Processing Features:**
 
-    <Accordion title="Upload Processing Details">
-      **Automatic Processing Features:**
+  ✅ **Smart Deduplication**: Removes duplicate email addresses across uploads  
+  ✅ **Format Validation**: Verifies email address syntax and domain validity  
+  ✅ **Data Sanitization**: Cleans up formatting issues and removes extra whitespace  
+  ✅ **Progress Tracking**: Provides real-time upload status and error reporting
 
-      ✅ **Smart Deduplication**: Removes duplicate email addresses across uploads
-      ✅ **Format Validation**: Verifies email address syntax and domain validity\
-      ✅ **Data Sanitization**: Cleans up formatting issues and extra whitespace
-      ✅ **Progress Tracking**: Real-time upload status and error reporting
+  **Processing Limits:**
 
-      **Processing Limits:**
+  * Maximum file size: **100MB** per upload
+  * Maximum contacts per list: **1 million addresses**
+</Accordion>
 
-      * Maximum file size: **100MB** per upload
-      * Maximum contacts per list: **1 million addresses**
-    </Accordion>
+## Subscription Management
 
-  
-  
+Transform your website visitors into engaged subscribers with our easy-to-implement subscription system. Collect leads legally and efficiently while maintaining compliance with privacy regulations.
 
-##Subscription Management
+## Implementation Process
 
+<Cards columns={1}>
+  <Card title="1. Generate Your Code" icon="code">
+    **Get Custom JavaScript**
 
-    Transform your website visitors into engaged subscribers with our easy-to-implement subscription system. Collect leads legally and efficiently while maintaining compliance with privacy regulations.
+    Navigate to Subscription Management in your dashboard and generate a unique JavaScript snippet tailored to your target Address List.
+  </Card>
 
-    ## Implementation Process
+  <Card title="2. Website Integration" icon="globe">
+    **Strategic Placement**
 
-    <Cards columns={1}>
-      <Card title="1. Generate Your Code" icon="code">
-        **Get Custom JavaScript**
+    Embed your subscription form in high-conversion areas:
 
-        Navigate to Subscription Management in your dashboard and generate a unique JavaScript snippet tailored to your target Address List.
-      </Card>
+    * Homepage header or footer
+    * Blog post sidebars
+    * About page
+    * Pop-up modals (with timing controls)
+    * Thank you pages
+  </Card>
 
-      <Card title="2. Website Integration" icon="globe">
-        **Strategic Placement**
+  <Card title="3. Visual Display" icon="eye">
+    **User Experience**
 
-        Embed your subscription form in high-conversion areas:
+    The form automatically displays with:
 
-        * Homepage header or footer
-        * Blog post sidebars
-        * About page
-        * Pop-up modals (with timing controls)
-        * Thank you pages
-      </Card>
+    * Clean, responsive design
+    * Mobile-optimized layout
+    * Accessible form controls
+    * Real-time validation feedback
+  </Card>
 
-      <Card title="3. Visual Display" icon="eye">
-        **User Experience**
+  <Card title="4. Data Collection" icon="database">
+    **Automated Processing**
 
-        The form automatically displays with:
+    Collected emails are instantly:
 
-        * Clean, responsive design
-        * Mobile-optimized layout
-        * Accessible form controls
-        * Real-time validation feedback
-      </Card>
+    * Added to your target Address List
+    * Validated for format and deliverability
+    * Timestamped for tracking purposes
+    * Ready for your next campaign
+  </Card>
+</Cards>
 
-      <Card title="4. Data Collection" icon="database">
-        **Automated Processing**
+## Implementation Example
 
-        Collected emails are instantly:
+<Accordion title="Complete Setup Walkthrough" icon="play-circle">
+  **Step-by-Step Implementation:**
 
-        * Added to your target Address List
-        * Validated for format and deliverability
-        * Timestamped for tracking
-        * Ready for your next campaign
-      </Card>
-    </Cards>
+  1. **Create Target List**
+     * Go to Address Lists → New List
+     * Name: "Website Subscribers 2024"
+     * Alias: `website_subscribers_2024`
 
-   
+  2. **Generate Subscription Code**
+     * Navigate to Subscription Management
+     * Select your target list
+     * Customize form appearance
+     * Copy the generated JavaScript
 
-    ## Implementation Example
+  3. **Website Integration**
+     * Embed the code into the required page
 
-    <Accordion title="Complete Setup Walkthrough" icon="play-circle">
-      **Step-by-Step Implementation:**
+  4. **Test & Optimize**
+     * Submit test email addresses
+     * Verify list population
+     * Check email confirmations
+     * Monitor conversion rates
+</Accordion>
 
-      1. **Create Target List**
-         * Go to Address Lists → New List
-         * Name: "Website Subscribers 2024"
-         * Alias: `website_subscribers_2024`
+<Accordion title="Best Practices for Lead Generation" icon="lightbulb">
+  **Conversion Optimization Tips:**
 
-      2. **Generate Subscription Code**
-         * Navigate to Subscription Management
-         * Select your target list
-         * Customize form appearance
-         * Copy generated JavaScript
+  **Incentive Strategies:**
 
-      3. **Website Integration**
-         Embed the code into the required page
+  * Offer exclusive content or discounts
+  * Promise valuable weekly insights
+  * Provide free resources or tools
+  * Create urgency with limited-time offers
 
-      4. **Test & Optimize**
-         * Submit test email addresses
-         * Verify list population
-         * Check email confirmations
-         * Monitor conversion rates
-    </Accordion>
+  **Form Placement:**
 
-    <Accordion title="Best Practices for Lead Generation" icon="lightbulb">
-      **Conversion Optimization Tips:**
+  * Above the fold on high-traffic pages
+  * At the end of valuable blog posts
+  * Exit-intent popups
+  * Social media landing pages
 
-      **Incentive Strategies:**
+  **Content Strategy:**
 
-      * Offer exclusive content or discounts
-      * Promise valuable weekly insights
-      * Provide free resources or tools
-      * Create urgency with limited-time offers
-
-      **Form Placement:**
-
-      * Above the fold on high-traffic pages
-      * End of valuable blog posts
-      * Exit-intent popups
-      * Social media landing pages
-
-      **Content Strategy:**
-
-      * Clear value proposition
-      * Minimal required fields
-      * Strong call-to-action buttons
-      * Social proof and testimonials
-    </Accordion>
+  * Clear value proposition
+  * Minimal required fields
+  * Strong call-to-action buttons
+  * Social proof and testimonials
+</Accordion>
