@@ -85,8 +85,4 @@ metadata:
 
    <Image align="center" alt="Inbox Insight Trend" border={false} caption="Inbox Insight Trend" src="https://files.readme.io/bee6f00ec284f3de8ba1b44a8e2adde52cee68644ed962144c24f4ed89358025-image.png" />
 
-***
-
 <br />
-
-**Start improving your inbox placement today.**
