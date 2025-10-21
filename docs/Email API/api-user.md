@@ -168,8 +168,6 @@ The API_KEY functions as the "password" for your API_USER and requires careful h
   </Tab>
 </Tabs>
 
-<br />
-
 ## Troubleshooting Common Issues
 
 <Accordion title="Authentication Failures" icon="exclamation-triangle">
@@ -268,7 +266,6 @@ The API_KEY functions as the "password" for your API_USER and requires careful h
   <Card title="SMTP Setup Guide" href="/smtp/configuration" icon="server">
     Configure SMTP sending using your API\_USER credentials
   </Card>
-  
 </Cards>
 
 ***
