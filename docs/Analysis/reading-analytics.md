@@ -47,3 +47,7 @@ provides statistics of opening devices, operating systems, wireless brands and b
 ### Reading Time Statistics
 
 Aurora SendCloud separates one day into twenty - four hour - points. When the recipient reads the email, we will count each of them by these hour - points.This way, you can know when your recipient likes to read your email the most. So sending during this time period will give you the maximum return.
+
+<Image border={false} src="https://files.readme.io/333a184a72cb3c92f997ede9d577cf55db833fbc7425021203868d8fd247fe4b-image.png" />
+
+<br />
