@@ -10,22 +10,22 @@ link:
 metadata:
   robots: index
 ---
-## What is Senders
+## What is a Sender?
 
-Your email sender identity establishes who is sending emails to recipients and plays a crucial role in deliverability and brand recognition. A well-configured sender identity builds trust with recipients and improves your email performance.
+Your email sender identity establishes who is sending emails to recipients and plays a crucial role in deliverability and brand recognition. A well-configured sender identity builds trust with recipients and improves email performance.
 
 ## Understanding Email Sender Components
 
 An email sender consists of two essential elements that work together to identify the source of your messages:
 
-**From Name**
+**From Name**  
 The human-readable display name that recipients see in their inbox. This can be:
 
 * A person's name (e.g., "Sarah Johnson")
 * A company name (e.g., "Aurora SendCloud")
 * A department or role (e.g., "Customer Support" or "Marketing Team")
 
-**From Address**
+**From Address**  
 The technical email address used to send the message, such as `support@yourcompany.com`. This address must be valid and properly authenticated to ensure deliverability.
 
 ### How They Work Together
