@@ -12,7 +12,9 @@ metadata:
 ---
 # Inbox Insight
 
-**Take the guesswork out of email delivery with comprehensive inbox placement insights across Gmail, Outlook, and more.**
+**Take the guesswork out of email delivery with comprehensive inbox placement insights across Gmail, Outlook, and more.** Transform your email marketing effectiveness with data-driven insights that ensure your messages reach the right inboxes at the right time. Inbox Insight integrates seamlessly with Aurora SendCloud, providing enterprise-grade email intelligence without the complexity.
+
+<br />
 
 <Image border={false} src="https://files.readme.io/897d32fe614aa2886292a5a0c9afdd11576076d73611e2a9c681586b4596c561-image.png" />
 
@@ -99,14 +101,13 @@ metadata:
 ## Key Benefits
 
 <Columns layout="auto">
-<Column>
-  ✅ **Zero Learning Curve** - Intuitive interface with immediate insights\
-  ✅ **Automated Operation** - Set it once, runs continuously in the background\
-  ✅ **Real-Time Data** - Live updates on delivery performance and domain health\
-  ✅ **Actionable Insights** - Clear recommendations for improving deliverability
+  <Column>
+    ✅ **Zero Learning Curve** - Intuitive interface with immediate insights\
+    ✅ **Automated Operation** - Set it once, runs continuously in the background\
+    ✅ **Real-Time Data** - Live updates on delivery performance and domain health\
+    ✅ **Actionable Insights** - Clear recommendations for improving deliverability
   </Column>
 </Columns>
-
 
 ## Getting Started
 
@@ -136,8 +137,6 @@ metadata:
 
 ***
 
-## Ready to Optimize Your Email Delivery?
-
-Transform your email marketing effectiveness with data-driven insights that ensure your messages reach the right inboxes at the right time. Inbox Insight integrates seamlessly with Aurora SendCloud, providing enterprise-grade email intelligence without the complexity.
+<br />
 
 **Start improving your inbox placement today.**
