@@ -164,7 +164,7 @@ Segments are smart, dynamic groups that automatically update based on the condit
 
 <br />
 
-<Callout>
+<Callout theme="default">
   #### Real-World Example
 
   **Goal:** Survey women aged 25-30 about product preferences
