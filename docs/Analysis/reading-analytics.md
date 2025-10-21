@@ -76,41 +76,50 @@ This comprehensive feature provides daily distribution analysis of links and cli
 
 ### 📱 Device Performance Analytics
 
-Optimize your email design for maximum compatibility and engagement:
+Optimize your email design for maximum compatibility and engagement across all platforms and devices.
 
-<Tabs>
-  <Tab title="Device Types">
-    Get detailed breakdowns of desktop, mobile, and tablet opens to prioritize your responsive design efforts.
-  </Tab>
+#### Device Types & Usage Patterns
 
-  <Tab title="Operating Systems">
-    Understand which OS versions your audience uses to ensure compatibility and optimal rendering.
-  </Tab>
+Get detailed breakdowns of desktop, mobile, and tablet opens to prioritize your responsive design efforts. Understanding device distribution helps you allocate resources effectively and ensure optimal user experience across all platforms.
 
-  <Tab title="Mobile Brands">
-    Analyze engagement patterns across different mobile device manufacturers to understand your audience's hardware preferences:
+**Key Insights:**
+- **Desktop vs. Mobile split** - See how your audience prefers to access emails
+- **Tablet engagement** - Identify growing tablet usage trends
+- **Cross-device behavior** - Understand multi-device usage patterns
 
-    - **Apple vs. Android distribution** - See the split between iOS and Android users
-    - **Brand popularity rankings** - Identify which manufacturers (Samsung, Apple, Google, Huawei, etc.) your audience prefers
-    - **Device-specific optimization** - Tailor your email designs for the most popular device brands
-    - **Market insights** - Understand premium vs. budget device usage patterns
+#### Operating System Analytics
 
-    This data helps you prioritize testing across different mobile brands and optimize your email rendering for the devices your audience actually uses.
-  </Tab>
+Understand which operating systems your audience uses to ensure compatibility and optimal rendering across different platforms.
 
-  <Tab title="Browsers">
-    Discover which web browsers and email clients your audience uses for better template compatibility:
+**Coverage Includes:**
+- **iOS vs. Android distribution** - Critical for mobile optimization
+- **Windows, macOS, Linux** - Desktop operating system preferences  
+- **Version tracking** - Identify which OS versions to support
+- **Update patterns** - Monitor how quickly your audience adopts new OS versions
 
-    - **Email client breakdown** - Gmail, Outlook, Apple Mail, Yahoo Mail usage statistics
-    - **Web browser analysis** - Chrome, Safari, Firefox, Edge performance data
-    - **Mobile app vs. web** - Understanding how users access their emails
-    - **Version tracking** - Identify which browser versions to support for optimal rendering
+#### Mobile Brand Intelligence
 
-    Browser data is crucial for ensuring your emails display correctly across all platforms and helps you make informed decisions about which advanced CSS features and email techniques to implement.
-  </Tab>
-</Tabs>
+Analyze engagement patterns across different mobile device manufacturers to understand your audience's hardware preferences and optimize accordingly.
 
-This feature provides comprehensive statistics on opening devices, operating systems, wireless carriers, and browser distribution for your emails. Device data empowers you to design better email templates by revealing which devices, browsers, and applications you should prioritize for optimal user experience.
+**Strategic Applications:**
+- **Apple vs. Android distribution** - See the split between iOS and Android users
+- **Brand popularity rankings** - Identify which manufacturers (Samsung, Apple, Google, Huawei, etc.) your audience prefers
+- **Device-specific optimization** - Tailor your email designs for the most popular device brands
+- **Market insights** - Understand premium vs. budget device usage patterns
+
+This data helps you prioritize testing across different mobile brands and optimize your email rendering for the devices your audience actually uses.
+
+#### Browser & Email Client Analysis
+
+Discover which web browsers and email clients your audience uses for better template compatibility and enhanced user experience.
+
+**Comprehensive Coverage:**
+- **Email client breakdown** - Gmail, Outlook, Apple Mail, Yahoo Mail usage statistics
+- **Web browser analysis** - Chrome, Safari, Firefox, Edge performance data
+- **Mobile app vs. web** - Understanding how users access their emails
+- **Version tracking** - Identify which browser versions to support for optimal rendering
+
+Browser data is crucial for ensuring your emails display correctly across all platforms and helps you make informed decisions about which advanced CSS features and email techniques to implement.
 
 **Key Applications:**
 - **Design Priority:** Focus template optimization on your audience's primary devices
@@ -124,8 +133,6 @@ This feature provides comprehensive statistics on opening devices, operating sys
 
 Maximize engagement with data-driven send time optimization:
 
-<Accordion title="Understanding Time-Based Analytics" icon="clock">
-
 Aurora SendCloud divides each day into twenty-four hour segments, creating precise engagement tracking windows. When recipients read emails, we track engagement for each of these time periods, providing you with granular insights into audience behavior patterns.
 
 **How It Works:**
@@ -133,8 +140,6 @@ Aurora SendCloud divides each day into twenty-four hour segments, creating preci
 2. **Pattern recognition** identifies consistent engagement trends
 3. **Audience-specific insights** reveal when your subscribers are most active
 4. **Optimization opportunities** highlight the best times to send emails
-
-</Accordion>
 
 This powerful timing analysis enables you to identify when your recipients are most likely to read your emails, allowing you to schedule sends during these optimal time periods for maximum engagement and improved campaign performance.
 
