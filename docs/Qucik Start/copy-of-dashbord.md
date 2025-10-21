@@ -31,7 +31,7 @@ metadata:
     - email infrastructure
   robots: index
 ---
-# Welcome to Aurora SendCloud 🚀
+## Welcome to Aurora SendCloud 🚀
 
 <Image align="center" alt="Newbie Guide" border={false} caption="Get started with Aurora SendCloud in minutes" src="https://files.readme.io/5322762865d78e49f001d44d7fbc889eccde52b8d111a55a314c30b786cea7cf-_20251016164129.png" />
 
