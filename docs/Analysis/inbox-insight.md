@@ -69,19 +69,19 @@ metadata:
   </Column>
 </Columns>
 
-## How to use Inbox Insight
+## How to Use Inbox Insight
 
-1. **Choose one of verified sending domain**
-   Before use inbox insight ,you should have sucessfully verifed one of your sending domain in Aurora SendClou
+1. **Choose a Verified Sending Domain**
+   Before using Inbox Insight, you should have successfully verified one of your sending domains in Aurora SendCloud.
 
-2. **Add a sample email if you want**
-   You can choose one of your email template.,and we will use the email template to warm-up in a certain proportion.
+2. **Add a Sample Email (Optional)**
+   You can choose one of your email templates, and we will use the email template for warm-up in a certain proportion.
 
 3. **Service Activation**
-   Enable Inbox Insight with a single click - no complex setup required
+   Enable Inbox Insight with a single click - no complex setup required.
 
 4. **Start Monitoring**
-   Access your comprehensive delivery analytics through the Data Analysis dashboard
+   Access your comprehensive delivery analytics through the Data Analysis dashboard.
 
    <Image align="center" alt="Inbox Insight Trend" border={false} caption="Inbox Insight Trend" src="https://files.readme.io/bee6f00ec284f3de8ba1b44a8e2adde52cee68644ed962144c24f4ed89358025-image.png" />
 
