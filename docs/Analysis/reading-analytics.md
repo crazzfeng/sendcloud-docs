@@ -13,24 +13,6 @@ metadata:
 
 Unlock powerful insights into your audience engagement with comprehensive email reading analytics. Monitor critical metrics such as reading time, click rates, and geographical distribution to optimize your email campaigns and drive better results.
 
-<br />
-
-## Filtering Options
-
-Dive deep into your email performance data with comprehensive filtering capabilities:
-
-| **Dimension**      | **Description**                                                                |
-| :----------------- | :----------------------------------------------------------------------------- |
-| **Email Type**     | Filter by Trigger emails (transactional) or Batch emails (marketing campaigns) |
-| **API_USER**       | View statistics for a specific API_USER                                        |
-| **Label**          | Filter by custom labels assigned to your email sends                           |
-| **Campaign**       | Analyze performance of specific email campaigns                                |
-| **Request Period** | Select the timeframe for your analysis (default: last 7 days)                  |
-
-<br />
-
-<br />
-
 ## Regional Performance Analysis
 
 Understand your global reach with detailed geographical insights:
