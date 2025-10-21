@@ -14,22 +14,24 @@ metadata:
 
 Manage your contact email addresses effectively with powerful tools for bulk campaigns and lead collection. Choose between **Address Lists** for marketing campaigns or **Subscription Management** for growing your subscriber base.
 
-<Tabs>
-  <Tab title="Address Lists">
+# Address Lists
+
+
+  
     The Address List function is your powerhouse for **bulk email sending** scenarios, including marketing campaigns, newsletters, and automated sequences. It supports advanced variable replacement for personalized messaging at scale.
 
     ## Key Features
 
     <Cards columns={3}>
-      <Card title="Bulk Import" >
+      <Card title="Bulk Import">
         Upload thousands of contacts instantly with support for multiple file formats and automatic validation.
       </Card>
 
-      <Card title="Variable Replacement" >
+      <Card title="Variable Replacement">
         Personalize emails with custom variables like %name%, %company%, %location% for higher engagement.
       </Card>
 
-      <Card title="API Integration" >
+      <Card title="API Integration">
         Seamlessly integrate with your existing systems using our robust API and unique list aliases.
       </Card>
     </Cards>
@@ -74,9 +76,12 @@ Manage your contact email addresses effectively with powerful tools for bulk cam
       * Maximum contacts per list: **1 million addresses**
     </Accordion>
 
-  </Tab>
+  
+  
 
-  <Tab title="Subscription Management">
+##Subscription Management
+
+
     Transform your website visitors into engaged subscribers with our easy-to-implement subscription system. Collect leads legally and efficiently while maintaining compliance with privacy regulations.
 
     ## Implementation Process
@@ -85,7 +90,7 @@ Manage your contact email addresses effectively with powerful tools for bulk cam
       <Card title="1. Generate Your Code" icon="code">
         **Get Custom JavaScript**
 
-        Navigate to Subscription Management in your dashboard and generate a unique JavaScript snippet tailored to your target Address List. 
+        Navigate to Subscription Management in your dashboard and generate a unique JavaScript snippet tailored to your target Address List.
       </Card>
 
       <Card title="2. Website Integration" icon="globe">
@@ -123,58 +128,7 @@ Manage your contact email addresses effectively with powerful tools for bulk cam
       </Card>
     </Cards>
 
-    ## Advanced Features
-
-    <Columns layout="auto">
-      <Column>
-        ### Customization Options
-
-        <Accordion title="Form Styling" icon="paint-brush">
-          **Visual Customization:**
-
-          * Custom colors and fonts
-          * Branded button styles
-          * Form field placeholders
-          * Success message personalization
-
-          **CSS Override Examples:**
-
-          ```css
-          .sendcloud-form {
-            background: #f8f9fa;
-            border-radius: 8px;
-            padding: 20px;
-          }
-
-          .sendcloud-button {
-            background: #007bff;
-            color: white;
-            border-radius: 4px;
-          }
-          ```
-        </Accordion>
-      </Column>
-
-      <Column>
-        ### Compliance & Privacy
-
-        <Accordion title="GDPR & Legal Compliance" icon="shield-alt">
-          **Built-in Compliance:**
-
-          * Double opt-in confirmation emails
-          * Automatic unsubscribe links
-          * Privacy policy integration
-          * Consent tracking and storage
-
-          **Legal Protection:**
-
-          * Timestamped consent records
-          * IP address logging
-          * Audit trail maintenance
-          * Data portability support
-        </Accordion>
-      </Column>
-    </Columns>
+   
 
     ## Implementation Example
 
@@ -193,7 +147,7 @@ Manage your contact email addresses effectively with powerful tools for bulk cam
          * Copy generated JavaScript
 
       3. **Website Integration**
-      Embed the code into the required page
+         Embed the code into the required page
 
       4. **Test & Optimize**
          * Submit test email addresses
@@ -226,5 +180,3 @@ Manage your contact email addresses effectively with powerful tools for bulk cam
       * Strong call-to-action buttons
       * Social proof and testimonials
     </Accordion>
-  </Tab>
-</Tabs>
