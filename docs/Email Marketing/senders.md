@@ -19,8 +19,12 @@ Together, they form the sender's identity, with the name providing a quick, reco
 
 ## How to create an email sender?
 
-### Step 1: Verify Your Sending Domain
+### Step 1: Choose Your Sending Domain
 
 Ensure you have at least one verified sending domain in Aurora SendCloud. If you haven't set this up yet, navigate to your Domain Settings first.
 
+### Step 2: Customize Your From Name
+
 <br />
+
+### Step 3: Customize Your From Address
