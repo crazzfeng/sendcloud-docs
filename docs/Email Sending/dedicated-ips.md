@@ -9,7 +9,7 @@ metadata:
 ---
 Take full control of your email delivery with Aurora SendCloud's dedicated IP service. While our intelligent shared pool efficiently serves standard customers, dedicated IPs provide brand customers with exclusive sending resources, complete reputation control, and superior delivery performance.
 
-## Benefits of Dedicated IPs
+## Why Choose a Dedicated IP?
 
 **Complete IP Exclusivity**
 
