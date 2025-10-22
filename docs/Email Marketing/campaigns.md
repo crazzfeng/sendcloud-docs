@@ -12,7 +12,7 @@ link:
 metadata:
   robots: index
 ---
-# Campaigns
+## Type of Email Campaigns
 
 Email campaigns are your primary tool for reaching contacts with targeted messaging. Whether you're sending newsletters, promotions, or announcements, this guide covers everything you need to create, optimize, and track successful campaigns.
 
@@ -190,7 +190,6 @@ Understanding campaign states helps you manage your email marketing effectively:
   2. **Daily Quota Exceeded**: Wait for quota reset or upgrade plan
   3. **Invalid Recipients**: Check contact list quality
   4. **Template Issues**: Ensure template is exist
-
 </Accordion>
 
 ## Campaign Analytics & Reports
