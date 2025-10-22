@@ -268,14 +268,6 @@ We automatically segment your audience based on their engagement patterns:
 ### Regional Performance Analysis
 
 We provide comprehensive regional performance data for your audience, helping you understand how different geographic locations engage with your campaigns.
-**Geographic Insights Include:**
-
-* Engagement rates by region
-* Open and click patterns by location
-* Regional preferences and behaviors
-* Optimal sending times by time zone
-
-Use this data to tailor your content and timing strategies for different geographic segments of your audience.
 
 ***
 
