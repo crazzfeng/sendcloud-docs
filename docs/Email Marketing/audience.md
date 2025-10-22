@@ -213,18 +213,19 @@ Segments are smart, dynamic groups that automatically update based on the condit
 
 Gain valuable insights into your audience performance and engagement patterns to optimize your email marketing strategy.
 
-<Image border={false} src="https://files.readme.io/6b00a8fa470d7d33a01325cc5344deafe10f70f1807eb0b7d96c1efbd049b358-image.png" />
-
-<br />
-
 ### Growth Analytics
 
 Track the growth trends of your contact list to understand your audience acquisition patterns.
 
-<br />
-
 * **Monthly Growth Tracking**: Monitor how your contact list grows month by month to identify trends and seasonal patterns
+
+<Image border={false} src="https://files.readme.io/6b00a8fa470d7d33a01325cc5344deafe10f70f1807eb0b7d96c1efbd049b358-image.png" />
+
 * **Performance Metrics**: Access detailed statistics grouped by mailbox providers to measure channel effectiveness
+
+<Image border={false} src="https://files.readme.io/a9916fd090e5044615d158b17136a893adbda64736737e8a75d2790ae44c81c5-image.png" />
+
+<br />
 
 ### Engagement Analysis
 
