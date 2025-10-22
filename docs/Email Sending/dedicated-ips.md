@@ -11,119 +11,141 @@ metadata:
 
 Take full control of your email delivery with Aurora SendCloud's dedicated IP service. While our intelligent shared pool efficiently serves standard customers, dedicated IPs provide brand customers with exclusive sending resources, complete reputation control, and superior delivery performance.
 
-## Why Choose Dedicated IPs? ✨
+## Why Choose Dedicated IPs? 
 
-### Complete Exclusivity 🛡️
+### Complete Exclusivity 
+
 Your IP resources are completely isolated from other users, giving you full control over your email delivery performance and sender reputation.
 
-### Enhanced Capacity 🚀
+### Enhanced Capacity 
+
 Access higher sending quotas and support for large-scale email campaigns without shared resource limitations.
 
-### Advanced Configuration ⚙️
+### Advanced Configuration 
+
 Support for independent IP and domain registration with ICP filing capabilities for optimal delivery performance.
 
-## Perfect For These Use Cases 🎯
+## Perfect For These Use Cases 
 
-### Critical Verification Emails 🔑
+### Critical Verification Emails 
+
 Ensure your verification codes, password resets, and security notifications reach users' inboxes reliably and promptly. Dedicated IPs provide the consistent delivery rates essential for authentication workflows.
 
-### Transactional Communications 🧾
+### Transactional Communications 
+
 Order confirmations, shipping updates, account changes, and system alerts require guaranteed delivery. Maintain customer trust with dedicated sending infrastructure.
 
-### Branded Marketing Campaigns 📢
+### Branded Marketing Campaigns 
+
 Build and maintain your brand's email reputation independently. Perfect for marketing communications, newsletters, and promotional campaigns where reputation control is crucial.
 
-## Setup Requirements ⚙️
+## Setup Requirements 
 
 ### Essential Configuration Steps
 
 Before activating your dedicated IP service, ensure you have:
 
-- ✅ **Domain Configuration**: Set up at least one verified sending domain
-- ✅ **DNS Authentication**: Complete SPF, DKIM, MX, and DMARC record verification
-- ✅ **Reverse DNS**: Configure an A record for proper reverse DNS resolution
+* ✅ **Domain Configuration**: Set up at least one verified sending domain
+* ✅ **DNS Authentication**: Complete SPF, DKIM, MX, and DMARC record verification
+* ✅ **Reverse DNS**: Configure an A record for proper reverse DNS resolution
 
 <Tabs>
   <Tab title="Domain Setup">
     Configure your brand domain as your sending domain and ensure all DNS records are properly verified. This establishes your domain's authenticity and improves deliverability.
   </Tab>
+
   <Tab title="DNS Records">
     Complete verification of all authentication records:
-    - **SPF**: Authorizes your IP to send on behalf of your domain
-    - **DKIM**: Adds cryptographic signature to verify message integrity
-    - **DMARC**: Provides policy for handling authentication failures
-    - **MX**: Enables proper email routing
+
+    * **SPF**: Authorizes your IP to send on behalf of your domain
+    * **DKIM**: Adds cryptographic signature to verify message integrity
+    * **DMARC**: Provides policy for handling authentication failures
+    * **MX**: Enables proper email routing
   </Tab>
+
   <Tab title="Reverse DNS">
     Critical for reputation management. Configure an A record to enable reverse DNS resolution - emails from IPs without this are more likely to be flagged as spam.
   </Tab>
 </Tabs>
 
-## Best Practices for Success 💡
+## Best Practices for Success 
 
 ### Smart Sending Strategy
 
 <Columns layout="auto">
   <Column>
     **IP Warm-up Process**
-    - Start with low sending volumes
-    - Gradually increase over 2-4 weeks
-    - Monitor reputation metrics closely
-    - Follow ISP-specific warm-up guidelines
+
+    * Start with low sending volumes
+    * Gradually increase over 2-4 weeks
+    * Monitor reputation metrics closely
+    * Follow ISP-specific warm-up guidelines
   </Column>
+
   <Column>
     **List Quality Management**
-    - Maintain clean, engaged subscriber lists
-    - Process unsubscribes promptly
-    - Monitor bounce and complaint rates
-    - Segment audiences for targeted messaging
+
+    * Maintain clean, engaged subscriber lists
+    * Process unsubscribes promptly
+    * Monitor bounce and complaint rates
+    * Segment audiences for targeted messaging
   </Column>
 </Columns>
 
 ### Ongoing Optimization
 
-- **Monitor Performance**: Track delivery rates, open rates, and spam complaints
-- **Regular Audits**: Review DNS configurations and authentication status monthly
-- **Responsive Actions**: Address deliverability issues quickly to protect reputation
+* **Monitor Performance**: Track delivery rates, open rates, and spam complaints
+* **Regular Audits**: Review DNS configurations and authentication status monthly
+* **Responsive Actions**: Address deliverability issues quickly to protect reputation
 
-## Important Considerations 📋
+## Important Considerations 
 
 ### Service Activation
+
 > **Gradual Ramp-up Required**: After activation, start with minimal sending volume and increase gradually. This warm-up period is essential for building positive sender reputation with ISPs.
 
 ### Investment Overview
+
 Dedicated IP service pricing is based on the number of IPs allocated and usage duration. Consider this as an investment in your email program's long-term success and brand protection.
 
 ### Professional Support
+
 Our team provides:
-- Expert configuration guidance
-- Continuous performance monitoring  
-- Proactive optimization recommendations
-- Dedicated technical support
 
-## Troubleshooting Guide 🔧
+* Expert configuration guidance
+* Continuous performance monitoring
+* Proactive optimization recommendations
+* Dedicated technical support
 
-### Emails Still Going to Spam? ⚠️
+## Troubleshooting Guide 
+
+### Emails Still Going to Spam? 
+
 **Quick Fixes:**
-- Verify reverse DNS is properly configured and resolving
-- Double-check all domain authentication records (SPF, DKIM, DMARC)
-- Review your content for spam triggers
-- Ensure proper IP warm-up completion
 
-### Sending Limits Too Restrictive? 🚫
+* Verify reverse DNS is properly configured and resolving
+* Double-check all domain authentication records (SPF, DKIM, DMARC)
+* Review your content for spam triggers
+* Ensure proper IP warm-up completion
+
+### Sending Limits Too Restrictive? 
+
 **Solutions:**
-- Confirm IP warm-up process is complete
-- Review your sender reputation metrics
-- Check bounce and complaint rates
-- Contact support for quota adjustments if metrics are healthy
 
-### Domain Authentication Failures? ❌
+* Confirm IP warm-up process is complete
+* Review your sender reputation metrics
+* Check bounce and complaint rates
+* Contact support for quota adjustments if metrics are healthy
+
+### Domain Authentication Failures? 
+
 **Resolution Steps:**
-- Verify DNS records are published correctly
-- Wait 24-48 hours for DNS propagation
-- Use DNS lookup tools to confirm record visibility
-- Check for syntax errors in record values
 
----
+* Verify DNS records are published correctly
+* Wait 24-48 hours for DNS propagation
+* Use DNS lookup tools to confirm record visibility
+* Check for syntax errors in record values
+
+***
 
 Ready to upgrade to dedicated IPs? Contact our team to discuss your specific needs and get started with a configuration plan tailored to your email program.
