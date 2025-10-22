@@ -20,16 +20,26 @@ you need to do the followin:
 
 ## Create an A/B test email campaign
 
-you need to do the followin:
+### Step 1. you need design your test item and the test rule.
 
 1. Determine which one you would like to test ,it could be the email subject , email content , from or send time.And Each test only can support 3 different item.
 2. Detemine how to judge the winner.  You can choose the following condition and the judge time after the campaign begin.
-   1.  By open ratio
+   1. By open ratio
    2. By unique open radio
    3. By click radio
    4. By unique click radio
    5. By delivered radio
 3. Choose the test percentage of  the recipients.If you choose 20%,we will use 20% of the recipients to test, and the remaining 80% of the recipients will continue to send according to the winner's setting .
+
+### Step 2 . Fill in the rest info of a campaign
+
+1. Determine the recipients that you want to send the email campaign to. You can select All Contacts or Tag or Segment.
+2. Choose the sender.Telling the recipients who send the email.
+3. Filling the reply email address that you can receive the recipients' reply.
+4. Choose one of your email template that has the message you want the recipients to read.
+5. Set the execution time .Please choose the right time zone.
+
+the advanced setting is not available in A/B test campaign
 
 ## Advanced Setting of a campaign
 
@@ -46,7 +56,7 @@ If your email contains hyperlinks and the corresponding landing page supports Go
 
 For example:
 
-a link in the content of an email https://www.aurorasendcloud.com After treatment, it will become https://web.sendcloud.net?utm_campaign=XX&utm_source=SendCloud&utm_medium=email&utm_term=xx&utm_content=xxxxx
+a link in the content of an email [https://www.aurorasendcloud.com](https://www.aurorasendcloud.com) After treatment, it will become [https://web.sendcloud.net?utm_campaign=XX&utm_source=SendCloud&utm_medium=email&utm_term=xx&utm_content=xxxxx](https://web.sendcloud.net?utm_campaign=XX\&utm_source=SendCloud\&utm_medium=email\&utm_term=xx\&utm_content=xxxxx)
 
 ### Warm Up Sending
 
@@ -62,8 +72,6 @@ Rate Table
 | ------ | --- | ---- | --- | ---- | --- | --- | ---- | --- | ---- | ---- | --- | --- | ---- | ----- | ---- |
 | Hourly | 100 | 250  | 500 | 650  | 800 | 1k  | 1.4k | 2k  | 2.5k | 3.5k | 5k  | 8k  | 12k  | 17.5k | 25k  |
 | Daily  | 1k  | 2.5k | 5k  | 6.5k | 8k  | 10k | 14k  | 20k | 25k  | 35k  | 50k | 80k | 120k | 175k  | 250k |
-
-
 
 <br />
 
