@@ -82,14 +82,15 @@ Efficiently add hundreds or thousands of contacts at once using two methods:
 Fields store information about your subscribers and help you understand your audience better.
 
 #### Default Contact Fields
-  | Field Name | Type   | Can Delete? |
-  | ---------- | ------ | ----------- |
-  | Email      | Email  | ❌ No        |
-  | Name       | Text   | ❌ No        |
-  | Phone      | Phone  | ❌ No        |
-  | Gender     | Text   | ✅ Yes       |
-  | Birthday   | Date   | ✅ Yes       |
-  | Age        | Number | ✅ Yes       |
+
+| Field Name | Type   | Can Delete? |
+| ---------- | ------ | ----------- |
+| Email      | Email  | ❌ No        |
+| Name       | Text   | ❌ No        |
+| Phone      | Phone  | ❌ No        |
+| Gender     | Text   | ✅ Yes       |
+| Birthday   | Date   | ✅ Yes       |
+| Age        | Number | ✅ Yes       |
 
 #### Custom Fields
 
@@ -204,6 +205,14 @@ Segments are smart, dynamic groups that automatically update based on the condit
 </Cards>
 
 ***
+
+## Audience Ayalysis
+
+<br />
+
+***
+
+<br />
 
 ## Best Practices
 
