@@ -8,53 +8,48 @@ hidden: false
 link:
   new_tab: false
 metadata:
+  description: >-
+    When you start marketing, you may already have an audience. You can manage
+    them as a small CRM.
   robots: index
 ---
-<br />
-
 ## Adding Contacts to Your Audience
 
 <Accordion title="Legal Compliance Reminder" icon="shield-alt">
   Always ensure your contacts are collected legally and comply with data protection regulations like GDPR and CAN-SPAM before adding them to your audience.
 </Accordion>
 
-<Tabs>
-  <Tab title="Individual Contacts">
-    ### Add One Contact at a Time
+### Add One Contact at a Time
 
-    Perfect for adding new contacts as they sign up or when you meet them personally.
+Perfect for adding new contacts as they sign up or when you meet them personally.
 
-    **How to add:**
+**How to add:**
 
-    1. Navigate to your audience list
-    2. Click "Add Contact"
-    3. Fill out the contact form
-    4. **Email is required** - all other fields are optional
-    5. Save the contact
-  </Tab>
+1. Navigate to your audience list
+2. Click "Add Contact"
+3. Fill out the contact form
+4. **Email is required** - all other fields are optional
+5. Save the contact
 
-  <Tab title="Bulk Import">
-    ### Import Multiple Contacts
+### Import Multiple Contacts
 
-    Efficiently add hundreds or thousands of contacts at once using two methods:
+Efficiently add hundreds or thousands of contacts at once using two methods:
 
-    #### Method 1: Upload CSV File
+#### Method 1: Upload CSV File
 
-    * **Email column is mandatory**
-    * Each column represents a contact field (Name, Phone, etc.)
-    * Use proper formatting for successful import
-    * Download our CSV template for best results
+* **Email column is mandatory**
+* Each column represents a contact field (Name, Phone, etc.)
+* Use proper formatting for successful import
+* Download our CSV template for best results
 
-    #### Method 2: Copy and Paste
+#### Method 2: Copy and Paste
 
-    * Email is required for each contact
-    * Separate fields with commas (,)
-    * Place each contact on a new line
-    * Example: `john@example.com, John Doe, 555-0123`
-  </Tab>
-</Tabs>
+* Email is required for each contact
+* Separate fields with commas (,)
+* Place each contact on a new line
+* Example: `john@example.com, John Doe, 555-0123`
 
-### Import Process Walkthrough
+<br />
 
 <Cards columns="2">
   <Card title="Step 1: Handle Duplicates" icon="users">
@@ -89,16 +84,16 @@ metadata:
 
 Fields store information about your subscribers and help you understand your audience better.
 
-<Accordion title="Default Contact Fields" icon="table">
-  | Field Name | Type   | Can Delete? |
-  | ---------- | ------ | ----------- |
-  | Email      | Email  | ❌ No        |
-  | Name       | Text   | ❌ No        |
-  | Phone      | Phone  | ❌ No        |
-  | Gender     | Text   | ✅ Yes       |
-  | Birthday   | Date   | ✅ Yes       |
-  | Age        | Number | ✅ Yes       |
-</Accordion>
+#### Default Contact Fields
+
+| Field Name | Type   | Can Delete? |
+| ---------- | ------ | ----------- |
+| Email      | Email  | ❌ No        |
+| Name       | Text   | ❌ No        |
+| Phone      | Phone  | ❌ No        |
+| Gender     | Text   | ✅ Yes       |
+| Birthday   | Date   | ✅ Yes       |
+| Age        | Number | ✅ Yes       |
 
 #### Custom Fields
 
@@ -116,7 +111,7 @@ Fields store information about your subscribers and help you understand your aud
 🎯 Interest: Japanese Cuisine, Desserts
 ```
 
-### Tags: Simple Contact Organization
+### Tags
 
 Tags are flexible labels that help you categorize contacts into meaningful groups.
 
@@ -141,7 +136,7 @@ Tags are flexible labels that help you categorize contacts into meaningful group
   </Card>
 </Cards>
 
-### Segments: Advanced Audience Filtering
+### Segments
 
 Segments are smart, dynamic groups that automatically update based on the conditions you set.
 
@@ -170,21 +165,27 @@ Segments are smart, dynamic groups that automatically update based on the condit
   </Column>
 </Columns>
 
-#### Real-World Example
+<br />
 
-**Goal:** Survey women aged 25-30 about product preferences
+<Callout theme="default">
+  #### Real-World Example
 
-**Segment Setup:**
+  **Goal:** Survey women aged 25-30 about product preferences
 
-* Name: "Women 25-30 Survey Group"
-* Logic: "All conditions must match"
-* Conditions:
-  * Age ≥ 25
-  * Age ≤ 30
-  * Gender = "Female"
-  * Tag = "Active Subscriber"
+  **Segment Setup:**
 
-**Result:** Dynamic list that automatically includes/excludes contacts as their data changes.
+  * Name: "Women 25-30 Survey Group"
+  * Logic: "All conditions must match"
+  * Conditions:
+    * Age ≥ 25
+    * Age ≤ 30
+    * Gender = "Female"
+    * Tag = "Active Subscriber"
+
+  **Result:** Dynamic list that automatically includes/excludes contacts as their data changes.
+</Callout>
+
+<br />
 
 ### Tags vs. Segments: When to Use Each
 
@@ -212,98 +213,22 @@ Segments are smart, dynamic groups that automatically update based on the condit
 
 <Image border={false} src="https://files.readme.io/6b00a8fa470d7d33a01325cc5344deafe10f70f1807eb0b7d96c1efbd049b358-image.png" />
 
-Gain valuable insights into your audience growth, engagement patterns, and performance metrics to optimize your email marketing strategy.
+* Basic analysis
+  * In this section you can find out the growth trend of your contacts by month. 
+  * We provide the stat group by MP
+* Engagement analysis
+  * Aurora SendCloud will automatically receive the unsubscribes and complaints from your audience. 
+  * We segement your audience by the engement level
+    * Lost. Who unsubscibed or complained your emails will be segement into the Lost.
+    * Sleepy. Who never open,click your emails
+    * Active. Who used to open or click your emails.
+  * We also provide the regional performance of you audience
 
-<Cards columns="2">
-  <Card title="Growth Analytics" icon="chart-line">
-    **Monthly Growth Tracking**
-
-    * Monitor contact acquisition trends over time
-    * Identify peak signup periods and seasonal patterns
-    * Track growth rate by marketing channel
-    * Analyze campaign performance impact on list growth
-
-    **Key Metrics:**
-
-    * New contacts per month
-    * Growth rate percentage
-    * Source attribution data
-    * Retention statistics
-  </Card>
-
-  <Card title="Engagement Analytics" icon="chart-bar">
-    **Automatic Engagement Tracking**
-    Aurora SendCloud automatically monitors subscriber behavior including unsubscribes, complaints, and email interactions.
-
-    **Engagement Segmentation:**
-
-    * **Lost**: Contacts who have unsubscribed or filed spam complaints
-    * **Sleepy**: Contacts who never open or click your emails
-    * **Active**: Contacts who regularly open or click your emails
-  </Card>
-</Cards>
-
-### Engagement Level Breakdown
-
-<Accordion title="Active Subscribers" icon="star">
-  These are your most engaged contacts who regularly interact with your emails. They represent your core audience and are most likely to convert.
-
-  **Characteristics:**
-
-  * Open emails consistently
-  * Click on links and calls-to-action
-  * Forward or share your content
-  * Rarely unsubscribe
-
-  **Strategy:** Focus premium content and exclusive offers on this segment.
-</Accordion>
-
-<Accordion title="Sleepy Subscribers" icon="moon">
-  These contacts remain subscribed but show minimal engagement with your emails.
-
-  **Characteristics:**
-
-  * Rarely open emails
-  * Minimal click activity
-  * Haven't engaged recently
-  * Still subscribed but inactive
-
-  **Strategy:** Create re-engagement campaigns to win them back or consider removing them to improve deliverability.
-</Accordion>
-
-<Accordion title="Lost Subscribers" icon="user-times">
-  These contacts have actively disengaged from your communications.
-
-  **Characteristics:**
-
-  * Unsubscribed from your list
-  * Marked emails as spam
-  * Bounced permanently
-  * Requested removal
-
-  **Strategy:** Respect their decision and ensure they're properly removed from all future communications.
-</Accordion>
-
-### Geographic Performance Analysis
-
-Track how your audience engages across different regions to optimize your marketing strategy.
-
-**Regional Insights Include:**
-
-* Open rates by country/region
-* Click-through rates by location
-* Unsubscribe patterns by geography
-* Time zone optimization opportunities
-* Cultural preference indicators
-
-**Use Cases:**
-
-* Schedule campaigns for optimal local timing
-* Create region-specific content
-* Identify high-performing markets
-* Adapt messaging for cultural preferences
+<br />
 
 ***
+
+<br />
 
 ## Best Practices
 
