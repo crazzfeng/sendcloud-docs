@@ -129,7 +129,7 @@ Follow the same configuration steps as regular campaigns:
 4. Choose email template
 5. Schedule execution time
 
----
+***
 
 <br />
 
@@ -174,7 +174,7 @@ Starting at 100 emails/hour, the system can scale up to 25,000 emails/hour over 
 | First Day  | 1,000 emails   | 1,000 emails   | 1,000 emails   |
 | Week 2+    | Up to 25k/hour | Up to 25k/hour | Up to 25k/hour |
 
----
+***
 
 <br />
 
@@ -200,7 +200,7 @@ Understanding campaign states helps you manage your email marketing effectively:
   4. **Template Issues**: Ensure template exists
 </Accordion>
 
----
+***
 
 <br />
 
@@ -209,6 +209,10 @@ Understanding campaign states helps you manage your email marketing effectively:
 Understanding your campaign performance is crucial for improving your email marketing results. Aurora SendCloud provides comprehensive analytics to help you track delivery, engagement, and overall campaign success.
 
 ### Key Metrics Overview
+
+<Image align="center" alt="Campaign Report Overview" border={false} caption="Campaign Report Overview" src="https://files.readme.io/812c6c1d8d1365c7cce779fdccb5b0f2bd87217eb09ac38965c7d094b774986e-image.png" />
+
+<br />
 
 <Table align={["left","left"]}>
   <thead>
@@ -350,12 +354,12 @@ Understanding your campaign performance is crucial for improving your email mark
 Monitor how well your emails are being delivered and identify potential issues:
 
 * **Email status statistics**: Overview of successful deliveries, bounces, and failures
-* **Daily send trends**: Track delivery patterns grouped by day to identify optimal sending times  
+* **Daily send trends**: Track delivery patterns grouped by day to identify optimal sending times
 * **Domain-based performance**: Analyze how different email providers (Gmail, Outlook, etc.) handle your campaigns
 * **Invalid email categorization**: Understand why emails failed validation and improve list quality
 * **Bounce analysis**: Detailed breakdown of soft bounce reasons to improve deliverability
 
-### Engagement Tracking Insights  
+### Engagement Tracking Insights
 
 Understand how recipients interact with your campaigns:
 
@@ -377,10 +381,10 @@ The detailed data section provides comprehensive status information for every em
 Export your campaign data for advanced analysis and reporting:
 
 * **Domain Statistics**: Download performance metrics broken down by email service providers
-* **Individual Tracking Data**: Export per-recipient engagement information for customer segmentation  
+* **Individual Tracking Data**: Export per-recipient engagement information for customer segmentation
 * **Bounce and Failure Analysis**: Get detailed information about delivery failures for list cleaning
 
----
+***
 
 ## Quick Reference
 
