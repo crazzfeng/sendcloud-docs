@@ -90,11 +90,11 @@ Due to browser upgrades like Chrome, loading HTTP resources will be blocked. It 
 
 **Common Problems:**
 
-**F**: **Clicking links doesn't redirect properly**  
-**A**: Check if the tracking domain CNAME configuration is working correctly
-
 **F**: **Open rate statistics are inaccurate**  
 **A**: Verify that automatic image loading is not blocked. HTTPS is recommended
+
+**F**: **Clicking links doesn't redirect properly**  
+**A**: Check if the tracking domain CNAME configuration is working correctly
 
 **F**: **Unsubscribe link doesn't display**  
 **A**: Verify that the template contains unsubscribe variables or code
