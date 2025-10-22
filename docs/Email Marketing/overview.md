@@ -1,5 +1,5 @@
 ---
-title: Marketing Overview
+title: Email Marketing Overview
 excerpt: >-
   Whether you are a beginner or a professional, Aurora SendCloud's easy-to-use
   marketing module is the tool you need to grow your business.
