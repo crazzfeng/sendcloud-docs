@@ -54,11 +54,11 @@ Due to browser upgrades like Chrome, loading HTTP resources will be blocked. It 
 
 **Smart Recommendations:**
 
-| Tracking Type        | Recommended Settings | Description                                                      |
-| -------------------- | -------------------- | ---------------------------------------------------------------- |
-| Open Tracking        | Enable as needed     | Helps understand email delivery performance                      |
-| Click Tracking       | Recommended          | Key user engagement metrics                                      |
-| Unsubscribe Tracking | Highly Recommended   | Prevents users from complaining directly to their email provider |
+| Tracking Type        | Recommended        | Description                                                      |
+| -------------------- | ------------------ | ---------------------------------------------------------------- |
+| Open Tracking        | Enable as needed   | Helps understand email delivery performance                      |
+| Click Tracking       | Recommended        | Key user engagement metrics                                      |
+| Unsubscribe Tracking | Highly Recommended | Prevents users from complaining directly to their email provider |
 
 **Importance of Unsubscribe Tracking:**
 
