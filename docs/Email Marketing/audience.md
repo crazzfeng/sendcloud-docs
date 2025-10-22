@@ -10,78 +10,78 @@ link:
 metadata:
   robots: index
 ---
-# Audience Management Guide
-
-Build and manage your email audience effectively with powerful tools for contact management, organization, and targeting.
+<br />
 
 ## Adding Contacts to Your Audience
 
 <Accordion title="Legal Compliance Reminder" icon="shield-alt">
-Always ensure your contacts are collected legally and comply with data protection regulations like GDPR and CAN-SPAM before adding them to your audience.
+  Always ensure your contacts are collected legally and comply with data protection regulations like GDPR and CAN-SPAM before adding them to your audience.
 </Accordion>
 
 <Tabs>
-<Tab title="Individual Contacts">
+  <Tab title="Individual Contacts">
+    ### Add One Contact at a Time
 
-### Add One Contact at a Time
+    Perfect for adding new contacts as they sign up or when you meet them personally.
 
-Perfect for adding new contacts as they sign up or when you meet them personally.
+    **How to add:**
 
-**How to add:**
-1. Navigate to your audience list
-2. Click "Add Contact" 
-3. Fill out the contact form
-4. **Email is required** - all other fields are optional
-5. Save the contact
+    1. Navigate to your audience list
+    2. Click "Add Contact"
+    3. Fill out the contact form
+    4. **Email is required** - all other fields are optional
+    5. Save the contact
+  </Tab>
 
-</Tab>
-<Tab title="Bulk Import">
+  <Tab title="Bulk Import">
+    ### Import Multiple Contacts
 
-### Import Multiple Contacts
+    Efficiently add hundreds or thousands of contacts at once using two methods:
 
-Efficiently add hundreds or thousands of contacts at once using two methods:
+    #### Method 1: Upload CSV File
 
-#### Method 1: Upload CSV File
-- **Email column is mandatory**
-- Each column represents a contact field (Name, Phone, etc.)
-- Use proper formatting for successful import
-- Download our CSV template for best results
+    * **Email column is mandatory**
+    * Each column represents a contact field (Name, Phone, etc.)
+    * Use proper formatting for successful import
+    * Download our CSV template for best results
 
-#### Method 2: Copy and Paste
-- Email is required for each contact
-- Separate fields with commas (,)
-- Place each contact on a new line
-- Example: `john@example.com, John Doe, 555-0123`
+    #### Method 2: Copy and Paste
 
-</Tab>
+    * Email is required for each contact
+    * Separate fields with commas (,)
+    * Place each contact on a new line
+    * Example: `john@example.com, John Doe, 555-0123`
+  </Tab>
 </Tabs>
 
 ### Import Process Walkthrough
 
 <Cards columns="2">
-<Card title="Step 1: Handle Duplicates" icon="users">
-Choose how to manage existing contacts:
-- **Update**: Replace existing data with new information
-- **Skip**: Keep original data, ignore duplicates
-</Card>
+  <Card title="Step 1: Handle Duplicates" icon="users">
+    Choose how to manage existing contacts:
 
-<Card title="Step 2: Assign Tags" icon="tags">
-Organize your imports with tags:
-- **Replace**: Swap existing tags with new ones
-- **Add**: Keep existing tags, add new ones
-- **Skip**: Maintain current tags only
-</Card>
+    * **Update**: Replace existing data with new information
+    * **Skip**: Keep original data, ignore duplicates
+  </Card>
 
-<Card title="Step 3: Match Fields" icon="link">
-The system auto-matches columns to contact fields. Verify and adjust the mapping to ensure accuracy.
-</Card>
+  <Card title="Step 2: Assign Tags" icon="tags">
+    Organize your imports with tags:
 
-<Card title="Step 4: Review & Import" icon="check-circle">
-Double-check your settings and click "Confirm Import" to add your contacts.
-</Card>
+    * **Replace**: Swap existing tags with new ones
+    * **Add**: Keep existing tags, add new ones
+    * **Skip**: Maintain current tags only
+  </Card>
+
+  <Card title="Step 3: Match Fields" icon="link">
+    The system auto-matches columns to contact fields. Verify and adjust the mapping to ensure accuracy.
+  </Card>
+
+  <Card title="Step 4: Review & Import" icon="check-circle">
+    Double-check your settings and click "Confirm Import" to add your contacts.
+  </Card>
 </Cards>
 
----
+***
 
 ## Organizing Your Audience
 
@@ -90,24 +90,24 @@ Double-check your settings and click "Confirm Import" to add your contacts.
 Fields store information about your subscribers and help you understand your audience better.
 
 <Accordion title="Default Contact Fields" icon="table">
-
-| Field Name | Type | Can Delete? |
-|------------|------|-------------|
-| Email | Email | ❌ No |
-| Name | Text | ❌ No |
-| Phone | Phone | ❌ No |
-| Gender | Text | ✅ Yes |
-| Birthday | Date | ✅ Yes |
-| Age | Number | ✅ Yes |
-
+  | Field Name | Type   | Can Delete? |
+  | ---------- | ------ | ----------- |
+  | Email      | Email  | ❌ No        |
+  | Name       | Text   | ❌ No        |
+  | Phone      | Phone  | ❌ No        |
+  | Gender     | Text   | ✅ Yes       |
+  | Birthday   | Date   | ✅ Yes       |
+  | Age        | Number | ✅ Yes       |
 </Accordion>
 
 #### Custom Fields
-- Add up to **50 total fields** per audience list
-- Supported types: Text, Number, Date, Birthday, Dropdown
-- Reorder fields by dragging in **Manage → Fields**
+
+* Add up to **50 total fields** per audience list
+* Supported types: Text, Number, Date, Birthday, Dropdown
+* Reorder fields by dragging in **Manage → Fields**
 
 **Example Contact Profile:**
+
 ```
 📧 Email: anna@example.com
 👤 Name: Anna Johnson  
@@ -121,23 +121,24 @@ Fields store information about your subscribers and help you understand your aud
 Tags are flexible labels that help you categorize contacts into meaningful groups.
 
 <Cards columns="2">
-<Card title="Tag Benefits" icon="lightbulb">
-- Create unlimited tags
-- Apply multiple tags per contact
-- Filter audiences instantly  
-- Send targeted campaigns
-- Easy bulk management
-</Card>
+  <Card title="Tag Benefits" icon="lightbulb">
+    * Create unlimited tags
+    * Apply multiple tags per contact
+    * Filter audiences instantly
+    * Send targeted campaigns
+    * Easy bulk management
+  </Card>
 
-<Card title="Example: Food Blog" icon="utensils">
-**Tags Created:**
-- "Dessert Lovers"
-- "Japanese Cuisine" 
-- "Chinese Cuisine"
-- "Weekly Newsletter"
+  <Card title="Example: Food Blog" icon="utensils">
+    **Tags Created:**
 
-**Usage:** Send dessert recipes only to "Dessert Lovers" tag
-</Card>
+    * "Dessert Lovers"
+    * "Japanese Cuisine"
+    * "Chinese Cuisine"
+    * "Weekly Newsletter"
+
+    **Usage:** Send dessert recipes only to "Dessert Lovers" tag
+  </Card>
 </Cards>
 
 ### Segments: Advanced Audience Filtering
@@ -147,27 +148,26 @@ Segments are smart, dynamic groups that automatically update based on the condit
 #### How Segments Work
 
 <Columns layout="auto">
-<Column>
+  <Column>
+    **Creating a Segment:**
 
-**Creating a Segment:**
-1. Name your segment descriptively
-2. Choose matching logic:
-   - **All conditions** = AND logic
-   - **Any condition** = OR logic  
-3. Add up to 10 filter conditions
-4. Preview and save
+    1. Name your segment descriptively
+    2. Choose matching logic:
+       * **All conditions** = AND logic
+       * **Any condition** = OR logic
+    3. Add up to 10 filter conditions
+    4. Preview and save
+  </Column>
 
-</Column>
-<Column>
+  <Column>
+    **Segment Conditions:**
 
-**Segment Conditions:**
-- Contact fields (age, gender, location)
-- Tag assignments
-- Engagement history
-- Custom field values
-- Date-based criteria
-
-</Column>
+    * Contact fields (age, gender, location)
+    * Tag assignments
+    * Engagement history
+    * Custom field values
+    * Date-based criteria
+  </Column>
 </Columns>
 
 #### Real-World Example
@@ -175,37 +175,38 @@ Segments are smart, dynamic groups that automatically update based on the condit
 **Goal:** Survey women aged 25-30 about product preferences
 
 **Segment Setup:**
-- Name: "Women 25-30 Survey Group"
-- Logic: "All conditions must match"
-- Conditions:
-  - Age ≥ 25
-  - Age ≤ 30  
-  - Gender = "Female"
-  - Tag = "Active Subscriber"
+
+* Name: "Women 25-30 Survey Group"
+* Logic: "All conditions must match"
+* Conditions:
+  * Age ≥ 25
+  * Age ≤ 30
+  * Gender = "Female"
+  * Tag = "Active Subscriber"
 
 **Result:** Dynamic list that automatically includes/excludes contacts as their data changes.
 
 ### Tags vs. Segments: When to Use Each
 
 <Cards columns="2">
-<Card title="Use Tags When..." icon="tag">
-- Simple categorization needed
-- Manual contact organization
-- Campaign targeting by interest
-- Quick filtering required
-- Static grouping works
-</Card>
+  <Card title="Use Tags When..." icon="tag">
+    * Simple categorization needed
+    * Manual contact organization
+    * Campaign targeting by interest
+    * Quick filtering required
+    * Static grouping works
+  </Card>
 
-<Card title="Use Segments When..." icon="filter">
-- Complex filtering needed
-- Automatic updates required
-- Multiple conditions necessary
-- Behavioral targeting
-- Advanced automation workflows
-</Card>
+  <Card title="Use Segments When..." icon="filter">
+    * Complex filtering needed
+    * Automatic updates required
+    * Multiple conditions necessary
+    * Behavioral targeting
+    * Advanced automation workflows
+  </Card>
 </Cards>
 
----
+***
 
 ## Audience Analysis
 
@@ -214,71 +215,73 @@ Segments are smart, dynamic groups that automatically update based on the condit
 Gain valuable insights into your audience growth, engagement patterns, and performance metrics to optimize your email marketing strategy.
 
 <Cards columns="2">
-<Card title="Growth Analytics" icon="chart-line">
+  <Card title="Growth Analytics" icon="chart-line">
+    **Monthly Growth Tracking**
 
-**Monthly Growth Tracking**
-- Monitor contact acquisition trends over time
-- Identify peak signup periods and seasonal patterns
-- Track growth rate by marketing channel
-- Analyze campaign performance impact on list growth
+    * Monitor contact acquisition trends over time
+    * Identify peak signup periods and seasonal patterns
+    * Track growth rate by marketing channel
+    * Analyze campaign performance impact on list growth
 
-**Key Metrics:**
-- New contacts per month
-- Growth rate percentage
-- Source attribution data
-- Retention statistics
+    **Key Metrics:**
 
-</Card>
+    * New contacts per month
+    * Growth rate percentage
+    * Source attribution data
+    * Retention statistics
+  </Card>
 
-<Card title="Engagement Analytics" icon="chart-bar">
+  <Card title="Engagement Analytics" icon="chart-bar">
+    **Automatic Engagement Tracking**
+    Aurora SendCloud automatically monitors subscriber behavior including unsubscribes, complaints, and email interactions.
 
-**Automatic Engagement Tracking**
-Aurora SendCloud automatically monitors subscriber behavior including unsubscribes, complaints, and email interactions.
+    **Engagement Segmentation:**
 
-**Engagement Segmentation:**
-- **Lost**: Contacts who have unsubscribed or filed spam complaints
-- **Sleepy**: Contacts who never open or click your emails
-- **Active**: Contacts who regularly open or click your emails
-
-</Card>
+    * **Lost**: Contacts who have unsubscribed or filed spam complaints
+    * **Sleepy**: Contacts who never open or click your emails
+    * **Active**: Contacts who regularly open or click your emails
+  </Card>
 </Cards>
 
 ### Engagement Level Breakdown
 
 <Accordion title="Active Subscribers" icon="star">
-These are your most engaged contacts who regularly interact with your emails. They represent your core audience and are most likely to convert.
+  These are your most engaged contacts who regularly interact with your emails. They represent your core audience and are most likely to convert.
 
-**Characteristics:**
-- Open emails consistently
-- Click on links and calls-to-action
-- Forward or share your content
-- Rarely unsubscribe
+  **Characteristics:**
 
-**Strategy:** Focus premium content and exclusive offers on this segment.
+  * Open emails consistently
+  * Click on links and calls-to-action
+  * Forward or share your content
+  * Rarely unsubscribe
+
+  **Strategy:** Focus premium content and exclusive offers on this segment.
 </Accordion>
 
 <Accordion title="Sleepy Subscribers" icon="moon">
-These contacts remain subscribed but show minimal engagement with your emails.
+  These contacts remain subscribed but show minimal engagement with your emails.
 
-**Characteristics:**
-- Rarely open emails
-- Minimal click activity
-- Haven't engaged recently
-- Still subscribed but inactive
+  **Characteristics:**
 
-**Strategy:** Create re-engagement campaigns to win them back or consider removing them to improve deliverability.
+  * Rarely open emails
+  * Minimal click activity
+  * Haven't engaged recently
+  * Still subscribed but inactive
+
+  **Strategy:** Create re-engagement campaigns to win them back or consider removing them to improve deliverability.
 </Accordion>
 
 <Accordion title="Lost Subscribers" icon="user-times">
-These contacts have actively disengaged from your communications.
+  These contacts have actively disengaged from your communications.
 
-**Characteristics:**
-- Unsubscribed from your list
-- Marked emails as spam
-- Bounced permanently
-- Requested removal
+  **Characteristics:**
 
-**Strategy:** Respect their decision and ensure they're properly removed from all future communications.
+  * Unsubscribed from your list
+  * Marked emails as spam
+  * Bounced permanently
+  * Requested removal
+
+  **Strategy:** Respect their decision and ensure they're properly removed from all future communications.
 </Accordion>
 
 ### Geographic Performance Analysis
@@ -286,36 +289,38 @@ These contacts have actively disengaged from your communications.
 Track how your audience engages across different regions to optimize your marketing strategy.
 
 **Regional Insights Include:**
-- Open rates by country/region
-- Click-through rates by location  
-- Unsubscribe patterns by geography
-- Time zone optimization opportunities
-- Cultural preference indicators
+
+* Open rates by country/region
+* Click-through rates by location
+* Unsubscribe patterns by geography
+* Time zone optimization opportunities
+* Cultural preference indicators
 
 **Use Cases:**
-- Schedule campaigns for optimal local timing
-- Create region-specific content
-- Identify high-performing markets
-- Adapt messaging for cultural preferences
 
----
+* Schedule campaigns for optimal local timing
+* Create region-specific content
+* Identify high-performing markets
+* Adapt messaging for cultural preferences
+
+***
 
 ## Best Practices
 
 <Accordion title="Data Quality Tips" icon="star">
-- Regularly clean your audience list
-- Remove invalid email addresses
-- Keep contact information up-to-date
-- Use consistent naming for tags
-- Create meaningful segment names
+  * Regularly clean your audience list
+  * Remove invalid email addresses
+  * Keep contact information up-to-date
+  * Use consistent naming for tags
+  * Create meaningful segment names
 </Accordion>
 
 <Accordion title="Compliance Guidelines" icon="gavel">
-- Obtain explicit consent before adding contacts
-- Provide easy unsubscribe options
-- Respect data retention policies  
-- Follow regional privacy laws (GDPR, CCPA)
-- Document consent methods
+  * Obtain explicit consent before adding contacts
+  * Provide easy unsubscribe options
+  * Respect data retention policies
+  * Follow regional privacy laws (GDPR, CCPA)
+  * Document consent methods
 </Accordion>
 
 Ready to start building your audience? Begin by adding your first contacts and organizing them with tags that match your marketing strategy.
