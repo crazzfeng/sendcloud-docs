@@ -18,9 +18,8 @@ To create a campaign, you need to do the following.
 4. Choose one of your email template that has the message you want the recipients to read.
 5. Choose whether to use the advaned setting or not.
 
-
-   Google Analytics Tracking
-
+   ## Advanced Setting of a campaign
+   ### Google Analytics Tracking
 
    If your email contains hyperlinks and the corresponding landing page supports Google analysis, you can turn on this switch. Parameters that can be filled in
 
