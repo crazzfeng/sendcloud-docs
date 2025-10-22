@@ -211,24 +211,73 @@ Segments are smart, dynamic groups that automatically update based on the condit
 
 ## Audience Analysis
 
+Gain valuable insights into your audience performance and engagement patterns to optimize your email marketing strategy.
+
 <Image border={false} src="https://files.readme.io/6b00a8fa470d7d33a01325cc5344deafe10f70f1807eb0b7d96c1efbd049b358-image.png" />
 
-* Basic analysis
-  * In this section you can find out the growth trend of your contacts by month. 
-  * We provide the stat group by MP
-* Engagement analysis
-  * Aurora SendCloud will automatically receive the unsubscribes and complaints from your audience. 
-  * We segement your audience by the engement level
-    * Lost. Who unsubscibed or complained your emails will be segement into the Lost.
-    * Sleepy. Who never open,click your emails
-    * Active. Who used to open or click your emails.
-  * We also provide the regional performance of you audience
+<br />
+
+### Growth Analytics
+
+Track the growth trends of your contact list to understand your audience acquisition patterns.
 
 <br />
+
+* **Monthly Growth Tracking**: Monitor how your contact list grows month by month to identify trends and seasonal patterns
+* **Performance Metrics**: Access detailed statistics grouped by mailbox providers to measure channel effectiveness
+
+### Engagement Analysis
+
+Aurora SendCloud automatically tracks unsubscribes and complaints from your audience to help you understand subscriber behavior.
+
+#### Audience Segmentation by Engagement Level
+
+We automatically segment your audience based on their engagement patterns:
+
+<Cards columns="3">
+  <Card title="Lost Subscribers" icon="user-times">
+    Contacts who have unsubscribed or complained about your emails are automatically segmented into this group.
+    **Characteristics:**
+
+    * Unsubscribed from your list
+    * Filed spam complaints
+    * No longer wish to receive emails
+  </Card>
+
+  <Card title="Sleepy Subscribers" icon="moon">
+    Contacts who never open or click your emails but remain subscribed.
+    **Characteristics:**
+
+    * Rarely open emails
+    * Minimal click activity
+    * Still subscribed but inactive
+    * Potential re-engagement targets
+  </Card>
+
+  <Card title="Active Subscribers" icon="star">
+    Contacts who regularly open or click your emails, showing consistent engagement.
+    **Characteristics:**
+
+    * Regularly open emails
+    * Click on links and CTAs
+    * High engagement rates
+    * Your most valuable audience segment
+  </Card>
+</Cards>
+
+### Regional Performance Analysis
+
+We provide comprehensive regional performance data for your audience, helping you understand how different geographic locations engage with your campaigns.
+**Geographic Insights Include:**
+
+* Engagement rates by region
+* Open and click patterns by location
+* Regional preferences and behaviors
+* Optimal sending times by time zone
+
+Use this data to tailor your content and timing strategies for different geographic segments of your audience.
 
 ***
-
-<br />
 
 ## Best Practices
 
