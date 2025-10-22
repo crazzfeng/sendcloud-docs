@@ -6,7 +6,7 @@
   },
   "servers": [
     {
-      "url": "https://api2.sendcloud.net"
+      "url": "https://api.aurorasendcloud.com"
     }
   ],
   "tags": [],
