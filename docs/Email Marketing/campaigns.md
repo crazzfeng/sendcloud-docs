@@ -208,9 +208,140 @@ Understanding campaign states helps you manage your email marketing effectively:
 
 ### Overview
 
-* The number of recipients,how many emails are wait ro request and how many of them have been requested
-* The emails status : delivered number,sending number,invalid email number and softbounce number
-* <br />
+<Table align={["left","left"]}>
+  <thead>
+    <tr>
+      <th>
+        Metric
+      </th>
+
+      <th>
+        Description
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        <strong>Requested</strong>
+      </td>
+
+      <td>
+        Total number of email send requests submitted to Aurora SendCloud
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <strong>Delivered</strong>
+      </td>
+
+      <td>
+        Emails successfully delivered to recipient inboxes<br />
+        <em>Rate = Delivered ÷ Requested</em>
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <strong>Invalid Email</strong>
+      </td>
+
+      <td>
+        Emails rejected due to invalid or malformed email addresses<br />
+        <em>Rate = Invalid Email ÷ Requested</em>
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <strong>Soft Bounce</strong>
+      </td>
+
+      <td>
+        Emails temporarily rejected (full mailbox, server issues, etc.)<br />
+        <em>Rate = Soft Bounce ÷ Requested</em>
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <strong>Billing Counts</strong>
+      </td>
+
+      <td>
+        Number of emails that count toward your account usage and billing
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <strong>Opens</strong>
+      </td>
+
+      <td>
+        Total email opens, including multiple opens by the same recipient<br />
+        <em>Rate = Opens ÷ Delivered</em>
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <strong>Unique Opens</strong>
+      </td>
+
+      <td>
+        Number of individual recipients who opened the email at least once<br />
+        <em>Rate = Unique Opens ÷ Delivered</em>
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <strong>Clicks</strong>
+      </td>
+
+      <td>
+        Total link clicks, including multiple clicks by the same recipient<br />
+        <em>Rate = Clicks ÷ Delivered</em>
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <strong>Unique Clicks</strong>
+      </td>
+
+      <td>
+        Number of individual recipients who clicked at least one link<br />
+        <em>Rate = Unique Clicks ÷ Delivered</em>
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <strong>Spam Reports</strong>
+      </td>
+
+      <td>
+        Emails marked as spam by recipients<br />
+        <em>Rate = Spam Reports ÷ Delivered</em>
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <strong>Unsubscribes</strong>
+      </td>
+
+      <td>
+        Recipients who clicked unsubscribe links<br />
+        <em>Rate = Unsubscribes ÷ Delivered</em>
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 <br />
 
