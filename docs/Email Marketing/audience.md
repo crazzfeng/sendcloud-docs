@@ -231,6 +231,10 @@ Track the growth trends of your contact list to understand your audience acquisi
 
 Aurora SendCloud automatically tracks unsubscribes and complaints from your audience to help you understand subscriber behavior.
 
+<Image border={false} src="https://files.readme.io/ffff052ccf15bca0ded038cc14a68867f54e75198ee44c695212bb0f6954d223-image.png" />
+
+<br />
+
 #### Audience Segmentation by Engagement Level
 
 We automatically segment your audience based on their engagement patterns:
