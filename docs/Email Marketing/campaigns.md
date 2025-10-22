@@ -343,7 +343,22 @@ Understanding campaign states helps you manage your email marketing effectively:
   </tbody>
 </Table>
 
-<br />
+### The delivery statistics
+
+* The emails status statistics
+* The send trend group by day
+* The  receiving domain email status performance
+* The invalid email performance by different categories.
+* The soft bounce performance by different categories.
+
+### The tracking statistics
+
+* Open and click trend by day
+* The  receiving domain email engagement performance
+* The open and click performance by 24-hour
+* Open and click Loactions performance
+* Open and click device performance
+* Link performance
 
 ### Export Options
 
