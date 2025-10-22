@@ -1,6 +1,6 @@
 ---
-title: Send SMS Message
-excerpt: Send a SMS template to one or more recipients
+title: New Endpoint
+excerpt: This is your first endpoint! Edit this page to start documenting your API.
 api:
   file: send.json
   operationId: get_new-endpoint
