@@ -39,9 +39,11 @@ you need to do the followin:
 4. Choose one of your email template that has the message you want the recipients to read.
 5. Set the execution time .Please choose the right time zone.
 
-the advanced setting is not available in A/B test campaign
+<br />
 
 ## Advanced Setting of a campaign
+
+the advanced setting is only available in regular email campaign
 
 ### Google Analytics Tracking
 
