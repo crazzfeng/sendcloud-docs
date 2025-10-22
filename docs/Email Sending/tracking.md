@@ -21,7 +21,7 @@ Go to **Settings** → **Tracking** → Select the target **API_USER** → **Tra
 ✅ **Click Tracking**: Tracks clicks on links in emails  
 ✅ **Unsubscribe Tracking**: Manages the user unsubscribe process and data collection
 
-## How It Works
+## How Tracking Works
 
 **Open Tracking**: Inserts a 1-pixel transparent tracking image into the email HTML. When the email is opened, the email client automatically loads the image, sending a request to the Aurora SendCloud server to count the open event.
 
