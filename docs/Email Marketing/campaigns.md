@@ -131,7 +131,9 @@ Follow the same configuration steps as regular campaigns:
 
 ## Advanced Campaign Settings
 
-<Accordion title="Google Analytics Tracking" icon="chart-line">
+### Google Analytics Tracking
+
+
   Track campaign performance in Google Analytics by automatically adding UTM parameters to your email links.
 
   **Available Parameters:**
@@ -148,9 +150,8 @@ Follow the same configuration steps as regular campaigns:
   Original: https://www.aurorasendcloud.com
   Enhanced: https://www.aurorasendcloud.com?utm_campaign=newsletter&utm_source=SendCloud&utm_medium=email
   ```
-</Accordion>
+### Warm-Up Sending
 
-<Accordion title="Warm-Up Sending" icon="thermometer-half">
   Improve deliverability by gradually increasing sending volume, especially important for new domains or high-volume campaigns.
 
   **How It Works:**
@@ -168,7 +169,7 @@ Follow the same configuration steps as regular campaigns:
   | First Hour | 100 emails     | 100 emails     | 100 emails     |
   | First Day  | 1,000 emails   | 1,000 emails   | 1,000 emails   |
   | Week 2+    | Up to 25k/hour | Up to 25k/hour | Up to 25k/hour |
-</Accordion>
+
 
 ## Campaign Status & Management
 
