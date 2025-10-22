@@ -12,7 +12,7 @@ link:
 metadata:
   robots: index
 ---
-## Type of Email Campaigns
+## Types of Email Campaigns
 
 Email campaigns are your primary tool for reaching contacts with targeted messaging. Whether you're sending newsletters, promotions, or announcements, this guide covers everything you need to create, optimize, and track successful campaigns.
 
@@ -60,7 +60,7 @@ Follow these steps to create and send a standard email campaign:
 </Accordion>
 
 <Accordion title="Step 4: Advanced Configuration (Optional)" icon="cog">
-  **Configure advanced settings**: Access additional features like:
+  **Configure advanced settings**: Access additional features such as:
 
   * Google Analytics tracking
   * Warm-up sending for better deliverability
@@ -112,8 +112,8 @@ A/B testing helps you optimize campaigns by comparing different variations. Here
 <Accordion title="Configure Test Size" icon="percentage">
   **Set test percentage**: What portion of your audience participates in the test
 
-  * **20% test**: 20% split between variations, 80% get the winner
-  * **50% test**: 50% split between variations, 50% get the winner
+  * **20% test**: 20% split between variations, 80% receive the winner
+  * **50% test**: 50% split between variations, 50% receive the winner
   * **Custom**: Set your preferred split
 
   🎯 **Recommendation**: Use 20-30% for tests to maximize the impact of the winning variation.
@@ -129,7 +129,7 @@ Follow the same configuration steps as regular campaigns:
 4. Choose email template
 5. Schedule execution time
 
-***
+---
 
 <br />
 
@@ -174,7 +174,7 @@ Starting at 100 emails/hour, the system can scale up to 25,000 emails/hour over 
 | First Day  | 1,000 emails   | 1,000 emails   | 1,000 emails   |
 | Week 2+    | Up to 25k/hour | Up to 25k/hour | Up to 25k/hour |
 
-***
+---
 
 <br />
 
@@ -197,10 +197,10 @@ Understanding campaign states helps you manage your email marketing effectively:
   1. **Insufficient Email Credits**: Check your account balance
   2. **Daily Quota Exceeded**: Wait for quota reset or upgrade plan
   3. **Invalid Recipients**: Check contact list quality
-  4. **Template Issues**: Ensure template is exist
+  4. **Template Issues**: Ensure template exists
 </Accordion>
 
-***
+---
 
 <br />
 
@@ -343,26 +343,26 @@ Understanding campaign states helps you manage your email marketing effectively:
   </tbody>
 </Table>
 
-### The delivery statistics
+### Delivery Statistics
 
-* The emails status statistics
-* The send trend group by day
-* The  receiving domain email status performance
-* The invalid email performance by different categories.
-* The soft bounce performance by different categories.
+* Email status statistics
+* Send trend grouped by day
+* Receiving domain email status performance
+* Invalid email performance by different categories
+* Soft bounce performance by different categories
 
-### The tracking statistics
+### Tracking Statistics
 
-* Open and click trend by day
-* The  receiving domain email engagement performance
-* The open and click performance by 24-hour
-* Open and click Loactions performance
+* Open and click trends by day
+* Receiving domain email engagement performance
+* Open and click performance by 24-hour periods
+* Open and click location performance
 * Open and click device performance
 * Link performance
 
-### The detail Data
+### Detailed Data
 
-Data provide detailed status data of the entire lifecycle of each email that sent from the campaign. 
+Data provides detailed status information for the entire lifecycle of each email sent from the campaign.
 
 ### Export Options
 
@@ -372,7 +372,7 @@ From any campaign report, export detailed data:
 * **Individual Tracking**: Per-recipient engagement data
 * **Failure Analysis**: Detailed bounce and error information
 
-***
+---
 
 ## Quick Reference
 
