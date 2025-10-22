@@ -7,7 +7,6 @@ metadata:
 ---
 <br />
 
-
 Aurora SendCloud's global sending pool intelligently allocates sending resources based on customer category, email type, and other factors. While offering efficient shared pool services to standard customers, brand customers receive dedicated sending IPs and exclusive sending pools. This completely eliminates the impact of shared resources and ensures complete control over email delivery performance and brand reputation. Core Values ​​✨
 Exclusiveness
 🛡️ Completely exclusive IP resources, eliminating interference from other users
