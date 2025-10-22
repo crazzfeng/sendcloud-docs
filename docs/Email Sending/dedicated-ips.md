@@ -9,88 +9,130 @@ metadata:
 ---
 # Dedicated IPs
 
-Aurora SendCloud's global sending pool intelligently allocates sending resources based on customer category, email type, and other factors. While we offer efficient shared pool services to standard customers, brand customers receive dedicated sending IPs and exclusive sending pools. This completely eliminates the impact of shared resources and ensures complete control over email delivery performance and brand reputation.
+Take full control of your email delivery with Aurora SendCloud's dedicated IP service. While our intelligent shared pool efficiently serves standard customers, dedicated IPs provide brand customers with exclusive sending resources, complete reputation control, and superior delivery performance.
 
-## Core Values ✨
+## Why Choose Dedicated IPs? ✨
 
-### Exclusiveness
-🛡️ Completely exclusive IP resources, eliminating interference from other users  
-📧 Full control over email delivery performance and reputation (domain/IP)
+<Cards columns="3">
+  <Card title="Complete Exclusivity" icon="shield-alt">
+    Your IP resources are completely isolated from other users, giving you full control over your email delivery performance and sender reputation.
+  </Card>
+  <Card title="Enhanced Capacity" icon="rocket">
+    Access higher sending quotas and support for large-scale email campaigns without shared resource limitations.
+  </Card>
+  <Card title="Advanced Configuration" icon="cogs">
+    Support for independent IP and domain registration with ICP filing capabilities for optimal delivery performance.
+  </Card>
+</Cards>
 
-### Higher Quotas
-🚀 Enjoy higher email sending quota privileges  
-📈 Support for large-scale email sending needs
+## Perfect For These Use Cases 🎯
 
-### Better Configuration
-🌟 Support for independent IP and domain name registration (ICP)  
-✅ Achieve better email delivery performance and inbox reach
+<Accordion title="Critical Verification Emails" icon="key">
+Ensure your verification codes, password resets, and security notifications reach users' inboxes reliably and promptly. Dedicated IPs provide the consistent delivery rates essential for authentication workflows.
+</Accordion>
 
-## Suitable Scenarios 🎯
+<Accordion title="Transactional Communications" icon="receipt">
+Order confirmations, shipping updates, account changes, and system alerts require guaranteed delivery. Maintain customer trust with dedicated sending infrastructure.
+</Accordion>
 
-### Verification Emails
-- Increase the reach of critical emails like verification codes and security notifications
-- Ensure timely and accurate delivery of important information
+<Accordion title="Branded Marketing Campaigns" icon="bullhorn">
+Build and maintain your brand's email reputation independently. Perfect for marketing communications, newsletters, and promotional campaigns where reputation control is crucial.
+</Accordion>
 
-### Notification Emails
-- Transactional emails like order confirmations and account changes
-- Critical information like system alerts and status notifications
+## Setup Requirements ⚙️
 
-### Branded Emails
-- Marketing communications and brand promotional emails
-- Scenarios requiring independent email delivery reputation
+### Essential Configuration Steps
 
-## Configuration Requirements ⚙️
+Before activating your dedicated IP service, ensure you have:
 
-### Required Requirements
-✅ Configure at least one domain for sending emails  
-✅ Complete domain SPF, DKIM, MX, and DMARC verification  
-✅ Configure an A record for reverse DNS resolution
+- ✅ **Domain Configuration**: Set up at least one verified sending domain
+- ✅ **DNS Authentication**: Complete SPF, DKIM, MX, and DMARC record verification
+- ✅ **Reverse DNS**: Configure an A record for proper reverse DNS resolution
 
-### Important Tips
-⚠️ **Reverse DNS resolution is crucial.**
+<Tabs>
+  <Tab title="Domain Setup">
+    Configure your brand domain as your sending domain and ensure all DNS records are properly verified. This establishes your domain's authenticity and improves deliverability.
+  </Tab>
+  <Tab title="DNS Records">
+    Complete verification of all authentication records:
+    - **SPF**: Authorizes your IP to send on behalf of your domain
+    - **DKIM**: Adds cryptographic signature to verify message integrity
+    - **DMARC**: Provides policy for handling authentication failures
+    - **MX**: Enables proper email routing
+  </Tab>
+  <Tab title="Reverse DNS">
+    Critical for reputation management. Configure an A record to enable reverse DNS resolution - emails from IPs without this are more likely to be flagged as spam.
+  </Tab>
+</Tabs>
 
-Emails sent from IPs without reverse DNS configuration are more likely to be marked as spam and may even be blacklisted by anti-spam organizations.
+## Best Practices for Success 💡
 
-Once the A record is configured, the system will automatically perform reverse DNS resolution for the IP.
+### Smart Sending Strategy
 
-## Best Practices 💡
+<Columns layout="auto">
+  <Column>
+    **IP Warm-up Process**
+    - Start with low sending volumes
+    - Gradually increase over 2-4 weeks
+    - Monitor reputation metrics closely
+    - Follow ISP-specific warm-up guidelines
+  </Column>
+  <Column>
+    **List Quality Management**
+    - Maintain clean, engaged subscriber lists
+    - Process unsubscribes promptly
+    - Monitor bounce and complaint rates
+    - Segment audiences for targeted messaging
+  </Column>
+</Columns>
 
-### Domain Configuration
-- Use your brand domain as your sending domain
-- Ensure all verification records are configured correctly
-- Regularly check verification status
+### Ongoing Optimization
 
-### Sending Strategy
-- Follow a gradual warm-up strategy for sending volume
-- Monitor email quality and feedback data
-- Adjust your sending strategy promptly
-- Maintain a high-quality email list
-- Process unsubscribes and complaints promptly
-- Avoid triggering spam rules
+- **Monitor Performance**: Track delivery rates, open rates, and spam complaints
+- **Regular Audits**: Review DNS configurations and authentication status monthly
+- **Responsive Actions**: Address deliverability issues quickly to protect reputation
 
-## Notes 📝
+## Important Considerations 📋
 
 ### Service Activation
-After configuring the dedicated IP service, we recommend starting with a low sending volume and gradually increasing it.
+> **Gradual Ramp-up Required**: After activation, start with minimal sending volume and increase gradually. This warm-up period is essential for building positive sender reputation with ISPs.
 
-### Cost Considerations
-Dedicated IP service is charged based on the number of IPs and usage duration.
+### Investment Overview
+Dedicated IP service pricing is based on the number of IPs allocated and usage duration. Consider this as an investment in your email program's long-term success and brand protection.
 
-### Technical Support
-We provide professional technical configuration guidance, monitor email performance, and offer optimization suggestions.
+### Professional Support
+Our team provides:
+- Expert configuration guidance
+- Continuous performance monitoring  
+- Proactive optimization recommendations
+- Dedicated technical support
 
-## Troubleshooting 🔧
+## Troubleshooting Guide 🔧
 
-### Common Problems
+<Accordion title="Emails Still Going to Spam?" icon="exclamation-triangle">
+**Quick Fixes:**
+- Verify reverse DNS is properly configured and resolving
+- Double-check all domain authentication records (SPF, DKIM, DMARC)
+- Review your content for spam triggers
+- Ensure proper IP warm-up completion
+</Accordion>
 
-**❓ Emails are still going to spam**
-- ✅ Check if reverse DNS resolution is working
-- ✅ Verify that all domain authentication records are complete
+<Accordion title="Sending Limits Too Restrictive?" icon="ban">
+**Solutions:**
+- Confirm IP warm-up process is complete
+- Review your sender reputation metrics
+- Check bounce and complaint rates
+- Contact support for quota adjustments if metrics are healthy
+</Accordion>
 
-**❓ Sending volume is limited**
-- ✅ Verify that IP warm-up is complete
-- ✅ Check email quality and complaint rate
+<Accordion title="Domain Authentication Failures?" icon="times-circle">
+**Resolution Steps:**
+- Verify DNS records are published correctly
+- Wait 24-48 hours for DNS propagation
+- Use DNS lookup tools to confirm record visibility
+- Check for syntax errors in record values
+</Accordion>
 
-**❓ Domain authentication failed**
-- ✅ Verify that DNS records are configured correctly
-- ✅ Verify that domain name resolution is working
+---
+
+Ready to upgrade to dedicated IPs? Contact our team to discuss your specific needs and get started with a configuration plan tailored to your email program.
