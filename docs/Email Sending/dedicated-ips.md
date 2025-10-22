@@ -13,31 +13,25 @@ Take full control of your email delivery with Aurora SendCloud's dedicated IP se
 
 ## Why Choose Dedicated IPs? ✨
 
-<Cards columns="3">
-  <Card title="Complete Exclusivity" icon="shield-alt">
-    Your IP resources are completely isolated from other users, giving you full control over your email delivery performance and sender reputation.
-  </Card>
-  <Card title="Enhanced Capacity" icon="rocket">
-    Access higher sending quotas and support for large-scale email campaigns without shared resource limitations.
-  </Card>
-  <Card title="Advanced Configuration" icon="cogs">
-    Support for independent IP and domain registration with ICP filing capabilities for optimal delivery performance.
-  </Card>
-</Cards>
+### Complete Exclusivity 🛡️
+Your IP resources are completely isolated from other users, giving you full control over your email delivery performance and sender reputation.
+
+### Enhanced Capacity 🚀
+Access higher sending quotas and support for large-scale email campaigns without shared resource limitations.
+
+### Advanced Configuration ⚙️
+Support for independent IP and domain registration with ICP filing capabilities for optimal delivery performance.
 
 ## Perfect For These Use Cases 🎯
 
-<Accordion title="Critical Verification Emails" icon="key">
+### Critical Verification Emails 🔑
 Ensure your verification codes, password resets, and security notifications reach users' inboxes reliably and promptly. Dedicated IPs provide the consistent delivery rates essential for authentication workflows.
-</Accordion>
 
-<Accordion title="Transactional Communications" icon="receipt">
+### Transactional Communications 🧾
 Order confirmations, shipping updates, account changes, and system alerts require guaranteed delivery. Maintain customer trust with dedicated sending infrastructure.
-</Accordion>
 
-<Accordion title="Branded Marketing Campaigns" icon="bullhorn">
+### Branded Marketing Campaigns 📢
 Build and maintain your brand's email reputation independently. Perfect for marketing communications, newsletters, and promotional campaigns where reputation control is crucial.
-</Accordion>
 
 ## Setup Requirements ⚙️
 
@@ -109,29 +103,26 @@ Our team provides:
 
 ## Troubleshooting Guide 🔧
 
-<Accordion title="Emails Still Going to Spam?" icon="exclamation-triangle">
+### Emails Still Going to Spam? ⚠️
 **Quick Fixes:**
 - Verify reverse DNS is properly configured and resolving
 - Double-check all domain authentication records (SPF, DKIM, DMARC)
 - Review your content for spam triggers
 - Ensure proper IP warm-up completion
-</Accordion>
 
-<Accordion title="Sending Limits Too Restrictive?" icon="ban">
+### Sending Limits Too Restrictive? 🚫
 **Solutions:**
 - Confirm IP warm-up process is complete
 - Review your sender reputation metrics
 - Check bounce and complaint rates
 - Contact support for quota adjustments if metrics are healthy
-</Accordion>
 
-<Accordion title="Domain Authentication Failures?" icon="times-circle">
+### Domain Authentication Failures? ❌
 **Resolution Steps:**
 - Verify DNS records are published correctly
 - Wait 24-48 hours for DNS propagation
 - Use DNS lookup tools to confirm record visibility
 - Check for syntax errors in record values
-</Accordion>
 
 ---
 
