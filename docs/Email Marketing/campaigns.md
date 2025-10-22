@@ -206,67 +206,13 @@ Understanding campaign states helps you manage your email marketing effectively:
 
 ## Campaign Analytics & Reports
 
-### Overview Dashboard
+### Overview
 
-Get a high-level view of campaign performance:
+* The number of recipients,how many emails are wait ro request and how many of them have been requested
+* The emails status : delivered number,sending number,invalid email number and softbounce number
+* <br />
 
-* **Sending Progress**: Real-time delivery status
-* **Top Domains**: Performance breakdown by recipient email provider
-* **Key Metrics**: Open rates, click rates, bounces at a glance
-
-### Detailed Tracking
-
-Deep dive into engagement data:
-
-* **Opens & Clicks**: Detailed interaction tracking
-* **Unsubscribes**: Monitor list health
-* **Complaints**: Identify content issues
-* **Geographic Data**: See where your audience engages
-
-### Advanced Analytics
-
-<Accordion title="Geographic Insights" icon="globe">
-  **Location Data:**
-
-  * Country and region breakdown
-  * Time zone engagement patterns
-  * Regional performance ranking
-
-  **Use Cases:**
-
-  * Optimize send times by location
-  * Create region-specific campaigns
-  * Understand global audience distribution
-</Accordion>
-
-<Accordion title="Link Performance" icon="link">
-  **Click Analysis:**
-
-  * Individual link click rates
-  * Heat mapping of email interactions
-  * Conversion tracking from email to action
-
-  **Optimization Tips:**
-
-  * A/B test different call-to-action buttons
-  * Analyze which content drives clicks
-  * Optimize link placement and frequency
-</Accordion>
-
-<Accordion title="Device & Technology" icon="mobile">
-  **Technical Insights:**
-
-  * Mobile vs desktop open rates
-  * Email client preferences
-  * Browser and OS breakdown
-  * Mobile carrier data
-
-  **Applications:**
-
-  * Optimize templates for popular devices
-  * Test compatibility across email clients
-  * Tailor content for mobile-first audiences
-</Accordion>
+<br />
 
 ### Export Options
 
