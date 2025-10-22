@@ -82,42 +82,46 @@ A/B testing helps you optimize campaigns by comparing different variations. Here
 
 ### Step 1: Design Your Test
 
-<Tabs>
-  <Tab title="Choose Test Element">
-    **Select what to test** (choose one):
-    
-    | Test Type | What It Measures | Best For |
-    |-----------|------------------|----------|
-    | **Subject Line** | Open rates | First impressions, curiosity |
-    | **Email Content** | Click rates, engagement | Message effectiveness |
-    | **Sender Name** | Open rates, trust | Brand recognition |
-    | **Send Time** | Open rates, engagement | Audience behavior |
-    
-    💡 **Note**: Each test supports up to 3 variations (A, B, C).
-  </Tab>
-  
-  <Tab title="Set Success Metrics">
-    **Choose winning criteria**:
-    
-    - **Open Rate**: Best for subject line and sender name tests
-    - **Unique Open Rate**: Focuses on individual engagement
-    - **Click Rate**: Best for content and call-to-action tests  
-    - **Unique Click Rate**: Measures individual click behavior
-    - **Delivery Rate**: For deliverability optimization
-    
-    **Evaluation time**: Set how long to run the test (recommended: 2-24 hours)
-  </Tab>
-  
-  <Tab title="Configure Test Size">
-    **Set test percentage**: What portion of your audience participates in the test
-    
-    - **20% test**: 20% split between variations, 80% get the winner
-    - **50% test**: 50% split between variations, 50% get the winner
-    - **Custom**: Set your preferred split
-    
-    🎯 **Recommendation**: Use 20-30% for tests to maximize the impact of the winning variation.
-  </Tab>
-</Tabs>
+<Accordion title="Choose Test Element" icon="bullseye">
+
+**Select what to test** (choose one):
+
+| Test Type | What It Measures | Best For |
+|-----------|------------------|----------|
+| **Subject Line** | Open rates | First impressions, curiosity |
+| **Email Content** | Click rates, engagement | Message effectiveness |
+| **Sender Name** | Open rates, trust | Brand recognition |
+| **Send Time** | Open rates, engagement | Audience behavior |
+
+💡 **Note**: Each test supports up to 3 variations (A, B, C).
+
+</Accordion>
+
+<Accordion title="Set Success Metrics" icon="target">
+
+**Choose winning criteria**:
+
+- **Open Rate**: Best for subject line and sender name tests
+- **Unique Open Rate**: Focuses on individual engagement
+- **Click Rate**: Best for content and call-to-action tests  
+- **Unique Click Rate**: Measures individual click behavior
+- **Delivery Rate**: For deliverability optimization
+
+**Evaluation time**: Set how long to run the test (recommended: 2-24 hours)
+
+</Accordion>
+
+<Accordion title="Configure Test Size" icon="percentage">
+
+**Set test percentage**: What portion of your audience participates in the test
+
+- **20% test**: 20% split between variations, 80% get the winner
+- **50% test**: 50% split between variations, 50% get the winner
+- **Custom**: Set your preferred split
+
+🎯 **Recommendation**: Use 20-30% for tests to maximize the impact of the winning variation.
+
+</Accordion>
 
 ### Step 2: Complete Campaign Setup
 
@@ -217,44 +221,48 @@ Deep dive into engagement data:
 
 ### Advanced Analytics
 
-<Tabs>
-  <Tab title="Geographic Insights">
-    **Location Data:**
-    - Country and region breakdown
-    - Time zone engagement patterns
-    - Regional performance ranking
-    
-    **Use Cases:**
-    - Optimize send times by location
-    - Create region-specific campaigns
-    - Understand global audience distribution
-  </Tab>
-  
-  <Tab title="Link Performance">
-    **Click Analysis:**
-    - Individual link click rates
-    - Heat mapping of email interactions
-    - Conversion tracking from email to action
-    
-    **Optimization Tips:**
-    - A/B test different call-to-action buttons
-    - Analyze which content drives clicks
-    - Optimize link placement and frequency
-  </Tab>
-  
-  <Tab title="Device & Technology">
-    **Technical Insights:**
-    - Mobile vs desktop open rates
-    - Email client preferences
-    - Browser and OS breakdown
-    - Mobile carrier data
-    
-    **Applications:**
-    - Optimize templates for popular devices
-    - Test compatibility across email clients
-    - Tailor content for mobile-first audiences
-  </Tab>
-</Tabs>
+<Accordion title="Geographic Insights" icon="globe">
+
+**Location Data:**
+- Country and region breakdown
+- Time zone engagement patterns
+- Regional performance ranking
+
+**Use Cases:**
+- Optimize send times by location
+- Create region-specific campaigns
+- Understand global audience distribution
+
+</Accordion>
+
+<Accordion title="Link Performance" icon="link">
+
+**Click Analysis:**
+- Individual link click rates
+- Heat mapping of email interactions
+- Conversion tracking from email to action
+
+**Optimization Tips:**
+- A/B test different call-to-action buttons
+- Analyze which content drives clicks
+- Optimize link placement and frequency
+
+</Accordion>
+
+<Accordion title="Device & Technology" icon="mobile">
+
+**Technical Insights:**
+- Mobile vs desktop open rates
+- Email client preferences
+- Browser and OS breakdown
+- Mobile carrier data
+
+**Applications:**
+- Optimize templates for popular devices
+- Test compatibility across email clients
+- Tailor content for mobile-first audiences
+
+</Accordion>
 
 ### Export Options
 
