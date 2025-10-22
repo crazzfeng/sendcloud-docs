@@ -129,47 +129,54 @@ Follow the same configuration steps as regular campaigns:
 4. Choose email template
 5. Schedule execution time
 
+***
+
+<br />
+
 ## Advanced Campaign Settings
 
 ### Google Analytics Tracking
 
+Track campaign performance in Google Analytics by automatically adding UTM parameters to your email links.
 
-  Track campaign performance in Google Analytics by automatically adding UTM parameters to your email links.
+**Available Parameters:**
 
-  **Available Parameters:**
+* **Campaign Name** (`utm_campaign`): Identify the specific campaign
+* **Campaign Source** (`utm_source`): Automatically set to "SendCloud"
+* **Campaign Medium** (`utm_medium`): Automatically set to "email"
+* **Campaign Term** (`utm_term`): Optional keyword tracking
+* **Campaign Content** (`utm_content`): Distinguish between different links
 
-  * **Campaign Name** (`utm_campaign`): Identify the specific campaign
-  * **Campaign Source** (`utm_source`): Automatically set to "SendCloud"
-  * **Campaign Medium** (`utm_medium`): Automatically set to "email"
-  * **Campaign Term** (`utm_term`): Optional keyword tracking
-  * **Campaign Content** (`utm_content`): Distinguish between different links
+**Example Transformation:**
 
-  **Example Transformation:**
+```
+Original: https://www.aurorasendcloud.com
+Enhanced: https://www.aurorasendcloud.com?utm_campaign=newsletter&utm_source=SendCloud&utm_medium=email
+```
 
-  ```
-  Original: https://www.aurorasendcloud.com
-  Enhanced: https://www.aurorasendcloud.com?utm_campaign=newsletter&utm_source=SendCloud&utm_medium=email
-  ```
 ### Warm-Up Sending
 
-  Improve deliverability by gradually increasing sending volume, especially important for new domains or high-volume campaigns.
+Improve deliverability by gradually increasing sending volume, especially important for new domains or high-volume campaigns.
 
-  **How It Works:**
+**How It Works:**
 
-  * Starts with conservative sending rates
-  * Monitors delivery performance automatically
-  * **Increases rate** when delivery exceeds threshold
-  * **Decreases rate** when delivery drops below threshold
+* Starts with conservative sending rates
+* Monitors delivery performance automatically
+* **Increases rate** when delivery exceeds threshold
+* **Decreases rate** when delivery drops below threshold
 
-  **Rate Progression:**
-  Starting at 100 emails/hour, the system can scale up to 25,000 emails/hour over 15 steps based on performance.
+**Rate Progression:**
+Starting at 100 emails/hour, the system can scale up to 25,000 emails/hour over 15 steps based on performance.
 
-  | Timeframe  | Conservative   | Moderate       | Aggressive     |
-  | ---------- | -------------- | -------------- | -------------- |
-  | First Hour | 100 emails     | 100 emails     | 100 emails     |
-  | First Day  | 1,000 emails   | 1,000 emails   | 1,000 emails   |
-  | Week 2+    | Up to 25k/hour | Up to 25k/hour | Up to 25k/hour |
+| Timeframe  | Conservative   | Moderate       | Aggressive     |
+| ---------- | -------------- | -------------- | -------------- |
+| First Hour | 100 emails     | 100 emails     | 100 emails     |
+| First Day  | 1,000 emails   | 1,000 emails   | 1,000 emails   |
+| Week 2+    | Up to 25k/hour | Up to 25k/hour | Up to 25k/hour |
 
+***
+
+<br />
 
 ## Campaign Status & Management
 
@@ -192,6 +199,10 @@ Understanding campaign states helps you manage your email marketing effectively:
   3. **Invalid Recipients**: Check contact list quality
   4. **Template Issues**: Ensure template is exist
 </Accordion>
+
+***
+
+<br />
 
 ## Campaign Analytics & Reports
 
