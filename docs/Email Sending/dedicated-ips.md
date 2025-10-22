@@ -23,7 +23,7 @@ Access higher sending quotas and support for large-scale email campaigns without
 
 Support independent filing of IP and domain names to achieve better email sending results.
 
-## When to Use Dedicated IPs
+## When to Use Dedicated IPs?
 
 ### Verification Emails
 
