@@ -21,7 +21,7 @@ Access higher sending quotas and support for large-scale email campaigns without
 
 ### Advanced Configuration Options
 
-Support for independent IP and domain registration with ICP filing capabilities for optimal delivery performance.
+Support independent filing of IP and domain names to achieve better email sending results.
 
 ## When to Use Dedicated IPs
 
