@@ -360,6 +360,10 @@ Understanding campaign states helps you manage your email marketing effectively:
 * Open and click device performance
 * Link performance
 
+### Data 
+
+<br />
+
 ### Export Options
 
 From any campaign report, export detailed data:
