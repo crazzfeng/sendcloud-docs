@@ -24,7 +24,7 @@ Email campaigns are your primary tool for reaching contacts with targeted messag
 
 Follow these steps to create and send a standard email campaign:
 
-<Accordion title="Step 1: Define Your Audience" icon="users">
+### Step 1: Define Your Audience
 
 **Determine recipients**: Choose who will receive your campaign:
 - **All Contacts**: Send to your entire contact list
@@ -33,9 +33,7 @@ Follow these steps to create and send a standard email campaign:
 
 💡 **Tip**: Using targeted segments typically results in higher engagement rates than sending to all contacts.
 
-</Accordion>
-
-<Accordion title="Step 2: Configure Sender Information" icon="user-circle">
+### Step 2: Configure Sender Information
 
 **Choose the sender**: This appears as the "From" name in recipients' inboxes
 - Use a recognizable name or brand
@@ -45,17 +43,13 @@ Follow these steps to create and send a standard email campaign:
 - Use a monitored email address
 - Consider using a dedicated reply address for campaigns
 
-</Accordion>
-
-<Accordion title="Step 3: Select Content" icon="file-text">
+### Step 3: Select Content
 
 **Select email template**: Choose from your saved templates
 - Ensure the template matches your campaign goals
 - Preview the template on different devices before sending
 
-</Accordion>
-
-<Accordion title="Step 4: Advanced Configuration (Optional)" icon="cog">
+### Step 4: Advanced Configuration (Optional)
 
 **Configure advanced settings**: Access additional features like:
 - Google Analytics tracking
@@ -63,9 +57,7 @@ Follow these steps to create and send a standard email campaign:
 
 [Learn more about advanced settings](#advanced-campaign-settings)
 
-</Accordion>
-
-<Accordion title="Step 5: Schedule & Send" icon="clock">
+### Step 5: Schedule & Send
 
 **Set execution time**: Choose when to send your campaign
 - **Send now**: Immediate delivery
@@ -74,15 +66,13 @@ Follow these steps to create and send a standard email campaign:
 
 ⚠️ **Important**: Double-check your time zone selection to avoid sending at unintended times.
 
-</Accordion>
-
 ## Create an A/B Test Email Campaign
 
 A/B testing helps you optimize campaigns by comparing different variations. Here's how to set up effective tests:
 
 ### Step 1: Design Your Test
 
-<Accordion title="Choose Test Element" icon="bullseye">
+#### Choose Test Element
 
 **Select what to test** (choose one):
 
@@ -95,9 +85,7 @@ A/B testing helps you optimize campaigns by comparing different variations. Here
 
 💡 **Note**: Each test supports up to 3 variations (A, B, C).
 
-</Accordion>
-
-<Accordion title="Set Success Metrics" icon="target">
+#### Set Success Metrics
 
 **Choose winning criteria**:
 
@@ -109,9 +97,7 @@ A/B testing helps you optimize campaigns by comparing different variations. Here
 
 **Evaluation time**: Set how long to run the test (recommended: 2-24 hours)
 
-</Accordion>
-
-<Accordion title="Configure Test Size" icon="percentage">
+#### Configure Test Size
 
 **Set test percentage**: What portion of your audience participates in the test
 
@@ -120,8 +106,6 @@ A/B testing helps you optimize campaigns by comparing different variations. Here
 - **Custom**: Set your preferred split
 
 🎯 **Recommendation**: Use 20-30% for tests to maximize the impact of the winning variation.
-
-</Accordion>
 
 ### Step 2: Complete Campaign Setup
 
@@ -134,7 +118,7 @@ Follow the same configuration steps as regular campaigns:
 
 ## Advanced Campaign Settings
 
-<Accordion title="Google Analytics Tracking" icon="chart-line">
+### Google Analytics Tracking
 
 Track campaign performance in Google Analytics by automatically adding UTM parameters to your email links.
 
@@ -151,9 +135,7 @@ Original: https://www.aurorasendcloud.com
 Enhanced: https://www.aurorasendcloud.com?utm_campaign=newsletter&utm_source=SendCloud&utm_medium=email
 ```
 
-</Accordion>
-
-<Accordion title="Warm-Up Sending" icon="thermometer-half">
+### Warm-Up Sending
 
 Improve deliverability by gradually increasing sending volume, especially important for new domains or high-volume campaigns.
 
@@ -172,8 +154,6 @@ Starting at 100 emails/hour, the system can scale up to 25,000 emails/hour over 
 | First Day | 1,000 emails | 1,000 emails | 1,000 emails |
 | Week 2+ | Up to 25k/hour | Up to 25k/hour | Up to 25k/hour |
 
-</Accordion>
-
 ## Campaign Status & Management
 
 Understanding campaign states helps you manage your email marketing effectively:
@@ -185,9 +165,7 @@ Understanding campaign states helps you manage your email marketing effectively:
 | **Completed** | Successfully sent | 📊 View Reports, Clone Campaign |
 | **Failed** | Encountered errors | 🔍 Review Error Details, Retry |
 
-### Common Failure Causes
-
-<Accordion title="Troubleshooting Failed Campaigns" icon="exclamation-triangle">
+### Troubleshooting Failed Campaigns
 
 **Most Common Issues:**
 1. **Insufficient Email Credits**: Check your account balance
@@ -201,8 +179,6 @@ Understanding campaign states helps you manage your email marketing effectively:
 - Check template preview before sending
 - Validate recipient lists for format errors
 - Ensure API credentials are current
-
-</Accordion>
 
 ## Campaign Analytics & Reports
 
@@ -221,7 +197,7 @@ Deep dive into engagement data:
 
 ### Advanced Analytics
 
-<Accordion title="Geographic Insights" icon="globe">
+#### Geographic Insights
 
 **Location Data:**
 - Country and region breakdown
@@ -233,9 +209,7 @@ Deep dive into engagement data:
 - Create region-specific campaigns
 - Understand global audience distribution
 
-</Accordion>
-
-<Accordion title="Link Performance" icon="link">
+#### Link Performance
 
 **Click Analysis:**
 - Individual link click rates
@@ -247,9 +221,7 @@ Deep dive into engagement data:
 - Analyze which content drives clicks
 - Optimize link placement and frequency
 
-</Accordion>
-
-<Accordion title="Device & Technology" icon="mobile">
+#### Device & Technology
 
 **Technical Insights:**
 - Mobile vs desktop open rates
@@ -261,8 +233,6 @@ Deep dive into engagement data:
 - Optimize templates for popular devices
 - Test compatibility across email clients
 - Tailor content for mobile-first audiences
-
-</Accordion>
 
 ### Export Options
 
