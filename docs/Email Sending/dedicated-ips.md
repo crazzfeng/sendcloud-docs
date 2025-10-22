@@ -11,29 +11,29 @@ metadata:
 
 Take full control of your email delivery with Aurora SendCloud's dedicated IP service. While our intelligent shared pool efficiently serves standard customers, dedicated IPs provide brand customers with exclusive sending resources, complete reputation control, and superior delivery performance.
 
-## Why Choose Dedicated IPs? ✨
+## Benefits of Dedicated IPs
 
-### Complete Exclusivity 🛡️
+### Complete IP Exclusivity
 Your IP resources are completely isolated from other users, giving you full control over your email delivery performance and sender reputation.
 
-### Enhanced Capacity 🚀
+### Higher Sending Capacity
 Access higher sending quotas and support for large-scale email campaigns without shared resource limitations.
 
-### Advanced Configuration ⚙️
+### Advanced Configuration Options
 Support for independent IP and domain registration with ICP filing capabilities for optimal delivery performance.
 
-## Perfect For These Use Cases 🎯
+## When to Use Dedicated IPs
 
-### Critical Verification Emails 🔑
+### Verification Emails
 Ensure your verification codes, password resets, and security notifications reach users' inboxes reliably and promptly. Dedicated IPs provide the consistent delivery rates essential for authentication workflows.
 
-### Transactional Communications 🧾
+### Transactional Emails
 Order confirmations, shipping updates, account changes, and system alerts require guaranteed delivery. Maintain customer trust with dedicated sending infrastructure.
 
-### Branded Marketing Campaigns 📢
+### Marketing Campaigns
 Build and maintain your brand's email reputation independently. Perfect for marketing communications, newsletters, and promotional campaigns where reputation control is crucial.
 
-## Setup Requirements ⚙️
+## Setup Requirements
 
 ### Essential Configuration Steps
 
@@ -56,9 +56,9 @@ Complete verification of all authentication records:
 ### Reverse DNS
 Critical for reputation management. Configure an A record to enable reverse DNS resolution - emails from IPs without this are more likely to be flagged as spam.
 
-## Best Practices for Success 💡
+## Best Practices
 
-### Smart Sending Strategy
+### IP Warm-up Strategy
 
 <Columns layout="auto">
   <Column>
@@ -83,7 +83,7 @@ Critical for reputation management. Configure an A record to enable reverse DNS 
 - **Regular Audits**: Review DNS configurations and authentication status monthly
 - **Responsive Actions**: Address deliverability issues quickly to protect reputation
 
-## Important Considerations 📋
+## Important Considerations
 
 ### Service Activation
 > **Gradual Ramp-up Required**: After activation, start with minimal sending volume and increase gradually. This warm-up period is essential for building positive sender reputation with ISPs.
@@ -98,23 +98,23 @@ Our team provides:
 - Proactive optimization recommendations
 - Dedicated technical support
 
-## Troubleshooting Guide 🔧
+## Troubleshooting Guide
 
-### Emails Still Going to Spam? ⚠️
+### Emails Going to Spam
 **Quick Fixes:**
 - Verify reverse DNS is properly configured and resolving
 - Double-check all domain authentication records (SPF, DKIM, DMARC)
 - Review your content for spam triggers
 - Ensure proper IP warm-up completion
 
-### Sending Limits Too Restrictive? 🚫
+### Low Sending Limits
 **Solutions:**
 - Confirm IP warm-up process is complete
 - Review your sender reputation metrics
 - Check bounce and complaint rates
 - Contact support for quota adjustments if metrics are healthy
 
-### Domain Authentication Failures? ❌
+### Domain Authentication Issues
 **Resolution Steps:**
 - Verify DNS records are published correctly
 - Wait 24-48 hours for DNS propagation
