@@ -208,6 +208,8 @@ Segments are smart, dynamic groups that automatically update based on the condit
 
 ## Audience Ayalysis
 
+<Image border={false} src="https://files.readme.io/6b00a8fa470d7d33a01325cc5344deafe10f70f1807eb0b7d96c1efbd049b358-image.png" />
+
 <br />
 
 ***
