@@ -13,7 +13,7 @@ metadata:
 
 Unsubscribe settings allow recipients to opt out of receiving emails, which is a crucial feature for maintaining sender reputation and complying with regulatory requirements. Properly configuring the unsubscribe process can effectively reduce spam complaints and improve user experience.
 
-## Enabling Prerequisites 🔑
+## Prerequisites 🔑
 
 **The unsubscribe feature must be enabled in the tracking settings for subscription tracking to work.**
 
@@ -21,17 +21,17 @@ Path: [Tracking Settings] → Enable [Subscription Tracking]
 
 If this feature is not enabled, all unsubscribe-related services will be unavailable.
 
-## Unsubscribe Dimension Settings 🎯
+## Unsubscribe Scope Settings 🎯
 
 SendCloud provides three ways to set the scope of unsubscribes:
 
-| Options | Unsubscribe Scope | Applicable Scenarios |
+| Option | Unsubscribe Scope | Applicable Scenarios |
 |---------|-------------------|---------------------|
 | **1. Current API_USER Only (Default)** | The unsubscribe operation only affects the current sending account. | Multiple business lines operate independently without interfering with each other. |
-| **2. All API_USERS** | Unsubscribing from one account unsubscribes from all associated accounts. | Unifying your brand image prevents users from having to unsubscribe multiple times. |
-| **3. Custom Rules** | Set independent unsubscribe rules for each API_USER. | Complex business scenarios that require refined operational needs. |
+| **2. All API_USERS** | Unsubscribing from one account unsubscribes users from all associated accounts. | Unifies your brand image and prevents users from having to unsubscribe multiple times. |
+| **3. Custom Rules** | Set independent unsubscribe rules for each API_USER. | Complex business scenarios that require refined operational control. |
 
-### Custom Rule Description
+### Custom Rule Configuration
 
 If you select option 3, you can configure unsubscribe rules for each API_USER:
 
@@ -55,7 +55,7 @@ The system automatically inserts an unsubscribe button, and the style automatica
 Use the `%%user_defined_unsubscribe_link%%` variable to insert the unsubscribe link.
 
 - Fully customizable HTML and CSS styles are supported
-- Can be aligned with the overall email design
+- Can be aligned with your overall email design
 
 ## Personalize the Unsubscribe Page
 
@@ -63,12 +63,12 @@ Use the `%%user_defined_unsubscribe_link%%` variable to insert the unsubscribe l
 🌍 **Page Language**: Supports multiple languages  
 🎨 **Color Theme**: Match your brand's primary colors  
 🏢 **Brand Logo**: Enhance brand recognition  
-🔀 **Redirection Page**: Direct redirect after successful unsubscription
+🔀 **Redirect Page**: Direct users to a specific page after successful unsubscription
 
 ### Editing Permissions
 - Standard translations are provided
-- Manual editing of non-Chinese translations is supported  
-- Real-time preview to ensure correct display
+- Manual editing of non-English translations is supported  
+- Real-time preview ensures correct display
 
 ## Page Binding Methods ⚙️
 
@@ -80,7 +80,7 @@ Specify a default unsubscribe page for API_USER in Tracking Settings.
 ### Method 2: Specifying During API Call (Under Development)
 Dynamically specify an unsubscribe page in a single API request.
 
-- Priority higher than the page associated with API_USER
+- Takes priority over the page associated with API_USER
 - Suitable for special scenarios such as temporary events
 
 ### Priority Order
@@ -103,12 +103,12 @@ Dynamically specify an unsubscribe page in a single API request.
 ### Data Analysis Applications
 📊 Regularly analyze unsubscribe data and reasons  
 🔍 Identify content or frequency issues  
-🎯 Optimize delivery strategies based on data
+🎯 Optimize delivery strategies based on insights
 
 ## Configuration Checklist ✅
 
 - [ ] Enable subscription tracking
-- [ ] Select appropriate unsubscribe dimension rules
+- [ ] Select appropriate unsubscribe scope rules
 - [ ] Configure the unsubscribe page style and content
 - [ ] Test the unsubscribe process
 - [ ] Verify mobile display performance
