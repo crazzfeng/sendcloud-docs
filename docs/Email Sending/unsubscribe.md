@@ -9,7 +9,7 @@ metadata:
 ---
 Email unsubscribe settings allow recipients to opt out of receiving emails, which is a crucial feature for maintaining sender reputation and complying with regulatory requirements. Properly configuring the unsubscribe process can effectively reduce spam complaints and improve user experience.
 
-## Prerequisites for Subscription Tracking 
+## Prerequisites for Subscription Tracking
 
 **The unsubscribe feature must be enabled in the tracking settings for subscription tracking to work.**
 
@@ -17,7 +17,7 @@ Path: Go to **[Settings]** → Enable **[Unsubscribe]**
 
 If this feature is not enabled, all unsubscribe-related services will be unavailable.
 
-## Unsubscribe Scope Configuration 
+## Unsubscribe Scope Configuration
 
 SendCloud provides three ways to set the scope of unsubscribes:
 
@@ -34,7 +34,7 @@ If you select option 3, you can configure unsubscribe rules for each API_USER:
 * Flexibly assign unsubscribe processing methods based on business logic
 * Support settings based on business type, sending frequency, and other dimensions
 
-## Unsubscribe Link Format 
+## Unsubscribe Link Format
 
 ### Default Link Style
 
@@ -46,7 +46,12 @@ The system automatically inserts an unsubscribe button, and the style automatica
 ### Custom Link Style
 
 ```html
-<a href="%%user_defined_unsubscribe_link%%" style="color: #666; text-decoration: underline;">Unsubscribe from Email</a>
+            <p>
+                If you want to unsubscribe , click   
+                <a href="%%user_defined_unsubscribe_link%%" >  
+                here  
+                </a>  
+            <p>
 ```
 
 Use the `%%user_defined_unsubscribe_link%%` variable to insert the unsubscribe link.
