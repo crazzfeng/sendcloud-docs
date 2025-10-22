@@ -411,4 +411,6 @@ Export your campaign data for advanced analysis and reporting:
   </Card>
 </Cards>
 
-Need help getting started? Check out our [Email Templates Guide] or contact support for personalized assistance.
+<br />
+
+<br />
