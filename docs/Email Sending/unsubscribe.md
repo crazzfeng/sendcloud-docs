@@ -13,7 +13,7 @@ Email unsubscribe settings allow recipients to opt out of receiving emails, whic
 
 **The unsubscribe feature must be enabled in the tracking settings for subscription tracking to work.**
 
-Path: [Tracking Settings] → Enable [Subscription Tracking]
+Path: Go to **[Settings]** → Enable **[Unsubscribe]**
 
 If this feature is not enabled, all unsubscribe-related services will be unavailable.
 
