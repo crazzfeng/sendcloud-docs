@@ -48,7 +48,10 @@ Go to **Settings** → **Tracking** → Select the target **API_USER** → **Tra
 🔒 **HTTPS Encrypted Tracking**: Avoid browser blocking and improve data accuracy
 
 **Important Note:**
-Due to browser upgrades like Chrome, loading HTTP resources will be blocked. We recommend uploading an SSL certificate and enabling HTTPS tracking. Ensure the CNAME configuration in your DNS remains valid to prevent link failures.
+
+<Callout icon="🚧">
+  Due to browser upgrades like Chrome, loading HTTP resources will be blocked. We recommend uploading an SSL certificate and enabling HTTPS tracking. Ensure the CNAME configuration in your DNS remains valid to prevent link failures.
+</Callout>
 
 ## Tracking On/Off Management
 
