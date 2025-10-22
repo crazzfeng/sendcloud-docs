@@ -9,88 +9,88 @@ metadata:
 ---
 # Dedicated IPs
 
-Aurora SendCloud's intelligent global sending infrastructure automatically optimizes resource allocation based on customer profiles, email categories, and delivery patterns. While our sophisticated shared pools serve standard customers effectively, brand customers gain access to dedicated sending IPs and exclusive sending pools. This approach completely eliminates shared resource interference and provides absolute control over email delivery performance and brand reputation management.
+Aurora SendCloud's global sending pool intelligently allocates sending resources based on customer category, email type, and other factors. While we offer efficient shared pool services to standard customers, brand customers receive dedicated sending IPs and exclusive sending pools. This completely eliminates the impact of shared resources and ensures complete control over email delivery performance and brand reputation.
 
 ## Core Values ✨
 
 ### Exclusiveness
-🛡️ Completely isolated IP resources with zero interference from other users  
-📧 Complete authority over email delivery performance and reputation management (domain/IP)
+🛡️ Completely exclusive IP resources, eliminating interference from other users  
+📧 Full control over email delivery performance and reputation (domain/IP)
 
 ### Higher Quotas
-🚀 Access to premium email sending quota privileges  
-📈 Robust support for enterprise-scale email delivery requirements
+🚀 Enjoy higher email sending quota privileges  
+📈 Support for large-scale email sending needs
 
 ### Better Configuration
-🌟 Full support for independent IP and domain name registration with ICP filing  
-✅ Optimize email delivery performance and maximize inbox placement rates
+🌟 Support for independent IP and domain name registration (ICP)  
+✅ Achieve better email delivery performance and inbox reach
 
 ## Suitable Scenarios 🎯
 
 ### Verification Emails
-- Maximize delivery rates for mission-critical emails including verification codes and security alerts
-- Guarantee reliable and prompt delivery of essential user communications
+- Increase the reach of critical emails like verification codes and security notifications
+- Ensure timely and accurate delivery of important information
 
 ### Notification Emails
-- Transactional communications such as order confirmations and account modifications
-- System-critical information including alerts, status updates, and operational notifications
+- Transactional emails like order confirmations and account changes
+- Critical information like system alerts and status notifications
 
 ### Branded Emails
-- Strategic marketing communications and brand promotional campaigns
-- Applications requiring independent email delivery reputation management
+- Marketing communications and brand promotional emails
+- Scenarios requiring independent email delivery reputation
 
 ## Configuration Requirements ⚙️
 
 ### Required Requirements
-✅ Configure a minimum of one verified domain for email sending  
-✅ Complete comprehensive domain verification: SPF, DKIM, MX, and DMARC records  
-✅ Establish proper A record configuration for reverse DNS resolution
+✅ Configure at least one domain for sending emails  
+✅ Complete domain SPF, DKIM, MX, and DMARC verification  
+✅ Configure an A record for reverse DNS resolution
 
 ### Important Tips
-⚠️ **Reverse DNS resolution is absolutely critical for deliverability success.**
+⚠️ **Reverse DNS resolution is crucial.**
 
-Messages sent from IP addresses without properly configured reverse DNS are significantly more likely to be flagged as spam and may face blacklisting by major anti-spam organizations.
+Emails sent from IPs without reverse DNS configuration are more likely to be marked as spam and may even be blacklisted by anti-spam organizations.
 
-After A record configuration, our system automatically executes reverse DNS resolution for your dedicated IP addresses.
+Once the A record is configured, the system will automatically perform reverse DNS resolution for the IP.
 
 ## Best Practices 💡
 
 ### Domain Configuration
-- Implement your authentic brand domain as your primary sending domain
-- Verify all authentication records are configured with precision
-- Establish routine monitoring of verification status and health
+- Use your brand domain as your sending domain
+- Ensure all verification records are configured correctly
+- Regularly check verification status
 
 ### Sending Strategy
-- Execute a systematic, gradual warm-up approach for sending volume escalation
-- Continuously monitor email quality metrics and recipient feedback data
-- Implement responsive strategy adjustments based on performance indicators
-- Maintain rigorous email list hygiene and quality standards
-- Handle unsubscribe requests and spam complaints with immediate response
-- Proactively avoid content and practices that trigger spam detection systems
+- Follow a gradual warm-up strategy for sending volume
+- Monitor email quality and feedback data
+- Adjust your sending strategy promptly
+- Maintain a high-quality email list
+- Process unsubscribes and complaints promptly
+- Avoid triggering spam rules
 
 ## Notes 📝
 
 ### Service Activation
-Following dedicated IP service configuration, we strongly recommend initiating email campaigns with conservative sending volumes and implementing gradual volume increases over time.
+After configuring the dedicated IP service, we recommend starting with a low sending volume and gradually increasing it.
 
 ### Cost Considerations
-Dedicated IP service pricing structure is determined by the total number of allocated IP addresses and service duration requirements.
+Dedicated IP service is charged based on the number of IPs and usage duration.
 
 ### Technical Support
-Our expert team delivers comprehensive technical configuration assistance, continuous email performance monitoring, and strategic optimization recommendations.
+We provide professional technical configuration guidance, monitor email performance, and offer optimization suggestions.
 
 ## Troubleshooting 🔧
 
 ### Common Problems
 
-**❓ Email messages continue reaching spam folders**
-- ✅ Verify reverse DNS resolution is functioning correctly
-- ✅ Confirm all domain authentication records are complete and accurate
+**❓ Emails are still going to spam**
+- ✅ Check if reverse DNS resolution is working
+- ✅ Verify that all domain authentication records are complete
 
-**❓ Sending volume restrictions remain in effect**
-- ✅ Ensure IP warm-up process has been completed successfully
-- ✅ Analyze email quality metrics and complaint rate statistics
+**❓ Sending volume is limited**
+- ✅ Verify that IP warm-up is complete
+- ✅ Check email quality and complaint rate
 
-**❓ Domain authentication processes are failing**
-- ✅ Validate DNS record configurations for accuracy and completeness
-- ✅ Test domain name resolution functionality and propagation status
+**❓ Domain authentication failed**
+- ✅ Verify that DNS records are configured correctly
+- ✅ Verify that domain name resolution is working
