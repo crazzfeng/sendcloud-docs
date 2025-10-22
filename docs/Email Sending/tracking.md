@@ -50,7 +50,7 @@ Go to **Settings** → **Tracking** → Select the target **API_USER** → **Tra
 **Important Note:**
 Due to browser upgrades like Chrome, loading HTTP resources will be blocked. It is recommended to upload an SSL certificate and enable HTTPS tracking. Ensure the CNAME configuration in your DNS remains valid to prevent link failures.
 
-## Tracking On/Off Management 
+## Tracking On/Off Management
 
 **Smart Recommendations:**
 
@@ -88,10 +88,10 @@ Due to browser upgrades like Chrome, loading HTTP resources will be blocked. It 
 
 ## Troubleshooting
 
- **Common Problems:**
+**Common Problems:**
 
-❓ **Clicking links doesn't redirect properly**  
-✅ Check if the tracking domain CNAME configuration is working correctly
+**F**:**Clicking links doesn't redirect properly**  
+**A**: Check if the tracking domain CNAME configuration is working correctly
 
 ❓ **Open rate statistics are inaccurate**  
 ✅ Verify that automatic image loading is not blocked. HTTPS is recommended
