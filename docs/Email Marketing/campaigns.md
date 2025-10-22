@@ -7,8 +7,7 @@ metadata:
 ---
 <br />
 
-Creat a regular campaign
-
+## Creat a regular campaign
 
 To create a campaign, you need to do the following.
 
@@ -19,22 +18,21 @@ To create a campaign, you need to do the following.
 5. Choose whether to use the advaned setting or not.
 
    ## Advanced Setting of a campaign
+
    ### Google Analytics Tracking
 
    If your email contains hyperlinks and the corresponding landing page supports Google analysis, you can turn on this switch. Parameters that can be filled in
 
-Campaign Name stand for Google Analytics - utm_campaign
-Campaign Source stand for Google Analytics - utm_source
-Campaign Medium stand for Google Analytics - utm_medium
-Campaign Term stand for Google Analytics - utm_term
-Campaign Content stand for Google Analytics - utm_content
-When you open Google Analytics Tracking, SendCloud will add parameters to the original email link according to the data you fill in.
+* Campaign Name stand for Google Analytics - utm_campaign
+* Campaign Source stand for Google Analytics - utm_source
+* Campaign Medium stand for Google Analytics - utm_medium
+* Campaign Term stand for Google Analytics - utm_term
+* Campaign Content stand for Google Analytics - utm_content
+  When you open Google Analytics Tracking, SendCloud will add parameters to the original email link according to the data you fill in.
 
 For example: a link in the content of an email [https://web.sendcloud.net](https://web.sendcloud.net) After treatment, it will become [https://web.sendcloud.net?utm_campaign=XX&utm_source=SendCloud&utm_medium=email&utm_term=xx&utm_content=xxxxx](https://web.sendcloud.net?utm_campaign=XX\&utm_source=SendCloud\&utm_medium=email\&utm_term=xx\&utm_content=xxxxx)
 
 Warm Up Sending
-
-
 
 If you want to improve the delivery rate of mailboxes such as gmail.com \ yahoo.com and reduce the failure of returning over quota, you can turn this switch on.
 
