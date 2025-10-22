@@ -206,9 +206,20 @@ Segments are smart, dynamic groups that automatically update based on the condit
 
 ***
 
-## Audience Ayalysis
+## Audience Analysis
 
 <Image border={false} src="https://files.readme.io/6b00a8fa470d7d33a01325cc5344deafe10f70f1807eb0b7d96c1efbd049b358-image.png" />
+
+* Basic analysis
+  * In this section you can find out the growth trend of your contacts by month. 
+  * We provide the stat group by MP
+* Engagement analysis
+  * Aurora SendCloud will automatically receive the unsubscribes and complaints from your audience. 
+  * We segement your audience by the engement level
+    * Lost. Who unsubscibed or complained your emails will be segement into the Lost.
+    * Sleepy. Who never open,click your emails
+    * Active. Who used to open or click your emails.
+  * We also provide the 
 
 <br />
 
