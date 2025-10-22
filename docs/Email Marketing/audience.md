@@ -219,7 +219,7 @@ Segments are smart, dynamic groups that automatically update based on the condit
     * Lost. Who unsubscibed or complained your emails will be segement into the Lost.
     * Sleepy. Who never open,click your emails
     * Active. Who used to open or click your emails.
-  * We also provide the 
+  * We also provide the regional performance of you audience
 
 <br />
 
