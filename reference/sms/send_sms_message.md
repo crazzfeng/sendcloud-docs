@@ -8,49 +8,52 @@ hidden: false
 link:
   new_tab: false
 ---
-# Send SMS Message
-
 Send an SMS template to one or more recipients.
 
 ## API Endpoint
 
 **URL**
+
 ```
 https://api2.sendcloud.net/smsapi/send
 ```
 
 **Response Format**
+
 ```
 json
 ```
 
 **HTTP Request Method**
+
 ```
 POST    
 ```
 
 ## Parameters
 
-| Parameter     | Type   | Required | Description                                                                                                                                                       |
-| :------------ | :----- | :------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| smsUser       | string | Yes      | SMS user credentials                                                                                                                                              |
-| smsKey        | string | Yes      | SMS authentication key                                                                                                                                            |
-| templateId    | int    | Yes      | Template ID for the SMS message                                                                                                                                   |
+| Parameter     | Type   | Required | Description                                                                                                                                                      |
+| :------------ | :----- | :------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| smsUser       | string | Yes      | SMS user credentials                                                                                                                                             |
+| smsKey        | string | Yes      | SMS authentication key                                                                                                                                           |
+| templateId    | int    | Yes      | Template ID for the SMS message                                                                                                                                  |
 | phone         | string | Yes      | Phone numbers of recipients, separated by commas. Maximum of 2,000 recipients per request. For more than 2,000 recipients, consider using a contact list instead |
-| vars          | string | No       | JSON string containing substitution variables for the template                                                                                                    |
+| vars          | string | No       | JSON string containing substitution variables for the template                                                                                                   |
 | senderID      | string | No       | Custom sender ID for the SMS                                                                                                                                     |
-| sendRequestId | string | No       | Unique identifier (up to 128 characters). Multiple requests with the same sendRequestId within 1 hour will only process the first request                       |
-| timestamp     | string | No       | UNIX timestamp for the request                                                                                                                                    |
-| customArgs    | string | No       | Custom arguments in JSON format with a maximum length of 128 characters. Example: `{"key1": "value1", "key2": "value2"}`                                       |
+| sendRequestId | string | No       | Unique identifier (up to 128 characters). Multiple requests with the same sendRequestId within 1 hour will only process the first request                        |
+| timestamp     | string | No       | UNIX timestamp for the request                                                                                                                                   |
+| customArgs    | string | No       | Custom arguments in JSON format with a maximum length of 128 characters. Example: `{"key1": "value1", "key2": "value2"}`                                         |
 
 ## Variable Format Examples
 
 **Standard variable format:**
+
 ```json
 {"name": "lucy"}
 ```
 
 **Using percentage placeholders:**
+
 ```json
 {"%money%": "100"}
 ```
