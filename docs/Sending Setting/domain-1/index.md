@@ -35,7 +35,7 @@ Proper domain authentication through DNS records is essential for:
 
 Your domain configuration requires specific DNS records for authentication. **SPF, DKIM, and MX records are mandatory**, while DMARC is optional but strongly recommended.
 
-### [SPF ](https://en.wikipedia.org/wiki/Sender_Policy_Framework)(Sender Policy Framework)
+#### [SPF ](https://en.wikipedia.org/wiki/Sender_Policy_Framework)(Sender Policy Framework)
 
 **Purpose**: Authorizes specific IP addresses to send emails on behalf of your domain
 
@@ -47,7 +47,7 @@ SPF records act as a whitelist, telling receiving servers which IP addresses are
 * Reduces spam complaints
 * Improves sender reputation
 
-### [MX ](https://en.wikipedia.org/wiki/MX_record)(Mail Exchange)
+#### [MX ](https://en.wikipedia.org/wiki/MX_record)(Mail Exchange)
 
 **Purpose**: Directs incoming emails to the correct mail server
 
@@ -59,7 +59,7 @@ MX records tell other email systems where to deliver emails sent to your domain.
 * Required for domain verification
 * Supports email infrastructure
 
-### [DKIM ](https://en.wikipedia.org/wiki/DomainKeys_Identified_Mail)(DomainKeys Identified Mail)
+#### [DKIM ](https://en.wikipedia.org/wiki/DomainKeys_Identified_Mail)(DomainKeys Identified Mail)
 
 **Purpose**: Provides cryptographic authentication for email messages
 
@@ -72,7 +72,7 @@ DKIM adds a digital signature to your email headers, which receiving servers can
 * Essential for international delivery
 * Improves deliverability rates
 
-### [DMARC ](https://en.wikipedia.org/wiki/DMARC)(Domain-based Message Authentication, Reporting & Conformance)
+#### [DMARC ](https://en.wikipedia.org/wiki/DMARC)(Domain-based Message Authentication, Reporting & Conformance)
 
 **Purpose**: Provides policy instructions for handling authentication failures
 
@@ -146,7 +146,7 @@ Configure different root domains for different email purposes:
 
 **Transactional Domain**: `notifications.yourbusiness.com`
 
-<Callout>
+<Callout theme="default">
   * Account confirmations
   * Password resets
   * Order confirmations
@@ -155,7 +155,7 @@ Configure different root domains for different email purposes:
 
 **Marketing Domain**: `marketing.yourbusiness.com`
 
-<Callout>
+<Callout theme="default">
   * Newsletters
   * Promotional campaigns
   * Bulk communications
