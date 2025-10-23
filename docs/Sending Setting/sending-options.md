@@ -7,11 +7,9 @@ link:
 metadata:
   robots: index
 ---
-# Sending Options
-
 Configure your email sending settings to optimize deliverability and control how your emails are sent through Aurora SendCloud.
 
-## Email Sender Configuration
+# Email Sender Configuration
 
 ### Understanding "From" vs "Mail From"
 
@@ -41,9 +39,9 @@ When the "From" and "Mail From" addresses have different suffixes, emails are se
 * Some providers may reject emails entirely
 * Only specific email providers accept "on behalf of" sending
 
-## Advanced Sending Options
+# Advanced Sending Options
 
-### Fixed From Suffix
+## Fixed From Suffix
 
 Enable this option to ensure the From address suffix matches the Mail From suffix. This setting:
 
@@ -51,7 +49,7 @@ Enable this option to ensure the From address suffix matches the Mail From suffi
 * Can be configured per domain in Aurora SendCloud
 * Provides better email authentication
 
-### Fixed Mail From
+## Fixed Mail From
 
 Instead of using random prefixes, you can set a fixed Mail From address. This is useful when:
 
@@ -59,7 +57,7 @@ Instead of using random prefixes, you can set a fixed Mail From address. This is
 * Specific email providers require fixed addressing
 * You want better tracking and analytics
 
-### Auto AD Tag
+## Auto AD Tag
 
 **Recommended for bulk marketing emails**
 
@@ -68,7 +66,7 @@ Instead of using random prefixes, you can set a fixed Mail From address. This is
 * Helps prevent emails from being marked as spam
 * Improves compliance with anti-spam regulations
 
-### TLS Encryption
+## TLS Encryption
 
 Enable secure data transmission for your emails:
 
@@ -76,9 +74,9 @@ Enable secure data transmission for your emails:
 * Recommended when handling sensitive information
 * **Note**: May reduce sending speed - enable only when necessary
 
-## Delivery Control Features
+# Delivery Control Features
 
-### Do Not Disturb Hours
+## Do Not Disturb Hours
 
 Prevent emails from being sent during specific time periods to improve user experience:
 
@@ -86,7 +84,7 @@ Prevent emails from being sent during specific time periods to improve user expe
 * System automatically suspends email delivery during configured periods
 * Helps maintain good sender reputation
 
-### Sending Uninterception
+## Sending Uninterception
 
 Override Aurora SendCloud's automatic blacklist filtering for specific addresses or domains:
 
@@ -94,7 +92,7 @@ Override Aurora SendCloud's automatic blacklist filtering for specific addresses
 * Useful for testing or critical communications
 * Overrides bounce, complaint, unsubscribe, and block lists
 
-### Bounce Interception
+## Bounce Interception
 
 **Default: Enabled**
 
@@ -105,7 +103,7 @@ Aurora SendCloud automatically blocks addresses that have previously bounced:
 * Returns "in blacklist: bounce" error for intercepted addresses
 * Can be disabled if needed through Options settings
 
-## Best Practices
+# Best Practices
 
 * Keep bounce interception enabled to maintain good sender reputation
 * Use TLS encryption only when handling sensitive data
