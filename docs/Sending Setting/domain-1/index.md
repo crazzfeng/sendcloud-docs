@@ -2,52 +2,80 @@
 title: Domain
 deprecated: false
 hidden: false
+link:
+  new_tab: false
 metadata:
   robots: index
 ---
-<br />
+# Domain Configuration
 
-Domain
-The sending domain name is the "ID card" when sending e-mail. Each account must have a sending domain name. During the SMTP session, it is the suffix of mail from
+## Overview
 
-mail from:  test@liubida.cn
-250 sender  test@liubida.cn  OK
+The sending domain name serves as the "ID card" when sending emails. Each account must have a configured sending domain name, which appears as the suffix in the SMTP session's `mail from` command.
 
-Copied!
+**Example:**
+```
+mail from: test@liubida.cn
+250 sender test@liubida.cn OK
+```
 
-As shown above_ liubida.cn_ This is the domain name of this email.
+In this example, `liubida.cn` is the sending domain name.
 
-After successful registration of sendcloud account, the system will automatically assign a test sending domain name. Before formal use, please be sure to create the domain name used by the real business, do not use the test domain name provided by the system to send the real business.
+> **Important:** After successful registration, the system automatically assigns a test sending domain name. Before production use, you must create and configure your actual business domain. Do not use the system-provided test domain for real business operations.
 
-Sending domain configure
+## Required DNS Records
 
+The sending domain configuration includes several DNS records. **SPF, DKIM, and MX are required**, while DMARC is optional but recommended.
 
+### SPF (Sender Policy Framework)
+**[Learn more about SPF](http://en.wikipedia.org/wiki/Sender_Policy_Framework)**
 
-The configuration of sending domain name includes SPF, dkim, MX and dmarc. Among them, SPF, dkim and MX are required, dmarc is optional.
+SPF is a DNS record type designed to prevent spam by registering all authorized IP addresses that can send email for a domain name.
 
-SPF [wiki explanation]( [http://zh.wikipedia.org/wiki/Sender](http://zh.wikipedia.org/wiki/Sender)_ Policy_ Framework )
+### MX (Mail Exchange)
+MX records point to mail servers and are used by email systems to locate the appropriate mail server based on the recipient's domain suffix.
 
-SPF is a DNS record type proposed to prevent spam, which is used to register all IP addresses of outgoing mail owned by a domain name.
+### DKIM (DomainKeys Identified Mail)
+**[Learn more about DKIM](https://en.wikipedia.org/wiki/DomainKeys_Identified_Mail)**
 
-MX
+DKIM is a crucial technology for preventing fraudulent emails. Senders insert DKIM signatures and electronic signature information into email headers, while receivers verify authenticity by querying the public key through DNS. This is especially recommended for users sending to international domains.
 
-MX is a mail exchange record, which points to a mail server. It is used to locate the mail server according to the address suffix of the recipient when the e-mail system sends mail
+### DMARC (Domain-based Message Authentication, Reporting & Conformance)
+DMARC protocol helps identify and intercept fraudulent emails. Once configured and verified, the platform uses the current domain as the "from" domain suffix for email delivery, reducing interception by email service providers and improving email credibility and inbox delivery rates.
 
-DKIM wiki explanation(opens new window)
+## Configuration Process
 
-Dkim is an important technical means to prevent fraudulent e-mail. Usually, the sender will insert dkim signature and electronic signature information into the header of e-mail, while the receiver will get the public key through DNS query and then verify it. It is recommended to configure, especially for users with more foreign domains
+1. **Access Domain Settings**
+   - Navigate to **Settings > Domain** to enter the domain configuration interface
+   - If you don't have an official domain, click to add a new mail domain
 
-DMARC
+2. **Configure DNS Records**
+   - Click on the domain you want to configure
+   - Use the system-provided data to configure the relevant DNS records in your domain management system
 
-The main purpose of "dmarc" protocol is to identify and intercept fraudulent mail. After the configuration is passed, the platform will use the current domain name as the domain name suffix of from to deliver the mail. So as to reduce the interception of mail service providers, improve the credibility of mail, improve the rate of box.
+3. **Verification Status**
+   After configuration, your domain will show one of three statuses:
+   
+   - **Unverified**: One or more required items (SPF, DKIM, MX) failed verification. Domain cannot be bound to API_USER.
+   - **Usable**: All three required items passed verification, but optional items haven't been verified yet.
+   - **Verified**: All configuration items have been successfully verified.
 
-Select Setting - domain to enter the sending domain configuration interface. If there is no official domain , you can add a new mail domain
-Click the domain to be configured to enter the configuration interface. According to the data given by the system, do the relevant configuration in your domain management system
-There are three states after domain configuration:
+> **Note:** After configuring DNS records, it may take 10-30 minutes for DNS changes to propagate and take effect.
 
-Unverified: any one of the required items (SPF, dkim and MX) failed (Thus domain cannot bind API_ USER)
-Usable : all the three required items have passed the verification, and the optional items have not passed the verification.
-Verified : all configuration items have been verified.
-After all records are configured, it may take 10-30 minutes for the DNS to take effect
+## Best Practices
 
-You need to set different domains (domains with different primary domains) for trigger mail and bulk mail, so as to avoid sharing one sending domain , which will restrict both types of mail and prevent trigger mail from being delivered in time
+**Separate Domains for Different Email Types**
+
+You should configure different domains (with different root domains) for:
+- **Transactional emails** (triggered emails)
+- **Bulk marketing emails**
+
+This separation prevents both email types from sharing the same sending reputation, ensuring that transactional emails can be delivered promptly without being affected by bulk email performance.
+
+## Next Steps
+
+Once your domain is verified, you can:
+- Bind the domain to your API users
+- Begin sending emails with improved deliverability
+- Monitor your domain's sending reputation
+- Configure additional domains as needed for different email types
