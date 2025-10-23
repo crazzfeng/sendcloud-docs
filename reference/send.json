@@ -101,7 +101,18 @@
     }
   },
   "components": {
-    "securitySchemes": {}
+    "securitySchemes": {
+      "smsUser": {
+        "type": "apiKey",
+        "in": "query",
+        "name": "smsUser"
+      },
+      "smsKey": {
+        "type": "apiKey",
+        "in": "query",
+        "name": "smsKey"
+      }
+    }
   },
   "x-readme": {
     "explorer-enabled": true,
