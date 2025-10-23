@@ -39,15 +39,13 @@ Build and maintain your brand's email reputation independently. Perfect for mark
 
 ## Setup Requirements
 
-### Essential Configuration Steps
-
 Before activating your dedicated IP service, ensure you have:
 
 * ✅ **Domain Configuration**: Set up at least one verified sending domain
 * ✅ **DNS Authentication**: Complete SPF, DKIM, MX, and DMARC record verification
 * ✅ **Reverse DNS**: Configure an A record for proper reverse DNS resolution
 
-**Domain Setup**
+**Domain**
 
 Configure your brand domain as your sending domain and ensure all DNS records are properly verified. This establishes your domain's authenticity and improves deliverability.
 
