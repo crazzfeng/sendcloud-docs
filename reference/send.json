@@ -99,9 +99,7 @@
         ],
         "security": [
           {
-            "smsUser": []
-          },
-          {
+            "smsUser": [],
             "smsKey": []
           }
         ]
