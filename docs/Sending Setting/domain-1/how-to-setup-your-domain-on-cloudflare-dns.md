@@ -1,5 +1,5 @@
 ---
-title: How to Setup Your Domain on Cloudflare DNS
+title: How to Setup Domain on Cloudflare DNS
 deprecated: false
 hidden: false
 metadata:
