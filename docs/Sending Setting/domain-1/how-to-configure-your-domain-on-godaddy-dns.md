@@ -1,5 +1,5 @@
 ---
-title: How to Configure Your Domain on GoDaddy DNS
+title: How to Setup Your Domain on GoDaddy DNS
 deprecated: false
 hidden: false
 metadata:
