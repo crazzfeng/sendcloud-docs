@@ -18,7 +18,59 @@
         "operationId": "get_new-endpoint",
         "responses": {
           "200": {
-            "description": "Successful response"
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "statusCode": {
+                      "type": "integer",
+                      "default": "200",
+                      "description": "send result"
+                    },
+                    "message": {
+                      "type": "string",
+                      "default": "success",
+                      "description": "success or fail message"
+                    },
+                    "info": {
+                      "type": "object",
+                      "properties": {
+                        "successCount": {
+                          "type": "integer",
+                          "description": "success count"
+                        },
+                        "failedCount": {
+                          "type": "integer",
+                          "description": "failed count"
+                        },
+                        "items": {
+                          "type": "array",
+                          "items": {
+                            "properties": {},
+                            "type": "object"
+                          },
+                          "description": "failed phone and reason"
+                        },
+                        "smsIds": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          },
+                          "description": "success sms id list"
+                        }
+                      }
+                    }
+                  },
+                  "required": [
+                    "statusCode",
+                    "message",
+                    "info"
+                  ]
+                }
+              }
+            }
           }
         },
         "parameters": [
