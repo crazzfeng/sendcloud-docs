@@ -7,9 +7,7 @@ link:
 metadata:
   robots: index
 ---
-# Domain Configuration
-
-## Overview
+## What is the Sending Domain?
 
 The sending domain is the fundamental identity of your email delivery service. Properly configuring [domain authentication](https://www.aurorasendcloud.com/blog/guide-to-email-authentication) (including SPF, DKIM,MX, and DMARC records) is crucial for ensuring your emails reach inboxes (and not spam). It also helps build brand credibility and improve email deliverability.
 
