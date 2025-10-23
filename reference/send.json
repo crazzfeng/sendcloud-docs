@@ -96,6 +96,14 @@
             },
             "description": "The value is in JSON format, and the maximum character length is 128, for example: {\"key1\": \"value1\", \"key2\": \"Value2\"}"
           }
+        ],
+        "security": [
+          {
+            "smsUser": []
+          },
+          {
+            "smsKey": []
+          }
         ]
       }
     }
