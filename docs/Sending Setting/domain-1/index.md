@@ -116,7 +116,7 @@ DNS changes typically take **10-30 minutes** to propagate globally. Some changes
 
 Return to your domain settings and click **Verify** to check your configuration status.
 
-## Domain Status Explained
+### Domain Status Explained
 
 Your domain will display one of three verification statuses:
 
@@ -140,7 +140,7 @@ Your domain will display one of three verification statuses:
 
 ## Domain Strategy Best Practices
 
-### Separate Domains by Email Type
+#### Separate Domains by Email Type
 
 Configure different root domains for different email purposes:
 
@@ -171,19 +171,19 @@ Configure different root domains for different email purposes:
 
 ## Troubleshooting Common Issues
 
-### DNS Records Not Propagating
+**DNS Records Not Propagating**
 
 * **Wait Time**: Allow up to 24 hours for global propagation
 * **Check Multiple Tools**: Use different DNS lookup tools to verify
 * **Contact DNS Provider**: Some providers have caching delays
 
-### Verification Failures
+**Verification Failures**
 
 * **Exact Values**: Ensure DNS records match provided values exactly
 * **Record Type**: Confirm you're using the correct DNS record type
 * **Subdomain Structure**: Verify DKIM and DMARC subdomain formatting
 
-### Mixed Status Results
+**Mixed Status Results**
 
 * **Partial Success**: Some records verified while others failed
 * **Individual Check**: Verify each DNS record type separately
