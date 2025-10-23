@@ -7,78 +7,185 @@ link:
 metadata:
   robots: index
 ---
-## What is the Sending Domain?
+# Email Domain Configuration Guide
 
-The sending domain is the fundamental identity of your email delivery service. Properly configuring [domain authentication](https://www.aurorasendcloud.com/blog/guide-to-email-authentication) (including SPF, DKIM,MX, and DMARC records) is crucial for ensuring your emails reach inboxes (and not spam). It also helps build brand credibility and improve email deliverability.
+## What is a Sending Domain?
 
-Each account must have a configured sending domain name, which appears as the suffix in the SMTP session's `mail from` command.
+Your sending domain is the cornerstone of email deliverability and serves as your email service's digital identity. It's the domain that appears in the `mail from` command during SMTP sessions and directly impacts whether your emails reach inboxes or spam folders.
 
-**Example:**
-
+**SMTP Example:**
 ```
-mail from: test@liubida.cn
-250 sender test@liubida.cn OK
+mail from: notifications@yourdomain.com
+250 sender notifications@yourdomain.com OK
 ```
 
-In this example, `liubida.cn` is the sending domain name.
+In this example, `yourdomain.com` is your sending domain.
 
-> **Important:** After successful registration, the system automatically assigns a test sending domain . Before production use, you must create and configure your actual business domain. Do not use the system-provided test domain for real business operations.
+> **⚠️ Critical:** After registration, you receive a test domain automatically. **Never use this test domain for production emails.** Always configure your business domain before sending real emails.
+
+## Why Domain Authentication Matters
+
+Proper domain authentication through DNS records is essential for:
+
+- **Email Deliverability**: Prevents emails from being marked as spam
+- **Brand Protection**: Establishes sender authenticity and credibility  
+- **Reputation Management**: Builds trust with email service providers
+- **Compliance**: Meets modern email security standards
 
 ## Required DNS Records
 
-The sending domain configuration includes several DNS records. **SPF, DKIM, and MX are required**, while DMARC is optional but recommended.
+Your domain configuration requires specific DNS records for authentication. **SPF, DKIM, and MX records are mandatory**, while DMARC is optional but strongly recommended.
 
-### [SPF ](https://en.wikipedia.org/wiki/Sender_Policy_Framework)(Sender Policy Framework)
+### SPF (Sender Policy Framework)
 
-SPF is a DNS record type designed to prevent spam by registering all authorized IP addresses that can send email for a domain name.
+**Purpose**: Authorizes specific IP addresses to send emails on behalf of your domain
 
-### [MX](https://en.wikipedia.org/wiki/MX_record) (Mail Exchange)
+SPF records act as a whitelist, telling receiving servers which IP addresses are permitted to send emails from your domain. This prevents spammers from spoofing your domain.
 
-MX records point to mail servers and are used by email systems to locate the appropriate mail server based on the recipient's domain suffix.
+**Key Benefits:**
+- Prevents domain spoofing
+- Reduces spam complaints
+- Improves sender reputation
 
-### [ DKIM](https://en.wikipedia.org/wiki/DomainKeys_Identified_Mail) (DomainKeys Identified Mail)
+### MX (Mail Exchange)
 
-DKIM is a crucial technology for preventing fraudulent emails. Senders insert DKIM signatures and electronic signature information into email headers, while receivers verify authenticity by querying the public key through DNS. This is especially recommended for users sending to international domains.
+**Purpose**: Directs incoming emails to the correct mail server
 
-### [DMARC ](https://en.wikipedia.org/wiki/DMARC)(Domain-based Message Authentication, Reporting & Conformance)
+MX records tell other email systems where to deliver emails sent to your domain. Even if you only send emails (don't receive them), MX records are required for proper domain validation.
 
-DMARC protocol helps identify and intercept fraudulent emails. Once configured and verified, the platform uses the current domain as the "from" domain suffix for email delivery, reducing interception by email service providers and improving email credibility and inbox delivery rates.
+**Key Benefits:**
+- Enables email routing
+- Required for domain verification
+- Supports email infrastructure
 
-## Configuration Process
+### DKIM (DomainKeys Identified Mail)
 
-1. **Access Domain Settings**
-   * Navigate to **Settings > Domain** to enter the domain configuration interface
-   * If you don't have an official domain, click to add a new mail domain
+**Purpose**: Provides cryptographic authentication for email messages
 
-2. **Configure DNS Records**
-   * Click on the domain you want to configure
-   * Use the system-provided data to configure the relevant DNS records in your domain management system
+DKIM adds a digital signature to your email headers, which receiving servers can verify against your public key stored in DNS. This is especially crucial for international email delivery.
 
-3. **Verification Status**
-   After configuration, your domain will show one of three statuses:
+**Key Benefits:**
+- Cryptographic email authentication
+- Prevents email tampering
+- Essential for international delivery
+- Improves deliverability rates
 
-   * **Unverified**: One or more required items (SPF, DKIM, MX) failed verification. Domain cannot be bound to API_USER.
-   * **Usable**: All three required items passed verification, but optional items haven't been verified yet.
-   * **Verified**: All configuration items have been successfully verified.
+### DMARC (Domain-based Message Authentication, Reporting & Conformance)
 
-> **Note:** After configuring DNS records, it may take 10-30 minutes for DNS changes to propagate and take effect.
+**Purpose**: Provides policy instructions for handling authentication failures
 
-## Best Practices
+DMARC builds on SPF and DKIM to give you control over how receiving servers handle emails that fail authentication. It also provides valuable reporting on your email authentication.
 
-**Separate Domains for Different Email Types**
+**Key Benefits:**
+- Enhanced fraud protection
+- Detailed authentication reports
+- Policy control over failed authentications
+- Higher inbox delivery rates
 
-You should configure different domains (with different root domains) for:
+## Step-by-Step Configuration
 
-* **Transactional emails** (triggered emails)
-* **Bulk marketing emails**
+### Step 1: Access Domain Management
+1. Navigate to **Settings → Domain** in your dashboard
+2. Click **Add Domain** if configuring your first business domain
+3. Enter your domain name (e.g., `yourbusiness.com`)
 
-This separation prevents both email types from sharing the same sending reputation, ensuring that transactional emails can be delivered promptly without being affected by bulk email performance.
+### Step 2: Retrieve DNS Records
+1. Select your domain from the list
+2. Copy the provided DNS record values
+3. Note down all required records: SPF, MX, DKIM, and DMARC (if applicable)
 
-## Next Steps
+### Step 3: Configure Your DNS
+1. Log into your domain registrar or DNS provider
+2. Add each DNS record exactly as provided:
+   - **SPF**: Add as a TXT record
+   - **MX**: Add as an MX record with proper priority
+   - **DKIM**: Add as a TXT record (usually with a selector subdomain)
+   - **DMARC**: Add as a TXT record at `_dmarc.yourdomain.com`
 
-Once your domain is verified, you can:
+### Step 4: Wait for Propagation
+DNS changes typically take **10-30 minutes** to propagate globally. Some changes may take up to 24 hours.
 
-* Bind the domain to your API users
-* Begin sending emails with improved deliverability
-* Monitor your domain's sending reputation
-* Configure additional domains as needed for different email types
+### Step 5: Verify Configuration
+Return to your domain settings and click **Verify** to check your configuration status.
+
+## Domain Status Explained
+
+Your domain will display one of three verification statuses:
+
+**🔴 Unverified**
+- One or more required records (SPF, DKIM, MX) are missing or incorrect
+- Domain cannot be used for sending emails
+- **Action Required**: Fix missing or incorrect DNS records
+
+**🟡 Usable**  
+- All required records (SPF, DKIM, MX) are properly configured
+- Domain can be used for sending emails
+- Optional records (DMARC) may still need configuration
+
+**🟢 Verified**
+- All DNS records are properly configured and verified
+- Optimal configuration for maximum deliverability
+- Ready for production email sending
+
+## Domain Strategy Best Practices
+
+### Separate Domains by Email Type
+
+Configure different root domains for different email purposes:
+
+**Transactional Domain**: `notifications.yourbusiness.com`
+- Account confirmations
+- Password resets  
+- Order confirmations
+- System notifications
+
+**Marketing Domain**: `marketing.yourbusiness.com`
+- Newsletters
+- Promotional campaigns
+- Bulk communications
+- Marketing automation
+
+### Why Separation Matters
+
+- **Reputation Isolation**: Marketing issues won't affect critical transactional emails
+- **Deliverability Protection**: Ensures important notifications always reach users
+- **Performance Optimization**: Each domain builds its own sending reputation
+- **Risk Mitigation**: Reduces impact of potential spam complaints
+
+## Troubleshooting Common Issues
+
+### DNS Records Not Propagating
+- **Wait Time**: Allow up to 24 hours for global propagation
+- **Check Multiple Tools**: Use different DNS lookup tools to verify
+- **Contact DNS Provider**: Some providers have caching delays
+
+### Verification Failures
+- **Exact Values**: Ensure DNS records match provided values exactly
+- **Record Type**: Confirm you're using the correct DNS record type
+- **Subdomain Structure**: Verify DKIM and DMARC subdomain formatting
+
+### Mixed Status Results
+- **Partial Success**: Some records verified while others failed
+- **Individual Check**: Verify each DNS record type separately  
+- **Provider Limits**: Some DNS providers have specific formatting requirements
+
+## Next Steps After Verification
+
+Once your domain achieves "Verified" status:
+
+1. **Bind to API Users**: Associate the domain with your sending applications
+2. **Start Sending**: Begin production email delivery with improved deliverability
+3. **Monitor Performance**: Track delivery rates and sender reputation
+4. **Scale Gradually**: Increase sending volume progressively to build reputation
+5. **Configure Additional Domains**: Set up separate domains for different email types
+
+## Getting Support
+
+If you encounter issues during domain configuration:
+
+- Check our troubleshooting guide for common solutions
+- Verify DNS records using online DNS lookup tools
+- Contact support with specific error messages and domain details
+- Provide screenshots of your DNS configuration for faster resolution
+
+Remember: Proper domain configuration is crucial for email deliverability. Take time to configure it correctly rather than rushing into production.
