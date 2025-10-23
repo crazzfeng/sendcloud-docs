@@ -140,7 +140,7 @@ Your domain will display one of three verification statuses:
 
 ## Domain Strategy Best Practices
 
-#### Separate Domains by Email Type
+**Separate Domains by Email Type**
 
 Configure different root domains for different email purposes:
 
