@@ -114,7 +114,8 @@
             "name": "vars",
             "schema": {
               "type": "string",
-              "default": "json string of substitution variable"
+              "default": "json string of substitution variable",
+              "format": "json"
             }
           },
           {
