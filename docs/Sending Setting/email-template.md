@@ -20,7 +20,7 @@ The Template List page displays comprehensive information for all templates in y
 
 * **Template Name** - Template identification name for quick identification
 * **Type** - Template classification type
-* **Call Name** - Unique identifier used when making API calls
+* **Invoke Name** - Unique identifier used when making API calls
 * **Email Subject** - Email subject line (maximum 256 characters)
 * **Update Time** - Last modified time (automatically logged)
 
