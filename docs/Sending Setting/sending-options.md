@@ -7,39 +7,39 @@ link:
 metadata:
   robots: index
 ---
+<br />
+
 Configure your email sending settings to optimize deliverability and control how your emails are sent through Aurora SendCloud.
 
 # Email Sender Configuration
 
-### Understanding "From" vs "Mail From"
+## Understanding "From" vs "Mail From"
 
-**From Address**
+**From**
 
 * The sender shown in the email content to recipients
 * Must be a valid email address format
 * Can be customized to any legal email address via API or SMTP
 * This is what recipients see as the sender
 
-**Mail From Address**
+**Mail From**
 
 * The envelope sender (also known as return-path)
 * Acts as the "secretary" that delivers the message on behalf of the "From" address
 * Suffix is controlled by Aurora SendCloud and matches your sending domain
 * Prefix can be customized or will be auto-generated as a random string
 
-### Why Use Random Mail From Prefixes?
+### Why Does Aurora SendCloud Use a Random Default Mail From Prefix?
 
 By default, Aurora SendCloud generates random strings for mail from prefixes to prevent email providers from limiting delivery based on sender reputation. This helps avoid restrictions when the same mail from address is used repeatedly.
 
-### Handling Address Inconsistencies
+### What Happens When From vs. Mail From Don't Match? How to Fix It.
 
 When the "From" and "Mail From" addresses have different suffixes, emails are sent "on behalf of" the From address. This can cause issues:
 
 * Strict email providers may send emails to spam folders
 * Some providers may reject emails entirely
 * Only specific email providers accept "on behalf of" sending
-
-# Advanced Sending Options
 
 ## Fixed From Suffix
 
@@ -56,6 +56,8 @@ Instead of using random prefixes, you can set a fixed Mail From address. This is
 * You need consistent sender identification
 * Specific email providers require fixed addressing
 * You want better tracking and analytics
+
+# Advanced Sending Options
 
 ## Auto AD Tag
 
