@@ -162,7 +162,7 @@ Configure different root domains for different email purposes:
   * Marketing automation
 </Callout>
 
-### Why Separation Matters
+**Why Separation Matters**
 
 * **Reputation Isolation**: Marketing issues won't affect critical transactional emails
 * **Deliverability Protection**: Ensures important notifications always reach users
@@ -199,7 +199,7 @@ Once your domain achieves "Verified" status:
 4. **Scale Gradually**: Increase sending volume progressively to build reputation
 5. **Configure Additional Domains**: Set up separate domains for different email types
 
-## Getting Support
+### Getting Support
 
 If you encounter issues during domain configuration:
 
