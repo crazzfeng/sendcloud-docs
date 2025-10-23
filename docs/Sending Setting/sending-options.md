@@ -49,7 +49,7 @@ When the "From" and "Mail From" addresses have different suffixes, emails are se
 
 Enable this option to ensure the From address suffix matches the Mail From suffix. This setting:
 
-<Callout>
+<Callout theme="default">
   * Eliminates "on behalf of" sending
   * Can be configured per domain in Aurora SendCloud
   * Provides better [email authentication](https://www.aurorasendcloud.com/blog/guide-to-email-authentication)
@@ -59,7 +59,7 @@ Enable this option to ensure the From address suffix matches the Mail From suffi
 
 Instead of using random prefixes, you can set a fixed Mail From address. This is useful when:
 
-<Callout>
+<Callout theme="default">
   * You need consistent sender identification
   * Specific email providers require fixed addressing
   * You want better [tracking and analytics](https://www.aurorasendcloud.com/analytics-report)
@@ -71,7 +71,7 @@ Instead of using random prefixes, you can set a fixed Mail From address. This is
 
 **Recommended for bulk marketing emails**
 
-<Callout>
+<Callout theme="default">
   * Automatically enabled for all batch API_USER accounts
   * Adds advertising tags to email subjects
   * Helps prevent emails from being marked as spam
@@ -82,7 +82,7 @@ Instead of using random prefixes, you can set a fixed Mail From address. This is
 
 Enable secure data transmission for your emails:
 
-<Callout>
+<Callout theme="default">
   * Encrypts email content during transmission
   * Recommended when handling sensitive information
 </Callout>
@@ -95,7 +95,7 @@ Enable secure data transmission for your emails:
 
 Prevent emails from being sent during specific time periods to improve user experience:
 
-<Callout icon="👍">
+<Callout icon="👍" theme="okay">
   * Set quiet hours (e.g., 23:00 to 6:00 AM)
   * System automatically suspends email delivery during configured periods
   * Helps maintain good sender reputation
@@ -105,7 +105,7 @@ Prevent emails from being sent during specific time periods to improve user expe
 
 Override Aurora SendCloud's automatic blacklist filtering for specific addresses or domains:
 
-<Callout>
+<Callout theme="default">
   * Add addresses or domains to bypass interception
   * Useful for testing or critical communications
   * Overrides bounce, complaint, unsubscribe, and block lists
@@ -117,7 +117,7 @@ Override Aurora SendCloud's automatic blacklist filtering for specific addresses
 
 Aurora SendCloud automatically blocks addresses that have previously bounced:
 
-<Callout>
+<Callout theme="default">
   * Prevents sending to non-existent email addresses
   * Reduces bounce rates and improves sender reputation
   * Returns "in blacklist: bounce" error for intercepted addresses
@@ -128,10 +128,10 @@ Aurora SendCloud automatically blocks addresses that have previously bounced:
 
 ## Best Practices
 
-<Callout icon="👍">
+<Callout icon="👍" theme="okay">
   * Keep bounce interception enabled to maintain good sender reputation
   * Use TLS encryption only when handling sensitive data
   * Configure do not disturb hours based on your audience's time zone
   * Enable Auto AD tag for marketing campaigns
-  * Consider fixed addressing for transactional emails
+  * Consider fixed addressing for [transactional emails](https://www.aurorasendcloud.com/email-api#transactional)
 </Callout>
