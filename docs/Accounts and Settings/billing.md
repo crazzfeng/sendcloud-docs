@@ -69,7 +69,7 @@ detail Address
 Business License
 
 
-Upload
+Business License Upload Requirement
 
 1. The text on the license should be clearly identifiable and match the billing info.
 
