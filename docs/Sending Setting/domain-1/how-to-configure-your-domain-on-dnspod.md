@@ -17,7 +17,9 @@ While this guide is designed to be as helpful and comprehensive as possible, the
 
 Before proceeding, it's crucial to decide which domain to use—specifically, whether to use the root domain or a subdomain of that root domain. Because this can be a challenging decision, we recommend reviewing the following Aurora SendCloud article:
 
-**Root Domain vs. Subdomain Selection Guide**
+**[How to choose a primary domain or a subdomain](/update/docs/how-to-choose-a-primary-domain-or-a-subdomain#/)**
+
+/
 
 Let's briefly review two key terms: root domain and subdomain.
 
