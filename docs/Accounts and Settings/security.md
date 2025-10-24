@@ -7,11 +7,9 @@ link:
 metadata:
   robots: index
 ---
-# Security Settings
-
 Protect your account with our comprehensive security features. We offer multiple verification methods and security controls to keep your data safe.
 
-## Authentication Methods
+# Authentication Methods
 
 We provide four security verification methods to protect your account:
 
@@ -20,11 +18,11 @@ We provide four security verification methods to protect your account:
     Your primary account password for authentication
   </Card>
 
-  <Card title="Email Verification" >
+  <Card title="Email Verification">
     Verification codes sent to your registered email address
   </Card>
 
-  <Card title="Mobile Phone" >
+  <Card title="Mobile Phone">
     SMS verification codes sent to your bound mobile number
   </Card>
 
@@ -33,11 +31,11 @@ We provide four security verification methods to protect your account:
   </Card>
 </Cards>
 
-## Authentication Priority
+# Authentication Priority
 
 The system automatically selects the most secure available authentication method:
 
-### Authentication Flow
+## Authentication Flow
 
 **Priority 1: Google Authentication Enabled**
 
@@ -51,12 +49,9 @@ The system automatically selects the most secure available authentication method
 
 * Login password + Email verification code
 
+# Security Features
 
-
-
-## Security Features
-
-### Two-Factor Authentication (2FA)
+## Two-Factor Authentication (2FA)
 
 Enable two-factor authentication to add an extra layer of security to your account login process.
 
@@ -68,7 +63,7 @@ Enable two-factor authentication to add an extra layer of security to your accou
 
 **Status:** Toggle the 2FA switch to enable or disable this feature.
 
-### Data Privacy
+## Data Privacy
 
 Automatically pixelate sensitive data to protect privacy during screen sharing or demonstrations.
 
@@ -80,7 +75,7 @@ Automatically pixelate sensitive data to protect privacy during screen sharing o
 
 **Usage:** Enable this setting when presenting or sharing your screen to maintain data confidentiality.
 
-### Export Security
+## Export Security
 
 Add an additional security layer when exporting data from your account.
 
@@ -92,9 +87,7 @@ Add an additional security layer when exporting data from your account.
 
 **Verification Process:** When enabled, you'll need to complete verification using your primary authentication method before any export operation.
 
-
-
-## Security Best Practices
+# Security Best Practices
 
 > **Recommendation:** For maximum security, we recommend enabling Google Authentication along with 2FA login protection.
 
