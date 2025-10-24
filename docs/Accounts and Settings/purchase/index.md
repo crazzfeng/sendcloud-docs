@@ -7,75 +7,76 @@ link:
 metadata:
   robots: index
 ---
-# Purchase
-
-Sendcloud offers flexible, on-demand purchasing for various service items. Choose from multiple payment options and manage your services with ease.
-
-## Payment Methods
-
-<Cards columns="3">
-  <Card title="Alipay">
-    Perfect for users in mainland China. Supports invoicing for Chinese businesses.
-  </Card>
-
-  <Card title="PayPal" >
-    International payment solution. Note: Use non-Chinese PayPal accounts only.
-  </Card>
-
-  <Card title="Bank Transfer">
-    Available for business users with company bank accounts. Ideal for larger transactions.
-  </Card>
-</Cards>
-
-Important Payment Notes
-
 <br />
 
-**PayPal Limitation**: Due to PayPal platform restrictions, mutual transfers between Chinese accounts are not permitted. Please use PayPal accounts registered in non-Chinese regions.
+Purchase
+Aurora SendCloud offers flexible, pay-as-you-go service. Choose from a variety of payment methods to easily manage your service.
 
-**Chinese Invoicing**: If you require a Chinese mainland invoice, please contact our support team and use either Alipay or wire transfer for payment.
+Payment Options
 
-**Receipt Access**: All users can download receipts and payment confirmations through the payments section in their account dashboard.
+PayPal
 
+International payment solutions. Supports PayPal and international credit card payments.
 
+Alipay
 
-## Service Options
+Ideal for users in Mainland China. Supports invoicing for Chinese businesses.
 
-<Tabs>
-  <Tab title="Email Services">
-    ### Pay-Per-Use Email Purchase
+Bank Transfer
 
-    We recommend purchasing emails on demand for maximum flexibility.
+Intended for businesses with a company bank account. Ideal for large transactions.
 
-    **Validity Period**: 2 years from purchase date
+Important Payment Information
 
-    **Usage**: No monthly limits - use at your own pace
+China Invoices: If you require an invoice from Mainland China, please contact our support team and pay using Alipay or wire transfer.
 
-    **Expiration**: Unused emails expire after 2 years
+Receipt Access: All users can download receipts through the Payments section of their account dashboard.
 
-    **Recommendations**: Purchase in batches based on your sending patterns
-  </Tab>
+Service Options
+Email Services
+Web Traffic
+Pay-Per-Use Email Purchases
+We recommend purchasing emails on demand for maximum flexibility.
 
-  <Tab title="Network Traffic">
-    ### Traffic Costs & Limits
+Validity: 2 years from date of purchase
 
-    **Free Allowance**: 200KB per email for paid users
+Usage: No monthly limit - use at your own discretion
 
-    **Overage Pricing**: (Actual traffic usage - Total free traffic) × $0.30/GB
+Expiration: Unused emails expire after 2 years
 
-    **Billing Cycle**: Monthly calculation and charges
+Recommendation: Purchase in batches based on your sending patterns
 
-    ⚠️ **Critical**: Outstanding payment balances will impact email delivery capabilities.
-  </Tab>
-</Tabs>
+Traffic Costs & Limits
+Free Allowance: 200KB per email for paid users
 
-## Getting Started
+Overage Pricing: (Actual traffic usage - Total free traffic) × $0.30/GB
 
-1. **Choose Your Payment Method**: Select from Alipay, PayPal, or bank transfer
-2. **Purchase Services**: Buy emails or add credit to your account
-3. **Monitor Usage**: Track your email and traffic consumption
-4. **Manage Billing**: Access receipts and invoices in your dashboard
+Billing Cycle: Monthly calculation and charges
 
-***
+⚠️ Critical: Outstanding payment balances will impact email delivery capabilities
 
-_Need assistance with purchasing or have questions about pricing? [Contact our support team](contact) for personalized help._
+Dedicated IP
+A dedicated IP lets you build and own your sender reputation, ensuring maximum inbox placement by isolating your performance from others.
+
+Select a verified domain, select an IP, and choose the purchase duration.
+
+Initial purchase: 3 months minimum
+
+Please configure at least one sending domain. Each purchase can include up to 3 dedicated IPs.
+
+2. Each dedicated IP costs $70 per month, with a minimum purchase of 3 months. The first month is billed on a prorated daily basis. The service is billed monthly from the first month onward.
+3. After purchase, please go to Setting Dedicated IP to configure A records.
+
+Data Masking
+To protect the security of customer data, only blurred recipient information is visible in the data.
+Tips:
+
+1. During service usage, only blurred recipient information is visible in the data, but you can still search by address. Data for API, SMTP, and webhooks will remain unchanged.
+
+2. The data masking service costs USD 15 per month, with a minimum purchase of 6 months. The first month is billed daily, and the second month onward is billed monthly.
+
+Get Started
+Select the service you want to purchase
+Choose a payment method: Pay via PayPal, Alipay, or bank transfer
+Monitor Usage: Track your email, data usage, and service usage
+Manage Bills: View receipts or invoices in your dashboard
