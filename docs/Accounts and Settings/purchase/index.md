@@ -2,31 +2,33 @@
 title: Purchase
 deprecated: false
 hidden: false
+link:
+  new_tab: false
 metadata:
   robots: index
 ---
-<br />
+# Purchase
 
-Sendcloud supports the purchase of corresponding service items on demand. Supported payment method:
+Sendcloud supports the purchase of various service items on demand. We accept the following payment methods:
 
-Alipay
+- **Alipay**
+- **PayPal** 
+- **Bank transfer**: Available for users with a company bank account
 
-PayPal
+For users who have purchased Sendcloud services, receipts can be obtained through the payments section.
 
-Bank transfer: For users who have a company bank account 
+If you need a Chinese mainland invoice, please contact us and use Alipay or wire transfer payment.
 
-For users who have purchased the sendcloud service, the corresponding receipt can be obtained through the payments.
+**Note**: Due to PayPal platform limitations, mutual transfers between Chinese accounts are not allowed. Please use PayPal accounts from non-Chinese regions for payment.
 
-If you need Chinese mainland invoice, please contact us and use Alipay \ Wire transfer payment.
+## Email Purchase
 
-Note: due to the limitation of PayPal platform, mutual transfer between Chinese accounts is not allowed. Please use PayPal accounts in non Chinese regions for payment.
+We recommend purchasing emails on demand. The number of emails purchased each time is valid for 2 years from the date of purchase. If emails are not used within 2 years, they will expire.
 
-Email purchase
+## Network Traffic Cost
 
-It is recommended to purchase the number of e-mails on demand. The number of e-mails purchased each time is valid for 2 years from the date of purchase. If it is not used up for more than 2 years, it will be invalid.
+By default, each free email has a 200KB limit for paid users. Monthly traffic costs are calculated as follows:
 
-Network traffic cost
+**(Actual traffic usage - Total free traffic) × $0.30/GB**
 
-By default, each free Email has a limit of 200KB for the paid user. The monthly traffic cost will be calculated as following: (actual traffic usage - total free traffic) * 0.3$/GB
-
-Past due will affect email delivery
+**Important**: Past due payments will affect email delivery.
