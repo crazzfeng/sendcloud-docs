@@ -7,8 +7,6 @@ link:
 metadata:
   robots: index
 ---
-# How to Set Up Domain on DNSPod
-
 ## Overview
 
 This guide demonstrates how to add a root domain or subdomain in DNSPod and configure the DNS records required by Aurora SendCloud for that domain or subdomain. This guide assumes that you already have a DNSPod account.
@@ -77,23 +75,23 @@ SPF records help protect your domain from spoofed email and reduce the likelihoo
 
 In your DNSPod dashboard, enter the SPF record information displayed in the Aurora SendCloud dashboard.
 
-| Field | Value |
-|-------|-------|
-| Record Type | TXT |
-| Host Record | @ |
+| Field        | Value                                                                                                                                   |
+| ------------ | --------------------------------------------------------------------------------------------------------------------------------------- |
+| Record Type  | TXT                                                                                                                                     |
+| Host Record  | @                                                                                                                                       |
 | Record Value | v=spf1 include:sendcloud.org ~all (When activating multiple regions, please configure according to the actual requirements on the page) |
-| TTL | 600 (seconds) |
+| TTL          | 600 (seconds)                                                                                                                           |
 
 **Note:** If you already have an SPF record for this root domain, simply insert `include:sendcloud.org` into the existing SPF record. Ensure this text appears after `v=spf1` and before `~all`.
 
 ### Configuring SPF Records for Subdomains
 
-| Field | Value |
-|-------|-------|
-| Record Type | TXT |
-| Host Record | Subdomain Prefix (e.g., sc) |
+| Field        | Value                                                                                                                                   |
+| ------------ | --------------------------------------------------------------------------------------------------------------------------------------- |
+| Record Type  | TXT                                                                                                                                     |
+| Host Record  | Subdomain Prefix (e.g., sc)                                                                                                             |
 | Record Value | v=spf1 include:sendcloud.org ~all (When activating multiple regions, please configure according to the actual requirements on the page) |
-| TTL | 600 (seconds) |
+| TTL          | 600 (seconds)                                                                                                                           |
 
 ## Configuring DKIM
 
@@ -101,23 +99,23 @@ DKIM records help verify your domain to prevent forged emails and reduce the lik
 
 ### Configure a DKIM Record for the Root Domain
 
-| Field | Value |
-|-------|-------|
-| Record Type | TXT |
-| Host Record | sendcloud._domainkey (or the value assigned by Aurora SendCloud for your domain) |
+| Field        | Value                                                                                                    |
+| ------------ | -------------------------------------------------------------------------------------------------------- |
+| Record Type  | TXT                                                                                                      |
+| Host Record  | sendcloud._domainkey (or the value assigned by Aurora SendCloud for your domain)                         |
 | Record Value | k=rsa; p=MIGfMA0GCSqGSIb3DQEBAQUA... (Please configure according to the actual requirements on the page) |
-| TTL | 600 seconds |
+| TTL          | 600 seconds                                                                                              |
 
 **Note:** Your DKIM host record may have one of the following values: default.domainkey, sc.domainkey, etc. Be sure to use the value assigned by Aurora SendCloud for your domain.
 
 ### Configuring a DKIM Record for a Subdomain
 
-| Field | Value |
-|-------|-------|
-| Record Type | TXT |
-| Host Record | sendcloud._domainkey.subdomain prefix (e.g., sendcloud._domainkey.sc) |
+| Field        | Value                                                                            |
+| ------------ | -------------------------------------------------------------------------------- |
+| Record Type  | TXT                                                                              |
+| Host Record  | sendcloud._domainkey.subdomain prefix (e.g., sendcloud._domainkey.sc)            |
 | Record Value | k=rsa; p=MIGfMA0GCSqGSIb3DQEBAQUA... (Please configure as specified on the page) |
-| TTL | 600 (seconds) |
+| TTL          | 600 (seconds)                                                                    |
 
 ## Configuring MX Records
 
@@ -125,25 +123,25 @@ MX records specify where emails sent to your domain should be delivered.
 
 ### Configuring an MX Record for the Root Domain
 
-| Field | Value |
-|-------|-------|
-| Record Type | MX |
-| Host Record | @ |
+| Field        | Value                                                                                       |
+| ------------ | ------------------------------------------------------------------------------------------- |
+| Record Type  | MX                                                                                          |
+| Host Record  | @                                                                                           |
 | Record Value | mx.sendcloud.org (Please configure as specified on the page when enabling multiple regions) |
-| Priority | 10 |
-| TTL | 600 (seconds) |
+| Priority     | 10                                                                                          |
+| TTL          | 600 (seconds)                                                                               |
 
 **Note:** Ensure that only Aurora SendCloud MX records are configured for your domain. Existing MX records for other email providers can result in unpredictable email delivery.
 
 ### Configure MX Records for Subdomains
 
-| Field | Value |
-|-------|-------|
-| Record Type | MX |
-| Host Record | Subdomain Prefix (e.g., sc) |
+| Field        | Value                                                                                                         |
+| ------------ | ------------------------------------------------------------------------------------------------------------- |
+| Record Type  | MX                                                                                                            |
+| Host Record  | Subdomain Prefix (e.g., sc)                                                                                   |
 | Record Value | mx.sendcloud.org (When enabling multiple regions, please configure according to the instructions on the page) |
-| Priority | 10 |
-| TTL | 600 (seconds) |
+| Priority     | 10                                                                                                            |
+| TTL          | 600 (seconds)                                                                                                 |
 
 ## Configure DMARC
 
@@ -151,31 +149,31 @@ DMARC (Domain-based Message Authentication, Reporting & Conformance) is an email
 
 ### Configuring a DMARC Record for the Root Domain
 
-| Field | Value |
-|-------|-------|
-| Record Type | TXT |
-| Host Record | _dmarc |
-| Record Value | v=DMARC1; p=none; rua=mailto:dmarc-reports@yourdomain.com; ruf=mailto:dmarc-forensics@yourdomain.com; fo=1 |
-| TTL | 600 seconds |
+| Field        | Value                                                                                                                                                                                      |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Record Type  | TXT                                                                                                                                                                                        |
+| Host Record  | _dmarc                                                                                                                                                                                     |
+| Record Value | v=DMARC1; p=none; rua=mailto:[dmarc-reports@yourdomain.com](mailto:dmarc-reports@yourdomain.com); ruf=mailto:[dmarc-forensics@yourdomain.com](mailto:dmarc-forensics@yourdomain.com); fo=1 |
+| TTL          | 600 seconds                                                                                                                                                                                |
 
 **Parameter Description:**
 
-- `v=DMARC1`: Protocol version
-- `p=none`: Monitor mode (no enforcement)
-- `p=quarantine`: Quarantine mode (messages that fail verification will be sent to spam)
-- `p=reject`: Reject mode (messages that fail verification will be rejected)
-- `rua`: Email address for aggregated reports
-- `ruf`: Email address for forensic reports
-- `fo=1`: Failure reporting option
+* `v=DMARC1`: Protocol version
+* `p=none`: Monitor mode (no enforcement)
+* `p=quarantine`: Quarantine mode (messages that fail verification will be sent to spam)
+* `p=reject`: Reject mode (messages that fail verification will be rejected)
+* `rua`: Email address for aggregated reports
+* `ruf`: Email address for forensic reports
+* `fo=1`: Failure reporting option
 
 ### Configuring a DMARC Record for a Subdomain
 
-| Field | Value |
-|-------|-------|
-| Record Type | TXT |
-| Host Record | _dmarc.Subdomain prefix (e.g., _dmarc.sc) |
-| Record Value | v=DMARC1; p=none; rua=mailto:dmarc-reports@yourdomain.com |
-| TTL | 600 seconds |
+| Field        | Value                                                                                            |
+| ------------ | ------------------------------------------------------------------------------------------------ |
+| Record Type  | TXT                                                                                              |
+| Host Record  | _dmarc.Subdomain prefix (e.g., _dmarc.sc)                                                        |
+| Record Value | v=DMARC1; p=none; rua=mailto:[dmarc-reports@yourdomain.com](mailto:dmarc-reports@yourdomain.com) |
+| TTL          | 600 seconds                                                                                      |
 
 ## Domain Registrar and Name Server Records
 
@@ -191,6 +189,6 @@ Our Aurora SendCloud support team is happy to help! Contact us from the Support 
 
 ## Important Notes
 
-- The DNS record values in this guide are examples only. Please refer to the actual values displayed in the Aurora SendCloud dashboard.
-- After configuration, it may take some time for the DNS records to propagate globally (typically several minutes to several hours).
-- It is recommended to set the TTL to a low value (e.g., 300-600 seconds) for faster verification. After successful verification, you can adjust it as needed.
+* The DNS record values in this guide are examples only. Please refer to the actual values displayed in the Aurora SendCloud dashboard.
+* After configuration, it may take some time for the DNS records to propagate globally (typically several minutes to several hours).
+* It is recommended to set the TTL to a low value (e.g., 300-600 seconds) for faster verification. After successful verification, you can adjust it as needed.
