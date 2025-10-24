@@ -1,5 +1,5 @@
 ---
-title: How to choose a primary domain or a subdomain
+title: How to Choose a Primary Domain or a Subdomain
 deprecated: false
 hidden: false
 metadata:
