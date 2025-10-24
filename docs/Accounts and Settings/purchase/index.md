@@ -9,26 +9,72 @@ metadata:
 ---
 # Purchase
 
-Aurora SendCloud supports the purchase of various service items on demand. We accept the following payment methods:
+Sendcloud offers flexible, on-demand purchasing for various service items. Choose from multiple payment options and manage your services with ease.
 
-* **Alipay**
-* **PayPal**
-* **Bank transfer**: Available for users with a company bank account
+## Payment Methods
 
-For users who have purchased Aurora SendCloud services, receipts can be obtained through the payments section.
+<Cards columns="3">
+  <Card title="Alipay" icon="alipay">
+    Perfect for users in mainland China. Supports invoicing for Chinese businesses.
+  </Card>
+  <Card title="PayPal" icon="paypal">
+    International payment solution. Note: Use non-Chinese PayPal accounts only.
+  </Card>
+  <Card title="Bank Transfer" icon="university">
+    Available for business users with company bank accounts. Ideal for larger transactions.
+  </Card>
+</Cards>
 
-If you need a Chinese mainland invoice, please contact us and use Alipay or wire transfer payment.
+<Accordion title="Important Payment Notes" icon="exclamation-triangle">
 
-**Note**: Due to PayPal platform limitations, mutual transfers between Chinese accounts are not allowed. Please use PayPal accounts from non-Chinese regions for payment.
+**PayPal Limitation**: Due to PayPal platform restrictions, mutual transfers between Chinese accounts are not permitted. Please use PayPal accounts registered in non-Chinese regions.
 
-## Email Purchase
+**Chinese Invoicing**: If you require a Chinese mainland invoice, please contact our support team and use either Alipay or wire transfer for payment.
 
-We recommend purchasing emails on demand. The number of emails purchased each time is valid for 2 years from the date of purchase. If emails are not used within 2 years, they will expire.
+**Receipt Access**: All users can download receipts and payment confirmations through the payments section in their account dashboard.
 
-## Network Traffic Cost
+</Accordion>
 
-By default, each free email has a 200KB limit for paid users. Monthly traffic costs are calculated as follows:
+## Service Options
 
-**(Actual traffic usage - Total free traffic) × $0.30/GB**
+<Tabs>
+  <Tab title="Email Services">
 
-**Important**: Past due payments will affect email delivery.
+### Pay-Per-Use Email Purchase
+
+We recommend purchasing emails on demand for maximum flexibility.
+
+**Validity Period**: 2 years from purchase date
+
+**Usage**: No monthly limits - use at your own pace
+
+**Expiration**: Unused emails expire after 2 years
+
+**Recommendations**: Purchase in batches based on your sending patterns
+
+  </Tab>
+  <Tab title="Network Traffic">
+
+### Traffic Costs & Limits
+
+**Free Allowance**: 200KB per email for paid users
+
+**Overage Pricing**: (Actual traffic usage - Total free traffic) × $0.30/GB
+
+**Billing Cycle**: Monthly calculation and charges
+
+⚠️ **Critical**: Outstanding payment balances will impact email delivery capabilities.
+
+  </Tab>
+</Tabs>
+
+## Getting Started
+
+1. **Choose Your Payment Method**: Select from Alipay, PayPal, or bank transfer
+2. **Purchase Services**: Buy emails or add credit to your account
+3. **Monitor Usage**: Track your email and traffic consumption
+4. **Manage Billing**: Access receipts and invoices in your dashboard
+
+---
+
+*Need assistance with purchasing or have questions about pricing? [Contact our support team](contact) for personalized help.*
