@@ -52,24 +52,19 @@ Your email charges are based on the following delivery result categories:
 
 ## Managing Billing Info
 
-<br />
-
-<br />
-
-Note:The following information will be used to issue an invoice. Please fill it in correctly. If any modification is needed, please contact us.
+The following information will be used to issue an invoice. Please fill it in correctly. If any modification is needed, please contact us.
 
 Contact Name
 Company Name
 Website
+Company Address
 
-Company Address
-
-detail Address
+Detail Address
 
 Business License
 
 
-Business License Upload Requirement
+Note：Business License Upload Requirement
 
 1. The text on the license should be clearly identifiable and match the billing info.
 
