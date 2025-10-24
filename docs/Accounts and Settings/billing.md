@@ -25,28 +25,28 @@ We charge for email delivery based on actual delivery results, not just emails s
 
 Your email charges are based on the following delivery result categories:
 
-<Tabs>
-  <Tab title="Delivered">
-    Successfully delivered emails to the recipient's inbox. These are emails that reached their intended destination without any issues.
-  </Tab>
+**Delivered*
 
-  <Tab title="Soft Bounce">
-    Temporary delivery failures that may be retried. Examples include:
+Successfully delivered emails to the recipient's inbox. These are emails that reached their intended destination without any issues.
 
-    * Mailbox temporarily full
-    * Server temporarily unavailable
-    * Message size too large
-  </Tab>
+**Soft Bounce**
 
-  <Tab title="Invalid Email">
-    Permanent delivery failures including:
+Temporary delivery failures that may be retried. Examples include:
 
-    * **Format Error**: Malformed email addresses
-    * **Not Exist**: Email addresses that don't exist
-    * **Reject**: Emails rejected by the recipient server
-    * **Junk Mail**: Emails marked as spam or junk
-  </Tab>
-</Tabs>
+* Mailbox temporarily full
+* Server temporarily unavailable
+* Message size too large
+
+**Invalid Email**
+
+Permanent delivery failures including:
+
+* **Format Error**: Malformed email addresses
+* **Not Exist**: Email addresses that don't exist
+* **Reject**: Emails rejected by the recipient server
+* **Junk Mail**: Emails marked as spam or junk
+
+
 
 ## Managing Billing Information
 
@@ -59,7 +59,7 @@ The following information will be used to issue invoices. Please fill it in corr
 * Detailed Address
 * Business License
 
-## Business License Upload Requirements
+### Business License Upload Requirements
 
 Please note the following requirements when uploading your business license:
 
