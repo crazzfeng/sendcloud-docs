@@ -9,13 +9,13 @@ metadata:
 ---
 # Purchase
 
-Sendcloud supports the purchase of various service items on demand. We accept the following payment methods:
+Aurora SendCloud supports the purchase of various service items on demand. We accept the following payment methods:
 
-- **Alipay**
-- **PayPal** 
-- **Bank transfer**: Available for users with a company bank account
+* **Alipay**
+* **PayPal**
+* **Bank transfer**: Available for users with a company bank account
 
-For users who have purchased Sendcloud services, receipts can be obtained through the payments section.
+For users who have purchased Aurora SendCloud services, receipts can be obtained through the payments section.
 
 If you need a Chinese mainland invoice, please contact us and use Alipay or wire transfer payment.
 
