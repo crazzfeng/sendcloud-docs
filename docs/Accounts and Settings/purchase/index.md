@@ -16,15 +16,15 @@ Aurora SendCloud offers flexible, pay-as-you-go services with multiple payment o
 ## 💳 Payment Methods
 
 <Cards columns={3}>
-  <Card title="PayPal" icon="paypal">
+  <Card title="PayPal" >
     International payment solution supporting PayPal and credit card payments worldwide.
   </Card>
 
-  <Card title="Alipay" icon="alipay">
+  <Card title="Alipay">
     Perfect for users in Mainland China. Includes invoicing support for Chinese businesses.
   </Card>
 
-  <Card title="Bank Transfer" icon="university">
+  <Card title="Bank Transfer" >
     Designed for businesses with company accounts. Ideal for large transactions and bulk purchases.
   </Card>
 </Cards>
@@ -47,8 +47,6 @@ Aurora SendCloud offers flexible, pay-as-you-go services with multiple payment o
 * Use credits at your own pace
 * Purchase in batches based on sending patterns
 
-
-
 ***
 
 ## Data Flow
@@ -59,8 +57,6 @@ Paid users receive 200KB of free data flow per email. Any excess will incur char
 * **Overage rate**: $0.30/GB beyond free limit
 * **Billing**: Calculated and charged monthly
 * **Formula**: (Actual usage - Free traffic) × $0.30/GB
-
-
 
 ***
 
