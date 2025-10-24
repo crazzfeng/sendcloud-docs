@@ -48,21 +48,26 @@ Your email charges are based on the following delivery result categories:
   </Tab>
 </Tabs>
 
-## Managing Billing Information
 
-The following information will be used to issue invoices. Please fill it in correctly. If any modifications are needed, please contact us.
 
-* Contact Name
-* Company Name
-* Website
-* Company Address
-* Detailed Address
-* Business License
+## Managing Billing Info
 
-## Business License Upload Requirements
+The following information will be used to issue an invoice. Please fill it in correctly. If any modification is needed, please contact us.
 
-Please note the following requirements when uploading your business license:
+Contact Name
+Company Name
+Website
+Company Address
 
-1. The text on the license must be clearly readable and match the billing information provided.
-2. File size cannot exceed 2MB.
-3. Only JPG, JPEG, or PNG file formats are accepted.
+Detail Address
+
+Business License
+
+
+Note：Business License Upload Requirement
+
+1. The text on the license should be clearly identifiable and match the billing info.
+
+2. The file size cannot exceed 2M.
+
+3. Only JPG, JPEG or PNG files can be uploaded.
