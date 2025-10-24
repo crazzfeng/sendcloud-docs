@@ -9,81 +9,121 @@ metadata:
 ---
 # Purchase
 
-Aurora SendCloud offers flexible, pay-as-you-go services. Choose from a variety of payment methods to easily manage your account.
+Aurora SendCloud offers flexible, pay-as-you-go services with multiple payment options to suit your business needs.
 
-## Payment Options
+---
 
-### PayPal
-International payment solution supporting PayPal and international credit card payments.
+## 💳 Payment Methods
 
-### Alipay
-Ideal for users in Mainland China. Supports invoicing for Chinese businesses.
+<Cards columns={3}>
+  <Card title="PayPal" icon="paypal">
+    International payment solution supporting PayPal and credit card payments worldwide.
+  </Card>
+  <Card title="Alipay" icon="alipay">
+    Perfect for users in Mainland China. Includes invoicing support for Chinese businesses.
+  </Card>
+  <Card title="Bank Transfer" icon="university">
+    Designed for businesses with company accounts. Ideal for large transactions and bulk purchases.
+  </Card>
+</Cards>
 
-### Bank Transfer
-Designed for businesses with company bank accounts. Perfect for large transactions.
+> **🧾 Important Payment Notes**
+> 
+> - **China Invoices**: Contact support and use Alipay or wire transfer for Mainland China invoices
+> - **Receipt Access**: Download receipts anytime from your account dashboard's Payments section
 
-## Important Payment Information
+---
 
-**China Invoices**: If you require an invoice from Mainland China, please contact our support team and pay using Alipay or wire transfer.
+## 📧 Email Services
 
-**Receipt Access**: All users can download receipts through the Payments section of their account dashboard.
+### Pay-Per-Use Email Credits
 
-## Service Options
+**Maximum flexibility with no monthly commitments**
 
-### Email Services
+<Columns layout="auto">
+  <Column>
+    **📅 Validity & Usage**
+    - Valid for 2 years from purchase
+    - No monthly usage limits
+    - Use credits at your own pace
+    - Purchase in batches based on sending patterns
+  </Column>
+  <Column>
+    **💰 Traffic Costs**
+    - **Free allowance**: 200KB per email
+    - **Overage rate**: $0.30/GB beyond free limit
+    - **Billing**: Calculated and charged monthly
+    - **Formula**: (Actual usage - Free traffic) × $0.30/GB
+  </Column>
+</Columns>
 
-#### Pay-Per-Use Email Purchases
-We recommend purchasing emails on demand for maximum flexibility.
+⚠️ **Critical Notice**: Outstanding payment balances will affect your email delivery capabilities.
 
-- **Validity**: 2 years from date of purchase
-- **Usage**: No monthly limit - use at your own discretion
-- **Expiration**: Unused emails expire after 2 years
-- **Recommendation**: Purchase in batches based on your sending patterns
+---
 
-#### Web Traffic Costs & Limits
+## 🌐 Dedicated IP Service
 
-- **Free Allowance**: 200KB per email for paid users
-- **Overage Pricing**: (Actual traffic usage - Total free traffic) × $0.30/GB
-- **Billing Cycle**: Monthly calculation and charges
+**Build your own sender reputation with an isolated IP address**
 
-⚠️ **Critical**: Outstanding payment balances will impact email delivery capabilities.
+### Why Choose Dedicated IP?
+- Complete control over sender reputation
+- Maximum inbox placement rates
+- Isolation from other users' performance
+- Enhanced deliverability for high-volume senders
 
-### Dedicated IP
+### Service Details
 
-A dedicated IP allows you to build and own your sender reputation, ensuring maximum inbox placement by isolating your performance from other users.
+| Feature | Details |
+|---------|---------|
+| **Monthly Cost** | $70 per dedicated IP |
+| **Minimum Term** | 3 months (initial purchase) |
+| **Maximum IPs** | Up to 3 per purchase |
+| **Billing** | First month prorated daily, then monthly |
 
-**Setup Process:**
-1. Select a verified domain
-2. Select an IP
-3. Choose the purchase duration
+### Setup Process
+1. **Verify Domain** - Select a verified sending domain
+2. **Choose IP** - Pick from available IP addresses  
+3. **Select Duration** - Minimum 3-month commitment
+4. **Configure** - Set up A records in Settings > Dedicated IP after purchase
 
-**Important Details:**
-- Initial purchase: 3-month minimum
-- Cost: $70 per month per dedicated IP
-- Minimum purchase: 3 months
-- Billing: First month prorated daily, subsequent months billed monthly
-- Configuration: Configure at least one sending domain before purchase
-- Limit: Up to 3 dedicated IPs per purchase
+> **📋 Pre-Purchase Requirement**: Configure at least one sending domain before purchasing your dedicated IP.
 
-**Post-Purchase**: After purchase, go to Settings > Dedicated IP to configure A records.
+---
 
-### Data Masking
+## 🔒 Data Masking Service
 
-To protect customer data security, only masked recipient information is visible in your dashboard.
+**Enhanced privacy protection for recipient information**
 
-**Features:**
-- During service usage, only masked recipient information is displayed
-- You can still search by email address
-- API, SMTP, and webhook data remain unchanged
+### What's Included
+- **Dashboard Privacy**: Only masked recipient data visible in your dashboard
+- **Search Functionality**: Full email address search capabilities maintained
+- **API Integration**: No changes to API, SMTP, or webhook data
+- **Complete Protection**: Customer data security without functionality loss
 
-**Pricing:**
-- Cost: $15 per month
-- Minimum purchase: 6 months
-- Billing: First month prorated daily, subsequent months billed monthly
+### Pricing Structure
+- **Monthly Cost**: $15 per month
+- **Minimum Term**: 6 months
+- **Billing Method**: First month prorated daily, subsequent months billed monthly
 
-## Getting Started
+---
 
-1. **Select Services**: Choose the services you want to purchase
-2. **Choose Payment Method**: Pay via PayPal, Alipay, or bank transfer
-3. **Monitor Usage**: Track your email usage, data consumption, and service metrics
-4. **Manage Billing**: View receipts and invoices in your dashboard
+## 🚀 Getting Started
+
+<Cards columns={2}>
+  <Card title="1. Choose Your Services" icon="shopping-cart">
+    Select email credits, dedicated IP, data masking, or combination packages based on your needs.
+  </Card>
+  <Card title="2. Select Payment Method" icon="credit-card">
+    Pay securely via PayPal, Alipay, or bank transfer depending on your location and preferences.
+  </Card>
+  <Card title="3. Monitor Your Usage" icon="chart-line">
+    Track email consumption, traffic usage, and service metrics through your dashboard.
+  </Card>
+  <Card title="4. Manage Your Account" icon="cog">
+    Access receipts, invoices, and billing information anytime from your account settings.
+  </Card>
+</Cards>
+
+---
+
+**Ready to get started?** Contact our support team if you have questions about pricing, invoicing, or service setup.
