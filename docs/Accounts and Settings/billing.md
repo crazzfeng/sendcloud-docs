@@ -25,7 +25,7 @@ We charge for email delivery based on actual delivery results, not just emails s
 
 Your email charges are based on the following delivery result categories:
 
-**Delivered*
+**Delivered**
 
 Successfully delivered emails to the recipient's inbox. These are emails that reached their intended destination without any issues.
 
@@ -45,8 +45,6 @@ Permanent delivery failures including:
 * **Not Exist**: Email addresses that don't exist
 * **Reject**: Emails rejected by the recipient server
 * **Junk Mail**: Emails marked as spam or junk
-
-
 
 ## Managing Billing Information
 
