@@ -69,11 +69,11 @@ Once the domain has been added, you can access it by following these steps:
 3. Find the domain you want to configure and click "Manage"
 4. Click "Add Record" or a similar option to configure the DNS records
 
-## Configuring SPF
+### Configuring SPF
 
 SPF records help protect your domain from spoofed email and reduce the likelihood that your email will be marked as spam.
 
-### Configure an SPF Record for Your Primary Domain
+**Configure an SPF Record for Your Primary Domain**
 
 In your DNSPod dashboard, enter the SPF record information displayed in the Aurora SendCloud dashboard.
 
@@ -86,7 +86,7 @@ In your DNSPod dashboard, enter the SPF record information displayed in the Auro
 
 **Note:** If you already have an SPF record for this primary domain, simply insert `include:sendcloud.org` into the existing SPF record. Ensure this text appears after `v=spf1` and before `~all`.
 
-### Configuring SPF Records for Subdomains
+**Configuring SPF Records for Subdomains**
 
 | Field        | Value                                                                                                                                   |
 | ------------ | --------------------------------------------------------------------------------------------------------------------------------------- |
@@ -95,11 +95,11 @@ In your DNSPod dashboard, enter the SPF record information displayed in the Auro
 | Record Value | v=spf1 include:sendcloud.org ~all (When activating multiple regions, please configure according to the actual requirements on the page) |
 | TTL          | 600 (seconds)                                                                                                                           |
 
-## Configuring DKIM
+### Configuring DKIM
 
 DKIM records help verify your domain to prevent forged emails and reduce the likelihood of your emails being marked as spam.
 
-### Configure a DKIM Record for the Primary Domain
+**Configure a DKIM Record for the Primary Domain**
 
 | Field        | Value                                                                                                    |
 | ------------ | -------------------------------------------------------------------------------------------------------- |
@@ -110,7 +110,7 @@ DKIM records help verify your domain to prevent forged emails and reduce the lik
 
 **Note:** Your DKIM host record may have one of the following values: default.domainkey, sc.domainkey, etc. Be sure to use the value assigned by Aurora SendCloud for your domain.
 
-### Configuring a DKIM Record for a Subdomain
+**Configuring a DKIM Record for a Subdomain**
 
 | Field        | Value                                                                            |
 | ------------ | -------------------------------------------------------------------------------- |
@@ -119,11 +119,11 @@ DKIM records help verify your domain to prevent forged emails and reduce the lik
 | Record Value | k=rsa; p=MIGfMA0GCSqGSIb3DQEBAQUA... (Please configure as specified on the page) |
 | TTL          | 600 (seconds)                                                                    |
 
-## Configuring MX Records
+### Configuring MX Records
 
 MX records specify where emails sent to your domain should be delivered.
 
-### Configuring an MX Record for the Primary Domain
+**Configuring an MX Record for the Primary Domain**
 
 | Field        | Value                                                                                       |
 | ------------ | ------------------------------------------------------------------------------------------- |
@@ -135,7 +135,7 @@ MX records specify where emails sent to your domain should be delivered.
 
 **Note:** Ensure that only Aurora SendCloud MX records are configured for your domain. Existing MX records for other email providers can result in unpredictable email delivery.
 
-### Configure MX Records for Subdomains
+**Configure MX Records for Subdomains**
 
 | Field        | Value                                                                                                         |
 | ------------ | ------------------------------------------------------------------------------------------------------------- |
@@ -145,11 +145,11 @@ MX records specify where emails sent to your domain should be delivered.
 | Priority     | 10                                                                                                            |
 | TTL          | 600 (seconds)                                                                                                 |
 
-## Configure DMARC
+### Configure DMARC
 
 DMARC (Domain-based Message Authentication, Reporting & Conformance) is an email authentication protocol used to protect your domain from spoofing and phishing attacks. It builds on SPF and DKIM to provide clear policy guidance for inbox providers.
 
-### Configuring a DMARC Record for the Primary Domain
+**Configuring a DMARC Record for the Primary Domain**
 
 | Field        | Value                                                                                                                                                                                      |
 | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -168,7 +168,7 @@ DMARC (Domain-based Message Authentication, Reporting & Conformance) is an email
 * `ruf`: Email address for forensic reports
 * `fo=1`: Failure reporting option
 
-### Configuring a DMARC Record for a Subdomain
+**Configuring a DMARC Record for a Subdomain**
 
 | Field        | Value                                                                                            |
 | ------------ | ------------------------------------------------------------------------------------------------ |
@@ -177,7 +177,7 @@ DMARC (Domain-based Message Authentication, Reporting & Conformance) is an email
 | Record Value | v=DMARC1; p=none; rua=mailto:[dmarc-reports@yourdomain.com](mailto:dmarc-reports@yourdomain.com) |
 | TTL          | 600 seconds                                                                                      |
 
-## Domain Registrar and Name Server Records
+### Domain Registrar and Name Server Records
 
 If you recently migrated from another DNS hosting provider (or are currently migrating) and your Aurora SendCloud DNS records are failing to verify in the Aurora SendCloud control panel, you may need to update your domain's registration information.
 
