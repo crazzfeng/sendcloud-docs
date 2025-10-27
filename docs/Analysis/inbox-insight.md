@@ -8,6 +8,26 @@ hidden: false
 link:
   new_tab: false
 metadata:
+  keywords:
+    - email delivery
+    - email delivery analytics
+    - email deliverability
+    - inbox placement tracking
+    - email delivery performance
+    - gmail email delivery
+    - outlook email delivery
+    - email delivery monitoring
+    - email reputation management
+    - email delivery optimization
+    - spam folder detection
+    - email blacklist monitoring
+    - domain warm-up
+    - email delivery insights
+    - real-time email delivery
+    - email delivery dashboard
+    - email delivery solution
+    - bulk email delivery
+    - transactional email delivery
   robots: index
 ---
 ## What is Inbox Insight?
