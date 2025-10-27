@@ -10,6 +10,28 @@ hidden: false
 link:
   new_tab: false
 metadata:
+  title: Email Delivery & Campaign Management - A/B Testing & Analytics Guide
+  description: >-
+    Master email delivery and campaign management with our comprehensive guide.
+    Create regular campaigns, run A/B tests, optimize delivery rates with
+    warm-up sending, and track performance analytics. Improve your email
+    marketing success.
+  keywords:
+    - email delivery
+    - email campaigns
+    - email marketing
+    - A/B testing
+    - campaign analytics
+    - email deliverability
+    - warm-up sending
+    - email tracking
+    - marketing automation
+    - email performance
+    - delivery optimization
+    - campaign management
+    - email segmentation
+    - newsletter delivery
+    - email reports
   robots: index
 ---
 ## Types of Email Campaigns
