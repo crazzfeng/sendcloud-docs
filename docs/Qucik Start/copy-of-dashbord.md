@@ -77,7 +77,7 @@ Your sending domain is your email identity - it's what recipients see in the "Fr
 
 ### Quick Setup Steps
 
-1. **Add your domain** in the Domains section
+1. **Add your domain** in the [Domain](doc:domain)
 2. **Add DNS records** provided by Aurora SendCloud to your domain registrar
 3. **Verify ownership** - we'll automatically check your DNS settings
 4. **Start sending** once verification is complete (usually takes 5-15 minutes)
@@ -90,7 +90,7 @@ Your sending domain is your email identity - it's what recipients see in the "Fr
 
 ## Understand Your API_USER
 
-Your API_USER is your secure authentication key for accessing Aurora SendCloud's services.
+Your [API_USER](doc:api-user) is your secure authentication key for accessing Aurora SendCloud's services.
 
 ### What It Does
 
