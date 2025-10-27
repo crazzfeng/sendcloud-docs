@@ -7,8 +7,6 @@ link:
 metadata:
   robots: index
 ---
-# Billing
-
 Aurora SendCloud provides transparent, usage-based billing for your email delivery needs. This page explains how our billing system works, what you're charged for, and how to manage your payments.
 
 ## How Billing Works
