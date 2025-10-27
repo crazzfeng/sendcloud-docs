@@ -8,6 +8,13 @@ hidden: false
 link:
   new_tab: false
 metadata:
+  title: Email Delivery Analytics & Data Tracking - Aurora SendCloud
+  description: >-
+    Monitor email delivery performance with Aurora SendCloud's comprehensive
+    data analytics. Track delivery status, bounces, opens, clicks, and
+    engagement metrics with real-time insights and 6-month data retention.
+  keywords:
+    - email delivery analytics
   robots: index
 ---
 ## Email Data & Analytics
