@@ -1,7 +1,7 @@
 ---
 title: SMS
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
