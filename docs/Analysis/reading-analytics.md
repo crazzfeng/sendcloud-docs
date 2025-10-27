@@ -6,7 +6,29 @@ hidden: false
 link:
   new_tab: false
 metadata:
-  description: Drive engagement with ​​subscriber behavior analysis​
+  title: Email Delivery Analytics & Reading Performance Insights
+  description: >-
+    Optimize email delivery with comprehensive reading analytics. Track
+    engagement, click rates, regional performance, and timing insights to
+    improve email delivery success.
+  keywords:
+    - email delivery
+    - email analytics
+    - email reading analytics
+    - email engagement tracking
+    - email delivery performance
+    - email campaign analytics
+    - email click tracking
+    - email open rates
+    - email delivery optimization
+    - email marketing analytics
+    - subscriber engagement analysis
+    - email performance metrics
+    - email delivery insights
+    - regional email performance
+    - optimal email timing
+    - email device analytics
+    - email delivery success
   robots: index
 ---
 ## What is Email Reading Analytics
