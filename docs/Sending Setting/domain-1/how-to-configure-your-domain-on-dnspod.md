@@ -13,15 +13,15 @@ This guide demonstrates how to add a root domain or subdomain in DNSPod and conf
 
 While this guide is designed to be as helpful and comprehensive as possible, there is a small chance that you may encounter errors or issues when configuring DNS records in DNSPod. If this occurs, we recommend contacting DNSPod's support team, as they will be able to identify and resolve the issue most quickly (or at least provide next steps).
 
-## Choosing a Root Domain or Subdomain
+## Choosing a Primary Domain or Subdomain
 
 Before proceeding, it's crucial to decide which domain to use—specifically, whether to use the root domain or a subdomain of that root domain. Because this can be a challenging decision, we recommend reviewing the following Aurora SendCloud article:
 
 **[How to choose a primary domain or a subdomain](/update/docs/how-to-choose-a-primary-domain-or-a-subdomain#/)**
 
-Let's briefly review two key terms: root domain and subdomain.
+Let's briefly review two key terms: primary domain and subdomain.
 
-Examples of **root domains** include sendcloud.com, mydnsexample.com, or google.com. Examples of **subdomains** include relay.sendcloud.com, sc.mydnsexample.com, or mail.google.com.
+Examples of **primary domains** include sendcloud.com, mydnsexample.com, or google.com. Examples of **subdomains** include relay.sendcloud.com, sc.mydnsexample.com, or mail.google.com.
 
 Note the pattern: Subdomains have an additional prefix (sometimes multiple prefixes) before the main domain itself. In most cases, using subdomains with Aurora SendCloud is the preferred option.
 
