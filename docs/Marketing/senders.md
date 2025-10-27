@@ -8,6 +8,28 @@ hidden: false
 link:
   new_tab: false
 metadata:
+  title: >-
+    Email Delivery Senders: Configure Your Sender Identity for Better
+    Deliverability
+  description: >-
+    Configure your email delivery sender identity to improve deliverability and
+    build trust. Learn best practices for setting up from names, addresses, and
+    sender authentication for successful email delivery.
+  keywords:
+    - email delivery
+    - sender identity
+    - email deliverability
+    - from address
+    - from name
+    - email authentication
+    - sender reputation
+    - email marketing
+    - transactional emails
+    - domain verification
+    - email performance
+    - sender configuration
+    - email branding
+    - deliverability best practices
   robots: index
 ---
 ## What is a Sender?
