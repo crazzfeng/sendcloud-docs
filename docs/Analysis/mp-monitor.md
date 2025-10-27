@@ -8,6 +8,29 @@ hidden: false
 link:
   new_tab: false
 metadata:
+  title: >-
+    MP Monitor - Email Delivery Monitoring & Mailbox Provider Analytics - Aurora
+    SendCloud
+  description: >-
+    Optimize your email delivery performance with MP Monitor. Track mailbox
+    provider feedback, monitor reputation scores, and improve deliverability
+    rates with real-time analytics from Google Postmaster and Yahoo CFL
+  keywords:
+    - email delivery monitoring
+    - mailbox provider analytics
+    - email deliverability
+    - spam rate monitoring
+    - sender reputation
+    - email performance tracking
+    - Google Postmaster Tools
+    - Yahoo Complaint Feedback Loop
+    - email delivery optimization
+    - inbox placement rates
+    - email authentication monitoring
+    - email campaign analytics
+    - delivery rate improvement
+    - email reputation management
+    - mailbox provider feedback
   robots: index
 ---
 ## What is MP Monitor?
