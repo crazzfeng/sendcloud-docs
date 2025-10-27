@@ -84,7 +84,7 @@ Analyze your email performance using these filtering dimensions:
 | **Dimension**        | **Description**                                                                          |
 | :------------------- | :--------------------------------------------------------------------------------------- |
 | **Email Type**       | Filter by Trigger emails (transactional) or Batch emails (marketing)                     |
-| **API_USER**         | View statistics for a specific API_USER                                                  |
+| **API_USER**         | View statistics for a specific [API_USER](doc:api-user)                                  |
 | **Receiving Domain** | Break down results by recipient email providers' domains  (gmail.com , yahoo.com,  etc.) |
 | **Request Period**   | Select the timeframe for your analysis (default: last 7 days)                            |
 
