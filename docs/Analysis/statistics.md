@@ -8,6 +8,28 @@ hidden: false
 link:
   new_tab: false
 metadata:
+  title: Email Delivery Statistics & Analytics Dashboard - Aurora SendCloud
+  description: >-
+    Track email delivery rates, engagement metrics, and campaign performance
+    with Aurora SendCloud's comprehensive email delivery statistics. Monitor
+    opens, clicks, bounces, and delivery success across all your email
+    campaigns.
+  keywords:
+    - email delivery
+    - email delivery statistics
+    - email delivery rates
+    - email analytics
+    - email campaign tracking
+    - email metrics
+    - delivery monitoring
+    - email performance
+    - bounce rates
+    - open rates
+    - click rates
+    - email deliverability
+    - transactional email delivery
+    - marketing email delivery
+    - Aurora SendCloud
   robots: index
 ---
 ## Aurora SendCloud Email Statistics
