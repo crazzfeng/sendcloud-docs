@@ -8,9 +8,32 @@ hidden: false
 link:
   new_tab: false
 metadata:
+  title: Audience Management for Better Email Delivery - Contact Lists & Segmentation
   description: >-
-    When you start marketing, you may already have an audience. You can manage
-    them as a small CRM.
+    Build and organize your email audience for optimal email delivery
+    performance. Import contacts, create segments, track engagement, and improve
+    deliverability with advanced audience management tools.
+  keywords:
+    - email delivery
+    - audience management
+    - contact lists
+    - email segmentation
+    - subscriber management
+    - email marketing audience
+    - contact import
+    - email deliverability
+    - audience analytics
+    - email engagement tracking
+    - contact organization
+    - email list building
+    - subscriber segmentation
+    - email delivery optimization
+    - audience growth
+    - contact fields
+    - email tags
+    - email segments
+    - subscriber engagement
+    - email delivery performance
   robots: index
 ---
 ## Adding Contacts to Your Audience
