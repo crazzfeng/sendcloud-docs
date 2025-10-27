@@ -19,8 +19,6 @@ Before proceeding, it's crucial to decide which domain to use—specifically, wh
 
 **[How to choose a primary domain or a subdomain](/update/docs/how-to-choose-a-primary-domain-or-a-subdomain#/)**
 
-/
-
 Let's briefly review two key terms: root domain and subdomain.
 
 Examples of **root domains** include sendcloud.com, mydnsexample.com, or google.com. Examples of **subdomains** include relay.sendcloud.com, sc.mydnsexample.com, or mail.google.com.
