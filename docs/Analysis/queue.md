@@ -8,6 +8,26 @@ hidden: false
 link:
   new_tab: false
 metadata:
+  title: Email Delivery Queue Management - Aurora SendCloud
+  description: >-
+    Optimize email delivery with Aurora SendCloud's queue management. Real-time
+    monitoring, intelligent pausing, and analytics to ensure reliable email
+    delivery across all major providers.
+  keywords:
+    - email delivery
+    - email queue
+    - email delivery monitoring
+    - email sending queue
+    - email delivery optimization
+    - email delivery analytics
+    - email queue management
+    - real-time email delivery
+    - email delivery system
+    - aurora sendcloud
+    - email delivery rates
+    - email delivery performance
+    - email provider delivery
+    - smtp delivery queue
   robots: index
 ---
 ## Email Sending Queue
