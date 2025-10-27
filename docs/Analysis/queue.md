@@ -41,7 +41,7 @@ Aurora SendCloud uses intelligent queue management to optimize email delivery ac
 The queue dashboard provides real-time insights into your email delivery:
 
 * **Queue Status**: Current state of your email queue
-* **API_USER**: The API_USER associated with the queue
+* **API_USER**: The [API_USER](doc:api-user)  associated with the queue
 * **Receiving Domain**: Destination email provider (e.g., gmail.com, outlook.com)
 * **Email Count**: Total emails pending delivery
 * **Sending Rate**: Current throughput (In, Try out, Out)
