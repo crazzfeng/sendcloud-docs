@@ -7,21 +7,23 @@ link:
 metadata:
   robots: index
 ---
+<br />
+
 ## Overview
 
-This guide demonstrates how to add a root domain or subdomain in DNSPod and configure the DNS records required by Aurora SendCloud for that domain or subdomain. This guide assumes that you already have a DNSPod account.
+This guide demonstrates how to add a primary domain or subdomain in DNSPod and configure the DNS records required by Aurora SendCloud for that domain or subdomain. This guide assumes that you already have a DNSPod account.
 
 While this guide is designed to be as helpful and comprehensive as possible, there is a small chance that you may encounter errors or issues when configuring DNS records in DNSPod. If this occurs, we recommend contacting DNSPod's support team, as they will be able to identify and resolve the issue most quickly (or at least provide next steps).
 
 ## Choosing a Primary Domain or Subdomain
 
-Before proceeding, it's crucial to decide which domain to use—specifically, whether to use the root domain or a subdomain of that root domain. Because this can be a challenging decision, we recommend reviewing the following Aurora SendCloud article:
+Before proceeding, it's crucial to decide which domain to use—specifically, whether to use the primary domain or a subdomain of that primary domain. Because this can be a challenging decision, we recommend reviewing the following Aurora SendCloud article:
 
 **[How to choose a primary domain or a subdomain](/update/docs/how-to-choose-a-primary-domain-or-a-subdomain#/)**
 
 Let's briefly review two key terms: primary domain and subdomain.
 
-Examples of **primary domains** include sendcloud.com, mydnsexample.com, or google.com. Examples of **subdomains** include relay.sendcloud.com, sc.mydnsexample.com, or mail.google.com.
+Examples of **primary domains** include aurorasendcloud.com, mydnsexample.com, or google.com. Examples of **subdomains** include relay.aurorasendcloud.com, sc.mydnsexample.com, or mail.google.com.
 
 Note the pattern: Subdomains have an additional prefix (sometimes multiple prefixes) before the main domain itself. In most cases, using subdomains with Aurora SendCloud is the preferred option.
 
@@ -71,7 +73,7 @@ Once the domain has been added, you can access it by following these steps:
 
 SPF records help protect your domain from spoofed email and reduce the likelihood that your email will be marked as spam.
 
-### Configure an SPF Record for Your Root Domain
+### Configure an SPF Record for Your Primary Domain
 
 In your DNSPod dashboard, enter the SPF record information displayed in the Aurora SendCloud dashboard.
 
@@ -82,7 +84,7 @@ In your DNSPod dashboard, enter the SPF record information displayed in the Auro
 | Record Value | v=spf1 include:sendcloud.org ~all (When activating multiple regions, please configure according to the actual requirements on the page) |
 | TTL          | 600 (seconds)                                                                                                                           |
 
-**Note:** If you already have an SPF record for this root domain, simply insert `include:sendcloud.org` into the existing SPF record. Ensure this text appears after `v=spf1` and before `~all`.
+**Note:** If you already have an SPF record for this primary domain, simply insert `include:sendcloud.org` into the existing SPF record. Ensure this text appears after `v=spf1` and before `~all`.
 
 ### Configuring SPF Records for Subdomains
 
@@ -97,7 +99,7 @@ In your DNSPod dashboard, enter the SPF record information displayed in the Auro
 
 DKIM records help verify your domain to prevent forged emails and reduce the likelihood of your emails being marked as spam.
 
-### Configure a DKIM Record for the Root Domain
+### Configure a DKIM Record for the Primary Domain
 
 | Field        | Value                                                                                                    |
 | ------------ | -------------------------------------------------------------------------------------------------------- |
@@ -121,7 +123,7 @@ DKIM records help verify your domain to prevent forged emails and reduce the lik
 
 MX records specify where emails sent to your domain should be delivered.
 
-### Configuring an MX Record for the Root Domain
+### Configuring an MX Record for the Primary Domain
 
 | Field        | Value                                                                                       |
 | ------------ | ------------------------------------------------------------------------------------------- |
@@ -147,7 +149,7 @@ MX records specify where emails sent to your domain should be delivered.
 
 DMARC (Domain-based Message Authentication, Reporting & Conformance) is an email authentication protocol used to protect your domain from spoofing and phishing attacks. It builds on SPF and DKIM to provide clear policy guidance for inbox providers.
 
-### Configuring a DMARC Record for the Root Domain
+### Configuring a DMARC Record for the Primary Domain
 
 | Field        | Value                                                                                                                                                                                      |
 | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
