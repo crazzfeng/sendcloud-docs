@@ -8,9 +8,27 @@ hidden: false
 link:
   new_tab: false
 metadata:
+  title: Email Marketing & Delivery Platform - Aurora SendCloud
   description: >-
-    Whether you are a beginner or a professional, Aurora SendCloud's easy-to-use
-    marketing module is the tool you need to grow your business.
+    Comprehensive email marketing and delivery platform with advanced
+    deliverability features. Build audiences, create campaigns, and ensure inbox
+    delivery with Aurora SendCloud.
+  keywords:
+    - email marketing
+    - email delivery
+    - email deliverability
+    - email campaigns
+    - audience segmentation
+    - sender reputation
+    - inbox delivery
+    - email automation
+    - marketing platform
+    - email analytics
+    - SMTP delivery
+    - email performance
+    - bulk email delivery
+    - transactional email
+    - promotional email delivery
   robots: index
 ---
 ## Email Marketing
