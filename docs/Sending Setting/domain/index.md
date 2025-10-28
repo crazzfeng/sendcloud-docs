@@ -5,6 +5,17 @@ hidden: false
 link:
   new_tab: false
 metadata:
+  title: Email Domain Setup & Authentication Guide - SPF, DKIM, MX Records
+  description: >-
+    Complete guide to configuring email sending domains with DNS authentication.
+    Learn to set up SPF, DKIM, MX, and DMARC records for optimal email
+    deliverability and reputation management.
+  keywords:
+    - Domain Setup
+    - email deliverability
+    - SPF
+    - DKIM
+    - MX Records
   robots: index
 ---
 ## What is a Sending Domain?
