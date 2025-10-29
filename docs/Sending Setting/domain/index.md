@@ -98,7 +98,7 @@ DMARC builds on SPF and DKIM to give you control over how receiving servers hand
 
 ## Step-by-Step Configuration
 
-If your domain name is in the following DNS service providers, please go to view the guide.
+If your domain is in the following DNS service providers, please go to view the guide.
 
 [DNSPOD](https://docs.aurorasendcloud.com/update/docs/how-to-configure-your-domain-on-dnspod)
 
