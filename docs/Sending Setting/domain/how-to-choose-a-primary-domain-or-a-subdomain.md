@@ -5,6 +5,16 @@ hidden: false
 link:
   new_tab: false
 metadata:
+  title: 'Primary Domain vs Subdomain for Email Delivery: 2025 Guide'
+  description: >-
+    Choose the right domain strategy for email delivery. Compare primary domain
+    vs subdomain pros/cons, avoid DNS conflicts, and protect your email
+    reputation with expert recommendations.
+  keywords:
+    - email delivery
+    - sending domain
+    - primary domain
+    - subdomain
   robots: index
 ---
 # Primary Domain vs. Subdomain Selection Guide
