@@ -5,6 +5,16 @@ hidden: false
 link:
   new_tab: false
 metadata:
+  title: Dedicated IPs for Email Delivery | Aurora SendCloud
+  description: >-
+    Boost email deliverability with Aurora SendCloud's dedicated IP service. Get
+    exclusive sending resources, better reputation control, and higher sending
+    capacity for your business.
+  keywords:
+    - Dedicated IP email service
+    - email deliverability
+    - dedicated IP address
+    - email sending service
   robots: index
 ---
 Take full control of your email delivery with Aurora SendCloud's dedicated IP service. While our intelligent shared pool efficiently serves standard customers, dedicated IPs provide brand customers with exclusive sending resources, complete reputation control, and superior delivery performance.
