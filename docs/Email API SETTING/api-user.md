@@ -1,5 +1,9 @@
 ---
 title: API_USER
+excerpt: >-
+  This comprehensive guide covers everything you need to know about API_USER
+  credentials, which serve as your primary authentication method for accessing
+  our Email Delivery API and SMTP services.
 deprecated: false
 hidden: false
 link:
@@ -12,10 +16,13 @@ metadata:
     ​​SMTP​​ service. This guide covers setting trigger/batch types, binding
     sending domains, and securely resetting your ​​API_KEY​​. Secure your
     integration and start sending today.
+  keywords:
+    - api_user
+    - email API authentication
+    - SMTP
+    - email api Email delivery API_KEY management
   robots: index
 ---
-This comprehensive guide covers everything you need to know about API_USER credentials, which serve as your primary authentication method for accessing our Email Delivery API and SMTP services.
-
 ## What is an API_USER?
 
 An **API_USER** is a specialized credential system designed exclusively for programmatic email sending. Unlike your platform login account, API_USERs are purpose-built for:
