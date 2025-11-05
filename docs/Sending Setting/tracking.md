@@ -5,6 +5,21 @@ hidden: false
 link:
   new_tab: false
 metadata:
+  title: 'Email Tracking Guide: Open, Click & Unsubscribe Analytics'
+  description: >-
+    Complete email tracking setup guide for Aurora SendCloud. Configure open
+    tracking, click tracking, and unsubscribe management to optimize email
+    performance and boost engagement rates.
+  keywords:
+    - email tracking
+    - open tracking
+    - click tracking
+    - unsubscribe tracking
+    - email analytics
+    - Aurora SendCloud
+    - email performance
+    - tracking domain
+    - email delivery optimization
   robots: index
 ---
 Email tracking helps you collect open data, click data, and unsubscribe data for sent emails, enabling you to effectively evaluate email delivery performance and optimize marketing strategies and content design. Improve user engagement and conversion rates through data-driven insights.
