@@ -1,5 +1,9 @@
 ---
 title: Domain
+excerpt: >-
+  Complete guide to configuring email sending domains with DNS authentication.
+  Learn to set up SPF, DKIM, MX, and DMARC records for optimal email
+  deliverability and reputation management.
 deprecated: false
 hidden: false
 link:
