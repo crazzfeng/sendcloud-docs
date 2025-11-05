@@ -5,6 +5,16 @@ hidden: false
 link:
   new_tab: false
 metadata:
+  title: Email Unsubscribe Settings & Best Practices Guide |Aurora SendCloud
+  description: >-
+    Complete guide to email unsubscribe settings: scope configuration, custom
+    pages, compliance requirements, and best practices to reduce spam complaints
+    and improve sender reputation.
+  keywords:
+    - email unsubscribe settings
+    - subscription tracking
+    - email marketing compliance
+    - unsubscribe page customization
   robots: index
 ---
 Email unsubscribe settings allow recipients to opt out of receiving emails, which is a crucial feature for maintaining sender reputation and complying with regulatory requirements. Properly configuring the unsubscribe process can effectively reduce spam complaints and improve user experience.
