@@ -8,6 +8,17 @@ hidden: false
 link:
   new_tab: false
 metadata:
+  title: 'Email Address Management: Bulk Lists & Subscription Forms'
+  description: >-
+    Manage email lists for bulk campaigns and grow subscribers with website
+    forms. Upload contacts, personalize emails, and integrate via API
+    seamlessly.
+  keywords:
+    - email address management
+    - bulk email lists
+    - email subscription forms
+    - contact list upload
+    - ''
   robots: index
 ---
 # Email Address
