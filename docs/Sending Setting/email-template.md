@@ -6,6 +6,11 @@ hidden: false
 link:
   new_tab: false
 metadata:
+  title: Email Templates - Aurora SendCloud Platform Guide
+  description: >-
+    Create reusable email templates with Aurora SendCloud. Use visual or code
+    editors for marketing campaigns, notifications, and personalized content
+    delivery.
   robots: index
 ---
 # Email Template
