@@ -1,13 +1,24 @@
 ---
 title: Billing
+excerpt: >-
+  Aurora SendCloud provides transparent, usage-based billing for your email
+  delivery needs. 
 deprecated: false
 hidden: false
 link:
   new_tab: false
 metadata:
+  title: Usage-Based Email Delivery Pricing | Aurora SendCloud Billing
+  description: >-
+    Learn about Aurora SendCloud's transparent, usage-based billing for email
+    delivery. Pay only for successful deliveries, soft bounces, and processing -
+    not failed attempts. Get detailed monthly reports.
+  keywords:
+    - email delivery billing
+    - usage-based email pricing，email service billing
   robots: index
 ---
-Aurora SendCloud provides transparent, usage-based billing for your email delivery needs. This page explains how our billing system works, what you're charged for, and how to manage your payments.
+This page explains how our billing system works, what you're charged for, and how to manage your payments.
 
 ## How Billing Works
 
