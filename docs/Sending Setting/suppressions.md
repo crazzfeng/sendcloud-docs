@@ -8,6 +8,16 @@ hidden: false
 link:
   new_tab: false
 metadata:
+  title: 'Email Suppression Lists: Boost Deliverability & Sender Reputation'
+  description: >-
+    Manage email suppression lists effectively with complaint, bounce, block,
+    and unsubscribe handling. Improve deliverability and protect sender
+    reputation automatically.
+  keywords:
+    - email suppression
+    - email deliverability
+    - bounce management
+    - complaint handling
   robots: index
 ---
 The system automatically manages four core lists: Complaint List, Block List, Bounce List, and Unsubscribe List.
