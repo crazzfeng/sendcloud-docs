@@ -6,6 +6,16 @@ hidden: false
 link:
   new_tab: false
 metadata:
+  title: Real-time Email Event Notifications | Aurora SendCloud Webhooks
+  description: >
+    Learn how to integrate Aurora SendCloud webhooks for real-time email
+    delivery notifications. Configure event tracking for opens, clicks, bounces,
+    and more with our webhook API.
+  keywords:
+    - Aurora SendCloud webhooks
+    - Email webhook integration
+    - Email event notifications
+    - email delivery event
   robots: index
 ---
 # WebHooks
