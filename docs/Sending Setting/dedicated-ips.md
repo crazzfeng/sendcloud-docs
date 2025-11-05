@@ -1,5 +1,9 @@
 ---
 title: Dedicated IPs
+excerpt: >-
+  Boost email deliverability with Aurora SendCloud's dedicated IP service. Get
+  exclusive sending resources, better reputation control, and higher sending
+  capacity for your business.
 deprecated: false
 hidden: false
 link:
