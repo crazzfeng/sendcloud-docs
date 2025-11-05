@@ -1,5 +1,8 @@
 ---
 title: Tracking
+excerpt: >-
+  Configure open tracking, click tracking, and unsubscribe management to
+  optimize email performance and boost engagement rates. 
 deprecated: false
 hidden: false
 link:
