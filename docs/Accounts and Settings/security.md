@@ -1,14 +1,24 @@
 ---
 title: Security
+excerpt: >-
+  Protect your account with our comprehensive security features. We offer
+  multiple verification methods and security controls to keep your data safe.
 deprecated: false
 hidden: false
 link:
   new_tab: false
 metadata:
+  title: Account Security & Two-Factor Authentication - Protection
+  description: >-
+    Secure your account with multi-factor authentication, 2FA login protection,
+    Google Authenticator, and advanced security features. Complete setup guide
+    included.
+  keywords:
+    - two-factor authentication
+    - Aurora SendCloud account security
+    - Google Authenticator
   robots: index
 ---
-Protect your account with our comprehensive security features. We offer multiple verification methods and security controls to keep your data safe.
-
 # Authentication Methods
 
 We provide four security verification methods to protect your account:
