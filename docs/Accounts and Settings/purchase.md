@@ -5,6 +5,16 @@ hidden: false
 link:
   new_tab: false
 metadata:
+  title: Aurora SendCloud Purchase- Email Services & Dedicated IP Plans
+  description: >-
+    Flexible pay-as-you-go email services with PayPal, Alipay & bank transfer
+    options. Get emails,data flow, dedicated IPs, and data masking.
+  keywords:
+    - email service pricing
+    - email costs
+    - pay-as-you-go email
+    - dedicated IP email
+    - ''
   robots: index
 ---
 # Purchase
