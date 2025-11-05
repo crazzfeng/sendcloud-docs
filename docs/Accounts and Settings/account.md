@@ -1,5 +1,9 @@
 ---
 title: Account
+excerpt: >-
+  Manage your account information, update email and password, configure phone
+  verification, set preferences, and activate regional services for optimal
+  performance
 deprecated: false
 hidden: false
 link:
