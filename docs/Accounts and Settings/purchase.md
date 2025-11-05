@@ -1,5 +1,8 @@
 ---
 title: Purchase
+excerpt: >-
+  Aurora SendCloud offers flexible, pay-as-you-go services with multiple payment
+  options to suit your business needs
 deprecated: false
 hidden: false
 link:
@@ -17,16 +20,10 @@ metadata:
     - ''
   robots: index
 ---
-# Purchase
-
-Aurora SendCloud offers flexible, pay-as-you-go services with multiple payment options to suit your business needs.
-
-***
-
 ## 💳 Payment Methods
 
 <Cards columns={3}>
-  <Card title="PayPal" >
+  <Card title="PayPal">
     International payment solution supporting PayPal and credit card payments worldwide.
   </Card>
 
@@ -34,7 +31,7 @@ Aurora SendCloud offers flexible, pay-as-you-go services with multiple payment o
     Perfect for users in Mainland China. Includes invoicing support for Chinese businesses.
   </Card>
 
-  <Card title="Bank Transfer" >
+  <Card title="Bank Transfer">
     Designed for businesses with company accounts. Ideal for large transactions and bulk purchases.
   </Card>
 </Cards>
