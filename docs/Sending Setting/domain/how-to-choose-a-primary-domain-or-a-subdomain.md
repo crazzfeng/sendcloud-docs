@@ -1,5 +1,9 @@
 ---
 title: How to Choose a Primary Domain or a Subdomain
+excerpt: >-
+  Choose the right domain strategy for email delivery. Compare primary domain vs
+  subdomain pros/cons, avoid DNS conflicts, and protect your email reputation
+  with expert recommendations.
 deprecated: false
 hidden: false
 link:
