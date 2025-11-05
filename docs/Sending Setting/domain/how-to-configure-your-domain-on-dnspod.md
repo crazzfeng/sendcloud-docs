@@ -1,5 +1,8 @@
 ---
 title: How to Setup Domain on DNSPOD
+excerpt: >-
+  Step-by-step guide to configure DNS records on DNSPod for Aurora SendCloud.
+  Learn to set up SPF, DKIM, MX, and DMARC records for optimal email delivery.
 deprecated: false
 hidden: false
 link:
