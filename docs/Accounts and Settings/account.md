@@ -5,6 +5,19 @@ hidden: false
 link:
   new_tab: false
 metadata:
+  title: >-
+    Aurora SendCloud Account Management - Email, Password, Phone & Regional
+    Settings
+  description: >-
+    Manage your account information, update email and password, configure phone
+    verification, set preferences, and activate regional services for optimal
+    performance
+  keywords:
+    - account management
+    - email address change
+    - password update
+    - phone verification
+    - account settings
   robots: index
 ---
 After logging in, click your profile picture in the lower left corner and select "Info" from the dropdown menu to access your account information management page.
