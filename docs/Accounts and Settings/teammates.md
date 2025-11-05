@@ -5,6 +5,15 @@ hidden: false
 link:
   new_tab: false
 metadata:
+  title: 'Teammate Management: Add, Edit & Manage Team Permissions | Aurora SendCloud'
+  description: >-
+    Learn how to add, edit, and remove teammates with proper permission
+    management. Comprehensive guide for account owners and administrators.
+  keywords:
+    - teammate management
+    - team member permissions
+    - user access control
+    - account administration
   robots: index
 ---
 The Teammate Management function allows the Account Owner or Administrators to invite team members to the account and assign them specific permissions. All teammates, while having their own separate login credentials and security settings, will share access to the account's data within the boundaries of their assigned permissions.
