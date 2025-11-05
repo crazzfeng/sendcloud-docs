@@ -5,6 +5,19 @@ hidden: false
 link:
   new_tab: false
 metadata:
+  title: Email Sending Options & Configuration Guide | Aurora SendCloud Setup
+  description: >-
+    Configure Aurora SendCloud email sending settings for optimal
+    deliverability. Learn about From vs Mail From addresses, TLS encryption,
+    bounce interception, and advanced delivery controls.
+  keywords:
+    - email deliverability
+    - From setup
+    - Mail From configuration
+    - TLS encryption
+    - bounce interception
+    - email configuration
+    - Aurora SendCloud settings
   robots: index
 ---
 <br />
