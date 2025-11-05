@@ -1,5 +1,8 @@
 ---
 title: Teammates
+excerpt: >-
+  Allows the Account Owner or Administrators to invite team members to the
+  account and assign them specific permissions.
 deprecated: false
 hidden: false
 link:
@@ -16,7 +19,7 @@ metadata:
     - account administration
   robots: index
 ---
-The Teammate Management function allows the Account Owner or Administrators to invite team members to the account and assign them specific permissions. All teammates, while having their own separate login credentials and security settings, will share access to the account's data within the boundaries of their assigned permissions.
+All teammates, while having their own separate login credentials and security settings, will share access to the account's data within the boundaries of their assigned permissions.
 
 After logging in, click your profile picture in the top-right corner -> ​​Account​​ -> Click ​​Teammates​​.
 
