@@ -6,6 +6,17 @@ hidden: false
 link:
   new_tab: false
 metadata:
+  title: IP Access Control for Email API Security | Aurora SendCloud
+  description: >-
+    Protect your Aurora SendCloud email API with IP access control. Block
+    unauthorized requests, prevent API key abuse, and secure SMTP services with
+    IP allowlisting features. 
+  keywords:
+    - IP access control
+    - Email API security
+    - IP allowlisting
+    - SMTP security
+    - Aurora SendCloud
   robots: index
 ---
 # IP Access
