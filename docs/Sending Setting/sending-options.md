@@ -1,5 +1,8 @@
 ---
 title: Sending Options
+excerpt: >-
+  Configure your email sending settings to optimize deliverability and control
+  how your emails are sent through Aurora SendCloud.
 deprecated: false
 hidden: false
 link:
@@ -21,8 +24,6 @@ metadata:
   robots: index
 ---
 <br />
-
-Configure your email sending settings to optimize deliverability and control how your emails are sent through Aurora SendCloud.
 
 ## Email Sender Configuration
 
