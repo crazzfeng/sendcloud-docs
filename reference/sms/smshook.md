@@ -1,7 +1,7 @@
 ---
 title: SMSHook
 excerpt: >-
-  Set up SMSHook webhooks to receive real-time SMS delivery notifications, event
+  Set up SMSHook to receive real-time SMS delivery notifications, event
   tracking, and status updates. 
 deprecated: false
 hidden: false
