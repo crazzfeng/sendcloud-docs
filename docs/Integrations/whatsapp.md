@@ -9,6 +9,22 @@ hidden: false
 link:
   new_tab: false
 metadata:
+  title: WhatsApp Business Integration Guide - Aurora SendCloud Setup Tutorial
+  description: >-
+    Complete step-by-step guide for integrating WhatsApp Business with Aurora
+    SendCloud. Learn account setup, template creation, campaign management, and
+    testing with detailed screenshots and troubleshooting tips.
+  keywords:
+    - WhatsApp Business integration
+    - Aurora SendCloud WhatsApp
+    - WhatsApp Business API setup
+    - WhatsApp marketing campaigns
+    - WhatsApp template creation
+    - Meta Business Manager integration
+    - WhatsApp Business Account setup
+    - WABA configuration
+    - WhatsApp marketing automation
+    - business messaging platform
   robots: index
 ---
 ## WhatsApp Business Integration Overview
