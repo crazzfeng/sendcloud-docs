@@ -5,7 +5,7 @@ excerpt: >-
   including account setup, template creation, testing, and campaign management
   with all original screenshots preserved.
 deprecated: false
-hidden: true
+hidden: false
 link:
   new_tab: false
 metadata:
