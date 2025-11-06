@@ -49,7 +49,7 @@ metadata:
 
 ### Why Does Aurora SendCloud Use a Random Default Mail From Prefix?
 
-By default, [Aurora SendCloud](www.aurorasendcloud.com) generates random strings for mail from prefixes to prevent email providers from limiting delivery based on sender reputation. This helps avoid restrictions when the same mail from address is used repeatedly.
+By default, <Anchor label="Aurora SendCloud" target="_blank" href="https://www.aurorasendcloud.com">Aurora SendCloud</Anchor> generates random strings for mail from prefixes to prevent email providers from limiting delivery based on sender reputation. This helps avoid restrictions when the same mail from address is used repeatedly.
 
 ### What Happens When From vs. Mail From Don't Match? How to Fix It.
 
