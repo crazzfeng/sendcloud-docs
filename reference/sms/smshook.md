@@ -1,10 +1,23 @@
 ---
 title: SMSHook
+excerpt: >-
+  Set up SMSHook webhooks to receive real-time SMS delivery notifications, event
+  tracking, and status updates. 
 deprecated: false
 hidden: false
 link:
   new_tab: false
 metadata:
+  title: 'SMSHook: Real-time SMS Webhook Notifications | Aurora SendCloud'
+  description: >-
+    Set up SMSHook webhooks to receive real-time SMS delivery notifications,
+    event tracking, and status updates. Complete implementation guide with code
+    examples for Python, Java, and PHP.
+  keywords:
+    - SMS webhook
+    - SMS delivery notifications
+    - real-time SMS events
+    - SMS API integration
   robots: index
 ---
 # SMSHook
