@@ -9,7 +9,7 @@ link:
 ---
 # Authentication
 
-This documentation will guide you through setting up and managing API credentials to ensure your applications can securely access our services.
+This documentation will guide you through setting up and managing API credentials to ensure your applications can securely access Aurora SendCloud services.
 
 <Cards columns="2">
   <Card title="Email API Authentication" href="#email-api-authentication" icon="envelope">
@@ -57,7 +57,7 @@ curl -X POST "https://api.aurorasendcloud.com/email/send" \
 <Accordion title="Obtaining and Creating Credentials" icon="key">
 **Where to find your credentials:**
 
-1. Log into your account dashboard
+1. Log into your Aurora SendCloud account dashboard
 2. Navigate to **Email API** from the main menu
 3. Select the **API Key Management** section
 
@@ -121,7 +121,7 @@ curl -X POST "https://api.aurorasendcloud.com/sms/send" \
 <Accordion title="Obtaining and Creating Credentials" icon="mobile-alt">
 **Where to find your credentials:**
 
-1. Log into your account dashboard
+1. Log into your Aurora SendCloud account dashboard
 2. Navigate to **Integrations** from the main menu
 3. Select **SMS Manage** in the integrations section
 4. Access the **Send Settings** page
@@ -366,6 +366,123 @@ if __name__ == "__main__":
 ```
 </Accordion>
 
+### PHP Integration
+
+<Accordion title="PHP Example" icon="php">
+```php
+<?php
+
+class AuroraSendCloudClient {
+    private $baseUrl;
+    
+    public function __construct($baseUrl) {
+        $this->baseUrl = rtrim($baseUrl, '/');
+    }
+    
+    protected function makeRequest($endpoint, $params) {
+        $url = $this->baseUrl . '/' . ltrim($endpoint, '/');
+        
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($params));
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, [
+            'Content-Type: application/x-www-form-urlencoded'
+        ]);
+        
+        $response = curl_exec($ch);
+        $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        curl_close($ch);
+        
+        if ($httpCode === 401) {
+            throw new Exception('Authentication failed. Check your API credentials.');
+        }
+        
+        if ($httpCode >= 400) {
+            throw new Exception('API request failed with status code: ' . $httpCode);
+        }
+        
+        return json_decode($response, true);
+    }
+}
+
+class EmailAPI extends AuroraSendCloudClient {
+    private $apiUser;
+    private $apiKey;
+    
+    public function __construct($apiUser, $apiKey) {
+        parent::__construct('https://api.aurorasendcloud.com/email');
+        $this->apiUser = $apiUser;
+        $this->apiKey = $apiKey;
+    }
+    
+    public function sendEmail($to, $subject, $message) {
+        $params = [
+            'apiUser' => $this->apiUser,
+            'apiKey' => $this->apiKey,
+            'to' => $to,
+            'subject' => $subject,
+            'message' => $message
+        ];
+        
+        return $this->makeRequest('send', $params);
+    }
+}
+
+class SMSAPI extends AuroraSendCloudClient {
+    private $smsUser;
+    private $smsKey;
+    
+    public function __construct($smsUser, $smsKey) {
+        parent::__construct('https://api.aurorasendcloud.com/sms');
+        $this->smsUser = $smsUser;
+        $this->smsKey = $smsKey;
+    }
+    
+    public function sendSMS($to, $message) {
+        $params = [
+            'smsUser' => $this->smsUser,
+            'smsKey' => $this->smsKey,
+            'to' => $to,
+            'message' => $message
+        ];
+        
+        return $this->makeRequest('send', $params);
+    }
+}
+
+// Usage example
+try {
+    // Email API usage
+    $emailClient = new EmailAPI(
+        $_ENV['EMAIL_API_USER'],
+        $_ENV['EMAIL_API_KEY']
+    );
+    
+    $result = $emailClient->sendEmail(
+        'user@example.com',
+        'Test Subject',
+        'Test message'
+    );
+    echo "Email sent successfully: " . json_encode($result) . "\n";
+    
+    // SMS API usage
+    $smsClient = new SMSAPI(
+        $_ENV['SMS_API_USER'],
+        $_ENV['SMS_API_KEY']
+    );
+    
+    $result = $smsClient->sendSMS('+1234567890', 'Hello from SMS API');
+    echo "SMS sent successfully: " . json_encode($result) . "\n";
+    
+} catch (Exception $e) {
+    echo "Error: " . $e->getMessage() . "\n";
+}
+?>
+```
+</Accordion>
+
 ## Testing Your Authentication Setup
 
 <Accordion title="Authentication Test Scripts" icon="vial">
@@ -455,7 +572,7 @@ testAuthentication();
 - Verify parameter names are correct (`apiUser`/`apiKey` vs `smsUser`/`smsKey`)
 - Confirm credentials haven't expired or been reset
 - Check parameter values don't have extra spaces or special characters
-- Ensure you're using the correct API endpoint
+- Ensure you're using the correct Aurora SendCloud API endpoint
 
 **⏱️ Unable to access after key reset**
 - **Email API**: Check if within the 15-minute grace period
@@ -534,14 +651,15 @@ def make_authenticated_request(url, params):
 
 ## Migration and Updates
 
-<Accordion title="Updating from Legacy Parameter Names" icon="sync-alt">
-If you're migrating from older API versions that used different parameter names:
+<Accordion title="Updating Parameter Names in Legacy Code" icon="sync-alt">
+If you're migrating from older versions that used different parameter naming conventions:
 
 **Migration checklist:**
-- [ ] Update `api_user` to `apiUser` in all requests
-- [ ] Update `api_key` to `apiKey` in all requests  
-- [ ] Update `sms_user` to `smsUser` in all requests
-- [ ] Update `sms_key` to `smsKey` in all requests
+- [ ] Update all instances of `api_user` to `apiUser`
+- [ ] Update all instances of `api_key` to `apiKey`  
+- [ ] Update all instances of `sms_user` to `smsUser`
+- [ ] Update all instances of `sms_key` to `smsKey`
+- [ ] Update all API base URLs to `api.aurorasendcloud.com`
 - [ ] Test all API endpoints with new parameter names
 - [ ] Update environment variables and configuration files
 - [ ] Update documentation and code comments
@@ -552,17 +670,86 @@ If you're migrating from older API versions that used different parameter names:
 #!/bin/bash
 # Script to update parameter names in source code
 
-echo "🔄 Migrating API parameter names..."
+echo "🔄 Migrating API parameter names and URLs..."
 
-# Find and replace in all relevant files
+# Find and replace parameter names in all relevant files
 find . -type f \( -name "*.js" -o -name "*.py" -o -name "*.java" -o -name "*.php" \) \
   -exec sed -i 's/api_user/apiUser/g' {} \; \
   -exec sed -i 's/api_key/apiKey/g' {} \; \
   -exec sed -i 's/sms_user/smsUser/g' {} \; \
-  -exec sed -i 's/sms_key/smsKey/g' {} \;
+  -exec sed -i 's/sms_key/smsKey/g' {} \; \
+  -exec sed -i 's/api\.example\.com/api.aurorasendcloud.com/g' {} \;
 
-echo "✅ Parameter name migration completed"
+echo "✅ Parameter name and URL migration completed"
 echo "⚠️  Please review changes and test thoroughly before deploying"
+```
+</Accordion>
+
+## Rate Limits and Performance
+
+<Accordion title="Understanding Rate Limits" icon="tachometer-alt">
+**Aurora SendCloud API Rate Limits:**
+
+- **Email API**: 1000 requests per minute per API user
+- **SMS API**: 500 requests per minute per SMS user
+- **Burst allowance**: Up to 150% of the limit for short bursts
+
+**Handling rate limits in your code:**
+
+```javascript
+// JavaScript with exponential backoff
+class RateLimitedClient {
+  constructor(apiUser, apiKey, maxRetries = 3) {
+    this.apiUser = apiUser;
+    this.apiKey = apiKey;
+    this.maxRetries = maxRetries;
+  }
+
+  async makeRequestWithRetry(url, params, retryCount = 0) {
+    try {
+      const response = await axios.post(url, params);
+      return response.data;
+    } catch (error) {
+      if (error.response?.status === 429 && retryCount < this.maxRetries) {
+        const delay = Math.pow(2, retryCount) * 1000; // Exponential backoff
+        console.log(`Rate limited. Retrying in ${delay}ms...`);
+        await new Promise(resolve => setTimeout(resolve, delay));
+        return this.makeRequestWithRetry(url, params, retryCount + 1);
+      }
+      throw error;
+    }
+  }
+}
+```
+
+**Python rate limiting:**
+
+```python
+import time
+import random
+from functools import wraps
+
+def retry_on_rate_limit(max_retries=3, base_delay=1):
+    def decorator(func):
+        @wraps(func)
+        def wrapper(*args, **kwargs):
+            for attempt in range(max_retries + 1):
+                try:
+                    return func(*args, **kwargs)
+                except requests.exceptions.HTTPError as e:
+                    if e.response.status_code == 429 and attempt < max_retries:
+                        delay = base_delay * (2 ** attempt) + random.uniform(0, 1)
+                        print(f"Rate limited. Retrying in {delay:.2f}s...")
+                        time.sleep(delay)
+                        continue
+                    raise
+            return None
+        return wrapper
+    return decorator
+
+@retry_on_rate_limit(max_retries=3, base_delay=1)
+def send_email_with_retry(client, to, subject, message):
+    return client.send_email(to, subject, message)
 ```
 </Accordion>
 
@@ -593,4 +780,6 @@ After setting up authentication, you can:
 
 ---
 
-> 💡 **Need Help?** If you encounter issues while setting up authentication, please check our [support documentation](/support) or contact our technical support team. We're here to help you get up and running quickly!
+> 💡 **Need Help?** If you encounter issues while setting up authentication, please check our [support documentation](/support) or contact our technical support team. We're here to help you get up and running quickly with Aurora SendCloud!
+
+> 🌟 **Pro Tip**: Use environment variables to store your API credentials and never commit them to version control. Consider using a secrets management service for production deployments.
