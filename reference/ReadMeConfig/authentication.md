@@ -32,20 +32,20 @@ Every Email API request must include the following two parameters:
 
 | Parameter | Description | Example |
 |-----------|-------------|---------|
-| `api_user` | Your API username | `mycompany_api` |
-| `api_key` | Your API password/key | `abc123def456...` |
+| `apiUser` | Your API username | `mycompany_api` |
+| `apiKey` | Your API password/key | `abc123def456...` |
 
 > ⚠️ **Important**: These parameters should be included directly in the request parameters, not passed through HTTPS basic authentication or request headers.
   </Tab>
   <Tab title="Request Examples">
 ```bash
 # GET request example
-curl "https://api.example.com/email/send?api_user=mycompany_api&api_key=abc123def456&to=user@example.com&subject=Hello"
+curl "https://api.example.com/email/send?apiUser=mycompany_api&apiKey=abc123def456&to=user@example.com&subject=Hello"
 
 # POST request example
 curl -X POST "https://api.example.com/email/send" \
-  -d "api_user=mycompany_api" \
-  -d "api_key=abc123def456" \
+  -d "apiUser=mycompany_api" \
+  -d "apiKey=abc123def456" \
   -d "to=user@example.com" \
   -d "subject=Hello World"
 ```
@@ -78,7 +78,7 @@ curl -X POST "https://api.example.com/email/send" \
 ```bash
 # 1. Reset the key
 # 2. Immediately test the new key
-curl "https://api.example.com/test?api_user=youruser&api_key=NEW_KEY"
+curl "https://api.example.com/test?apiUser=youruser&apiKey=NEW_KEY"
 # 3. Update production environment configuration
 # 4. Ensure switching is completed within 15 minutes
 ```
@@ -96,20 +96,20 @@ Every SMS API request must include the following two parameters:
 
 | Parameter | Description | Example |
 |-----------|-------------|---------|
-| `sms_user` | Your SMS username | `mycompany_sms` |
-| `sms_key` | Your SMS password/key | `xyz789uvw123...` |
+| `smsUser` | Your SMS username | `mycompany_sms` |
+| `smsKey` | Your SMS password/key | `xyz789uvw123...` |
 
 > ⚠️ **Important**: Similar to the Email API, these parameters need to be included directly in the request parameters.
   </Tab>
   <Tab title="Request Examples">
 ```bash
 # GET request example
-curl "https://api.example.com/sms/send?sms_user=mycompany_sms&sms_key=xyz789uvw123&to=+1234567890&message=Hello"
+curl "https://api.example.com/sms/send?smsUser=mycompany_sms&smsKey=xyz789uvw123&to=+1234567890&message=Hello"
 
 # POST request example
 curl -X POST "https://api.example.com/sms/send" \
-  -d "sms_user=mycompany_sms" \
-  -d "sms_key=xyz789uvw123" \
+  -d "smsUser=mycompany_sms" \
+  -d "smsKey=xyz789uvw123" \
   -d "to=+1234567890" \
   -d "message=Hello World"
 ```
@@ -145,7 +145,7 @@ curl -X POST "https://api.example.com/sms/send" \
 # 2. Reset the key
 # 3. Immediately update configuration
 # 4. Test the new key right away
-curl "https://api.example.com/sms/test?sms_user=youruser&sms_key=NEW_SMS_KEY"
+curl "https://api.example.com/sms/test?smsUser=youruser&smsKey=NEW_SMS_KEY"
 ```
 </Accordion>
 
@@ -186,44 +186,383 @@ if (response.status === 401) {
   </Column>
 </Columns>
 
+## Code Examples
+
+### JavaScript/Node.js Integration
+
+<Accordion title="Email API Integration" icon="js-square">
+```javascript
+// Email API example with proper authentication
+const axios = require('axios');
+
+class EmailAPIClient {
+  constructor(apiUser, apiKey) {
+    this.apiUser = apiUser;
+    this.apiKey = apiKey;
+    this.baseURL = 'https://api.example.com/email';
+  }
+
+  async sendEmail(to, subject, message) {
+    try {
+      const response = await axios.post(`${this.baseURL}/send`, {
+        apiUser: this.apiUser,
+        apiKey: this.apiKey,
+        to: to,
+        subject: subject,
+        message: message
+      });
+      
+      return response.data;
+    } catch (error) {
+      if (error.response?.status === 401) {
+        throw new Error('Authentication failed. Check your API credentials.');
+      }
+      throw error;
+    }
+  }
+}
+
+// Usage
+const client = new EmailAPIClient(
+  process.env.EMAIL_API_USER,
+  process.env.EMAIL_API_KEY
+);
+
+client.sendEmail('user@example.com', 'Hello', 'Test message')
+  .then(result => console.log('Email sent:', result))
+  .catch(error => console.error('Failed to send email:', error));
+```
+</Accordion>
+
+<Accordion title="SMS API Integration" icon="mobile">
+```javascript
+// SMS API example with proper authentication
+const axios = require('axios');
+
+class SMSAPIClient {
+  constructor(smsUser, smsKey) {
+    this.smsUser = smsUser;
+    this.smsKey = smsKey;
+    this.baseURL = 'https://api.example.com/sms';
+  }
+
+  async sendSMS(to, message) {
+    try {
+      const response = await axios.post(`${this.baseURL}/send`, {
+        smsUser: this.smsUser,
+        smsKey: this.smsKey,
+        to: to,
+        message: message
+      });
+      
+      return response.data;
+    } catch (error) {
+      if (error.response?.status === 401) {
+        throw new Error('SMS authentication failed. Check your credentials.');
+      }
+      throw error;
+    }
+  }
+}
+
+// Usage
+const smsClient = new SMSAPIClient(
+  process.env.SMS_API_USER,
+  process.env.SMS_API_KEY
+);
+
+smsClient.sendSMS('+1234567890', 'Hello from SMS API')
+  .then(result => console.log('SMS sent:', result))
+  .catch(error => console.error('Failed to send SMS:', error));
+```
+</Accordion>
+
+### Python Integration
+
+<Accordion title="Python Example" icon="python">
+```python
+import requests
+import os
+from typing import Optional, Dict, Any
+
+class APIClient:
+    def __init__(self, base_url: str):
+        self.base_url = base_url
+        self.session = requests.Session()
+    
+    def _make_request(self, endpoint: str, params: Dict[str, Any]) -> Dict[str, Any]:
+        """Make authenticated request to API"""
+        try:
+            response = self.session.post(f"{self.base_url}/{endpoint}", data=params)
+            response.raise_for_status()
+            return response.json()
+        except requests.exceptions.HTTPError as e:
+            if response.status_code == 401:
+                raise Exception("Authentication failed. Check your API credentials.")
+            raise e
+
+class EmailAPI(APIClient):
+    def __init__(self, api_user: str, api_key: str):
+        super().__init__("https://api.example.com/email")
+        self.api_user = api_user
+        self.api_key = api_key
+    
+    def send_email(self, to: str, subject: str, message: str) -> Dict[str, Any]:
+        """Send email via Email API"""
+        params = {
+            'apiUser': self.api_user,
+            'apiKey': self.api_key,
+            'to': to,
+            'subject': subject,
+            'message': message
+        }
+        return self._make_request('send', params)
+
+class SMSAPI(APIClient):
+    def __init__(self, sms_user: str, sms_key: str):
+        super().__init__("https://api.example.com/sms")
+        self.sms_user = sms_user
+        self.sms_key = sms_key
+    
+    def send_sms(self, to: str, message: str) -> Dict[str, Any]:
+        """Send SMS via SMS API"""
+        params = {
+            'smsUser': self.sms_user,
+            'smsKey': self.sms_key,
+            'to': to,
+            'message': message
+        }
+        return self._make_request('send', params)
+
+# Usage example
+if __name__ == "__main__":
+    # Email API usage
+    email_client = EmailAPI(
+        os.getenv('EMAIL_API_USER'),
+        os.getenv('EMAIL_API_KEY')
+    )
+    
+    try:
+        result = email_client.send_email(
+            'user@example.com',
+            'Test Subject',
+            'Test message'
+        )
+        print(f"Email sent successfully: {result}")
+    except Exception as e:
+        print(f"Failed to send email: {e}")
+    
+    # SMS API usage
+    sms_client = SMSAPI(
+        os.getenv('SMS_API_USER'),
+        os.getenv('SMS_API_KEY')
+    )
+    
+    try:
+        result = sms_client.send_sms('+1234567890', 'Hello from SMS API')
+        print(f"SMS sent successfully: {result}")
+    except Exception as e:
+        print(f"Failed to send SMS: {e}")
+```
+</Accordion>
+
+## Testing Your Authentication Setup
+
+<Accordion title="Authentication Test Scripts" icon="vial">
+**Quick test script for bash/shell:**
+
+```bash
+#!/bin/bash
+
+# Configuration
+EMAIL_API_USER="your_email_user"
+EMAIL_API_KEY="your_email_key"
+SMS_API_USER="your_sms_user"
+SMS_API_KEY="your_sms_key"
+
+echo "🧪 Testing Email API authentication..."
+EMAIL_RESPONSE=$(curl -s -w "%{http_code}" \
+  "https://api.example.com/email/test?apiUser=$EMAIL_API_USER&apiKey=$EMAIL_API_KEY")
+
+EMAIL_STATUS="${EMAIL_RESPONSE: -3}"
+if [ "$EMAIL_STATUS" = "200" ]; then
+  echo "✅ Email API authentication successful"
+else
+  echo "❌ Email API authentication failed (HTTP $EMAIL_STATUS)"
+fi
+
+echo "🧪 Testing SMS API authentication..."
+SMS_RESPONSE=$(curl -s -w "%{http_code}" \
+  "https://api.example.com/sms/test?smsUser=$SMS_API_USER&smsKey=$SMS_API_KEY")
+
+SMS_STATUS="${SMS_RESPONSE: -3}"
+if [ "$SMS_STATUS" = "200" ]; then
+  echo "✅ SMS API authentication successful"
+else
+  echo "❌ SMS API authentication failed (HTTP $SMS_STATUS)"
+fi
+```
+
+**Node.js test script:**
+
+```javascript
+const axios = require('axios');
+
+async function testAuthentication() {
+  const tests = [
+    {
+      name: 'Email API',
+      url: 'https://api.example.com/email/test',
+      params: {
+        apiUser: process.env.EMAIL_API_USER,
+        apiKey: process.env.EMAIL_API_KEY
+      }
+    },
+    {
+      name: 'SMS API',
+      url: 'https://api.example.com/sms/test',
+      params: {
+        smsUser: process.env.SMS_API_USER,
+        smsKey: process.env.SMS_API_KEY
+      }
+    }
+  ];
+
+  for (const test of tests) {
+    try {
+      console.log(`🧪 Testing ${test.name} authentication...`);
+      const response = await axios.get(test.url, { params: test.params });
+      console.log(`✅ ${test.name} authentication successful`);
+      console.log(`   Response:`, response.data);
+    } catch (error) {
+      if (error.response?.status === 401) {
+        console.log(`❌ ${test.name} authentication failed: Invalid credentials`);
+      } else {
+        console.log(`❌ ${test.name} test failed:`, error.message);
+      }
+    }
+  }
+}
+
+testAuthentication();
+```
+</Accordion>
+
 ## Troubleshooting
 
 <Accordion title="Common Authentication Issues" icon="question-circle">
 **🚫 Authentication Failed (401 Unauthorized)**
-- Check parameter names are correct (`api_user`/`api_key` vs `sms_user`/`sms_key`)
+- Verify parameter names are correct (`apiUser`/`apiKey` vs `smsUser`/`smsKey`)
 - Confirm credentials haven't expired or been reset
-- Verify parameter values don't have extra spaces or special characters
+- Check parameter values don't have extra spaces or special characters
+- Ensure you're using the correct API endpoint
 
 **⏱️ Unable to access after key reset**
-- Email API: Check if within the 15-minute grace period
-- SMS API: Confirm immediate update to new key
+- **Email API**: Check if within the 15-minute grace period
+- **SMS API**: Confirm immediate update to new key was successful
 
 **📝 Parameter passing issues**
 - Ensure parameters are in request body or query string, not request headers
-- Check URL encoding is correct
-- Verify POST request Content-Type settings
+- Verify URL encoding is correct for special characters
+- Check POST request Content-Type is set to `application/x-www-form-urlencoded`
+
+**🔗 Network and connectivity issues**
+- Verify API endpoint URLs are correct
+- Check firewall settings allow outbound HTTPS requests
+- Test with different network connections if possible
+
+**🔄 Rate limiting errors**
+- Check if you've exceeded API rate limits
+- Implement exponential backoff for retry logic
+- Monitor your API usage patterns
 </Accordion>
 
-<Accordion title="Testing Your Authentication Setup" icon="vial">
-**Quick test script:**
+<Accordion title="Debug Mode and Logging" icon="bug">
+**Enable debug logging in your applications:**
+
+```javascript
+// JavaScript debug example
+const debug = require('debug')('api:auth');
+
+async function makeAuthenticatedRequest(url, params) {
+  debug('Making authenticated request to:', url);
+  debug('Parameters (excluding sensitive data):', {
+    ...params,
+    apiKey: '[REDACTED]',
+    smsKey: '[REDACTED]'
+  });
+  
+  try {
+    const response = await axios.post(url, params);
+    debug('Request successful, status:', response.status);
+    return response.data;
+  } catch (error) {
+    debug('Request failed:', error.message);
+    if (error.response) {
+      debug('Response status:', error.response.status);
+      debug('Response headers:', error.response.headers);
+    }
+    throw error;
+  }
+}
+```
+
+**Python logging example:**
+
+```python
+import logging
+
+# Configure logging
+logging.basicConfig(level=logging.DEBUG)
+logger = logging.getLogger(__name__)
+
+def make_authenticated_request(url, params):
+    # Log request (without sensitive data)
+    safe_params = {k: '[REDACTED]' if 'key' in k.lower() else v 
+                   for k, v in params.items()}
+    logger.debug(f"Making request to {url} with params: {safe_params}")
+    
+    try:
+        response = requests.post(url, data=params)
+        logger.debug(f"Request successful, status: {response.status_code}")
+        return response.json()
+    except requests.exceptions.RequestException as e:
+        logger.error(f"Request failed: {e}")
+        raise
+```
+</Accordion>
+
+## Migration and Updates
+
+<Accordion title="Updating from Legacy Parameter Names" icon="sync-alt">
+If you're migrating from older API versions that used different parameter names:
+
+**Migration checklist:**
+- [ ] Update `api_user` to `apiUser` in all requests
+- [ ] Update `api_key` to `apiKey` in all requests  
+- [ ] Update `sms_user` to `smsUser` in all requests
+- [ ] Update `sms_key` to `smsKey` in all requests
+- [ ] Test all API endpoints with new parameter names
+- [ ] Update environment variables and configuration files
+- [ ] Update documentation and code comments
+
+**Automated migration script:**
 
 ```bash
 #!/bin/bash
-# Email API test
-echo "Testing Email API authentication..."
-curl -s "https://api.example.com/email/test?api_user=$EMAIL_API_USER&api_key=$EMAIL_API_KEY"
+# Script to update parameter names in source code
 
-echo -e "\nTesting SMS API authentication..."
-curl -s "https://api.example.com/sms/test?sms_user=$SMS_API_USER&sms_key=$SMS_API_KEY"
-```
+echo "🔄 Migrating API parameter names..."
 
-**Successful response example:**
-```json
-{
-  "status": "success",
-  "message": "Authentication successful",
-  "user": "your_api_user"
-}
+# Find and replace in all relevant files
+find . -type f \( -name "*.js" -o -name "*.py" -o -name "*.java" -o -name "*.php" \) \
+  -exec sed -i 's/api_user/apiUser/g' {} \; \
+  -exec sed -i 's/api_key/apiKey/g' {} \; \
+  -exec sed -i 's/sms_user/smsUser/g' {} \; \
+  -exec sed -i 's/sms_key/smsKey/g' {} \;
+
+echo "✅ Parameter name migration completed"
+echo "⚠️  Please review changes and test thoroughly before deploying"
 ```
 </Accordion>
 
@@ -233,16 +572,25 @@ After setting up authentication, you can:
 
 <Cards columns="3">
   <Card title="API Reference" href="/api-reference" icon="book">
-    View complete API endpoint documentation
+    View complete API endpoint documentation with examples
   </Card>
-  <Card title="Quick Start" href="/getting-started" icon="play-circle">
-    Follow our quick start guide
+  <Card title="Quick Start Guide" href="/getting-started" icon="play-circle">
+    Follow our step-by-step integration guide
   </Card>
   <Card title="SDK Documentation" href="/sdks" icon="code">
-    Use our official SDK libraries
+    Use our official SDK libraries for faster integration
+  </Card>
+  <Card title="Rate Limits" href="/rate-limits" icon="tachometer-alt">
+    Understand API usage limits and best practices
+  </Card>
+  <Card title="Webhooks" href="/webhooks" icon="link">
+    Set up real-time notifications for your applications
+  </Card>
+  <Card title="Support" href="/support" icon="life-ring">
+    Get help from our technical support team
   </Card>
 </Cards>
 
 ---
 
-> 💡 **Need Help?** If you encounter issues while setting up authentication, please check our [support documentation](/support) or contact our technical support team.
+> 💡 **Need Help?** If you encounter issues while setting up authentication, please check our [support documentation](/support) or contact our technical support team. We're here to help you get up and running quickly!
