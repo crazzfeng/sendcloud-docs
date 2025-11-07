@@ -40,10 +40,10 @@ Every Email API request must include the following two parameters:
   <Tab title="Request Examples">
 ```bash
 # GET request example
-curl "https://api.example.com/email/send?apiUser=mycompany_api&apiKey=abc123def456&to=user@example.com&subject=Hello"
+curl "https://api.aurorasendcloud.com/email/send?apiUser=mycompany_api&apiKey=abc123def456&to=user@example.com&subject=Hello"
 
 # POST request example
-curl -X POST "https://api.example.com/email/send" \
+curl -X POST "https://api.aurorasendcloud.com/email/send" \
   -d "apiUser=mycompany_api" \
   -d "apiKey=abc123def456" \
   -d "to=user@example.com" \
@@ -62,9 +62,9 @@ curl -X POST "https://api.example.com/email/send" \
 3. Select the **API Key Management** section
 
 **Available actions:**
-- ✅ Create new `API_USER` (following platform naming conventions)
-- 🔑 Generate associated `API_KEY` for users
-- 🔄 Reset existing `API_KEY`
+- ✅ Create new `apiUser` (following platform naming conventions)
+- 🔑 Generate associated `apiKey` for users
+- 🔄 Reset existing `apiKey`
 </Accordion>
 
 <Accordion title="Secure Reset Process" icon="shield-alt">
@@ -78,7 +78,7 @@ curl -X POST "https://api.example.com/email/send" \
 ```bash
 # 1. Reset the key
 # 2. Immediately test the new key
-curl "https://api.example.com/test?apiUser=youruser&apiKey=NEW_KEY"
+curl "https://api.aurorasendcloud.com/test?apiUser=youruser&apiKey=NEW_KEY"
 # 3. Update production environment configuration
 # 4. Ensure switching is completed within 15 minutes
 ```
@@ -104,10 +104,10 @@ Every SMS API request must include the following two parameters:
   <Tab title="Request Examples">
 ```bash
 # GET request example
-curl "https://api.example.com/sms/send?smsUser=mycompany_sms&smsKey=xyz789uvw123&to=+1234567890&message=Hello"
+curl "https://api.aurorasendcloud.com/sms/send?smsUser=mycompany_sms&smsKey=xyz789uvw123&to=+1234567890&message=Hello"
 
 # POST request example
-curl -X POST "https://api.example.com/sms/send" \
+curl -X POST "https://api.aurorasendcloud.com/sms/send" \
   -d "smsUser=mycompany_sms" \
   -d "smsKey=xyz789uvw123" \
   -d "to=+1234567890" \
@@ -127,15 +127,15 @@ curl -X POST "https://api.example.com/sms/send" \
 4. Access the **Send Settings** page
 
 **Available actions:**
-- ➕ Add new `SMS_USER` (following platform naming conventions)
-- 🔑 Generate associated `SMS_KEY` for users
-- 🔄 Reset existing `SMS_KEY`
+- ➕ Add new `smsUser` (following platform naming conventions)
+- 🔑 Generate associated `smsKey` for users
+- 🔄 Reset existing `smsKey`
 </Accordion>
 
 <Accordion title="Instant Reset Mechanism" icon="bolt">
 **Mechanism when resetting SMS keys:**
 
-- ⚡ **Immediate effect**: New `SMS_KEY` takes effect immediately after reset
+- ⚡ **Immediate effect**: New `smsKey` takes effect immediately after reset
 - ❌ **Old key invalidated**: Old key is immediately invalidated with no grace period
 - 🚨 **Immediate update required**: Integration configuration must be updated immediately to avoid service interruption
 
@@ -145,7 +145,7 @@ curl -X POST "https://api.example.com/sms/send" \
 # 2. Reset the key
 # 3. Immediately update configuration
 # 4. Test the new key right away
-curl "https://api.example.com/sms/test?smsUser=youruser&smsKey=NEW_SMS_KEY"
+curl "https://api.aurorasendcloud.com/sms/test?smsUser=youruser&smsKey=NEW_SMS_KEY"
 ```
 </Accordion>
 
@@ -199,7 +199,7 @@ class EmailAPIClient {
   constructor(apiUser, apiKey) {
     this.apiUser = apiUser;
     this.apiKey = apiKey;
-    this.baseURL = 'https://api.example.com/email';
+    this.baseURL = 'https://api.aurorasendcloud.com/email';
   }
 
   async sendEmail(to, subject, message) {
@@ -243,7 +243,7 @@ class SMSAPIClient {
   constructor(smsUser, smsKey) {
     this.smsUser = smsUser;
     this.smsKey = smsKey;
-    this.baseURL = 'https://api.example.com/sms';
+    this.baseURL = 'https://api.aurorasendcloud.com/sms';
   }
 
   async sendSMS(to, message) {
@@ -303,7 +303,7 @@ class APIClient:
 
 class EmailAPI(APIClient):
     def __init__(self, api_user: str, api_key: str):
-        super().__init__("https://api.example.com/email")
+        super().__init__("https://api.aurorasendcloud.com/email")
         self.api_user = api_user
         self.api_key = api_key
     
@@ -320,7 +320,7 @@ class EmailAPI(APIClient):
 
 class SMSAPI(APIClient):
     def __init__(self, sms_user: str, sms_key: str):
-        super().__init__("https://api.example.com/sms")
+        super().__init__("https://api.aurorasendcloud.com/sms")
         self.sms_user = sms_user
         self.sms_key = sms_key
     
@@ -382,7 +382,7 @@ SMS_API_KEY="your_sms_key"
 
 echo "🧪 Testing Email API authentication..."
 EMAIL_RESPONSE=$(curl -s -w "%{http_code}" \
-  "https://api.example.com/email/test?apiUser=$EMAIL_API_USER&apiKey=$EMAIL_API_KEY")
+  "https://api.aurorasendcloud.com/email/test?apiUser=$EMAIL_API_USER&apiKey=$EMAIL_API_KEY")
 
 EMAIL_STATUS="${EMAIL_RESPONSE: -3}"
 if [ "$EMAIL_STATUS" = "200" ]; then
@@ -393,7 +393,7 @@ fi
 
 echo "🧪 Testing SMS API authentication..."
 SMS_RESPONSE=$(curl -s -w "%{http_code}" \
-  "https://api.example.com/sms/test?smsUser=$SMS_API_USER&smsKey=$SMS_API_KEY")
+  "https://api.aurorasendcloud.com/sms/test?smsUser=$SMS_API_USER&smsKey=$SMS_API_KEY")
 
 SMS_STATUS="${SMS_RESPONSE: -3}"
 if [ "$SMS_STATUS" = "200" ]; then
@@ -412,7 +412,7 @@ async function testAuthentication() {
   const tests = [
     {
       name: 'Email API',
-      url: 'https://api.example.com/email/test',
+      url: 'https://api.aurorasendcloud.com/email/test',
       params: {
         apiUser: process.env.EMAIL_API_USER,
         apiKey: process.env.EMAIL_API_KEY
@@ -420,7 +420,7 @@ async function testAuthentication() {
     },
     {
       name: 'SMS API',
-      url: 'https://api.example.com/sms/test',
+      url: 'https://api.aurorasendcloud.com/sms/test',
       params: {
         smsUser: process.env.SMS_API_USER,
         smsKey: process.env.SMS_API_KEY
@@ -467,7 +467,7 @@ testAuthentication();
 - Check POST request Content-Type is set to `application/x-www-form-urlencoded`
 
 **🔗 Network and connectivity issues**
-- Verify API endpoint URLs are correct
+- Verify API endpoint URLs are correct (api.aurorasendcloud.com)
 - Check firewall settings allow outbound HTTPS requests
 - Test with different network connections if possible
 
