@@ -54,24 +54,7 @@ Aurora SendCloud provides two editing modes to meet different user needs:
   </Tab>
 </Tabs>
 
-**ShanEdit (Visual Editor)**
-
-* Features: Visual drag-and-drop editing, easy to use
-* Target audience: Marketing and operations professionals with non-technical backgrounds
-* Functions:
-  * Directly drag and drop text, images, and other elements
-  * Use a library of pre-designed professional templates
-  * Real-time preview functionality
-  * One-click copy and use existing templates
-
-**Source Code Editor**
-
-* Features: Direct HTML source code or rich text content editing with high flexibility
-* Target audience: Developers and professional users
-* Operation:
-  * Click the "Source" button on the right to switch modes
-  * Supports direct pasting of external HTML code
-  * Full code control capabilities
+<br />
 
 ## Usage Guidelines
 
