@@ -12,49 +12,151 @@ icon: icon-book1
 link:
   new_tab: false
 ---
-# Getting Started
+<br />
 
-Welcome to your ReadMe project! This guide will help you set up your API documentation and create an effective welcome experience for your users.
+# AuroraSendCloud API Quickstart
 
-## Initial Setup
+Get started with AuroraSendCloud's powerful APIs to send emails, manage contacts, track performance, and integrate seamlessly with your applications. Follow this step-by-step guide to make your first API call in minutes—with clear distinctions between multi-region email APIs and the single-region SMS API.
 
-Once you've completed the setup flow, your Getting Started page will display:
-- **3-step Getting Started widget** (left side) - guides users through their first API call
-- **Recent Activity widget** (right side) - shows latest updates and changes
-- **Additional content area** (below) - where you can add custom Markdown content
+## Prerequisites
 
-## Navigating Your Dashboard
+Before you begin, ensure you have:
 
-Welcome to your <Glossary>dashboard</Glossary>! This is your central hub for managing your ReadMe project. Here you can:
+* An active AuroraSendCloud account (sign up at [aurorasendcloud.com](https://www.aurorasendcloud.com/))
+* Your **API Key** and **API User** (found in your account’s [API Key Management](https://www.aurorasendcloud.com/docs/API/index/) page)
+* A supported HTTP client (e.g., cURL, Postman, Python’s `requests` library)
+* Confirm your account’s **region** (Singapore, US, or Hong Kong) for email API access (not required for SMS API)
 
-- Create and edit documentation pages
-- Publish content to your live <Glossary>hub</Glossary>
-- Manage your team and user permissions
-- Customize your project's appearance and branding
-- Update your profile settings
+## 1. API Base URLs (By Service Type)
 
-## Configuration Setup 🔗
+### Email & Core APIs (Multi-Region)
 
-<Image align="center" className="border" border={true} src="https://files.readme.io/207ef06-getting-started-setup.png" />
+Choose the base URL that matches your account’s region for email, contact management, templates, and other core services. All requests must use **HTTPS**, and responses are in **JSON** format.
 
-When you first visit the Getting Started or Authentication page in your project dashboard, you'll see a guided setup flow. This one-time setup process will walk you through essential configuration steps that automatically update both pages once completed.
+| Region             | Base URL                                 | Coverage                                  |
+| ------------------ | ---------------------------------------- | ----------------------------------------- |
+| Singapore (SG)     | `https://api.aurorasendcloud.com/v1/`    | Default region for APAC users             |
+| United States (US) | `https://api-us.aurorasendcloud.com/v1/` | For North American users and services     |
+| Hong Kong (HK)     | `https://api-hk.aurorasendcloud.com/v1/` | For Greater China and nearby APAC regions |
 
-**To enable personalized documentation:** Use the Personalized Docs Webhook to configure your Getting Started and Authentication pages. This allows your developers to easily locate their API keys and make sample requests directly from your hub. Learn more about [setting up reference core pages](https://docs.readme.com/main/docs/reference-core-pages).
+> ℹ️ Note: Your account is tied to a specific region during sign-up. Using a non-matching base URL for email/core APIs will cause authentication failures or data inconsistencies. Confirm your region in account settings.
 
-## Advanced Configuration
+### SMS API (Single Region)
 
-### First Page Settings
+The SMS API uses a **unified global base URL** (no regional endpoints required):
 
-Use the dropdown menu to select which page appears first when users visit your documentation site.
+* Base URL: `https://api.aurorasendcloud.com/v1/`
+* All SMS requests must use this URL regardless of your account’s region.
+* Authentication and response format are consistent with email/core APIs.
 
-<Image align="center" className="border" border={true} src="https://files.readme.io/aef201d-Screen_Shot_2020-10-20_at_4.37.37_PM.png" />
+## 2. Authentication
 
-### Section Names
+Authenticate all API requests (email, SMS, core services) by including your credentials as **request parameters**:
 
-Customize section names (such as "Documentation") to match your project's terminology. Changes made here will automatically propagate throughout your entire ReadMe instance.
+* `api_user`: Your AuroraSendCloud API username
+* `api_key`: Your AuroraSendCloud API key
 
-![](https://files.readme.io/c697a7b-Screen_Shot_2023-04-20_at_12.35.19_PM.png)
+> ⚠️ Critical Security Note: Never expose your API credentials in client-side code (e.g., browsers, mobile apps). Restrict access to your API key, rotate it regularly via the API Key Management page, and avoid hardcoding credentials in source code.
 
----
+## 3. API Response Format
 
-**Next Steps:** Once your basic setup is complete, explore the dashboard to customize your documentation further and invite team members to collaborate on your project.
+All API responses (email and SMS) follow a consistent JSON structure:
+
+### Success Example (Request Successful)
+
+```json
+{
+  "result": true,
+  "statusCode": 200,
+  "message": "request was successful",
+  "info": {}
+}
+```
+
+### Success Example (Data Acquisition)
+
+```json
+{
+  "statusCode": 200,
+  "info": {
+    "data": {
+      "gmtCreated": "2015-10-19 15:39:27",
+      "gmtUpdated": "2015-10-19 15:39:27",
+      "labelId": 123,
+      "labelName": "test"
+    }
+  },
+  "message": "request was successful",
+  "result": true
+}
+```
+
+### Error Example (Authentication Failed)
+
+```json
+{
+  "result": false,
+  "statusCode": 40005,
+  "message": "authentication failed",
+  "info": {}
+}
+```
+
+#### Response Field Definitions:
+
+* `result`: Boolean indicating if the request succeeded (`true`) or failed (`false`).
+* `statusCode`: Numeric code representing the request status (see full list below).
+* `message`: Chinese description of the status code (for debugging and user feedback).
+* `info`: Contains response data (e.g., SMS/email IDs, retrieved records) on success; empty on failure.
+
+## 4. API Return Codes
+
+The following table lists common return codes and their meanings (applicable to both email and SMS APIs):
+
+| Status Code | Meaning                                                |
+| ----------- | ------------------------------------------------------ |
+| 200         | Request was successful                                 |
+| 40001       | `start` cannot be empty                                |
+| 40002       | Invalid `start` parameter                              |
+| 40003       | `limit` cannot be empty                                |
+| 40004       | Invalid `limit` parameter                              |
+| 40005       | Authentication failed (check `api_user`/`api_key`)     |
+| 40006       | Invalid `days` format (must be a positive integer)     |
+| 40007       | Invalid `startDate` format (use "YYYY-MM-DD")          |
+| 40008       | Invalid `endDate` format (use "YYYY-MM-DD")            |
+| 40011       | `email` cannot be empty                                |
+| 40012       | Invalid email format                                   |
+| 40100       | Label was successfully created                         |
+| 40101       | Failed to create label                                 |
+| 40107       | Label was successfully deleted                         |
+| 40108       | Failed to delete label                                 |
+| 40301       | User does not exist                                    |
+| 40903       | Email sent successfully                                |
+| 40901       | Email sending failed                                   |
+| 40912       | Your account balance is insufficient (please recharge) |
+| 50000       | Interface frequency limited                            |
+| 501         | Server exception                                       |
+| 6001        | You don't have permission to access                    |
+
+For a full list of return codes, refer to the [API Reference](https://www.aurorasendcloud.com/docs/API/index/).
+
+## 5. Next Steps
+
+Explore key API endpoints to extend your integration:
+
+* [Email APIs](https://www.aurorasendcloud.com/docs/API/index/): Send transactional/bulk emails, track deliveries (use region-specific base URL)
+* [SMS API](https://www.aurorasendcloud.com/docs/API/index/): Send transactional SMS (use unified `api.aurorasendcloud.com/v1/` URL)
+* [Contact Management](https://www.aurorasendcloud.com/docs/API/index/): Create/update contacts, manage lists (region-specific)
+* [Email Templates](https://www.aurorasendcloud.com/docs/API/index/): Use pre-built templates for consistent branding (region-specific)
+* [Suppression Lists](https://www.aurorasendcloud.com/docs/API/index/): Manage unsubscribes and bounces (region-specific)
+
+## 6. Resources
+
+* [Full API Reference](https://www.aurorasendcloud.com/docs/API/index/): Detailed docs for all endpoints (includes SMS-specific parameters)
+* [SDKs & Libraries](https://www.aurorasendcloud.com/docs/API/index/): Official libraries for Python, Java, Node.js, and PHP (supports both multi-region and SMS APIs)
+* [Region-Specific Compliance](https://www.aurorasendcloud.com/docs/API/index/): Guidelines for GDPR (EU/US), PDPA (SG/HK), and SMS regulatory requirements
+* [Support](https://www.aurorasendcloud.com/support): Contact the team for region-specific or SMS API-related technical issues
+
+***
+
+Want me to help you add **SMS API-specific parameter details** (e.g., required fields for sending SMS) or **a side-by-side comparison of email vs. SMS API usage** to clarify differences?
