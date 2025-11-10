@@ -39,7 +39,6 @@ The Email API uses parameter-based authentication, requiring all requests to inc
     | --------- | --------------------- | ------------------------- |
     | `apiUser` | Your API username     | `mycompany_api`           |
     | `apiKey`  | Your API password/key | `abc123def456...`         |
-    | `from`    | Sender email address  | `noreply@yourcompany.com` |
 
     > ⚠️ **Important**: These parameters should be included directly in the request parameters, not passed through HTTPS basic authentication or request headers.
   </Tab>
@@ -224,7 +223,7 @@ The SMS API also uses parameter-based authentication but with different paramete
 
   * Verify API endpoint URLs are correct (api.aurorasendcloud.com)
   * Check firewall settings allow outbound HTTPS requests
-  * Test with different network connections if possible 
+  * Test with different network connections if possible
 </Accordion>
 
 ***
