@@ -54,7 +54,60 @@ Aurora SendCloud provides two editing modes to meet different user needs:
   </Tab>
 </Tabs>
 
-<br />
+## How to create and send an email template?
+
+This section will demonstrate how to create and send an email template using a fashion brand launching a new product.
+
+Example : Creating a "New Product Launch Announcement" Template
+
+The goal of this email is to introduce the new product line to subscribers, create anticipation, and directly drive sales.
+
+### Creating a New Template
+
+1.Log in to Aurora SendCloud and go to "Content" - "Email".
+
+2.Click "Template Create" and choose a template editing method, such as Flash Editor.
+
+3.Set the basic template information:
+
+* Template Name: New Product Launch Announcement
+* Invoke Name: New_product_launch
+* Email Type: Batch Email
+* Email Subject (to attract openes): New Product Launch | %product_name% Series, Now Available!
+
+4.Design Template Content
+
+Select from the template library or create a new template directly.
+
+* Template library: Replace product images and modify product description text.
+* Create a new template: Drag and drop components, upload product images, and modify product description text.
+
+If you want to add variables (such as user names) to the template, please use %% to enclose your variable name. For example: %name%
+
+Don't forget to add preview text. For example: Explore exquisite products and start a minimalist new experience...
+
+5.Save Template
+
+Preview the effect (especially on mobile devices), ensure all modules display correctly, and then click "Save".
+
+### How to Use This Template to Launch a New Product Launch Campaign
+
+1.Log in to Aurora SendCloud and go to "Marketing" - "Campaign".
+
+2.Click "Create Campaign" and set the campaign information.
+
+* Send Content, Select Template: New Product Launch Announcement
+* Select Target Audience: Choose the email list to send to, such as "All Subscribers" or a more granular segmentation list.
+
+Fill in Content and Variables: The system will load the template and replace the variables in the email template with the corresponding variable values ​​from the contact attributes.
+
+3.Test and Send
+
+Be sure to send a test email: Send it to your own email address to check that all links (especially purchase links and discount codes) are correct.
+
+Set Send Time: Choose to send it during the time when your target users are most active (such as a weekday afternoon).
+
+Click "Save".
 
 ## Usage Guidelines
 
