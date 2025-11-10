@@ -8,12 +8,12 @@ hidden: false
 link:
   new_tab: false
 metadata:
-  title: Inbox Insight - Email Delivery Analytics & Placement Tracking
+  title: Inbox Placement - Email Delivery Analytics & Placement Tracking
   description: >-
-    Optimize email delivery with Inbox Insight's real-time placement analytics.
-    Monitor email delivery across Gmail, Outlook & 15+ providers. Get automated
-    reputation protection and AI-powered domain warm-up to improve inbox
-    placement rates.
+    Optimize email delivery with Inbox Placement's real-time placement
+    analytics. Monitor email delivery across Gmail, Outlook & 15+ providers. Get
+    automated reputation protection and AI-powered domain warm-up to improve
+    inbox placement rates.
   keywords:
     - email delivery
     - email delivery analytics
