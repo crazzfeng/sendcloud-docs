@@ -29,12 +29,13 @@ The Email API uses parameter-based authentication, requiring all requests to inc
 
 <Tabs>
   <Tab title="Required Parameters">
-    Every Email API request must include the following two parameters:
+    Every Email API request must include the following three parameters:
 
-    | Parameter | Description           | Example           |
-    | --------- | --------------------- | ----------------- |
-    | `apiUser` | Your API username     | `mycompany_api`   |
-    | `apiKey`  | Your API password/key | `abc123def456...` |
+    | Parameter | Description           | Example                    |
+    | --------- | --------------------- | -------------------------- |
+    | `apiUser` | Your API username     | `mycompany_api`            |
+    | `apiKey`  | Your API password/key | `abc123def456...`          |
+    | `from`    | Sender email address  | `noreply@yourcompany.com`  |
 
     > ⚠️ **Important**: These parameters should be included directly in the request parameters, not passed through HTTPS basic authentication or request headers.
   </Tab>
@@ -42,12 +43,13 @@ The Email API uses parameter-based authentication, requiring all requests to inc
   <Tab title="Request Examples">
     ```bash
     # GET request example
-    curl "https://api.aurorasendcloud.com/email/send?apiUser=mycompany_api&apiKey=abc123def456&to=user@example.com&subject=Hello"
+    curl "https://api.aurorasendcloud.com/email/send?apiUser=mycompany_api&apiKey=abc123def456&from=noreply@yourcompany.com&to=user@example.com&subject=Hello"
 
     # POST request example
     curl -X POST "https://api.aurorasendcloud.com/email/send" \
       -d "apiUser=mycompany_api" \
       -d "apiKey=abc123def456" \
+      -d "from=noreply@yourcompany.com" \
       -d "to=user@example.com" \
       -d "subject=Hello World"
     ```
@@ -111,7 +113,7 @@ The SMS API also uses parameter-based authentication but with different paramete
     curl "https://api.aurorasendcloud.com/smsapi/send?smsUser=mycompany_sms&smsKey=xyz789uvw123&to=+1234567890&message=Hello"
 
     # POST request example
-    curl -X POST "https://api.aurorasendcloud.com/sms/send" \
+    curl -X POST "https://api.aurorasendcloud.com/smsapi/send" \
       -d "smsUser=mycompany_sms" \
       -d "smsKey=xyz789uvw123" \
       -d "to=+1234567890" \
@@ -202,9 +204,10 @@ The SMS API also uses parameter-based authentication but with different paramete
   const axios = require('axios');
 
   class EmailAPIClient {
-    constructor(apiUser, apiKey) {
+    constructor(apiUser, apiKey, fromEmail) {
       this.apiUser = apiUser;
       this.apiKey = apiKey;
+      this.fromEmail = fromEmail;
       this.baseURL = 'https://api.aurorasendcloud.com/email';
     }
 
@@ -213,6 +216,7 @@ The SMS API also uses parameter-based authentication but with different paramete
         const response = await axios.post(`${this.baseURL}/send`, {
           apiUser: this.apiUser,
           apiKey: this.apiKey,
+          from: this.fromEmail,
           to: to,
           subject: subject,
           message: message
@@ -231,7 +235,8 @@ The SMS API also uses parameter-based authentication but with different paramete
   // Usage
   const client = new EmailAPIClient(
     process.env.EMAIL_API_USER,
-    process.env.EMAIL_API_KEY
+    process.env.EMAIL_API_KEY,
+    'noreply@yourcompany.com'
   );
 
   client.sendEmail('user@example.com', 'Hello', 'Test message')
@@ -308,16 +313,18 @@ The SMS API also uses parameter-based authentication but with different paramete
               raise e
 
   class EmailAPI(APIClient):
-      def __init__(self, api_user: str, api_key: str):
+      def __init__(self, api_user: str, api_key: str, from_email: str):
           super().__init__("https://api.aurorasendcloud.com/email")
           self.api_user = api_user
           self.api_key = api_key
+          self.from_email = from_email
       
       def send_email(self, to: str, subject: str, message: str) -> Dict[str, Any]:
           """Send email via Email API"""
           params = {
               'apiUser': self.api_user,
               'apiKey': self.api_key,
+              'from': self.from_email,
               'to': to,
               'subject': subject,
               'message': message
@@ -345,7 +352,8 @@ The SMS API also uses parameter-based authentication but with different paramete
       # Email API usage
       email_client = EmailAPI(
           os.getenv('EMAIL_API_USER'),
-          os.getenv('EMAIL_API_KEY')
+          os.getenv('EMAIL_API_KEY'),
+          'noreply@yourcompany.com'
       )
       
       try:
@@ -416,17 +424,20 @@ The SMS API also uses parameter-based authentication but with different paramete
   class EmailAPI extends AuroraSendCloudClient {
       private $apiUser;
       private $apiKey;
+      private $fromEmail;
       
-      public function __construct($apiUser, $apiKey) {
+      public function __construct($apiUser, $apiKey, $fromEmail) {
           parent::__construct('https://api.aurorasendcloud.com/email');
           $this->apiUser = $apiUser;
           $this->apiKey = $apiKey;
+          $this->fromEmail = $fromEmail;
       }
       
       public function sendEmail($to, $subject, $message) {
           $params = [
               'apiUser' => $this->apiUser,
               'apiKey' => $this->apiKey,
+              'from' => $this->fromEmail,
               'to' => $to,
               'subject' => $subject,
               'message' => $message
@@ -441,7 +452,7 @@ The SMS API also uses parameter-based authentication but with different paramete
       private $smsKey;
       
       public function __construct($smsUser, $smsKey) {
-          parent::__construct('https://api.aurorasendcloud.com/sms');
+          parent::__construct('https://api.aurorasendcloud.com/smsapi');
           $this->smsUser = $smsUser;
           $this->smsKey = $smsKey;
       }
@@ -463,7 +474,8 @@ The SMS API also uses parameter-based authentication but with different paramete
       // Email API usage
       $emailClient = new EmailAPI(
           $_ENV['EMAIL_API_USER'],
-          $_ENV['EMAIL_API_KEY']
+          $_ENV['EMAIL_API_KEY'],
+          'noreply@yourcompany.com'
       );
       
       $result = $emailClient->sendEmail(
@@ -509,6 +521,7 @@ The SMS API also uses parameter-based authentication but with different paramete
   * Ensure parameters are in request body or query string, not request headers
   * Verify URL encoding is correct for special characters
   * Check POST request Content-Type is set to `application/x-www-form-urlencoded`
+  * **Email API**: Don't forget the required `from` parameter
 
   **🔗 Network and connectivity issues**
 
@@ -577,16 +590,6 @@ The SMS API also uses parameter-based authentication but with different paramete
           raise
   ```
 </Accordion>
-
-<br />
-
-
-
-<br />
-
-<br />
-
-
 
 ***
 
