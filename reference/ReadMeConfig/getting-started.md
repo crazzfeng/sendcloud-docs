@@ -3,6 +3,9 @@ title: Getting Started
 excerpt: >-
   Complete guide to setting up your API documentation dashboard and helping
   users make their first successful API call.
+api:
+  file: send.json
+  operationId: get_new-endpoint
 api_config: getting-started
 hidden: true
 icon: icon-book1
