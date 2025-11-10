@@ -33,13 +33,13 @@ The system automatically manages four core lists: Complaint List, Block List, Bo
 
 **Gmail User Example:**
 
-* **Situation:** [John@gmail.com](mailto:John@gmail.com) receives your newsletter and clicks "Report spam"
+* **Situation:** abc@gmail.com receives your newsletter and clicks "Report spam"
 * **Action:** Address automatically added to Complaint List
 * **Duration:** 180 days validity period
 
 **Corporate Email Example:**
 
-* **Situation:** [sarah.jones@company.com](mailto:sarah.jones@company.com)'s IT admin reports bulk emails as spam
+* **Situation:** aaa@company.com's IT admin reports bulk emails as spam
 * **Action:** FBL report triggers automatic addition to Complaint List
 * **Result:** All future sends to this domain flagged
 
@@ -85,7 +85,7 @@ Status: Will remain blocked for 135 more days
 **Individual Address Blocking:**
 
 ```
-Block: competitor-research@rival.com
+Block: competitor-research@example.com
 Reason: Prevent sensitive campaign data from reaching competitors
 Expiration: Set to 365 days or permanent
 Result: All sends automatically blocked
