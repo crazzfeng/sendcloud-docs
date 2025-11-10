@@ -19,7 +19,7 @@ metadata:
     - account administration
   robots: index
 ---
-All teammates, while having their own separate login credentials and security settings, will share access to the account's data within the boundaries of their assigned permissions.
+All teammates, while having their own separate login credentials and security settings, will share access to the account's data within the boundaries of their assigned permissions
 
 After logging in, click your profile picture in the top-right corner -> ​​Account​​ -> Click ​​Teammates​​.
 
@@ -29,7 +29,7 @@ After logging in, click your profile picture in the top-right corner -> ​​Ac
 
 Account Owners or Administrators can add new teammates by following these steps:
 
-1. **Navigate to Management Page**​​: On the ​​Teammates​​ page, click the ​​Add Teammate​​ button.
+1. **Navigate to Management**​​: On the ​​Teammates​​ , click the ​​Add Teammate​​ button.
 2. **​​Fill in Information & Set Permissions**​​: In the pop-up window, provide the required information (e.g., name, email) and set appropriate permissions for the teammate (see Permission Levels).
 3. ​​**Send Invitation**​​: Upon confirmation, the system will automatically send an activation email to the teammate's email address.
 4. **​​Teammate Activation**​​: The invited teammate clicks the activation link in the email and follows the prompts to set their mobile number and password to activate their account.
@@ -42,7 +42,7 @@ Account Owners or Administrators can add new teammates by following these steps:
 
 ### Edit or Remove a Teammate​​
 
-In the teammate list on the ​​Teammate Management​​ page, you can find the corresponding teammate and:
+In the teammate list on the ​​Teammate Management​​, you can find the corresponding teammate and:
 
 **​​Edit​​:** Modify their name, permissions, and other information.
 
