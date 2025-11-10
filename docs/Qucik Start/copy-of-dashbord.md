@@ -1,5 +1,5 @@
 ---
-title: Newbie Guide
+title: Onboarding Guide
 excerpt: >-
   This section guides you through the process of setting up and starting to send
   emails in Aurora SendCloud
