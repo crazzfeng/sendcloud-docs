@@ -748,8 +748,6 @@ The SMS API also uses parameter-based authentication but with different paramete
           @wraps(func)
           def wrapper(*args, **kwargs):
               for attempt in range(max_retries + 1):
-                  try:
-                      return func(*args, **kwargs)
                   except requests.exceptions.HTTPError as e:
                       if e.response.status_code == 429 and attempt < max_retries:
                           delay = base_delay * (2 ** attempt) + random.uniform(0, 1)
@@ -767,35 +765,11 @@ The SMS API also uses parameter-based authentication but with different paramete
   ```
 </Accordion>
 
-## Next Steps
+<br />
 
-After setting up authentication, you can:
+<br />
 
-<Cards columns="3">
-  <Card title="API Reference" href="/api-reference" icon="book">
-    View complete API endpoint documentation with examples
-  </Card>
 
-  <Card title="Quick Start Guide" href="/getting-started" icon="play-circle">
-    Follow our step-by-step integration guide
-  </Card>
-
-  <Card title="SDK Documentation" href="/sdks" icon="code">
-    Use our official SDK libraries for faster integration
-  </Card>
-
-  <Card title="Rate Limits" href="/rate-limits" icon="tachometer-alt">
-    Understand API usage limits and best practices
-  </Card>
-
-  <Card title="Webhooks" href="/webhooks" icon="link">
-    Set up real-time notifications for your applications
-  </Card>
-
-  <Card title="Support" href="/support" icon="life-ring">
-    Get help from our technical support team
-  </Card>
-</Cards>
 
 ***
 
