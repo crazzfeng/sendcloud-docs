@@ -77,13 +77,14 @@ The Email API uses parameter-based authentication, requiring all requests to inc
   * 🔄 **Smooth transition**: Provides ample time to update integration configurations
   * ⚡ **Automatic expiration**: Old key automatically expires after the grace period
 
-  **Best practices for key reset:**
+  **Best practices:**
 
   ```bash
-  # 1. Reset the key in your dashboard
-  # 2. Update your application configuration with the new key
-  # 3. Ensure the update is completed within 15 minutes
-  # 4. Monitor your application for successful authentication
+  # 1. Reset the key
+  # 2. Immediately test the new key
+  curl "https://api.aurorasendcloud.com/test?apiUser=youruser&apiKey=NEW_KEY"
+  # 3. Update production environment configuration
+  # 4. Ensure switching is completed within 15 minutes
   ```
 </Accordion>
 
@@ -147,10 +148,11 @@ The SMS API also uses parameter-based authentication but with different paramete
   **Reset process recommendations:**
 
   ```bash
-  # 1. Prepare your application for key update
-  # 2. Reset the key in your dashboard
-  # 3. Immediately update your application configuration
-  # 4. Verify your application can authenticate successfully
+  # 1. Prepare update scripts
+  # 2. Reset the key
+  # 3. Immediately update configuration
+  # 4. Test the new key right away
+  curl "https://api.aurorasendcloud.com/sms/test?smsUser=youruser&smsKey=NEW_SMS_KEY"
   ```
 </Accordion>
 
@@ -180,7 +182,7 @@ The SMS API also uses parameter-based authentication but with different paramete
     * **Error handling**: Implement proper authentication error handling
     * **Retry mechanisms**: Add retry logic for authentication failures
     * **Logging**: Log authentication-related events (without logging keys)
-    * **Testing environment**: Use separate credentials for testing
+    * **Testing environment**: Use separate test credentials
 
     ```javascript
     // Example error handling
@@ -489,6 +491,88 @@ The SMS API also uses parameter-based authentication but with different paramete
   ```
 </Accordion>
 
+## Testing Your Authentication Setup
+
+<Accordion title="Authentication Test Scripts" icon="vial">
+  **Quick test script for bash/shell:**
+
+  ```bash
+  #!/bin/bash
+
+  # Configuration
+  EMAIL_API_USER="your_email_user"
+  EMAIL_API_KEY="your_email_key"
+  SMS_API_USER="your_sms_user"
+  SMS_API_KEY="your_sms_key"
+
+  echo "🧪 Testing Email API authentication..."
+  EMAIL_RESPONSE=$(curl -s -w "%{http_code}" \
+    "https://api.aurorasendcloud.com/email/test?apiUser=$EMAIL_API_USER&apiKey=$EMAIL_API_KEY")
+
+  EMAIL_STATUS="${EMAIL_RESPONSE: -3}"
+  if [ "$EMAIL_STATUS" = "200" ]; then
+    echo "✅ Email API authentication successful"
+  else
+    echo "❌ Email API authentication failed (HTTP $EMAIL_STATUS)"
+  fi
+
+  echo "🧪 Testing SMS API authentication..."
+  SMS_RESPONSE=$(curl -s -w "%{http_code}" \
+    "https://api.aurorasendcloud.com/sms/test?smsUser=$SMS_API_USER&smsKey=$SMS_API_KEY")
+
+  SMS_STATUS="${SMS_RESPONSE: -3}"
+  if [ "$SMS_STATUS" = "200" ]; then
+    echo "✅ SMS API authentication successful"
+  else
+    echo "❌ SMS API authentication failed (HTTP $SMS_STATUS)"
+  fi
+  ```
+
+  **Node.js test script:**
+
+  ```javascript
+  const axios = require('axios');
+
+  async function testAuthentication() {
+    const tests = [
+      {
+        name: 'Email API',
+        url: 'https://api.aurorasendcloud.com/email/test',
+        params: {
+          apiUser: process.env.EMAIL_API_USER,
+          apiKey: process.env.EMAIL_API_KEY
+        }
+      },
+      {
+        name: 'SMS API',
+        url: 'https://api.aurorasendcloud.com/sms/test',
+        params: {
+          smsUser: process.env.SMS_API_USER,
+          smsKey: process.env.SMS_API_KEY
+        }
+      }
+    ];
+
+    for (const test of tests) {
+      try {
+        console.log(`🧪 Testing ${test.name} authentication...`);
+        const response = await axios.get(test.url, { params: test.params });
+        console.log(`✅ ${test.name} authentication successful`);
+        console.log(`   Response:`, response.data);
+      } catch (error) {
+        if (error.response?.status === 401) {
+          console.log(`❌ ${test.name} authentication failed: Invalid credentials`);
+        } else {
+          console.log(`❌ ${test.name} test failed:`, error.message);
+        }
+      }
+    }
+  }
+
+  testAuthentication();
+  ```
+</Accordion>
+
 ## Troubleshooting
 
 <Accordion title="Common Authentication Issues" icon="question-circle">
@@ -590,7 +674,7 @@ The SMS API also uses parameter-based authentication but with different paramete
   * [ ] Update all instances of `sms_user` to `smsUser`
   * [ ] Update all instances of `sms_key` to `smsKey`
   * [ ] Update all API base URLs to `api.aurorasendcloud.com`
-  * [ ] Remove any references to test endpoints
+  * [ ] Test all API endpoints with new parameter names
   * [ ] Update environment variables and configuration files
   * [ ] Update documentation and code comments
 
@@ -615,103 +699,11 @@ The SMS API also uses parameter-based authentication but with different paramete
   ```
 </Accordion>
 
-## Rate Limits and Performance
+<br />
 
-<Accordion title="Understanding Rate Limits" icon="tachometer-alt">
-  **Aurora SendCloud API Rate Limits:**
+<br />
 
-  * **Email API**: 1000 requests per minute per API user
-  * **SMS API**: 500 requests per minute per SMS user
-  * **Burst allowance**: Up to 150% of the limit for short bursts
 
-  **Handling rate limits in your code:**
-
-  ```javascript
-  // JavaScript with exponential backoff
-  class RateLimitedClient {
-    constructor(apiUser, apiKey, maxRetries = 3) {
-      this.apiUser = apiUser;
-      this.apiKey = apiKey;
-      this.maxRetries = maxRetries;
-    }
-
-    async makeRequestWithRetry(url, params, retryCount = 0) {
-      try {
-        const response = await axios.post(url, params);
-        return response.data;
-      } catch (error) {
-        if (error.response?.status === 429 && retryCount < this.maxRetries) {
-          const delay = Math.pow(2, retryCount) * 1000; // Exponential backoff
-          console.log(`Rate limited. Retrying in ${delay}ms...`);
-          await new Promise(resolve => setTimeout(resolve, delay));
-          return this.makeRequestWithRetry(url, params, retryCount + 1);
-        }
-        throw error;
-      }
-    }
-  }
-  ```
-
-  **Python rate limiting:**
-
-  ```python
-  import time
-  import random
-  from functools import wraps
-
-  def retry_on_rate_limit(max_retries=3, base_delay=1):
-      def decorator(func):
-          @wraps(func)
-          def wrapper(*args, **kwargs):
-              for attempt in range(max_retries + 1):
-                  try:
-                      return func(*args, **kwargs)
-                  except requests.exceptions.HTTPError as e:
-                      if e.response.status_code == 429 and attempt < max_retries:
-                          delay = base_delay * (2 ** attempt) + random.uniform(0, 1)
-                          print(f"Rate limited. Retrying in {delay:.2f}s...")
-                          time.sleep(delay)
-                          continue
-                      raise
-              return None
-          return wrapper
-      return decorator
-
-  @retry_on_rate_limit(max_retries=3, base_delay=1)
-  def send_email_with_retry(client, to, subject, message):
-      return client.send_email(to, subject, message)
-  ```
-</Accordion>
-
-## Next Steps
-
-After setting up authentication, you can:
-
-<Cards columns="3">
-  <Card title="API Reference" href="/api-reference" icon="book">
-    View complete API endpoint documentation with examples
-  </Card>
-
-  <Card title="Quick Start Guide" href="/getting-started" icon="play-circle">
-    Follow our step-by-step integration guide
-  </Card>
-
-  <Card title="SDK Documentation" href="/sdks" icon="code">
-    Use our official SDK libraries for faster integration
-  </Card>
-
-  <Card title="Rate Limits" href="/rate-limits" icon="tachometer-alt">
-    Understand API usage limits and best practices
-  </Card>
-
-  <Card title="Webhooks" href="/webhooks" icon="link">
-    Set up real-time notifications for your applications
-  </Card>
-
-  <Card title="Support" href="/support" icon="life-ring">
-    Get help from our technical support team
-  </Card>
-</Cards>
 
 ***
 
