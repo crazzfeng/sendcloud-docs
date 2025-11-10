@@ -42,10 +42,10 @@ The Email API uses parameter-based authentication, requiring all requests to inc
   <Tab title="Request Examples">
     ```bash
     # GET request example
-    curl "https://api.aurorasendcloud.com/api/mail/send?apiUser=mycompany_api&apiKey=abc123def456&to=user@example.com&subject=Hello"
+    curl "https://api.aurorasendcloud.com/email/send?apiUser=mycompany_api&apiKey=abc123def456&to=user@example.com&subject=Hello"
 
     # POST request example
-    curl -X POST "https://api.aurorasendcloud.com/api/mail/send" \
+    curl -X POST "https://api.aurorasendcloud.com/email/send" \
       -d "apiUser=mycompany_api" \
       -d "apiKey=abc123def456" \
       -d "to=user@example.com" \
@@ -109,7 +109,7 @@ The SMS API also uses parameter-based authentication but with different paramete
   <Tab title="Request Examples">
     ```bash
     # GET request example
-    curl "https://api.aurorasendcloud.com/sms/send?smsUser=mycompany_sms&smsKey=xyz789uvw123&to=+1234567890&message=Hello"
+    curl "https://api.aurorasendcloud.com/smsapi/send?smsUser=mycompany_sms&smsKey=xyz789uvw123&to=+1234567890&message=Hello"
 
     # POST request example
     curl -X POST "https://api.aurorasendcloud.com/sms/send" \
@@ -207,7 +207,7 @@ The SMS API also uses parameter-based authentication but with different paramete
     constructor(apiUser, apiKey) {
       this.apiUser = apiUser;
       this.apiKey = apiKey;
-      this.baseURL = 'https://api.aurorasendcloud.com/api/mail';
+      this.baseURL = 'https://api.aurorasendcloud.com/email';
     }
 
     async sendEmail(to, subject, message) {
@@ -251,7 +251,7 @@ The SMS API also uses parameter-based authentication but with different paramete
     constructor(smsUser, smsKey) {
       this.smsUser = smsUser;
       this.smsKey = smsKey;
-      this.baseURL = 'https://api.aurorasendcloud.com/sms';
+      this.baseURL = 'https://api.aurorasendcloud.com/smsapi';
     }
 
     async sendSMS(to, message) {
@@ -311,7 +311,7 @@ The SMS API also uses parameter-based authentication but with different paramete
 
   class EmailAPI(APIClient):
       def __init__(self, api_user: str, api_key: str):
-          super().__init__("https://api.aurorasendcloud.com/api/mail")
+          super().__init__("https://api.aurorasendcloud.com/email")
           self.api_user = api_user
           self.api_key = api_key
       
@@ -328,7 +328,7 @@ The SMS API also uses parameter-based authentication but with different paramete
 
   class SMSAPI(APIClient):
       def __init__(self, sms_user: str, sms_key: str):
-          super().__init__("https://api.aurorasendcloud.com/sms")
+          super().__init__("https://api.aurorasendcloud.com/smsapi")
           self.sms_user = sms_user
           self.sms_key = sms_key
       
@@ -420,7 +420,7 @@ The SMS API also uses parameter-based authentication but with different paramete
       private $apiKey;
       
       public function __construct($apiUser, $apiKey) {
-          parent::__construct('https://api.aurorasendcloud.com/api/mail');
+          parent::__construct('https://api.aurorasendcloud.com/email');
           $this->apiUser = $apiUser;
           $this->apiKey = $apiKey;
       }
@@ -491,9 +491,87 @@ The SMS API also uses parameter-based authentication but with different paramete
   ```
 </Accordion>
 
-<br />
+## Testing Your Authentication Setup
 
+<Accordion title="Authentication Test Scripts" icon="vial">
+  **Quick test script for bash/shell:**
 
+  ```bash
+  #!/bin/bash
+
+  # Configuration
+  EMAIL_API_USER="your_email_user"
+  EMAIL_API_KEY="your_email_key"
+  SMS_API_USER="your_sms_user"
+  SMS_API_KEY="your_sms_key"
+
+  echo "🧪 Testing Email API authentication..."
+  EMAIL_RESPONSE=$(curl -s -w "%{http_code}" \
+    "https://api.aurorasendcloud.com/email/test?apiUser=$EMAIL_API_USER&apiKey=$EMAIL_API_KEY")
+
+  EMAIL_STATUS="${EMAIL_RESPONSE: -3}"
+  if [ "$EMAIL_STATUS" = "200" ]; then
+    echo "✅ Email API authentication successful"
+  else
+    echo "❌ Email API authentication failed (HTTP $EMAIL_STATUS)"
+  fi
+
+  echo "🧪 Testing SMS API authentication..."
+  SMS_RESPONSE=$(curl -s -w "%{http_code}" \
+    "https://api.aurorasendcloud.com/sms/test?smsUser=$SMS_API_USER&smsKey=$SMS_API_KEY")
+
+  SMS_STATUS="${SMS_RESPONSE: -3}"
+  if [ "$SMS_STATUS" = "200" ]; then
+    echo "✅ SMS API authentication successful"
+  else
+    echo "❌ SMS API authentication failed (HTTP $SMS_STATUS)"
+  fi
+  ```
+
+  **Node.js test script:**
+
+  ```javascript
+  const axios = require('axios');
+
+  async function testAuthentication() {
+    const tests = [
+      {
+        name: 'Email API',
+        url: 'https://api.aurorasendcloud.com/email/test',
+        params: {
+          apiUser: process.env.EMAIL_API_USER,
+          apiKey: process.env.EMAIL_API_KEY
+        }
+      },
+      {
+        name: 'SMS API',
+        url: 'https://api.aurorasendcloud.com/sms/test',
+        params: {
+          smsUser: process.env.SMS_API_USER,
+          smsKey: process.env.SMS_API_KEY
+        }
+      }
+    ];
+
+    for (const test of tests) {
+      try {
+        console.log(`🧪 Testing ${test.name} authentication...`);
+        const response = await axios.get(test.url, { params: test.params });
+        console.log(`✅ ${test.name} authentication successful`);
+        console.log(`   Response:`, response.data);
+      } catch (error) {
+        if (error.response?.status === 401) {
+          console.log(`❌ ${test.name} authentication failed: Invalid credentials`);
+        } else {
+          console.log(`❌ ${test.name} test failed:`, error.message);
+        }
+      }
+    }
+  }
+
+  testAuthentication();
+  ```
+</Accordion>
 
 ## Troubleshooting
 
