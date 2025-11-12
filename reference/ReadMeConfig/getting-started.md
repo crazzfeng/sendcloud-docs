@@ -14,22 +14,22 @@ link:
 ---
 # AuroraSendCloud API Quickstart
 
-Get started with AuroraSendCloud's powerful APIs to send emails, manage contacts, track performance, and integrate seamlessly with your applications. Follow this step-by-step guide to make your first API call in minutes—with clear distinctions between multi-region email APIs and the single-region SMS API.
+Get started with AuroraSendCloud's powerful APIs to send emails, manage contacts, track performance, and integrate seamlessly with your applications. Follow this step-by-step guide to make your first API call in minutes, with clear distinctions between multi-region email APIs and the single-region SMS API.
 
 ## Prerequisites
 
 Before you begin, ensure you have:
 
 * An active AuroraSendCloud account (sign up at [aurorasendcloud.com](https://www.aurorasendcloud.com/))
-* Your **API Key** and **API User** (found in your account's [API Key Management](https://www.aurorasendcloud.com/web/#/api/apiuser) page)
+* Your **API Key** and **API User** (found on your account's [API Key Management](https://www.aurorasendcloud.com/web/#/api/apiuser) page)
 * A supported HTTP client (e.g., cURL, Postman, Python's `requests` library)
-* Confirm your account's **region** (Singapore, US, or Hong Kong) for email API access (not required for SMS API)
+* Confirmation of your account's **region** (Singapore, US, or Hong Kong) for email API access (not required for SMS API)
 
 ## 1. API Base URLs (By Service Type)
 
 ### Email & Core APIs (Multi-Region)
 
-Choose the base URL that matches your account's region for email, contact management, templates, and other core services. All requests must use **HTTPS**, and responses are in **JSON** format.
+Choose the base URL that matches your account's region for email, contact management, templates, and other core services. All requests must use **HTTPS**, and responses are returned in **JSON** format.
 
 | Region             | Base URL                              | Coverage                                  |
 | ------------------ | ------------------------------------- | ----------------------------------------- |
@@ -37,7 +37,7 @@ Choose the base URL that matches your account's region for email, contact manage
 | United States (US) | `https://api-us.aurorasendcloud.com/` | For North American users and services     |
 | Hong Kong (HK)     | `https://api-hk.aurorasendcloud.com/` | For Greater China and nearby APAC regions |
 
-> ℹ️ **Note**: Your account is tied to a specific region during sign-up. Using a non-matching base URL for email/core APIs will cause authentication failures or data inconsistencies. Confirm your region in account settings.
+> ℹ️ **Note**: Your account is tied to a specific region during sign-up. Using a non-matching base URL for email/core APIs will cause authentication failures or data inconsistencies. Confirm your region in your account settings.
 
 ### SMS API (Single Region)
 
@@ -49,12 +49,12 @@ The SMS API uses a **unified global base URL** (no regional endpoints required):
 
 ## 2. Authentication
 
-Authenticate all API requests (email, SMS, core services) by including your credentials as **request parameters**:
+Authenticate all API requests (email, SMS, and core services) by including your credentials as **request parameters**:
 
 * `api_user`: Your AuroraSendCloud API username
 * `api_key`: Your AuroraSendCloud API key
 
-> ⚠️ **Critical Security Note**: Never expose your API credentials in client-side code (e.g., browsers, mobile apps). Restrict access to your API key, rotate it regularly via the API Key Management page, and avoid hardcoding credentials in source code.
+> ⚠️ **Critical Security Note**: Never expose your API credentials in client-side code (e.g., browsers, mobile apps). Restrict access to your API key, rotate it regularly via the API Key Management page, and avoid hardcoding credentials in your source code.
 
 ## 3. Making Your First API Call
 
@@ -194,7 +194,7 @@ All API responses (email and SMS) follow a consistent JSON structure:
 
 #### Response Field Definitions:
 
-* `result`: Boolean indicating if the request succeeded (`true`) or failed (`false`)
+* `result`: Boolean indicating whether the request succeeded (`true`) or failed (`false`)
 * `statusCode`: Numeric code representing the request status (see complete list below)
 * `message`: Description of the status code (for debugging and user feedback)
 * `info`: Contains response data (e.g., SMS/email IDs, retrieved records) on success; empty on failure
@@ -212,9 +212,9 @@ The following table lists all return codes and their meanings (applicable to bot
   | 40003       | `limit` cannot be empty                                        |
   | 40004       | Invalid `limit` parameter                                      |
   | 40005       | Authentication failed (check `api_user`/`api_key`)             |
-  | 40006       | Invalid `days` format, it must be an integer greater than zero |
-  | 40007       | Invalid `startDate` format (e.g. "2013-03-19")                 |
-  | 40008       | Invalid `endDate` format (e.g. "2013-03-19")                   |
+  | 40006       | Invalid `days` format; it must be an integer greater than zero |
+  | 40007       | Invalid `startDate` format (e.g., "2013-03-19")               |
+  | 40008       | Invalid `endDate` format (e.g., "2013-03-19")                 |
   | 40009       | `labelIdList` cannot be empty                                  |
   | 40010       | `apiUserList` cannot be empty                                  |
   | 40011       | Email cannot be empty                                          |
@@ -234,14 +234,14 @@ The following table lists all return codes and their meanings (applicable to bot
   | 40102       | Label ID cannot be empty                           |
   | 40103       | Invalid label ID                                   |
   | 40104       | Label name cannot be empty                         |
-  | 40105       | Label name should be 1-255 characters              |
+  | 40105       | Label name should be 1-255 characters             |
   | 40106       | The label corresponding to label ID does not exist |
   | 40107       | Label was successfully deleted                     |
   | 40108       | Failed to delete label                             |
   | 40109       | Label was successfully updated                     |
   | 40110       | Failed to update label                             |
   | 40111       | Query cannot be empty                              |
-  | 40112       | Query should be 1-255 characters                   |
+  | 40112       | Query should be 1-255 characters                  |
   | 40113       | Label name already exists                          |
 </Accordion>
 
@@ -251,9 +251,9 @@ The following table lists all return codes and their meanings (applicable to bot
   | 40201       | `invokeName` cannot be empty                                             |
   | 40202       | Invalid `invokeName` format                                              |
   | 40203       | Template type cannot be empty                                            |
-  | 40204       | Invalid template type, it can only be 0 or 1                             |
+  | 40204       | Invalid template type; it can only be 0 or 1                            |
   | 40205       | `templateStat` cannot be empty                                           |
-  | 40206       | Invalid `templateStat`, it can only be one of -1, -2, 1, 0               |
+  | 40206       | Invalid `templateStat`; it can only be one of -1, -2, 1, 0              |
   | 40207       | Name cannot be empty                                                     |
   | 40208       | Invalid name format                                                      |
   | 40209       | Subject cannot be empty                                                  |
@@ -263,20 +263,20 @@ The following table lists all return codes and their meanings (applicable to bot
   | 40213       | Text cannot be empty                                                     |
   | 40214       | Invalid text format                                                      |
   | 40215       | Failed to create template                                                |
-  | 40216       | The template corresponding to `invokeName` does not exist                |
+  | 40216       | The template corresponding to `invokeName` does not exist               |
   | 40217       | Failed to delete template                                                |
   | 40218       | Failed to update template                                                |
-  | 40219       | User can have no more than 50 templates                                  |
+  | 40219       | User can have no more than 50 templates                                 |
   | 40220       | `invokeName` already exists                                              |
   | 40221       | `isSubmitAudit` cannot be empty                                          |
   | 40222       | Invalid `isSubmitAudit` format                                           |
   | 40223       | Template is pending approval and cannot be modified                      |
   | 40224       | Cancel cannot be empty                                                   |
   | 40225       | Invalid cancel format                                                    |
-  | 40226       | Template is pending approval, do not submit again                        |
-  | 40227       | Template has been approved, do not submit again                          |
-  | 40228       | Template not approved, do not withdraw the approval request              |
-  | 40229       | Template not submitted for approval, unable to withdraw approval request |
+  | 40226       | Template is pending approval; do not submit again                        |
+  | 40227       | Template has been approved; do not submit again                          |
+  | 40228       | Template not approved; do not withdraw the approval request              |
+  | 40229       | Template not submitted for approval; unable to withdraw approval request |
 </Accordion>
 
 <Accordion title="User & Address Management" icon="users">
@@ -288,27 +288,27 @@ The following table lists all return codes and their meanings (applicable to bot
   | 40403       | Unsubscribe record was successfully deleted                   |
   | 40404       | Failed to delete unsubscribe record                           |
   | 40501       | Name cannot be empty                                          |
-  | 40502       | Address list name should be 1-48 characters                   |
+  | 40502       | Address list name should be 1-48 characters                  |
   | 40503       | Address cannot be empty                                       |
-  | 40504       | Address list alias should be 1-48 characters                  |
+  | 40504       | Address list alias should be 1-48 characters                 |
   | 40505       | Address list alias already exists                             |
   | 40506       | Desc cannot be empty                                          |
-  | 40507       | Address list description should be 1-250 characters           |
+  | 40507       | Address list description should be 1-250 characters          |
   | 40508       | Failed to create address list                                 |
   | 40509       | `newAddress` cannot be empty                                  |
-  | 40510       | New address list alias should be 1-48 characters              |
+  | 40510       | New address list alias should be 1-48 characters             |
   | 40511       | Invalid address parameters                                    |
   | 40512       | Members cannot be empty                                       |
-  | 40513       | Member address should be 1-48 characters                      |
-  | 40514       | Number of member address should be more than 0                |
-  | 40515       | Number of member address should be no more than 1000          |
+  | 40513       | Member address should be 1-48 characters                     |
+  | 40514       | Number of member addresses should be more than 0             |
+  | 40515       | Number of member addresses should be no more than 1000       |
   | 40516       | Failed to add member                                          |
-  | 40517       | Address list does not belong to the user                      |
-  | 40518       | Member address does not conform to the specification          |
+  | 40517       | Address list does not belong to the user                     |
+  | 40518       | Member address does not conform to the specification         |
   | 40519       | Failed to delete member                                       |
   | 40520       | Vars cannot be empty                                          |
   | 40521       | Variables in vars parameter are not equal to member addresses |
-  | 40522       | Vars parameter does not adhere to JSON string syntax          |
+  | 40522       | Vars parameter does not adhere to JSON string syntax         |
 </Accordion>
 
 <Accordion title="Bounce & Webhook Management" icon="server">
@@ -317,11 +317,11 @@ The following table lists all return codes and their meanings (applicable to bot
   | 40601       | Bounce record was successfully deleted             |
   | 40602       | Failed to delete bounce record                     |
   | 40603       | Email already exists                               |
-  | 40604       | Date format eg: 2018-03-19                         |
+  | 40604       | Date format (e.g., 2018-03-19)                    |
   | 40701       | Group ID cannot be empty                           |
   | 40702       | Invalid format of group ID                         |
   | 40703       | Event type cannot be empty                         |
-  | 40704       | Invalid event type format, no event type available |
+  | 40704       | Invalid event type format; no event type available |
   | 40705       | URL cannot be empty                                |
   | 40706       | Invalid URL format                                 |
   | 40707       | URL test failed                                    |
@@ -340,8 +340,8 @@ The following table lists all return codes and their meanings (applicable to bot
   | 40803       | `fromName` cannot be empty                                                     |
   | 40804       | Invalid `fromName` format                                                      |
   | 40805       | Recipient address cannot be empty                                              |
-  | 40806       | Illegal addresses in the recipient address list                                |
-  | 40807       | Recipient addresses should be no more than 100                                 |
+  | 40806       | Illegal addresses in the recipient address list                               |
+  | 40807       | Recipient addresses should be no more than 100                                |
   | 40808       | Subject cannot be empty                                                        |
   | 40809       | Invalid subject format                                                         |
   | 40810       | `replyto` cannot be empty                                                      |
@@ -353,15 +353,15 @@ The following table lists all return codes and their meanings (applicable to bot
   | 40816       | Parse of field "to" cannot be empty                                            |
   | 40817       | `xsmtpapi` parsing error                                                       |
   | 40818       | Attachments cannot be empty                                                    |
-  | 40819       | Attachment should be no larger than 10485760 bytes                             |
+  | 40819       | Attachment should be no larger than 10,485,760 bytes                          |
   | 40820       | No permission to use address list                                              |
   | 40821       | Address list was successfully created                                          |
   | 40822       | Failed to create address list                                                  |
   | 40823       | Mail template does not exist                                                   |
   | 40824       | Template not approved                                                          |
-  | 40825       | Mail template does not match API-USER type                                     |
-  | 40826       | Template parameter and subject cannot be empty both                            |
-  | 40827       | Array "to" should be no longer than 100                                        |
+  | 40825       | Mail template does not match API-USER type                                    |
+  | 40826       | Template parameter and subject cannot both be empty                           |
+  | 40827       | Array "to" should be no longer than 100                                       |
   | 40828       | Reply address cannot be empty                                                  |
   | 40829       | Invalid reply address format                                                   |
   | 40830       | Plain cannot be empty                                                          |
@@ -384,27 +384,27 @@ The following table lists all return codes and their meanings (applicable to bot
   | 40847       | Invalid participant format                                                     |
   | 40848       | Participant email address cannot be empty                                      |
   | 40849       | Invalid format of participant email address                                    |
-  | 40850       | The number of participants is not equal to the number of email addresses       |
+  | 40850       | The number of participants is not equal to the number of email addresses      |
   | 40851       | Failed to assemble emails                                                      |
   | 40852       | CC address cannot be empty                                                     |
   | 40853       | Invalid CC address format                                                      |
-  | 40854       | CC addresses should be no more than 100                                        |
+  | 40854       | CC addresses should be no more than 100                                       |
   | 40855       | BCC address cannot be empty                                                    |
   | 40856       | Invalid BCC address format                                                     |
-  | 40857       | BCC addresses should be no more than 100                                       |
+  | 40857       | BCC addresses should be no more than 100                                      |
   | 40858       | `respEmailId` cannot be empty                                                  |
   | 40859       | Invalid `respEmailId` format                                                   |
   | 40860       | `gzipCompress` cannot be empty                                                 |
   | 40861       | Invalid `gzipCompress` format                                                  |
-  | 40862       | Address lists with format error in "to"                                        |
-  | 40863       | Nonexistent address lists in "to"                                              |
-  | 40864       | Address lists should be no more than 5                                         |
+  | 40862       | Address lists with format error in "to"                                       |
+  | 40863       | Nonexistent address lists in "to"                                             |
+  | 40864       | Address lists should be no more than 5                                        |
   | 40865       | Failed to extract HTML files                                                   |
   | 40866       | Failed to extract plain files                                                  |
   | 40867       | Abnormal attachment processing                                                 |
   | 40868       | Headers cannot be empty                                                        |
   | 40869       | Invalid headers format                                                         |
-  | 40870       | HTML and plain cannot be empty both                                            |
+  | 40870       | HTML and plain cannot both be empty                                            |
   | 40871       | HTML format error                                                              |
   | 40872       | Address list cannot be empty                                                   |
   | 40873       | `useAddressList` cannot be empty                                               |
@@ -412,9 +412,9 @@ The following table lists all return codes and their meanings (applicable to bot
   | 40875       | The length of embedded picture ID is not equal to the length of the attachment |
   | 40876       | Invalid format of `isCancel` parameter                                         |
   | 40877       | Abstract cannot be empty                                                       |
-  | 40878       | Abstract cannot be longer than 200 bytes                                       |
+  | 40878       | Abstract cannot be longer than 200 bytes                                      |
   | 40879       | `replyto` cannot be more than 3                                                |
-  | 40880       | Invalid email format in field "to" of `xsmtpapi`                               |
+  | 40880       | Invalid email format in field "to" of `xsmtpapi`                              |
 </Accordion>
 
 <Accordion title="Email Sending Results" icon="paper-plane">
@@ -431,7 +431,7 @@ The following table lists all return codes and their meanings (applicable to bot
   | 40909       | Email content matches template                                      |
   | 40910       | Email content temporarily matches template                          |
   | 40911       | Error occurred when matching email content and template             |
-  | 40912       | Your account balance is not enough, please recharge soon            |
+  | 40912       | Your account balance is insufficient; please recharge soon          |
   | 40913       | Request quota exceeded                                              |
 </Accordion>
 
@@ -450,7 +450,7 @@ The following table lists all return codes and their meanings (applicable to bot
   | 41010       | Verify does not conform to specification                                                                          |
   | 41011       | Verify parsing error                                                                                              |
   | 41012       | User can create no more than 5 domains                                                                            |
-  | 41013       | Name parameter error, multiple domains                                                                            |
+  | 41013       | Name parameter error; multiple domains                                                                            |
   | 41014       | Domain does not exist                                                                                             |
   | 41015       | Failed to create domain                                                                                           |
   | 41016       | Failed to modify domain                                                                                           |
@@ -485,7 +485,7 @@ The following table lists all return codes and their meanings (applicable to bot
   | 49905       | HTTP result parsing error                  |
   | 49906       | Other errors                               |
   | 50000       | Interface frequency limited                |
-  | 50001       | Mail sending failed. 536 frequency limited |
+  | 50001       | Mail sending failed; 536 frequency limited |
   | 501         | Server exception                           |
   | 6001        | You don't have permission to access        |
 </Accordion>
