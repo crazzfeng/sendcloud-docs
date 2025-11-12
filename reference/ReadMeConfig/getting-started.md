@@ -63,7 +63,7 @@ Authenticate all API requests (email, SMS, core services) by including your cred
 <Tabs>
   <Tab title="cURL">
     ```bash
-    curl -X POST "https://api.aurorasendcloud.com/v1/mail/send" \
+    curl -X POST "https://api.aurorasendcloud.com/mail/send" \
       -d "api_user=YOUR_API_USER" \
       -d "api_key=YOUR_API_KEY" \
       -d "from=sender@yourdomain.com" \
@@ -78,7 +78,7 @@ Authenticate all API requests (email, SMS, core services) by including your cred
     ```python
     import requests
 
-    url = "https://api.aurorasendcloud.com/v1/mail/send"
+    url = "https://api.aurorasendcloud.com/mail/send"
     data = {
         "api_user": "YOUR_API_USER",
         "api_key": "YOUR_API_KEY",
@@ -108,7 +108,7 @@ Authenticate all API requests (email, SMS, core services) by including your cred
       html: '<h1>Hello from AuroraSendCloud!</h1>'
     };
 
-    axios.post('https://api.aurorasendcloud.com/v1/mail/send', data)
+    axios.post('https://api.aurorasendcloud.com/mail/send', data)
       .then(response => console.log(response.data))
       .catch(error => console.error(error));
     ```
@@ -120,7 +120,7 @@ Authenticate all API requests (email, SMS, core services) by including your cred
 <Tabs>
   <Tab title="cURL">
     ```bash
-    curl -X POST "https://api.aurorasendcloud.com/v1/smsapi/send" \
+    curl -X POST "https://api.aurorasendcloud.com/smsapi/send" \
       -d "smsUser=YOUR_SMS_USER" \
       -d "smsKey=YOUR_SMS_KEY" \
       -d "templateId=123456" \
@@ -133,7 +133,7 @@ Authenticate all API requests (email, SMS, core services) by including your cred
     ```python
     import requests
 
-    url = "https://api.aurorasendcloud.com/v1/smsapi/send"
+    url = "https://api.aurorasendcloud.com/smsapi/send"
     data = {
         "smsUser": "YOUR_SMS_USER",
         "smsKey": "YOUR_SMS_KEY",
