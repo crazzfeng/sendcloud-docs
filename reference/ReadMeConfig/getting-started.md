@@ -510,23 +510,4 @@ The following table lists all return codes and their meanings (applicable to bot
   </Card>
 </Cards>
 
-## 7. Next Steps
-
-Explore key API endpoints to extend your integration:
-
-* **[Email APIs](https://www.aurorasendcloud.com/docs/API/index/)**: Send transactional/bulk emails, track deliveries (use region-specific base URL)
-* **[SMS API](https://www.aurorasendcloud.com/docs/API/index/)**: Send transactional SMS (use unified `api.aurorasendcloud.com/v1/` URL)
-* **[Contact Management](https://www.aurorasendcloud.com/docs/API/index/)**: Create/update contacts, manage lists (region-specific)
-* **[Email Templates](https://www.aurorasendcloud.com/docs/API/index/)**: Use pre-built templates for consistent branding (region-specific)
-* **[Suppression Lists](https://www.aurorasendcloud.com/docs/API/index/)**: Manage unsubscribes and bounces (region-specific)
-
-## 8. Resources
-
-* **[Full API Reference](https://www.aurorasendcloud.com/docs/API/index/)**: Detailed docs for all endpoints (includes SMS-specific parameters)
-* **[SDKs & Libraries](https://www.aurorasendcloud.com/docs/API/index/)**: Official libraries for Python, Java, Node.js, and PHP (supports both multi-region and SMS APIs)
-* **[Region-Specific Compliance](https://www.aurorasendcloud.com/docs/API/index/)**: Guidelines for GDPR (EU/US), PDPA (SG/HK), and SMS regulatory requirements
-* **[Support](https://www.aurorasendcloud.com/support)**: Contact the team for region-specific or SMS API-related technical issues
-
-***
-
 **Ready to start building?** Use the code examples above to send your first email or SMS, and refer to the complete error code reference when debugging your integration.
