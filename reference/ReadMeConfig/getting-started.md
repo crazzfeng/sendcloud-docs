@@ -21,7 +21,7 @@ Get started with AuroraSendCloud's powerful APIs to send emails, manage contacts
 Before you begin, ensure you have:
 
 * An active AuroraSendCloud account (sign up at [aurorasendcloud.com](https://www.aurorasendcloud.com/))
-* Your **API Key** and **API User** (found in your account's [API Key Management](https://www.aurorasendcloud.com/docs/API/index/) page)
+* Your **API Key** and **API User** (found in your account's [API Key Management](https://www.aurorasendcloud.com/web/#/api/apiuser) page)
 * A supported HTTP client (e.g., cURL, Postman, Python's `requests` library)
 * Confirm your account's **region** (Singapore, US, or Hong Kong) for email API access (not required for SMS API)
 
