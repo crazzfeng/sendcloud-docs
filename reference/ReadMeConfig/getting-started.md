@@ -7,7 +7,7 @@ api:
   file: send.json
   operationId: get_new-endpoint
 api_config: getting-started
-hidden: true
+hidden: false
 icon: icon-book1
 link:
   new_tab: false
