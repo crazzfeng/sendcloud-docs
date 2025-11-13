@@ -65,13 +65,19 @@ The cumulative amount you've deposited into your S-Wallet since account creation
 
 ## Adding Funds to Your S-Wallet
 
-**PayPal**
+**PayPal Method**
+
+
 Quick and secure online payments through your PayPal account. Funds are typically available within minutes.
 
-**Alipay**
+**Alipay Method**
+
+
 Convenient payment option for users with Alipay accounts. Enjoy fast processing and immediate balance updates.
 
-**Bank Transfer**
+**Bank Transfer Method**
+
+
 Traditional wire transfer option. **Important**: <Anchor label="Contact us" target="_blank" href="https://www.aurorasendcloud.com/contact">Contact us</Anchor> to submit a remittance voucher for payment verification and processing.
 
 ## Automated Monthly Billing
