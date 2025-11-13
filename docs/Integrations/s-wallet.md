@@ -9,9 +9,18 @@ hidden: false
 link:
   new_tab: false
 metadata:
+  title: S-Wallet - Digital Wallet for SMS & WhatsApp | Aurora SendCloud
   description: >-
     Aurora SendCloud's digital wallet for SMS and WhatsApp messaging with
     automatic billing, real-time balance tracking, and flexible payment options.
+  keywords:
+    - S-Wallet
+    - digital wallet
+    - SMS
+    - WhatsApp
+    - automatic billing
+    - real-time tracking
+    - payment options
   robots: index
 ---
 ## What is S-Wallet?
