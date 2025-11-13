@@ -19,6 +19,9 @@ S Wallet is a wallet in Aurora SendCloud that is specially set up for sending SM
 * Frozen: To ensure the execution of the campaign, we will freeze the estimated amount required until the WhatsApp campaign is completed.
 * Recharged : The money that you had recharged into S-Wallet .
 
-##
+## Bill of S-Wallet
+
+* S - Wallet settles the bill of the previous month on the 1st of each month.
+* The bill of S - Wallet includes the cost details of SMS and WhatsApp messages. You can view or export the data on the page.
 
 <br />
