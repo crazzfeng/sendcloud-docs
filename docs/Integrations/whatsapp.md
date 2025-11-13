@@ -49,6 +49,10 @@ Transform your marketing strategy with Aurora SendCloud's powerful WhatsApp Busi
   </Card>
 </Cards>
 
+<Callout icon="💰">
+  The fees for sending WhatsApp messages will be charged through [S-Wallet](doc:s-wallet) . Please ensure that there is sufficient balance in your [S-Wallet](doc:s-wallet) within the account.
+</Callout>
+
 ## Prerequisites Checklist
 
 Before starting your integration, ensure you have:
