@@ -81,7 +81,7 @@
               "type": "integer"
             },
             "required": true,
-            "description": "template ID"
+            "description": "template ID. Please use the approved SMS template ID. You can find it in [Content]-[SMS Template]."
           },
           {
             "in": "query",
