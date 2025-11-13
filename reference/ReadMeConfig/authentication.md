@@ -206,8 +206,18 @@ if (response.status === 401) {
 
 ***
 
+<br />
+
+<Callout icon="🌟" theme="default">
+  **Pro Tip**: Use environment variables to store your API credentials and never commit them to version control. Consider using a secrets management service for production deployments.
+</Callout>
+
 <Callout icon="💡" theme="default">
   **Need Help?** If you encounter issues while setting up authentication, please check our <Anchor label="User Guide" target="_blank" href="https://docs.aurorasendcloud.com/">User Guide</Anchor> or <Anchor label="Contact Us" target="_blank" href="https://www.aurorasendcloud.com/contact">Contact Us</Anchor> . We're here to help you get up and running quickly with Aurora SendCloud!
+</Callout>
+
+<Callout icon="💡" theme="default">
+
 </Callout>
 
 <Callout icon="🌟" theme="default">
