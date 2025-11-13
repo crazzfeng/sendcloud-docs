@@ -17,8 +17,6 @@ metadata:
 
 S-Wallet is Aurora SendCloud's integrated digital wallet solution, purpose-built for seamless SMS and WhatsApp messaging operations. Experience hassle-free communication with automatic cost deduction and transparent billing.
 
-## Key Features of S-Wallet
-
 **Automatic Activation**
 
 Your S-Wallet activates instantly when you connect SMS or WhatsApp services to your account.
@@ -35,7 +33,7 @@ Automated monthly settlement and detailed expense reports.
 
 PayPal, Alipay, and bank transfer options available.
 
-## S-Wallet Balance Overview
+## S-Wallet Financial Metrics
 
 Your S-Wallet dashboard provides complete financial transparency with four essential metrics:
 
