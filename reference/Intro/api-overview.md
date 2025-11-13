@@ -1,12 +1,16 @@
 ---
 title: API Overview
+excerpt: >-
+  Get started with AuroraSendCloud's powerful APIs, SMTP services, and
+  integration guides. Learn how to send emails, manage contacts, and track
+  performance across multiple regions.
 deprecated: false
 hidden: true
+link:
+  new_tab: false
 metadata:
   robots: index
 ---
-<br />
-
 # AuroraSendCloud API Quickstart
 
 Get started with AuroraSendCloud's powerful APIs to send emails, manage contacts, track performance, and integrate seamlessly with your applications. Follow this step-by-step guide to make your first API call in minutes, with clear distinctions between multi-region email APIs and the single-region SMS API.
@@ -20,7 +24,7 @@ Before you begin, ensure you have:
 * A supported HTTP client (e.g., cURL, Postman, Python's `requests` library)
 * Confirmation of your account's **region** (Singapore, US, or Hong Kong) for email API access (not required for SMS API)
 
-## 1. API Base URLs (By Service Type)
+## 1. API Base URLs & SMTP Servers (By Service Type)
 
 ### Email & Core APIs (Multi-Region)
 
@@ -33,6 +37,122 @@ Choose the base URL that matches your account's region for email, contact manage
 | Hong Kong (HK)     | `https://api-hk.aurorasendcloud.com/` | For Greater China and nearby APAC regions |
 
 > ℹ️ **Note**: Your account is tied to a specific region during sign-up. Using a non-matching base URL for email/core APIs will cause authentication failures or data inconsistencies. Confirm your region in your account settings.
+
+### SMTP Servers (Multi-Region)
+
+For applications that require SMTP integration, use the regional SMTP server that corresponds to your account's region. All SMTP connections require **authentication** and support both **SSL/TLS** encryption.
+
+| Region             | SMTP Server                        | Port (SSL/TLS) | Port (STARTTLS) | Coverage                                  |
+| ------------------ | ---------------------------------- | -------------- | --------------- | ----------------------------------------- |
+| Singapore (SG)     | `smtp.aurorasendcloud.com`         | 465            | 587             | Default region for APAC users             |
+| United States (US) | `smtp-us.aurorasendcloud.com`      | 465            | 587             | For North American users and services     |
+| Hong Kong (HK)     | `smtp-hk.aurorasendcloud.com`      | 465            | 587             | For Greater China and nearby APAC regions |
+
+#### SMTP Authentication
+
+* **Username**: Your AuroraSendCloud API username (same as `api_user`)
+* **Password**: Your AuroraSendCloud API key (same as `api_key`)
+* **Encryption**: SSL/TLS (recommended) or STARTTLS
+
+#### SMTP Configuration Example
+
+<Tabs>
+  <Tab title="Python (smtplib)">
+    ```python
+    import smtplib
+    from email.mime.text import MIMEText
+    from email.mime.multipart import MIMEMultipart
+
+    # Regional SMTP settings
+    smtp_server = "smtp.aurorasendcloud.com"  # or smtp-us/smtp-hk
+    smtp_port = 465  # SSL/TLS
+    username = "YOUR_API_USER"
+    password = "YOUR_API_KEY"
+
+    # Create message
+    msg = MIMEMultipart()
+    msg['From'] = "sender@yourdomain.com"
+    msg['To'] = "recipient@example.com"
+    msg['Subject'] = "Test Email via SMTP"
+
+    body = "Hello from AuroraSendCloud SMTP!"
+    msg.attach(MIMEText(body, 'plain'))
+
+    # Send email
+    with smtplib.SMTP_SSL(smtp_server, smtp_port) as server:
+        server.login(username, password)
+        server.send_message(msg)
+    ```
+  </Tab>
+
+  <Tab title="Node.js (Nodemailer)">
+    ```javascript
+    const nodemailer = require('nodemailer');
+
+    const transporter = nodemailer.createTransporter({
+      host: 'smtp.aurorasendcloud.com', // or smtp-us/smtp-hk
+      port: 465,
+      secure: true, // SSL/TLS
+      auth: {
+        user: 'YOUR_API_USER',
+        pass: 'YOUR_API_KEY'
+      }
+    });
+
+    const mailOptions = {
+      from: 'sender@yourdomain.com',
+      to: 'recipient@example.com',
+      subject: 'Test Email via SMTP',
+      text: 'Hello from AuroraSendCloud SMTP!',
+      html: '<h1>Hello from AuroraSendCloud SMTP!</h1>'
+    };
+
+    transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        console.log('Error:', error);
+      } else {
+        console.log('Email sent:', info.response);
+      }
+    });
+    ```
+  </Tab>
+
+  <Tab title="PHP (PHPMailer)">
+    ```php
+    <?php
+    use PHPMailer\PHPMailer\PHPMailer;
+    use PHPMailer\PHPMailer\SMTP;
+
+    $mail = new PHPMailer(true);
+
+    try {
+        // Server settings
+        $mail->isSMTP();
+        $mail->Host       = 'smtp.aurorasendcloud.com'; // or smtp-us/smtp-hk
+        $mail->SMTPAuth   = true;
+        $mail->Username   = 'YOUR_API_USER';
+        $mail->Password   = 'YOUR_API_KEY';
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+        $mail->Port       = 465;
+
+        // Recipients
+        $mail->setFrom('sender@yourdomain.com', 'Your Name');
+        $mail->addAddress('recipient@example.com');
+
+        // Content
+        $mail->isHTML(true);
+        $mail->Subject = 'Test Email via SMTP';
+        $mail->Body    = '<h1>Hello from AuroraSendCloud SMTP!</h1>';
+
+        $mail->send();
+        echo 'Message has been sent';
+    } catch (Exception $e) {
+        echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+    }
+    ?>
+    ```
+  </Tab>
+</Tabs>
 
 ### SMS API (Single Region)
 
@@ -53,7 +173,7 @@ Authenticate all API requests (email, SMS, and core services) by including your 
 
 ## 3. Making Your First API Call
 
-### Example: Send an Email
+### Example: Send an Email via REST API
 
 <Tabs>
   <Tab title="cURL">
@@ -382,12 +502,16 @@ All API responses (email and SMS) follow a consistent JSON structure:
   </Card>
 
   <Card title="Security" icon="lock">
-    Never expose API credentials in client-side code. Use environment variables or secure credential storage solutions in production environments.
+    Never expose API credentials in client-side code. Use environment variables or secure credential storage solutions in production environments. The same credentials work for both REST API and SMTP authentication.
   </Card>
 
   <Card title="Regional Optimization" icon="globe-americas">
-    Use the correct regional endpoint for email APIs to ensure optimal performance and compliance with local regulations.
+    Use the correct regional endpoint for both REST APIs and SMTP servers to ensure optimal performance and compliance with local regulations. Match your account region consistently across all services.
+  </Card>
+
+  <Card title="SMTP vs REST API" icon="code">
+    Choose SMTP for simple email sending integrations with existing email libraries. Use REST API for advanced features like templates, tracking, and bulk operations with detailed response handling.
   </Card>
 </Cards>
 
-**Ready to start building?** Use the code examples above to send your first email or SMS, and refer to the complete error code reference when debugging your integration.
+**Ready to start building?** Use the REST API examples for advanced integrations or configure SMTP settings for simple email sending. Both methods support the same regional optimization and authentication credentials.
