@@ -8,7 +8,7 @@ api:
   file: send.json
   operationId: get_new-endpoint
 api_config: authentication
-hidden: false
+hidden: true
 icon: icon-key1
 link:
   new_tab: false
