@@ -1,33 +1,35 @@
 ---
 title: S-Wallet
 excerpt: >-
-  S Wallet is a wallet in Aurora SendCloud that is specially set up for sending
-  SMS or WhatsApp Messages and the cost of them will be paid by S-Wallet.  
+  S-Wallet is a specialized wallet in Aurora SendCloud designed for sending SMS
+  and WhatsApp messages, with automatic cost deduction and monthly billing.
 deprecated: false
 hidden: true
+link:
+  new_tab: false
 metadata:
   robots: index
 ---
 ## What is S-Wallet
 
-S Wallet is a wallet in Aurora SendCloud that is specially set up for sending SMS or WhatsApp Messages and the cost of them will be paid by S-Wallet. S-Wallet will be automatically activated after your account is concected to SMS or WhatsApp.
+S-Wallet is a specialized wallet in Aurora SendCloud designed for sending SMS and WhatsApp messages. All costs for these messages are automatically deducted from your S-Wallet balance. S-Wallet will be automatically activated after your account is connected to SMS or WhatsApp services.
 
-## Understand the information in S-Wallet
+## Understanding S-Wallet Information
 
 <br />
 
-* Available: The available money in your S-Wallet right now is that can be used to send SMS or WhatsApp messages.
-* Estimated Deduction: The cost estimated by the system for the messages to be sent this month.
-* Frozen: To ensure the execution of the campaign, we will freeze the estimated amount required until the WhatsApp campaign is completed.
-* Recharged : The money that you had recharged into S-Wallet .
+* **Available**: The current available balance in your S-Wallet that can be used to send SMS or WhatsApp messages.
+* **Estimated Deduction**: The estimated cost calculated by the system for messages to be sent this month.
+* **Frozen**: To ensure campaign execution, we freeze the estimated required amount until the WhatsApp campaign is completed.
+* **Recharged**: The total amount of money you have recharged into your S-Wallet.
 
-## Recharge money into S-Wallet
+## Recharging Money into S-Wallet
 
 * Only positive integer amounts in US dollars can be recharged.
-* Payments via PayPal, Alipay, and bank transfer are supported.
-* For the bank transfer method, you are required to provide the remittance voucher.
+* Payments are supported via PayPal, Alipay, and bank transfer.
+* For bank transfer payments, you are required to provide a remittance voucher.
 
-## Bill of S-Wallet
+## S-Wallet Billing
 
-* S - Wallet settles the bill of the previous month on the 1st of each month.
-* The bill of S - Wallet includes the cost details of SMS and WhatsApp messages. You can view or export the data on the page.
+* S-Wallet settles the previous month's bill on the 1st of each month.
+* The S-Wallet bill includes detailed costs for SMS and WhatsApp messages. You can view or export this data from the billing page.
