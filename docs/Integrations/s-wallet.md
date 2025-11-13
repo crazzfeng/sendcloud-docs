@@ -1,8 +1,9 @@
 ---
 title: S-Wallet
 excerpt: >-
-  Aurora SendCloud's digital wallet for SMS and WhatsApp messaging with
-  automatic billing, real-time balance tracking, and flexible payment options.
+  Aurora SendCloud's integrated digital wallet for SMS and WhatsApp messaging
+  with automatic billing, real-time balance tracking, and flexible payment
+  options.
 deprecated: false
 hidden: true
 link:
@@ -13,41 +14,41 @@ metadata:
     automatic billing, real-time balance tracking, and flexible payment options.
   robots: index
 ---
-## What is S-Wallet
+## What is S-Wallet?
 
-S-Wallet is Aurora SendCloud's integrated digital wallet solution, purpose-built for seamless SMS and WhatsApp messaging operations. Experience hassle-free communication with automatic cost deduction and transparent billing.
+S-Wallet is Aurora SendCloud's integrated digital wallet solution, purpose-built for seamless SMS and WhatsApp messaging operations. Experience effortless communication with automatic cost deduction and transparent billing.
 
-**Automatic Activation**
+**Instant Activation**
 
-Your S-Wallet activates instantly when you connect SMS or WhatsApp services to your account.
+Your S-Wallet activates automatically when you connect SMS or WhatsApp services to your account.
 
-**Real-time Deduction**
+**Real-Time Deduction**
 
-Message costs are automatically deducted from your balance as you send.
+Message costs are automatically deducted from your balance as you send each message.
 
 **Monthly Billing**
 
-Automated monthly settlement and detailed expense reports.
+Enjoy automated monthly settlement with detailed expense reports.
 
 **Multiple Payment Methods**
 
-PayPal, Alipay, and bank transfer options available.
+Choose from PayPal, Alipay, and bank transfer options.
 
 ## S-Wallet Financial Metrics
 
-Your S-Wallet dashboard provides complete financial transparency with four essential metrics:
+Your S-Wallet dashboard provides complete financial transparency through four essential metrics:
 
 **Available**
 
-Your current spendable balance for SMS and WhatsApp messaging services. This amount is immediately available for message sending.
+Your current spendable balance for SMS and WhatsApp messaging services. This amount is immediately available for sending messages.
 
 **Estimated Deduction**
 
-Our system's calculated projection of costs for messages scheduled to send this month. This helps you plan your messaging budget effectively.
+Our system's calculated projection of costs for messages scheduled to be sent this month. This feature helps you plan your messaging budget effectively.
 
 **Frozen**
 
-Temporarily reserved amounts that ensure your WhatsApp campaigns can complete successfully. These funds are automatically released once campaigns finish.
+Temporarily reserved amounts that ensure your WhatsApp campaigns can complete successfully. These funds are automatically released once campaigns are finished.
 
 **Recharged**
 
@@ -55,18 +56,18 @@ The cumulative amount you've deposited into your S-Wallet since account creation
 
 ## Adding Funds to Your S-Wallet
 
-**PayPal Methods**
+**PayPal**
 Quick and secure online payments through your PayPal account. Funds are typically available within minutes.
 
-**Alipay Methods**
-Convenient payment option for users with Alipay accounts. Fast processing and immediate balance updates.
+**Alipay**
+Convenient payment option for users with Alipay accounts. Enjoy fast processing and immediate balance updates.
 
-**Bank Transfer Methods**
-Traditional wire transfer option. **Required**: <Anchor label="Contact us" target="_blank" href="https://www.aurorasendcloud.com/contact">Contact us</Anchor> to submit a remittance voucher for payment verification and processing.
+**Bank Transfer**
+Traditional wire transfer option. **Important**: <Anchor label="Contact us" target="_blank" href="https://www.aurorasendcloud.com/contact">Contact us</Anchor> to submit a remittance voucher for payment verification and processing.
 
 ## Automated Monthly Billing
 
-### **Billing Schedule**
+### Billing Schedule
 
 Your S-Wallet automatically processes and settles all previous month's charges on the **1st of each month**, ensuring consistent and predictable billing cycles.
 
@@ -75,7 +76,7 @@ Your S-Wallet automatically processes and settles all previous month's charges o
 Access comprehensive monthly statements that include:
 
 * Itemized SMS message costs
-* WhatsApp message expenses breakdown
+* WhatsApp message expense breakdowns
 * Exportable reports for accounting and record-keeping
 
 > **Pro Tip**: Download your monthly reports directly from the billing page to maintain accurate financial records for your messaging operations.
@@ -84,21 +85,21 @@ Access comprehensive monthly statements that include:
 
 Follow these simple steps to begin using your S-Wallet:
 
-### **Step 1: Connect Services**
+### Step 1: Connect Services
 
 Link your SMS or WhatsApp services to automatically activate S-Wallet.
 
-### **Step 2: Add Funds**
+### Step 2: Add Funds
 
 Deposit your preferred amount using any supported payment method.
 
-### **Step 3: Start Messaging**
+### Step 3: Start Messaging
 
 Begin sending messages with automatic cost deduction.
 
-### **Step 4: Monitor Usage**
+### Step 4: Monitor Usage
 
-Track spending through real-time balance updates and monthly reports.
+Track your spending through real-time balance updates and monthly reports.
 
 ## Support
 
