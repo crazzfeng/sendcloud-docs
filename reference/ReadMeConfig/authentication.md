@@ -208,6 +208,6 @@ if (response.status === 401) {
 
 <br />
 
-**Need Help?** If you encounter issues while setting up authentication, please check our <Anchor label="User Guide" target="_blank" href="https://docs.aurorasendcloud.com/">User Guide</Anchor> or <Anchor label="Contact Us" target="_blank" href="https://www.aurorasendcloud.com/contact">Contact Us</Anchor> . We're here to help you get up and running quickly with Aurora SendCloud!
+**Need Help?** If you encounter issues while setting up authentication, please check our [User Guide](https://docs.aurorasendcloud.com/) or <Anchor label="Contact Us" target="_blank" href="https://www.aurorasendcloud.com/contact">Contact Us</Anchor> . We're here to help you get up and running quickly with Aurora SendCloud!
 
 <br />
