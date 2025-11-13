@@ -1,7 +1,7 @@
 ---
 title: API Overview
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
