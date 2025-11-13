@@ -97,7 +97,6 @@ Access comprehensive monthly statements that include:
 
 * Itemized SMS message costs
 * WhatsApp message expenses breakdown
-* Campaign-specific spending details
 * Exportable reports for accounting and record-keeping
 
 > **Pro Tip**: Download your monthly reports directly from the billing page to maintain accurate financial records for your messaging operations.
