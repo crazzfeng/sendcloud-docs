@@ -5,7 +5,7 @@ excerpt: >-
   with automatic billing, real-time balance tracking, and flexible payment
   options.
 deprecated: false
-hidden: true
+hidden: false
 link:
   new_tab: false
 metadata:
