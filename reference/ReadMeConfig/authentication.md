@@ -200,7 +200,7 @@ if (response.status === 401) {
 
 ### Network and Connectivity Issues
 
-* Verify API endpoint URLs are correct (api.aurorasendcloud.com)
+* Verify API endpoint URLs are correct
 * Check firewall settings allow outbound HTTPS requests
 * Test with different network connections if possible
 
