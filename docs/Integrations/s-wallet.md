@@ -14,14 +14,20 @@ S Wallet is a wallet in Aurora SendCloud that is specially set up for sending SM
 
 ## Understand the information in S-Wallet
 
+<br />
+
 * Available: The available money in your S-Wallet right now is that can be used to send SMS or WhatsApp messages.
 * Estimated Deduction: The cost estimated by the system for the messages to be sent this month.
 * Frozen: To ensure the execution of the campaign, we will freeze the estimated amount required until the WhatsApp campaign is completed.
 * Recharged : The money that you had recharged into S-Wallet .
 
+## Recharge money into S-Wallet
+
+* Only positive integer amounts in US dollars can be recharged.
+* Payments via PayPal, Alipay, and bank transfer are supported.
+* For the bank transfer method, you are required to provide the remittance voucher.
+
 ## Bill of S-Wallet
 
 * S - Wallet settles the bill of the previous month on the 1st of each month.
 * The bill of S - Wallet includes the cost details of SMS and WhatsApp messages. You can view or export the data on the page.
-
-<br />
