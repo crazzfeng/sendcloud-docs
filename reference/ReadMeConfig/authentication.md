@@ -38,14 +38,14 @@ The Email API uses parameter-based authentication, requiring all requests to inc
 
 <Tabs>
   <Tab title="Required Parameters">
-    Every Email API request must include the following two parameters:
+    Every Email API request must include the following three parameters:
 
     | Parameter | Description           | Example                   |
     | --------- | --------------------- | ------------------------- |
     | `apiUser` | Your API username     | `mycompany_api`           |
     | `apiKey`  | Your API password/key | `abc123def456...`         |
 
-    > ⚠️ **Important**: These parameters must be included directly in the request parameters, not passed through HTTPS basic authentication or request headers.
+    > ⚠️ **Important**: These parameters should be included directly in the request parameters, not passed through HTTPS basic authentication or request headers.
   </Tab>
 
   <Tab title="Request Examples">
@@ -67,7 +67,7 @@ The Email API uses parameter-based authentication, requiring all requests to inc
 ### Credential Management
 
 <Accordion title="Obtaining and Creating Credentials" icon="key">
-  **How to find your credentials:**
+  **Where to find your credentials:**
 
   1. Log into your Aurora SendCloud account dashboard
   2. Navigate to **Email API** from the main menu
@@ -75,19 +75,19 @@ The Email API uses parameter-based authentication, requiring all requests to inc
 
   **Available actions:**
 
-  * ✅ Create a new `apiUser` (following platform naming conventions)
-  * 🔑 Generate an associated `apiKey` for users
+  * ✅ Create new `apiUser` (following platform naming conventions)
+  * 🔑 Generate associated `apiKey` for users
   * 🔄 Reset existing `apiKey`
 </Accordion>
 
 <Accordion title="Secure Reset Process" icon="shield-alt">
   **Security mechanism when resetting API keys:**
 
-  * ⏰ **15-minute grace period**: After a reset, the old key remains valid for 15 minutes
-  * 🔄 **Smooth transition**: Provides sufficient time to update integration configurations
-  * ⚡ **Automatic expiration**: The old key automatically expires after the grace period
+  * ⏰ **15-minute grace period**: After reset, the old key remains valid for 15 minutes
+  * 🔄 **Smooth transition**: Provides ample time to update integration configurations
+  * ⚡ **Automatic expiration**: Old key automatically expires after the grace period
 
-  **Best practices for key resets:**
+  **Best practices for key reset:**
 
   ```bash
   # 1. Reset the key in your dashboard
@@ -112,7 +112,7 @@ The SMS API also uses parameter-based authentication but with different paramete
     | `smsUser` | Your SMS username     | `mycompany_sms`   |
     | `smsKey`  | Your SMS password/key | `xyz789uvw123...` |
 
-    > ⚠️ **Important**: Similar to the Email API, these parameters must be included directly in the request parameters.
+    > ⚠️ **Important**: Similar to the Email API, these parameters need to be included directly in the request parameters.
   </Tab>
 
   <Tab title="Request Examples">
@@ -133,7 +133,7 @@ The SMS API also uses parameter-based authentication but with different paramete
 ### Credential Management
 
 <Accordion title="Obtaining and Creating Credentials" icon="mobile-alt">
-  **How to find your credentials:**
+  **Where to find your credentials:**
 
   1. Log into your Aurora SendCloud account dashboard
   2. Navigate to **Integrations** from the main menu
@@ -142,25 +142,25 @@ The SMS API also uses parameter-based authentication but with different paramete
 
   **Available actions:**
 
-  * ➕ Add a new `smsUser` (following platform naming conventions)
-  * 🔑 Generate an associated `smsKey` for users
+  * ➕ Add new `smsUser` (following platform naming conventions)
+  * 🔑 Generate associated `smsKey` for users
   * 🔄 Reset existing `smsKey`
 </Accordion>
 
 <Accordion title="Instant Reset Mechanism" icon="bolt">
   **Mechanism when resetting SMS keys:**
 
-  * ⚡ **Immediate effect**: The new `smsKey` takes effect immediately after reset
-  * ❌ **Old key invalidated**: The old key is immediately invalidated with no grace period
+  * ⚡ **Immediate effect**: New `smsKey` takes effect immediately after reset
+  * ❌ **Old key invalidated**: Old key is immediately invalidated with no grace period
   * 🚨 **Immediate update required**: Integration configuration must be updated immediately to avoid service interruption
 
   **Reset process recommendations:**
 
   ```bash
-  # 1. Prepare your application for the key update
+  # 1. Prepare your application for key update
   # 2. Reset the key in your dashboard
   # 3. Immediately update your application configuration
-  # 4. Verify that your application can authenticate successfully
+  # 4. Verify your application can authenticate successfully
   ```
 </Accordion>
 
@@ -209,25 +209,25 @@ The SMS API also uses parameter-based authentication but with different paramete
 
   * Verify parameter names are correct (`apiUser`/`apiKey` vs `smsUser`/`smsKey`)
   * Confirm credentials haven't expired or been reset
-  * Check that parameter values don't have extra spaces or special characters
+  * Check parameter values don't have extra spaces or special characters
   * Ensure you're using the correct Aurora SendCloud API endpoint
 
   **⏱️ Unable to access after key reset**
 
-  * **Email API**: Check if you're within the 15-minute grace period
-  * **SMS API**: Confirm that the immediate update to the new key was successful
+  * **Email API**: Check if within the 15-minute grace period
+  * **SMS API**: Confirm immediate update to new key was successful
 
   **📝 Parameter passing issues**
 
-  * Ensure parameters are in the request body or query string, not request headers
+  * Ensure parameters are in request body or query string, not request headers
   * Verify URL encoding is correct for special characters
-  * Check that POST request Content-Type is set to `application/x-www-form-urlencoded`
+  * Check POST request Content-Type is set to `application/x-www-form-urlencoded`
   * **Email API**: Don't forget the required `from` parameter
 
   **🔗 Network and connectivity issues**
 
   * Verify API endpoint URLs are correct (api.aurorasendcloud.com)
-  * Check firewall settings to allow outbound HTTPS requests
+  * Check firewall settings allow outbound HTTPS requests
   * Test with different network connections if possible
 </Accordion>
 
