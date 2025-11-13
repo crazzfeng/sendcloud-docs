@@ -25,10 +25,10 @@ The Email API uses parameter-based authentication, requiring all requests to inc
 
 Every Email API request must include the following parameters:
 
-| Parameter | Description           | Example         |
-| --------- | --------------------- | --------------- |
-| apiUser   | Your API username     | mycompany_api   |
-| apiKey    | Your API password/key | abc123def456... |
+| Parameter | Description                   | Example         |
+| --------- | ----------------------------- | --------------- |
+| apiUser   | Your [API_USER](doc:api-user) | mycompany_api   |
+| apiKey    | Your API_KEY                  | abc123def456... |
 
 > ⚠️ **Important**: These parameters must be included directly in the request parameters, not passed through HTTPS basic authentication or request headers.
 
@@ -57,17 +57,17 @@ curl -X POST "https://api.aurorasendcloud.com/email/send" \
 
 1. Log into your Aurora SendCloud account dashboard
 2. Navigate to **Email API** from the main menu
-3. Select the **API Key Management** section
+3. Select the **API_USER Management** section
 
 **Available actions:**
 
-* ✅ Create new `apiUser` (following platform naming conventions)
-* 🔑 Generate associated `apiKey` for users
-* 🔄 Reset existing `apiKey`
+* ✅ Create new  API_USER  (following platform naming conventions)
+* 🔑 Generate associated API_KEY for users
+* 🔄 Reset existing API_KEY
 
-### Email API Key Reset Process
+### Email API_KEY Reset Process
 
-When resetting API keys for the Email API, Aurora SendCloud provides a secure 15-minute grace period:
+When resetting API_KEY for the Email API, Aurora SendCloud provides a secure 15-minute grace period:
 
 * ⏰ **15-minute grace period**: After reset, the old key remains valid for 15 minutes
 * 🔄 **Smooth transition**: Provides ample time to update integration configurations
@@ -88,10 +88,10 @@ The SMS API also uses parameter-based authentication but with different paramete
 
 Every SMS API request must include the following parameters:
 
-| Parameter | Description           | Example         |
-| --------- | --------------------- | --------------- |
-| smsUser   | Your SMS username     | mycompany_sms   |
-| smsKey    | Your SMS password/key | xyz789uvw123... |
+| Parameter | Description   | Example         |
+| --------- | ------------- | --------------- |
+| smsUser   | Your SMS_USER | mycompany_sms   |
+| smsKey    | Your SMS_KEY  | xyz789uvw123... |
 
 > ⚠️ **Important**: Similar to the Email API, these parameters need to be included directly in the request parameters.
 
@@ -124,15 +124,15 @@ curl -X POST "https://api.aurorasendcloud.com/smsapi/send" \
 
 **Available actions:**
 
-* ➕ Add new `smsUser` (following platform naming conventions)
-* 🔑 Generate associated `smsKey` for users
-* 🔄 Reset existing `smsKey`
+* ➕ Add new  SMS_USER
+* 🔑 Generate associated  SMS_KEY for users
+* 🔄 Reset existing SMS_KEY
 
-### SMS API Key Reset Process
+### SMS_KEY Reset Process
 
-When resetting SMS keys, the process is immediate:
+When resetting SMS_KEY, the process is immediate:
 
-* ⚡ **Immediate effect**: New `smsKey` takes effect immediately after reset
+* ⚡ **Immediate effect**: New SMS_KEY takes effect immediately after reset
 * ❌ **Old key invalidated**: The old key is immediately invalidated with no grace period
 * 🚨 **Immediate update required**: Integration configuration must be updated immediately to avoid service interruption
 
