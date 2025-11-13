@@ -1,8 +1,9 @@
 ---
 title: Authentication
 excerpt: >-
-  Learn how to set up authentication for your API to help users manage their
-  credentials securely.
+  This documentation will guide you through setting up and managing API
+  credentials to ensure your applications can securely access Aurora SendCloud
+  services.
 api:
   file: send.json
   operationId: get_new-endpoint
@@ -16,10 +17,6 @@ metadata:
     Set up the authentication for your API to help users manage their
     credentials.
 ---
-# Authentication
-
-This documentation will guide you through setting up and managing API credentials to ensure your applications can securely access Aurora SendCloud services.
-
 ## Email API Authentication
 
 The Email API uses parameter-based authentication, requiring all requests to include your credentials as request parameters.
@@ -28,21 +25,23 @@ The Email API uses parameter-based authentication, requiring all requests to inc
 
 Every Email API request must include the following parameters:
 
-| Parameter | Description           | Example                   |
-| --------- | --------------------- | ------------------------- |
-| `apiUser` | Your API username     | `mycompany_api`           |
-| `apiKey`  | Your API password/key | `abc123def456...`         |
+| Parameter | Description           | Example         |
+| --------- | --------------------- | --------------- |
+| apiUser   | Your API username     | mycompany_api   |
+| apiKey    | Your API password/key | abc123def456... |
 
 > ⚠️ **Important**: These parameters must be included directly in the request parameters, not passed through HTTPS basic authentication or request headers.
 
 ### Request Examples
 
 **GET request example:**
+
 ```bash
 curl "https://api.aurorasendcloud.com/email/send?apiUser=mycompany_api&apiKey=abc123def456&from=noreply@yourcompany.com&to=user@example.com&subject=Hello"
 ```
 
 **POST request example:**
+
 ```bash
 curl -X POST "https://api.aurorasendcloud.com/email/send" \
   -d "apiUser=mycompany_api" \
@@ -89,21 +88,23 @@ The SMS API also uses parameter-based authentication but with different paramete
 
 Every SMS API request must include the following parameters:
 
-| Parameter | Description           | Example           |
-| --------- | --------------------- | ----------------- |
-| `smsUser` | Your SMS username     | `mycompany_sms`   |
-| `smsKey`  | Your SMS password/key | `xyz789uvw123...` |
+| Parameter | Description           | Example         |
+| --------- | --------------------- | --------------- |
+| smsUser   | Your SMS username     | mycompany_sms   |
+| smsKey    | Your SMS password/key | xyz789uvw123... |
 
 > ⚠️ **Important**: Similar to the Email API, these parameters need to be included directly in the request parameters.
 
 ### Request Examples
 
 **GET request example:**
+
 ```bash
 curl "https://api.aurorasendcloud.com/smsapi/send?smsUser=mycompany_sms&smsKey=xyz789uvw123&to=+1234567890&message=Hello"
 ```
 
 **POST request example:**
+
 ```bash
 curl -X POST "https://api.aurorasendcloud.com/smsapi/send" \
   -d "smsUser=mycompany_sms" \
@@ -152,6 +153,7 @@ When resetting SMS keys, the process is immediate:
 * **Usage monitoring**: Regularly check API usage logs
 
 **Recommended environment variable setup:**
+
 ```bash
 export EMAIL_API_USER="your_email_user"
 export EMAIL_API_KEY="your_email_key"
@@ -167,6 +169,7 @@ export SMS_API_KEY="your_sms_key"
 * **Testing environment**: Use separate credentials for testing
 
 **Example error handling:**
+
 ```javascript
 if (response.status === 401) {
   console.error('Authentication failed, please check API credentials');
@@ -201,12 +204,14 @@ if (response.status === 401) {
 * Check firewall settings allow outbound HTTPS requests
 * Test with different network connections if possible
 
----
+***
 
 <Callout icon="💡" theme="default">
-  **Need Help?** If you encounter issues while setting up authentication, please check our [support documentation](/support) or contact our technical support team. We're here to help you get up and running quickly with Aurora SendCloud!
+  **Need Help?** If you encounter issues while setting up authentication, please check our <Anchor label="User Guide" target="_blank" href="https://docs.aurorasendcloud.com/">User Guide</Anchor> or <Anchor label="Contact Us" target="_blank" href="https://www.aurorasendcloud.com/contact">Contact Us</Anchor> . We're here to help you get up and running quickly with Aurora SendCloud!
 </Callout>
 
 <Callout icon="🌟" theme="default">
   **Pro Tip**: Use environment variables to store your API credentials and never commit them to version control. Consider using a secrets management service for production deployments.
 </Callout>
+
+<br />
