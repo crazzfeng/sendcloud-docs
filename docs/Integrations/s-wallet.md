@@ -25,7 +25,7 @@ metadata:
 ---
 ## What is S-Wallet?
 
-S-Wallet is Aurora SendCloud's integrated digital wallet solution, purpose-built for seamless SMS and WhatsApp messaging operations. Experience effortless communication with automatic cost deduction and transparent billing.
+S-Wallet is Aurora SendCloud's integrated digital wallet solution, purpose-built for sending SMS and WhatsApp messages. Experience effortless communication with automatic cost deduction and transparent billing.
 
 **Instant Activation**
 
@@ -67,16 +67,13 @@ The cumulative amount you've deposited into your S-Wallet since account creation
 
 **PayPal Method**
 
-
 Quick and secure online payments through your PayPal account. Funds are typically available within minutes.
 
 **Alipay Method**
 
-
 Convenient payment option for users with Alipay accounts. Enjoy fast processing and immediate balance updates.
 
 **Bank Transfer Method**
-
 
 Traditional wire transfer option. **Important**: <Anchor label="Contact us" target="_blank" href="https://www.aurorasendcloud.com/contact">Contact us</Anchor> to submit a remittance voucher for payment verification and processing.
 
