@@ -1,8 +1,8 @@
 ---
-title: Query Address List Task
+title: Query Address List Task (GET)
 excerpt: Query the status and details of an address list email task
 api:
   file: test.yaml
-  operationId: get_api-mail-taskinfo
+  operationId: queryMailListTaskGet
 hidden: false
 ---
