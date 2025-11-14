@@ -219,6 +219,18 @@ paths:
             default: 'false'
           required: false
           description: Whether to use address list (e.g., to=group1@maillist.sendcloud.org)
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                test1:
+                  type: string
+                  default: '121'
+                  description: asdfsadf
+              required:
+                - test1
   /api/mail/sendtemplate:
     post:
       summary: Template Email Delivery
