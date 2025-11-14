@@ -5,6 +5,6 @@ excerpt: >-
   lists
 api:
   file: test.yaml
-  operationId: sendTemplateEmail
+  operationId: post_api-mail-sendtemplate
 hidden: false
 ---

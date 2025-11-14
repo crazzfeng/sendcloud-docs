@@ -5,6 +5,6 @@ excerpt: >-
   service)
 api:
   file: test.yaml
-  operationId: sendCalendarEmail
+  operationId: post_api-mail-sendcalendar
 hidden: false
 ---

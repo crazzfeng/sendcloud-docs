@@ -1,3 +1,5 @@
-- sendregularemail
-- sendtemplateemail
-- sendcalendaremail
+- post_api-mail-send
+- post_api-mail-sendtemplate
+- post_api-mail-sendcalendar
+- get_api-mail-taskinfo
+- post_api-mail-taskinfo
