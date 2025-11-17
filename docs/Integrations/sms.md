@@ -1,9 +1,9 @@
 ---
 title: SMS
 excerpt: >-
-  Step-by-step tutorial for integrating SMS with Aurora SendCloud, including
-  account setup, template creation, testing, and campaign management with all
-  original screenshots preserved.
+  Complete guide for SMS integration with Aurora SendCloud, including setup,
+  template creation, pricing, piece calculation, testing, and campaign
+  management with detailed instructions and examples.
 deprecated: false
 hidden: true
 link:
@@ -13,7 +13,14 @@ metadata:
 ---
 ## SMS Overview
 
-Short Message Service (SMS) is the text messaging component in mobile phone and other mobile device systems. As one of the most important messaging channels, SMS has been providing services in various ways for decades, including personal communication, authentication, marketing, and notifications.
+Short Message Service (SMS) is a fundamental text messaging component in mobile communication systems. As one of the most critical messaging channels, SMS has been providing reliable services for decades across various use cases:
+
+* **Personal Communication**: Direct messaging between individuals
+* **Authentication**: Two-factor authentication and verification codes
+* **Marketing**: Promotional campaigns and customer engagement
+* **Notifications**: System alerts, reminders, and status updates
+
+<br />
 
 <Callout icon="💰" theme="default">
   ### How does Aurora SendCloud charge for SMS messages?
@@ -22,23 +29,24 @@ Short Message Service (SMS) is the text messaging component in mobile phone and 
   2. The cost for sending SMS messages will be paid through [S-Wallet](doc:s-wallet). Please ensure that there is sufficient balance in your [S-Wallet](doc:s-wallet) account.
 </Callout>
 
-### Calculation Rules for SMS Pieces
+## SMS Piece Calculation
 
-The number of international SMS pieces is determined based on the character encoding standard used, with two core scenarios:
+Understanding how SMS pieces are calculated is crucial for cost estimation and message planning. The number of SMS pieces depends on the character encoding standard used:
 
-* **GSM-7 Encoding (Default Standard)**
+### GSM-7 Encoding ( Standard)
 
-  * 1 piece = up to 160 characters
-  * SMS message requests exceeding 160 characters are split into multiple pieces (each subsequent piece supports up to 153 characters due to piece overhead)
-  * The following characters use two characters for encoding:
+* 1 piece = up to 160 characters
+* SMS message requests exceeding 160 characters are split into multiple pieces (each subsequent piece supports up to 153 characters due to piece overhead)
+* The following characters use two characters for encoding:
 
-  ```
-  |€^{}[]~\
-  ```
-* **Non-GSM-7 Encoding (Unicode/UCS-2)**
+```
+|€^{}[]~\
+```
 
-  * 1 piece = up to 70 characters
-  * SMS messages exceeding 70 characters are split into multiple pieces (each subsequent piece supports up to 67 characters due to piece overhead)
+### Non-GSM-7 Encoding (Unicode/UCS-2)
+
+* 1 piece = up to 70 characters
+* SMS messages exceeding 70 characters are split into multiple pieces (each subsequent piece supports up to 67 characters due to piece overhead)
 
 ## Integrate SMS Service
 
