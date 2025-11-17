@@ -32,11 +32,11 @@ Short Message Service (SMS) is a fundamental text messaging component in mobile 
   2. The cost for sending SMS messages will be paid through [S-Wallet](doc:s-wallet). Please ensure that there is sufficient balance in your [S-Wallet](doc:s-wallet) account.
 </Callout>
 
-## SMS Piece Calculation
+### SMS Piece Calculation
 
 Understanding how SMS pieces are calculated is crucial for cost estimation and message planning. The number of SMS pieces depends on the character encoding standard used:
 
-### GSM-7 Encoding (Standard)
+#### GSM-7 Encoding (Standard)
 
 * 1 piece = up to 160 characters
 * SMS message requests exceeding 160 characters are split into multiple pieces (each piece supports up to 153 characters due to piece overhead)
@@ -46,7 +46,7 @@ Understanding how SMS pieces are calculated is crucial for cost estimation and m
 |€^{}[]~\
 ```
 
-### Non-GSM-7 Encoding (Unicode/UCS-2)
+#### Non-GSM-7 Encoding (Unicode/UCS-2)
 
 * 1 piece = up to 70 characters
 * SMS messages exceeding 70 characters are split into multiple pieces (each piece supports up to 67 characters due to piece overhead)
@@ -76,7 +76,7 @@ Before starting the integration process, ensure you have:
 1. On the Integration page, locate the SMS service option
 2. Click the blue **[Connect]** button next to SMS
 
-![](https://files.readme.io/7f4ec1b709d7c8d4e2c1131bb08ffe7519ff164b29dd27449c3d272077864c71-image.png)
+<Image border={false} src="https://files.readme.io/7f4ec1b709d7c8d4e2c1131bb08ffe7519ff164b29dd27449c3d272077864c71-image.png" />
 
 **Step 3: Complete Connection Setup**
 
@@ -96,12 +96,14 @@ Before starting the integration process, ensure you have:
 Once integration is complete, you'll receive two critical pieces of information:
 
 **SMS_USER**
+
 * Unique identifier for your SMS service
 * Used to authenticate your account
 * Required for all SMS API calls
 * Can be regenerated if needed
 
 **SMS_KEY**
+
 * Secret authentication key
 * Provides secure access to SMS services
 * Must be kept confidential
@@ -111,17 +113,20 @@ Once integration is complete, you'll receive two critical pieces of information:
 
 <Accordion title="Credential Security Guidelines" icon="shield-alt">
   **Storage**
+
   * Store credentials in environment variables, not in code
   * Use secure credential management systems
   * Never commit credentials to version control
 
   **Access Control**
+
   * Limit access to credentials on a need-to-know basis
   * Use role-based access controls
   * Regularly audit who has access to credentials
 
   **Rotation**
-  * Periodically rotate your SMS_KEY for enhanced security
+
+  * Periodically rotate your SMS\_KEY for enhanced security
   * Update all applications when credentials change
   * Keep backup access methods during rotation periods
 </Accordion>
@@ -129,11 +134,13 @@ Once integration is complete, you'll receive two critical pieces of information:
 ### Credential Management Actions
 
 **Viewing Credentials**
+
 * Navigate to **Integrations → SMS** to view your current credentials
 * SMS_USER is always visible
 * SMS_KEY may be masked for security (click to reveal)
 
 **Regenerating Credentials**
+
 * Click **[Regenerate]** next to your credentials if needed
 * Update all applications using the old credentials
 * Test thoroughly after regeneration
@@ -162,11 +169,13 @@ curl -X POST "https://api.sendcloud.com/v1/sms/send" \
 ```
 
 **Step 2: Verify Message Delivery**
+
 * Check that the test message is received on the target device
 * Verify the message content is displayed correctly
 * Note the delivery time for performance baseline
 
 **Step 3: Check Dashboard Analytics**
+
 * Navigate to your SMS dashboard to see message statistics
 * Verify the message appears in your sent messages log
 * Check that your S-Wallet balance has been debited correctly
@@ -177,7 +186,8 @@ curl -X POST "https://api.sendcloud.com/v1/sms/send" \
   **Symptoms**: 401 Unauthorized or authentication failed errors
 
   **Solutions**:
-  * Verify SMS_USER and SMS_KEY are correct
+
+  * Verify SMS\_USER and SMS\_KEY are correct
   * Check for extra spaces or characters in credentials
   * Ensure credentials haven't been regenerated recently
   * Confirm you're using the correct API endpoint
@@ -187,6 +197,7 @@ curl -X POST "https://api.sendcloud.com/v1/sms/send" \
   **Symptoms**: Balance-related error messages
 
   **Solutions**:
+
   * Check your [S-Wallet](doc:s-wallet) balance
   * Add funds to your S-Wallet if needed
   * Verify pricing for your target countries
@@ -197,6 +208,7 @@ curl -X POST "https://api.sendcloud.com/v1/sms/send" \
   **Symptoms**: API success but message not received
 
   **Solutions**:
+
   * Verify the phone number format (include country code)
   * Check if the number is active and can receive SMS
   * Review message content for compliance issues
@@ -209,6 +221,7 @@ curl -X POST "https://api.sendcloud.com/v1/sms/send" \
 **1. Create SMS Templates**
 
 Before sending messages at scale, create and get approval for your SMS templates:
+
 * Navigate to **Content → SMS**
 * Create templates for different use cases (OTP, notifications, marketing)
 * Submit templates for review and approval
@@ -243,12 +256,14 @@ try {
 ```
 
 **3. Monitor and Optimize**
+
 * Set up monitoring for SMS delivery rates
 * Track costs and optimize message content for efficiency
 * Monitor S-Wallet balance and set up automatic top-ups
 * Analyze delivery reports to improve campaign performance
 
 **4. Scale Your Implementation**
+
 * Implement rate limiting to avoid overwhelming carriers
 * Use batch sending for large campaigns
 * Consider timezone-aware scheduling for global audiences
@@ -258,6 +273,7 @@ try {
   **Ready to Start?**
 
   With your integration complete, you can now:
+
   * Send SMS messages via API
   * Create and manage templates
   * Monitor delivery performance
@@ -276,7 +292,7 @@ Creating effective SMS templates is essential for successful messaging campaigns
 
 Navigate to **Content → SMS** in the left-side navigation bar, then click the **+ New Template** button in the upper-left corner.
 
-![](https://files.readme.io/0f981ea7d352265c50309516326da98d96afbefacdb071aa0d216dd976e28f2f-image.png)
+<Image border={false} src="https://files.readme.io/0f981ea7d352265c50309516326da98d96afbefacdb071aa0d216dd976e28f2f-image.png" />
 
 **Step 2: Configure Template Settings**
 
@@ -289,6 +305,7 @@ Choose between saving as draft or submitting for review based on your needs.
 ### Template Configuration Fields
 
 **1. Content Type**
+
 * **Purpose**: Selecting the appropriate content type improves approval rates
 * **Options**:
   * **OTP**: For verification codes and two-factor authentication
@@ -297,11 +314,13 @@ Choose between saving as draft or submitting for review based on your needs.
 * **Best Practice**: Choose the type that most accurately reflects your message purpose
 
 **2. Template Name**
+
 * **Purpose**: Internal identification and organization
 * **Requirements**: Use descriptive names for easy management
 * **Example**: "Welcome_OTP_Verification" or "Order_Confirmation_Notification"
 
 **3. Message Content**
+
 * **Character Limits**: Consider SMS piece calculation (160 chars for GSM-7, 70 for Unicode)
 * **Variables**: Use custom variables like `%name%` for personalization
 * **Links**: Include spaces before and after links; must start with `http://` or `https://`
@@ -311,6 +330,7 @@ Choose between saving as draft or submitting for review based on your needs.
   * Provide examples for all variables used
 
 **4. Applicant Country/Region**
+
 * **Purpose**: Reference for review process (not a usage limitation)
 * **Selection**: Choose all countries where you plan to send messages
 * **Impact**: Helps reviewers understand your use case and target audience
@@ -334,16 +354,19 @@ Incorrect: Check your order status here:https://example.com/orders
 **Content Type Examples**
 
 **OTP Templates**
+
 ```
 Your verification code is %code%. Valid for 10 minutes. Do not share this code.
 ```
 
 **Notification Templates**
+
 ```
 Hi %name%, your order %order_id% has been shipped. Track it here: https://example.com/track 
 ```
 
 **Marketing Templates**
+
 ```
 🎉 Special offer for %name%! Get 20% off your next purchase. Use code: SAVE20. Shop now: https://example.com/sale 
 ```
@@ -359,12 +382,14 @@ Hi %name%, your order %order_id% has been shipped. Track it here: https://exampl
 
 <Accordion title="Understanding Save vs Submit" icon="save">
   **Save as Draft**
+
   * Saves template configuration locally
   * Allows for future editing and refinement
   * Template remains in draft state
   * Cannot be used for sending messages
 
   **Save and Submit for Review**
+
   * Submits template to Aurora SendCloud for official approval
   * Template enters review process
   * Only approved templates can be used for sending
@@ -390,6 +415,7 @@ Locate an approved template in your template list and click **[Test]** in the ac
 **Step 2: Configure Test Parameters**
 
 Enter the required information in the test popup:
+
 * **Recipient's mobile number**: Use a valid phone number you have access to
 * **SMS_USER**: Select from your available SMS_USER
 * **Variable values**: Provide actual values for any variables in your template
@@ -399,6 +425,7 @@ Enter the required information in the test popup:
 **Step 3: Send Test Message**
 
 Click **[Send]** to deliver the test message and verify:
+
 * Message delivery and timing
 * Variable replacement accuracy
 * Link functionality
@@ -418,12 +445,14 @@ Click **[Send]** to deliver the test message and verify:
 ### Template Management Tips
 
 **Organization Strategies**
+
 * Use consistent naming conventions
 * Group templates by campaign or purpose
 * Archive unused templates to reduce clutter
 * Document template performance for future reference
 
 **Version Control**
+
 * Keep track of template modifications
 * Test thoroughly after any changes
 * Maintain backup copies of high-performing templates
@@ -440,7 +469,7 @@ Understanding SMS delivery statuses helps you track message success and troubles
 ### Status Types
 
 * **Requested** - Message queued for delivery to carrier
-* **Delivered** - Successfully delivered to recipient's device  
+* **Delivered** - Successfully delivered to recipient's device
 * **Waiting Result** - Sent to carrier, awaiting delivery confirmation
 * **Failed** - Delivery unsuccessful (device off, content blocked, timing restrictions)
 * **Suppressed** - Blocked by Aurora SendCloud system filters
@@ -453,7 +482,7 @@ Understanding SMS delivery statuses helps you track message success and troubles
 **Suppressed** = Review content compliance 🚫
 
 <Callout icon="💡" theme="info">
-Most messages show "Delivered" within minutes. "Waiting Result" can last several hours depending on carrier response times.
+  Most messages show "Delivered" within minutes. "Waiting Result" can last several hours depending on carrier response times.
 </Callout>
 
 ## SMS Sender ID
