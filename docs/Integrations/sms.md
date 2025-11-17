@@ -39,7 +39,7 @@ Understanding how SMS pieces are calculated is crucial for cost estimation and m
 ### GSM-7 Encoding ( Standard)
 
 * 1 piece = up to 160 characters
-* SMS message requests exceeding 160 characters are split into multiple pieces (each subsequent piece supports up to 153 characters due to piece overhead)
+* SMS message requests exceeding 160 characters are split into multiple pieces (each piece supports up to 153 characters due to piece overhead)
 * The following characters use two characters for encoding:
 
 ```
@@ -49,7 +49,7 @@ Understanding how SMS pieces are calculated is crucial for cost estimation and m
 ### Non-GSM-7 Encoding (Unicode/UCS-2)
 
 * 1 piece = up to 70 characters
-* SMS messages exceeding 70 characters are split into multiple pieces (each subsequent piece supports up to 67 characters due to piece overhead)
+* SMS messages exceeding 70 characters are split into multiple pieces (each piece supports up to 67 characters due to piece overhead)
 
 ## Integrate SMS Service
 
@@ -71,25 +71,25 @@ Setting up SMS integration with Aurora SendCloud is straightforward and provides
 
     1. Log into your Aurora SendCloud platform dashboard
     2. Locate the left-side navigation menu on the Overview page
-    3. Click on the fourth icon labeled **[Integrations]**
+    3. Click on the fourth icon labeled **\[Integrations]**
 
     **Step 2: Begin SMS Connection**
 
     1. On the Integration page, locate the SMS service option
-    2. Click the blue **[Connect]** button next to SMS
+    2. Click the blue **\[Connect]** button next to SMS
 
-    <Image border={false} src="https://files.readme.io/7f4ec1b709d7c8d4e2c1131bb08ffe7519ff164b29dd27449c3d272077864c71-image.png" />
+    ![](https://files.readme.io/7f4ec1b709d7c8d4e2c1131bb08ffe7519ff164b29dd27449c3d272077864c71-image.png)
 
     **Step 3: Complete Connection Setup**
 
     1. Confirm that you want to connect the SMS service
     2. The system will generate unique credentials for you:
-       * **SMS_USER**: Your unique identifier for SMS operations
-       * **SMS_KEY**: Your authentication key for secure access
+       * **SMS\_USER**: Your unique identifier for SMS operations
+       * **SMS\_KEY**: Your authentication key for secure access
 
     <Callout icon="✅" theme="success">
       **Integration Complete!**
-      
+
       Your SMS service is now connected. You can immediately start using your credentials to send SMS messages via the [Send SMS](ref:send_sms_message) API.
     </Callout>
   </Tab>
@@ -99,33 +99,38 @@ Setting up SMS integration with Aurora SendCloud is straightforward and provides
 
     Once integration is complete, you'll receive two critical pieces of information:
 
-    **SMS_USER**
+    **SMS\_USER**
+
     * Unique identifier for your SMS service
     * Used to authenticate your account
     * Required for all SMS API calls
     * Can be regenerated if needed
 
-    **SMS_KEY**
+    **SMS\_KEY**
+
     * Secret authentication key
     * Provides secure access to SMS services
     * Must be kept confidential
-    * Used in conjunction with SMS_USER
+    * Used in conjunction with SMS\_USER
 
     ### Security Best Practices
 
     <Accordion title="Credential Security Guidelines" icon="shield-alt">
       **Storage**
+
       * Store credentials in environment variables, not in code
       * Use secure credential management systems
       * Never commit credentials to version control
 
       **Access Control**
+
       * Limit access to credentials on a need-to-know basis
       * Use role-based access controls
       * Regularly audit who has access to credentials
 
       **Rotation**
-      * Periodically rotate your SMS_KEY for enhanced security
+
+      * Periodically rotate your SMS\_KEY for enhanced security
       * Update all applications when credentials change
       * Keep backup access methods during rotation periods
     </Accordion>
@@ -133,17 +138,19 @@ Setting up SMS integration with Aurora SendCloud is straightforward and provides
     ### Credential Management Actions
 
     **Viewing Credentials**
+
     * Navigate to **Integrations → SMS** to view your current credentials
-    * SMS_USER is always visible
-    * SMS_KEY may be masked for security (click to reveal)
+    * SMS\_USER is always visible
+    * SMS\_KEY may be masked for security (click to reveal)
 
     **Regenerating Credentials**
-    * Click **[Regenerate]** next to your credentials if needed
+
+    * Click **\[Regenerate]** next to your credentials if needed
     * Update all applications using the old credentials
     * Test thoroughly after regeneration
 
     <Callout icon="⚠️" theme="warning">
-      **Important**: When you regenerate credentials, your old SMS_KEY becomes invalid immediately. Make sure to update all applications using the SMS service to prevent disruption.
+      **Important**: When you regenerate credentials, your old SMS\_KEY becomes invalid immediately. Make sure to update all applications using the SMS service to prevent disruption.
     </Callout>
   </Tab>
 
@@ -185,7 +192,8 @@ Setting up SMS integration with Aurora SendCloud is straightforward and provides
       **Symptoms**: 401 Unauthorized or authentication failed errors
 
       **Solutions**:
-      * Verify SMS_USER and SMS_KEY are correct
+
+      * Verify SMS\_USER and SMS\_KEY are correct
       * Check for extra spaces or characters in credentials
       * Ensure credentials haven't been regenerated recently
       * Confirm you're using the correct API endpoint
@@ -195,6 +203,7 @@ Setting up SMS integration with Aurora SendCloud is straightforward and provides
       **Symptoms**: Balance-related error messages
 
       **Solutions**:
+
       * Check your [S-Wallet](doc:s-wallet) balance
       * Add funds to your S-Wallet if needed
       * Verify pricing for your target countries
@@ -205,6 +214,7 @@ Setting up SMS integration with Aurora SendCloud is straightforward and provides
       **Symptoms**: API success but message not received
 
       **Solutions**:
+
       * Verify the phone number format (include country code)
       * Check if the number is active and can receive SMS
       * Review message content for compliance issues
@@ -269,13 +279,14 @@ Setting up SMS integration with Aurora SendCloud is straightforward and provides
 
     <Callout icon="🚀" theme="info">
       **Ready to Start?**
-      
+
       With your integration complete, you can now:
-      - Send SMS messages via API
-      - Create and manage templates
-      - Monitor delivery performance
-      - Scale your messaging operations
-      
+
+      * Send SMS messages via API
+      * Create and manage templates
+      * Monitor delivery performance
+      * Scale your messaging operations
+
       Explore our [API documentation](ref:send_sms_message) for detailed implementation guides.
     </Callout>
   </Tab>
