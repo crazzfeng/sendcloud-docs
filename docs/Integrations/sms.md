@@ -28,11 +28,17 @@ The number of international SMS segments is determined based on the character en
 
 * GSM-7 Encoding (Default Standard)
 
-  * 1 segment = up to 160 characters; messages exceeding 160 characters are split into multiple segments (each subsequent segment supports up to 153 characters due to segment overhead).
-  * For the following characters, two characters will be used for encoding: **|€^{}[]~\**
+  * 1 segment = up to 160 characters; messages exceeding 160 characters are split into multiple segments
+  * Each subsequent segment supports up to 153 characters due to segment overhead.
+  * For the following characters, two characters will be used for encoding: 
+
+  ```
+  |€^{}[]~\
+  ```
 * Non-GSM-7 Encoding (Unicode/UCS-2)
 
-  1 segment = up to 70 characters; messages exceeding 70 characters are split into multiple segments (each subsequent segment supports up to 67 characters due to segment overhead).
+  * 1 segment = up to 70 characters; messages exceeding 70 characters are split into multiple segments
+  * Each subsequent segment supports up to 67 characters due to segment overhead.
 
 ## Integrate SMS service
 
