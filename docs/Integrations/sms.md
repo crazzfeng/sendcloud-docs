@@ -9,10 +9,15 @@ hidden: false
 link:
   new_tab: false
 metadata:
+  title: Aurora SendCloud SMS Integration Guide
   description: >-
     Complete guide for SMS integration with Aurora SendCloud, including setup,
     template creation, pricing, piece calculation, testing, and campaign
     management with detailed instructions and examples.
+  keywords:
+    - sms integration guide
+    - sms template creation
+    - otp sms service
   robots: index
 ---
 ## SMS Overview
