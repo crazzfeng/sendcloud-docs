@@ -11,11 +11,11 @@ link:
 metadata:
   robots: index
 ---
-# AuroraSendCloud API Quickstart
+## AuroraSendCloud API Quickstart
 
 Get started with AuroraSendCloud's powerful APIs to send emails, manage contacts, track performance, and integrate seamlessly with your applications. Follow this step-by-step guide to make your first API call in minutes, with clear distinctions between multi-region email APIs and the single-region SMS API.
 
-## Prerequisites
+### Prerequisites
 
 Before you begin, ensure you have:
 
@@ -24,7 +24,7 @@ Before you begin, ensure you have:
 * A supported HTTP client (e.g., cURL, Postman, Python's `requests` library)
 * Confirmation of your account's **region** (Singapore, US, or Hong Kong) for email API access (not required for SMS API)
 
-## 1. API Base URLs & SMTP Servers (By Service Type)
+## API Base URLs & SMTP Servers (By Service Type)
 
 ### Email & Core APIs (Multi-Region)
 
@@ -42,11 +42,11 @@ Choose the base URL that matches your account's region for email, contact manage
 
 For applications that require SMTP integration, use the regional SMTP server that corresponds to your account's region. All SMTP connections require **authentication** and support both **SSL/TLS** encryption.
 
-| Region             | SMTP Server                        | Port (SSL/TLS) | Port (STARTTLS) | Coverage                                  |
-| ------------------ | ---------------------------------- | -------------- | --------------- | ----------------------------------------- |
-| Singapore (SG)     | `smtp.aurorasendcloud.com`         | 465            | 587             | Default region for APAC users             |
-| United States (US) | `smtp-us.aurorasendcloud.com`      | 465            | 587             | For North American users and services     |
-| Hong Kong (HK)     | `smtp-hk.aurorasendcloud.com`      | 465            | 587             | For Greater China and nearby APAC regions |
+| Region             | SMTP Server                   | Port (SSL/TLS) | Port (STARTTLS) | Coverage                                  |
+| ------------------ | ----------------------------- | -------------- | --------------- | ----------------------------------------- |
+| Singapore (SG)     | `smtp.aurorasendcloud.com`    | 465            | 587             | Default region for APAC users             |
+| United States (US) | `smtp-us.aurorasendcloud.com` | 465            | 587             | For North American users and services     |
+| Hong Kong (HK)     | `smtp-hk.aurorasendcloud.com` | 465            | 587             | For Greater China and nearby APAC regions |
 
 #### SMTP Authentication
 
@@ -162,7 +162,7 @@ The SMS API uses a **unified global base URL** (no regional endpoints required):
 * All SMS requests must use this URL regardless of your account's region
 * Authentication and response format are consistent with email/core APIs
 
-## 2. Authentication
+## &#x20;Authentication
 
 Authenticate all API requests (email, SMS, and core services) by including your credentials as **request parameters**:
 
@@ -171,7 +171,7 @@ Authenticate all API requests (email, SMS, and core services) by including your 
 
 > ⚠️ **Critical Security Note**: Never expose your API credentials in client-side code (e.g., browsers, mobile apps). Restrict access to your API key, rotate it regularly via the API Key Management page, and avoid hardcoding credentials in your source code.
 
-## 3. Making Your First API Call
+## Making Your First API Call
 
 ### Example: Send an Email via REST API
 
@@ -263,7 +263,7 @@ Authenticate all API requests (email, SMS, and core services) by including your 
   </Tab>
 </Tabs>
 
-## 4. API Response Format
+## API Response Format
 
 All API responses (email and SMS) follow a consistent JSON structure:
 
@@ -314,7 +314,7 @@ All API responses (email and SMS) follow a consistent JSON structure:
 * `message`: Description of the status code (for debugging and user feedback)
 * `info`: Contains response data (e.g., SMS/email IDs, retrieved records) on success; empty on failure
 
-## 5. API Return Codes Reference
+## API Return Codes Reference
 
 ### Common Status Codes
 
@@ -490,7 +490,7 @@ All API responses (email and SMS) follow a consistent JSON structure:
 | 50000       | Interface frequency limited                |
 | 50001       | Mail sending failed; 536 frequency limited |
 
-## 6. Best Practices
+## Best Practices
 
 <Cards>
   <Card title="Error Handling" icon="shield-alt">
