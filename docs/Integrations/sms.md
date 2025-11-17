@@ -18,12 +18,19 @@ Short Message Service, commonly abbreviated as SMS, is the text messaging compon
 <Callout icon="💰" theme="default">
   ### How does Aurora SendCloud charge for SMS messages?
 
-  1. SMS is charged based on the country/region and number of messages sent to the recipients.
-  2. Each SMS message has a character limit of 160. Messages not using GSM-7 encoding are limited to 70 characters. Long messages will be split into multiple individual SMS messages.
-  3. The cost for sending SMS messages will be paid by [S-Wallet](doc:s-wallet) . Please ensure that there is sufficient balance in your [S-Wallet](doc:s-wallet) within the account.
+  1. SMS is charged based on the country/region and number of **SMS segments** sent to the recipients.
+  2. The cost for sending SMS messages will be paid by [S-Wallet](doc:s-wallet) . Please ensure that there is sufficient balance in your [S-Wallet](doc:s-wallet) within the account.
 </Callout>
 
-<br />
+### Calculation Rules for SMS Segments
+
+The number of international SMS segments is determined based on the character encoding standard used, with two core scenarios as follows:
+
+* GSM-7 Encoding (Default Standard)
+  * 1 segment = up to 160 characters; messages exceeding 160 characters are split into multiple segments (each subsequent segment supports up to 153 characters due to segment overhead).
+  * For the following characters, two characters will be used for encoding: _|€^{}[]~\_
+* Non-GSM-7 Encoding (Unicode/UCS-2)
+  1 segment = up to 70 characters; messages exceeding 70 characters are split into multiple segments (each subsequent segment supports up to 67 characters due to segment overhead).
 
 ## Integrate SMS service
 
