@@ -94,35 +94,216 @@ Confirm that you want to connect the SMS service. The system will then generate 
 
    3. Click [Send] to deliver the test message.
 
-## How to Send SMS Messages
+## Sending SMS Messages
 
-Use your SMS_USER and SMS_KEY to send SMS messages via [Send SMS](ref:send_sms_message).
+<Tabs>
+  <Tab title="API Integration">
+    ### Using the Send SMS API
+    
+    Once you have your SMS_USER and SMS_KEY credentials from the integration setup, you can send SMS messages programmatically using the [Send SMS API](ref:send_sms_message).
+    
+    **Required Parameters:**
+    * `sms_user`: Your SMS_USER credential
+    * `sms_key`: Your SMS_KEY credential
+    * `template_id`: ID of your approved SMS template
+    * `phone`: Recipient's phone number (with country code)
+    * `template_vars`: Variables for template substitution (if applicable)
+    
+    **Example Request:**
+    ```json
+    {
+      "sms_user": "your_sms_user",
+      "sms_key": "your_sms_key", 
+      "template_id": "template_123",
+      "phone": "+1234567890",
+      "template_vars": {
+        "name": "John Doe",
+        "code": "123456"
+      }
+    }
+    ```
+  </Tab>
+  
+  <Tab title="Dashboard Sending">
+    ### Manual SMS Campaigns
+    
+    For one-time campaigns or testing purposes, you can send SMS messages directly through the Aurora SendCloud dashboard:
+    
+    1. **Navigate to SMS Campaigns**: Go to Content → SMS → Campaigns
+    2. **Create New Campaign**: Click the "New Campaign" button
+    3. **Select Template**: Choose an approved SMS template
+    4. **Add Recipients**: Upload recipient list or add individual numbers
+    5. **Schedule & Send**: Choose immediate sending or schedule for later
+    
+    <Callout icon="📋" theme="info">
+      **Best Practices for SMS Campaigns:**
+      - Always test with a small group first
+      - Respect sending time zones and local regulations
+      - Include clear opt-out instructions for marketing messages
+      - Monitor delivery rates and adjust accordingly
+    </Callout>
+  </Tab>
+</Tabs>
 
-## SMS Message Status
+## SMS Message Status Tracking
 
-* **Requested**: The sending request has been received by Aurora SendCloud and is in the process of being sent to the carrier.
-* **Delivered**: The message has been sent, and the report from the carrier shows that the message has been delivered.
-* **Waiting Result**: The message has been sent, but there is no report from the carrier yet.
-* **Failed**: The message has been sent, but the report from the carrier shows that the message was not delivered. Reasons for failure include:
-  * Device issues: turned off, no signal
-  * Your message content is inappropriate
-  * Your message sending time is not allowed
-* **Suppressed**: The message is suppressed by Aurora SendCloud due to system interception or custom interception.
+Understanding message statuses helps you monitor delivery performance and troubleshoot issues effectively:
 
-## SMS Sender ID
+<Accordion title="Message Status Details" icon="chart-line">
 
-The Sender ID shows who sent the message. With a Sender ID, you can send SMS from a custom sender (brand name or website name) instead of a random string of numbers.
+### Status Types
 
-If you have not registered a Sender ID, Aurora SendCloud will randomly assign an ID for you to send messages. Therefore, you can send messages without registering.
+<Cards columns="2">
+  <Card title="Requested" icon="clock">
+    **Initial Status**
+    
+    The sending request has been received by Aurora SendCloud and is queued for processing. The message is being prepared for delivery to the carrier network.
+  </Card>
+  
+  <Card title="Delivered" icon="check-circle">
+    **Successful Delivery**
+    
+    The message has been successfully sent and the carrier network has confirmed delivery to the recipient's device. This is the desired final status.
+  </Card>
+  
+  <Card title="Waiting Result" icon="hourglass-half">
+    **Pending Confirmation**
+    
+    The message has been sent to the carrier network, but we're still waiting for a delivery report. This is common and usually resolves within minutes.
+  </Card>
+  
+  <Card title="Failed" icon="exclamation-triangle">
+    **Delivery Failed**
+    
+    The carrier network reported that the message could not be delivered. See failure reasons below for troubleshooting.
+  </Card>
+  
+  <Card title="Suppressed" icon="shield-alt">
+    **System Blocked**
+    
+    Aurora SendCloud's system prevented the message from being sent due to compliance, filtering rules, or custom suppression settings.
+  </Card>
+</Cards>
 
-The rules vary greatly from country to country. Not all countries offer Sender ID registration, and some countries charge for the ID, subject to local carrier policies.
+### Common Failure Reasons
 
-### Create Your Sender ID
+**Device-Related Issues:**
+* Recipient's device is turned off or out of service
+* Poor network coverage or signal issues
+* Recipient's mailbox is full
+* Invalid or disconnected phone number
 
-1. Go to Integration > SMS > Sender ID. You need to provide the following information for registration:
-   1. Sender ID
-   2. Applicant country or region
+**Content-Related Issues:**
+* Message content violates carrier policies
+* Suspicious links or prohibited content detected
+* Message exceeds carrier-specific length limits
 
-2. Our staff will contact you and you may need to submit the relevant Sender ID registration materials as requested.
+**Timing Issues:**
+* Sending outside allowed hours for the destination country
+* Carrier-imposed sending restrictions during high-traffic periods
 
-3. Wait for registration and review. Review times may vary by region.
+**Account Issues:**
+* Insufficient balance in S-Wallet
+* Sender ID not approved for the destination country
+* Template not approved or expired
+
+</Accordion>
+
+### Status Monitoring Tips
+
+* **Real-time Tracking**: Use webhooks to receive instant status updates
+* **Bulk Analysis**: Export delivery reports for campaign performance analysis  
+* **Retry Logic**: Implement automatic retries for "Waiting Result" messages after reasonable delays
+* **Alert Setup**: Configure notifications for high failure rates or suppressed messages
+
+## SMS Sender ID Management
+
+The Sender ID is the name or number that appears as the message sender. A custom Sender ID helps build brand recognition and trust with recipients.
+
+### Sender ID Overview
+
+<Callout icon="info-circle" theme="info">
+**Default Behavior**: If you haven't registered a custom Sender ID, Aurora SendCloud automatically assigns a random numeric ID for your messages. You can send messages immediately without registration, but custom Sender IDs improve brand recognition.
+</Callout>
+
+**Benefits of Custom Sender ID:**
+* **Brand Recognition**: Recipients see your company name instead of random numbers
+* **Trust Building**: Familiar sender names increase message open rates
+* **Professional Appearance**: Enhances your brand's credibility
+* **Compliance**: Some regions require registered Sender IDs for commercial messages
+
+### Registration Process
+
+<Tabs>
+  <Tab title="Registration Steps">
+    #### Step 1: Access Sender ID Settings
+    Navigate to **Integration → SMS → Sender ID** in your Aurora SendCloud dashboard.
+    
+    #### Step 2: Provide Registration Information
+    Complete the registration form with:
+    
+    * **Sender ID**: Your desired brand name or identifier (alphanumeric, 3-11 characters)
+    * **Applicant Country/Region**: Select target countries where you'll use this Sender ID
+    * **Business Documentation**: Upload required business registration documents
+    * **Use Case Description**: Explain how you'll use the Sender ID
+    
+    #### Step 3: Document Submission
+    Our registration team will contact you with specific requirements, which may include:
+    * Business registration certificates
+    * Brand trademark documents  
+    * Website verification
+    * Sample message content
+    * Compliance agreements
+    
+    #### Step 4: Review Process
+    * **Processing Time**: Varies by country (typically 1-4 weeks)
+    * **Carrier Approval**: Each carrier in target countries must approve your Sender ID
+    * **Status Updates**: Receive notifications throughout the review process
+  </Tab>
+  
+  <Tab title="Country Requirements">
+    #### Regional Variations
+    
+    Sender ID registration rules vary significantly by country and carrier. Here are some key considerations:
+    
+    **Supported Countries:**
+    * Some countries don't support custom Sender IDs
+    * Others require specific documentation or impose restrictions
+    * Fees may apply depending on local carrier policies
+    
+    **Common Requirements:**
+    * **United States**: Primarily uses numeric sender IDs; limited alphanumeric support
+    * **European Union**: Generally supports alphanumeric Sender IDs with business verification
+    * **Asia-Pacific**: Mixed requirements; some countries require government approval
+    * **Middle East & Africa**: Often require local business presence or sponsorship
+    
+    **Important Notes:**
+    * Registration fees vary by country and are subject to local carrier pricing
+    * Some countries require annual renewal of Sender ID registrations
+    * Pre-registered Sender IDs may not work in all countries even after approval
+    
+    <Callout icon="warning" theme="warning">
+      **Compliance Warning**: Using unregistered Sender IDs in countries that require registration may result in message blocking or account suspension. Always verify requirements before sending commercial messages.
+    </Callout>
+  </Tab>
+</Tabs>
+
+### Best Practices for Sender IDs
+
+**Choosing Your Sender ID:**
+* Keep it short (3-11 characters) and memorable
+* Use your brand name or recognizable abbreviation
+* Avoid special characters or numbers unless necessary
+* Ensure it clearly identifies your organization
+
+**Managing Multiple Sender IDs:**
+* Register different IDs for different message types (alerts vs. marketing)
+* Use country-specific Sender IDs when required
+* Maintain consistent branding across all communications
+* Test Sender ID display across different devices and carriers
+
+**Monitoring and Maintenance:**
+* Regularly check Sender ID approval status in different countries
+* Renew registrations before expiration dates
+* Monitor delivery rates for different Sender IDs
+* Update documentation when business information changes
