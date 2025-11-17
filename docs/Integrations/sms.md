@@ -102,4 +102,10 @@ If you have not registered a Sender ID, Aurora SendCloud will randomly assign an
 
 The rules vary greatly from country to country, and not all countries offer Sender ID registration, and some countries charge for the ID, subject to the local carrier's policies. 
 
-<br />
+### Create your Sender ID
+
+1. Go to Integration > SMS > Sender ID. You need to provide the following information for registration:
+   1. Sender ID;
+   2. Applicant country or region;
+2. Our staff will contact you and you may need to submit the relevant Sender ID reporting materials as requested.
+3. Wait for registration and review. Review times may vary by region.
