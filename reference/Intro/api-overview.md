@@ -5,7 +5,7 @@ excerpt: >-
   integration guides. Learn how to send emails, manage contacts, and track
   performance across multiple regions.
 deprecated: false
-hidden: false
+hidden: true
 link:
   new_tab: false
 metadata:
