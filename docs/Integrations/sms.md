@@ -26,11 +26,13 @@ Short Message Service, commonly abbreviated as SMS, is the text messaging compon
 
 The number of international SMS segments is determined based on the character encoding standard used, with two core scenarios as follows:
 
-* GSM-7 Encoding (Default Standard)
+* GSM-7 Encoding (Default Standard)
+
   * 1 segment = up to 160 characters; messages exceeding 160 characters are split into multiple segments (each subsequent segment supports up to 153 characters due to segment overhead).
-  * For the following characters, two characters will be used for encoding: _|€^{}[]~\_
+  * For the following characters, two characters will be used for encoding: **|€^{}[]~\**
 * Non-GSM-7 Encoding (Unicode/UCS-2)
-  1 segment = up to 70 characters; messages exceeding 70 characters are split into multiple segments (each subsequent segment supports up to 67 characters due to segment overhead).
+
+  1 segment = up to 70 characters; messages exceeding 70 characters are split into multiple segments (each subsequent segment supports up to 67 characters due to segment overhead).
 
 ## Integrate SMS service
 
@@ -60,7 +62,7 @@ Confirm you want connect SMS service. And then, system will generate a SMS_USER 
       1. You can insert custom variables in the text message, such as %name%. Note that the variable name cannot be Chinese, and% is an English format symbol. If you use variables in the template you need to fill in the variable example for each variables.
       2. You need to include one at the beginning and end of the link you filled in space，and begin with http:// or https://
    4. Applicant country/region: what countries you want send to. This is only for review and reference purposes, and is not intended as a limitation on usage.
-3. Save or submit your template. 
+3. Save or submit your template.
    1. Save the template means that you just want save the template for draft
    2. Only when you click the 'Save and submit for review' button ,then your template will be submitted to Aurora SendCloud for official review.
    3. Only approved templates can be used to send SMS messages.
