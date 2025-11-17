@@ -90,11 +90,13 @@ Confirm that you want to connect the SMS service. The system will then generate 
 
    3. Click [Send] to deliver the test message.
 
-## How to Send SMS Messages
+## Sending SMS Messages via API
 
 Use your SMS_USER and SMS_KEY to send SMS messages via [Send SMS](ref:send_sms_message).
 
-## SMS Message Status
+## Understanding SMS Delivery Status
+
+Track the progress and results of your SMS messages through these status indicators:
 
 * **Requested**: The sending request has been received by Aurora SendCloud and is in the process of being sent to the carrier.
 * **Delivered**: The message has been sent, and the report from the carrier shows that the message has been delivered.
@@ -105,7 +107,7 @@ Use your SMS_USER and SMS_KEY to send SMS messages via [Send SMS](ref:send_sms_m
   * Your message sending time is not allowed
 * **Suppressed**: The message is suppressed by Aurora SendCloud due to system interception or custom interception.
 
-## SMS Sender ID
+## Customizing Your SMS Sender Identity
 
 The Sender ID shows who sent the message. With a Sender ID, you can send SMS from a custom sender (brand name or website name) instead of a random string of numbers.
 
@@ -113,7 +115,7 @@ If you have not registered a Sender ID, Aurora SendCloud will randomly assign an
 
 The rules vary greatly from country to country. Not all countries offer Sender ID registration, and some countries charge for the ID, subject to local carrier policies.
 
-### Create Your Sender ID
+### How to Register a Custom Sender ID
 
 1. Go to Integration > SMS > Sender ID. You need to provide the following information for registration:
    1. Sender ID
