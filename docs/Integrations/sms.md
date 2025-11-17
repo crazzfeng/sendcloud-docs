@@ -15,6 +15,8 @@ Step 1: Navigate to Integration Module
 
 Log into your Aurora SendCloud platform dashboard, locate the left-side navigation menu on the Overview page, and click on the fourth icon labeled [Integrations]
 
+Step 2: Begin SMS Connection
+
 ## How to create a SMS template
 
 ## How to send SMS message
