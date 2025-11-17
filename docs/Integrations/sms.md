@@ -457,24 +457,7 @@ Click **[Send]** to deliver the test message and verify:
   * Verify variable substitution works correctly
   * Check that links are clickable and lead to correct destinations
   * Test in different countries if you plan international campaigns
-  * Keep test logs for troubleshooting
 </Callout>
-
-### Template Management Tips
-
-**Organization Strategies**
-
-* Use consistent naming conventions
-* Group templates by campaign or purpose
-* Archive unused templates to reduce clutter
-* Document template performance for future reference
-
-**Version Control**
-
-* Keep track of template modifications
-* Test thoroughly after any changes
-* Maintain backup copies of high-performing templates
-* Document what changes were made and why
 
 ## SMS Message Status
 
