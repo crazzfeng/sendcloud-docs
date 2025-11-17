@@ -482,14 +482,26 @@ Use your SMS_USER and SMS_KEY to send SMS messages via [Send SMS](ref:send_sms_m
 
 ## SMS Message Status
 
-* **Requested**: The sending request has been received by Aurora SendCloud and is in the process of being sent to the carrier.
-* **Delivered**: The message has been sent, and the report from the carrier shows that the message has been delivered.
-* **Waiting Result**: The message has been sent, but there is no report from the carrier yet.
-* **Failed**: The message has been sent, but the report from the carrier shows that the message was not delivered. Reasons for failure include:
-  * Device issues: turned off, no signal
-  * Your message content is inappropriate
-  * Your message sending time is not allowed
-* **Suppressed**: The message is suppressed by Aurora SendCloud due to system interception or custom interception.
+Understanding SMS delivery statuses helps you track message success and troubleshoot issues:
+
+### Status Types
+
+* **Requested** - Message queued for delivery to carrier
+* **Delivered** - Successfully delivered to recipient's device  
+* **Waiting Result** - Sent to carrier, awaiting delivery confirmation
+* **Failed** - Delivery unsuccessful (device off, content blocked, timing restrictions)
+* **Suppressed** - Blocked by Aurora SendCloud system filters
+
+### What Each Status Means
+
+**Delivered** = Success ✅  
+**Waiting Result** = Normal delay, check again later ⏳  
+**Failed** = Check recipient number, content, and timing ❌  
+**Suppressed** = Review content compliance 🚫
+
+<Callout icon="💡" theme="info">
+Most messages show "Delivered" within minutes. "Waiting Result" can last several hours depending on carrier response times.
+</Callout>
 
 ## SMS Sender ID
 
