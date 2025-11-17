@@ -13,12 +13,10 @@ metadata:
 
 Short Message Service, commonly abbreviated as SMS, is the text messaging component in mobile phone and other mobile device systems. As one of the most important messaging channels, SMS has been providing services in various ways for decades, such as personal communication, authentication, marketing, and notifications.
 
-<br />
-
 <Callout icon="💰" theme="default">
   ### How does Aurora SendCloud charge for SMS messages?
 
-  1. SMS is charged based on the country/region and number of **SMS segments** sent to the recipients.
+  1. SMS is charged based on the country/region and count of **SMS segments** sent to the recipients.
   2. The cost for sending SMS messages will be paid by [S-Wallet](doc:s-wallet) . Please ensure that there is sufficient balance in your [S-Wallet](doc:s-wallet) within the account.
 </Callout>
 
