@@ -52,7 +52,7 @@ Transform your marketing strategy with Aurora SendCloud's powerful WhatsApp Busi
 <Callout icon="💰" theme="default">
   ### How does Aurora SendCloud charge for WhatsApp messages?
 
-  1. It is charged according to the country or region of the recipient's WhatsApp number. 
+  1. It is charged according to the country or region of the recipient's WhatsApp number.
   2. The cost for sending WhatsApp messages will be paid by [S-Wallet](doc:s-wallet) . Please ensure that there is sufficient balance in your [S-Wallet](doc:s-wallet) within the account.
 </Callout>
 
@@ -75,7 +75,7 @@ Before starting your integration, ensure you have:
 <Accordion title="Step 1: Navigate to Integration Module" icon="plug">
   **Access the Integration Hub:**
 
-  Log into your Aurora SendCloud platform dashboard, locate the left-side navigation menu on the Overview page, and click on the fourth icon labeled **\[Integration]**.
+  Log into your Aurora SendCloud platform dashboard, locate the left-side navigation menu on the Overview page, and click on the fourth icon labeled **\[Integrations]**.
 
   ![Aurora SendCloud Integration Module](https://files.readme.io/d331f19ddcb726dc4ed0fec27c33bcfb28af87e3cf01c67ed6c4563aa2327080-image.png)
 </Accordion>
