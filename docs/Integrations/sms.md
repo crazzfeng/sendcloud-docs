@@ -52,7 +52,7 @@ On the Integration page, locate the SMS service option and click the blue [Conne
 
 Step 3: Confirm Conntection
 
-Confirm you want connect SMS service. And then, system will generate a SMS_USER and SMS_KEY for you .You can use them to send SMS messages via [Send SMS](ref:send_sms_message).
+Confirm you want connect SMS service. And then, system will generate a SMS_USER and SMS_KEY for you . You can use them to send SMS messages via [Send SMS](ref:send_sms_message).
 
 ## SMS template
 
@@ -81,7 +81,7 @@ Confirm you want connect SMS service. And then, system will generate a SMS_USER 
 
 ## How to send SMS messages
 
-Use [Send SMS](ref:send_sms_message) API to SMS Messages
+Use  your SMS_USER and SMS_USER send SMS messages via [Send SMS](ref:send_sms_message) .
 
 ## SMS messages status
 
@@ -109,3 +109,5 @@ The rules vary greatly from country to country, and not all countries offer Send
    2. Applicant country or region;
 2. Our staff will contact you and you may need to submit the relevant Sender ID reporting materials as requested.
 3. Wait for registration and review. Review times may vary by region.
+
+<br />
