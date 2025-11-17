@@ -173,7 +173,7 @@ Authenticate all API requests (email, SMS, and core services) by including your 
 
 ## Making Your First API Call
 
-### Example: Send an Email via REST API
+#### Example: Send an Email via REST API
 
 <Tabs>
   <Tab title="cURL">
@@ -230,7 +230,7 @@ Authenticate all API requests (email, SMS, and core services) by including your 
   </Tab>
 </Tabs>
 
-### Example: Send an SMS
+#### Example: Send an SMS
 
 <Tabs>
   <Tab title="cURL">
@@ -316,7 +316,7 @@ All API responses (email and SMS) follow a consistent JSON structure:
 
 ## API Return Codes Reference
 
-### Common Status Codes
+#### Common Status Codes
 
 | Status Code | Meaning                                            |
 | ----------- | -------------------------------------------------- |
@@ -328,7 +328,7 @@ All API responses (email and SMS) follow a consistent JSON structure:
 | 501         | Server exception                                   |
 | 6001        | You don't have permission to access                |
 
-### General & Validation Errors (40001-40017)
+#### General & Validation Errors (40001-40017)
 
 | Status Code | Meaning                                                     |
 | ----------- | ----------------------------------------------------------- |
@@ -349,7 +349,7 @@ All API responses (email and SMS) follow a consistent JSON structure:
 | 40016       | Invalid `apiUserList` format                                |
 | 40017       | Invalid format of aggregation parameters                    |
 
-### Label Management (40100-40113)
+#### Label Management (40100-40113)
 
 | Status Code | Meaning                                            |
 | ----------- | -------------------------------------------------- |
@@ -368,7 +368,7 @@ All API responses (email and SMS) follow a consistent JSON structure:
 | 40112       | Query should be 1-255 characters                   |
 | 40113       | Label name already exists                          |
 
-### Template Management (40201-40229)
+#### Template Management (40201-40229)
 
 | Status Code | Meaning                                                                  |
 | ----------- | ------------------------------------------------------------------------ |
@@ -402,7 +402,7 @@ All API responses (email and SMS) follow a consistent JSON structure:
 | 40228       | Template not approved; do not withdraw the approval request              |
 | 40229       | Template not submitted for approval; unable to withdraw approval request |
 
-### Email Sending Parameters (40801-40880)
+#### Email Sending Parameters (40801-40880)
 
 | Status Code | Meaning                                          |
 | ----------- | ------------------------------------------------ |
@@ -422,7 +422,7 @@ All API responses (email and SMS) follow a consistent JSON structure:
 | 40879       | `replyto` cannot be more than 3                  |
 | 40880       | Invalid email format in field "to" of `xsmtpapi` |
 
-### Email Sending Results (40901-40913)
+#### Email Sending Results (40901-40913)
 
 | Status Code | Meaning                                                             |
 | ----------- | ------------------------------------------------------------------- |
@@ -440,7 +440,7 @@ All API responses (email and SMS) follow a consistent JSON structure:
 | 40912       | Your account balance is insufficient; please recharge soon          |
 | 40913       | Request quota exceeded                                              |
 
-### Address List Management (40501-40522)
+#### Address List Management (40501-40522)
 
 | Status Code | Meaning                                                   |
 | ----------- | --------------------------------------------------------- |
@@ -460,7 +460,7 @@ All API responses (email and SMS) follow a consistent JSON structure:
 | 40519       | Failed to delete member                                   |
 | 40522       | Variables parameter does not adhere to JSON string syntax |
 
-### Domain & API User Management (41001-41119)
+#### Domain & API User Management (41001-41119)
 
 | Status Code | Meaning                                                                                              |
 | ----------- | ---------------------------------------------------------------------------------------------------- |
@@ -477,7 +477,7 @@ All API responses (email and SMS) follow a consistent JSON structure:
 | 41112       | `apiUser` should be no more than 10                                                                  |
 | 41119       | Failed to create `apiUser`                                                                           |
 
-### System & Server Errors (49901-50001)
+#### System & Server Errors (49901-50001)
 
 | Status Code | Meaning                                    |
 | ----------- | ------------------------------------------ |
