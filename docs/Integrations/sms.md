@@ -457,7 +457,28 @@ Click **[Send]** to deliver the test message and verify:
   * Verify variable substitution works correctly
   * Check that links are clickable and lead to correct destinations
   * Test in different countries if you plan international campaigns
+  * Keep test logs for troubleshooting
 </Callout>
+
+### Template Management Tips
+
+**Organization Strategies**
+
+* Use consistent naming conventions
+* Group templates by campaign or purpose
+* Archive unused templates to reduce clutter
+* Document template performance for future reference
+
+**Version Control**
+
+* Keep track of template modifications
+* Test thoroughly after any changes
+* Maintain backup copies of high-performing templates
+* Document what changes were made and why
+
+## How to Send SMS Messages
+
+Use your SMS_USER and SMS_KEY to send SMS messages via [Send SMS](ref:send_sms_message).
 
 ## SMS Message Status
 
@@ -466,7 +487,7 @@ Understanding SMS delivery statuses helps you track message success and troubles
 ### Status Types
 
 * **Requested** - Message queued for delivery to carrier
-* **Delivered** - Successfully delivered to recipient's device
+* **Delivered** - Successfully delivered to recipient's device  
 * **Waiting Result** - Sent to carrier, awaiting delivery confirmation
 * **Failed** - Delivery unsuccessful (device off, content blocked, timing restrictions)
 * **Suppressed** - Blocked by Aurora SendCloud system filters
@@ -479,255 +500,23 @@ Understanding SMS delivery statuses helps you track message success and troubles
 **Suppressed** = Review content compliance 🚫
 
 <Callout icon="💡" theme="info">
-  Most messages show "Delivered" within minutes. "Waiting Result" can last several hours depending on carrier response times.
+Most messages show "Delivered" within minutes. "Waiting Result" can last several hours depending on carrier response times.
 </Callout>
 
 ## SMS Sender ID
 
-A Sender ID is a custom identifier that appears as the sender of your SMS messages, allowing recipients to easily identify who sent the message. Instead of receiving messages from random numeric strings, your customers see your brand name, website, or company name.
+The Sender ID shows who sent the message. With a Sender ID, you can send SMS from a custom sender (brand name or website name) instead of a random string of numbers.
 
-### Understanding Sender IDs
+If you have not registered a Sender ID, Aurora SendCloud will randomly assign an ID for you to send messages. Therefore, you can send messages without registering.
 
-<Tabs>
-  <Tab title="What is a Sender ID?">
-    ### Definition and Purpose
+The rules vary greatly from country to country. Not all countries offer Sender ID registration, and some countries charge for the ID, subject to local carrier policies.
 
-    A Sender ID is an alphanumeric identifier (typically 3-11 characters) that replaces the default numeric sender ID with a recognizable name or brand identifier.
+### Create Your Sender ID
 
-    **Examples of Sender IDs:**
-    * `YOURBANK` for banking notifications
-    * `SHOPNAME` for e-commerce updates
-    * `DELIVERY` for shipping notifications
-    * `ALERTS` for system notifications
+1. Go to Integration > SMS > Sender ID. You need to provide the following information for registration:
+   1. Sender ID
+   2. Applicant country or region
 
-    ### Benefits of Using Sender IDs
+2. Our staff will contact you and you may need to submit the relevant Sender ID registration materials as requested.
 
-    **Brand Recognition**
-    * Increases message open rates and engagement
-    * Builds trust with recipients
-    * Reinforces brand identity in communications
-
-    **Professional Appearance**
-    * Messages appear more legitimate and official
-    * Reduces spam perception
-    * Improves customer experience
-
-    **Message Categorization**
-    * Recipients can easily sort and filter messages
-    * Helps customers identify message types quickly
-    * Improves message organization
-
-    <Callout icon="📱" theme="info">
-      **Without Sender ID**: Messages appear from random numbers like "+1234567890" or "12345"
-      
-      **With Sender ID**: Messages appear from "YOURSTORE" or "BANKNAME"
-    </Callout>
-  </Tab>
-
-  <Tab title="Requirements & Limitations">
-    ### Global Variations
-
-    Sender ID availability and requirements vary significantly by country and region:
-
-    **Supported Regions**
-    * Most European countries (UK, Germany, France, etc.)
-    * Middle East and Africa
-    * Parts of Asia-Pacific
-    * Limited availability in North America
-
-    **Restrictions by Region**
-    * **United States**: Very limited Sender ID support
-    * **Canada**: No Sender ID support for most carriers
-    * **India**: Requires entity registration and DLT approval
-    * **China**: Strict content and registration requirements
-
-    ### Technical Requirements
-
-    **Character Limits**
-    * **Minimum**: 3 characters
-    * **Maximum**: 11 characters (varies by country)
-    * **Format**: Alphanumeric only (A-Z, 0-9)
-    * **Restrictions**: No spaces, special characters, or symbols
-
-    **Content Guidelines**
-    * Cannot contain offensive or misleading terms
-    * Must represent the actual sender/brand
-    * Should be easily recognizable to recipients
-    * Cannot impersonate government agencies or other brands
-
-    ### Cost Considerations
-
-    <Accordion title="Sender ID Pricing" icon="dollar-sign">
-      **Free Registration**
-      * Many countries offer free Sender ID registration
-      * Basic setup typically has no additional cost
-      * Standard processing times apply
-
-      **Paid Registration**
-      * Some regions charge registration fees
-      * Premium processing options may be available
-      * Costs vary by country and carrier requirements
-
-      **Ongoing Costs**
-      * Most Sender IDs have no recurring fees
-      * Some premium features may incur additional charges
-      * Message costs remain the same regardless of Sender ID usage
-    </Accordion>
-  </Tab>
-
-  <Tab title="Registration Process">
-    ### Step-by-Step Registration
-
-    **Step 1: Access Sender ID Management**
-
-    Navigate to **Integration → SMS → Sender ID** in your Aurora SendCloud dashboard.
-
-    **Step 2: Initiate Registration**
-
-    Click **[Register New Sender ID]** and provide the following information:
-
-    * **Sender ID**: Your desired identifier (3-11 characters)
-    * **Applicant Country/Region**: Select your primary operating region
-    * **Use Case Description**: Explain how you'll use this Sender ID
-    * **Business Type**: Select your industry category
-
-    **Step 3: Submit Documentation**
-
-    Depending on your region, you may need to provide:
-
-    * **Business Registration**: Company incorporation documents
-    * **Brand Authorization**: Trademark or brand ownership proof
-    * **Sample Messages**: Examples of content you plan to send
-    * **Contact Information**: Valid business contact details
-
-    **Step 4: Review and Approval**
-
-    * Our team will review your application
-    * Additional documentation may be requested
-    * Approval times vary by region (typically 1-14 business days)
-    * You'll receive notification once approved
-
-    ### Documentation Requirements by Region
-
-    <Accordion title="Europe" icon="flag">
-      **Required Documents**
-      * Business registration certificate
-      * VAT registration (if applicable)
-      * Sample message templates
-      * Contact verification
-
-      **Processing Time**: 2-5 business days
-      **Success Rate**: High for legitimate businesses
-    </Accordion>
-
-    <Accordion title="Middle East & Africa" icon="flag">
-      **Required Documents**
-      * Trade license or business permit
-      * Authorization letter from brand owner
-      * NOC (No Objection Certificate) if applicable
-      * Local sponsor documentation (some countries)
-
-      **Processing Time**: 5-14 business days
-      **Success Rate**: Moderate, varies by country
-    </Accordion>
-
-    <Accordion title="Asia-Pacific" icon="flag">
-      **Required Documents**
-      * Business license
-      * Brand trademark certificate
-      * Entity registration (India requires DLT)
-      * Content pre-approval (some countries)
-
-      **Processing Time**: 7-21 business days
-      **Success Rate**: Varies significantly by country
-    </Accordion>
-  </Tab>
-
-  <Tab title="Best Practices">
-    ### Choosing Effective Sender IDs
-
-    **Naming Guidelines**
-
-    ```
-    Good Examples:
-    ✅ YOURSTORE (e-commerce)
-    ✅ BANKNAME (financial services)
-    ✅ DELIVERY (logistics)
-    ✅ ALERTS (notifications)
-
-    Poor Examples:
-    ❌ ABC123 (not descriptive)
-    ❌ PROMO (too generic)
-    ❌ TEST (unprofessional)
-    ❌ INFO (vague)
-    ```
-
-    **Brand Consistency**
-    * Use the same Sender ID across all message types when possible
-    * Consider creating specific IDs for different services (e.g., SHOP-ORDERS, SHOP-SUPPORT)
-    * Ensure Sender IDs align with your brand voice and style
-    * Test how your Sender ID appears on different devices
-
-    ### Usage Optimization
-
-    **Multiple Sender IDs Strategy**
-    * **Service-Based**: Different IDs for different services
-    * **Region-Based**: Localized IDs for different markets
-    * **Campaign-Based**: Specific IDs for marketing campaigns
-    * **Department-Based**: Different IDs for support, billing, etc.
-
-    **Compliance and Monitoring**
-    * Monitor delivery rates with your Sender ID
-    * Ensure all messages align with your registered use case
-    * Keep documentation up to date
-    * Report any delivery issues promptly
-
-    <Callout icon="🎯" theme="success">
-      **Pro Tip**: Start with one primary Sender ID that represents your brand, then expand to specialized IDs as your messaging needs grow.
-    </Callout>
-  </Tab>
-</Tabs>
-
-### Default Behavior Without Sender ID
-
-If you don't register a custom Sender ID, Aurora SendCloud will automatically assign a default identifier for your messages:
-
-* **Numeric Sender**: Messages appear from random numeric strings
-* **Immediate Sending**: No registration delays or approval processes
-* **Full Functionality**: All SMS features work normally
-* **Cost Effective**: No additional registration fees or documentation requirements
-
-<Callout icon="⚡" theme="info">
-  **Quick Start Option**
-
-  You can begin sending SMS messages immediately without a Sender ID. This is perfect for:
-  * Testing and development
-  * Internal notifications
-  * Time-sensitive implementations
-  * Markets where Sender IDs aren't supported
-</Callout>
-
-### Managing Your Sender IDs
-
-Once registered, you can manage your Sender IDs through the dashboard:
-
-**View Active Sender IDs**
-* See all registered Sender IDs and their status
-* Check approval status and expiration dates
-* View usage statistics and delivery rates
-
-**Update Registration Details**
-* Modify contact information
-* Update business documentation
-* Change use case descriptions
-
-**Troubleshoot Issues**
-* Check rejection reasons and resubmit
-* Monitor delivery performance
-* Contact support for registration assistance
-
-<Callout icon="🔄" theme="warning">
-  **Registration Updates**
-
-  Changes to existing Sender IDs may require re-approval. Plan updates accordingly and maintain backup Sender IDs for critical communications during review periods.
-</Callout>
+3. Wait for registration and review. Review times may vary by region.
