@@ -102,4 +102,4 @@ If you have not registered a Sender ID, Aurora SendCloud will randomly assign an
 
 The rules vary greatly from country to country, and not all countries offer Sender ID registration, and some countries charge for the ID, subject to the local carrier's policies. 
 
-## The report of SMS
+<br />
