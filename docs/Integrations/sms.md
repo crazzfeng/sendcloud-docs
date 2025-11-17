@@ -36,7 +36,7 @@ Short Message Service (SMS) is a fundamental text messaging component in mobile 
 
 Understanding how SMS pieces are calculated is crucial for cost estimation and message planning. The number of SMS pieces depends on the character encoding standard used:
 
-### GSM-7 Encoding ( Standard)
+### GSM-7 Encoding (Standard)
 
 * 1 piece = up to 160 characters
 * SMS message requests exceeding 160 characters are split into multiple pieces (each piece supports up to 153 characters due to piece overhead)
@@ -55,242 +55,216 @@ Understanding how SMS pieces are calculated is crucial for cost estimation and m
 
 Setting up SMS integration with Aurora SendCloud is straightforward and provides you with the credentials needed to send messages programmatically. This integration enables you to leverage Aurora SendCloud's global SMS infrastructure for your applications.
 
-<Tabs>
-  <Tab title="Quick Setup">
-    ### Prerequisites
+### Prerequisites
 
-    Before starting the integration process, ensure you have:
+Before starting the integration process, ensure you have:
 
-    * An active Aurora SendCloud account
-    * Sufficient balance in your [S-Wallet](doc:s-wallet) for SMS charges
-    * Access to your Aurora SendCloud dashboard
+* An active Aurora SendCloud account
+* Sufficient balance in your [S-Wallet](doc:s-wallet) for SMS charges
+* Access to your Aurora SendCloud dashboard
 
-    ### Integration Steps
+### Quick Setup Steps
 
-    **Step 1: Navigate to Integration Module**
+**Step 1: Navigate to Integration Module**
 
-    1. Log into your Aurora SendCloud platform dashboard
-    2. Locate the left-side navigation menu on the Overview page
-    3. Click on the fourth icon labeled **\[Integrations]**
+1. Log into your Aurora SendCloud platform dashboard
+2. Locate the left-side navigation menu on the Overview page
+3. Click on the fourth icon labeled **[Integrations]**
 
-    **Step 2: Begin SMS Connection**
+**Step 2: Begin SMS Connection**
 
-    1. On the Integration page, locate the SMS service option
-    2. Click the blue **\[Connect]** button next to SMS
+1. On the Integration page, locate the SMS service option
+2. Click the blue **[Connect]** button next to SMS
 
-    ![](https://files.readme.io/7f4ec1b709d7c8d4e2c1131bb08ffe7519ff164b29dd27449c3d272077864c71-image.png)
+![](https://files.readme.io/7f4ec1b709d7c8d4e2c1131bb08ffe7519ff164b29dd27449c3d272077864c71-image.png)
 
-    **Step 3: Complete Connection Setup**
+**Step 3: Complete Connection Setup**
 
-    1. Confirm that you want to connect the SMS service
-    2. The system will generate unique credentials for you:
-       * **SMS\_USER**: Your unique identifier for SMS operations
-       * **SMS\_KEY**: Your authentication key for secure access
+1. Confirm that you want to connect the SMS service
+2. The system will generate unique credentials for you:
+   * **SMS_USER**: Your unique identifier for SMS operations
+   * **SMS_KEY**: Your authentication key for secure access
 
-    <Callout icon="✅" theme="success">
-      **Integration Complete!**
+<Callout icon="✅" theme="success">
+  **Integration Complete!**
 
-      Your SMS service is now connected. You can immediately start using your credentials to send SMS messages via the [Send SMS](ref:send_sms_message) API.
-    </Callout>
-  </Tab>
+  Your SMS service is now connected. You can immediately start using your credentials to send SMS messages via the [Send SMS](ref:send_sms_message) API.
+</Callout>
 
-  <Tab title="Credentials Management">
-    ### Understanding Your SMS Credentials
+### Understanding Your SMS Credentials
 
-    Once integration is complete, you'll receive two critical pieces of information:
+Once integration is complete, you'll receive two critical pieces of information:
 
-    **SMS\_USER**
+**SMS_USER**
+* Unique identifier for your SMS service
+* Used to authenticate your account
+* Required for all SMS API calls
+* Can be regenerated if needed
 
-    * Unique identifier for your SMS service
-    * Used to authenticate your account
-    * Required for all SMS API calls
-    * Can be regenerated if needed
+**SMS_KEY**
+* Secret authentication key
+* Provides secure access to SMS services
+* Must be kept confidential
+* Used in conjunction with SMS_USER
 
-    **SMS\_KEY**
+### Security Best Practices
 
-    * Secret authentication key
-    * Provides secure access to SMS services
-    * Must be kept confidential
-    * Used in conjunction with SMS\_USER
+<Accordion title="Credential Security Guidelines" icon="shield-alt">
+  **Storage**
+  * Store credentials in environment variables, not in code
+  * Use secure credential management systems
+  * Never commit credentials to version control
 
-    ### Security Best Practices
+  **Access Control**
+  * Limit access to credentials on a need-to-know basis
+  * Use role-based access controls
+  * Regularly audit who has access to credentials
 
-    <Accordion title="Credential Security Guidelines" icon="shield-alt">
-      **Storage**
+  **Rotation**
+  * Periodically rotate your SMS_KEY for enhanced security
+  * Update all applications when credentials change
+  * Keep backup access methods during rotation periods
+</Accordion>
 
-      * Store credentials in environment variables, not in code
-      * Use secure credential management systems
-      * Never commit credentials to version control
+### Credential Management Actions
 
-      **Access Control**
-
-      * Limit access to credentials on a need-to-know basis
-      * Use role-based access controls
-      * Regularly audit who has access to credentials
-
-      **Rotation**
-
-      * Periodically rotate your SMS\_KEY for enhanced security
-      * Update all applications when credentials change
-      * Keep backup access methods during rotation periods
-    </Accordion>
-
-    ### Credential Management Actions
-
-    **Viewing Credentials**
-
-    * Navigate to **Integrations → SMS** to view your current credentials
-    * SMS\_USER is always visible
-    * SMS\_KEY may be masked for security (click to reveal)
-
-    **Regenerating Credentials**
-
-    * Click **\[Regenerate]** next to your credentials if needed
-    * Update all applications using the old credentials
-    * Test thoroughly after regeneration
-
-    <Callout icon="⚠️" theme="warning">
-      **Important**: When you regenerate credentials, your old SMS\_KEY becomes invalid immediately. Make sure to update all applications using the SMS service to prevent disruption.
-    </Callout>
-  </Tab>
-
-  <Tab title="Testing & Validation">
-    ### Verify Your Integration
-
-    After completing the integration, it's important to verify everything is working correctly:
-
-    **Step 1: Test API Connection**
-
-    Use the [Send SMS](ref:send_sms_message) endpoint to send a test message:
-
-    ```bash
-    curl -X POST "https://api.sendcloud.com/v1/sms/send" \
-      -H "Content-Type: application/json" \
-      -d '{
-        "sms_user": "your_sms_user",
-        "sms_key": "your_sms_key",
-        "phone": "+1234567890",
-        "message": "Test message from Aurora SendCloud"
-      }'
-    ```
-
-    **Step 2: Verify Message Delivery**
-
-    * Check that the test message is received on the target device
-    * Verify the message content is displayed correctly
-    * Note the delivery time for performance baseline
-
-    **Step 3: Check Dashboard Analytics**
-
-    * Navigate to your SMS dashboard to see message statistics
-    * Verify the message appears in your sent messages log
-    * Check that your S-Wallet balance has been debited correctly
-
-    ### Troubleshooting Common Issues
-
-    <Accordion title="Authentication Errors" icon="exclamation-triangle">
-      **Symptoms**: 401 Unauthorized or authentication failed errors
-
-      **Solutions**:
-
-      * Verify SMS\_USER and SMS\_KEY are correct
-      * Check for extra spaces or characters in credentials
-      * Ensure credentials haven't been regenerated recently
-      * Confirm you're using the correct API endpoint
-    </Accordion>
-
-    <Accordion title="Insufficient Balance" icon="wallet">
-      **Symptoms**: Balance-related error messages
-
-      **Solutions**:
-
-      * Check your [S-Wallet](doc:s-wallet) balance
-      * Add funds to your S-Wallet if needed
-      * Verify pricing for your target countries
-      * Check if there are any pending charges
-    </Accordion>
-
-    <Accordion title="Message Not Delivered" icon="mobile-alt">
-      **Symptoms**: API success but message not received
-
-      **Solutions**:
-
-      * Verify the phone number format (include country code)
-      * Check if the number is active and can receive SMS
-      * Review message content for compliance issues
-      * Check carrier-specific restrictions
-      * Wait a few minutes as delivery can be delayed
-    </Accordion>
-  </Tab>
-
-  <Tab title="Next Steps">
-    ### After Successful Integration
-
-    **1. Create SMS Templates**
-
-    Before sending messages at scale, create and get approval for your SMS templates:
-
-    * Navigate to **Content → SMS**
-    * Create templates for different use cases (OTP, notifications, marketing)
-    * Submit templates for review and approval
-    * Test approved templates before production use
-
-    **2. Implement Error Handling**
-
-    Robust applications should handle various scenarios:
-
-    ```javascript
-    // Example error handling in JavaScript
-    try {
-      const response = await sendSMS({
-        sms_user: process.env.SMS_USER,
-        sms_key: process.env.SMS_KEY,
-        phone: recipientPhone,
-        message: messageContent
-      });
-      
-      console.log('SMS sent successfully:', response.message_id);
-    } catch (error) {
-      if (error.code === 'INSUFFICIENT_BALANCE') {
-        // Handle low balance
-        notifyAdminOfLowBalance();
-      } else if (error.code === 'INVALID_PHONE') {
-        // Handle invalid phone number
-        logInvalidPhone(recipientPhone);
-      }
-      // Log error for debugging
-      console.error('SMS sending failed:', error);
-    }
-    ```
-
-    **3. Monitor and Optimize**
-
-    * Set up monitoring for SMS delivery rates
-    * Track costs and optimize message content for efficiency
-    * Monitor S-Wallet balance and set up automatic top-ups
-    * Analyze delivery reports to improve campaign performance
-
-    **4. Scale Your Implementation**
-
-    * Implement rate limiting to avoid overwhelming carriers
-    * Use batch sending for large campaigns
-    * Consider timezone-aware scheduling for global audiences
-    * Set up webhook endpoints to receive delivery reports
-
-    <Callout icon="🚀" theme="info">
-      **Ready to Start?**
-
-      With your integration complete, you can now:
-
-      * Send SMS messages via API
-      * Create and manage templates
-      * Monitor delivery performance
-      * Scale your messaging operations
-
-      Explore our [API documentation](ref:send_sms_message) for detailed implementation guides.
-    </Callout>
-  </Tab>
-</Tabs>
+**Viewing Credentials**
+* Navigate to **Integrations → SMS** to view your current credentials
+* SMS_USER is always visible
+* SMS_KEY may be masked for security (click to reveal)
+
+**Regenerating Credentials**
+* Click **[Regenerate]** next to your credentials if needed
+* Update all applications using the old credentials
+* Test thoroughly after regeneration
+
+<Callout icon="⚠️" theme="warning">
+  **Important**: When you regenerate credentials, your old SMS_KEY becomes invalid immediately. Make sure to update all applications using the SMS service to prevent disruption.
+</Callout>
+
+### Testing & Validation
+
+After completing the integration, it's important to verify everything is working correctly:
+
+**Step 1: Test API Connection**
+
+Use the [Send SMS](ref:send_sms_message) endpoint to send a test message:
+
+```bash
+curl -X POST "https://api.sendcloud.com/v1/sms/send" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "sms_user": "your_sms_user",
+    "sms_key": "your_sms_key",
+    "phone": "+1234567890",
+    "message": "Test message from Aurora SendCloud"
+  }'
+```
+
+**Step 2: Verify Message Delivery**
+* Check that the test message is received on the target device
+* Verify the message content is displayed correctly
+* Note the delivery time for performance baseline
+
+**Step 3: Check Dashboard Analytics**
+* Navigate to your SMS dashboard to see message statistics
+* Verify the message appears in your sent messages log
+* Check that your S-Wallet balance has been debited correctly
+
+### Troubleshooting Common Issues
+
+<Accordion title="Authentication Errors" icon="exclamation-triangle">
+  **Symptoms**: 401 Unauthorized or authentication failed errors
+
+  **Solutions**:
+  * Verify SMS_USER and SMS_KEY are correct
+  * Check for extra spaces or characters in credentials
+  * Ensure credentials haven't been regenerated recently
+  * Confirm you're using the correct API endpoint
+</Accordion>
+
+<Accordion title="Insufficient Balance" icon="wallet">
+  **Symptoms**: Balance-related error messages
+
+  **Solutions**:
+  * Check your [S-Wallet](doc:s-wallet) balance
+  * Add funds to your S-Wallet if needed
+  * Verify pricing for your target countries
+  * Check if there are any pending charges
+</Accordion>
+
+<Accordion title="Message Not Delivered" icon="mobile-alt">
+  **Symptoms**: API success but message not received
+
+  **Solutions**:
+  * Verify the phone number format (include country code)
+  * Check if the number is active and can receive SMS
+  * Review message content for compliance issues
+  * Check carrier-specific restrictions
+  * Wait a few minutes as delivery can be delayed
+</Accordion>
+
+### Next Steps After Integration
+
+**1. Create SMS Templates**
+
+Before sending messages at scale, create and get approval for your SMS templates:
+* Navigate to **Content → SMS**
+* Create templates for different use cases (OTP, notifications, marketing)
+* Submit templates for review and approval
+* Test approved templates before production use
+
+**2. Implement Error Handling**
+
+Robust applications should handle various scenarios:
+
+```javascript
+// Example error handling in JavaScript
+try {
+  const response = await sendSMS({
+    sms_user: process.env.SMS_USER,
+    sms_key: process.env.SMS_KEY,
+    phone: recipientPhone,
+    message: messageContent
+  });
+  
+  console.log('SMS sent successfully:', response.message_id);
+} catch (error) {
+  if (error.code === 'INSUFFICIENT_BALANCE') {
+    // Handle low balance
+    notifyAdminOfLowBalance();
+  } else if (error.code === 'INVALID_PHONE') {
+    // Handle invalid phone number
+    logInvalidPhone(recipientPhone);
+  }
+  // Log error for debugging
+  console.error('SMS sending failed:', error);
+}
+```
+
+**3. Monitor and Optimize**
+* Set up monitoring for SMS delivery rates
+* Track costs and optimize message content for efficiency
+* Monitor S-Wallet balance and set up automatic top-ups
+* Analyze delivery reports to improve campaign performance
+
+**4. Scale Your Implementation**
+* Implement rate limiting to avoid overwhelming carriers
+* Use batch sending for large campaigns
+* Consider timezone-aware scheduling for global audiences
+* Set up webhook endpoints to receive delivery reports
+
+<Callout icon="🚀" theme="info">
+  **Ready to Start?**
+
+  With your integration complete, you can now:
+  * Send SMS messages via API
+  * Create and manage templates
+  * Monitor delivery performance
+  * Scale your messaging operations
+
+  Explore our [API documentation](ref:send_sms_message) for detailed implementation guides.
+</Callout>
 
 ## SMS Template Management
 
@@ -298,116 +272,99 @@ Creating effective SMS templates is essential for successful messaging campaigns
 
 ### Creating a New SMS Template
 
-<Tabs>
-  <Tab title="Step-by-Step Guide">
-    **Step 1: Access Template Creation**
+**Step 1: Access Template Creation**
 
-    Navigate to **Content → SMS** in the left-side navigation bar, then click the **+ New Template** button in the upper-left corner.
+Navigate to **Content → SMS** in the left-side navigation bar, then click the **+ New Template** button in the upper-left corner.
 
-    ![](https://files.readme.io/0f981ea7d352265c50309516326da98d96afbefacdb071aa0d216dd976e28f2f-image.png)
+![](https://files.readme.io/0f981ea7d352265c50309516326da98d96afbefacdb071aa0d216dd976e28f2f-image.png)
 
-    **Step 2: Configure Template Settings**
+**Step 2: Configure Template Settings**
 
-    Complete your template configuration with the required fields detailed in the Configuration tab.
+Complete your template configuration with the required fields outlined below.
 
-    **Step 3: Save and Submit**
+**Step 3: Save and Submit**
 
-    Choose between saving as draft or submitting for review based on your needs.
-  </Tab>
+Choose between saving as draft or submitting for review based on your needs.
 
-  <Tab title="Template Configuration">
-    ### Required Configuration Fields
+### Template Configuration Fields
 
-    **1. Content Type**
+**1. Content Type**
+* **Purpose**: Selecting the appropriate content type improves approval rates
+* **Options**:
+  * **OTP**: For verification codes and two-factor authentication
+  * **Notification**: For system alerts, reminders, and status updates
+  * **Marketing**: For promotional campaigns and customer engagement
+* **Best Practice**: Choose the type that most accurately reflects your message purpose
 
-    * **Purpose**: Selecting the appropriate content type improves approval rates
-    * **Options**:
-      * **OTP**: For verification codes and two-factor authentication
-      * **Notification**: For system alerts, reminders, and status updates
-      * **Marketing**: For promotional campaigns and customer engagement
-    * **Best Practice**: Choose the type that most accurately reflects your message purpose
+**2. Template Name**
+* **Purpose**: Internal identification and organization
+* **Requirements**: Use descriptive names for easy management
+* **Example**: "Welcome_OTP_Verification" or "Order_Confirmation_Notification"
 
-    **2. Template Name**
+**3. Message Content**
+* **Character Limits**: Consider SMS piece calculation (160 chars for GSM-7, 70 for Unicode)
+* **Variables**: Use custom variables like `%name%` for personalization
+* **Links**: Include spaces before and after links; must start with `http://` or `https://`
+* **Requirements**:
+  * Variable names must be in English
+  * Use English format `%` symbols
+  * Provide examples for all variables used
 
-    * **Purpose**: Internal identification and organization
-    * **Requirements**: Use descriptive names for easy management
-    * **Example**: "Welcome\_OTP\_Verification" or "Order\_Confirmation\_Notification"
+**4. Applicant Country/Region**
+* **Purpose**: Reference for review process (not a usage limitation)
+* **Selection**: Choose all countries where you plan to send messages
+* **Impact**: Helps reviewers understand your use case and target audience
 
-    **3. Message Content**
+### Content Best Practices
 
-    * **Character Limits**: Consider SMS piece calculation (160 chars for GSM-7, 70 for Unicode)
-    * **Variables**: Use custom variables like `%name%` for personalization
-    * **Links**: Include spaces before and after links; must start with `http://` or `https://`
-    * **Requirements**:
-      * Variable names must be in English
-      * Use English format `%` symbols
-      * Provide examples for all variables used
+**Variable Usage**
 
-    **4. Applicant Country/Region**
+```
+Good: Hello %customer_name%, your order %order_id% is confirmed.
+Bad: Hello %客户名%, your order is ready.
+```
 
-    * **Purpose**: Reference for review process (not a usage limitation)
-    * **Selection**: Choose all countries where you plan to send messages
-    * **Impact**: Helps reviewers understand your use case and target audience
-  </Tab>
+**Link Formatting**
 
-  <Tab title="Content Best Practices">
-    ### Message Content Guidelines
+```
+Correct: Check your order status here: https://example.com/orders 
+Incorrect: Check your order status here:https://example.com/orders
+```
 
-    **Variable Usage**
+**Content Type Examples**
 
-    ```
-    Good: Hello %customer_name%, your order %order_id% is confirmed.
-    Bad: Hello %客户名%, your order is ready.
-    ```
+**OTP Templates**
+```
+Your verification code is %code%. Valid for 10 minutes. Do not share this code.
+```
 
-    **Link Formatting**
+**Notification Templates**
+```
+Hi %name%, your order %order_id% has been shipped. Track it here: https://example.com/track 
+```
 
-    ```
-    Correct: Check your order status here: https://example.com/orders 
-    Incorrect: Check your order status here:https://example.com/orders
-    ```
+**Marketing Templates**
+```
+🎉 Special offer for %name%! Get 20% off your next purchase. Use code: SAVE20. Shop now: https://example.com/sale 
+```
 
-    **Content Type Examples**
+### Character Optimization Tips
 
-    **OTP Templates**
-
-    ```
-    Your verification code is %code%. Valid for 10 minutes. Do not share this code.
-    ```
-
-    **Notification Templates**
-
-    ```
-    Hi %name%, your order %order_id% has been shipped. Track it here: https://example.com/track 
-    ```
-
-    **Marketing Templates**
-
-    ```
-    🎉 Special offer for %name%! Get 20% off your next purchase. Use code: SAVE20. Shop now: https://example.com/sale 
-    ```
-
-    ### Character Optimization Tips
-
-    * Keep messages concise but clear
-    * Use abbreviations when appropriate
-    * Consider emoji usage (counts as Unicode characters)
-    * Test character count with your variables replaced
-  </Tab>
-</Tabs>
+* Keep messages concise but clear
+* Use abbreviations when appropriate
+* Consider emoji usage (counts as Unicode characters)
+* Test character count with your variables replaced
 
 ### Template Submission Process
 
 <Accordion title="Understanding Save vs Submit" icon="save">
   **Save as Draft**
-
   * Saves template configuration locally
   * Allows for future editing and refinement
   * Template remains in draft state
   * Cannot be used for sending messages
 
   **Save and Submit for Review**
-
   * Submits template to Aurora SendCloud for official approval
   * Template enters review process
   * Only approved templates can be used for sending
@@ -433,7 +390,6 @@ Locate an approved template in your template list and click **[Test]** in the ac
 **Step 2: Configure Test Parameters**
 
 Enter the required information in the test popup:
-
 * **Recipient's mobile number**: Use a valid phone number you have access to
 * **SMS_USER**: Select from your available SMS_USER
 * **Variable values**: Provide actual values for any variables in your template
@@ -443,7 +399,6 @@ Enter the required information in the test popup:
 **Step 3: Send Test Message**
 
 Click **[Send]** to deliver the test message and verify:
-
 * Message delivery and timing
 * Variable replacement accuracy
 * Link functionality
@@ -463,14 +418,12 @@ Click **[Send]** to deliver the test message and verify:
 ### Template Management Tips
 
 **Organization Strategies**
-
 * Use consistent naming conventions
 * Group templates by campaign or purpose
 * Archive unused templates to reduce clutter
 * Document template performance for future reference
 
 **Version Control**
-
 * Keep track of template modifications
 * Test thoroughly after any changes
 * Maintain backup copies of high-performing templates
