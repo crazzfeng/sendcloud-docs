@@ -16,18 +16,18 @@ Short Message Service, commonly abbreviated as SMS, is the text messaging compon
 <Callout icon="💰" theme="default">
   ### How does Aurora SendCloud charge for SMS messages?
 
-  1. SMS is charged based on the country/region and count of **SMS messages** sent to the recipients.
+  1. SMS is charged based on the country/region and count of **SMS pieces** sent to the recipients.
   2. The cost for sending SMS messages will be paid by [S-Wallet](doc:s-wallet) . Please ensure that there is sufficient balance in your [S-Wallet](doc:s-wallet) within the account.
 </Callout>
 
-### Calculation Rules for SMS Messages
+### Calculation Rules for SMS Pieces
 
-The number of international SMS messages is determined based on the character encoding standard used, with two core scenarios as follows:
+The number of international SMS pieces is determined based on the character encoding standard used, with two core scenarios as follows:
 
 * GSM-7 Encoding (Default Standard)
 
-  * 1 message= up to 160 characters; 
-  * A SMS sending request exceeding 160 characters are split into multiple messages.(each subsequent message supports up to 153 characters due to segment overhead).
+  * 1 piece = up to 160 characters; 
+  * A SMS message request exceeding 160 characters are split into multiple pieces.(each subsequent piece supports up to 153 characters due to piece overhead).
   * For the following characters, two characters will be used for encoding: 
 
   ```
@@ -35,8 +35,8 @@ The number of international SMS messages is determined based on the character en
   ```
 * Non-GSM-7 Encoding (Unicode/UCS-2)
 
-  * 1 message= up to 70 characters; 
-  * A SMS sending request exceeding 70 characters are split into multiple messages (each subsequent segment supports up to 67 characters due to segment overhead).
+  * 1 piece = up to 70 characters; 
+  * A SMS message exceeding 70 characters are split into multiple pieces (each subsequent piece supports up to 67 characters due to piece overhead).
 
 ## Integrate SMS service
 
