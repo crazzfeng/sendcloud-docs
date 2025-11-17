@@ -476,10 +476,6 @@ Click **[Send]** to deliver the test message and verify:
 * Maintain backup copies of high-performing templates
 * Document what changes were made and why
 
-## How to Send SMS Messages
-
-Use your SMS_USER and SMS_KEY to send SMS messages via [Send SMS](ref:send_sms_message).
-
 ## SMS Message Status
 
 Understanding SMS delivery statuses helps you track message success and troubleshoot issues:
@@ -487,7 +483,7 @@ Understanding SMS delivery statuses helps you track message success and troubles
 ### Status Types
 
 * **Requested** - Message queued for delivery to carrier
-* **Delivered** - Successfully delivered to recipient's device  
+* **Delivered** - Successfully delivered to recipient's device
 * **Waiting Result** - Sent to carrier, awaiting delivery confirmation
 * **Failed** - Delivery unsuccessful (device off, content blocked, timing restrictions)
 * **Suppressed** - Blocked by Aurora SendCloud system filters
@@ -500,7 +496,7 @@ Understanding SMS delivery statuses helps you track message success and troubles
 **Suppressed** = Review content compliance 🚫
 
 <Callout icon="💡" theme="info">
-Most messages show "Delivered" within minutes. "Waiting Result" can last several hours depending on carrier response times.
+  Most messages show "Delivered" within minutes. "Waiting Result" can last several hours depending on carrier response times.
 </Callout>
 
 ## SMS Sender ID
