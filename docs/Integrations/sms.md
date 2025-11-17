@@ -88,11 +88,11 @@ Use [Send SMS](ref:send_sms_message) API to SMS Messages
 * Requested:  The sending request has received by Aurora SendCloud and in the  process to send to the carrier.
 * Delivered: The message has been sent, and the report from the carrier shows that the message has been delivered.
 * Waiting Result: The message has been sent, and there is not report from the carrier.
-* Failed: The message has been sent ,but the report from the carrier shows that the message was not delivered.  Reasons for undelivery include:
+* Failed: The message has been sent ,but the report from the carrier shows that the message was not delivered.   Reasons for failed include:
   * Device issues: turned off, no signal.
   * Your message content is inappropriate.
   * Your message sending time is not allowed.
-* Suppressed:
+* Suppressed: The message is supressed by Aurora SendCloud because of  system interception or custom interception
 
 ## The SMS Sender ID
 
