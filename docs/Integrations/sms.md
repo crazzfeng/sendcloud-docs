@@ -27,7 +27,16 @@ Confirm you want connect SMS service. And then, system will generate a SMS_USER 
 
 ## How to create a SMS template
 
-<br />
+1. Navigate to Content → SMS in the left-side navigation bar, then click + New Template button in the upper-left corner.
+
+   <Image border={false} src="https://files.readme.io/0f981ea7d352265c50309516326da98d96afbefacdb071aa0d216dd976e28f2f-image.png" />
+2. Complete your template configuration with these required fields:
+   1. Content Type:  Here are 3 content type you can choose Verification Code or  Industry Notice or Marketing. Choosing the right type can improve the approval rate.
+   2. Template Name: The SMS template name.
+   3. Content: The SMS message you want to send. You can use link and vars .
+      1. You can insert custom variables in the text message, such as %name%. Note that the variable name cannot be Chinese, and% is an English format symbol. If you use variables in the template you need to fill in the variable example for each variables.
+      2. You need to include one at the beginning and end of the link you filled in space，and begin with http:// or https://
+   4. Applicant country/region: what countries you want send to. This is only for review and reference purposes, and is not intended as a limitation on usage.
 
 ## How to send SMS message
 
