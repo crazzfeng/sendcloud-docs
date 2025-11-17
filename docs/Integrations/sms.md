@@ -27,6 +27,8 @@ Confirm you want connect SMS service. And then, system will generate a SMS_USER 
 
 ## How to create a SMS template
 
+<br />
+
 ## How to send SMS message
 
 ## How to check SMS message status
