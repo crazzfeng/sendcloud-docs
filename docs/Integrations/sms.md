@@ -26,16 +26,16 @@ The number of international SMS pieces is determined based on the character enco
 
 * GSM-7 Encoding (Default Standard)
 
-  * 1 piece = up to 160 characters; 
+  * 1 piece = up to 160 characters;
   * A SMS message request exceeding 160 characters are split into multiple pieces.(each subsequent piece supports up to 153 characters due to piece overhead).
-  * For the following characters, two characters will be used for encoding: 
+  * For the following characters, two characters will be used for encoding:
 
   ```
   |€^{}[]~\
   ```
 * Non-GSM-7 Encoding (Unicode/UCS-2)
 
-  * 1 piece = up to 70 characters; 
+  * 1 piece = up to 70 characters;
   * A SMS message exceeding 70 characters are split into multiple pieces (each subsequent piece supports up to 67 characters due to piece overhead).
 
 ## Integrate SMS service
@@ -88,12 +88,18 @@ Use [Send SMS](ref:send_sms_message) API to SMS Messages
 * Requested:  The sending request has received by Aurora SendCloud and in the  process to send to the carrier.
 * Delivered: The message has been sent, and the report from the carrier shows that the message has been delivered.
 * Waiting Result: The message has been sent, and there is not report from the carrier.
-* Failed: The message has been sent ,but the report from the carrier shows that the message was not delivered.   Reasons for failed include:
+* Failed: The message has been sent ,but the report from the carrier shows that the message was not delivered.  Reasons for failed include:
   * Device issues: turned off, no signal.
   * Your message content is inappropriate.
   * Your message sending time is not allowed.
 * Suppressed: The message is supressed by Aurora SendCloud because of  system interception or custom interception
 
 ## The SMS Sender ID
+
+The Sender ID shows who sent this message. With a Sender ID, you can send SMS from a custom sender (brand name or website name) instead of a random string of numbers.
+
+If you have not registered a Sender ID, Aurora SendCloud will randomly assign an ID for you to send messages. Therefore, you can send messages without registering.
+
+The rules vary greatly from country to country, and not all countries offer Sender ID registration, and some countries charge for the ID, subject to the local carrier's policies. 
 
 ## The report of SMS
