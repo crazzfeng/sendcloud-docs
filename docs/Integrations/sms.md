@@ -367,7 +367,7 @@ Click **[Send]** to deliver the test message and verify:
 
 Understanding SMS delivery statuses helps you track message success and troubleshoot issues:
 
-### Status Types
+#### Status Types
 
 * **Requested** - Message queued for delivery to carrier
 * **Delivered** - Successfully delivered to recipient's device
@@ -375,12 +375,7 @@ Understanding SMS delivery statuses helps you track message success and troubles
 * **Failed** - Delivery unsuccessful (device off, content blocked, timing restrictions)
 * **Suppressed** - Blocked by Aurora SendCloud system filters
 
-### What Each Status Means
-
-**Delivered** = Success ✅  
-**Waiting Result** = Normal delay, check again later ⏳  
-**Failed** = Check recipient number, content, and timing ❌  
-**Suppressed** = Review content compliance 🚫
+<br />
 
 <Callout icon="💡" theme="info">
   Most messages show "Delivered" within minutes. "Waiting Result" can last several hours depending on carrier response times.
