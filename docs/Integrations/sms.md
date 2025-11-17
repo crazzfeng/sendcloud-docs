@@ -39,7 +39,7 @@ Understanding how SMS pieces are calculated is crucial for cost estimation and m
 ### GSM-7 Encoding ( Standard)
 
 * 1 piece = up to 160 characters
-* SMS message requests exceeding 160 characters are split into multiple pieces (each piece supports up to 153 characters due to piece overhead)
+* SMS message requests exceeding 160 characters are split into multiple pieces (each subsequent piece supports up to 153 characters due to piece overhead)
 * The following characters use two characters for encoding:
 
 ```
@@ -49,23 +49,237 @@ Understanding how SMS pieces are calculated is crucial for cost estimation and m
 ### Non-GSM-7 Encoding (Unicode/UCS-2)
 
 * 1 piece = up to 70 characters
-* SMS messages exceeding 70 characters are split into multiple pieces (each piece supports up to 67 characters due to piece overhead)
+* SMS messages exceeding 70 characters are split into multiple pieces (each subsequent piece supports up to 67 characters due to piece overhead)
 
 ## Integrate SMS Service
 
-**Step 1: Navigate to Integration Module**
+Setting up SMS integration with Aurora SendCloud is straightforward and provides you with the credentials needed to send messages programmatically. This integration enables you to leverage Aurora SendCloud's global SMS infrastructure for your applications.
 
-Log into your Aurora SendCloud platform dashboard, locate the left-side navigation menu on the Overview page, and click on the fourth icon labeled [Integrations].
+<Tabs>
+  <Tab title="Quick Setup">
+    ### Prerequisites
 
-**Step 2: Begin SMS Connection**
+    Before starting the integration process, ensure you have:
 
-On the Integration page, locate the SMS service option and click the blue [Connect] button next to SMS.
+    * An active Aurora SendCloud account
+    * Sufficient balance in your [S-Wallet](doc:s-wallet) for SMS charges
+    * Access to your Aurora SendCloud dashboard
 
-<Image border={false} src="https://files.readme.io/7f4ec1b709d7c8d4e2c1131bb08ffe7519ff164b29dd27449c3d272077864c71-image.png" />
+    ### Integration Steps
 
-**Step 3: Confirm Connection**
+    **Step 1: Navigate to Integration Module**
 
-Confirm that you want to connect the SMS service. The system will then generate an SMS_USER and SMS_KEY for you. You can use these credentials to send SMS messages via [Send SMS](ref:send_sms_message).
+    1. Log into your Aurora SendCloud platform dashboard
+    2. Locate the left-side navigation menu on the Overview page
+    3. Click on the fourth icon labeled **[Integrations]**
+
+    **Step 2: Begin SMS Connection**
+
+    1. On the Integration page, locate the SMS service option
+    2. Click the blue **[Connect]** button next to SMS
+
+    <Image border={false} src="https://files.readme.io/7f4ec1b709d7c8d4e2c1131bb08ffe7519ff164b29dd27449c3d272077864c71-image.png" />
+
+    **Step 3: Complete Connection Setup**
+
+    1. Confirm that you want to connect the SMS service
+    2. The system will generate unique credentials for you:
+       * **SMS_USER**: Your unique identifier for SMS operations
+       * **SMS_KEY**: Your authentication key for secure access
+
+    <Callout icon="✅" theme="success">
+      **Integration Complete!**
+      
+      Your SMS service is now connected. You can immediately start using your credentials to send SMS messages via the [Send SMS](ref:send_sms_message) API.
+    </Callout>
+  </Tab>
+
+  <Tab title="Credentials Management">
+    ### Understanding Your SMS Credentials
+
+    Once integration is complete, you'll receive two critical pieces of information:
+
+    **SMS_USER**
+    * Unique identifier for your SMS service
+    * Used to authenticate your account
+    * Required for all SMS API calls
+    * Can be regenerated if needed
+
+    **SMS_KEY**
+    * Secret authentication key
+    * Provides secure access to SMS services
+    * Must be kept confidential
+    * Used in conjunction with SMS_USER
+
+    ### Security Best Practices
+
+    <Accordion title="Credential Security Guidelines" icon="shield-alt">
+      **Storage**
+      * Store credentials in environment variables, not in code
+      * Use secure credential management systems
+      * Never commit credentials to version control
+
+      **Access Control**
+      * Limit access to credentials on a need-to-know basis
+      * Use role-based access controls
+      * Regularly audit who has access to credentials
+
+      **Rotation**
+      * Periodically rotate your SMS_KEY for enhanced security
+      * Update all applications when credentials change
+      * Keep backup access methods during rotation periods
+    </Accordion>
+
+    ### Credential Management Actions
+
+    **Viewing Credentials**
+    * Navigate to **Integrations → SMS** to view your current credentials
+    * SMS_USER is always visible
+    * SMS_KEY may be masked for security (click to reveal)
+
+    **Regenerating Credentials**
+    * Click **[Regenerate]** next to your credentials if needed
+    * Update all applications using the old credentials
+    * Test thoroughly after regeneration
+
+    <Callout icon="⚠️" theme="warning">
+      **Important**: When you regenerate credentials, your old SMS_KEY becomes invalid immediately. Make sure to update all applications using the SMS service to prevent disruption.
+    </Callout>
+  </Tab>
+
+  <Tab title="Testing & Validation">
+    ### Verify Your Integration
+
+    After completing the integration, it's important to verify everything is working correctly:
+
+    **Step 1: Test API Connection**
+
+    Use the [Send SMS](ref:send_sms_message) endpoint to send a test message:
+
+    ```bash
+    curl -X POST "https://api.sendcloud.com/v1/sms/send" \
+      -H "Content-Type: application/json" \
+      -d '{
+        "sms_user": "your_sms_user",
+        "sms_key": "your_sms_key",
+        "phone": "+1234567890",
+        "message": "Test message from Aurora SendCloud"
+      }'
+    ```
+
+    **Step 2: Verify Message Delivery**
+
+    * Check that the test message is received on the target device
+    * Verify the message content is displayed correctly
+    * Note the delivery time for performance baseline
+
+    **Step 3: Check Dashboard Analytics**
+
+    * Navigate to your SMS dashboard to see message statistics
+    * Verify the message appears in your sent messages log
+    * Check that your S-Wallet balance has been debited correctly
+
+    ### Troubleshooting Common Issues
+
+    <Accordion title="Authentication Errors" icon="exclamation-triangle">
+      **Symptoms**: 401 Unauthorized or authentication failed errors
+
+      **Solutions**:
+      * Verify SMS_USER and SMS_KEY are correct
+      * Check for extra spaces or characters in credentials
+      * Ensure credentials haven't been regenerated recently
+      * Confirm you're using the correct API endpoint
+    </Accordion>
+
+    <Accordion title="Insufficient Balance" icon="wallet">
+      **Symptoms**: Balance-related error messages
+
+      **Solutions**:
+      * Check your [S-Wallet](doc:s-wallet) balance
+      * Add funds to your S-Wallet if needed
+      * Verify pricing for your target countries
+      * Check if there are any pending charges
+    </Accordion>
+
+    <Accordion title="Message Not Delivered" icon="mobile-alt">
+      **Symptoms**: API success but message not received
+
+      **Solutions**:
+      * Verify the phone number format (include country code)
+      * Check if the number is active and can receive SMS
+      * Review message content for compliance issues
+      * Check carrier-specific restrictions
+      * Wait a few minutes as delivery can be delayed
+    </Accordion>
+  </Tab>
+
+  <Tab title="Next Steps">
+    ### After Successful Integration
+
+    **1. Create SMS Templates**
+
+    Before sending messages at scale, create and get approval for your SMS templates:
+
+    * Navigate to **Content → SMS**
+    * Create templates for different use cases (OTP, notifications, marketing)
+    * Submit templates for review and approval
+    * Test approved templates before production use
+
+    **2. Implement Error Handling**
+
+    Robust applications should handle various scenarios:
+
+    ```javascript
+    // Example error handling in JavaScript
+    try {
+      const response = await sendSMS({
+        sms_user: process.env.SMS_USER,
+        sms_key: process.env.SMS_KEY,
+        phone: recipientPhone,
+        message: messageContent
+      });
+      
+      console.log('SMS sent successfully:', response.message_id);
+    } catch (error) {
+      if (error.code === 'INSUFFICIENT_BALANCE') {
+        // Handle low balance
+        notifyAdminOfLowBalance();
+      } else if (error.code === 'INVALID_PHONE') {
+        // Handle invalid phone number
+        logInvalidPhone(recipientPhone);
+      }
+      // Log error for debugging
+      console.error('SMS sending failed:', error);
+    }
+    ```
+
+    **3. Monitor and Optimize**
+
+    * Set up monitoring for SMS delivery rates
+    * Track costs and optimize message content for efficiency
+    * Monitor S-Wallet balance and set up automatic top-ups
+    * Analyze delivery reports to improve campaign performance
+
+    **4. Scale Your Implementation**
+
+    * Implement rate limiting to avoid overwhelming carriers
+    * Use batch sending for large campaigns
+    * Consider timezone-aware scheduling for global audiences
+    * Set up webhook endpoints to receive delivery reports
+
+    <Callout icon="🚀" theme="info">
+      **Ready to Start?**
+      
+      With your integration complete, you can now:
+      - Send SMS messages via API
+      - Create and manage templates
+      - Monitor delivery performance
+      - Scale your messaging operations
+      
+      Explore our [API documentation](ref:send_sms_message) for detailed implementation guides.
+    </Callout>
+  </Tab>
+</Tabs>
 
 ## SMS Template Management
 
