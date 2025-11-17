@@ -9,6 +9,22 @@ hidden: true
 metadata:
   robots: index
 ---
+## SMS overview
+
+Short Message Service, commonly abbreviated as SMS, is the text messaging component in mobile phone and other mobile device systems. As one of the most important messaging channels, SMS has been providing services in various ways for decades, such as personal communication, authentication, marketing, and notifications.
+
+<br />
+
+<Callout icon="💰" theme="default">
+  ### How does Aurora SendCloud charge for SMS messages?
+
+  1. SMS is charged based on the country/region and number of messages sent to the recipients.
+  2. Each SMS message has a character limit of 160. Messages not using GSM-7 encoding are limited to 70 characters. Long messages will be split into multiple individual SMS messages.
+  3. The cost for sending SMS messages will be paid by [S-Wallet](doc:s-wallet) . Please ensure that there is sufficient balance in your [S-Wallet](doc:s-wallet) within the account.
+</Callout>
+
+<br />
+
 ## Integrate SMS service
 
 Step 1: Navigate to Integration Module
