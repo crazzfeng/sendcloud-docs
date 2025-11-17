@@ -55,14 +55,6 @@ Understanding how SMS pieces are calculated is crucial for cost estimation and m
 
 Setting up SMS integration with Aurora SendCloud is straightforward and provides you with the credentials needed to send messages programmatically. This integration enables you to leverage Aurora SendCloud's global SMS infrastructure for your applications.
 
-### Prerequisites
-
-Before starting the integration process, ensure you have:
-
-* An active Aurora SendCloud account
-* Sufficient balance in your [S-Wallet](doc:s-wallet) for SMS charges
-* Access to your Aurora SendCloud dashboard
-
 ### Quick Setup Steps
 
 **Step 1: Navigate to Integration Module**
@@ -109,7 +101,7 @@ Once integration is complete, you'll receive two critical pieces of information:
 * Must be kept confidential
 * Used in conjunction with SMS_USER
 
-### Security Best Practices
+#### Security Best Practices
 
 <Accordion title="Credential Security Guidelines" icon="shield-alt">
   **Storage**
@@ -131,7 +123,7 @@ Once integration is complete, you'll receive two critical pieces of information:
   * Keep backup access methods during rotation periods
 </Accordion>
 
-### Credential Management Actions
+#### Credential Management Actions
 
 **Viewing Credentials**
 
@@ -157,17 +149,6 @@ After completing the integration, it's important to verify everything is working
 
 Use the [Send SMS](ref:send_sms_message) endpoint to send a test message:
 
-```bash
-curl -X POST "https://api.sendcloud.com/v1/sms/send" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "sms_user": "your_sms_user",
-    "sms_key": "your_sms_key",
-    "phone": "+1234567890",
-    "message": "Test message from Aurora SendCloud"
-  }'
-```
-
 **Step 2: Verify Message Delivery**
 
 * Check that the test message is received on the target device
@@ -180,7 +161,7 @@ curl -X POST "https://api.sendcloud.com/v1/sms/send" \
 * Verify the message appears in your sent messages log
 * Check that your S-Wallet balance has been debited correctly
 
-### Troubleshooting Common Issues
+#### Troubleshooting Common Issues
 
 <Accordion title="Authentication Errors" icon="exclamation-triangle">
   **Symptoms**: 401 Unauthorized or authentication failed errors
@@ -216,58 +197,7 @@ curl -X POST "https://api.sendcloud.com/v1/sms/send" \
   * Wait a few minutes as delivery can be delayed
 </Accordion>
 
-### Next Steps After Integration
-
-**1. Create SMS Templates**
-
-Before sending messages at scale, create and get approval for your SMS templates:
-
-* Navigate to **Content → SMS**
-* Create templates for different use cases (OTP, notifications, marketing)
-* Submit templates for review and approval
-* Test approved templates before production use
-
-**2. Implement Error Handling**
-
-Robust applications should handle various scenarios:
-
-```javascript
-// Example error handling in JavaScript
-try {
-  const response = await sendSMS({
-    sms_user: process.env.SMS_USER,
-    sms_key: process.env.SMS_KEY,
-    phone: recipientPhone,
-    message: messageContent
-  });
-  
-  console.log('SMS sent successfully:', response.message_id);
-} catch (error) {
-  if (error.code === 'INSUFFICIENT_BALANCE') {
-    // Handle low balance
-    notifyAdminOfLowBalance();
-  } else if (error.code === 'INVALID_PHONE') {
-    // Handle invalid phone number
-    logInvalidPhone(recipientPhone);
-  }
-  // Log error for debugging
-  console.error('SMS sending failed:', error);
-}
-```
-
-**3. Monitor and Optimize**
-
-* Set up monitoring for SMS delivery rates
-* Track costs and optimize message content for efficiency
-* Monitor S-Wallet balance and set up automatic top-ups
-* Analyze delivery reports to improve campaign performance
-
-**4. Scale Your Implementation**
-
-* Implement rate limiting to avoid overwhelming carriers
-* Use batch sending for large campaigns
-* Consider timezone-aware scheduling for global audiences
-* Set up webhook endpoints to receive delivery reports
+<br />
 
 <Callout icon="🚀" theme="info">
   **Ready to Start?**
@@ -297,12 +227,6 @@ Navigate to **Content → SMS** in the left-side navigation bar, then click the 
 **Step 2: Configure Template Settings**
 
 Complete your template configuration with the required fields outlined below.
-
-**Step 3: Save and Submit**
-
-Choose between saving as draft or submitting for review based on your needs.
-
-### Template Configuration Fields
 
 **1. Content Type**
 
@@ -334,6 +258,10 @@ Choose between saving as draft or submitting for review based on your needs.
 * **Purpose**: Reference for review process (not a usage limitation)
 * **Selection**: Choose all countries where you plan to send messages
 * **Impact**: Helps reviewers understand your use case and target audience
+
+**Step 3: Save and Submit**
+
+Choose between saving as draft or submitting for review based on your needs.
 
 ### Content Best Practices
 
