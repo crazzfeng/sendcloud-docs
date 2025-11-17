@@ -374,7 +374,7 @@ Understanding SMS delivery statuses helps you track message success and troubles
 
 #### Status Types
 
-* **Requested** - Message queued for delivery to carrier
+* **Sending** - Message queued for delivery to carrier
 * **Delivered** - Successfully delivered to recipient's device
 * **Waiting Result** - Sent to carrier, awaiting delivery confirmation
 * **Failed** - Delivery unsuccessful (device off, content blocked, timing restrictions)
