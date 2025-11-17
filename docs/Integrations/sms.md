@@ -19,10 +19,9 @@ metadata:
 
 Short Message Service (SMS) is a fundamental text messaging component in mobile communication systems. As one of the most critical messaging channels, SMS has been providing reliable services for decades across various use cases:
 
-* **Personal Communication**: Direct messaging between individuals
-* **Authentication**: Two-factor authentication and verification codes
+* **OTP**: Two-factor authentication and verification codes
 * **Marketing**: Promotional campaigns and customer engagement
-* **Notifications**: System alerts, reminders, and status updates
+* **Notification**: System alerts, reminders, and status updates
 
 <br />
 
@@ -75,7 +74,7 @@ Confirm that you want to connect the SMS service. The system will then generate 
    <Image border={false} src="https://files.readme.io/0f981ea7d352265c50309516326da98d96afbefacdb071aa0d216dd976e28f2f-image.png" />
 
 2. Complete your template configuration with these required fields:
-   1. **Content Type**: Choose from 3 content types: Verification Code, Industry Notice, or Marketing. Choosing the right type can improve the approval rate.
+   1. **Content Type**: Choose from 3 content types: OTP,  Notification , or Marketing. Choosing the right type can improve the approval rate.
    2. **Template Name**: The SMS template name.
    3. **Content**: The SMS message you want to send. You can use links and variables.
       1. You can insert custom variables in the text message, such as %name%. Note that the variable name cannot be in Chinese, and % must be an English format symbol. If you use variables in the template, you need to provide a variable example for each variable.
