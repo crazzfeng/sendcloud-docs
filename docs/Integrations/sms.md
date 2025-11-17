@@ -9,7 +9,7 @@ hidden: true
 metadata:
   robots: index
 ---
-## How to integrate SMS service
+## Integrate SMS service
 
 Step 1: Navigate to Integration Module
 
@@ -25,7 +25,7 @@ Step 3: Confirm Conntection
 
 Confirm you want connect SMS service. And then, system will generate a SMS_USER and SMS_KEY for you .You can use them to send SMS messages via [Send SMS](ref:send_sms_message).
 
-## How to create a SMS template
+## SMS template
 
 1. Navigate to Content → SMS in the left-side navigation bar, then click + New Template button in the upper-left corner.
 
@@ -37,10 +37,26 @@ Confirm you want connect SMS service. And then, system will generate a SMS_USER 
       1. You can insert custom variables in the text message, such as %name%. Note that the variable name cannot be Chinese, and% is an English format symbol. If you use variables in the template you need to fill in the variable example for each variables.
       2. You need to include one at the beginning and end of the link you filled in space，and begin with http:// or https://
    4. Applicant country/region: what countries you want send to. This is only for review and reference purposes, and is not intended as a limitation on usage.
+3. Save or submit your template. 
+   1. Save the template means that you just want save the template for draft
+   2. Only when you click the 'Save and submit for review' button ,then your template will be submitted to Aurora SendCloud for official review.
+   3. Only approved templates can be used to send SMS messages.
+4. Testing & Validation
+   1. When your templates have been **approved**,you can test them. Locate an approved template in your template list and click [Test] in the actions column:
 
-## How to send SMS message
+      <Image border={false} src="https://files.readme.io/35ac581275f100b5e594c6a24544bcf49f61d87d482819063147c1d6c918ce0b-image.png" />
+   2. Enter recipient's mobile number and choose your SMS_USER in the test popup:
 
-## How to check SMS message status
+      <Image border={false} src="https://files.readme.io/028f6b29b77ecf47397513b756b0b221ab9297f987f440e46f5f15bd23c010e7-image.png" />
+   3. Click [Send] to deliver test message
+
+## How to send SMS messages
+
+Use [Send SMS](ref:send_sms_message) API to SMS Messages
+
+## How to check SMS messages status
+
+<br />
 
 ## The SMS Sender ID
 
