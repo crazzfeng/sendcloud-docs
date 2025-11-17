@@ -5,7 +5,7 @@ excerpt: >-
   template creation, pricing, piece calculation, testing, and campaign
   management with detailed instructions and examples.
 deprecated: false
-hidden: true
+hidden: false
 link:
   new_tab: false
 metadata:
