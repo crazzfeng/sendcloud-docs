@@ -39,7 +39,7 @@ Understanding how SMS pieces are calculated is crucial for cost estimation and m
 ### GSM-7 Encoding ( Standard)
 
 * 1 piece = up to 160 characters
-* SMS message requests exceeding 160 characters are split into multiple pieces (each subsequent piece supports up to 153 characters due to piece overhead)
+* SMS message requests exceeding 160 characters are split into multiple pieces (each piece supports up to 153 characters due to piece overhead)
 * The following characters use two characters for encoding:
 
 ```
@@ -49,7 +49,7 @@ Understanding how SMS pieces are calculated is crucial for cost estimation and m
 ### Non-GSM-7 Encoding (Unicode/UCS-2)
 
 * 1 piece = up to 70 characters
-* SMS messages exceeding 70 characters are split into multiple pieces (each subsequent piece supports up to 67 characters due to piece overhead)
+* SMS messages exceeding 70 characters are split into multiple pieces (each piece supports up to 67 characters due to piece overhead)
 
 ## Integrate SMS Service
 
