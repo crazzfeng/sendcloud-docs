@@ -299,13 +299,6 @@ Hi %name%, your order %order_id% has been shipped. Track it here: https://exampl
 🎉 Special offer for %name%! Get 20% off your next purchase. Use code: SAVE20. Shop now: https://example.com/sale 
 ```
 
-### Character Optimization Tips
-
-* Keep messages concise but clear
-* Use abbreviations when appropriate
-* Consider emoji usage (counts as Unicode characters)
-* Test character count with your variables replaced
-
 ### Template Submission Process
 
 <Accordion title="Understanding Save vs Submit" icon="save">
@@ -369,26 +362,6 @@ Click **[Send]** to deliver the test message and verify:
   * Test in different countries if you plan international campaigns
   * Keep test logs for troubleshooting
 </Callout>
-
-### Template Management Tips
-
-**Organization Strategies**
-
-* Use consistent naming conventions
-* Group templates by campaign or purpose
-* Archive unused templates to reduce clutter
-* Document template performance for future reference
-
-**Version Control**
-
-* Keep track of template modifications
-* Test thoroughly after any changes
-* Maintain backup copies of high-performing templates
-* Document what changes were made and why
-
-## How to Send SMS Messages
-
-Use your SMS_USER and SMS_KEY to send SMS messages via [Send SMS](ref:send_sms_message).
 
 ## SMS Message Status
 
