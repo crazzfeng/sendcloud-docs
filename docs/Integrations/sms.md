@@ -85,7 +85,7 @@ Use [Send SMS](ref:send_sms_message) API to SMS Messages
 
 ## SMS messages status
 
-* Requested:  The sending request has received by Aurora SendCloud and  waiting to send to the carrier.
+* Requested:  The sending request has received by Aurora SendCloud and in the  process to send to the carrier.
 * Delivered: The message has been sent, and the report from the carrier shows that the message has been delivered.
 * Waiting Result: The message has been sent, and there is not report from the carrier.
 * Failed: The message has been sent ,but the report from the carrier shows that the message was not delivered.  Reasons for undelivery include:
