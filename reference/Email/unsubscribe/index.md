@@ -1,4 +1,4 @@
 ---
 title: Unsubscribe
-hidden: false
+hidden: true
 ---
