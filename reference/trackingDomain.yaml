@@ -3,12 +3,11 @@ info:
   version: 1.0.0
   title: Email
 servers:
-  - url: https://api2.sendcloud.net
+  - url: https://api.aurorasendcloud.com
+    description: SendCloud API production server
 tags:
   - name: Tracking Domain
-    description: >-
-      Interfaces for adding, verifying, querying, and managing email tracking
-      domains (used for click/open tracking)
+    description: Interfaces for managing email tracking domains
 paths:
   /api/trackdomain/add:
     post:
@@ -19,6 +18,9 @@ paths:
       operationId: addTrackingDomain
       tags:
         - Tracking Domain
+      security:
+        - apiUser: []
+        - apiKey: []
       responses:
         '200':
           description: Tracking domain added successfully (pending DNS verification)
@@ -77,24 +79,6 @@ paths:
             domain not owned by the account)
       parameters:
         - in: query
-          name: apiUser
-          schema:
-            type: string
-          required: true
-          description: >-
-            API_USER (authentication parameter, obtained from the SendCloud
-            console)
-          example: test_api_user
-        - in: query
-          name: apiKey
-          schema:
-            type: string
-          required: true
-          description: >-
-            API_KEY (authentication parameter, obtained from the SendCloud
-            console)
-          example: test_api_key
-        - in: query
           name: trackDomain
           schema:
             type: string
@@ -109,7 +93,7 @@ paths:
           source: |
             import requests
 
-            url = "https://api2.sendcloud.net/api/trackdomain/add"
+            url = "https://api.aurorasendcloud.com/api/trackdomain/add"
             params = {
                 "apiUser": "test_api_user",
                 "apiKey": "test_api_key",
@@ -127,6 +111,9 @@ paths:
       operationId: batchQueryTrackingDomainsGet
       tags:
         - Tracking Domain
+      security:
+        - apiUser: []
+        - apiKey: []
       responses:
         '200':
           description: Request successful
@@ -206,32 +193,13 @@ paths:
                           Number of tracking domains returned (equals total for
                           this interface)
                         example: 2
-      parameters:
-        - in: query
-          name: apiUser
-          schema:
-            type: string
-          required: true
-          description: >-
-            API_USER (authentication parameter, obtained from the SendCloud
-            console)
-          example: test_api_user
-        - in: query
-          name: apiKey
-          schema:
-            type: string
-          required: true
-          description: >-
-            API_KEY (authentication parameter, obtained from the SendCloud
-            console)
-          example: test_api_key
       x-codeSamples:
         - lang: Python
           label: Batch Query Tracking Domains (GET)
           source: |
             import requests
 
-            url = "https://api2.sendcloud.net/api/trackdomain/list"
+            url = "https://api.aurorasendcloud.com/api/trackdomain/list"
             params = {
                 "apiUser": "test_api_user",
                 "apiKey": "test_api_key"
@@ -245,10 +213,15 @@ paths:
                 print(f"- Domain: {domain['trackDomain']}, Status: {domain['status']}, Default: {domain['isDefault']}")
     post:
       summary: Batch Query Tracking Domains (POST)
-      description: Batch query all tracking domains using POST method
+      description: >-
+        Query tracking domains using POST method (same functionality as GET
+        method)
       operationId: batchQueryTrackingDomainsPost
       tags:
         - Tracking Domain
+      security:
+        - apiUser: []
+        - apiKey: []
       responses:
         '200':
           description: Request successful
@@ -303,7 +276,7 @@ paths:
                               description: >-
                                 Whether it is the default tracking domain (only
                                 one default can be set)
-                              example: true
+                              example: false
                             gmtCreated:
                               type: string
                               format: date-time
@@ -328,53 +301,35 @@ paths:
                           Number of tracking domains returned (equals total for
                           this interface)
                         example: 2
-      parameters:
-        - in: query
-          name: apiUser
-          schema:
-            type: string
-          required: true
-          description: >-
-            API_USER (authentication parameter, obtained from the SendCloud
-            console)
-          example: test_api_user
-        - in: query
-          name: apiKey
-          schema:
-            type: string
-          required: true
-          description: >-
-            API_KEY (authentication parameter, obtained from the SendCloud
-            console)
-          example: test_api_key
       x-codeSamples:
         - lang: Python
-          label: Batch Query Tracking Domains (POST Method)
+          label: Batch Query Tracking Domains (POST)
           source: |
             import requests
 
-            url = "https://api2.sendcloud.net/api/trackdomain/list"
-            params = {
+            url = "https://api.aurorasendcloud.com/api/trackdomain/list"
+            data = {
                 "apiUser": "test_api_user",
                 "apiKey": "test_api_key"
             }
 
-            response = requests.post(url, params=params)
+            response = requests.post(url, data=data)
             print(response.json())
   /api/trackdomain/verify:
     post:
       summary: Verify Tracking Domain
       description: >-
-        Trigger verification of the CNAME record for a pending/modified tracking
-        domain
+        Verify DNS configuration of a tracking domain (CNAME record must be
+        configured in DNS before verification)
       operationId: verifyTrackingDomain
       tags:
         - Tracking Domain
+      security:
+        - apiUser: []
+        - apiKey: []
       responses:
         '200':
-          description: >-
-            Verification request submitted successfully (results will be
-            returned after DNS detection)
+          description: Verification successful
           content:
             application/json:
               schema:
@@ -389,7 +344,7 @@ paths:
                     description: >-
                       Prompt message for request result (success/failure
                       description)
-                    example: verification request submitted successfully
+                    example: verify track domain successful
                   result:
                     type: boolean
                     description: >-
@@ -398,46 +353,32 @@ paths:
                     example: true
                   info:
                     type: object
-                    description: Verification request result
+                    description: Verification result details
                     properties:
                       trackDomain:
                         type: string
-                        description: Tracking domain name being verified
+                        description: Verified tracking domain name
                         example: track.example.com
                       status:
                         type: string
                         description: >-
-                          Current tracking domain status (pending_verify =
-                          verification in progress, verified = verified,
-                          rejected = rejected)
-                        example: pending_verify
+                          Tracking domain status after verification (verified =
+                          verification successful)
+                        example: verified
+                      gmtVerified:
+                        type: string
+                        format: date-time
+                        description: Verification completion time
+                        example: '2025-10-12 11:30:00'
         '400':
           description: >-
-            Bad request (e.g., domain already verified, domain in rejected
-            status)
+            Bad request (e.g., tracking domain not in pending status, CNAME
+            record not configured correctly)
         '404':
           description: >-
             Tracking domain not found (domain not added or does not belong to
             the current apiUser)
       parameters:
-        - in: query
-          name: apiUser
-          schema:
-            type: string
-          required: true
-          description: >-
-            API_USER (authentication parameter, obtained from the SendCloud
-            console)
-          example: test_api_user
-        - in: query
-          name: apiKey
-          schema:
-            type: string
-          required: true
-          description: >-
-            API_KEY (authentication parameter, obtained from the SendCloud
-            console)
-          example: test_api_key
         - in: query
           name: trackDomain
           schema:
@@ -451,7 +392,7 @@ paths:
           source: |
             import requests
 
-            url = "https://api2.sendcloud.net/api/trackdomain/verify"
+            url = "https://api.aurorasendcloud.com/api/trackdomain/verify"
             params = {
                 "apiUser": "test_api_user",
                 "apiKey": "test_api_key",
@@ -469,6 +410,9 @@ paths:
       operationId: setDefaultTrackingDomain
       tags:
         - Tracking Domain
+      security:
+        - apiUser: []
+        - apiKey: []
       responses:
         '200':
           description: Default tracking domain set successfully
@@ -513,24 +457,6 @@ paths:
             the current apiUser)
       parameters:
         - in: query
-          name: apiUser
-          schema:
-            type: string
-          required: true
-          description: >-
-            API_USER (authentication parameter, obtained from the SendCloud
-            console)
-          example: test_api_user
-        - in: query
-          name: apiKey
-          schema:
-            type: string
-          required: true
-          description: >-
-            API_KEY (authentication parameter, obtained from the SendCloud
-            console)
-          example: test_api_key
-        - in: query
           name: trackDomain
           schema:
             type: string
@@ -543,7 +469,7 @@ paths:
           source: |
             import requests
 
-            url = "https://api2.sendcloud.net/api/trackdomain/setdefault"
+            url = "https://api.aurorasendcloud.com/api/trackdomain/setdefault"
             params = {
                 "apiUser": "test_api_user",
                 "apiKey": "test_api_key",
@@ -561,6 +487,9 @@ paths:
       operationId: deleteTrackingDomain
       tags:
         - Tracking Domain
+      security:
+        - apiUser: []
+        - apiKey: []
       responses:
         '200':
           description: Tracking domain deleted successfully
@@ -603,24 +532,6 @@ paths:
             the current apiUser)
       parameters:
         - in: query
-          name: apiUser
-          schema:
-            type: string
-          required: true
-          description: >-
-            API_USER (authentication parameter, obtained from the SendCloud
-            console)
-          example: test_api_user
-        - in: query
-          name: apiKey
-          schema:
-            type: string
-          required: true
-          description: >-
-            API_KEY (authentication parameter, obtained from the SendCloud
-            console)
-          example: test_api_key
-        - in: query
           name: trackDomain
           schema:
             type: string
@@ -637,7 +548,7 @@ paths:
             # First ensure the domain is not the default (set another default if
             needed)
 
-            url = "https://api2.sendcloud.net/api/trackdomain/delete"
+            url = "https://api.aurorasendcloud.com/api/trackdomain/delete"
 
             params = {
                 "apiUser": "test_api_user",
@@ -655,12 +566,16 @@ components:
       type: apiKey
       in: query
       name: apiUser
-      description: API_USER (authentication parameter, obtained from the SendCloud console)
+      description: >-
+        API_USER (authentication parameter, obtained from SendCloud console ->
+        Email API -> API_USER)
     apiKey:
       type: apiKey
       in: query
       name: apiKey
-      description: API_KEY (authentication parameter, obtained from the SendCloud console)
+      description: >-
+        API_KEY (authentication parameter, obtained from SendCloud console ->
+        Email API -> API_USER; keep confidential)
 x-readme:
   explorer-enabled: true
   proxy-enabled: true

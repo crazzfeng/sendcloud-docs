@@ -1,6 +1,6 @@
 ---
 title: Batch Query Tracking Domains (POST)
-excerpt: Batch query all tracking domains using POST method
+excerpt: Query tracking domains using POST method (same functionality as GET method)
 api:
   file: trackingDomain.yaml
   operationId: batchQueryTrackingDomainsPost
