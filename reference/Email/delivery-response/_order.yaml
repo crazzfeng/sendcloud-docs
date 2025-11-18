@@ -1,3 +1,4 @@
 - queryemaildeliverystatusget
 - queryemaildeliverystatuspost
 - exportdeliverystatusdata
+- queryexporttaskstatus
