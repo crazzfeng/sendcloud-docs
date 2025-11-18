@@ -1,4 +1,4 @@
 ---
 title: Email Label
-hidden: false
+hidden: true
 ---
