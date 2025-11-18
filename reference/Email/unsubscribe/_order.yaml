@@ -1,0 +1,6 @@
+- queryunsubscribelistget
+- queryunsubscribelistpost
+- addunsubscribeaddress
+- removeunsubscribeaddress
+- exportunsubscribelist
+- checkunsubscribestatusget

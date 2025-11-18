@@ -1,0 +1,887 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Email
+servers:
+  - url: https://api2.sendcloud.net
+tags:
+  - name: Unsubscribe
+    description: >-
+      Interfaces for querying unsubscribe lists, adding unsubscribes, removing
+      unsubscribes, and exporting unsubscribe data. Unsubscribed addresses will
+      be blocked from future email sends to comply with anti-spam regulations.
+paths:
+  /api/unsubscribe/list:
+    get:
+      summary: Query Unsubscribe List
+      description: >-
+        Get list of unsubscribed email addresses within a specified time range.
+        Supports multi-dimensional filtering and pagination. The maximum query
+        time range is 90 days, and the maximum number of results per page is
+        500. Time parameters use Beijing time (GMT+8).
+      operationId: queryUnsubscribeListGet
+      tags:
+        - Unsubscribe
+      responses:
+        '200':
+          description: Request successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    description: >-
+                      Response status code (200 = success; other codes indicate
+                      failure)
+                    example: 200
+                  message:
+                    type: string
+                    description: >-
+                      Success or failure message (detailed error information for
+                      failure scenarios)
+                    example: request was successful
+                  result:
+                    type: boolean
+                    description: >-
+                      Whether the request succeeded (true = success, false =
+                      failure)
+                    example: true
+                  info:
+                    type: object
+                    properties:
+                      dataList:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            email:
+                              type: string
+                              description: >-
+                                Unsubscribed email address (standard RFC 5322
+                                format; exact match for filtering)
+                              example: user@example.com
+                            unsubscribeTime:
+                              type: string
+                              format: date-time
+                              description: >-
+                                Unsubscribe time (format: yyyy-MM-dd HH:mm:ss,
+                                Beijing time; accurate to the second)
+                              example: '2025-10-16 09:45:30'
+                            unsubscribeType:
+                              type: string
+                              enum:
+                                - manual
+                                - one_click
+                              description: >-
+                                Unsubscribe type (manual = added via API or
+                                console; one_click = user clicked the
+                                unsubscribe link in the email)
+                              example: one_click
+                            source:
+                              type: string
+                              description: >-
+                                Unsubscribe source (corresponds to the email
+                                label or campaign name set when sending; empty
+                                if no label was configured)
+                              example: Weekly Newsletter
+                            domain:
+                              type: string
+                              description: >-
+                                Sending domain associated with the unsubscribe
+                                (the domain part of the sender's email address,
+                                e.g., example.com for support@example.com)
+                              example: example.com
+                      total:
+                        type: integer
+                        description: >-
+                          Total number of unsubscribed addresses matching the
+                          query conditions (across all pages)
+                        example: 42
+                      count:
+                        type: integer
+                        description: >-
+                          Number of returned results in the current page
+                          (consistent with pageSize parameter)
+                        example: 20
+                      page:
+                        type: integer
+                        description: >-
+                          Current page number (starts from 1; defaults to 1 if
+                          not specified)
+                        example: 1
+                      pageSize:
+                        type: integer
+                        description: >-
+                          Number of results displayed per page (defaults to 100,
+                          maximum 500)
+                        example: 20
+        '400':
+          description: >-
+            Bad request (e.g., time range exceeds 90 days, invalid email format,
+            pageSize > 500, endTime earlier than startTime)
+        '401':
+          description: >-
+            Authentication failed (invalid apiUser or apiKey; please verify
+            credentials in the SendCloud console)
+      parameters:
+        - in: query
+          name: apiUser
+          schema:
+            type: string
+          required: true
+          description: >-
+            API_USER (authentication parameter; obtained from the SendCloud
+            console -> API Settings)
+          example: test_api_user
+        - in: query
+          name: apiKey
+          schema:
+            type: string
+          required: true
+          description: >-
+            API_KEY (authentication parameter; obtained from the SendCloud
+            console -> API Settings; keep confidential to avoid leakage)
+          example: test_api_key
+        - in: query
+          name: startTime
+          schema:
+            type: string
+            format: date-time
+          required: true
+          description: >-
+            Query start time (format: yyyy-MM-dd HH:mm:ss, Beijing time; cannot
+            be earlier than 90 days before the current time)
+          example: '2025-10-01 00:00:00'
+        - in: query
+          name: endTime
+          schema:
+            type: string
+            format: date-time
+          required: true
+          description: >-
+            Query end time (format: yyyy-MM-dd HH:mm:ss, Beijing time; must be
+            later than startTime and cannot be later than the current time)
+          example: '2025-10-31 23:59:59'
+        - in: query
+          name: email
+          schema:
+            type: string
+          required: false
+          description: >-
+            Filter by specific email address (exact match; only one address can
+            be queried at a time)
+          example: user@example.com
+        - in: query
+          name: domain
+          schema:
+            type: string
+          required: false
+          description: >-
+            Filter by sending domain (exact match; only unsubscribes associated
+            with the specified domain are returned)
+          example: example.com
+        - in: query
+          name: source
+          schema:
+            type: string
+          required: false
+          description: >-
+            Filter by unsubscribe source (exact match with the email
+            label/campaign name; case-sensitive)
+          example: Weekly Newsletter
+        - in: query
+          name: page
+          schema:
+            type: integer
+            default: 1
+          required: false
+          description: >-
+            Page number (pagination parameter; starts from 1, defaults to 1 if
+            not provided)
+          example: 1
+        - in: query
+          name: pageSize
+          schema:
+            type: integer
+            default: 100
+            maximum: 500
+          required: false
+          description: >-
+            Number of results per page (pagination parameter; defaults to 100,
+            maximum 500; exceeding will return a 400 error)
+          example: 50
+      x-codeSamples:
+        - lang: Python
+          label: Query Unsubscribe List
+          source: |
+            import requests
+
+            url = "https://api2.sendcloud.net/api/unsubscribe/list"
+            params = {
+                "apiUser": "test_api_user",
+                "apiKey": "test_api_key",
+                "startTime": "2025-10-01 00:00:00",
+                "endTime": "2025-10-31 23:59:59",
+                "domain": "example.com",
+                "pageSize": 50
+            }
+
+            response = requests.get(url, params=params)
+            print(response.json())
+    post:
+      summary: Query Unsubscribe List (POST)
+      description: >-
+        Query unsubscribed addresses using POST method. Suitable for scenarios
+        where query parameters are long (e.g., complex filtering). Supports the
+        same filtering conditions and constraints as the GET method.
+      operationId: queryUnsubscribeListPost
+      tags:
+        - Unsubscribe
+      responses:
+        '200':
+          description: Request successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    description: >-
+                      Response status code (200 = success; other codes indicate
+                      failure)
+                    example: 200
+                  message:
+                    type: string
+                    description: >-
+                      Success or failure message (detailed error information for
+                      failure scenarios)
+                    example: request was successful
+                  result:
+                    type: boolean
+                    description: >-
+                      Whether the request succeeded (true = success, false =
+                      failure)
+                    example: true
+                  info:
+                    type: object
+                    properties:
+                      dataList:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            email:
+                              type: string
+                              description: >-
+                                Unsubscribed email address (standard RFC 5322
+                                format)
+                              example: user@example.com
+                            unsubscribeTime:
+                              type: string
+                              format: date-time
+                              description: >-
+                                Unsubscribe time (format: yyyy-MM-dd HH:mm:ss,
+                                Beijing time)
+                              example: '2025-10-16 09:45:30'
+                            unsubscribeType:
+                              type: string
+                              enum:
+                                - manual
+                                - one_click
+                              description: >-
+                                Unsubscribe type (manual = API/console added;
+                                one_click = email link click)
+                              example: one_click
+                            source:
+                              type: string
+                              description: >-
+                                Unsubscribe source (email label or campaign
+                                name)
+                              example: Weekly Newsletter
+                            domain:
+                              type: string
+                              description: Sending domain associated with the unsubscribe
+                              example: example.com
+                      total:
+                        type: integer
+                        description: Total number of matching unsubscribed addresses
+                        example: 42
+                      count:
+                        type: integer
+                        description: Number of results in the current page
+                        example: 20
+                      page:
+                        type: integer
+                        description: Current page number (starts from 1)
+                        example: 1
+                      pageSize:
+                        type: integer
+                        description: Number of results per page (max 500)
+                        example: 20
+        '400':
+          description: >-
+            Bad request (e.g., invalid time range, pageSize exceeding 500,
+            missing required parameters)
+        '401':
+          description: Authentication failed (invalid apiUser or apiKey)
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                apiUser:
+                  type: string
+                  description: >-
+                    API_USER (authentication parameter; obtained from SendCloud
+                    console)
+                  example: test_api_user
+                apiKey:
+                  type: string
+                  description: API_KEY (authentication parameter; keep confidential)
+                  example: test_api_key
+                startTime:
+                  type: string
+                  format: date-time
+                  description: >-
+                    Query start time (format: yyyy-MM-dd HH:mm:ss, Beijing time;
+                    max 90 days range)
+                  example: '2025-10-01 00:00:00'
+                endTime:
+                  type: string
+                  format: date-time
+                  description: >-
+                    Query end time (format: yyyy-MM-dd HH:mm:ss, Beijing time;
+                    must be after startTime)
+                  example: '2025-10-31 23:59:59'
+                email:
+                  type: string
+                  description: Filter by specific email address (exact match)
+                  example: user@example.com
+                domain:
+                  type: string
+                  description: Filter by sending domain (exact match)
+                  example: example.com
+                source:
+                  type: string
+                  description: >-
+                    Filter by unsubscribe source (exact match with
+                    label/campaign name)
+                  example: Weekly Newsletter
+                page:
+                  type: integer
+                  default: 1
+                  description: Page number (starts from 1, defaults to 1)
+                  example: 1
+                pageSize:
+                  type: integer
+                  default: 100
+                  maximum: 500
+                  description: Number of results per page (max 500, default 100)
+                  example: 50
+              required:
+                - apiUser
+                - apiKey
+                - startTime
+                - endTime
+      x-codeSamples:
+        - lang: Python
+          label: Query Unsubscribe List (POST)
+          source: |
+            import requests
+
+            url = "https://api2.sendcloud.net/api/unsubscribe/list"
+            data = {
+                "apiUser": "test_api_user",
+                "apiKey": "test_api_key",
+                "startTime": "2025-10-01 00:00:00",
+                "endTime": "2025-10-31 23:59:59",
+                "source": "Weekly Newsletter"
+            }
+
+            response = requests.post(url, data=data)
+            print(response.json())
+  /api/unsubscribe/add:
+    post:
+      summary: Add Unsubscribe Address
+      description: >-
+        Manually add one or more email addresses to the unsubscribe list. After
+        addition, the system will block all future email sends to these
+        addresses to comply with anti-spam regulations. Supports batch addition
+        (up to 100 addresses per request, separated by semicolons).
+      operationId: addUnsubscribeAddress
+      tags:
+        - Unsubscribe
+      responses:
+        '200':
+          description: Add successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    description: >-
+                      Response status code (200 = success; other codes indicate
+                      partial or full failure)
+                    example: 200
+                  message:
+                    type: string
+                    description: >-
+                      Operation result message (e.g., "add unsubscribe
+                      successful" or "partial addresses failed to add")
+                    example: add unsubscribe successful
+                  result:
+                    type: boolean
+                    description: >-
+                      Whether the overall operation succeeded (true = all/f部分
+                      addresses added; false = no addresses added)
+                    example: true
+                  info:
+                    type: object
+                    properties:
+                      count:
+                        type: integer
+                        description: >-
+                          Number of successfully added unsubscribe addresses
+                          (excludes duplicate or invalid addresses)
+                        example: 1
+        '400':
+          description: >-
+            Bad request (e.g., invalid email format, exceeding 100 addresses per
+            request, empty email parameter, addresses already in the unsubscribe
+            list)
+        '401':
+          description: Authentication failed (invalid apiUser or apiKey)
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                apiUser:
+                  type: string
+                  description: >-
+                    API_USER (authentication parameter; obtained from SendCloud
+                    console)
+                  example: test_api_user
+                apiKey:
+                  type: string
+                  description: API_KEY (authentication parameter; keep confidential)
+                  example: test_api_key
+                email:
+                  type: string
+                  description: >-
+                    Email address(es) to unsubscribe (supports multiple
+                    addresses separated by semicolons; max 100 addresses per
+                    request; must be valid RFC 5322 format)
+                  example: user1@example.com;user2@example.com
+                source:
+                  type: string
+                  description: >-
+                    Unsubscribe source (custom label or campaign name; max 50
+                    characters; helps track the reason for unsubscription)
+                  example: Manual Unsubscribe
+              required:
+                - apiUser
+                - apiKey
+                - email
+      x-codeSamples:
+        - lang: Python
+          label: Add Unsubscribe Address
+          source: |
+            import requests
+
+            url = "https://api2.sendcloud.net/api/unsubscribe/add"
+            data = {
+                "apiUser": "test_api_user",
+                "apiKey": "test_api_key",
+                "email": "user1@example.com;user2@example.com",
+                "source": "Manual Unsubscribe"
+            }
+
+            response = requests.post(url, data=data)
+            print(response.json())
+  /api/unsubscribe/remove:
+    post:
+      summary: Remove Unsubscribe Address
+      description: >-
+        Remove one or more email addresses from the unsubscribe list. After
+        removal, emails can be sent to these addresses again. Supports batch
+        removal (up to 100 addresses per request, separated by semicolons).
+        Addresses not in the unsubscribe list will be ignored.
+      operationId: removeUnsubscribeAddress
+      tags:
+        - Unsubscribe
+      responses:
+        '200':
+          description: Remove successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    description: >-
+                      Response status code (200 = success; other codes indicate
+                      partial or full failure)
+                    example: 200
+                  message:
+                    type: string
+                    description: >-
+                      Operation result message (e.g., "remove unsubscribe
+                      successful" or "partial addresses not found")
+                    example: remove unsubscribe successful
+                  result:
+                    type: boolean
+                    description: >-
+                      Whether the overall operation succeeded (true =
+                      all/partial addresses removed; false = no addresses
+                      removed)
+                    example: true
+                  info:
+                    type: object
+                    properties:
+                      count:
+                        type: integer
+                        description: >-
+                          Number of successfully removed addresses (excludes
+                          addresses not in the unsubscribe list)
+                        example: 1
+        '400':
+          description: >-
+            Bad request (e.g., invalid email format, exceeding 100 addresses per
+            request, empty email parameter)
+        '401':
+          description: Authentication failed (invalid apiUser or apiKey)
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                apiUser:
+                  type: string
+                  description: >-
+                    API_USER (authentication parameter; obtained from SendCloud
+                    console)
+                  example: test_api_user
+                apiKey:
+                  type: string
+                  description: API_KEY (authentication parameter; keep confidential)
+                  example: test_api_key
+                email:
+                  type: string
+                  description: >-
+                    Email address(es) to remove from the unsubscribe list
+                    (supports multiple addresses separated by semicolons; max
+                    100 addresses per request; valid RFC 5322 format)
+                  example: user1@example.com;user2@example.com
+              required:
+                - apiUser
+                - apiKey
+                - email
+      x-codeSamples:
+        - lang: Python
+          label: Remove Unsubscribe Address
+          source: |
+            import requests
+
+            url = "https://api2.sendcloud.net/api/unsubscribe/remove"
+            data = {
+                "apiUser": "test_api_user",
+                "apiKey": "test_api_key",
+                "email": "user1@example.com;user2@example.com"
+            }
+
+            response = requests.post(url, data=data)
+            print(response.json())
+  /api/unsubscribe/export:
+    post:
+      summary: Export Unsubscribe List
+      description: >-
+        Export unsubscribe data within a specified time range to a CSV file. The
+        maximum export time range is 30 days, and the generated CSV file is
+        valid for 24 hours (after which the download URL expires). The CSV
+        includes fields: email, unsubscribeTime, unsubscribeType, source,
+        domain.
+      operationId: exportUnsubscribeList
+      tags:
+        - Unsubscribe
+      responses:
+        '200':
+          description: Export task created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    description: Response status code (200 = task created successfully)
+                    example: 200
+                  message:
+                    type: string
+                    description: >-
+                      Task creation result message (error information if
+                      creation fails)
+                    example: export task created successfully
+                  result:
+                    type: boolean
+                    description: >-
+                      Whether the task was created successfully (true = success,
+                      false = failure)
+                    example: true
+                  info:
+                    type: object
+                    properties:
+                      taskId:
+                        type: string
+                        description: >-
+                          Export task ID (used to query task status or
+                          troubleshoot issues)
+                        example: export_unsub_123456
+                      downloadUrl:
+                        type: string
+                        description: >-
+                          CSV download URL (empty when the task is processing;
+                          valid for 24 hours after task completion)
+                        example: https://download.sendcloud.net/unsub_export_123.csv
+                      status:
+                        type: string
+                        enum:
+                          - processing
+                          - completed
+                          - failed
+                        description: >-
+                          Export task status (processing = being generated;
+                          completed = generated successfully; failed =
+                          generation failed)
+                        example: processing
+                      estimatedTime:
+                        type: integer
+                        description: >-
+                          Estimated completion time (seconds; for reference
+                          only, subject to data volume)
+                        example: 30
+        '400':
+          description: >-
+            Bad request (e.g., time range exceeds 30 days, endTime earlier than
+            startTime, duplicate export tasks for the same conditions within 5
+            minutes)
+        '401':
+          description: Authentication failed (invalid apiUser or apiKey)
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                apiUser:
+                  type: string
+                  description: >-
+                    API_USER (authentication parameter; obtained from SendCloud
+                    console)
+                  example: test_api_user
+                apiKey:
+                  type: string
+                  description: API_KEY (authentication parameter; keep confidential)
+                  example: test_api_key
+                startTime:
+                  type: string
+                  format: date-time
+                  description: >-
+                    Export start time (format: yyyy-MM-dd HH:mm:ss, Beijing
+                    time; max 30 days range)
+                  example: '2025-10-01 00:00:00'
+                endTime:
+                  type: string
+                  format: date-time
+                  description: >-
+                    Export end time (format: yyyy-MM-dd HH:mm:ss, Beijing time;
+                    must be after startTime)
+                  example: '2025-10-31 23:59:59'
+                domain:
+                  type: string
+                  description: >-
+                    Filter by sending domain (exact match; only export
+                    unsubscribes associated with the specified domain)
+                  example: example.com
+                source:
+                  type: string
+                  description: >-
+                    Filter by unsubscribe source (exact match with
+                    label/campaign name)
+                  example: Weekly Newsletter
+              required:
+                - apiUser
+                - apiKey
+                - startTime
+                - endTime
+      x-codeSamples:
+        - lang: Python
+          label: Export Unsubscribe List
+          source: >
+            import requests
+
+            import time
+
+
+            # Create export task
+
+            url = "https://api2.sendcloud.net/api/unsubscribe/export"
+
+            data = {
+                "apiUser": "test_api_user",
+                "apiKey": "test_api_key",
+                "startTime": "2025-10-01 00:00:00",
+                "endTime": "2025-10-31 23:59:59",
+                "domain": "example.com"
+            }
+
+
+            response = requests.post(url, data=data)
+
+            task_info = response.json()
+
+            task_id = task_info["info"]["taskId"]
+
+
+            # Poll task status until completed or failed
+
+            poll_url =
+            "https://api2.sendcloud.net/api/unsubscribe/export/status"
+
+            while True:
+                poll_data = {
+                    "apiUser": "test_api_user",
+                    "apiKey": "test_api_key",
+                    "taskId": task_id
+                }
+                poll_response = requests.post(poll_url, data=poll_data)
+                poll_result = poll_response.json()
+
+                if poll_result["info"]["status"] == "completed":
+                    download_url = poll_result["info"]["downloadUrl"]
+                    # Download CSV file
+                    csv_response = requests.get(download_url)
+                    with open("unsubscribe_export.csv", "wb") as f:
+                        f.write(csv_response.content)
+                    print("Export completed! File saved as unsubscribe_export.csv")
+                    break
+                elif poll_result["info"]["status"] == "failed":
+                    print(f"Export failed: {poll_result['message']}")
+                    break
+                # Wait 10 seconds before polling again
+                time.sleep(10)
+  /api/unsubscribe/check:
+    get:
+      summary: Check Unsubscribe Status
+      description: >-
+        Verify if a specific email address is in the unsubscribe list. Returns
+        the unsubscribe time and source if the address is unsubscribed; returns
+        empty values otherwise.
+      operationId: checkUnsubscribeStatusGet
+      tags:
+        - Unsubscribe
+      responses:
+        '200':
+          description: Request successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    description: Response status code (200 = query successful)
+                    example: 200
+                  message:
+                    type: string
+                    description: >-
+                      Query result message (e.g., "request was successful" or
+                      "invalid email format")
+                    example: request was successful
+                  result:
+                    type: boolean
+                    description: >-
+                      Whether the query succeeded (true = success; false =
+                      invalid parameter)
+                    example: true
+                  info:
+                    type: object
+                    properties:
+                      isUnsubscribe:
+                        type: boolean
+                        description: >-
+                          Whether the email address is unsubscribed (true =
+                          unsubscribed; false = not unsubscribed)
+                        example: true
+                      unsubscribeTime:
+                        type: string
+                        format: date-time
+                        description: >-
+                          Unsubscribe time (format: yyyy-MM-dd HH:mm:ss, Beijing
+                          time; empty if not unsubscribed)
+                        example: '2025-10-16 09:45:30'
+                      source:
+                        type: string
+                        description: >-
+                          Unsubscribe source (empty if not unsubscribed or no
+                          source was set)
+                        example: Weekly Newsletter
+        '400':
+          description: Bad request (e.g., invalid email format, empty email parameter)
+        '401':
+          description: Authentication failed (invalid apiUser or apiKey)
+      parameters:
+        - in: query
+          name: apiUser
+          schema:
+            type: string
+          required: true
+          description: API_USER (authentication parameter; obtained from SendCloud console)
+          example: test_api_user
+        - in: query
+          name: apiKey
+          schema:
+            type: string
+          required: true
+          description: API_KEY (authentication parameter; keep confidential)
+          example: test_api_key
+        - in: query
+          name: email
+          schema:
+            type: string
+          required: true
+          description: Email address to check (must be a valid RFC 5322 format address)
+          example: user@example.com
+      x-codeSamples:
+        - lang: Python
+          label: Check Unsubscribe Status
+          source: |
+            import requests
+
+            url = "https://api2.sendcloud.net/api/unsubscribe/check"
+            params = {
+                "apiUser": "test_api_user",
+                "apiKey": "test_api_key",
+                "email": "user@example.com"
+            }
+
+            response = requests.get(url, params=params)
+            print(response.json())
+components:
+  securitySchemes: {}
+x-readme:
+  explorer-enabled: true
+  proxy-enabled: true
