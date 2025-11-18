@@ -3,7 +3,7 @@ info:
   version: 1.0.0
   title: Email
 servers:
-  - url: https://api2.sendcloud.net
+  - url: https://api.aurorasendcloud.com
 tags:
   - name: Deliverlies
     description: Regular delivery, templates delivery
