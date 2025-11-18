@@ -1,4 +1,4 @@
 ---
 title: Domain
-hidden: false
+hidden: true
 ---
