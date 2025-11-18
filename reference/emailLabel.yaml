@@ -1,12 +1,53 @@
-openapi: 3.0.0
+openapi: 3.0.3
 info:
+  title: SendCloud Email Label API
+  description: >
+    SendCloud Email Label Management API provides comprehensive label
+    functionality for email organization and management.
+
+
+    This API allows you to:
+
+    - Create new email labels with custom colors
+
+    - Query all labels or specific label details
+
+    - Update existing label names and colors
+
+    - Delete unused labels
+
+
+    Label Features:
+
+    - **Unique Names**: Label names are unique under each API user account
+
+    - **Color Coding**: Support for hex color codes for visual organization
+
+    - **Email Tagging**: Labels can be applied to emails for categorization
+
+    - **Management**: Full CRUD operations for label lifecycle management
+
+
+    Authentication:
+
+    All API endpoints require authentication using apiUser and apiKey
+    parameters.
   version: 1.0.0
-  title: Email
+  contact:
+    name: SendCloud API Support
+    url: https://www.sendcloud.net
+    email: support@sendcloud.net
+  license:
+    name: SendCloud API License
+    url: https://www.sendcloud.net/license
 servers:
-  - url: https://api2.sendcloud.net
+  - url: https://api.aurorasendcloud.com
+    description: Production API server
+  - url: https://api.sendcloud.net
+    description: Alternative production server
 tags:
   - name: Email Label
-    description: Interfaces for creating, querying, updating, and deleting email labels
+    description: Email label management operations for organizing and categorizing emails
 paths:
   /api/label/create:
     post:
@@ -15,6 +56,9 @@ paths:
       operationId: createLabel
       tags:
         - Email Label
+      security:
+        - apiUser: []
+        - apiKey: []
       responses:
         '200':
           description: Label created successfully
@@ -64,24 +108,6 @@ paths:
           description: Bad request (e.g., duplicate label name, invalid color format)
       parameters:
         - in: query
-          name: apiUser
-          schema:
-            type: string
-          required: true
-          description: >-
-            API_USER (authentication parameter, obtained from the SendCloud
-            console)
-          example: test_api_user
-        - in: query
-          name: apiKey
-          schema:
-            type: string
-          required: true
-          description: >-
-            API_KEY (authentication parameter, obtained from the SendCloud
-            console)
-          example: test_api_key
-        - in: query
           name: name
           schema:
             type: string
@@ -103,10 +129,8 @@ paths:
           source: |
             import requests
 
-            url = "https://api2.sendcloud.net/api/label/create"
+            url = "https://api.aurorasendcloud.com/api/label/create"
             params = {
-                "apiUser": "test_api_user",
-                "apiKey": "test_api_key",
                 "name": "Marketing Campaigns",
                 "color": "#2ECC71"  # Green color
             }
@@ -120,6 +144,9 @@ paths:
       operationId: batchQueryLabelsGet
       tags:
         - Email Label
+      security:
+        - apiUser: []
+        - apiKey: []
       responses:
         '200':
           description: Request successful
@@ -186,38 +213,15 @@ paths:
                           Number of labels returned (equals total for this
                           interface)
                         example: 8
-      parameters:
-        - in: query
-          name: apiUser
-          schema:
-            type: string
-          required: true
-          description: >-
-            API_USER (authentication parameter, obtained from the SendCloud
-            console)
-          example: test_api_user
-        - in: query
-          name: apiKey
-          schema:
-            type: string
-          required: true
-          description: >-
-            API_KEY (authentication parameter, obtained from the SendCloud
-            console)
-          example: test_api_key
       x-codeSamples:
         - lang: Python
           label: Batch Query All Labels (GET)
           source: |
             import requests
 
-            url = "https://api2.sendcloud.net/api/label/list"
-            params = {
-                "apiUser": "test_api_user",
-                "apiKey": "test_api_key"
-            }
+            url = "https://api.aurorasendcloud.com/api/label/list"
 
-            response = requests.get(url, params=params)
+            response = requests.get(url)
             result = response.json()
             print(f"Total labels: {result['info']['total']}")
             print("Label details:")
@@ -229,6 +233,9 @@ paths:
       operationId: batchQueryLabelsPost
       tags:
         - Email Label
+      security:
+        - apiUser: []
+        - apiKey: []
       responses:
         '200':
           description: Request successful
@@ -295,38 +302,15 @@ paths:
                           Number of labels returned (equals total for this
                           interface)
                         example: 8
-      parameters:
-        - in: query
-          name: apiUser
-          schema:
-            type: string
-          required: true
-          description: >-
-            API_USER (authentication parameter, obtained from the SendCloud
-            console)
-          example: test_api_user
-        - in: query
-          name: apiKey
-          schema:
-            type: string
-          required: true
-          description: >-
-            API_KEY (authentication parameter, obtained from the SendCloud
-            console)
-          example: test_api_key
       x-codeSamples:
         - lang: Python
           label: Batch Query All Labels (POST Method)
           source: |
             import requests
 
-            url = "https://api2.sendcloud.net/api/label/list"
-            params = {
-                "apiUser": "test_api_user",
-                "apiKey": "test_api_key"
-            }
+            url = "https://api.aurorasendcloud.com/api/label/list"
 
-            response = requests.post(url, params=params)
+            response = requests.post(url)
             print(response.json())
   /api/label/get:
     get:
@@ -335,6 +319,9 @@ paths:
       operationId: getSingleLabelGet
       tags:
         - Email Label
+      security:
+        - apiUser: []
+        - apiKey: []
       responses:
         '200':
           description: Request successful
@@ -392,24 +379,6 @@ paths:
           description: Label not found (invalid label ID)
       parameters:
         - in: query
-          name: apiUser
-          schema:
-            type: string
-          required: true
-          description: >-
-            API_USER (authentication parameter, obtained from the SendCloud
-            console)
-          example: test_api_user
-        - in: query
-          name: apiKey
-          schema:
-            type: string
-          required: true
-          description: >-
-            API_KEY (authentication parameter, obtained from the SendCloud
-            console)
-          example: test_api_key
-        - in: query
           name: id
           schema:
             type: integer
@@ -424,10 +393,8 @@ paths:
           source: |
             import requests
 
-            url = "https://api2.sendcloud.net/api/label/get"
+            url = "https://api.aurorasendcloud.com/api/label/get"
             params = {
-                "apiUser": "test_api_user",
-                "apiKey": "test_api_key",
                 "id": 12345  # Replace with actual label ID
             }
 
@@ -445,6 +412,9 @@ paths:
       operationId: getSingleLabelPost
       tags:
         - Email Label
+      security:
+        - apiUser: []
+        - apiKey: []
       responses:
         '200':
           description: Request successful
@@ -502,24 +472,6 @@ paths:
           description: Label not found (invalid label ID)
       parameters:
         - in: query
-          name: apiUser
-          schema:
-            type: string
-          required: true
-          description: >-
-            API_USER (authentication parameter, obtained from the SendCloud
-            console)
-          example: test_api_user
-        - in: query
-          name: apiKey
-          schema:
-            type: string
-          required: true
-          description: >-
-            API_KEY (authentication parameter, obtained from the SendCloud
-            console)
-          example: test_api_key
-        - in: query
           name: id
           schema:
             type: integer
@@ -534,10 +486,8 @@ paths:
           source: |
             import requests
 
-            url = "https://api2.sendcloud.net/api/label/get"
+            url = "https://api.aurorasendcloud.com/api/label/get"
             params = {
-                "apiUser": "test_api_user",
-                "apiKey": "test_api_key",
                 "id": 12345  # Replace with actual label ID
             }
 
@@ -550,6 +500,9 @@ paths:
       operationId: updateLabel
       tags:
         - Email Label
+      security:
+        - apiUser: []
+        - apiKey: []
       responses:
         '200':
           description: Label updated successfully
@@ -592,24 +545,6 @@ paths:
           description: Label not found (invalid label ID)
       parameters:
         - in: query
-          name: apiUser
-          schema:
-            type: string
-          required: true
-          description: >-
-            API_USER (authentication parameter, obtained from the SendCloud
-            console)
-          example: test_api_user
-        - in: query
-          name: apiKey
-          schema:
-            type: string
-          required: true
-          description: >-
-            API_KEY (authentication parameter, obtained from the SendCloud
-            console)
-          example: test_api_key
-        - in: query
           name: id
           schema:
             type: integer
@@ -638,10 +573,8 @@ paths:
           source: |
             import requests
 
-            url = "https://api2.sendcloud.net/api/label/update"
+            url = "https://api.aurorasendcloud.com/api/label/update"
             params = {
-                "apiUser": "test_api_user",
-                "apiKey": "test_api_key",
                 "id": 12345,  # Replace with actual label ID
                 "name": "2025 Marketing Campaigns",
                 "color": "#E74C3C"  # Red color
@@ -658,6 +591,9 @@ paths:
       operationId: deleteLabel
       tags:
         - Email Label
+      security:
+        - apiUser: []
+        - apiKey: []
       responses:
         '200':
           description: Label deleted successfully
@@ -696,24 +632,6 @@ paths:
           description: Label not found (invalid label ID)
       parameters:
         - in: query
-          name: apiUser
-          schema:
-            type: string
-          required: true
-          description: >-
-            API_USER (authentication parameter, obtained from the SendCloud
-            console)
-          example: test_api_user
-        - in: query
-          name: apiKey
-          schema:
-            type: string
-          required: true
-          description: >-
-            API_KEY (authentication parameter, obtained from the SendCloud
-            console)
-          example: test_api_key
-        - in: query
           name: id
           schema:
             type: integer
@@ -726,10 +644,8 @@ paths:
           source: |
             import requests
 
-            url = "https://api2.sendcloud.net/api/label/delete"
+            url = "https://api.aurorasendcloud.com/api/label/delete"
             params = {
-                "apiUser": "test_api_user",
-                "apiKey": "test_api_key",
                 "id": 12345  # Replace with actual label ID
             }
 
@@ -741,12 +657,12 @@ components:
       type: apiKey
       in: query
       name: apiUser
-      description: Authentication parameter (API_USER, obtained from the SendCloud console)
+      description: API user name for authentication
     apiKey:
       type: apiKey
       in: query
       name: apiKey
-      description: Authentication parameter (API_KEY, obtained from the SendCloud console)
+      description: API key for authentication
 x-readme:
   explorer-enabled: true
   proxy-enabled: true
