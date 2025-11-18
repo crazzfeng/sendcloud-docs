@@ -1,4 +1,4 @@
 ---
 title: Email Template Management
-hidden: false
+hidden: true
 ---
