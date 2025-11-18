@@ -34,7 +34,7 @@ While this guide is designed to be as helpful and comprehensive as possible, the
 
 Before proceeding, it's crucial to decide which domain to use—specifically, whether to use the primary domain or a subdomain of that primary domain. Because this can be a challenging decision, we recommend reviewing the following Aurora SendCloud article:
 
-**[How to choose a primary domain or a subdomain](/update/docs/how-to-choose-a-primary-domain-or-a-subdomain#/)**
+**<Anchor label="How to choose a sending domain" target="_blank" href="https://docs.aurorasendcloud.com/docs/how-to-choose-a-sending-domain#/">How to choose a sending domain</Anchor>**
 
 Let's briefly review two key terms: primary domain and subdomain.
 
