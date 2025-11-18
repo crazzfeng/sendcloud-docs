@@ -1,10 +1,9 @@
 ---
 title: Add Unintercept Address
 excerpt: >-
-  Add email address or domain to the unintercept list. After addition, the
-  address/domain bypasses content filtering. Supports single or batch addition
-  (max 100 entries per request, separated by semicolons for multiple entries).
-  Duplicate entries will be ignored.
+  Add email address or domain to the unintercept list. Added addresses/domains
+  will bypass content filtering. Supports wildcard domain format (e.g.,
+  "*.example.com" for entire domain).
 api:
   file: unintercepyion.yaml
   operationId: addUninterceptAddress

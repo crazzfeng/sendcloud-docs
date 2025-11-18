@@ -3,14 +3,10 @@ info:
   version: 1.0.0
   title: Email
 servers:
-  - url: https://api2.sendcloud.net
+  - url: https://api.aurorasendcloud.com
 tags:
   - name: Uninterception
-    description: >-
-      Sendcloud will intercept email addresses in complaint, block , bounce,
-      unsubscribe. If the customer does not want to intercept an address or
-      receiving domain, he can join it without interception. You can query, add
-      and delete this list.
+    description: Interfaces for managing unintercepted email addresses and domains
 paths:
   /api/unintercept/list:
     get:
@@ -23,6 +19,9 @@ paths:
       operationId: queryUninterceptListGet
       tags:
         - Uninterception
+      security:
+        - apiUser: []
+        - apiKey: []
       responses:
         '200':
           description: Request successful
@@ -121,30 +120,12 @@ paths:
         '401':
           description: >-
             Authentication failed (invalid apiUser or apiKey; verify credentials
-            in SendCloud console -> API Settings)
+            in SendCloud console -> Email API -> API_USER)
         '403':
           description: >-
             Permission denied (unintercept function not activated; contact
             customer service to enable)
       parameters:
-        - in: query
-          name: apiUser
-          schema:
-            type: string
-          required: true
-          description: >-
-            API_USER (authentication parameter; obtained from SendCloud console
-            -> API Settings)
-          example: test_api_user
-        - in: query
-          name: apiKey
-          schema:
-            type: string
-          required: true
-          description: >-
-            API_KEY (authentication parameter; obtained from SendCloud console
-            -> API Settings; keep confidential)
-          example: test_api_key
         - in: query
           name: type
           schema:
@@ -197,7 +178,7 @@ paths:
           source: |
             import requests
 
-            url = "https://api2.sendcloud.net/api/unintercept/list"
+            url = "https://api.aurorasendcloud.com/api/unintercept/list"
             params = {
                 "apiUser": "test_api_user",
                 "apiKey": "test_api_key",
@@ -217,6 +198,9 @@ paths:
       operationId: queryUninterceptListPost
       tags:
         - Uninterception
+      security:
+        - apiUser: []
+        - apiKey: []
       responses:
         '200':
           description: Request successful
@@ -276,30 +260,30 @@ paths:
                             operator:
                               type: string
                               description: >-
-                                Operator (apiUser = API added; system =
-                                console/technical support added)
+                                Operator (apiUser = added via API; system =
+                                added via SendCloud console)
                               example: test_api_user
                             remark:
                               type: string
-                              description: >-
-                                Remark (custom description for the unintercept
-                                entry; optional)
+                              description: Remark (custom description; max 100 characters)
                               example: Partner domain
                       total:
                         type: integer
-                        description: Total number of matching unintercepted entries
-                        example: 12
+                        description: >-
+                          Total number of unintercepted entries matching query
+                          conditions
+                        example: 8
                       count:
                         type: integer
-                        description: Number of results in the current page
-                        example: 12
+                        description: Number of returned results in current page
+                        example: 8
                       page:
                         type: integer
-                        description: Current page number (starts from 1)
+                        description: Current page number
                         example: 1
                       pageSize:
                         type: integer
-                        description: Number of results per page (max 500)
+                        description: Number of results per page
                         example: 100
         '401':
           description: Authentication failed (invalid apiUser or apiKey)
@@ -312,16 +296,6 @@ paths:
             schema:
               type: object
               properties:
-                apiUser:
-                  type: string
-                  description: >-
-                    API_USER (authentication parameter; obtained from SendCloud
-                    console -> API Settings)
-                  example: test_api_user
-                apiKey:
-                  type: string
-                  description: API_KEY (authentication parameter; keep confidential)
-                  example: test_api_key
                 type:
                   type: string
                   enum:
@@ -330,43 +304,39 @@ paths:
                     - domain
                   default: all
                   description: >-
-                    Filter by unintercept type (all = default; email = exact
-                    address; domain = entire domain)
+                    Filter by unintercept type (all = query all types; email =
+                    only exact email entries; domain = only domain entries)
                   example: domain
                 keyword:
                   type: string
                   description: >-
-                    Search keyword (matches email or domain; fuzzy match for
-                    partial keywords)
+                    Search keyword (matches email address or domain; fuzzy
+                    match)
                   example: example.com
                 page:
                   type: integer
                   default: 1
-                  description: >-
-                    Page number (pagination parameter; starts from 1, defaults
-                    to 1)
+                  description: Page number (starts from 1)
                   example: 1
                 pageSize:
                   type: integer
                   default: 100
                   maximum: 500
-                  description: Number of results per page (max 500, default 100)
+                  description: Number of results per page (maximum 500)
                   example: 50
-              required:
-                - apiUser
-                - apiKey
       x-codeSamples:
         - lang: Python
-          label: Query Unintercept List (POST)
+          label: Query Unintercept List (POST Method)
           source: |
             import requests
 
-            url = "https://api2.sendcloud.net/api/unintercept/list"
+            url = "https://api.aurorasendcloud.com/api/unintercept/list"
             data = {
                 "apiUser": "test_api_user",
                 "apiKey": "test_api_key",
                 "type": "domain",
-                "keyword": "example.com"
+                "keyword": "example.com",
+                "pageSize": 50
             }
 
             response = requests.post(url, data=data)
@@ -375,13 +345,15 @@ paths:
     post:
       summary: Add Unintercept Address
       description: >-
-        Add email address or domain to the unintercept list. After addition, the
-        address/domain bypasses content filtering. Supports single or batch
-        addition (max 100 entries per request, separated by semicolons for
-        multiple entries). Duplicate entries will be ignored.
+        Add email address or domain to the unintercept list. Added
+        addresses/domains will bypass content filtering. Supports wildcard
+        domain format (e.g., "*.example.com" for entire domain).
       operationId: addUninterceptAddress
       tags:
         - Uninterception
+      security:
+        - apiUser: []
+        - apiKey: []
       responses:
         '200':
           description: Add successful
@@ -398,33 +370,27 @@ paths:
                     type: string
                     description: >-
                       Add result message (e.g., "add unintercept successful" or
-                      "partial entries failed to add")
+                      "address already exists")
                     example: add unintercept successful
                   result:
                     type: boolean
                     description: >-
-                      Whether the overall add operation succeeded (true =
-                      all/partial entries added; false = no entries added)
+                      Whether the add operation succeeded (true = added
+                      successfully; false = failed or already exists)
                     example: true
                   info:
                     type: object
                     properties:
                       count:
                         type: integer
-                        description: >-
-                          Number of successfully added unintercept entries
-                          (excludes duplicates or invalid formats)
+                        description: Number of successfully added unintercept entries
                         example: 1
         '400':
-          description: >-
-            Bad request (e.g., invalid format, duplicate entry, invalid domain
-            wildcard, exceeding 100 entries per request, empty email parameter)
+          description: Bad request (e.g., invalid format, empty email parameter)
         '401':
           description: Authentication failed (invalid apiUser or apiKey)
         '403':
-          description: >-
-            Permission denied (unintercept function not activated; contact
-            customer service to enable)
+          description: Permission denied (unintercept function not activated)
       requestBody:
         required: true
         content:
@@ -432,16 +398,6 @@ paths:
             schema:
               type: object
               properties:
-                apiUser:
-                  type: string
-                  description: >-
-                    API_USER (authentication parameter; obtained from SendCloud
-                    console -> API Settings)
-                  example: test_api_user
-                apiKey:
-                  type: string
-                  description: API_KEY (authentication parameter; keep confidential)
-                  example: test_api_key
                 type:
                   type: string
                   enum:
@@ -449,34 +405,29 @@ paths:
                     - domain
                   description: >-
                     Unintercept type (email = exact email address; domain =
-                    entire domain, supports wildcard like "*.example.com")
+                    domain name, supports wildcard format)
                   example: domain
                 email:
                   type: string
                   description: >-
-                    Email address or domain to add (supports multiple entries
-                    separated by semicolons; max 100 entries per request; email
-                    format must comply with RFC 5322, domain wildcard only
-                    supports "*.domain.com" format)
+                    Email address or domain to add (email format must comply
+                    with RFC 5322; domain supports wildcard like
+                    "*.example.com")
                   example: '*.example.com'
                 remark:
                   type: string
-                  description: >-
-                    Remark (custom description for the unintercept entry; max
-                    100 characters; optional)
+                  description: Remark (custom description; max 100 characters; optional)
                   example: Partner domain
               required:
-                - apiUser
-                - apiKey
                 - type
                 - email
       x-codeSamples:
         - lang: Python
-          label: Add Domain to Unintercept List
+          label: Add Unintercept Domain
           source: |
             import requests
 
-            url = "https://api2.sendcloud.net/api/unintercept/add"
+            url = "https://api.aurorasendcloud.com/api/unintercept/add"
             data = {
                 "apiUser": "test_api_user",
                 "apiKey": "test_api_key",
@@ -498,6 +449,9 @@ paths:
       operationId: removeUninterceptAddress
       tags:
         - Uninterception
+      security:
+        - apiUser: []
+        - apiKey: []
       responses:
         '200':
           description: Remove successful
@@ -546,16 +500,6 @@ paths:
             schema:
               type: object
               properties:
-                apiUser:
-                  type: string
-                  description: >-
-                    API_USER (authentication parameter; obtained from SendCloud
-                    console -> API Settings)
-                  example: test_api_user
-                apiKey:
-                  type: string
-                  description: API_KEY (authentication parameter; keep confidential)
-                  example: test_api_key
                 type:
                   type: string
                   enum:
@@ -573,8 +517,6 @@ paths:
                     must match the added type)
                   example: '*.example.com;vip@example.com'
               required:
-                - apiUser
-                - apiKey
                 - type
                 - email
       x-codeSamples:
@@ -583,7 +525,7 @@ paths:
           source: |
             import requests
 
-            url = "https://api2.sendcloud.net/api/unintercept/remove"
+            url = "https://api.aurorasendcloud.com/api/unintercept/remove"
             data = {
                 "apiUser": "test_api_user",
                 "apiKey": "test_api_key",
@@ -602,6 +544,9 @@ paths:
       operationId: checkUninterceptStatusGet
       tags:
         - Uninterception
+      security:
+        - apiUser: []
+        - apiKey: []
       responses:
         '200':
           description: Request successful
@@ -664,22 +609,6 @@ paths:
           description: Permission denied (unintercept function not activated)
       parameters:
         - in: query
-          name: apiUser
-          schema:
-            type: string
-          required: true
-          description: >-
-            API_USER (authentication parameter; obtained from SendCloud console
-            -> API Settings)
-          example: test_api_user
-        - in: query
-          name: apiKey
-          schema:
-            type: string
-          required: true
-          description: API_KEY (authentication parameter; keep confidential)
-          example: test_api_key
-        - in: query
           name: type
           schema:
             type: string
@@ -706,7 +635,7 @@ paths:
           source: |
             import requests
 
-            url = "https://api2.sendcloud.net/api/unintercept/check"
+            url = "https://api.aurorasendcloud.com/api/unintercept/check"
             params = {
                 "apiUser": "test_api_user",
                 "apiKey": "test_api_key",
@@ -717,7 +646,21 @@ paths:
             response = requests.get(url, params=params)
             print(response.json())
 components:
-  securitySchemes: {}
+  securitySchemes:
+    apiUser:
+      type: apiKey
+      in: query
+      name: apiUser
+      description: >-
+        API_USER (authentication parameter; obtained from SendCloud console ->
+        Email API -> API_USER)
+    apiKey:
+      type: apiKey
+      in: query
+      name: apiKey
+      description: >-
+        API_KEY (authentication parameter; obtained from SendCloud console ->
+        Email API -> API_USER; keep confidential)
 x-readme:
   explorer-enabled: true
   proxy-enabled: true
