@@ -239,6 +239,9 @@ paths:
             print("Address list details:")
             for list_info in result['info']['dataList']:
                 print(f"- Name: {list_info['name']}, DisplayName: {list_info['displayName']}, Members: {list_info['memberCount']}")
+      security:
+        - apiUser: []
+          apiKey: []
     post:
       summary: Batch Query Address Lists (POST)
       description: Batch query address lists using POST method (supports pagination)
@@ -453,6 +456,9 @@ paths:
                 print(f"Display Name: {data['displayName']}")
                 print(f"Member Count: {data['memberCount']}")
                 print(f"Created Time: {data['gmtCreated']}")
+      security:
+        - apiUser: []
+          apiKey: []
     post:
       summary: Query Single Address List (POST)
       description: Get detailed information of a specific address list using POST method
@@ -993,6 +999,9 @@ paths:
             print("Members in current page:")
             for email in result['info']['dataList']:
                 print(f"- {email}")
+      security:
+        - apiUser: []
+          apiKey: []
     post:
       summary: Query Members of Address List (POST)
       description: Query members of an address list using POST method (supports pagination)
