@@ -1,0 +1,10 @@
+- batchquerytemplatesget
+- batchquerytemplatespost
+- getsingletemplateget
+- getsingletemplatepost
+- addtemplateget
+- addtemplatepost
+- deletetemplateget
+- deletetemplatepost
+- updatetemplateget
+- updatetemplatepost

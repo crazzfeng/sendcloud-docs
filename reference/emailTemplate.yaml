@@ -1,0 +1,1119 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Aurora SendCloud Email Template API
+servers:
+  - url: https://api2.sendcloud.net
+tags:
+  - name: Email Template Management
+    description: Interfaces for querying, adding, updating, and deleting email templates
+paths:
+  /api/template/list:
+    get:
+      summary: Batch Query Email Templates
+      description: >-
+        Query basic information of multiple email templates (supports filtering
+        and pagination)
+      operationId: batchQueryTemplatesGet
+      tags:
+        - Email Template Management
+      responses:
+        '200':
+          description: Request successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 200
+                  message:
+                    type: string
+                    example: request was successful
+                  result:
+                    type: boolean
+                    example: true
+                  info:
+                    type: object
+                    properties:
+                      dataList:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            name:
+                              type: string
+                              example: ifaxin bill
+                            invokeName:
+                              type: string
+                              example: ifaxin_bill_invoke
+                            templateType:
+                              type: integer
+                              enum:
+                                - 0
+                                - 1
+                              example: 1
+                            templateStat:
+                              type: integer
+                              example: 1
+                            gmtCreated:
+                              type: string
+                              format: date-time
+                              example: '2013-11-21 16:37:41'
+                            gmtUpdated:
+                              type: string
+                              format: date-time
+                              example: '2015-06-12 19:44:07'
+                      total:
+                        type: integer
+                        example: 42
+                      count:
+                        type: integer
+                        example: 2
+      parameters:
+        - in: query
+          name: apiUser
+          schema:
+            type: string
+          required: true
+          description: API_USER
+          example: test_api_user
+        - in: query
+          name: apiKey
+          schema:
+            type: string
+          required: true
+          description: API_KEY
+          example: test_api_key
+        - in: query
+          name: invokeName
+          schema:
+            type: string
+          required: false
+          description: Calling name of the email template (filters results by template)
+          example: ifaxin_bill
+        - in: query
+          name: templateType
+          schema:
+            type: integer
+            enum:
+              - 0
+              - 1
+          required: false
+          description: Template type (0 = transactional, 1 = marketing)
+          example: 0
+        - in: query
+          name: start
+          schema:
+            type: integer
+            default: 0
+            minimum: 0
+          required: false
+          description: Start position of the query (defaults to 0)
+          example: 0
+        - in: query
+          name: limit
+          schema:
+            type: integer
+            default: 100
+            minimum: 0
+            maximum: 100
+          required: false
+          description: Number of results to return (0-100, defaults to 100)
+          example: 3
+      x-codeSamples:
+        - lang: Python
+          label: Batch Query Templates (Basic Filter)
+          source: |
+            import requests
+
+            url = "https://api2.sendcloud.net/api/template/list"
+            params = {
+                "apiUser": "test_api_user",
+                "apiKey": "test_api_key",
+                "templateType": 0,  # Transactional templates
+                "start": 0,
+                "limit": 10
+            }
+
+            response = requests.get(url, params=params)
+            print(response.json())
+        - lang: Python
+          label: Batch Query Templates (By InvokeName)
+          source: |
+            import requests
+
+            url = "https://api2.sendcloud.net/api/template/list"
+            params = {
+                "apiUser": "test_api_user",
+                "apiKey": "test_api_key",
+                "invokeName": "ifaxin_bill",
+                "limit": 1
+            }
+
+            response = requests.get(url, params=params)
+            print(response.json())
+    post:
+      summary: Batch Query Email Templates (POST)
+      description: >-
+        Batch query email templates using POST method (supports filtering and
+        pagination)
+      operationId: batchQueryTemplatesPost
+      tags:
+        - Email Template Management
+      responses:
+        '200':
+          description: Request successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 200
+                  message:
+                    type: string
+                    example: request was successful
+                  result:
+                    type: boolean
+                    example: true
+                  info:
+                    type: object
+                    properties:
+                      dataList:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            name:
+                              type: string
+                              example: ifaxin bill
+                            invokeName:
+                              type: string
+                              example: ifaxin_bill_invoke
+                            templateType:
+                              type: integer
+                              enum:
+                                - 0
+                                - 1
+                              example: 1
+                            templateStat:
+                              type: integer
+                              example: 1
+                            gmtCreated:
+                              type: string
+                              format: date-time
+                              example: '2013-11-21 16:37:41'
+                            gmtUpdated:
+                              type: string
+                              format: date-time
+                              example: '2015-06-12 19:44:07'
+                      total:
+                        type: integer
+                        example: 42
+                      count:
+                        type: integer
+                        example: 2
+      parameters:
+        - in: query
+          name: apiUser
+          schema:
+            type: string
+          required: true
+          description: API_USER
+          example: test_api_user
+        - in: query
+          name: apiKey
+          schema:
+            type: string
+          required: true
+          description: API_KEY
+          example: test_api_key
+        - in: query
+          name: invokeName
+          schema:
+            type: string
+          required: false
+          description: Calling name of the email template (filters results)
+          example: ifaxin_bill
+        - in: query
+          name: templateType
+          schema:
+            type: integer
+            enum:
+              - 0
+              - 1
+          required: false
+          description: Template type (0 = transactional, 1 = marketing)
+          example: 0
+        - in: query
+          name: start
+          schema:
+            type: integer
+            default: 0
+            minimum: 0
+          required: false
+          description: Start position of the query
+          example: 0
+        - in: query
+          name: limit
+          schema:
+            type: integer
+            default: 100
+            minimum: 0
+            maximum: 100
+          required: false
+          description: Number of results to return
+          example: 3
+      x-codeSamples:
+        - lang: Python
+          label: Batch Query Templates (POST Method)
+          source: |
+            import requests
+
+            url = "https://api2.sendcloud.net/api/template/list"
+            params = {
+                "apiUser": "test_api_user",
+                "apiKey": "test_api_key",
+                "templateType": 1,  # Marketing templates
+                "start": 10,
+                "limit": 20
+            }
+
+            response = requests.post(url, params=params)
+            print(response.json())
+  /api/template/get:
+    get:
+      summary: Query Single Email Template
+      description: Get detailed information of a specific email template by invokeName
+      operationId: getSingleTemplateGet
+      tags:
+        - Email Template Management
+      responses:
+        '200':
+          description: Request successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 200
+                  message:
+                    type: string
+                    example: request was successful
+                  result:
+                    type: boolean
+                    example: true
+                  info:
+                    type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          name:
+                            type: string
+                            example: SendCloud
+                          invokeName:
+                            type: string
+                            example: 15_invoke_2
+                          templateType:
+                            type: integer
+                            enum:
+                              - 0
+                              - 1
+                            example: 0
+                          templateStat:
+                            type: integer
+                            example: 1
+                          gmtCreated:
+                            type: string
+                            format: date-time
+                            example: '2015-02-02 17:01:43'
+                          gmtUpdated:
+                            type: string
+                            format: date-time
+                            example: '2015-04-16 15:04:12'
+                          html:
+                            type: string
+                            example: >-
+                              <p>Wonderful! You’ve successfully sent the first
+                              testing email through SendCloud.</p>
+                          subject:
+                            type: string
+                            example: The first Email from SendCloud！
+                          contentSummary:
+                            type: string
+                            example: test summary
+      parameters:
+        - in: query
+          name: apiUser
+          schema:
+            type: string
+          required: true
+          description: API_USER
+          example: test_api_user
+        - in: query
+          name: apiKey
+          schema:
+            type: string
+          required: true
+          description: API_KEY
+          example: test_api_key
+        - in: query
+          name: invokeName
+          schema:
+            type: string
+          required: true
+          description: Calling name of the target email template
+          example: test_invoke
+      x-codeSamples:
+        - lang: Python
+          label: Query Single Template (GET)
+          source: |
+            import requests
+
+            url = "https://api2.sendcloud.net/api/template/get"
+            params = {
+                "apiUser": "test_api_user",
+                "apiKey": "test_api_key",
+                "invokeName": "test_invoke"
+            }
+
+            response = requests.get(url, params=params)
+            template_info = response.json()
+            print("Template Subject:", template_info["info"]["data"]["subject"])
+            print("Template HTML:", template_info["info"]["data"]["html"])
+    post:
+      summary: Query Single Email Template (POST)
+      description: Get detailed template information using POST method
+      operationId: getSingleTemplatePost
+      tags:
+        - Email Template Management
+      responses:
+        '200':
+          description: Request successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 200
+                  message:
+                    type: string
+                    example: request was successful
+                  result:
+                    type: boolean
+                    example: true
+                  info:
+                    type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          name:
+                            type: string
+                            example: SendCloud
+                          invokeName:
+                            type: string
+                            example: 15_invoke_2
+                          templateType:
+                            type: integer
+                            enum:
+                              - 0
+                              - 1
+                            example: 0
+                          templateStat:
+                            type: integer
+                            example: 1
+                          gmtCreated:
+                            type: string
+                            format: date-time
+                            example: '2015-02-02 17:01:43'
+                          gmtUpdated:
+                            type: string
+                            format: date-time
+                            example: '2015-04-16 15:04:12'
+                          html:
+                            type: string
+                            example: >-
+                              <p>Wonderful! You’ve successfully sent the first
+                              testing email through SendCloud.</p>
+                          subject:
+                            type: string
+                            example: The first Email from SendCloud！
+                          contentSummary:
+                            type: string
+                            example: test summary
+      parameters:
+        - in: query
+          name: apiUser
+          schema:
+            type: string
+          required: true
+          description: API_USER
+          example: test_api_user
+        - in: query
+          name: apiKey
+          schema:
+            type: string
+          required: true
+          description: API_KEY
+          example: test_api_key
+        - in: query
+          name: invokeName
+          schema:
+            type: string
+          required: true
+          description: Calling name of the target email template
+          example: test_invoke
+      x-codeSamples:
+        - lang: Python
+          label: Query Single Template (POST)
+          source: |
+            import requests
+
+            url = "https://api2.sendcloud.net/api/template/get"
+            params = {
+                "apiUser": "test_api_user",
+                "apiKey": "test_api_key",
+                "invokeName": "test_invoke"
+            }
+
+            response = requests.post(url, params=params)
+            print(response.json())
+  /api/template/add:
+    get:
+      summary: Add Email Template (GET)
+      description: >-
+        Create a new email template (use POST for long/special character
+        content)
+      operationId: addTemplateGet
+      tags:
+        - Email Template Management
+      responses:
+        '200':
+          description: Template created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 200
+                  message:
+                    type: string
+                    example: request was successful
+                  result:
+                    type: boolean
+                    example: true
+                  info:
+                    type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          name:
+                            type: string
+                            example: test
+                          invokeName:
+                            type: string
+                            example: testtemplate
+                          templateType:
+                            type: integer
+                            enum:
+                              - 0
+                              - 1
+                            example: 1
+                          templateStat:
+                            type: integer
+                            example: 0
+                          gmtCreated:
+                            type: string
+                            format: date-time
+                            example: '2015-10-16 10:42:01'
+                          gmtUpdated:
+                            type: string
+                            example: ''
+                          html:
+                            type: string
+                            example: <p>add new template</p>
+                          subject:
+                            type: string
+                            example: test_subject
+      parameters:
+        - in: query
+          name: apiUser
+          schema:
+            type: string
+          required: true
+          description: API_USER
+          example: test_api_user
+        - in: query
+          name: apiKey
+          schema:
+            type: string
+          required: true
+          description: API_KEY
+          example: test_api_key
+        - in: query
+          name: invokeName
+          schema:
+            type: string
+          required: true
+          description: Calling name of the new template
+          example: testtemplate
+        - in: query
+          name: name
+          schema:
+            type: string
+          required: true
+          description: Name of the new template
+          example: test
+        - in: query
+          name: html
+          schema:
+            type: string
+          required: true
+          description: Template content in HTML format (supports variables)
+          example: <p>add new template</p>
+        - in: query
+          name: text
+          schema:
+            type: string
+          required: false
+          description: Template content in text format (optional)
+          example: add new template
+        - in: query
+          name: subject
+          schema:
+            type: string
+          required: true
+          description: Subject of the new template
+          example: test_subject
+        - in: query
+          name: templateType
+          schema:
+            type: integer
+            enum:
+              - 0
+              - 1
+          required: true
+          description: Template type (0 = transactional, 1 = marketing)
+          example: 1
+      x-codeSamples:
+        - lang: Python
+          label: Add Template (GET, Simple Content)
+          source: |
+            import requests
+
+            url = "https://api2.sendcloud.net/api/template/add"
+            params = {
+                "apiUser": "test_api_user",
+                "apiKey": "test_api_key",
+                "invokeName": "new_test_template",
+                "name": "Test Template",
+                "html": "<h1>Hello {{name}}</h1><p>Your order {{order_id}} is confirmed</p>",
+                "subject": "Order Confirmation",
+                "templateType": 0  # Transactional template
+            }
+
+            response = requests.get(url, params=params)
+            print(response.json())
+    post:
+      summary: Add Email Template (POST)
+      description: >-
+        Create a new email template (recommended for long/special character
+        content)
+      operationId: addTemplatePost
+      tags:
+        - Email Template Management
+      responses:
+        '200':
+          description: Template created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 200
+                  message:
+                    type: string
+                    example: request was successful
+                  result:
+                    type: boolean
+                    example: true
+                  info:
+                    type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          name:
+                            type: string
+                            example: test
+                          invokeName:
+                            type: string
+                            example: testtemplate
+                          templateType:
+                            type: integer
+                            enum:
+                              - 0
+                              - 1
+                            example: 1
+                          templateStat:
+                            type: integer
+                            example: 0
+                          gmtCreated:
+                            type: string
+                            format: date-time
+                            example: '2015-10-16 10:42:01'
+                          gmtUpdated:
+                            type: string
+                            example: ''
+                          html:
+                            type: string
+                            example: >-
+                              <p>add new template with special characters:
+                              &<>"'</p>
+                          subject:
+                            type: string
+                            example: test_subject
+      parameters:
+        - in: query
+          name: apiUser
+          schema:
+            type: string
+          required: true
+          description: API_USER
+          example: test_api_user
+        - in: query
+          name: apiKey
+          schema:
+            type: string
+          required: true
+          description: API_KEY
+          example: test_api_key
+        - in: query
+          name: invokeName
+          schema:
+            type: string
+          required: true
+          description: Calling name of the new template
+          example: testtemplate
+        - in: query
+          name: name
+          schema:
+            type: string
+          required: true
+          description: Name of the new template
+          example: test
+        - in: query
+          name: html
+          schema:
+            type: string
+          required: true
+          description: Template content in HTML format (supports variables)
+          example: '<p>add new template with special characters: &<>"''</p>'
+        - in: query
+          name: text
+          schema:
+            type: string
+          required: false
+          description: Template content in text format (optional)
+          example: add new template with special characters
+        - in: query
+          name: subject
+          schema:
+            type: string
+          required: true
+          description: Subject of the new template
+          example: test_subject
+        - in: query
+          name: templateType
+          schema:
+            type: integer
+            enum:
+              - 0
+              - 1
+          required: true
+          description: Template type (0 = transactional, 1 = marketing)
+          example: 1
+      x-codeSamples:
+        - lang: Python
+          label: Add Template (POST, Special Characters)
+          source: |
+            import requests
+
+            url = "https://api2.sendcloud.net/api/template/add"
+            params = {
+                "apiUser": "test_api_user",
+                "apiKey": "test_api_key",
+                "invokeName": "special_char_template",
+                "name": "Template with Special Chars",
+                "html": "<p>Welcome &amp; Hello! This is a template with &lt;tags&gt; and \"quotes\"</p>",
+                "text": "Welcome & Hello! This is a plain text template",
+                "subject": "Special Characters Test",
+                "templateType": 1  # Marketing template
+            }
+
+            response = requests.post(url, params=params)
+            print(response.json())
+  /api/template/delete:
+    get:
+      summary: Delete Email Template (GET)
+      description: Delete an existing email template by invokeName
+      operationId: deleteTemplateGet
+      tags:
+        - Email Template Management
+      responses:
+        '200':
+          description: Template deleted successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 200
+                  message:
+                    type: string
+                    example: request was successful
+                  result:
+                    type: boolean
+                    example: true
+                  info:
+                    type: object
+                    properties:
+                      count:
+                        type: integer
+                        example: 1
+      parameters:
+        - in: query
+          name: apiUser
+          schema:
+            type: string
+          required: true
+          description: API_USER
+          example: test_api_user
+        - in: query
+          name: apiKey
+          schema:
+            type: string
+          required: true
+          description: API_KEY
+          example: test_api_key
+        - in: query
+          name: invokeName
+          schema:
+            type: string
+          required: true
+          description: Calling name of the template to delete
+          example: test_invoke
+      x-codeSamples:
+        - lang: Python
+          label: Delete Template (GET)
+          source: |
+            import requests
+
+            url = "https://api2.sendcloud.net/api/template/delete"
+            params = {
+                "apiUser": "test_api_user",
+                "apiKey": "test_api_key",
+                "invokeName": "template_to_delete"
+            }
+
+            response = requests.get(url, params=params)
+            print(response.json())
+    post:
+      summary: Delete Email Template (POST)
+      description: Delete an existing email template using POST method
+      operationId: deleteTemplatePost
+      tags:
+        - Email Template Management
+      responses:
+        '200':
+          description: Template deleted successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 200
+                  message:
+                    type: string
+                    example: request was successful
+                  result:
+                    type: boolean
+                    example: true
+                  info:
+                    type: object
+                    properties:
+                      count:
+                        type: integer
+                        example: 1
+      parameters:
+        - in: query
+          name: apiUser
+          schema:
+            type: string
+          required: true
+          description: API_USER
+          example: test_api_user
+        - in: query
+          name: apiKey
+          schema:
+            type: string
+          required: true
+          description: API_KEY
+          example: test_api_key
+        - in: query
+          name: invokeName
+          schema:
+            type: string
+          required: true
+          description: Calling name of the template to delete
+          example: test_invoke
+      x-codeSamples:
+        - lang: Python
+          label: Delete Template (POST)
+          source: |
+            import requests
+
+            url = "https://api2.sendcloud.net/api/template/delete"
+            params = {
+                "apiUser": "test_api_user",
+                "apiKey": "test_api_key",
+                "invokeName": "template_to_delete"
+            }
+
+            response = requests.post(url, params=params)
+            print(response.json())
+  /api/template/update:
+    get:
+      summary: Update Email Template (GET)
+      description: >-
+        Modify an existing email template (use POST for long/special character
+        content)
+      operationId: updateTemplateGet
+      tags:
+        - Email Template Management
+      responses:
+        '200':
+          description: Template updated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 200
+                  message:
+                    type: string
+                    example: request was successful
+                  result:
+                    type: boolean
+                    example: true
+                  info:
+                    type: object
+                    properties:
+                      count:
+                        type: integer
+                        example: 1
+      parameters:
+        - in: query
+          name: apiUser
+          schema:
+            type: string
+          required: true
+          description: API_USER
+          example: test_api_user
+        - in: query
+          name: apiKey
+          schema:
+            type: string
+          required: true
+          description: API_KEY
+          example: test_api_key
+        - in: query
+          name: invokeName
+          schema:
+            type: string
+          required: true
+          description: Calling name of the template to update
+          example: testtemplate
+        - in: query
+          name: name
+          schema:
+            type: string
+          required: false
+          description: New template name (optional)
+          example: updated_test
+        - in: query
+          name: html
+          schema:
+            type: string
+          required: false
+          description: New HTML content (supports variables, optional)
+          example: <p>update template</p>
+        - in: query
+          name: subject
+          schema:
+            type: string
+          required: false
+          description: New template subject (optional)
+          example: updated_test_subject
+        - in: query
+          name: templateType
+          schema:
+            type: integer
+            enum:
+              - 0
+              - 1
+          required: false
+          description: New template type (0 = transactional, 1 = marketing, optional)
+          example: 1
+      x-codeSamples:
+        - lang: Python
+          label: Update Template (GET, Basic Fields)
+          source: |
+            import requests
+
+            url = "https://api2.sendcloud.net/api/template/update"
+            params = {
+                "apiUser": "test_api_user",
+                "apiKey": "test_api_key",
+                "invokeName": "template_to_update",
+                "name": "Updated Template Name",
+                "subject": "Updated Subject Line",
+                "templateType": 0  # Change to transactional
+            }
+
+            response = requests.get(url, params=params)
+            print(response.json())
+    post:
+      summary: Update Email Template (POST)
+      description: >-
+        Modify an existing email template (recommended for long/special
+        character content)
+      operationId: updateTemplatePost
+      tags:
+        - Email Template Management
+      responses:
+        '200':
+          description: Template updated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 200
+                  message:
+                    type: string
+                    example: request was successful
+                  result:
+                    type: boolean
+                    example: true
+                  info:
+                    type: object
+                    properties:
+                      count:
+                        type: integer
+                        example: 1
+      parameters:
+        - in: query
+          name: apiUser
+          schema:
+            type: string
+          required: true
+          description: API_USER
+          example: test_api_user
+        - in: query
+          name: apiKey
+          schema:
+            type: string
+          required: true
+          description: API_KEY
+          example: test_api_key
+        - in: query
+          name: invokeName
+          schema:
+            type: string
+          required: true
+          description: Calling name of the template to update
+          example: testtemplate
+        - in: query
+          name: name
+          schema:
+            type: string
+          required: false
+          description: New template name (optional)
+          example: updated_test
+        - in: query
+          name: html
+          schema:
+            type: string
+          required: false
+          description: New HTML content (supports variables, optional)
+          example: '<p>update template with special characters: &<>"''</p>'
+        - in: query
+          name: subject
+          schema:
+            type: string
+          required: false
+          description: New template subject (optional)
+          example: updated_test_subject
+        - in: query
+          name: templateType
+          schema:
+            type: integer
+            enum:
+              - 0
+              - 1
+          required: false
+          description: New template type (0 = transactional, 1 = marketing, optional)
+          example: 1
+      x-codeSamples:
+        - lang: Python
+          label: Update Template (POST, HTML Content)
+          source: |
+            import requests
+
+            url = "https://api2.sendcloud.net/api/template/update"
+            params = {
+                "apiUser": "test_api_user",
+                "apiKey": "test_api_key",
+                "invokeName": "template_to_update",
+                "html": "<div><h2>Updated HTML Content</h2><p>Supports &amp; special characters and {{variables}}</p></div>",
+                "text": "Updated plain text content with special chars & symbols"
+            }
+
+            response = requests.post(url, params=params)
+            print(response.json())
+components:
+  securitySchemes:
+    apiUser:
+      type: apiKey
+      in: query
+      name: apiUser
+    apiKey:
+      type: apiKey
+      in: query
+      name: apiKey
+x-readme:
+  explorer-enabled: true
+  proxy-enabled: true
