@@ -1,8 +1,8 @@
 ---
-title: Query Address List Task (GET)
+title: Query Address List Task
 excerpt: Query the status and details of an address list email task
 api:
   file: deliverlies.yaml
-  operationId: queryMailListTaskGet
+  operationId: queryAddressListTask
 hidden: false
 ---

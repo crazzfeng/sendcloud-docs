@@ -1,2 +1,5 @@
 - sendregularemail
 - sendtemplateemail
+- sendmeetingcalendar
+- queryaddresslisttask
+- queryaddresslisttaskpost
