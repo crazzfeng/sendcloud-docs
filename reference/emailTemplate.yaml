@@ -27,49 +27,80 @@ paths:
                 properties:
                   statusCode:
                     type: integer
+                    description: Response status code (200 indicates success)
                     example: 200
                   message:
                     type: string
+                    description: >-
+                      Prompt message for request result (success/failure
+                      description)
                     example: request was successful
                   result:
                     type: boolean
+                    description: >-
+                      Whether the request was processed successfully (true =
+                      success, false = failure)
                     example: true
                   info:
                     type: object
+                    description: Detailed result data of the batch query
                     properties:
                       dataList:
                         type: array
+                        description: List of template basic information
                         items:
                           type: object
                           properties:
                             name:
                               type: string
+                              description: Template name
                               example: ifaxin bill
                             invokeName:
                               type: string
+                              description: >-
+                                Template calling name (used for invoking the
+                                template in sending emails)
                               example: ifaxin_bill_invoke
                             templateType:
                               type: integer
                               enum:
                                 - 0
                                 - 1
+                              description: >-
+                                Template type (0 = transactional template, 1 =
+                                marketing template)
                               example: 1
                             templateStat:
                               type: integer
+                              description: >-
+                                Template status (1 = approved, 0 = pending
+                                approval/rejected)
                               example: 1
                             gmtCreated:
                               type: string
                               format: date-time
+                              description: >-
+                                Template creation time (format: yyyy-MM-dd
+                                HH:mm:ss)
                               example: '2013-11-21 16:37:41'
                             gmtUpdated:
                               type: string
                               format: date-time
+                              description: >-
+                                Template last update time (format: yyyy-MM-dd
+                                HH:mm:ss)
                               example: '2015-06-12 19:44:07'
                       total:
                         type: integer
+                        description: >-
+                          Total number of templates matching the query
+                          conditions
                         example: 42
                       count:
                         type: integer
+                        description: >-
+                          Number of templates returned in the current query
+                          (matches the limit parameter)
                         example: 2
       parameters:
         - in: query
@@ -77,21 +108,27 @@ paths:
           schema:
             type: string
           required: true
-          description: API_USER
+          description: >-
+            API_USER (authentication parameter, obtained from the SendCloud
+            console)
           example: test_api_user
         - in: query
           name: apiKey
           schema:
             type: string
           required: true
-          description: API_KEY
+          description: >-
+            API_KEY (authentication parameter, obtained from the SendCloud
+            console)
           example: test_api_key
         - in: query
           name: invokeName
           schema:
             type: string
           required: false
-          description: Calling name of the email template (filters results by template)
+          description: >-
+            Calling name of the email template (filters results to match the
+            specified template)
           example: ifaxin_bill
         - in: query
           name: templateType
@@ -101,7 +138,7 @@ paths:
               - 0
               - 1
           required: false
-          description: Template type (0 = transactional, 1 = marketing)
+          description: Template type (0 = transactional template, 1 = marketing template)
           example: 0
         - in: query
           name: start
@@ -110,7 +147,9 @@ paths:
             default: 0
             minimum: 0
           required: false
-          description: Start position of the query (defaults to 0)
+          description: >-
+            Query start position (pagination parameter, defaults to 0, starts
+            from 0)
           example: 0
         - in: query
           name: limit
@@ -120,7 +159,9 @@ paths:
             minimum: 0
             maximum: 100
           required: false
-          description: Number of results to return (0-100, defaults to 100)
+          description: >-
+            Number of results returned per query (pagination parameter, range
+            0-100, defaults to 100)
           example: 3
       x-codeSamples:
         - lang: Python
@@ -172,49 +213,80 @@ paths:
                 properties:
                   statusCode:
                     type: integer
+                    description: Response status code (200 indicates success)
                     example: 200
                   message:
                     type: string
+                    description: >-
+                      Prompt message for request result (success/failure
+                      description)
                     example: request was successful
                   result:
                     type: boolean
+                    description: >-
+                      Whether the request was processed successfully (true =
+                      success, false = failure)
                     example: true
                   info:
                     type: object
+                    description: Detailed result data of the batch query
                     properties:
                       dataList:
                         type: array
+                        description: List of template basic information
                         items:
                           type: object
                           properties:
                             name:
                               type: string
+                              description: Template name
                               example: ifaxin bill
                             invokeName:
                               type: string
+                              description: >-
+                                Template calling name (used for invoking the
+                                template in sending emails)
                               example: ifaxin_bill_invoke
                             templateType:
                               type: integer
                               enum:
                                 - 0
                                 - 1
+                              description: >-
+                                Template type (0 = transactional template, 1 =
+                                marketing template)
                               example: 1
                             templateStat:
                               type: integer
+                              description: >-
+                                Template status (1 = approved, 0 = pending
+                                approval/rejected)
                               example: 1
                             gmtCreated:
                               type: string
                               format: date-time
+                              description: >-
+                                Template creation time (format: yyyy-MM-dd
+                                HH:mm:ss)
                               example: '2013-11-21 16:37:41'
                             gmtUpdated:
                               type: string
                               format: date-time
+                              description: >-
+                                Template last update time (format: yyyy-MM-dd
+                                HH:mm:ss)
                               example: '2015-06-12 19:44:07'
                       total:
                         type: integer
+                        description: >-
+                          Total number of templates matching the query
+                          conditions
                         example: 42
                       count:
                         type: integer
+                        description: >-
+                          Number of templates returned in the current query
+                          (matches the limit parameter)
                         example: 2
       parameters:
         - in: query
@@ -222,21 +294,27 @@ paths:
           schema:
             type: string
           required: true
-          description: API_USER
+          description: >-
+            API_USER (authentication parameter, obtained from the SendCloud
+            console)
           example: test_api_user
         - in: query
           name: apiKey
           schema:
             type: string
           required: true
-          description: API_KEY
+          description: >-
+            API_KEY (authentication parameter, obtained from the SendCloud
+            console)
           example: test_api_key
         - in: query
           name: invokeName
           schema:
             type: string
           required: false
-          description: Calling name of the email template (filters results)
+          description: >-
+            Calling name of the email template (filters results to match the
+            specified template)
           example: ifaxin_bill
         - in: query
           name: templateType
@@ -246,7 +324,7 @@ paths:
               - 0
               - 1
           required: false
-          description: Template type (0 = transactional, 1 = marketing)
+          description: Template type (0 = transactional template, 1 = marketing template)
           example: 0
         - in: query
           name: start
@@ -255,7 +333,9 @@ paths:
             default: 0
             minimum: 0
           required: false
-          description: Start position of the query
+          description: >-
+            Query start position (pagination parameter, defaults to 0, starts
+            from 0)
           example: 0
         - in: query
           name: limit
@@ -265,7 +345,9 @@ paths:
             minimum: 0
             maximum: 100
           required: false
-          description: Number of results to return
+          description: >-
+            Number of results returned per query (pagination parameter, range
+            0-100, defaults to 100)
           example: 3
       x-codeSamples:
         - lang: Python
@@ -301,52 +383,85 @@ paths:
                 properties:
                   statusCode:
                     type: integer
+                    description: Response status code (200 indicates success)
                     example: 200
                   message:
                     type: string
+                    description: >-
+                      Prompt message for request result (success/failure
+                      description)
                     example: request was successful
                   result:
                     type: boolean
+                    description: >-
+                      Whether the request was processed successfully (true =
+                      success, false = failure)
                     example: true
                   info:
                     type: object
+                    description: Detailed information of the queried template
                     properties:
                       data:
                         type: object
                         properties:
                           name:
                             type: string
+                            description: Template name
                             example: SendCloud
                           invokeName:
                             type: string
+                            description: >-
+                              Template calling name (used for invoking the
+                              template in sending emails)
                             example: 15_invoke_2
                           templateType:
                             type: integer
                             enum:
                               - 0
                               - 1
+                            description: >-
+                              Template type (0 = transactional template, 1 =
+                              marketing template)
                             example: 0
                           templateStat:
                             type: integer
+                            description: >-
+                              Template status (1 = approved, 0 = pending
+                              approval/rejected)
                             example: 1
                           gmtCreated:
                             type: string
                             format: date-time
+                            description: >-
+                              Template creation time (format: yyyy-MM-dd
+                              HH:mm:ss)
                             example: '2015-02-02 17:01:43'
                           gmtUpdated:
                             type: string
                             format: date-time
+                            description: >-
+                              Template last update time (format: yyyy-MM-dd
+                              HH:mm:ss)
                             example: '2015-04-16 15:04:12'
                           html:
                             type: string
+                            description: >-
+                              Template content in HTML format (supports variable
+                              substitution)
                             example: >-
                               <p>Wonderful! You’ve successfully sent the first
                               testing email through SendCloud.</p>
                           subject:
                             type: string
+                            description: >-
+                              Template default subject (can be overridden when
+                              sending emails)
                             example: The first Email from SendCloud！
                           contentSummary:
                             type: string
+                            description: >-
+                              Template content summary (used for content review
+                              and display)
                             example: test summary
       parameters:
         - in: query
@@ -354,21 +469,27 @@ paths:
           schema:
             type: string
           required: true
-          description: API_USER
+          description: >-
+            API_USER (authentication parameter, obtained from the SendCloud
+            console)
           example: test_api_user
         - in: query
           name: apiKey
           schema:
             type: string
           required: true
-          description: API_KEY
+          description: >-
+            API_KEY (authentication parameter, obtained from the SendCloud
+            console)
           example: test_api_key
         - in: query
           name: invokeName
           schema:
             type: string
           required: true
-          description: Calling name of the target email template
+          description: >-
+            Calling name of the target email template (unique identifier for
+            querying the template)
           example: test_invoke
       x-codeSamples:
         - lang: Python
@@ -403,52 +524,85 @@ paths:
                 properties:
                   statusCode:
                     type: integer
+                    description: Response status code (200 indicates success)
                     example: 200
                   message:
                     type: string
+                    description: >-
+                      Prompt message for request result (success/failure
+                      description)
                     example: request was successful
                   result:
                     type: boolean
+                    description: >-
+                      Whether the request was processed successfully (true =
+                      success, false = failure)
                     example: true
                   info:
                     type: object
+                    description: Detailed information of the queried template
                     properties:
                       data:
                         type: object
                         properties:
                           name:
                             type: string
+                            description: Template name
                             example: SendCloud
                           invokeName:
                             type: string
+                            description: >-
+                              Template calling name (used for invoking the
+                              template in sending emails)
                             example: 15_invoke_2
                           templateType:
                             type: integer
                             enum:
                               - 0
                               - 1
+                            description: >-
+                              Template type (0 = transactional template, 1 =
+                              marketing template)
                             example: 0
                           templateStat:
                             type: integer
+                            description: >-
+                              Template status (1 = approved, 0 = pending
+                              approval/rejected)
                             example: 1
                           gmtCreated:
                             type: string
                             format: date-time
+                            description: >-
+                              Template creation time (format: yyyy-MM-dd
+                              HH:mm:ss)
                             example: '2015-02-02 17:01:43'
                           gmtUpdated:
                             type: string
                             format: date-time
+                            description: >-
+                              Template last update time (format: yyyy-MM-dd
+                              HH:mm:ss)
                             example: '2015-04-16 15:04:12'
                           html:
                             type: string
+                            description: >-
+                              Template content in HTML format (supports variable
+                              substitution)
                             example: >-
                               <p>Wonderful! You’ve successfully sent the first
                               testing email through SendCloud.</p>
                           subject:
                             type: string
+                            description: >-
+                              Template default subject (can be overridden when
+                              sending emails)
                             example: The first Email from SendCloud！
                           contentSummary:
                             type: string
+                            description: >-
+                              Template content summary (used for content review
+                              and display)
                             example: test summary
       parameters:
         - in: query
@@ -456,21 +610,27 @@ paths:
           schema:
             type: string
           required: true
-          description: API_USER
+          description: >-
+            API_USER (authentication parameter, obtained from the SendCloud
+            console)
           example: test_api_user
         - in: query
           name: apiKey
           schema:
             type: string
           required: true
-          description: API_KEY
+          description: >-
+            API_KEY (authentication parameter, obtained from the SendCloud
+            console)
           example: test_api_key
         - in: query
           name: invokeName
           schema:
             type: string
           required: true
-          description: Calling name of the target email template
+          description: >-
+            Calling name of the target email template (unique identifier for
+            querying the template)
           example: test_invoke
       x-codeSamples:
         - lang: Python
@@ -506,46 +666,76 @@ paths:
                 properties:
                   statusCode:
                     type: integer
+                    description: Response status code (200 indicates success)
                     example: 200
                   message:
                     type: string
+                    description: >-
+                      Prompt message for request result (success/failure
+                      description)
                     example: request was successful
                   result:
                     type: boolean
+                    description: >-
+                      Whether the request was processed successfully (true =
+                      success, false = failure)
                     example: true
                   info:
                     type: object
+                    description: Detailed information of the newly created template
                     properties:
                       data:
                         type: object
                         properties:
                           name:
                             type: string
+                            description: Template name
                             example: test
                           invokeName:
                             type: string
+                            description: >-
+                              Template calling name (used for invoking the
+                              template in sending emails)
                             example: testtemplate
                           templateType:
                             type: integer
                             enum:
                               - 0
                               - 1
+                            description: >-
+                              Template type (0 = transactional template, 1 =
+                              marketing template)
                             example: 1
                           templateStat:
                             type: integer
+                            description: >-
+                              Template status (0 = pending approval, 1 =
+                              approved, -1 = rejected)
                             example: 0
                           gmtCreated:
                             type: string
                             format: date-time
+                            description: >-
+                              Template creation time (format: yyyy-MM-dd
+                              HH:mm:ss)
                             example: '2015-10-16 10:42:01'
                           gmtUpdated:
                             type: string
+                            description: >-
+                              Template last update time (empty for newly created
+                              templates)
                             example: ''
                           html:
                             type: string
+                            description: >-
+                              Template content in HTML format (supports variable
+                              substitution)
                             example: <p>add new template</p>
                           subject:
                             type: string
+                            description: >-
+                              Template default subject (can be overridden when
+                              sending emails)
                             example: test_subject
       parameters:
         - in: query
@@ -553,49 +743,63 @@ paths:
           schema:
             type: string
           required: true
-          description: API_USER
+          description: >-
+            API_USER (authentication parameter, obtained from the SendCloud
+            console)
           example: test_api_user
         - in: query
           name: apiKey
           schema:
             type: string
           required: true
-          description: API_KEY
+          description: >-
+            API_KEY (authentication parameter, obtained from the SendCloud
+            console)
           example: test_api_key
         - in: query
           name: invokeName
           schema:
             type: string
           required: true
-          description: Calling name of the new template
+          description: >-
+            Calling name of the new template (must be unique under the current
+            apiUser)
           example: testtemplate
         - in: query
           name: name
           schema:
             type: string
           required: true
-          description: Name of the new template
+          description: >-
+            Name of the new template (used for management display in the
+            console)
           example: test
         - in: query
           name: html
           schema:
             type: string
           required: true
-          description: Template content in HTML format (supports variables)
+          description: >-
+            Template content in HTML format (supports variable substitution with
+            {{variable}} syntax)
           example: <p>add new template</p>
         - in: query
           name: text
           schema:
             type: string
           required: false
-          description: Template content in text format (optional)
+          description: >-
+            Template content in plain text format (optional, used when the email
+            client does not support HTML)
           example: add new template
         - in: query
           name: subject
           schema:
             type: string
           required: true
-          description: Subject of the new template
+          description: >-
+            Default subject of the new template (can be modified when sending
+            emails)
           example: test_subject
         - in: query
           name: templateType
@@ -605,7 +809,7 @@ paths:
               - 0
               - 1
           required: true
-          description: Template type (0 = transactional, 1 = marketing)
+          description: Template type (0 = transactional template, 1 = marketing template)
           example: 1
       x-codeSamples:
         - lang: Python
@@ -644,48 +848,78 @@ paths:
                 properties:
                   statusCode:
                     type: integer
+                    description: Response status code (200 indicates success)
                     example: 200
                   message:
                     type: string
+                    description: >-
+                      Prompt message for request result (success/failure
+                      description)
                     example: request was successful
                   result:
                     type: boolean
+                    description: >-
+                      Whether the request was processed successfully (true =
+                      success, false = failure)
                     example: true
                   info:
                     type: object
+                    description: Detailed information of the newly created template
                     properties:
                       data:
                         type: object
                         properties:
                           name:
                             type: string
+                            description: Template name
                             example: test
                           invokeName:
                             type: string
+                            description: >-
+                              Template calling name (used for invoking the
+                              template in sending emails)
                             example: testtemplate
                           templateType:
                             type: integer
                             enum:
                               - 0
                               - 1
+                            description: >-
+                              Template type (0 = transactional template, 1 =
+                              marketing template)
                             example: 1
                           templateStat:
                             type: integer
+                            description: >-
+                              Template status (0 = pending approval, 1 =
+                              approved, -1 = rejected)
                             example: 0
                           gmtCreated:
                             type: string
                             format: date-time
+                            description: >-
+                              Template creation time (format: yyyy-MM-dd
+                              HH:mm:ss)
                             example: '2015-10-16 10:42:01'
                           gmtUpdated:
                             type: string
+                            description: >-
+                              Template last update time (empty for newly created
+                              templates)
                             example: ''
                           html:
                             type: string
+                            description: >-
+                              Template content in HTML format (supports variable
+                              substitution)
                             example: >-
                               <p>add new template with special characters:
                               &<>"'</p>
                           subject:
                             type: string
+                            description: >-
+                              Template default subject (can be overridden when
+                              sending emails)
                             example: test_subject
       parameters:
         - in: query
@@ -693,49 +927,63 @@ paths:
           schema:
             type: string
           required: true
-          description: API_USER
+          description: >-
+            API_USER (authentication parameter, obtained from the SendCloud
+            console)
           example: test_api_user
         - in: query
           name: apiKey
           schema:
             type: string
           required: true
-          description: API_KEY
+          description: >-
+            API_KEY (authentication parameter, obtained from the SendCloud
+            console)
           example: test_api_key
         - in: query
           name: invokeName
           schema:
             type: string
           required: true
-          description: Calling name of the new template
+          description: >-
+            Calling name of the new template (must be unique under the current
+            apiUser)
           example: testtemplate
         - in: query
           name: name
           schema:
             type: string
           required: true
-          description: Name of the new template
+          description: >-
+            Name of the new template (used for management display in the
+            console)
           example: test
         - in: query
           name: html
           schema:
             type: string
           required: true
-          description: Template content in HTML format (supports variables)
+          description: >-
+            Template content in HTML format (supports variable substitution with
+            {{variable}} syntax)
           example: '<p>add new template with special characters: &<>"''</p>'
         - in: query
           name: text
           schema:
             type: string
           required: false
-          description: Template content in text format (optional)
+          description: >-
+            Template content in plain text format (optional, used when the email
+            client does not support HTML)
           example: add new template with special characters
         - in: query
           name: subject
           schema:
             type: string
           required: true
-          description: Subject of the new template
+          description: >-
+            Default subject of the new template (can be modified when sending
+            emails)
           example: test_subject
         - in: query
           name: templateType
@@ -745,7 +993,7 @@ paths:
               - 0
               - 1
           required: true
-          description: Template type (0 = transactional, 1 = marketing)
+          description: Template type (0 = transactional template, 1 = marketing template)
           example: 1
       x-codeSamples:
         - lang: Python
@@ -784,18 +1032,29 @@ paths:
                 properties:
                   statusCode:
                     type: integer
+                    description: Response status code (200 indicates success)
                     example: 200
                   message:
                     type: string
+                    description: >-
+                      Prompt message for request result (success/failure
+                      description)
                     example: request was successful
                   result:
                     type: boolean
+                    description: >-
+                      Whether the request was processed successfully (true =
+                      success, false = failure)
                     example: true
                   info:
                     type: object
+                    description: Deletion result statistics
                     properties:
                       count:
                         type: integer
+                        description: >-
+                          Number of templates successfully deleted (1 = success,
+                          0 = no template deleted)
                         example: 1
       parameters:
         - in: query
@@ -803,21 +1062,27 @@ paths:
           schema:
             type: string
           required: true
-          description: API_USER
+          description: >-
+            API_USER (authentication parameter, obtained from the SendCloud
+            console)
           example: test_api_user
         - in: query
           name: apiKey
           schema:
             type: string
           required: true
-          description: API_KEY
+          description: >-
+            API_KEY (authentication parameter, obtained from the SendCloud
+            console)
           example: test_api_key
         - in: query
           name: invokeName
           schema:
             type: string
           required: true
-          description: Calling name of the template to delete
+          description: >-
+            Calling name of the template to delete (unique identifier for the
+            template)
           example: test_invoke
       x-codeSamples:
         - lang: Python
@@ -850,18 +1115,29 @@ paths:
                 properties:
                   statusCode:
                     type: integer
+                    description: Response status code (200 indicates success)
                     example: 200
                   message:
                     type: string
+                    description: >-
+                      Prompt message for request result (success/failure
+                      description)
                     example: request was successful
                   result:
                     type: boolean
+                    description: >-
+                      Whether the request was processed successfully (true =
+                      success, false = failure)
                     example: true
                   info:
                     type: object
+                    description: Deletion result statistics
                     properties:
                       count:
                         type: integer
+                        description: >-
+                          Number of templates successfully deleted (1 = success,
+                          0 = no template deleted)
                         example: 1
       parameters:
         - in: query
@@ -869,21 +1145,27 @@ paths:
           schema:
             type: string
           required: true
-          description: API_USER
+          description: >-
+            API_USER (authentication parameter, obtained from the SendCloud
+            console)
           example: test_api_user
         - in: query
           name: apiKey
           schema:
             type: string
           required: true
-          description: API_KEY
+          description: >-
+            API_KEY (authentication parameter, obtained from the SendCloud
+            console)
           example: test_api_key
         - in: query
           name: invokeName
           schema:
             type: string
           required: true
-          description: Calling name of the template to delete
+          description: >-
+            Calling name of the template to delete (unique identifier for the
+            template)
           example: test_invoke
       x-codeSamples:
         - lang: Python
@@ -919,18 +1201,29 @@ paths:
                 properties:
                   statusCode:
                     type: integer
+                    description: Response status code (200 indicates success)
                     example: 200
                   message:
                     type: string
+                    description: >-
+                      Prompt message for request result (success/failure
+                      description)
                     example: request was successful
                   result:
                     type: boolean
+                    description: >-
+                      Whether the request was processed successfully (true =
+                      success, false = failure)
                     example: true
                   info:
                     type: object
+                    description: Update result statistics
                     properties:
                       count:
                         type: integer
+                        description: >-
+                          Number of templates successfully updated (1 = success,
+                          0 = no template updated)
                         example: 1
       parameters:
         - in: query
@@ -938,42 +1231,52 @@ paths:
           schema:
             type: string
           required: true
-          description: API_USER
+          description: >-
+            API_USER (authentication parameter, obtained from the SendCloud
+            console)
           example: test_api_user
         - in: query
           name: apiKey
           schema:
             type: string
           required: true
-          description: API_KEY
+          description: >-
+            API_KEY (authentication parameter, obtained from the SendCloud
+            console)
           example: test_api_key
         - in: query
           name: invokeName
           schema:
             type: string
           required: true
-          description: Calling name of the template to update
+          description: >-
+            Calling name of the template to update (unique identifier for the
+            template)
           example: testtemplate
         - in: query
           name: name
           schema:
             type: string
           required: false
-          description: New template name (optional)
+          description: New template name (optional, leave empty to keep the original name)
           example: updated_test
         - in: query
           name: html
           schema:
             type: string
           required: false
-          description: New HTML content (supports variables, optional)
+          description: >-
+            New HTML content (optional, supports variable substitution, leave
+            empty to keep the original content)
           example: <p>update template</p>
         - in: query
           name: subject
           schema:
             type: string
           required: false
-          description: New template subject (optional)
+          description: >-
+            New template subject (optional, leave empty to keep the original
+            subject)
           example: updated_test_subject
         - in: query
           name: templateType
@@ -983,7 +1286,9 @@ paths:
               - 0
               - 1
           required: false
-          description: New template type (0 = transactional, 1 = marketing, optional)
+          description: >-
+            New template type (optional, 0 = transactional, 1 = marketing, leave
+            empty to keep the original type)
           example: 1
       x-codeSamples:
         - lang: Python
@@ -1021,18 +1326,29 @@ paths:
                 properties:
                   statusCode:
                     type: integer
+                    description: Response status code (200 indicates success)
                     example: 200
                   message:
                     type: string
+                    description: >-
+                      Prompt message for request result (success/failure
+                      description)
                     example: request was successful
                   result:
                     type: boolean
+                    description: >-
+                      Whether the request was processed successfully (true =
+                      success, false = failure)
                     example: true
                   info:
                     type: object
+                    description: Update result statistics
                     properties:
                       count:
                         type: integer
+                        description: >-
+                          Number of templates successfully updated (1 = success,
+                          0 = no template updated)
                         example: 1
       parameters:
         - in: query
@@ -1040,42 +1356,52 @@ paths:
           schema:
             type: string
           required: true
-          description: API_USER
+          description: >-
+            API_USER (authentication parameter, obtained from the SendCloud
+            console)
           example: test_api_user
         - in: query
           name: apiKey
           schema:
             type: string
           required: true
-          description: API_KEY
+          description: >-
+            API_KEY (authentication parameter, obtained from the SendCloud
+            console)
           example: test_api_key
         - in: query
           name: invokeName
           schema:
             type: string
           required: true
-          description: Calling name of the template to update
+          description: >-
+            Calling name of the template to update (unique identifier for the
+            template)
           example: testtemplate
         - in: query
           name: name
           schema:
             type: string
           required: false
-          description: New template name (optional)
+          description: New template name (optional, leave empty to keep the original name)
           example: updated_test
         - in: query
           name: html
           schema:
             type: string
           required: false
-          description: New HTML content (supports variables, optional)
+          description: >-
+            New HTML content (optional, supports variable substitution, leave
+            empty to keep the original content)
           example: '<p>update template with special characters: &<>"''</p>'
         - in: query
           name: subject
           schema:
             type: string
           required: false
-          description: New template subject (optional)
+          description: >-
+            New template subject (optional, leave empty to keep the original
+            subject)
           example: updated_test_subject
         - in: query
           name: templateType
@@ -1085,7 +1411,9 @@ paths:
               - 0
               - 1
           required: false
-          description: New template type (0 = transactional, 1 = marketing, optional)
+          description: >-
+            New template type (optional, 0 = transactional, 1 = marketing, leave
+            empty to keep the original type)
           example: 1
       x-codeSamples:
         - lang: Python
@@ -1110,10 +1438,12 @@ components:
       type: apiKey
       in: query
       name: apiUser
+      description: Authentication parameter (API_USER, obtained from the SendCloud console)
     apiKey:
       type: apiKey
       in: query
       name: apiKey
+      description: Authentication parameter (API_KEY, obtained from the SendCloud console)
 x-readme:
   explorer-enabled: true
   proxy-enabled: true
