@@ -1,10 +1,9 @@
 ---
-title: Query Open & Click Aggregated Statistics (POST)
+title: Query Open & Click Summary Statistics (POST)
 excerpt: >-
-  Query open & click aggregated statistics using POST method. Suitable for
-  scenarios with multiple filter parameters (e.g., multiple
-  labels/domains/tags). Supports the same filtering conditions and constraints
-  as the GET method.
+  Query summary statistics using POST method. Suitable for scenarios with
+  multiple filter parameters. Supports the same filtering conditions as the GET
+  method.
 api:
   file: openAndClicks.yaml
   operationId: queryOpenClickSummaryPost
