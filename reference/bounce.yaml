@@ -1,0 +1,693 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Email
+servers:
+  - url: https://api2.sendcloud.net
+tags:
+  - name: Bounce
+    description: >-
+      Interfaces for querying bounced emails, managing bounce lists, and
+      unblocking bounced addresses
+paths:
+  /api/bounce/list:
+    get:
+      summary: Query Bounced Emails
+      description: >-
+        Get list of bounced emails within a specified time range (supports
+        filtering by bounce type, recipient, etc.)
+      operationId: queryBouncedEmailsGet
+      tags:
+        - Bounce
+      responses:
+        '200':
+          description: Request successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    description: Response status code (200 indicates success)
+                    example: 200
+                  message:
+                    type: string
+                    description: Success or failure message
+                    example: request was successful
+                  result:
+                    type: boolean
+                    description: Whether the request succeeded
+                    example: true
+                  info:
+                    type: object
+                    properties:
+                      dataList:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            emailId:
+                              type: string
+                              description: Unique email ID of the bounced email
+                              example: >-
+                                1447054895514_15555555_32350_1350.sc-inbound0$invalid@example.com
+                            to:
+                              type: string
+                              description: Recipient email address (bounced address)
+                              example: invalid@example.com
+                            from:
+                              type: string
+                              description: Sender email address
+                              example: support@example.com
+                            subject:
+                              type: string
+                              description: Email subject
+                              example: Test Email Subject
+                            sendTime:
+                              type: string
+                              format: date-time
+                              description: 'Email sending time (format: yyyy-MM-dd HH:mm:ss)'
+                              example: '2025-10-15 14:30:00'
+                            bounceTime:
+                              type: string
+                              format: date-time
+                              description: >-
+                                Bounce occurrence time (format: yyyy-MM-dd
+                                HH:mm:ss)
+                              example: '2025-10-15 14:32:30'
+                            bounceType:
+                              type: string
+                              enum:
+                                - hard
+                                - soft
+                              description: >-
+                                Bounce type (hard = permanent failure, soft =
+                                temporary failure)
+                              example: hard
+                            bounceReason:
+                              type: string
+                              description: Detailed bounce reason (SMTP server response)
+                              example: >-
+                                550 5.1.1 Recipient address rejected: User
+                                unknown
+                            bounceCode:
+                              type: string
+                              description: SMTP bounce code (e.g., 550, 450)
+                              example: '550'
+                            domain:
+                              type: string
+                              description: Sending domain
+                              example: example.com
+                            labelName:
+                              type: string
+                              description: Email label (empty if not set)
+                              example: Marketing Campaigns
+                      total:
+                        type: integer
+                        description: Total number of matching bounced emails
+                        example: 15
+                      count:
+                        type: integer
+                        description: Number of returned results
+                        example: 10
+                      page:
+                        type: integer
+                        description: Current page number
+                        example: 1
+                      pageSize:
+                        type: integer
+                        description: Number of results per page
+                        example: 10
+        '400':
+          description: Bad request (e.g., invalid time range, invalid bounce type)
+        '401':
+          description: Authentication failed (invalid apiUser or apiKey)
+      parameters:
+        - in: query
+          name: apiUser
+          schema:
+            type: string
+          required: true
+          description: API_USER (authentication parameter)
+          example: test_api_user
+        - in: query
+          name: apiKey
+          schema:
+            type: string
+          required: true
+          description: API_KEY (authentication parameter)
+          example: test_api_key
+        - in: query
+          name: startTime
+          schema:
+            type: string
+            format: date-time
+          required: true
+          description: >-
+            Query start time (format: yyyy-MM-dd HH:mm:ss; max time range: 90
+            days)
+          example: '2025-10-01 00:00:00'
+        - in: query
+          name: endTime
+          schema:
+            type: string
+            format: date-time
+          required: true
+          description: >-
+            Query end time (format: yyyy-MM-dd HH:mm:ss; must be after
+            startTime)
+          example: '2025-10-31 23:59:59'
+        - in: query
+          name: bounceType
+          schema:
+            type: string
+            enum:
+              - all
+              - hard
+              - soft
+            default: all
+          required: false
+          description: Filter by bounce type (all = default)
+          example: hard
+        - in: query
+          name: to
+          schema:
+            type: string
+          required: false
+          description: Filter by recipient email address
+          example: invalid@example.com
+        - in: query
+          name: domain
+          schema:
+            type: string
+          required: false
+          description: Filter by sending domain
+          example: example.com
+        - in: query
+          name: labelName
+          schema:
+            type: string
+          required: false
+          description: Filter by email label
+          example: Marketing Campaigns
+        - in: query
+          name: page
+          schema:
+            type: integer
+            default: 1
+          required: false
+          description: Page number (pagination parameter)
+          example: 1
+        - in: query
+          name: pageSize
+          schema:
+            type: integer
+            default: 100
+            maximum: 500
+          required: false
+          description: Number of results per page (max 500)
+          example: 50
+      x-codeSamples:
+        - lang: Python
+          label: Query Hard Bounced Emails
+          source: |
+            import requests
+
+            url = "https://api2.sendcloud.net/api/bounce/list"
+            params = {
+                "apiUser": "test_api_user",
+                "apiKey": "test_api_key",
+                "startTime": "2025-10-01 00:00:00",
+                "endTime": "2025-10-31 23:59:59",
+                "bounceType": "hard",
+                "domain": "example.com",
+                "page": 1,
+                "pageSize": 50
+            }
+
+            response = requests.get(url, params=params)
+            print(response.json())
+    post:
+      summary: Query Bounced Emails (POST)
+      description: Query bounced emails using POST method (supports same filters as GET)
+      operationId: queryBouncedEmailsPost
+      tags:
+        - Bounce
+      responses:
+        '200':
+          description: Request successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 200
+                  message:
+                    type: string
+                    example: request was successful
+                  result:
+                    type: boolean
+                    example: true
+                  info:
+                    type: object
+                    properties:
+                      dataList:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            emailId:
+                              type: string
+                              example: >-
+                                1447054895514_15555555_32350_1350.sc-inbound0$invalid@example.com
+                            to:
+                              type: string
+                              example: invalid@example.com
+                            from:
+                              type: string
+                              example: support@example.com
+                            subject:
+                              type: string
+                              example: Test Email Subject
+                            sendTime:
+                              type: string
+                              format: date-time
+                              example: '2025-10-15 14:30:00'
+                            bounceTime:
+                              type: string
+                              format: date-time
+                              example: '2025-10-15 14:32:30'
+                            bounceType:
+                              type: string
+                              enum:
+                                - hard
+                                - soft
+                              example: hard
+                            bounceReason:
+                              type: string
+                              example: >-
+                                550 5.1.1 Recipient address rejected: User
+                                unknown
+                            bounceCode:
+                              type: string
+                              example: '550'
+                            domain:
+                              type: string
+                              example: example.com
+                      total:
+                        type: integer
+                        example: 15
+                      count:
+                        type: integer
+                        example: 10
+                      page:
+                        type: integer
+                        example: 1
+                      pageSize:
+                        type: integer
+                        example: 10
+        '400':
+          description: Bad request
+        '401':
+          description: Authentication failed
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                apiUser:
+                  type: string
+                  example: test_api_user
+                apiKey:
+                  type: string
+                  example: test_api_key
+                startTime:
+                  type: string
+                  format: date-time
+                  example: '2025-10-01 00:00:00'
+                endTime:
+                  type: string
+                  format: date-time
+                  example: '2025-10-31 23:59:59'
+                bounceType:
+                  type: string
+                  enum:
+                    - all
+                    - hard
+                    - soft
+                  default: all
+                  example: hard
+                to:
+                  type: string
+                  example: invalid@example.com
+                domain:
+                  type: string
+                  example: example.com
+                labelName:
+                  type: string
+                  example: Marketing Campaigns
+                page:
+                  type: integer
+                  default: 1
+                  example: 1
+                pageSize:
+                  type: integer
+                  default: 100
+                  maximum: 500
+                  example: 50
+              required:
+                - apiUser
+                - apiKey
+                - startTime
+                - endTime
+      x-codeSamples:
+        - lang: Python
+          label: Query Bounced Emails (POST)
+          source: |
+            import requests
+
+            url = "https://api2.sendcloud.net/api/bounce/list"
+            data = {
+                "apiUser": "test_api_user",
+                "apiKey": "test_api_key",
+                "startTime": "2025-10-01 00:00:00",
+                "endTime": "2025-10-31 23:59:59",
+                "bounceType": "soft",
+                "pageSize": 100
+            }
+
+            response = requests.post(url, data=data)
+            print(response.json())
+  /api/bounce/export:
+    post:
+      summary: Export Bounced Emails
+      description: Export bounced email data within a specified time range to CSV file
+      operationId: exportBouncedEmails
+      tags:
+        - Bounce
+      responses:
+        '200':
+          description: Export task created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 200
+                  message:
+                    type: string
+                    example: export task created successfully
+                  result:
+                    type: boolean
+                    example: true
+                  info:
+                    type: object
+                    properties:
+                      taskId:
+                        type: string
+                        description: Export task ID (used to query export status)
+                        example: export_bounce_123456
+                      downloadUrl:
+                        type: string
+                        description: >-
+                          CSV download URL (valid for 24 hours; empty if
+                          processing)
+                        example: https://download.sendcloud.net/bounce_export_123.csv
+                      status:
+                        type: string
+                        enum:
+                          - processing
+                          - completed
+                          - failed
+                        description: Export task status
+                        example: processing
+                      estimatedTime:
+                        type: integer
+                        description: Estimated completion time (seconds)
+                        example: 60
+        '400':
+          description: Bad request (e.g., time range exceeds 30 days)
+        '401':
+          description: Authentication failed
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                apiUser:
+                  type: string
+                  example: test_api_user
+                apiKey:
+                  type: string
+                  example: test_api_key
+                startTime:
+                  type: string
+                  format: date-time
+                  example: '2025-10-01 00:00:00'
+                endTime:
+                  type: string
+                  format: date-time
+                  example: '2025-10-31 23:59:59'
+                bounceType:
+                  type: string
+                  enum:
+                    - all
+                    - hard
+                    - soft
+                  default: all
+                  example: all
+                domain:
+                  type: string
+                  example: example.com
+                labelName:
+                  type: string
+                  example: Marketing Campaigns
+              required:
+                - apiUser
+                - apiKey
+                - startTime
+                - endTime
+      x-codeSamples:
+        - lang: Python
+          label: Export Bounced Emails
+          source: |
+            import requests
+            import time
+
+            # Create export task
+            url = "https://api2.sendcloud.net/api/bounce/export"
+            data = {
+                "apiUser": "test_api_user",
+                "apiKey": "test_api_key",
+                "startTime": "2025-10-01 00:00:00",
+                "endTime": "2025-10-31 23:59:59",
+                "bounceType": "all"
+            }
+            response = requests.post(url, data=data)
+            task_info = response.json()
+            task_id = task_info["info"]["taskId"]
+
+            # Poll task status
+            poll_url = "https://api2.sendcloud.net/api/bounce/export/status"
+            while True:
+                poll_data = {
+                    "apiUser": "test_api_user",
+                    "apiKey": "test_api_key",
+                    "taskId": task_id
+                }
+                poll_response = requests.post(poll_url, data=poll_data)
+                poll_result = poll_response.json()
+                if poll_result["info"]["status"] == "completed":
+                    download_url = poll_result["info"]["downloadUrl"]
+                    # Download CSV
+                    csv_response = requests.get(download_url)
+                    with open("bounce_export.csv", "wb") as f:
+                        f.write(csv_response.content)
+                    print("Export completed and saved as bounce_export.csv")
+                    break
+                elif poll_result["info"]["status"] == "failed":
+                    print(f"Export failed: {poll_result['message']}")
+                    break
+                time.sleep(10)
+  /api/bounce/unblock:
+    post:
+      summary: Unblock Bounced Address
+      description: >-
+        Remove a bounced email address from the bounce list (allow future
+        sending)
+      operationId: unblockBouncedAddress
+      tags:
+        - Bounce
+      responses:
+        '200':
+          description: Unblock successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 200
+                  message:
+                    type: string
+                    example: unblock successful
+                  result:
+                    type: boolean
+                    example: true
+                  info:
+                    type: object
+                    properties:
+                      count:
+                        type: integer
+                        description: Number of unblocked addresses
+                        example: 1
+        '400':
+          description: Bad request (e.g., address not in bounce list)
+        '401':
+          description: Authentication failed
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                apiUser:
+                  type: string
+                  description: Api User
+                  example: test_api_user
+                apiKey:
+                  type: string
+                  description: Api Key
+                  example: test_api_key
+                email:
+                  type: string
+                  description: Bounced email address to unblock
+                  example: invalid@example.com
+              required:
+                - apiUser
+                - apiKey
+                - email
+      x-codeSamples:
+        - lang: Python
+          label: Unblock Bounced Address
+          source: |
+            import requests
+
+            url = "https://api2.sendcloud.net/api/bounce/unblock"
+            data = {
+                "apiUser": "test_api_user",
+                "apiKey": "test_api_key",
+                "email": "invalid@example.com"
+            }
+
+            response = requests.post(url, data=data)
+            print(response.json())
+  /api/bounce/count:
+    get:
+      summary: Get Bounce Count
+      description: Get total number of bounced emails within a specified time range
+      operationId: getBounceCountGet
+      tags:
+        - Bounce
+      responses:
+        '200':
+          description: Request successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 200
+                  message:
+                    type: string
+                    example: request was successful
+                  result:
+                    type: boolean
+                    example: true
+                  info:
+                    type: object
+                    properties:
+                      total:
+                        type: integer
+                        description: Total bounced emails
+                        example: 156
+                      hardBounce:
+                        type: integer
+                        description: Number of hard bounces
+                        example: 89
+                      softBounce:
+                        type: integer
+                        description: Number of soft bounces
+                        example: 67
+        '400':
+          description: Bad request
+        '401':
+          description: Authentication failed
+      parameters:
+        - in: query
+          name: apiUser
+          schema:
+            type: string
+          required: true
+          example: test_api_user
+        - in: query
+          name: apiKey
+          schema:
+            type: string
+          required: true
+          example: test_api_key
+        - in: query
+          name: startTime
+          schema:
+            type: string
+            format: date-time
+          required: true
+          example: '2025-10-01 00:00:00'
+        - in: query
+          name: endTime
+          schema:
+            type: string
+            format: date-time
+          required: true
+          example: '2025-10-31 23:59:59'
+        - in: query
+          name: domain
+          schema:
+            type: string
+          required: false
+          example: example.com
+      x-codeSamples:
+        - lang: Python
+          label: Get Bounce Count
+          source: |
+            import requests
+
+            url = "https://api2.sendcloud.net/api/bounce/count"
+            params = {
+                "apiUser": "test_api_user",
+                "apiKey": "test_api_key",
+                "startTime": "2025-10-01 00:00:00",
+                "endTime": "2025-10-31 23:59:59",
+                "domain": "example.com"
+            }
+
+            response = requests.get(url, params=params)
+            print(response.json())
+components:
+  securitySchemes: {}
+x-readme:
+  explorer-enabled: true
+  proxy-enabled: true
