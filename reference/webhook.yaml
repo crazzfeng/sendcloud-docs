@@ -1,0 +1,1178 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Email
+servers:
+  - url: https://api2.sendcloud.net
+tags:
+  - name: Webhook
+    description: >-
+      Interfaces for managing webhooks (event notification, configuration,
+      query, test, etc.). Webhooks push real-time email event data (delivery,
+      bounce, open, click, etc.) to the specified callback URL, enabling
+      real-time business processing and data synchronization.
+paths:
+  /api/webhook/list:
+    get:
+      summary: Query Webhook List
+      description: >-
+        Get the list of all configured webhooks under the account. Supports
+        filtering by event type, webhook status, and pagination. The maximum
+        number of results per page is 500, and time parameters use Beijing time
+        (GMT+8).
+      operationId: queryWebhookListGet
+      tags:
+        - Webhook
+      responses:
+        '200':
+          description: Request successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    description: >-
+                      Response status code (200 = success; other codes indicate
+                      failure)
+                    example: 200
+                  message:
+                    type: string
+                    description: >-
+                      Success or failure message (detailed error information for
+                      failure scenarios)
+                    example: request was successful
+                  result:
+                    type: boolean
+                    description: >-
+                      Whether the request succeeded (true = success, false =
+                      failure)
+                    example: true
+                  info:
+                    type: object
+                    properties:
+                      dataList:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            webhookId:
+                              type: integer
+                              description: >-
+                                Unique webhook ID (primary key for webhook
+                                operations; used for details query, update,
+                                delete, test)
+                              example: 2001
+                            webhookName:
+                              type: string
+                              description: >-
+                                Customizable webhook name (max 50 characters;
+                                unique under the same account; used for business
+                                identification)
+                              example: Email Delivery Status Webhook
+                            eventType:
+                              type: string
+                              enum:
+                                - delivered
+                                - bounced
+                                - opened
+                                - clicked
+                                - unsubscribed
+                                - spam_reported
+                                - failed
+                              description: >-
+                                Webhook event type (delivered = email
+                                successfully delivered to recipient server;
+                                bounced = email bounced (rejected by recipient
+                                server); opened = recipient opened the email;
+                                clicked = recipient clicked links in the email;
+                                unsubscribed = recipient unsubscribed;
+                                spam_reported = email was marked as spam; failed
+                                = email sending failed)
+                              example: delivered
+                            url:
+                              type: string
+                              description: >-
+                                Webhook callback URL (must be HTTPS protocol;
+                                publicly accessible; supports port customization
+                                (e.g., https://api.example.com:8443/webhook))
+                              example: >-
+                                https://api.example.com/webhook/sendcloud/delivery
+                            status:
+                              type: string
+                              enum:
+                                - enabled
+                                - disabled
+                              description: >-
+                                Webhook status (enabled = event notifications
+                                are pushed; disabled = event notifications are
+                                suspended; defaults to enabled when created)
+                              example: enabled
+                            secret:
+                              type: string
+                              description: >-
+                                Webhook signature secret (masked display, only
+                                last 4 characters visible; used for verifying
+                                the authenticity of callback data)
+                              example: '****abcd'
+                            retryTimes:
+                              type: integer
+                              description: >-
+                                Retry times for failed callbacks (range 1-5;
+                                when the callback URL is unreachable or returns
+                                non-2xx status, the system retries according to
+                                the set times)
+                              example: 3
+                            retryInterval:
+                              type: integer
+                              description: >-
+                                Retry interval for failed callbacks (unit:
+                                seconds; range 60-3600; interval between
+                                consecutive retries)
+                              example: 300
+                            contentType:
+                              type: string
+                              enum:
+                                - application/json
+                                - application/x-www-form-urlencoded
+                              description: >-
+                                Callback data format (application/json = JSON
+                                format; application/x-www-form-urlencoded =
+                                form-data format; defaults to application/json)
+                              example: application/json
+                            createTime:
+                              type: string
+                              format: date-time
+                              description: >-
+                                Webhook creation time (format: yyyy-MM-dd
+                                HH:mm:ss, Beijing time)
+                              example: '2025-09-20 11:00:00'
+                            updateTime:
+                              type: string
+                              format: date-time
+                              description: >-
+                                Webhook last update time (format: yyyy-MM-dd
+                                HH:mm:ss, Beijing time; updated when
+                                configuration changes)
+                              example: '2025-10-22 09:30:00'
+                            remark:
+                              type: string
+                              description: >-
+                                Custom webhook remark (max 200 characters;
+                                optional; used for recording business scenarios
+                                or notes)
+                              example: >-
+                                Receives real-time notifications of email
+                                delivery status
+                      total:
+                        type: integer
+                        description: >-
+                          Total number of webhooks matching the query conditions
+                          (across all pages)
+                        example: 6
+                      count:
+                        type: integer
+                        description: >-
+                          Number of returned results in the current page
+                          (consistent with pageSize parameter)
+                        example: 6
+                      page:
+                        type: integer
+                        description: >-
+                          Current page number (starts from 1; defaults to 1 if
+                          not specified)
+                        example: 1
+                      pageSize:
+                        type: integer
+                        description: >-
+                          Number of results displayed per page (defaults to 100,
+                          maximum 500)
+                        example: 100
+        '401':
+          description: >-
+            Authentication failed (invalid apiUser or apiKey; verify credentials
+            in SendCloud console -> API Settings)
+        '403':
+          description: >-
+            Permission denied (no webhook management permission; contact account
+            administrator to assign permissions)
+      parameters:
+        - in: query
+          name: apiUser
+          schema:
+            type: string
+          required: true
+          description: >-
+            API_USER (authentication parameter; obtained from SendCloud console
+            -> API Settings)
+          example: test_api_user
+        - in: query
+          name: apiKey
+          schema:
+            type: string
+          required: true
+          description: >-
+            API_KEY (authentication parameter; obtained from SendCloud console
+            -> API Settings; keep confidential to avoid leakage)
+          example: test_api_key
+        - in: query
+          name: eventType
+          schema:
+            type: string
+            enum:
+              - all
+              - delivered
+              - bounced
+              - opened
+              - clicked
+              - unsubscribed
+              - spam_reported
+              - failed
+            default: all
+          required: false
+          description: >-
+            Filter by event type (all = query all types; other values filter
+            webhooks of the specified event type; defaults to "all")
+          example: delivered
+        - in: query
+          name: status
+          schema:
+            type: string
+            enum:
+              - all
+              - enabled
+              - disabled
+            default: all
+          required: false
+          description: >-
+            Filter by webhook status (all = query all statuses; enabled = only
+            enabled webhooks; disabled = only disabled webhooks; defaults to
+            "all")
+          example: enabled
+        - in: query
+          name: page
+          schema:
+            type: integer
+            default: 1
+          required: false
+          description: >-
+            Page number (pagination parameter; starts from 1, defaults to 1 if
+            not provided)
+          example: 1
+        - in: query
+          name: pageSize
+          schema:
+            type: integer
+            default: 100
+            maximum: 500
+          required: false
+          description: >-
+            Number of results per page (pagination parameter; defaults to 100,
+            maximum 500; exceeding will return 400 error)
+          example: 50
+      x-codeSamples:
+        - lang: Python
+          label: Query Enabled Delivery Status Webhooks
+          source: |
+            import requests
+
+            url = "https://api2.sendcloud.net/api/webhook/list"
+            params = {
+                "apiUser": "test_api_user",
+                "apiKey": "test_api_key",
+                "eventType": "delivered",
+                "status": "enabled",
+                "pageSize": 50
+            }
+
+            response = requests.get(url, params=params)
+            print(response.json())
+    post:
+      summary: Query Webhook List (POST)
+      description: >-
+        Query webhooks using POST method. Suitable for scenarios where filter
+        parameters are complex or the URL length is limited. Supports the same
+        filtering conditions and constraints as the GET method.
+      operationId: queryWebhookListPost
+      tags:
+        - Webhook
+      responses:
+        '200':
+          description: Request successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    description: >-
+                      Response status code (200 = success; other codes indicate
+                      failure)
+                    example: 200
+                  message:
+                    type: string
+                    description: >-
+                      Success or failure message (detailed error information for
+                      failure scenarios)
+                    example: request was successful
+                  result:
+                    type: boolean
+                    description: >-
+                      Whether the request succeeded (true = success, false =
+                      failure)
+                    example: true
+                  info:
+                    type: object
+                    properties:
+                      dataList:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            webhookId:
+                              type: integer
+                              description: Unique webhook ID
+                              example: 2001
+                            webhookName:
+                              type: string
+                              description: Customizable webhook name
+                              example: Email Delivery Status Webhook
+                            eventType:
+                              type: string
+                              enum:
+                                - delivered
+                                - bounced
+                                - opened
+                                - clicked
+                                - unsubscribed
+                                - spam_reported
+                                - failed
+                              description: >-
+                                Webhook event type
+                                (delivery/bounce/open/click/unsubscribe/spam
+                                report/sending failure)
+                              example: delivered
+                            url:
+                              type: string
+                              description: HTTPS callback URL (publicly accessible)
+                              example: >-
+                                https://api.example.com/webhook/sendcloud/delivery
+                            status:
+                              type: string
+                              enum:
+                                - enabled
+                                - disabled
+                              description: Webhook status (enabled/disabled)
+                              example: enabled
+                            retryTimes:
+                              type: integer
+                              description: Callback retry times (1-5)
+                              example: 3
+                            createTime:
+                              type: string
+                              format: date-time
+                              description: Webhook creation time (Beijing time)
+                              example: '2025-09-20 11:00:00'
+                      total:
+                        type: integer
+                        description: Total number of matching webhooks
+                        example: 6
+                      count:
+                        type: integer
+                        description: Number of results in the current page
+                        example: 6
+                      page:
+                        type: integer
+                        description: Current page number (starts from 1)
+                        example: 1
+                      pageSize:
+                        type: integer
+                        description: Number of results per page (max 500)
+                        example: 100
+        '401':
+          description: Authentication failed (invalid apiUser or apiKey)
+        '403':
+          description: Permission denied (no webhook management permission)
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                apiUser:
+                  type: string
+                  description: >-
+                    API_USER (authentication parameter; obtained from SendCloud
+                    console -> API Settings)
+                  example: test_api_user
+                apiKey:
+                  type: string
+                  description: >-
+                    API_KEY (authentication parameter; obtained from SendCloud
+                    console -> API Settings; keep confidential)
+                  example: test_api_key
+                eventType:
+                  type: string
+                  enum:
+                    - all
+                    - delivered
+                    - bounced
+                    - opened
+                    - clicked
+                    - unsubscribed
+                    - spam_reported
+                    - failed
+                  default: all
+                  description: >-
+                    Filter by event type (all = default; other values filter
+                    specified event types)
+                  example: bounced
+                status:
+                  type: string
+                  enum:
+                    - all
+                    - enabled
+                    - disabled
+                  default: all
+                  description: >-
+                    Filter by webhook status (all = default; enabled =
+                    available; disabled = unavailable)
+                  example: enabled
+                page:
+                  type: integer
+                  default: 1
+                  description: >-
+                    Page number (pagination parameter; starts from 1, defaults
+                    to 1)
+                  example: 1
+                pageSize:
+                  type: integer
+                  default: 100
+                  maximum: 500
+                  description: Number of results per page (max 500, default 100)
+                  example: 50
+              required:
+                - apiUser
+                - apiKey
+      x-codeSamples:
+        - lang: Python
+          label: Query Webhook List (POST)
+          source: |
+            import requests
+
+            url = "https://api2.sendcloud.net/api/webhook/list"
+            data = {
+                "apiUser": "test_api_user",
+                "apiKey": "test_api_key",
+                "eventType": "bounced",
+                "status": "enabled"
+            }
+
+            response = requests.post(url, data=data)
+            print(response.json())
+  /api/webhook/get:
+    get:
+      summary: Get Webhook Details
+      description: >-
+        Get the full configuration details of a specific webhook by webhookId.
+        Returns all parameters including signature secret (masked), retry
+        settings, data format, etc.
+      operationId: getWebhookDetailsGet
+      tags:
+        - Webhook
+      responses:
+        '200':
+          description: Request successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    description: >-
+                      Response status code (200 = success; other codes indicate
+                      failure)
+                    example: 200
+                  message:
+                    type: string
+                    description: >-
+                      Success or failure message (detailed error information for
+                      failure scenarios)
+                    example: request was successful
+                  result:
+                    type: boolean
+                    description: >-
+                      Whether the request succeeded (true = success, false =
+                      failure)
+                    example: true
+                  info:
+                    type: object
+                    properties:
+                      webhookId:
+                        type: integer
+                        description: Unique webhook ID (primary key for webhook operations)
+                        example: 2001
+                      webhookName:
+                        type: string
+                        description: Customizable webhook name (max 50 characters)
+                        example: Email Delivery Status Webhook
+                      eventType:
+                        type: string
+                        enum:
+                          - delivered
+                          - bounced
+                          - opened
+                          - clicked
+                          - unsubscribed
+                          - spam_reported
+                          - failed
+                        description: >-
+                          Webhook event type
+                          (delivery/bounce/open/click/unsubscribe/spam
+                          report/sending failure)
+                        example: delivered
+                      url:
+                        type: string
+                        description: >-
+                          Webhook callback URL (HTTPS protocol; publicly
+                          accessible)
+                        example: https://api.example.com/webhook/sendcloud/delivery
+                      status:
+                        type: string
+                        enum:
+                          - enabled
+                          - disabled
+                        description: >-
+                          Webhook status (enabled = available; disabled =
+                          unavailable)
+                        example: enabled
+                      secret:
+                        type: string
+                        description: >-
+                          Webhook signature secret (masked display, only last 4
+                          characters visible; used for verifying callback data
+                          authenticity)
+                        example: '****abcd'
+                      retryTimes:
+                        type: integer
+                        description: >-
+                          Callback retry times (range 1-5; number of retries for
+                          failed callbacks)
+                        example: 3
+                      retryInterval:
+                        type: integer
+                        description: >-
+                          Callback retry interval (unit: seconds; range 60-3600;
+                          interval between retries)
+                        example: 300
+                      contentType:
+                        type: string
+                        enum:
+                          - application/json
+                          - application/x-www-form-urlencoded
+                        description: Callback data format (JSON/form-data)
+                        example: application/json
+                      createTime:
+                        type: string
+                        format: date-time
+                        description: >-
+                          Webhook creation time (Beijing time, format:
+                          yyyy-MM-dd HH:mm:ss)
+                        example: '2025-09-20 11:00:00'
+                      updateTime:
+                        type: string
+                        format: date-time
+                        description: >-
+                          Webhook last update time (Beijing time; updated on
+                          configuration changes)
+                        example: '2025-10-22 09:30:00'
+                      remark:
+                        type: string
+                        description: Custom webhook remark (max 200 characters; optional)
+                        example: >-
+                          Receives real-time notifications of email delivery
+                          status
+        '400':
+          description: >-
+            Bad request (e.g., webhookId does not exist, invalid webhookId
+            format)
+        '401':
+          description: Authentication failed (invalid apiUser or apiKey)
+        '403':
+          description: Permission denied (no permission to view the webhook)
+      parameters:
+        - in: query
+          name: apiUser
+          schema:
+            type: string
+          required: true
+          description: >-
+            API_USER (authentication parameter; obtained from SendCloud console
+            -> API Settings)
+          example: test_api_user
+        - in: query
+          name: apiKey
+          schema:
+            type: string
+          required: true
+          description: >-
+            API_KEY (authentication parameter; obtained from SendCloud console
+            -> API Settings; keep confidential)
+          example: test_api_key
+        - in: query
+          name: webhookId
+          schema:
+            type: integer
+          required: true
+          description: >-
+            Unique webhook ID (obtained from the webhook list query interface;
+            identifies the target webhook)
+          example: 2001
+      x-codeSamples:
+        - lang: Python
+          label: Get Webhook Details
+          source: |
+            import requests
+
+            url = "https://api2.sendcloud.net/api/webhook/get"
+            params = {
+                "apiUser": "test_api_user",
+                "apiKey": "test_api_key",
+                "webhookId": 2001
+            }
+
+            response = requests.get(url, params=params)
+            print(response.json())
+  /api/webhook/add:
+    post:
+      summary: Add Webhook
+      description: >-
+        Create a new webhook for real-time email event notifications. Each
+        webhook can only bind one event type; multiple event types require
+        creating multiple webhooks.
+      operationId: addWebhook
+      tags:
+        - Webhook
+      responses:
+        '200':
+          description: Add successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    description: Response status code (200 = add operation successful)
+                    example: 200
+                  message:
+                    type: string
+                    description: >-
+                      Add result message (e.g., "add webhook successful" or
+                      "webhook name already exists")
+                    example: add webhook successful
+                  result:
+                    type: boolean
+                    description: >-
+                      Whether the add operation succeeded (true = success, false
+                      = failure)
+                    example: true
+                  info:
+                    type: object
+                    properties:
+                      webhookId:
+                        type: integer
+                        description: >-
+                          Unique ID of the newly created webhook (used for
+                          subsequent details query, update, delete, test)
+                        example: 2007
+                      secret:
+                        type: string
+                        description: >-
+                          Webhook signature secret (full display only when
+                          created; keep confidential; used for verifying
+                          callback data authenticity)
+                        example: s8f7d6g5h4j3k2l1z0
+        '400':
+          description: >-
+            Bad request (e.g., duplicate webhook name, invalid URL (non-HTTPS or
+            inaccessible), unsupported event type, invalid retry times/interval,
+            secret length not 16-32 characters)
+        '401':
+          description: Authentication failed (invalid apiUser or apiKey)
+        '403':
+          description: >-
+            Permission denied (no webhook creation permission; contact customer
+            service to activate)
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                apiUser:
+                  type: string
+                  description: >-
+                    API_USER (authentication parameter; obtained from SendCloud
+                    console -> API Settings)
+                  example: test_api_user
+                apiKey:
+                  type: string
+                  description: >-
+                    API_KEY (authentication parameter; obtained from SendCloud
+                    console -> API Settings; keep confidential)
+                  example: test_api_key
+                webhookName:
+                  type: string
+                  description: >-
+                    Custom webhook name (max 50 characters; unique under the
+                    same account; cannot duplicate existing webhook names)
+                  example: Email Bounce Webhook
+                eventType:
+                  type: string
+                  enum:
+                    - delivered
+                    - bounced
+                    - opened
+                    - clicked
+                    - unsubscribed
+                    - spam_reported
+                    - failed
+                  description: >-
+                    Webhook event type (one event type per webhook; cannot bind
+                    multiple types at once)
+                  example: bounced
+                url:
+                  type: string
+                  description: >-
+                    Callback URL (must be HTTPS protocol; publicly accessible;
+                    no IP restrictions but requires stable network connectivity)
+                  example: https://api.example.com/webhook/sendcloud/bounce
+                secret:
+                  type: string
+                  description: >-
+                    Signature secret (16-32 characters; can contain letters,
+                    numbers, and special characters; auto-generated if not
+                    provided; used for HMAC-SHA256 signature verification)
+                  example: s8f7d6g5h4j3k2l1z0
+                retryTimes:
+                  type: integer
+                  default: 3
+                  description: >-
+                    Retry times for failed callbacks (range 1-5; defaults to 3
+                    if not specified)
+                  example: 3
+                retryInterval:
+                  type: integer
+                  default: 300
+                  description: >-
+                    Retry interval for failed callbacks (unit: seconds; range
+                    60-3600; defaults to 300 seconds (5 minutes) if not
+                    specified)
+                  example: 300
+                contentType:
+                  type: string
+                  enum:
+                    - application/json
+                    - application/x-www-form-urlencoded
+                  default: application/json
+                  description: >-
+                    Callback data format (defaults to application/json if not
+                    specified)
+                  example: application/json
+                remark:
+                  type: string
+                  description: >-
+                    Custom webhook remark (max 200 characters; optional; used
+                    for recording business scenarios)
+                  example: Receives real-time notifications of email bounce events
+              required:
+                - apiUser
+                - apiKey
+                - webhookName
+                - eventType
+                - url
+      x-codeSamples:
+        - lang: Python
+          label: Add Bounce Event Webhook
+          source: |
+            import requests
+
+            url = "https://api2.sendcloud.net/api/webhook/add"
+            data = {
+                "apiUser": "test_api_user",
+                "apiKey": "test_api_key",
+                "webhookName": "Email Bounce Webhook",
+                "eventType": "bounced",
+                "url": "https://api.example.com/webhook/sendcloud/bounce",
+                "retryTimes": 3,
+                "retryInterval": 300,
+                "contentType": "application/json",
+                "remark": "Receives real-time notifications of email bounce events"
+            }
+
+            response = requests.post(url, data=data)
+            print(response.json())
+  /api/webhook/update:
+    post:
+      summary: Update Webhook Configuration
+      description: >-
+        Modify the configuration of an existing webhook. Supports updating
+        webhook name, event type, callback URL, status, retry settings, etc. The
+        signature secret can be updated (will invalidate the old secret).
+      operationId: updateWebhookConfig
+      tags:
+        - Webhook
+      responses:
+        '200':
+          description: Update successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    description: Response status code (200 = update operation successful)
+                    example: 200
+                  message:
+                    type: string
+                    description: >-
+                      Update result message (e.g., "update webhook successful"
+                      or "webhook name already exists")
+                    example: update webhook successful
+                  result:
+                    type: boolean
+                    description: >-
+                      Whether the update operation succeeded (true = success,
+                      false = failure)
+                    example: true
+        '400':
+          description: >-
+            Bad request (e.g., webhookId does not exist, duplicate webhook name,
+            invalid URL, illegal retry times/interval, secret length not 16-32
+            characters)
+        '401':
+          description: Authentication failed (invalid apiUser or apiKey)
+        '403':
+          description: Permission denied (no webhook update permission)
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                apiUser:
+                  type: string
+                  description: >-
+                    API_USER (authentication parameter; obtained from SendCloud
+                    console -> API Settings)
+                  example: test_api_user
+                apiKey:
+                  type: string
+                  description: >-
+                    API_KEY (authentication parameter; obtained from SendCloud
+                    console -> API Settings; keep confidential)
+                  example: test_api_key
+                webhookId:
+                  type: integer
+                  description: >-
+                    Unique ID of the webhook to update (obtained from webhook
+                    list query; identifies the target webhook)
+                  example: 2007
+                webhookName:
+                  type: string
+                  description: >-
+                    New webhook name (max 50 characters; unique under the same
+                    account; omit to keep the original name)
+                  example: Email Bounce & Failure Webhook
+                eventType:
+                  type: string
+                  enum:
+                    - delivered
+                    - bounced
+                    - opened
+                    - clicked
+                    - unsubscribed
+                    - spam_reported
+                    - failed
+                  description: New event type (omit to keep the original type)
+                  example: bounced
+                url:
+                  type: string
+                  description: >-
+                    New callback URL (must be HTTPS; omit to keep the original
+                    URL)
+                  example: https://api.example.com/webhook/sendcloud/bounce-failure
+                secret:
+                  type: string
+                  description: >-
+                    New signature secret (16-32 characters; omit to keep the
+                    original secret; updating will invalidate the old secret)
+                  example: a1b2c3d4e5f6g7h8i9j0
+                status:
+                  type: string
+                  enum:
+                    - enabled
+                    - disabled
+                  description: >-
+                    New webhook status (enabled = available; disabled =
+                    unavailable; omit to keep the original status)
+                  example: enabled
+                retryTimes:
+                  type: integer
+                  description: >-
+                    New retry times (range 1-5; omit to keep the original
+                    setting)
+                  example: 4
+                retryInterval:
+                  type: integer
+                  description: >-
+                    New retry interval (unit: seconds; range 60-3600; omit to
+                    keep the original setting)
+                  example: 600
+                contentType:
+                  type: string
+                  enum:
+                    - application/json
+                    - application/x-www-form-urlencoded
+                  description: New data format (omit to keep the original format)
+                  example: application/json
+                remark:
+                  type: string
+                  description: >-
+                    New webhook remark (max 200 characters; omit to keep the
+                    original remark; empty string to clear the remark)
+                  example: >-
+                    Receives real-time notifications of email bounce and sending
+                    failure events
+              required:
+                - apiUser
+                - apiKey
+                - webhookId
+      x-codeSamples:
+        - lang: Python
+          label: Update Webhook URL and Retry Settings
+          source: |
+            import requests
+
+            url = "https://api2.sendcloud.net/api/webhook/update"
+            data = {
+                "apiUser": "test_api_user",
+                "apiKey": "test_api_key",
+                "webhookId": 2007,
+                "url": "https://api.example.com/webhook/sendcloud/bounce-failure",
+                "retryTimes": 4,
+                "retryInterval": 600,
+                "remark": "Receives real-time notifications of email bounce and sending failure events"
+            }
+
+            response = requests.post(url, data=data)
+            print(response.json())
+  /api/webhook/delete:
+    post:
+      summary: Delete Webhook
+      description: >-
+        Delete an existing webhook. After deletion, the webhook is permanently
+        unavailable, and event notifications will no longer be pushed to the
+        callback URL.
+      operationId: deleteWebhook
+      tags:
+        - Webhook
+      responses:
+        '200':
+          description: Delete successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    description: Response status code (200 = delete operation successful)
+                    example: 200
+                  message:
+                    type: string
+                    description: >-
+                      Delete result message (e.g., "delete webhook successful"
+                      or "webhook does not exist")
+                    example: delete webhook successful
+                  result:
+                    type: boolean
+                    description: >-
+                      Whether the delete operation succeeded (true = success,
+                      false = failure)
+                    example: true
+        '400':
+          description: >-
+            Bad request (e.g., webhookId does not exist, invalid webhookId
+            format)
+        '401':
+          description: Authentication failed (invalid apiUser or apiKey)
+        '403':
+          description: Permission denied (no webhook deletion permission)
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                apiUser:
+                  type: string
+                  description: >-
+                    API_USER (authentication parameter; obtained from SendCloud
+                    console -> API Settings)
+                  example: test_api_user
+                apiKey:
+                  type: string
+                  description: >-
+                    API_KEY (authentication parameter; obtained from SendCloud
+                    console -> API Settings; keep confidential)
+                  example: test_api_key
+                webhookId:
+                  type: integer
+                  description: >-
+                    Unique ID of the webhook to delete (obtained from webhook
+                    list query; identifies the target webhook)
+                  example: 2007
+              required:
+                - apiUser
+                - apiKey
+                - webhookId
+      x-codeSamples:
+        - lang: Python
+          label: Delete Webhook
+          source: |
+            import requests
+
+            url = "https://api2.sendcloud.net/api/webhook/delete"
+            data = {
+                "apiUser": "test_api_user",
+                "apiKey": "test_api_key",
+                "webhookId": 2007
+            }
+
+            response = requests.post(url, data=data)
+            print(response.json())
+  /api/webhook/test:
+    post:
+      summary: Test Webhook
+      description: >-
+        Send a test notification to the webhook's callback URL to verify
+        connectivity and configuration validity. The test data simulates the
+        real event format, helping to debug the callback receiving logic.
+      operationId: testWebhook
+      tags:
+        - Webhook
+      responses:
+        '200':
+          description: Test request sent successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    description: >-
+                      Response status code (200 = test request initiated
+                      successfully)
+                    example: 200
+                  message:
+                    type: string
+                    description: >-
+                      Test result message (e.g., "webhook test request sent
+                      successfully" or "webhook is disabled")
+                    example: webhook test request sent successfully
+                  result:
+                    type: boolean
+                    description: >-
+                      Whether the test request was initiated successfully (true
+                      = success, false = failure)
+                    example: true
+                  info:
+                    type: object
+                    properties:
+                      testId:
+                        type: string
+                        description: >-
+                          Test request ID (used for debugging; can be provided
+                          to technical support if the test fails)
+                        example: webhook_test_12345678
+                      callbackStatus:
+                        type: string
+                        enum:
+                          - success
+                          - failed
+                          - pending
+                        description: >-
+                          Test callback result (success = callback URL returned
+                          2xx status; failed = callback URL unreachable or
+                          returned non-2xx status; pending = asynchronous
+                          callback (e.g., network delay), need to check the
+                          target URL's log)
+                        example: pending
+        '400':
+          description: >-
+            Bad request (e.g., webhookId does not exist, webhook is disabled,
+            callback URL is invalid)
+        '401':
+          description: Authentication failed (invalid apiUser or apiKey)
+        '403':
+          description: Permission denied (no webhook test permission)
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                apiUser:
+                  type: string
+                  description: >-
+                    API_USER (authentication parameter; obtained from SendCloud
+                    console -> API Settings)
+                  example: test_api_user
+                apiKey:
+                  type: string
+                  description: >-
+                    API_KEY (authentication parameter; obtained from SendCloud
+                    console -> API Settings; keep confidential)
+                  example: test_api_key
+                webhookId:
+                  type: integer
+                  description: >-
+                    Unique ID of the webhook to test (obtained from webhook list
+                    query; must be enabled)
+                  example: 2007
+              required:
+                - apiUser
+                - apiKey
+                - webhookId
+      x-codeSamples:
+        - lang: Python
+          label: Test Webhook
+          source: |
+            import requests
+
+            url = "https://api2.sendcloud.net/api/webhook/test"
+            data = {
+                "apiUser": "test_api_user",
+                "apiKey": "test_api_key",
+                "webhookId": 2007
+            }
+
+            response = requests.post(url, data=data)
+            print(response.json())
+components:
+  securitySchemes: {}
+x-readme:
+  explorer-enabled: true
+  proxy-enabled: true
