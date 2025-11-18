@@ -1,4 +1,4 @@
 ---
 title: Block
-hidden: false
+hidden: true
 ---
