@@ -5,6 +5,6 @@ excerpt: >-
   service)
 api:
   file: deliverlies.yaml
-  operationId: sendMeetingCalendar
+  operationId: sendCalendarEmail
 hidden: false
 ---
