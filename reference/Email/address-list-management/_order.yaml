@@ -1,0 +1,12 @@
+- createaddresslist
+- batchqueryaddresslistsget
+- batchqueryaddresslistspost
+- getsingleaddresslistget
+- getsingleaddresslistpost
+- updateaddresslist
+- deleteaddresslist
+- addmemberstoaddresslist
+- removemembersfromaddresslist
+- queryaddresslistmembersget
+- queryaddresslistmemberspost
+- clearaddresslistmembers
