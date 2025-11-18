@@ -1,4 +1,4 @@
 ---
 title: Email Delivery
-hidden: false
+hidden: true
 ---
