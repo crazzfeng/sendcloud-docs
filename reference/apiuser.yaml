@@ -1,12 +1,27 @@
-openapi: 3.0.0
+openapi: 3.0.3
 info:
+  title: SendCloud Sub-API User Management API
+  description: >-
+    SendCloud sub-API user management API documentation. This API provides
+    comprehensive functionality for creating, querying, updating, and managing
+    sub-API users under a main account with granular permission control and
+    email notification features.
   version: 1.0.0
-  title: Email
+  contact:
+    name: SendCloud Support
+    url: https://www.sendcloud.net
+    email: support@sendcloud.net
+  license:
+    name: SendCloud API License
+    url: https://www.sendcloud.net/license
 servers:
-  - url: https://api2.sendcloud.net
+  - url: https://api.aurorasendcloud.com
+    description: Production server
+  - url: https://api.sendcloud.net
+    description: Alternative production server
 tags:
-  - name: API_User
-    description: Interfaces for creating, querying, updating, and managing sub-API users
+  - name: Sub-API User
+    description: Sub-API user management operations
 paths:
   /api/apiuser/create:
     post:
@@ -16,7 +31,10 @@ paths:
         permissions and email notification switches)
       operationId: createSubApiUser
       tags:
-        - API_User
+        - Sub-API User
+      security:
+        - apiUser: []
+        - apiKey: []
       responses:
         '200':
           description: Sub-API user created successfully
@@ -65,24 +83,6 @@ paths:
             Bad request (e.g., duplicate sub-API user name, invalid permission
             configuration)
       parameters:
-        - in: query
-          name: apiUser
-          schema:
-            type: string
-          required: true
-          description: >-
-            Main account API_USER (authentication parameter, obtained from the
-            SendCloud console)
-          example: main_api_user
-        - in: query
-          name: apiKey
-          schema:
-            type: string
-          required: true
-          description: >-
-            Main account API_KEY (authentication parameter, obtained from the
-            SendCloud console)
-          example: main_api_key_7890
         - in: query
           name: subApiUser
           schema:
@@ -134,7 +134,7 @@ paths:
             import json
 
 
-            url = "https://api2.sendcloud.net/api/apiuser/create"
+            url = "https://api.aurorasendcloud.com/api/apiuser/create"
 
             # Permission configuration: allow sending regular emails and
             template emails, prohibit address list operations
@@ -146,8 +146,8 @@ paths:
             }
 
             params = {
-                "apiUser": "main_api_user",
-                "apiKey": "main_api_key_7890",
+                "apiUser": "test_api_user",
+                "apiKey": "test_api_key",
                 "subApiUser": "sub_marketing_user",
                 "permission": json.dumps(permission),
                 "notifyEmail": "marketing_admin@example.com",
@@ -160,11 +160,14 @@ paths:
             print(response.json())
   /api/apiuser/list:
     get:
-      summary: Batch Query Sub-API Users
+      summary: Query Sub-API User List (GET)
       description: Query basic information of all sub-API users under the main account
-      operationId: batchQuerySubApiUsersGet
+      operationId: listSubApiUsersGet
       tags:
-        - API_User
+        - Sub-API User
+      security:
+        - apiUser: []
+        - apiKey: []
       responses:
         '200':
           description: Request successful
@@ -191,9 +194,9 @@ paths:
                     example: true
                   info:
                     type: object
-                    description: Batch query result data of sub-API users
+                    description: Query result data of sub-API users
                     properties:
-                      dataList:
+                      data:
                         type: array
                         description: List of sub-API user basic information
                         items:
@@ -231,57 +234,36 @@ paths:
                         type: integer
                         description: Total number of sub-API users under the main account
                         example: 5
-                      count:
-                        type: integer
-                        description: >-
-                          Number of sub-API users returned (equals total for
-                          this interface)
-                        example: 5
-      parameters:
-        - in: query
-          name: apiUser
-          schema:
-            type: string
-          required: true
-          description: >-
-            Main account API_USER (authentication parameter, obtained from the
-            SendCloud console)
-          example: main_api_user
-        - in: query
-          name: apiKey
-          schema:
-            type: string
-          required: true
-          description: >-
-            Main account API_KEY (authentication parameter, obtained from the
-            SendCloud console)
-          example: main_api_key_7890
+        '400':
+          description: Bad request (e.g., invalid query parameters)
       x-codeSamples:
         - lang: Python
-          label: Batch Query Sub-API Users (GET)
+          label: Query All Sub-API Users
           source: |
             import requests
-            import json
 
-            url = "https://api2.sendcloud.net/api/apiuser/list"
+            url = "https://api.aurorasendcloud.com/api/apiuser/list"
             params = {
-                "apiUser": "main_api_user",
-                "apiKey": "main_api_key_7890"
+                "apiUser": "test_api_user",
+                "apiKey": "test_api_key"
             }
 
             response = requests.get(url, params=params)
             result = response.json()
             print(f"Total sub-API users: {result['info']['total']}")
-            print("Sub-API user details:")
-            for user in result['info']['dataList']:
-                permission = json.loads(user['permission'])
-                print(f"- User: {user['apiUser']}, Notify: {user['isNotify']}, Permissions: {permission}")
+            for user in result['info']['data']:
+                print(f"- User: {user['apiUser']}, Notify: {user['isNotify']}, Created: {user['gmtCreated']}")
     post:
-      summary: Batch Query Sub-API Users (POST)
-      description: Batch query all sub-API users using POST method
-      operationId: batchQuerySubApiUsersPost
+      summary: Query Sub-API User List (POST)
+      description: >-
+        Query basic information of all sub-API users under the main account
+        using POST method
+      operationId: listSubApiUsersPost
       tags:
-        - API_User
+        - Sub-API User
+      security:
+        - apiUser: []
+        - apiKey: []
       responses:
         '200':
           description: Request successful
@@ -308,9 +290,9 @@ paths:
                     example: true
                   info:
                     type: object
-                    description: Batch query result data of sub-API users
+                    description: Query result data of sub-API users
                     properties:
-                      dataList:
+                      data:
                         type: array
                         description: List of sub-API user basic information
                         items:
@@ -348,54 +330,32 @@ paths:
                         type: integer
                         description: Total number of sub-API users under the main account
                         example: 5
-                      count:
-                        type: integer
-                        description: >-
-                          Number of sub-API users returned (equals total for
-                          this interface)
-                        example: 5
-      parameters:
-        - in: query
-          name: apiUser
-          schema:
-            type: string
-          required: true
-          description: >-
-            Main account API_USER (authentication parameter, obtained from the
-            SendCloud console)
-          example: main_api_user
-        - in: query
-          name: apiKey
-          schema:
-            type: string
-          required: true
-          description: >-
-            Main account API_KEY (authentication parameter, obtained from the
-            SendCloud console)
-          example: main_api_key_7890
+        '400':
+          description: Bad request (e.g., invalid request parameters)
       x-codeSamples:
         - lang: Python
-          label: Batch Query Sub-API Users (POST Method)
+          label: Query Sub-API Users (POST Method)
           source: |
             import requests
 
-            url = "https://api2.sendcloud.net/api/apiuser/list"
+            url = "https://api.aurorasendcloud.com/api/apiuser/list"
             params = {
-                "apiUser": "main_api_user",
-                "apiKey": "main_api_key_7890"
+                "apiUser": "test_api_user",
+                "apiKey": "test_api_key"
             }
 
             response = requests.post(url, params=params)
             print(response.json())
   /api/apiuser/get:
     get:
-      summary: Query Single Sub-API User
-      description: >-
-        Get detailed information (including permissions) of a specific sub-API
-        user by user name
-      operationId: getSingleSubApiUserGet
+      summary: Query Specific Sub-API User
+      description: Query detailed information of a specific sub-API user
+      operationId: getSubApiUser
       tags:
-        - API_User
+        - Sub-API User
+      security:
+        - apiUser: []
+        - apiKey: []
       responses:
         '200':
           description: Request successful
@@ -422,212 +382,80 @@ paths:
                     example: true
                   info:
                     type: object
-                    description: Detailed information of the queried sub-API user
+                    description: Detailed information of the sub-API user
                     properties:
-                      data:
-                        type: object
-                        properties:
-                          apiUser:
-                            type: string
-                            description: Sub-API user name
-                            example: sub_test_api_user
-                          permission:
-                            type: string
-                            description: Permission configuration (JSON string)
-                            example: >-
-                              {"mail": {"send": true, "sendtemplate": true},
-                              "maillist": {"create": false}}
-                          notifyEmail:
-                            type: string
-                            description: Notification email (empty if not set)
-                            example: admin1@example.com;admin2@example.com
-                          isNotify:
-                            type: boolean
-                            description: Whether email notifications are enabled
-                            example: true
-                          gmtCreated:
-                            type: string
-                            format: date-time
-                            description: Creation time of the sub-API user
-                            example: '2025-10-10 15:20:00'
-                          gmtUpdated:
-                            type: string
-                            format: date-time
-                            description: Last update time of the sub-API user
-                            example: '2025-10-11 09:30:00'
+                      apiUser:
+                        type: string
+                        description: Sub-API user name
+                        example: sub_test_api_user
+                      permission:
+                        type: string
+                        description: Permission configuration (JSON string)
+                        example: >-
+                          {"mail": {"send": true, "sendtemplate": true},
+                          "maillist": {"create": false}}
+                      notifyEmail:
+                        type: string
+                        description: Notification email (empty if not set)
+                        example: admin1@example.com;admin2@example.com
+                      isNotify:
+                        type: boolean
+                        description: Whether email notifications are enabled
+                        example: true
+                      gmtCreated:
+                        type: string
+                        format: date-time
+                        description: Creation time of the sub-API user
+                        example: '2025-10-10 15:20:00'
+                      gmtUpdated:
+                        type: string
+                        format: date-time
+                        description: Last update time of the sub-API user
+                        example: '2025-10-11 09:30:00'
         '404':
           description: >-
             Sub-API user not found (user name does not exist under the main
             account)
       parameters:
         - in: query
-          name: apiUser
-          schema:
-            type: string
-          required: true
-          description: >-
-            Main account API_USER (authentication parameter, obtained from the
-            SendCloud console)
-          example: main_api_user
-        - in: query
-          name: apiKey
-          schema:
-            type: string
-          required: true
-          description: >-
-            Main account API_KEY (authentication parameter, obtained from the
-            SendCloud console)
-          example: main_api_key_7890
-        - in: query
           name: subApiUser
           schema:
             type: string
           required: true
-          description: Target sub-API user name
+          description: Name of the sub-API user to query
           example: sub_test_api_user
       x-codeSamples:
         - lang: Python
-          label: Query Single Sub-API User (GET)
+          label: Query Specific Sub-API User
           source: |
             import requests
-            import json
 
-            url = "https://api2.sendcloud.net/api/apiuser/get"
+            url = "https://api.aurorasendcloud.com/api/apiuser/get"
             params = {
-                "apiUser": "main_api_user",
-                "apiKey": "main_api_key_7890",
+                "apiUser": "test_api_user",
+                "apiKey": "test_api_key",
                 "subApiUser": "sub_marketing_user"
             }
 
             response = requests.get(url, params=params)
             user_info = response.json()
             if user_info["result"]:
-                data = user_info["info"]["data"]
-                permission = json.loads(data['permission'])
-                print(f"Sub-API User: {data['apiUser']}")
-                print(f"Permissions: {permission}")
-                print(f"Notify Email: {data['notifyEmail']}")
-                print(f"Notify Enabled: {data['isNotify']}")
-                print(f"Created Time: {data['gmtCreated']}")
-    post:
-      summary: Query Single Sub-API User (POST)
-      description: Get detailed information of a specific sub-API user using POST method
-      operationId: getSingleSubApiUserPost
-      tags:
-        - API_User
-      responses:
-        '200':
-          description: Request successful
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  statusCode:
-                    type: integer
-                    description: Response status code (200 indicates success)
-                    example: 200
-                  message:
-                    type: string
-                    description: >-
-                      Prompt message for request result (success/failure
-                      description)
-                    example: request was successful
-                  result:
-                    type: boolean
-                    description: >-
-                      Whether the request was processed successfully (true =
-                      success, false = failure)
-                    example: true
-                  info:
-                    type: object
-                    description: Detailed information of the queried sub-API user
-                    properties:
-                      data:
-                        type: object
-                        properties:
-                          apiUser:
-                            type: string
-                            description: Sub-API user name
-                            example: sub_test_api_user
-                          permission:
-                            type: string
-                            description: Permission configuration (JSON string)
-                            example: >-
-                              {"mail": {"send": true, "sendtemplate": true},
-                              "maillist": {"create": false}}
-                          notifyEmail:
-                            type: string
-                            description: Notification email (empty if not set)
-                            example: admin1@example.com;admin2@example.com
-                          isNotify:
-                            type: boolean
-                            description: Whether email notifications are enabled
-                            example: true
-                          gmtCreated:
-                            type: string
-                            format: date-time
-                            description: Creation time of the sub-API user
-                            example: '2025-10-10 15:20:00'
-                          gmtUpdated:
-                            type: string
-                            format: date-time
-                            description: Last update time of the sub-API user
-                            example: '2025-10-11 09:30:00'
-        '404':
-          description: >-
-            Sub-API user not found (user name does not exist under the main
-            account)
-      parameters:
-        - in: query
-          name: apiUser
-          schema:
-            type: string
-          required: true
-          description: >-
-            Main account API_USER (authentication parameter, obtained from the
-            SendCloud console)
-          example: main_api_user
-        - in: query
-          name: apiKey
-          schema:
-            type: string
-          required: true
-          description: >-
-            Main account API_KEY (authentication parameter, obtained from the
-            SendCloud console)
-          example: main_api_key_7890
-        - in: query
-          name: subApiUser
-          schema:
-            type: string
-          required: true
-          description: Target sub-API user name
-          example: sub_test_api_user
-      x-codeSamples:
-        - lang: Python
-          label: Query Single Sub-API User (POST)
-          source: |
-            import requests
-
-            url = "https://api2.sendcloud.net/api/apiuser/get"
-            params = {
-                "apiUser": "main_api_user",
-                "apiKey": "main_api_key_7890",
-                "subApiUser": "sub_marketing_user"
-            }
-
-            response = requests.post(url, params=params)
-            print(response.json())
+                info = user_info["info"]
+                print(f"User: {info['apiUser']}")
+                print(f"Permissions: {info['permission']}")
+                print(f"Email notifications: {info['isNotify']}")
   /api/apiuser/update:
     post:
       summary: Update Sub-API User
       description: >-
-        Modify the permissions, notification email, or notification switch of an
-        existing sub-API user
+        Update information of an existing sub-API user (supports modifying
+        permissions, notification email, and notification switch)
       operationId: updateSubApiUser
       tags:
-        - API_User
+        - Sub-API User
+      security:
+        - apiUser: []
+        - apiKey: []
       responses:
         '200':
           description: Sub-API user updated successfully
@@ -654,41 +482,28 @@ paths:
                     example: true
                   info:
                     type: object
-                    description: Update result statistics
+                    description: Update result information
                     properties:
-                      count:
-                        type: integer
-                        description: >-
-                          Number of sub-API users successfully updated (1 =
-                          success, 0 = no update)
-                        example: 1
+                      apiUser:
+                        type: string
+                        description: Sub-API user name
+                        example: sub_test_api_user
+                      updatedFields:
+                        type: array
+                        description: List of updated fields
+                        items:
+                          type: string
+                        example:
+                          - permission
+                          - notifyEmail
+                          - isNotify
         '400':
-          description: >-
-            Bad request (e.g., invalid permission configuration, no parameters
-            to update)
+          description: Bad request (e.g., invalid permission configuration format)
         '404':
           description: >-
             Sub-API user not found (user name does not exist under the main
             account)
       parameters:
-        - in: query
-          name: apiUser
-          schema:
-            type: string
-          required: true
-          description: >-
-            Main account API_USER (authentication parameter, obtained from the
-            SendCloud console)
-          example: main_api_user
-        - in: query
-          name: apiKey
-          schema:
-            type: string
-          required: true
-          description: >-
-            Main account API_KEY (authentication parameter, obtained from the
-            SendCloud console)
-          example: main_api_key_7890
         - in: query
           name: subApiUser
           schema:
@@ -735,7 +550,7 @@ paths:
             import json
 
 
-            url = "https://api2.sendcloud.net/api/apiuser/update"
+            url = "https://api.aurorasendcloud.com/api/apiuser/update"
 
             # Updated permission configuration: add calendar sending and address
             list creation permissions
@@ -747,8 +562,8 @@ paths:
             }
 
             params = {
-                "apiUser": "main_api_user",
-                "apiKey": "main_api_key_7890",
+                "apiUser": "test_api_user",
+                "apiKey": "test_api_key",
                 "subApiUser": "sub_marketing_user",
                 "permission": json.dumps(new_permission),
                 "isNotify": "false"  # Disable email notifications
@@ -766,7 +581,10 @@ paths:
         but the user can no longer use the API)
       operationId: deleteSubApiUser
       tags:
-        - API_User
+        - Sub-API User
+      security:
+        - apiUser: []
+        - apiKey: []
       responses:
         '200':
           description: Sub-API user deleted successfully
@@ -807,24 +625,6 @@ paths:
             account)
       parameters:
         - in: query
-          name: apiUser
-          schema:
-            type: string
-          required: true
-          description: >-
-            Main account API_USER (authentication parameter, obtained from the
-            SendCloud console)
-          example: main_api_user
-        - in: query
-          name: apiKey
-          schema:
-            type: string
-          required: true
-          description: >-
-            Main account API_KEY (authentication parameter, obtained from the
-            SendCloud console)
-          example: main_api_key_7890
-        - in: query
           name: subApiUser
           schema:
             type: string
@@ -837,10 +637,10 @@ paths:
           source: |
             import requests
 
-            url = "https://api2.sendcloud.net/api/apiuser/delete"
+            url = "https://api.aurorasendcloud.com/api/apiuser/delete"
             params = {
-                "apiUser": "main_api_user",
-                "apiKey": "main_api_key_7890",
+                "apiUser": "test_api_user",
+                "apiKey": "test_api_key",
                 "subApiUser": "obsolete_sub_user"
             }
 
@@ -854,7 +654,10 @@ paths:
         become invalid immediately)
       operationId: resetSubApiUserKey
       tags:
-        - API_User
+        - Sub-API User
+      security:
+        - apiUser: []
+        - apiKey: []
       responses:
         '200':
           description: Sub-API user key reset successfully
@@ -899,24 +702,6 @@ paths:
             account)
       parameters:
         - in: query
-          name: apiUser
-          schema:
-            type: string
-          required: true
-          description: >-
-            Main account API_USER (authentication parameter, obtained from the
-            SendCloud console)
-          example: main_api_user
-        - in: query
-          name: apiKey
-          schema:
-            type: string
-          required: true
-          description: >-
-            Main account API_KEY (authentication parameter, obtained from the
-            SendCloud console)
-          example: main_api_key_7890
-        - in: query
           name: subApiUser
           schema:
             type: string
@@ -929,10 +714,10 @@ paths:
           source: |
             import requests
 
-            url = "https://api2.sendcloud.net/api/apiuser/reset"
+            url = "https://api.aurorasendcloud.com/api/apiuser/reset"
             params = {
-                "apiUser": "main_api_user",
-                "apiKey": "main_api_key_7890",
+                "apiUser": "test_api_user",
+                "apiKey": "test_api_key",
                 "subApiUser": "sub_marketing_user"
             }
 

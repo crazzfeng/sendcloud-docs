@@ -1,8 +1,4 @@
 - createsubapiuser
-- batchquerysubapiusersget
-- batchquerysubapiuserspost
-- getsinglesubapiuserget
-- getsinglesubapiuserpost
 - updatesubapiuser
 - deletesubapiuser
 - resetsubapiuserkey

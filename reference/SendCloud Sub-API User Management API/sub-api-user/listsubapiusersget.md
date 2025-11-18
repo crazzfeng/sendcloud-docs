@@ -1,8 +1,8 @@
 ---
-title: Batch Query Sub-API Users
+title: Query Sub-API User List (GET)
 excerpt: Query basic information of all sub-API users under the main account
 api:
   file: apiuser.yaml
-  operationId: batchQuerySubApiUsersGet
+  operationId: listSubApiUsersGet
 hidden: false
 ---
