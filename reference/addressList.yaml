@@ -74,24 +74,6 @@ paths:
           description: Bad request (e.g., duplicate list name, missing required parameters)
       parameters:
         - in: query
-          name: apiUser
-          schema:
-            type: string
-          required: true
-          description: >-
-            API_USER (authentication parameter, obtained from the SendCloud
-            console)
-          example: test_api_user
-        - in: query
-          name: apiKey
-          schema:
-            type: string
-          required: true
-          description: >-
-            API_KEY (authentication parameter, obtained from the SendCloud
-            console)
-          example: test_api_key
-        - in: query
           name: name
           schema:
             type: string
@@ -133,6 +115,9 @@ paths:
 
             response = requests.post(url, params=params)
             print(response.json())
+      security:
+        - apiUser: []
+          apiKey: []
   /api/maillist/list:
     get:
       summary: Batch Query Address Lists
@@ -213,24 +198,6 @@ paths:
         '400':
           description: Bad request (e.g., invalid pagination parameters)
       parameters:
-        - in: query
-          name: apiUser
-          schema:
-            type: string
-          required: true
-          description: >-
-            API_USER (authentication parameter, obtained from the SendCloud
-            console)
-          example: test_api_user
-        - in: query
-          name: apiKey
-          schema:
-            type: string
-          required: true
-          description: >-
-            API_KEY (authentication parameter, obtained from the SendCloud
-            console)
-          example: test_api_key
         - in: query
           name: start
           schema:
@@ -352,24 +319,6 @@ paths:
           description: Bad request (e.g., invalid pagination parameters)
       parameters:
         - in: query
-          name: apiUser
-          schema:
-            type: string
-          required: true
-          description: >-
-            API_USER (authentication parameter, obtained from the SendCloud
-            console)
-          example: test_api_user
-        - in: query
-          name: apiKey
-          schema:
-            type: string
-          required: true
-          description: >-
-            API_KEY (authentication parameter, obtained from the SendCloud
-            console)
-          example: test_api_key
-        - in: query
           name: start
           schema:
             type: integer
@@ -406,6 +355,9 @@ paths:
 
             response = requests.post(url, params=params)
             print(response.json())
+      security:
+        - apiUser: []
+          apiKey: []
   /api/maillist/get:
     get:
       summary: Query Single Address List
@@ -473,24 +425,6 @@ paths:
         '404':
           description: Address list not found (invalid list name)
       parameters:
-        - in: query
-          name: apiUser
-          schema:
-            type: string
-          required: true
-          description: >-
-            API_USER (authentication parameter, obtained from the SendCloud
-            console)
-          example: test_api_user
-        - in: query
-          name: apiKey
-          schema:
-            type: string
-          required: true
-          description: >-
-            API_KEY (authentication parameter, obtained from the SendCloud
-            console)
-          example: test_api_key
         - in: query
           name: name
           schema:
@@ -586,24 +520,6 @@ paths:
           description: Address list not found (invalid list name)
       parameters:
         - in: query
-          name: apiUser
-          schema:
-            type: string
-          required: true
-          description: >-
-            API_USER (authentication parameter, obtained from the SendCloud
-            console)
-          example: test_api_user
-        - in: query
-          name: apiKey
-          schema:
-            type: string
-          required: true
-          description: >-
-            API_KEY (authentication parameter, obtained from the SendCloud
-            console)
-          example: test_api_key
-        - in: query
           name: name
           schema:
             type: string
@@ -625,6 +541,9 @@ paths:
 
             response = requests.post(url, params=params)
             print(response.json())
+      security:
+        - apiUser: []
+          apiKey: []
   /api/maillist/update:
     post:
       summary: Update Address List
@@ -672,24 +591,6 @@ paths:
           description: Address list not found (invalid list name)
       parameters:
         - in: query
-          name: apiUser
-          schema:
-            type: string
-          required: true
-          description: >-
-            API_USER (authentication parameter, obtained from the SendCloud
-            console)
-          example: test_api_user
-        - in: query
-          name: apiKey
-          schema:
-            type: string
-          required: true
-          description: >-
-            API_KEY (authentication parameter, obtained from the SendCloud
-            console)
-          example: test_api_key
-        - in: query
           name: name
           schema:
             type: string
@@ -731,6 +632,9 @@ paths:
 
             response = requests.post(url, params=params)
             print(response.json())
+      security:
+        - apiUser: []
+          apiKey: []
   /api/maillist/delete:
     post:
       summary: Delete Address List
@@ -778,24 +682,6 @@ paths:
           description: Address list not found (invalid list name)
       parameters:
         - in: query
-          name: apiUser
-          schema:
-            type: string
-          required: true
-          description: >-
-            API_USER (authentication parameter, obtained from the SendCloud
-            console)
-          example: test_api_user
-        - in: query
-          name: apiKey
-          schema:
-            type: string
-          required: true
-          description: >-
-            API_KEY (authentication parameter, obtained from the SendCloud
-            console)
-          example: test_api_key
-        - in: query
           name: name
           schema:
             type: string
@@ -817,6 +703,9 @@ paths:
 
             response = requests.post(url, params=params)
             print(response.json())
+      security:
+        - apiUser: []
+          apiKey: []
   /api/maillist/member/add:
     post:
       summary: Add Members to Address List
@@ -872,24 +761,6 @@ paths:
           description: Address list not found (invalid list name)
       parameters:
         - in: query
-          name: apiUser
-          schema:
-            type: string
-          required: true
-          description: >-
-            API_USER (authentication parameter, obtained from the SendCloud
-            console)
-          example: test_api_user
-        - in: query
-          name: apiKey
-          schema:
-            type: string
-          required: true
-          description: >-
-            API_KEY (authentication parameter, obtained from the SendCloud
-            console)
-          example: test_api_key
-        - in: query
           name: maillistName
           schema:
             type: string
@@ -936,6 +807,9 @@ paths:
             print(f"Already existing: {result['info']['existCount']}")
 
             print(f"Invalid emails: {result['info']['invalidCount']}")
+      security:
+        - apiUser: []
+          apiKey: []
   /api/maillist/member/delete:
     post:
       summary: Remove Members from Address List
@@ -981,24 +855,6 @@ paths:
           description: Address list not found (invalid list name)
       parameters:
         - in: query
-          name: apiUser
-          schema:
-            type: string
-          required: true
-          description: >-
-            API_USER (authentication parameter, obtained from the SendCloud
-            console)
-          example: test_api_user
-        - in: query
-          name: apiKey
-          schema:
-            type: string
-          required: true
-          description: >-
-            API_KEY (authentication parameter, obtained from the SendCloud
-            console)
-          example: test_api_key
-        - in: query
           name: maillistName
           schema:
             type: string
@@ -1032,6 +888,9 @@ paths:
 
             response = requests.post(url, params=params)
             print(response.json())
+      security:
+        - apiUser: []
+          apiKey: []
   /api/maillist/member/list:
     get:
       summary: Query Members of Address List
@@ -1085,24 +944,6 @@ paths:
         '404':
           description: Address list not found (invalid list name)
       parameters:
-        - in: query
-          name: apiUser
-          schema:
-            type: string
-          required: true
-          description: >-
-            API_USER (authentication parameter, obtained from the SendCloud
-            console)
-          example: test_api_user
-        - in: query
-          name: apiKey
-          schema:
-            type: string
-          required: true
-          description: >-
-            API_KEY (authentication parameter, obtained from the SendCloud
-            console)
-          example: test_api_key
         - in: query
           name: maillistName
           schema:
@@ -1205,24 +1046,6 @@ paths:
           description: Address list not found (invalid list name)
       parameters:
         - in: query
-          name: apiUser
-          schema:
-            type: string
-          required: true
-          description: >-
-            API_USER (authentication parameter, obtained from the SendCloud
-            console)
-          example: test_api_user
-        - in: query
-          name: apiKey
-          schema:
-            type: string
-          required: true
-          description: >-
-            API_KEY (authentication parameter, obtained from the SendCloud
-            console)
-          example: test_api_key
-        - in: query
           name: maillistName
           schema:
             type: string
@@ -1267,6 +1090,9 @@ paths:
 
             response = requests.post(url, params=params)
             print(response.json())
+      security:
+        - apiUser: []
+          apiKey: []
   /api/maillist/member/clear:
     post:
       summary: Clear All Members
