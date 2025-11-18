@@ -1,0 +1,666 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Email
+servers:
+  - url: https://api2.sendcloud.net
+tags:
+  - name: Tracking Domain
+    description: >-
+      Interfaces for adding, verifying, querying, and managing email tracking
+      domains (used for click/open tracking)
+paths:
+  /api/trackdomain/add:
+    post:
+      summary: Add Tracking Domain
+      description: >-
+        Add a custom tracking domain (used to replace the default SendCloud
+        tracking domain for email click/open tracking)
+      operationId: addTrackingDomain
+      tags:
+        - Tracking Domain
+      responses:
+        '200':
+          description: Tracking domain added successfully (pending DNS verification)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    description: Response status code (200 indicates success)
+                    example: 200
+                  message:
+                    type: string
+                    description: >-
+                      Prompt message for request result (success/failure
+                      description)
+                    example: request was successful
+                  result:
+                    type: boolean
+                    description: >-
+                      Whether the request was processed successfully (true =
+                      success, false = failure)
+                    example: true
+                  info:
+                    type: object
+                    description: Detailed information of the added tracking domain
+                    properties:
+                      trackDomain:
+                        type: string
+                        description: Added custom tracking domain name
+                        example: track.example.com
+                      cnameRecord:
+                        type: string
+                        description: >-
+                          Required CNAME record (to be configured in DNS, points
+                          to SendCloud's tracking server)
+                        example: track.sendcloud.net
+                      status:
+                        type: string
+                        description: >-
+                          Tracking domain status (pending = pending
+                          verification, verified = verified, rejected =
+                          rejected)
+                        example: pending
+                      gmtCreated:
+                        type: string
+                        format: date-time
+                        description: >-
+                          Tracking domain addition time (format: yyyy-MM-dd
+                          HH:mm:ss)
+                        example: '2025-10-12 10:00:00'
+        '400':
+          description: >-
+            Bad request (e.g., invalid domain format, duplicate tracking domain,
+            domain not owned by the account)
+      parameters:
+        - in: query
+          name: apiUser
+          schema:
+            type: string
+          required: true
+          description: >-
+            API_USER (authentication parameter, obtained from the SendCloud
+            console)
+          example: test_api_user
+        - in: query
+          name: apiKey
+          schema:
+            type: string
+          required: true
+          description: >-
+            API_KEY (authentication parameter, obtained from the SendCloud
+            console)
+          example: test_api_key
+        - in: query
+          name: trackDomain
+          schema:
+            type: string
+          required: true
+          description: >-
+            Custom tracking domain name (subdomain of the verified sending
+            domain, e.g., track.example.com)
+          example: track.example.com
+      x-codeSamples:
+        - lang: Python
+          label: Add Custom Tracking Domain
+          source: |
+            import requests
+
+            url = "https://api2.sendcloud.net/api/trackdomain/add"
+            params = {
+                "apiUser": "test_api_user",
+                "apiKey": "test_api_key",
+                "trackDomain": "track.mycompany.com"  # Subdomain of the verified sending domain (e.g., mycompany.com)
+            }
+
+            response = requests.post(url, params=params)
+            print(response.json())
+  /api/trackdomain/list:
+    get:
+      summary: Batch Query Tracking Domains
+      description: >-
+        Query basic information of all added custom tracking domains under the
+        current apiUser
+      operationId: batchQueryTrackingDomainsGet
+      tags:
+        - Tracking Domain
+      responses:
+        '200':
+          description: Request successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    description: Response status code (200 indicates success)
+                    example: 200
+                  message:
+                    type: string
+                    description: >-
+                      Prompt message for request result (success/failure
+                      description)
+                    example: request was successful
+                  result:
+                    type: boolean
+                    description: >-
+                      Whether the request was processed successfully (true =
+                      success, false = failure)
+                    example: true
+                  info:
+                    type: object
+                    description: Batch query result data of tracking domains
+                    properties:
+                      dataList:
+                        type: array
+                        description: List of tracking domain basic information
+                        items:
+                          type: object
+                          properties:
+                            trackDomain:
+                              type: string
+                              description: Custom tracking domain name
+                              example: track.example.com
+                            cnameRecord:
+                              type: string
+                              description: Required CNAME record (configured in DNS)
+                              example: track.sendcloud.net
+                            status:
+                              type: string
+                              description: >-
+                                Tracking domain status (pending = pending
+                                verification, verified = verified, rejected =
+                                rejected)
+                              example: verified
+                            isDefault:
+                              type: boolean
+                              description: >-
+                                Whether it is the default tracking domain (only
+                                one default can be set)
+                              example: true
+                            gmtCreated:
+                              type: string
+                              format: date-time
+                              description: Tracking domain addition time
+                              example: '2025-10-12 10:00:00'
+                            gmtVerified:
+                              type: string
+                              format: date-time
+                              description: >-
+                                Tracking domain verification time (empty if not
+                                verified)
+                              example: '2025-10-12 11:30:00'
+                      total:
+                        type: integer
+                        description: >-
+                          Total number of tracking domains under the current
+                          apiUser
+                        example: 2
+                      count:
+                        type: integer
+                        description: >-
+                          Number of tracking domains returned (equals total for
+                          this interface)
+                        example: 2
+      parameters:
+        - in: query
+          name: apiUser
+          schema:
+            type: string
+          required: true
+          description: >-
+            API_USER (authentication parameter, obtained from the SendCloud
+            console)
+          example: test_api_user
+        - in: query
+          name: apiKey
+          schema:
+            type: string
+          required: true
+          description: >-
+            API_KEY (authentication parameter, obtained from the SendCloud
+            console)
+          example: test_api_key
+      x-codeSamples:
+        - lang: Python
+          label: Batch Query Tracking Domains (GET)
+          source: |
+            import requests
+
+            url = "https://api2.sendcloud.net/api/trackdomain/list"
+            params = {
+                "apiUser": "test_api_user",
+                "apiKey": "test_api_key"
+            }
+
+            response = requests.get(url, params=params)
+            result = response.json()
+            print(f"Total tracking domains: {result['info']['total']}")
+            print("Tracking domain details:")
+            for domain in result['info']['dataList']:
+                print(f"- Domain: {domain['trackDomain']}, Status: {domain['status']}, Default: {domain['isDefault']}")
+    post:
+      summary: Batch Query Tracking Domains (POST)
+      description: Batch query all tracking domains using POST method
+      operationId: batchQueryTrackingDomainsPost
+      tags:
+        - Tracking Domain
+      responses:
+        '200':
+          description: Request successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    description: Response status code (200 indicates success)
+                    example: 200
+                  message:
+                    type: string
+                    description: >-
+                      Prompt message for request result (success/failure
+                      description)
+                    example: request was successful
+                  result:
+                    type: boolean
+                    description: >-
+                      Whether the request was processed successfully (true =
+                      success, false = failure)
+                    example: true
+                  info:
+                    type: object
+                    description: Batch query result data of tracking domains
+                    properties:
+                      dataList:
+                        type: array
+                        description: List of tracking domain basic information
+                        items:
+                          type: object
+                          properties:
+                            trackDomain:
+                              type: string
+                              description: Custom tracking domain name
+                              example: track.example.com
+                            cnameRecord:
+                              type: string
+                              description: Required CNAME record (configured in DNS)
+                              example: track.sendcloud.net
+                            status:
+                              type: string
+                              description: >-
+                                Tracking domain status (pending = pending
+                                verification, verified = verified, rejected =
+                                rejected)
+                              example: verified
+                            isDefault:
+                              type: boolean
+                              description: >-
+                                Whether it is the default tracking domain (only
+                                one default can be set)
+                              example: true
+                            gmtCreated:
+                              type: string
+                              format: date-time
+                              description: Tracking domain addition time
+                              example: '2025-10-12 10:00:00'
+                            gmtVerified:
+                              type: string
+                              format: date-time
+                              description: >-
+                                Tracking domain verification time (empty if not
+                                verified)
+                              example: '2025-10-12 11:30:00'
+                      total:
+                        type: integer
+                        description: >-
+                          Total number of tracking domains under the current
+                          apiUser
+                        example: 2
+                      count:
+                        type: integer
+                        description: >-
+                          Number of tracking domains returned (equals total for
+                          this interface)
+                        example: 2
+      parameters:
+        - in: query
+          name: apiUser
+          schema:
+            type: string
+          required: true
+          description: >-
+            API_USER (authentication parameter, obtained from the SendCloud
+            console)
+          example: test_api_user
+        - in: query
+          name: apiKey
+          schema:
+            type: string
+          required: true
+          description: >-
+            API_KEY (authentication parameter, obtained from the SendCloud
+            console)
+          example: test_api_key
+      x-codeSamples:
+        - lang: Python
+          label: Batch Query Tracking Domains (POST Method)
+          source: |
+            import requests
+
+            url = "https://api2.sendcloud.net/api/trackdomain/list"
+            params = {
+                "apiUser": "test_api_user",
+                "apiKey": "test_api_key"
+            }
+
+            response = requests.post(url, params=params)
+            print(response.json())
+  /api/trackdomain/verify:
+    post:
+      summary: Verify Tracking Domain
+      description: >-
+        Trigger verification of the CNAME record for a pending/modified tracking
+        domain
+      operationId: verifyTrackingDomain
+      tags:
+        - Tracking Domain
+      responses:
+        '200':
+          description: >-
+            Verification request submitted successfully (results will be
+            returned after DNS detection)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    description: Response status code (200 indicates success)
+                    example: 200
+                  message:
+                    type: string
+                    description: >-
+                      Prompt message for request result (success/failure
+                      description)
+                    example: verification request submitted successfully
+                  result:
+                    type: boolean
+                    description: >-
+                      Whether the request was processed successfully (true =
+                      success, false = failure)
+                    example: true
+                  info:
+                    type: object
+                    description: Verification request result
+                    properties:
+                      trackDomain:
+                        type: string
+                        description: Tracking domain name being verified
+                        example: track.example.com
+                      status:
+                        type: string
+                        description: >-
+                          Current tracking domain status (pending_verify =
+                          verification in progress, verified = verified,
+                          rejected = rejected)
+                        example: pending_verify
+        '400':
+          description: >-
+            Bad request (e.g., domain already verified, domain in rejected
+            status)
+        '404':
+          description: >-
+            Tracking domain not found (domain not added or does not belong to
+            the current apiUser)
+      parameters:
+        - in: query
+          name: apiUser
+          schema:
+            type: string
+          required: true
+          description: >-
+            API_USER (authentication parameter, obtained from the SendCloud
+            console)
+          example: test_api_user
+        - in: query
+          name: apiKey
+          schema:
+            type: string
+          required: true
+          description: >-
+            API_KEY (authentication parameter, obtained from the SendCloud
+            console)
+          example: test_api_key
+        - in: query
+          name: trackDomain
+          schema:
+            type: string
+          required: true
+          description: Tracking domain name to verify (must be in pending status)
+          example: track.example.com
+      x-codeSamples:
+        - lang: Python
+          label: Verify Tracking Domain (After CNAME Configuration)
+          source: |
+            import requests
+
+            url = "https://api2.sendcloud.net/api/trackdomain/verify"
+            params = {
+                "apiUser": "test_api_user",
+                "apiKey": "test_api_key",
+                "trackDomain": "track.mycompany.com"  # Replace with actual tracking domain (configured with CNAME)
+            }
+
+            response = requests.post(url, params=params)
+            print(response.json())
+  /api/trackdomain/setdefault:
+    post:
+      summary: Set Default Tracking Domain
+      description: >-
+        Set a verified tracking domain as the default (used for all email
+        tracking if no specific domain is specified)
+      operationId: setDefaultTrackingDomain
+      tags:
+        - Tracking Domain
+      responses:
+        '200':
+          description: Default tracking domain set successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    description: Response status code (200 indicates success)
+                    example: 200
+                  message:
+                    type: string
+                    description: >-
+                      Prompt message for request result (success/failure
+                      description)
+                    example: default track domain set successfully
+                  result:
+                    type: boolean
+                    description: >-
+                      Whether the request was processed successfully (true =
+                      success, false = failure)
+                    example: true
+                  info:
+                    type: object
+                    description: Default setting result
+                    properties:
+                      trackDomain:
+                        type: string
+                        description: Tracking domain set as default
+                        example: track.example.com
+                      isDefault:
+                        type: boolean
+                        description: Whether it is the default tracking domain
+                        example: true
+        '400':
+          description: Bad request (e.g., tracking domain not verified)
+        '404':
+          description: >-
+            Tracking domain not found (domain not added or does not belong to
+            the current apiUser)
+      parameters:
+        - in: query
+          name: apiUser
+          schema:
+            type: string
+          required: true
+          description: >-
+            API_USER (authentication parameter, obtained from the SendCloud
+            console)
+          example: test_api_user
+        - in: query
+          name: apiKey
+          schema:
+            type: string
+          required: true
+          description: >-
+            API_KEY (authentication parameter, obtained from the SendCloud
+            console)
+          example: test_api_key
+        - in: query
+          name: trackDomain
+          schema:
+            type: string
+          required: true
+          description: Verified tracking domain name to set as default
+          example: track.example.com
+      x-codeSamples:
+        - lang: Python
+          label: Set Default Tracking Domain
+          source: |
+            import requests
+
+            url = "https://api2.sendcloud.net/api/trackdomain/setdefault"
+            params = {
+                "apiUser": "test_api_user",
+                "apiKey": "test_api_key",
+                "trackDomain": "track.mycompany.com"  # Must be a verified tracking domain
+            }
+
+            response = requests.post(url, params=params)
+            print(response.json())
+  /api/trackdomain/delete:
+    post:
+      summary: Delete Tracking Domain
+      description: >-
+        Delete an existing tracking domain (cannot delete the default tracking
+        domain; please set another default first)
+      operationId: deleteTrackingDomain
+      tags:
+        - Tracking Domain
+      responses:
+        '200':
+          description: Tracking domain deleted successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    description: Response status code (200 indicates success)
+                    example: 200
+                  message:
+                    type: string
+                    description: >-
+                      Prompt message for request result (success/failure
+                      description)
+                    example: request was successful
+                  result:
+                    type: boolean
+                    description: >-
+                      Whether the request was processed successfully (true =
+                      success, false = failure)
+                    example: true
+                  info:
+                    type: object
+                    description: Deletion result statistics
+                    properties:
+                      count:
+                        type: integer
+                        description: >-
+                          Number of tracking domains successfully deleted (1 =
+                          success, 0 = no deletion)
+                        example: 1
+        '400':
+          description: Bad request (e.g., trying to delete the default tracking domain)
+        '404':
+          description: >-
+            Tracking domain not found (domain not added or does not belong to
+            the current apiUser)
+      parameters:
+        - in: query
+          name: apiUser
+          schema:
+            type: string
+          required: true
+          description: >-
+            API_USER (authentication parameter, obtained from the SendCloud
+            console)
+          example: test_api_user
+        - in: query
+          name: apiKey
+          schema:
+            type: string
+          required: true
+          description: >-
+            API_KEY (authentication parameter, obtained from the SendCloud
+            console)
+          example: test_api_key
+        - in: query
+          name: trackDomain
+          schema:
+            type: string
+          required: true
+          description: Tracking domain name to delete
+          example: track.example.com
+      x-codeSamples:
+        - lang: Python
+          label: Delete Tracking Domain (Non-Default)
+          source: >
+            import requests
+
+
+            # First ensure the domain is not the default (set another default if
+            needed)
+
+            url = "https://api2.sendcloud.net/api/trackdomain/delete"
+
+            params = {
+                "apiUser": "test_api_user",
+                "apiKey": "test_api_key",
+                "trackDomain": "obsolete-track.mycompany.com"  # Non-default tracking domain
+            }
+
+
+            response = requests.post(url, params=params)
+
+            print(response.json())
+components:
+  securitySchemes:
+    apiUser:
+      type: apiKey
+      in: query
+      name: apiUser
+      description: API_USER (authentication parameter, obtained from the SendCloud console)
+    apiKey:
+      type: apiKey
+      in: query
+      name: apiKey
+      description: API_KEY (authentication parameter, obtained from the SendCloud console)
+x-readme:
+  explorer-enabled: true
+  proxy-enabled: true
