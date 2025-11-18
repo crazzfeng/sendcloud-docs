@@ -1,4 +1,4 @@
 ---
 title: Opens And Clicks
-hidden: false
+hidden: true
 ---
