@@ -1,8 +1,8 @@
 ---
 title: Verify Sending Domain
 excerpt: >-
-  Trigger verification of DNS records (SPF/DKIM/DMARC) for a pending/modified
-  domain
+  Verify DNS configuration of a sending domain (SPF, DKIM, and DMARC records
+  must be configured in DNS before verification)
 api:
   file: domain.yaml
   operationId: verifySendingDomain

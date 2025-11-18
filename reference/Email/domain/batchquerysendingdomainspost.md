@@ -1,6 +1,6 @@
 ---
 title: Batch Query Sending Domains (POST)
-excerpt: Batch query all sending domains using POST method
+excerpt: Query sending domains using POST method (same functionality as GET method)
 api:
   file: domain.yaml
   operationId: batchQuerySendingDomainsPost

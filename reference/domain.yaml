@@ -3,12 +3,10 @@ info:
   version: 1.0.0
   title: Email
 servers:
-  - url: https://api2.sendcloud.net
+  - url: https://api.aurorasendcloud.com
 tags:
   - name: Domain
-    description: >-
-      Interfaces for adding, querying, verifying, and managing email sending
-      domains
+    description: Interfaces for managing email sending domains
 paths:
   /api/domain/add:
     post:
@@ -17,6 +15,9 @@ paths:
       operationId: addSendingDomain
       tags:
         - Domain
+      security:
+        - apiUser: []
+        - apiKey: []
       responses:
         '200':
           description: Domain added successfully (pending verification)
@@ -66,24 +67,6 @@ paths:
             already verified)
       parameters:
         - in: query
-          name: apiUser
-          schema:
-            type: string
-          required: true
-          description: >-
-            API_USER (authentication parameter, obtained from the SendCloud
-            console)
-          example: test_api_user
-        - in: query
-          name: apiKey
-          schema:
-            type: string
-          required: true
-          description: >-
-            API_KEY (authentication parameter, obtained from the SendCloud
-            console)
-          example: test_api_key
-        - in: query
           name: domain
           schema:
             type: string
@@ -98,7 +81,7 @@ paths:
           source: |
             import requests
 
-            url = "https://api2.sendcloud.net/api/domain/add"
+            url = "https://api.aurorasendcloud.com/api/domain/add"
             params = {
                 "apiUser": "test_api_user",
                 "apiKey": "test_api_key",
@@ -116,6 +99,9 @@ paths:
       operationId: batchQuerySendingDomainsGet
       tags:
         - Domain
+      security:
+        - apiUser: []
+        - apiKey: []
       responses:
         '200':
           description: Request successful
@@ -202,32 +188,13 @@ paths:
                           Number of domains returned (equals total for this
                           interface)
                         example: 3
-      parameters:
-        - in: query
-          name: apiUser
-          schema:
-            type: string
-          required: true
-          description: >-
-            API_USER (authentication parameter, obtained from the SendCloud
-            console)
-          example: test_api_user
-        - in: query
-          name: apiKey
-          schema:
-            type: string
-          required: true
-          description: >-
-            API_KEY (authentication parameter, obtained from the SendCloud
-            console)
-          example: test_api_key
       x-codeSamples:
         - lang: Python
           label: Batch Query Sending Domains (GET)
           source: |
             import requests
 
-            url = "https://api2.sendcloud.net/api/domain/list"
+            url = "https://api.aurorasendcloud.com/api/domain/list"
             params = {
                 "apiUser": "test_api_user",
                 "apiKey": "test_api_key"
@@ -238,13 +205,19 @@ paths:
             print(f"Total sending domains: {result['info']['total']}")
             print("Domain details:")
             for domain in result['info']['dataList']:
-                print(f"- Domain: {domain['domain']}, Status: {domain['status']}, SPF: {domain['spfStatus']}, DKIM: {domain['dkimStatus']}")
+                print(f"- Domain: {domain['domain']}, Status: {domain['status']}")
+                print(f"  SPF: {domain['spfStatus']}, DKIM: {domain['dkimStatus']}, DMARC: {domain['dmarcStatus']}")
     post:
       summary: Batch Query Sending Domains (POST)
-      description: Batch query all sending domains using POST method
+      description: >-
+        Query sending domains using POST method (same functionality as GET
+        method)
       operationId: batchQuerySendingDomainsPost
       tags:
         - Domain
+      security:
+        - apiUser: []
+        - apiKey: []
       responses:
         '200':
           description: Request successful
@@ -331,33 +304,14 @@ paths:
                           Number of domains returned (equals total for this
                           interface)
                         example: 3
-      parameters:
-        - in: query
-          name: apiUser
-          schema:
-            type: string
-          required: true
-          description: >-
-            API_USER (authentication parameter, obtained from the SendCloud
-            console)
-          example: test_api_user
-        - in: query
-          name: apiKey
-          schema:
-            type: string
-          required: true
-          description: >-
-            API_KEY (authentication parameter, obtained from the SendCloud
-            console)
-          example: test_api_key
       x-codeSamples:
         - lang: Python
-          label: Batch Query Sending Domains (POST Method)
+          label: Batch Query Sending Domains (POST)
           source: |
             import requests
 
-            url = "https://api2.sendcloud.net/api/domain/list"
-            params = {
+            url = "https://api.aurorasendcloud.com/api/domain/list"
+            data = {
                 "apiUser": "test_api_user",
                 "apiKey": "test_api_key"
             }
@@ -496,7 +450,7 @@ paths:
           source: |
             import requests
 
-            url = "https://api2.sendcloud.net/api/domain/get"
+            url = "https://api.aurorasendcloud.com/api/domain/get"
             params = {
                 "apiUser": "test_api_user",
                 "apiKey": "test_api_key",
@@ -641,7 +595,7 @@ paths:
           source: |
             import requests
 
-            url = "https://api2.sendcloud.net/api/domain/get"
+            url = "https://api.aurorasendcloud.com/api/domain/get"
             params = {
                 "apiUser": "test_api_user",
                 "apiKey": "test_api_key",
@@ -654,16 +608,17 @@ paths:
     post:
       summary: Verify Sending Domain
       description: >-
-        Trigger verification of DNS records (SPF/DKIM/DMARC) for a
-        pending/modified domain
+        Verify DNS configuration of a sending domain (SPF, DKIM, and DMARC
+        records must be configured in DNS before verification)
       operationId: verifySendingDomain
       tags:
         - Domain
+      security:
+        - apiUser: []
+        - apiKey: []
       responses:
         '200':
-          description: >-
-            Verification request submitted successfully (results will be
-            returned after detection)
+          description: Verification successful
           content:
             application/json:
               schema:
@@ -678,7 +633,7 @@ paths:
                     description: >-
                       Prompt message for request result (success/failure
                       description)
-                    example: verification request submitted successfully
+                    example: verify domain successful
                   result:
                     type: boolean
                     description: >-
@@ -687,45 +642,44 @@ paths:
                     example: true
                   info:
                     type: object
-                    description: Verification request result
+                    description: Verification result details
                     properties:
                       domain:
                         type: string
-                        description: Domain name being verified
+                        description: Verified sending domain name
                         example: example.com
                       status:
                         type: string
                         description: >-
-                          Current domain status (pending_verify = verification
-                          in progress, verified = verified, rejected = rejected)
-                        example: pending_verify
+                          Domain status after verification (verified =
+                          verification successful)
+                        example: verified
+                      spfStatus:
+                        type: string
+                        description: SPF record verification status
+                        example: pass
+                      dkimStatus:
+                        type: string
+                        description: DKIM record verification status
+                        example: pass
+                      dmarcStatus:
+                        type: string
+                        description: DMARC record verification status
+                        example: pass
+                      gmtVerified:
+                        type: string
+                        format: date-time
+                        description: Verification completion time
+                        example: '2025-10-08 14:30:00'
         '400':
           description: >-
-            Bad request (e.g., domain already verified, domain in rejected
-            status)
+            Bad request (e.g., domain not in pending status, DNS records not
+            configured correctly)
         '404':
           description: >-
             Domain not found (domain not added or does not belong to the current
             apiUser)
       parameters:
-        - in: query
-          name: apiUser
-          schema:
-            type: string
-          required: true
-          description: >-
-            API_USER (authentication parameter, obtained from the SendCloud
-            console)
-          example: test_api_user
-        - in: query
-          name: apiKey
-          schema:
-            type: string
-          required: true
-          description: >-
-            API_KEY (authentication parameter, obtained from the SendCloud
-            console)
-          example: test_api_key
         - in: query
           name: domain
           schema:
@@ -739,7 +693,7 @@ paths:
           source: |
             import requests
 
-            url = "https://api2.sendcloud.net/api/domain/verify"
+            url = "https://api.aurorasendcloud.com/api/domain/verify"
             params = {
                 "apiUser": "test_api_user",
                 "apiKey": "test_api_key",
@@ -757,6 +711,9 @@ paths:
       operationId: deleteSendingDomain
       tags:
         - Domain
+      security:
+        - apiUser: []
+        - apiKey: []
       responses:
         '200':
           description: Domain deleted successfully
@@ -797,24 +754,6 @@ paths:
             apiUser)
       parameters:
         - in: query
-          name: apiUser
-          schema:
-            type: string
-          required: true
-          description: >-
-            API_USER (authentication parameter, obtained from the SendCloud
-            console)
-          example: test_api_user
-        - in: query
-          name: apiKey
-          schema:
-            type: string
-          required: true
-          description: >-
-            API_KEY (authentication parameter, obtained from the SendCloud
-            console)
-          example: test_api_key
-        - in: query
           name: domain
           schema:
             type: string
@@ -827,7 +766,7 @@ paths:
           source: |
             import requests
 
-            url = "https://api2.sendcloud.net/api/domain/delete"
+            url = "https://api.aurorasendcloud.com/api/domain/delete"
             params = {
                 "apiUser": "test_api_user",
                 "apiKey": "test_api_key",
@@ -845,6 +784,9 @@ paths:
       operationId: updateDKIMConfiguration
       tags:
         - Domain
+      security:
+        - apiUser: []
+        - apiKey: []
       responses:
         '200':
           description: DKIM configuration updated successfully (new public key generated)
@@ -899,24 +841,6 @@ paths:
             apiUser)
       parameters:
         - in: query
-          name: apiUser
-          schema:
-            type: string
-          required: true
-          description: >-
-            API_USER (authentication parameter, obtained from the SendCloud
-            console)
-          example: test_api_user
-        - in: query
-          name: apiKey
-          schema:
-            type: string
-          required: true
-          description: >-
-            API_KEY (authentication parameter, obtained from the SendCloud
-            console)
-          example: test_api_key
-        - in: query
           name: domain
           schema:
             type: string
@@ -929,7 +853,7 @@ paths:
           source: |
             import requests
 
-            url = "https://api2.sendcloud.net/api/domain/dkim/update"
+            url = "https://api.aurorasendcloud.com/api/domain/dkim/update"
             params = {
                 "apiUser": "test_api_user",
                 "apiKey": "test_api_key",
@@ -949,12 +873,16 @@ components:
       type: apiKey
       in: query
       name: apiUser
-      description: Authentication parameter (API_USER, obtained from the SendCloud console)
+      description: >-
+        API_USER (authentication parameter, obtained from SendCloud console ->
+        Email API -> API_USER)
     apiKey:
       type: apiKey
       in: query
       name: apiKey
-      description: Authentication parameter (API_KEY, obtained from the SendCloud console)
+      description: >-
+        API_KEY (authentication parameter, obtained from SendCloud console ->
+        Email API -> API_USER; keep confidential)
 x-readme:
   explorer-enabled: true
   proxy-enabled: true
