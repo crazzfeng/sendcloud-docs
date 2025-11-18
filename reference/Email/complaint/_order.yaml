@@ -1,0 +1,5 @@
+- queryspamreportedlistget
+- queryspamreportedlistpost
+- exportspamreportedlist
+- getspamreportcountget
+- blockspamreportedaddress
