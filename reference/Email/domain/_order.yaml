@@ -1,0 +1,8 @@
+- addsendingdomain
+- batchquerysendingdomainsget
+- batchquerysendingdomainspost
+- getsinglesendingdomainget
+- getsinglesendingdomainpost
+- verifysendingdomain
+- deletesendingdomain
+- updatedkimconfiguration
