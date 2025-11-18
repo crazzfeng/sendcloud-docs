@@ -1,0 +1,752 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Email
+servers:
+  - url: https://api2.sendcloud.net
+tags:
+  - name: Email Label
+    description: Interfaces for creating, querying, updating, and deleting email labels
+paths:
+  /api/label/create:
+    post:
+      summary: Create Label
+      description: Create a new email label (supports setting label name and color)
+      operationId: createLabel
+      tags:
+        - Email Label
+      responses:
+        '200':
+          description: Label created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    description: Response status code (200 indicates success)
+                    example: 200
+                  message:
+                    type: string
+                    description: >-
+                      Prompt message for request result (success/failure
+                      description)
+                    example: request was successful
+                  result:
+                    type: boolean
+                    description: >-
+                      Whether the request was processed successfully (true =
+                      success, false = failure)
+                    example: true
+                  info:
+                    type: object
+                    description: Detailed information of the newly created label
+                    properties:
+                      id:
+                        type: integer
+                        description: Unique ID of the label (system-generated)
+                        example: 12345
+                      name:
+                        type: string
+                        description: Label name (unique under the current apiUser)
+                        example: Test Label
+                      color:
+                        type: string
+                        description: Label color (hex format, e.g.,
+                        example: '#FF5733'
+                      gmtCreated:
+                        type: string
+                        format: date-time
+                        description: 'Label creation time (format: yyyy-MM-dd HH:mm:ss)'
+                        example: '2025-10-05 09:20:00'
+        '400':
+          description: Bad request (e.g., duplicate label name, invalid color format)
+      parameters:
+        - in: query
+          name: apiUser
+          schema:
+            type: string
+          required: true
+          description: >-
+            API_USER (authentication parameter, obtained from the SendCloud
+            console)
+          example: test_api_user
+        - in: query
+          name: apiKey
+          schema:
+            type: string
+          required: true
+          description: >-
+            API_KEY (authentication parameter, obtained from the SendCloud
+            console)
+          example: test_api_key
+        - in: query
+          name: name
+          schema:
+            type: string
+          required: true
+          description: >-
+            Label name (unique under the current apiUser, used for management
+            and sending emails)
+          example: Test Label
+        - in: query
+          name: color
+          schema:
+            type: string
+          required: false
+          description: Label color (hex format starting with
+          example: '#FF5733'
+      x-codeSamples:
+        - lang: Python
+          label: Create Label (With Custom Color)
+          source: |
+            import requests
+
+            url = "https://api2.sendcloud.net/api/label/create"
+            params = {
+                "apiUser": "test_api_user",
+                "apiKey": "test_api_key",
+                "name": "Marketing Campaigns",
+                "color": "#2ECC71"  # Green color
+            }
+
+            response = requests.post(url, params=params)
+            print(response.json())
+  /api/label/list:
+    get:
+      summary: Batch Query Labels
+      description: Query basic information of all labels under the current apiUser
+      operationId: batchQueryLabelsGet
+      tags:
+        - Email Label
+      responses:
+        '200':
+          description: Request successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    description: Response status code (200 indicates success)
+                    example: 200
+                  message:
+                    type: string
+                    description: >-
+                      Prompt message for request result (success/failure
+                      description)
+                    example: request was successful
+                  result:
+                    type: boolean
+                    description: >-
+                      Whether the request was processed successfully (true =
+                      success, false = failure)
+                    example: true
+                  info:
+                    type: object
+                    description: Batch query result data of labels
+                    properties:
+                      dataList:
+                        type: array
+                        description: List of label basic information
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                              description: Unique ID of the label
+                              example: 12345
+                            name:
+                              type: string
+                              description: Label name
+                              example: Test Label
+                            color:
+                              type: string
+                              description: Label color (hex format)
+                              example: '#FF5733'
+                            gmtCreated:
+                              type: string
+                              format: date-time
+                              description: Label creation time
+                              example: '2025-10-05 09:20:00'
+                            gmtUpdated:
+                              type: string
+                              format: date-time
+                              description: Label last update time
+                              example: '2025-10-05 10:30:00'
+                      total:
+                        type: integer
+                        description: Total number of labels under the current apiUser
+                        example: 8
+                      count:
+                        type: integer
+                        description: >-
+                          Number of labels returned (equals total for this
+                          interface)
+                        example: 8
+      parameters:
+        - in: query
+          name: apiUser
+          schema:
+            type: string
+          required: true
+          description: >-
+            API_USER (authentication parameter, obtained from the SendCloud
+            console)
+          example: test_api_user
+        - in: query
+          name: apiKey
+          schema:
+            type: string
+          required: true
+          description: >-
+            API_KEY (authentication parameter, obtained from the SendCloud
+            console)
+          example: test_api_key
+      x-codeSamples:
+        - lang: Python
+          label: Batch Query All Labels (GET)
+          source: |
+            import requests
+
+            url = "https://api2.sendcloud.net/api/label/list"
+            params = {
+                "apiUser": "test_api_user",
+                "apiKey": "test_api_key"
+            }
+
+            response = requests.get(url, params=params)
+            result = response.json()
+            print(f"Total labels: {result['info']['total']}")
+            print("Label details:")
+            for label in result['info']['dataList']:
+                print(f"- ID: {label['id']}, Name: {label['name']}, Color: {label['color']}")
+    post:
+      summary: Batch Query Labels (POST)
+      description: Batch query all labels using POST method
+      operationId: batchQueryLabelsPost
+      tags:
+        - Email Label
+      responses:
+        '200':
+          description: Request successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    description: Response status code (200 indicates success)
+                    example: 200
+                  message:
+                    type: string
+                    description: >-
+                      Prompt message for request result (success/failure
+                      description)
+                    example: request was successful
+                  result:
+                    type: boolean
+                    description: >-
+                      Whether the request was processed successfully (true =
+                      success, false = failure)
+                    example: true
+                  info:
+                    type: object
+                    description: Batch query result data of labels
+                    properties:
+                      dataList:
+                        type: array
+                        description: List of label basic information
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                              description: Unique ID of the label
+                              example: 12345
+                            name:
+                              type: string
+                              description: Label name
+                              example: Test Label
+                            color:
+                              type: string
+                              description: Label color (hex format)
+                              example: '#FF5733'
+                            gmtCreated:
+                              type: string
+                              format: date-time
+                              description: Label creation time
+                              example: '2025-10-05 09:20:00'
+                            gmtUpdated:
+                              type: string
+                              format: date-time
+                              description: Label last update time
+                              example: '2025-10-05 10:30:00'
+                      total:
+                        type: integer
+                        description: Total number of labels under the current apiUser
+                        example: 8
+                      count:
+                        type: integer
+                        description: >-
+                          Number of labels returned (equals total for this
+                          interface)
+                        example: 8
+      parameters:
+        - in: query
+          name: apiUser
+          schema:
+            type: string
+          required: true
+          description: >-
+            API_USER (authentication parameter, obtained from the SendCloud
+            console)
+          example: test_api_user
+        - in: query
+          name: apiKey
+          schema:
+            type: string
+          required: true
+          description: >-
+            API_KEY (authentication parameter, obtained from the SendCloud
+            console)
+          example: test_api_key
+      x-codeSamples:
+        - lang: Python
+          label: Batch Query All Labels (POST Method)
+          source: |
+            import requests
+
+            url = "https://api2.sendcloud.net/api/label/list"
+            params = {
+                "apiUser": "test_api_user",
+                "apiKey": "test_api_key"
+            }
+
+            response = requests.post(url, params=params)
+            print(response.json())
+  /api/label/get:
+    get:
+      summary: Query Single Label
+      description: Get detailed information of a specific label by label ID
+      operationId: getSingleLabelGet
+      tags:
+        - Email Label
+      responses:
+        '200':
+          description: Request successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    description: Response status code (200 indicates success)
+                    example: 200
+                  message:
+                    type: string
+                    description: >-
+                      Prompt message for request result (success/failure
+                      description)
+                    example: request was successful
+                  result:
+                    type: boolean
+                    description: >-
+                      Whether the request was processed successfully (true =
+                      success, false = failure)
+                    example: true
+                  info:
+                    type: object
+                    description: Detailed information of the queried label
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            description: Unique ID of the label
+                            example: 12345
+                          name:
+                            type: string
+                            description: Label name
+                            example: Test Label
+                          color:
+                            type: string
+                            description: Label color (hex format)
+                            example: '#FF5733'
+                          gmtCreated:
+                            type: string
+                            format: date-time
+                            description: Label creation time
+                            example: '2025-10-05 09:20:00'
+                          gmtUpdated:
+                            type: string
+                            format: date-time
+                            description: Label last update time
+                            example: '2025-10-05 10:30:00'
+        '404':
+          description: Label not found (invalid label ID)
+      parameters:
+        - in: query
+          name: apiUser
+          schema:
+            type: string
+          required: true
+          description: >-
+            API_USER (authentication parameter, obtained from the SendCloud
+            console)
+          example: test_api_user
+        - in: query
+          name: apiKey
+          schema:
+            type: string
+          required: true
+          description: >-
+            API_KEY (authentication parameter, obtained from the SendCloud
+            console)
+          example: test_api_key
+        - in: query
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: >-
+            Unique ID of the target label (system-generated, obtained from batch
+            query)
+          example: 12345
+      x-codeSamples:
+        - lang: Python
+          label: Query Single Label (GET)
+          source: |
+            import requests
+
+            url = "https://api2.sendcloud.net/api/label/get"
+            params = {
+                "apiUser": "test_api_user",
+                "apiKey": "test_api_key",
+                "id": 12345  # Replace with actual label ID
+            }
+
+            response = requests.get(url, params=params)
+            label_info = response.json()
+            if label_info["result"]:
+                data = label_info["info"]["data"]
+                print(f"Label ID: {data['id']}")
+                print(f"Name: {data['name']}")
+                print(f"Color: {data['color']}")
+                print(f"Last Updated: {data['gmtUpdated']}")
+    post:
+      summary: Query Single Label (POST)
+      description: Get detailed information of a specific label using POST method
+      operationId: getSingleLabelPost
+      tags:
+        - Email Label
+      responses:
+        '200':
+          description: Request successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    description: Response status code (200 indicates success)
+                    example: 200
+                  message:
+                    type: string
+                    description: >-
+                      Prompt message for request result (success/failure
+                      description)
+                    example: request was successful
+                  result:
+                    type: boolean
+                    description: >-
+                      Whether the request was processed successfully (true =
+                      success, false = failure)
+                    example: true
+                  info:
+                    type: object
+                    description: Detailed information of the queried label
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            description: Unique ID of the label
+                            example: 12345
+                          name:
+                            type: string
+                            description: Label name
+                            example: Test Label
+                          color:
+                            type: string
+                            description: Label color (hex format)
+                            example: '#FF5733'
+                          gmtCreated:
+                            type: string
+                            format: date-time
+                            description: Label creation time
+                            example: '2025-10-05 09:20:00'
+                          gmtUpdated:
+                            type: string
+                            format: date-time
+                            description: Label last update time
+                            example: '2025-10-05 10:30:00'
+        '404':
+          description: Label not found (invalid label ID)
+      parameters:
+        - in: query
+          name: apiUser
+          schema:
+            type: string
+          required: true
+          description: >-
+            API_USER (authentication parameter, obtained from the SendCloud
+            console)
+          example: test_api_user
+        - in: query
+          name: apiKey
+          schema:
+            type: string
+          required: true
+          description: >-
+            API_KEY (authentication parameter, obtained from the SendCloud
+            console)
+          example: test_api_key
+        - in: query
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: >-
+            Unique ID of the target label (system-generated, obtained from batch
+            query)
+          example: 12345
+      x-codeSamples:
+        - lang: Python
+          label: Query Single Label (POST)
+          source: |
+            import requests
+
+            url = "https://api2.sendcloud.net/api/label/get"
+            params = {
+                "apiUser": "test_api_user",
+                "apiKey": "test_api_key",
+                "id": 12345  # Replace with actual label ID
+            }
+
+            response = requests.post(url, params=params)
+            print(response.json())
+  /api/label/update:
+    post:
+      summary: Update Label
+      description: Modify the name or color of an existing label
+      operationId: updateLabel
+      tags:
+        - Email Label
+      responses:
+        '200':
+          description: Label updated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    description: Response status code (200 indicates success)
+                    example: 200
+                  message:
+                    type: string
+                    description: >-
+                      Prompt message for request result (success/failure
+                      description)
+                    example: request was successful
+                  result:
+                    type: boolean
+                    description: >-
+                      Whether the request was processed successfully (true =
+                      success, false = failure)
+                    example: true
+                  info:
+                    type: object
+                    description: Update result statistics
+                    properties:
+                      count:
+                        type: integer
+                        description: >-
+                          Number of labels successfully updated (1 = success, 0
+                          = no update)
+                        example: 1
+        '400':
+          description: >-
+            Bad request (e.g., duplicate label name, invalid color format, no
+            parameters to update)
+        '404':
+          description: Label not found (invalid label ID)
+      parameters:
+        - in: query
+          name: apiUser
+          schema:
+            type: string
+          required: true
+          description: >-
+            API_USER (authentication parameter, obtained from the SendCloud
+            console)
+          example: test_api_user
+        - in: query
+          name: apiKey
+          schema:
+            type: string
+          required: true
+          description: >-
+            API_KEY (authentication parameter, obtained from the SendCloud
+            console)
+          example: test_api_key
+        - in: query
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: Unique ID of the label to update (cannot be modified)
+          example: 12345
+        - in: query
+          name: name
+          schema:
+            type: string
+          required: false
+          description: >-
+            New label name (optional, must be unique if provided; leave empty to
+            keep original)
+          example: Updated Test Label
+        - in: query
+          name: color
+          schema:
+            type: string
+          required: false
+          description: New label color (optional, hex format; leave empty to keep original)
+          example: '#3498DB'
+      x-codeSamples:
+        - lang: Python
+          label: Update Label (Name & Color)
+          source: |
+            import requests
+
+            url = "https://api2.sendcloud.net/api/label/update"
+            params = {
+                "apiUser": "test_api_user",
+                "apiKey": "test_api_key",
+                "id": 12345,  # Replace with actual label ID
+                "name": "2025 Marketing Campaigns",
+                "color": "#E74C3C"  # Red color
+            }
+
+            response = requests.post(url, params=params)
+            print(response.json())
+  /api/label/delete:
+    post:
+      summary: Delete Label
+      description: >-
+        Delete an existing label (emails tagged with this label will retain the
+        tag but the label will no longer be available for new emails)
+      operationId: deleteLabel
+      tags:
+        - Email Label
+      responses:
+        '200':
+          description: Label deleted successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    description: Response status code (200 indicates success)
+                    example: 200
+                  message:
+                    type: string
+                    description: >-
+                      Prompt message for request result (success/failure
+                      description)
+                    example: request was successful
+                  result:
+                    type: boolean
+                    description: >-
+                      Whether the request was processed successfully (true =
+                      success, false = failure)
+                    example: true
+                  info:
+                    type: object
+                    description: Deletion result statistics
+                    properties:
+                      count:
+                        type: integer
+                        description: >-
+                          Number of labels successfully deleted (1 = success, 0
+                          = no deletion)
+                        example: 1
+        '404':
+          description: Label not found (invalid label ID)
+      parameters:
+        - in: query
+          name: apiUser
+          schema:
+            type: string
+          required: true
+          description: >-
+            API_USER (authentication parameter, obtained from the SendCloud
+            console)
+          example: test_api_user
+        - in: query
+          name: apiKey
+          schema:
+            type: string
+          required: true
+          description: >-
+            API_KEY (authentication parameter, obtained from the SendCloud
+            console)
+          example: test_api_key
+        - in: query
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: Unique ID of the label to delete
+          example: 12345
+      x-codeSamples:
+        - lang: Python
+          label: Delete Label
+          source: |
+            import requests
+
+            url = "https://api2.sendcloud.net/api/label/delete"
+            params = {
+                "apiUser": "test_api_user",
+                "apiKey": "test_api_key",
+                "id": 12345  # Replace with actual label ID
+            }
+
+            response = requests.post(url, params=params)
+            print(response.json())
+components:
+  securitySchemes:
+    apiUser:
+      type: apiKey
+      in: query
+      name: apiUser
+      description: Authentication parameter (API_USER, obtained from the SendCloud console)
+    apiKey:
+      type: apiKey
+      in: query
+      name: apiKey
+      description: Authentication parameter (API_KEY, obtained from the SendCloud console)
+x-readme:
+  explorer-enabled: true
+  proxy-enabled: true

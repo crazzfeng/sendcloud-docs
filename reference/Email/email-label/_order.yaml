@@ -1,0 +1,7 @@
+- createlabel
+- batchquerylabelsget
+- batchquerylabelspost
+- getsinglelabelget
+- getsinglelabelpost
+- updatelabel
+- deletelabel
