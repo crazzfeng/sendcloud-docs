@@ -98,8 +98,8 @@ paths:
                   type: string
                   description: >-
                     Email headers in JSON format (e.g., {"header1": "value1",
-                    "header2": "value2"}) example: '{"header1": "value1",
-                    "header2": "value2"}'
+                    "header2": "value2"})
+                  example: '{"header1": "value1", "header2": "value2"}'
                 attachments:
                   type: object
                   description: >-
@@ -208,78 +208,96 @@ paths:
                 apiUser:
                   type: string
                   description: API_USER
+                  example: test_api_user
                 apiKey:
                   type: string
                   description: API_KEY
+                  example: test_api_key
                 from:
                   type: string
                   description: >-
                     Sender email address (e.g., support@ifaxin.com). After
                     configuring DMARC, SendCloud uses the current domain as the
                     suffix of "from"
+                  example: support@ifaxin.com
                 to:
                   type: string
                   description: >-
                     Address list (used when useAddressList=true). Required if
                     useAddressList is true
+                  example: group1@maillist.sendcloud.org;group2@maillist.sendcloud.org
                 xsmtpapi:
                   type: string
                   description: >-
                     SMTP extension. See X-SMTPAPI for details. Required if not
                     using to (address list)
+                  example: >-
+                    {"to": ["ben@ifaxin.com", "joe@ifaxin.com"], "sub":
+                    {"%name%": ["Ben", "Joe"], "%money%": [288, 497]}}
                 subject:
                   type: string
                   description: >-
                     Email subject. Defaults to template subject; required if
                     template subject is empty
+                  example: Monthly Bill Notification
                 templateInvokeName:
                   type: string
                   description: Calling name of the email template
+                  example: ifaxin_bill
                 contentSummary:
                   type: string
                   description: >-
                     Content summary. Replaces existing summary if present; added
                     if not
+                  example: Monthly consumption bill
                 fromName:
                   type: string
                   description: >-
                     Sender name (shown as "IFAXIN customer service
                     <support@ifaxin.com>")
+                  example: IFAXIN customer service
                 cc:
                   type: string
                   description: >-
                     CC addresses (separated by semicolons). Invalid if using
                     address list
+                  example: cc@ifaxin.com
                 bcc:
                   type: string
                   description: >-
                     BCC addresses (separated by semicolons). Invalid if using
                     address list
+                  example: bcc@ifaxin.com
                 replyTo:
                   type: string
                   description: >-
                     Default reply addresses (separated by semicolons, max 3).
                     Defaults to "from" if empty or null
+                  example: reply@ifaxin.com
                 labelName:
                   type: string
                   description: >-
                     Label for this send. Automatically created if not existing
                     in the account
+                  example: Bill Notifications
                 sendTags:
                   type: string
                   description: >-
                     Tags for the request (separated by ";", max 5 tags, each up
                     to 50 characters)
+                  example: bill;monthly;notification
                 headers:
                   type: string
                   description: >-
                     Email headers in JSON format (e.g., {"header1": "value1",
                     "header2": "value2"})
+                  example: '{"header1": "value1", "header2": "value2"}'
                 sendRequestId:
                   type: string
                   description: >-
                     Max 128 characters. Duplicate values within 1 hour are only
                     processed once
+                  example: req_template_123456
                 attachments:
                   type: object
                   description: >-
@@ -326,12 +344,15 @@ paths:
                   statusCode:
                     type: integer
                     description: Response status code
+                    example: 200
                   message:
                     type: string
                     description: Success or failure message
+                    example: request was successful
                   result:
                     type: boolean
                     description: Whether the request succeeded
+                    example: true
                   info:
                     type: object
                     properties:
@@ -340,6 +361,9 @@ paths:
                         items:
                           type: string
                         description: List of emailIds for successful sends
+                        example:
+                          - >-
+                            1447054895514_15555555_32350_1350.sc-inbound0$ben@ifaxin.com
                       maillistTaskId:
                         type: array
                         items:
@@ -347,6 +371,8 @@ paths:
                         description: >-
                           Address list task ID (returned when using address
                           list)
+                        example:
+                          - 267131
         '400':
           description: >-
             Bad request (e.g., missing required parameters, invalid template
@@ -375,54 +401,66 @@ paths:
                 apiUser:
                   type: string
                   description: API_USER
+                  example: test_api_user
                 apiKey:
                   type: string
                   description: API_KEY
+                  example: test_api_key
                 from:
                   type: string
                   description: >-
                     Sender email address (e.g., support@ifaxin.com). After
                     configuring DMARC, SendCloud uses the current domain as the
                     suffix of "from"
+                  example: support@ifaxin.com
                 to:
                   type: string
                   description: >-
                     Recipient email addresses (separated by semicolons, e.g.,
                     ben@ifaxin.com;joe@ifaxin.com)
+                  example: ben@ifaxin.com;joe@ifaxin.com
                 subject:
                   type: string
                   description: Email subject (cannot be empty)
+                  example: 'Meeting Invitation: Project Kickoff'
                 html:
                   type: string
                   description: >-
                     Email content in text/html format. Required if plain is
                     empty
+                  example: <h1>Project Kickoff Meeting</h1><p>Please attend on time</p>
                 fromName:
                   type: string
                   description: >-
                     Sender name (shown as "IFAXIN customer
                     <support@ifaxin.com>")
+                  example: Project Manager
                 cc:
                   type: string
                   description: CC addresses (separated by semicolons)
+                  example: cc@ifaxin.com
                 bcc:
                   type: string
                   description: BCC addresses (separated by semicolons)
+                  example: bcc@ifaxin.com
                 replyTo:
                   type: string
                   description: >-
                     Default reply addresses (separated by semicolons, max 3).
                     Defaults to "from" if empty or null
+                  example: reply@ifaxin.com
                 labelName:
                   type: string
                   description: >-
                     Label for this send. Automatically created if not existing
                     in the account
+                  example: Meeting Invitations
                 headers:
                   type: string
                   description: >-
                     Email headers in JSON format (e.g., {"header1": "value1",
                     "header2": "value2"})
+                  example: '{"header1": "value1", "header2": "value2"}'
                 attachments:
                   type: object
                   description: >-
@@ -431,16 +469,19 @@ paths:
                 xsmtpapi:
                   type: string
                   description: SMTP extension. See X-SMTPAPI for details
+                  example: '{"to": ["ben@ifaxin.com", "joe@ifaxin.com"]}'
                 plain:
                   type: string
                   description: >-
                     Email content in text/plain format. Required if html is
                     empty
+                  example: Project Kickoff Meeting. Please attend on time.
                 sendRequestId:
                   type: string
                   description: >-
                     Max 128 characters. Duplicate values within 1 hour are only
                     processed once
+                  example: req_calendar_123456
                 respEmailId:
                   type: string
                   enum:
@@ -454,36 +495,46 @@ paths:
                   type: string
                   format: date-time
                   description: Meeting start time (formatted as yyyy-MM-dd HH:mm:ss)
+                  example: '2025-10-01 10:00:00'
                 endTime:
                   type: string
                   format: date-time
                   description: Meeting end time (formatted as yyyy-MM-dd HH:mm:ss)
+                  example: '2025-10-01 11:30:00'
                 title:
                   type: string
                   description: Meeting title
+                  example: Project Kickoff Meeting
                 organizerName:
                   type: string
                   description: Organizer name
+                  example: John Doe
                 organizerEmail:
                   type: string
                   description: Organizer email address
+                  example: organizer@ifaxin.com
                 location:
                   type: string
                   description: Meeting location
+                  example: Conference Room A, 5th Floor
                 description:
                   type: string
                   description: Meeting description
+                  example: Discuss project timeline and responsibilities
                 participatorNames:
                   type: string
                   description: Participant names (separated by semicolons)
+                  example: Ben;Joe;Alice
                 participatorEmails:
                   type: string
                   description: Participant email addresses (separated by semicolons)
+                  example: ben@ifaxin.com;joe@ifaxin.com;alice@ifaxin.com
                 uid:
                   type: string
                   description: >-
                     Required for cancelling/updating calendar. Returned in the
                     first send request
+                  example: cal_123456789
                 isCancel:
                   type: string
                   enum:
@@ -523,12 +574,15 @@ paths:
                   statusCode:
                     type: integer
                     description: Response status code
+                    example: 200
                   message:
                     type: string
                     description: Success or failure message
+                    example: request was successful
                   result:
                     type: boolean
                     description: Whether the request succeeded
+                    example: true
                   info:
                     type: object
                     properties:
@@ -537,9 +591,13 @@ paths:
                         items:
                           type: string
                         description: List of emailIds for successful sends
+                        example:
+                          - >-
+                            1447054895514_15555555_32350_1350.sc-inbound0$ben@ifaxin.com
                       uid:
                         type: string
                         description: Calendar UID (for future cancellation/update)
+                        example: cal_123456789
         '400':
           description: Bad request (e.g., missing required parameters, invalid time format)
         '490':
@@ -560,18 +618,21 @@ paths:
             type: string
           required: true
           description: API_USER
+          example: test_api_user
         - name: apiKey
           in: query
           schema:
             type: string
           required: true
           description: API_KEY
+          example: test_api_key
         - name: maillistTaskId
           in: query
           schema:
             type: integer
           required: true
           description: Returned maillistTaskId from sendtemplate request
+          example: 267131
       responses:
         '200':
           description: Request successful
@@ -583,12 +644,15 @@ paths:
                   statusCode:
                     type: integer
                     description: Response status code
+                    example: 200
                   message:
                     type: string
                     description: Success or failure message
+                    example: request was successful
                   result:
                     type: boolean
                     description: Whether the request succeeded
+                    example: true
                   info:
                     type: object
                     properties:
@@ -598,25 +662,32 @@ paths:
                           maillistTaskId:
                             type: integer
                             description: Address list task ID
+                            example: 267131
                           apiUser:
                             type: string
                             description: Called apiUser
+                            example: test_api_user
                           addressList:
                             type: string
                             description: Alias of the called address list
+                            example: group1@maillist.sendcloud.org
                           memberCount:
                             type: integer
                             description: Number of addresses in the list
+                            example: 300
                           gmtCreated:
                             type: string
                             format: date-time
                             description: Task creation time
+                            example: '2015-11-26 14:38:09'
                           gmtUpdated:
                             type: string
                             format: date-time
                             description: Task modification time
+                            example: '2015-11-26 14:38:23'
                           status:
                             type: string
+                            example: Completion of the request
                             description: >-
                               Address list request status (e.g., Completion of
                               the request)
@@ -637,12 +708,15 @@ paths:
                 apiUser:
                   type: string
                   description: API_USER
+                  example: test_api_user
                 apiKey:
                   type: string
                   description: API_KEY
+                  example: test_api_key
                 maillistTaskId:
                   type: integer
                   description: Returned maillistTaskId from sendtemplate request
+                  example: 267131
               required:
                 - apiUser
                 - apiKey
@@ -658,12 +732,15 @@ paths:
                   statusCode:
                     type: integer
                     description: Response status code
+                    example: 200
                   message:
                     type: string
                     description: Success or failure message
+                    example: request was successful
                   result:
                     type: boolean
                     description: Whether the request succeeded
+                    example: true
                   info:
                     type: object
                     properties:
@@ -673,28 +750,35 @@ paths:
                           maillistTaskId:
                             type: integer
                             description: Address list task ID
+                            example: 267131
                           apiUser:
                             type: string
                             description: Called apiUser
+                            example: test_api_user
                           addressList:
                             type: string
                             description: Alias of the called address list
+                            example: group1@maillist.sendcloud.org
                           memberCount:
                             type: integer
                             description: Number of addresses in the list
+                            example: 300
                           gmtCreated:
                             type: string
                             format: date-time
                             description: Task creation time
+                            example: '2015-11-26 14:38:09'
                           gmtUpdated:
                             type: string
                             format: date-time
                             description: Task modification time
+                            example: '2015-11-26 14:38:23'
                           status:
                             type: string
                             description: >-
                               Address list request status (e.g., Completion of
                               the request)
+                            example: Completion of the request
 components:
   securitySchemes: {}
 x-readme:
