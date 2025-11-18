@@ -1,29 +1,69 @@
-openapi: 3.0.0
+openapi: 3.0.3
 info:
+  title: SendCloud Route API
+  description: >
+    SendCloud Route Management API provides comprehensive route configuration
+    and management functionality.
+
+
+    This API allows you to:
+
+    - Query available email sending routes
+
+    - Get detailed configuration of specific routes
+
+    - Add custom/dedicated/shared routes
+
+    - Update existing route configurations
+
+    - Delete custom routes
+
+
+    Route Types:
+
+    - **default**: System-built routes, cannot be modified
+
+    - **custom**: User-defined general routes
+
+    - **dedicated**: Dedicated IP routes with exclusive IP resources
+
+    - **shared**: Shared IP routes shared with other accounts
+
+
+    Authentication:
+
+    All API endpoints require authentication using apiUser and apiKey
+    parameters.
   version: 1.0.0
-  title: Email
+  contact:
+    name: SendCloud API Support
+    url: https://www.sendcloud.net
+    email: support@sendcloud.net
+  license:
+    name: SendCloud API License
+    url: https://www.sendcloud.net/license
 servers:
-  - url: https://api2.sendcloud.net
+  - url: https://api.aurorasendcloud.com
+    description: Production API server
+  - url: https://api.sendcloud.net
+    description: Alternative production server
 tags:
   - name: Route
-    description: >-
-      Interfaces for managing email sending routes (query route list, get route
-      details, add/customize/update/delete routes, etc.). Routes determine the
-      transmission path of emails, supporting multi-dimensional configuration
-      such as IP pools, encryption types, and domain binding to optimize
-      delivery quality and compliance.
+    description: Email sending route management operations
 paths:
   /api/route/list:
     get:
-      summary: Query Route List
+      summary: Query Route List (GET)
       description: >-
-        Get the list of all configured email sending routes under the account.
-        Supports filtering by route type, status, sender domain, and pagination.
-        The maximum number of results per page is 500, and time parameters use
-        Beijing time (GMT+8).
-      operationId: queryRouteListGet
+        Get the list of available email sending routes. Supports filtering by
+        route type, status, and sender domain. Returns basic route information
+        including ID, name, type, status, and priority.
+      operationId: getRouteListGet
       tags:
         - Route
+      security:
+        - apiUser: []
+        - apiKey: []
       responses:
         '200':
           description: Request successful
@@ -60,16 +100,11 @@ paths:
                           properties:
                             routeId:
                               type: integer
-                              description: >-
-                                Unique route ID (primary key for route
-                                operations; used for details query, update,
-                                delete)
+                              description: Unique route ID
                               example: 1001
                             routeName:
                               type: string
-                              description: >-
-                                Customizable route name (max 50 characters;
-                                unique under the same account)
+                              description: Customizable route name
                               example: International Standard Route
                             routeType:
                               type: string
@@ -79,12 +114,9 @@ paths:
                                 - dedicated
                                 - shared
                               description: >-
-                                Route type (default = system-built default
-                                route, cannot be modified/deleted; custom =
-                                user-defined general route; dedicated =
-                                dedicated IP route (exclusive IP resources);
-                                shared = shared IP route (shared with other
-                                accounts))
+                                Route type (default/system-built,
+                                custom/user-defined, dedicated/dedicated IP,
+                                shared/shared IP)
                               example: custom
                             status:
                               type: string
@@ -92,99 +124,37 @@ paths:
                                 - enabled
                                 - disabled
                               description: >-
-                                Route status (enabled = available for email
-                                sending; disabled = temporarily unavailable,
-                                emails will not use this route)
+                                Route status (enabled/available,
+                                disabled/unavailable)
                               example: enabled
                             senderDomain:
                               type: string
                               description: >-
-                                Bound sender domain (supports multiple domains
-                                separated by semicolons; only verified domains
-                                can be bound; emails sent from these domains can
-                                use this route)
+                                Bound sender domain (multiple separated by
+                                semicolons)
                               example: example.com;sub.example.com
                             priority:
                               type: integer
-                              description: >-
-                                Route priority (range 1-10; smaller number =
-                                higher priority; when multiple routes are
-                                available, the system selects the highest
-                                priority enabled route)
+                              description: Route priority (1-10, smaller = higher priority)
                               example: 3
                             createTime:
                               type: string
                               format: date-time
-                              description: >-
-                                Route creation time (format: yyyy-MM-dd
-                                HH:mm:ss, Beijing time)
+                              description: Route creation time (Beijing time)
                               example: '2025-09-15 10:30:00'
-                            updateTime:
-                              type: string
-                              format: date-time
-                              description: >-
-                                Route last update time (format: yyyy-MM-dd
-                                HH:mm:ss, Beijing time; updated when route
-                                configuration changes)
-                              example: '2025-10-20 14:15:00'
-                            remark:
-                              type: string
-                              description: >-
-                                Custom route remark (max 200 characters; used
-                                for business identification, e.g., "used for
-                                international customer emails")
-                              example: Used for international customer emails
                       total:
                         type: integer
-                        description: >-
-                          Total number of routes matching the query conditions
-                          (across all pages)
+                        description: Total number of matching routes
                         example: 8
                       count:
                         type: integer
-                        description: >-
-                          Number of returned results in the current page
-                          (consistent with pageSize parameter)
+                        description: Number of results in the current page
                         example: 8
-                      page:
-                        type: integer
-                        description: >-
-                          Current page number (starts from 1; defaults to 1 if
-                          not specified)
-                        example: 1
-                      pageSize:
-                        type: integer
-                        description: >-
-                          Number of results displayed per page (defaults to 100,
-                          maximum 500)
-                        example: 100
         '401':
-          description: >-
-            Authentication failed (invalid apiUser or apiKey; verify credentials
-            in SendCloud console -> API Settings)
+          description: Authentication failed (invalid apiUser or apiKey)
         '403':
-          description: >-
-            Permission denied (no route management permission; contact account
-            administrator to assign permissions)
+          description: Permission denied (no route management permission)
       parameters:
-        - in: query
-          name: apiUser
-          schema:
-            type: string
-          required: true
-          description: >-
-            API_USER (authentication parameter; obtained from SendCloud console
-            -> API Settings)
-          example: test_api_user
-        - in: query
-          name: apiKey
-          schema:
-            type: string
-          required: true
-          description: >-
-            API_KEY (authentication parameter; obtained from SendCloud console
-            -> API Settings; keep confidential to avoid leakage)
-          example: test_api_key
         - in: query
           name: routeType
           schema:
@@ -196,13 +166,10 @@ paths:
               - dedicated
               - shared
             default: all
-          required: false
           description: >-
-            Filter by route type (all = query all types; default = only system
-            default routes; custom = only user-defined routes; dedicated = only
-            dedicated IP routes; shared = only shared IP routes; defaults to
-            "all")
-          example: custom
+            Filter by route type (all = default; default = system routes; custom
+            = user-defined; dedicated = dedicated IP; shared = shared IP)
+          example: dedicated
         - in: query
           name: status
           schema:
@@ -212,30 +179,22 @@ paths:
               - enabled
               - disabled
             default: all
-          required: false
           description: >-
-            Filter by route status (all = query all statuses; enabled = only
-            available routes; disabled = only unavailable routes; defaults to
-            "all")
+            Filter by route status (all = default; enabled = available; disabled
+            = unavailable)
           example: enabled
         - in: query
           name: senderDomain
           schema:
             type: string
-          required: false
-          description: >-
-            Filter by bound sender domain (exact match; only routes bound to the
-            specified domain will be returned; supports single domain only)
+          description: Filter by bound sender domain (exact match; single domain only)
           example: example.com
         - in: query
           name: page
           schema:
             type: integer
             default: 1
-          required: false
-          description: >-
-            Page number (pagination parameter; starts from 1, defaults to 1 if
-            not provided)
+          description: Page number (pagination parameter; starts from 1, defaults to 1)
           example: 1
         - in: query
           name: pageSize
@@ -243,23 +202,19 @@ paths:
             type: integer
             default: 100
             maximum: 500
-          required: false
-          description: >-
-            Number of results per page (pagination parameter; defaults to 100,
-            maximum 500; exceeding will return 400 error)
+          description: Number of results per page (max 500, default 100)
           example: 50
       x-codeSamples:
         - lang: Python
-          label: Query Enabled Custom Routes
+          label: Query Route List (GET)
           source: |
             import requests
 
-            url = "https://api2.sendcloud.net/api/route/list"
+            url = "https://api.aurorasendcloud.com/api/route/list"
             params = {
-                "apiUser": "test_api_user",
-                "apiKey": "test_api_key",
-                "routeType": "custom",
+                "routeType": "dedicated",
                 "status": "enabled",
+                "page": 1,
                 "pageSize": 50
             }
 
@@ -268,12 +223,15 @@ paths:
     post:
       summary: Query Route List (POST)
       description: >-
-        Query email routes using POST method. Suitable for scenarios where
-        filter parameters are complex or long. Supports the same filtering
-        conditions and constraints as the GET method.
-      operationId: queryRouteListPost
+        Get the list of available email sending routes. Supports filtering by
+        route type, status, and sender domain. Returns basic route information
+        including ID, name, type, status, and priority.
+      operationId: getRouteListPost
       tags:
         - Route
+      security:
+        - apiUser: []
+        - apiKey: []
       responses:
         '200':
           description: Request successful
@@ -371,18 +329,6 @@ paths:
             schema:
               type: object
               properties:
-                apiUser:
-                  type: string
-                  description: >-
-                    API_USER (authentication parameter; obtained from SendCloud
-                    console -> API Settings)
-                  example: test_api_user
-                apiKey:
-                  type: string
-                  description: >-
-                    API_KEY (authentication parameter; obtained from SendCloud
-                    console -> API Settings; keep confidential)
-                  example: test_api_key
                 routeType:
                   type: string
                   enum:
@@ -427,19 +373,14 @@ paths:
                   maximum: 500
                   description: Number of results per page (max 500, default 100)
                   example: 50
-              required:
-                - apiUser
-                - apiKey
       x-codeSamples:
         - lang: Python
           label: Query Route List (POST)
           source: |
             import requests
 
-            url = "https://api2.sendcloud.net/api/route/list"
+            url = "https://api.aurorasendcloud.com/api/route/list"
             data = {
-                "apiUser": "test_api_user",
-                "apiKey": "test_api_key",
                 "routeType": "dedicated",
                 "status": "enabled"
             }
@@ -456,6 +397,9 @@ paths:
       operationId: getRouteDetailsGet
       tags:
         - Route
+      security:
+        - apiUser: []
+        - apiKey: []
       responses:
         '200':
           description: Request successful
@@ -591,24 +535,6 @@ paths:
           description: Permission denied (no permission to view the route)
       parameters:
         - in: query
-          name: apiUser
-          schema:
-            type: string
-          required: true
-          description: >-
-            API_USER (authentication parameter; obtained from SendCloud console
-            -> API Settings)
-          example: test_api_user
-        - in: query
-          name: apiKey
-          schema:
-            type: string
-          required: true
-          description: >-
-            API_KEY (authentication parameter; obtained from SendCloud console
-            -> API Settings; keep confidential)
-          example: test_api_key
-        - in: query
           name: routeId
           schema:
             type: integer
@@ -623,10 +549,8 @@ paths:
           source: |
             import requests
 
-            url = "https://api2.sendcloud.net/api/route/get"
+            url = "https://api.aurorasendcloud.com/api/route/get"
             params = {
-                "apiUser": "test_api_user",
-                "apiKey": "test_api_key",
                 "routeId": 1001
             }
 
@@ -643,6 +567,9 @@ paths:
       operationId: addCustomRoute
       tags:
         - Route
+      security:
+        - apiUser: []
+        - apiKey: []
       responses:
         '200':
           description: Add successful
@@ -694,18 +621,6 @@ paths:
             schema:
               type: object
               properties:
-                apiUser:
-                  type: string
-                  description: >-
-                    API_USER (authentication parameter; obtained from SendCloud
-                    console -> API Settings)
-                  example: test_api_user
-                apiKey:
-                  type: string
-                  description: >-
-                    API_KEY (authentication parameter; obtained from SendCloud
-                    console -> API Settings; keep confidential)
-                  example: test_api_key
                 routeName:
                   type: string
                   description: >-
@@ -779,8 +694,6 @@ paths:
                     business scenario description)
                   example: Dedicated route for European customers
               required:
-                - apiUser
-                - apiKey
                 - routeName
                 - routeType
                 - senderDomain
@@ -791,10 +704,8 @@ paths:
           source: |
             import requests
 
-            url = "https://api2.sendcloud.net/api/route/add"
+            url = "https://api.aurorasendcloud.com/api/route/add"
             data = {
-                "apiUser": "test_api_user",
-                "apiKey": "test_api_key",
                 "routeName": "Europe Dedicated Route",
                 "routeType": "dedicated",
                 "senderDomain": "europe.example.com",
@@ -819,6 +730,9 @@ paths:
       operationId: updateRouteConfig
       tags:
         - Route
+      security:
+        - apiUser: []
+        - apiKey: []
       responses:
         '200':
           description: Update successful
@@ -860,18 +774,6 @@ paths:
             schema:
               type: object
               properties:
-                apiUser:
-                  type: string
-                  description: >-
-                    API_USER (authentication parameter; obtained from SendCloud
-                    console -> API Settings)
-                  example: test_api_user
-                apiKey:
-                  type: string
-                  description: >-
-                    API_KEY (authentication parameter; obtained from SendCloud
-                    console -> API Settings; keep confidential)
-                  example: test_api_key
                 routeId:
                   type: integer
                   description: >-
@@ -940,8 +842,6 @@ paths:
                     original remark; empty string to clear the remark)
                   example: Premium dedicated route for European enterprise customers
               required:
-                - apiUser
-                - apiKey
                 - routeId
       x-codeSamples:
         - lang: Python
@@ -949,10 +849,8 @@ paths:
           source: |
             import requests
 
-            url = "https://api2.sendcloud.net/api/route/update"
+            url = "https://api.aurorasendcloud.com/api/route/update"
             data = {
-                "apiUser": "test_api_user",
-                "apiKey": "test_api_key",
                 "routeId": 1008,
                 "priority": 1,
                 "status": "enabled",
@@ -971,6 +869,9 @@ paths:
       operationId: deleteCustomRoute
       tags:
         - Route
+      security:
+        - apiUser: []
+        - apiKey: []
       responses:
         '200':
           description: Delete successful
@@ -1010,18 +911,6 @@ paths:
             schema:
               type: object
               properties:
-                apiUser:
-                  type: string
-                  description: >-
-                    API_USER (authentication parameter; obtained from SendCloud
-                    console -> API Settings)
-                  example: test_api_user
-                apiKey:
-                  type: string
-                  description: >-
-                    API_KEY (authentication parameter; obtained from SendCloud
-                    console -> API Settings; keep confidential)
-                  example: test_api_key
                 routeId:
                   type: integer
                   description: >-
@@ -1029,8 +918,6 @@ paths:
                     query; identifies the target route)
                   example: 1008
               required:
-                - apiUser
-                - apiKey
                 - routeId
       x-codeSamples:
         - lang: Python
@@ -1038,17 +925,25 @@ paths:
           source: |
             import requests
 
-            url = "https://api2.sendcloud.net/api/route/delete"
+            url = "https://api.aurorasendcloud.com/api/route/delete"
             data = {
-                "apiUser": "test_api_user",
-                "apiKey": "test_api_key",
                 "routeId": 1008
             }
 
             response = requests.post(url, data=data)
             print(response.json())
 components:
-  securitySchemes: {}
+  securitySchemes:
+    apiUser:
+      type: apiKey
+      in: query
+      name: apiUser
+      description: API user name for authentication
+    apiKey:
+      type: apiKey
+      in: query
+      name: apiKey
+      description: API key for authentication
 x-readme:
   explorer-enabled: true
   proxy-enabled: true
