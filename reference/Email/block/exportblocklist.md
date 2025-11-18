@@ -1,10 +1,10 @@
 ---
 title: Export Block List
 excerpt: >-
-  Export blocked address data within a specified time range to a CSV file. The
-  maximum export time range is 30 days, and the generated CSV file is valid for
-  24 hours (after which the download URL expires). The CSV includes fields:
-  email, blockTime, blockType, reason, operator.
+  Export block list data to CSV file. Supports filtering by time range and block
+  type. The export is processed asynchronously. The maximum time range is 30
+  days. Duplicate export tasks with the same conditions within 5 minutes will be
+  rejected.
 api:
   file: block.yaml
   operationId: exportBlockList

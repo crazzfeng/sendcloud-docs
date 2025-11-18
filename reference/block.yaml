@@ -3,18 +3,16 @@ info:
   version: 1.0.0
   title: Email
 servers:
-  - url: https://api2.sendcloud.net
+  - url: https://api.aurorasendcloud.com
 tags:
-  - name: Block
+  - name: Block Management
     description: >-
       Interfaces for querying block lists, adding blocked addresses, and
-      removing blocked addresses. Blocked addresses will be prohibited from
-      receiving emails sent via SendCloud to comply with anti-spam regulations
-      and protect sending reputation.
+      removing blocked addresses
 paths:
   /api/block/list:
     get:
-      summary: Query Block List
+      summary: Query Block List (GET)
       description: >-
         Get list of blocked email addresses within a specified time range.
         Supports filtering by block type, email address, and time range. The
@@ -22,7 +20,10 @@ paths:
         per page is 500. Time parameters use Beijing time (GMT+8).
       operationId: queryBlockListGet
       tags:
-        - Block
+        - Block Management
+      security:
+        - apiUser: []
+        - apiKey: []
       responses:
         '200':
           description: Request successful
@@ -127,26 +128,8 @@ paths:
         '401':
           description: >-
             Authentication failed (invalid apiUser or apiKey; please verify
-            credentials in the SendCloud console -> API Settings)
+            credentials in the SendCloud console -> Email API -> API_USER)
       parameters:
-        - in: query
-          name: apiUser
-          schema:
-            type: string
-          required: true
-          description: >-
-            API_USER (authentication parameter; obtained from the SendCloud
-            console -> API Settings)
-          example: test_api_user
-        - in: query
-          name: apiKey
-          schema:
-            type: string
-          required: true
-          description: >-
-            API_KEY (authentication parameter; obtained from the SendCloud
-            console -> API Settings; keep confidential to avoid leakage)
-          example: test_api_key
         - in: query
           name: startTime
           schema:
@@ -221,7 +204,7 @@ paths:
           source: |
             import requests
 
-            url = "https://api2.sendcloud.net/api/block/list"
+            url = "https://api.aurorasendcloud.com/api/block/list"
             params = {
                 "apiUser": "test_api_user",
                 "apiKey": "test_api_key",
@@ -241,7 +224,10 @@ paths:
         constraints as the GET method.
       operationId: queryBlockListPost
       tags:
-        - Block
+        - Block Management
+      security:
+        - apiUser: []
+        - apiKey: []
       responses:
         '200':
           description: Request successful
@@ -278,14 +264,16 @@ paths:
                           properties:
                             email:
                               type: string
-                              description: Blocked email address (standard RFC 5322 format)
+                              description: >-
+                                Blocked email address (standard RFC 5322 format;
+                                exact match for filtering)
                               example: blocked@example.com
                             blockTime:
                               type: string
                               format: date-time
                               description: >-
                                 Block time (format: yyyy-MM-dd HH:mm:ss, Beijing
-                                time)
+                                time; accurate to the second)
                               example: '2025-10-18 10:20:30'
                             blockType:
                               type: string
@@ -295,46 +283,56 @@ paths:
                                 - bounce
                                 - system
                               description: >-
-                                Block type (manual = API/console added;
-                                spam_reported = spam report; bounce = repeated
-                                bounce; system = system automatic)
+                                Block type (manual = added via API/console;
+                                spam_reported = blocked due to recipient's spam
+                                report; bounce = blocked due to repeated email
+                                bounces; system = automatically blocked by the
+                                system for violation of sending rules)
                               example: spam_reported
                             reason:
                               type: string
                               description: >-
-                                Block reason (detailed explanation of the block
-                                cause)
+                                Block reason (detailed explanation of why the
+                                address was blocked; empty if not specified)
                               example: Reported as spam by recipient
                             operator:
                               type: string
                               description: >-
                                 Operator (apiUser for manual block; system for
-                                automatic block)
+                                automatic block by the system)
                               example: system
                       total:
                         type: integer
                         description: >-
                           Total number of blocked addresses matching the query
-                          conditions
+                          conditions (across all pages)
                         example: 36
                       count:
                         type: integer
-                        description: Number of returned results in the current page
+                        description: >-
+                          Number of returned results in the current page
+                          (consistent with pageSize parameter)
                         example: 20
                       page:
                         type: integer
-                        description: Current page number (starts from 1)
+                        description: >-
+                          Current page number (starts from 1; defaults to 1 if
+                          not specified)
                         example: 1
                       pageSize:
                         type: integer
-                        description: Number of results per page (max 500)
+                        description: >-
+                          Number of results displayed per page (defaults to 100,
+                          maximum 500)
                         example: 20
         '400':
           description: >-
-            Bad request (e.g., invalid time range, pageSize exceeding 500,
-            missing required parameters)
+            Bad request (e.g., time range exceeds 90 days, invalid block type,
+            pageSize > 500, endTime earlier than startTime)
         '401':
-          description: Authentication failed (invalid apiUser or apiKey)
+          description: >-
+            Authentication failed (invalid apiUser or apiKey; please verify
+            credentials in the SendCloud console -> Email API -> API_USER)
       requestBody:
         required: true
         content:
@@ -342,31 +340,21 @@ paths:
             schema:
               type: object
               properties:
-                apiUser:
-                  type: string
-                  description: >-
-                    API_USER (authentication parameter; obtained from the
-                    SendCloud console -> API Settings)
-                  example: test_api_user
-                apiKey:
-                  type: string
-                  description: >-
-                    API_KEY (authentication parameter; obtained from the
-                    SendCloud console -> API Settings; keep confidential)
-                  example: test_api_key
                 startTime:
                   type: string
                   format: date-time
                   description: >-
                     Query start time (format: yyyy-MM-dd HH:mm:ss, Beijing time;
-                    max 90 days range; no limit if not specified)
+                    no limit if not specified; cannot be earlier than 90 days
+                    before the current time)
                   example: '2025-10-01 00:00:00'
                 endTime:
                   type: string
                   format: date-time
                   description: >-
                     Query end time (format: yyyy-MM-dd HH:mm:ss, Beijing time;
-                    must be after startTime if specified)
+                    must be after startTime if specified; cannot be later than
+                    the current time)
                   example: '2025-10-31 23:59:59'
                 email:
                   type: string
@@ -384,16 +372,17 @@ paths:
                     - system
                   default: all
                   description: >-
-                    Filter by block type (all = default, manual = manually
-                    added, spam_reported = spam report, bounce = repeated
-                    bounce, system = system automatic)
-                  example: manual
+                    Filter by block type (all = query all block types, manual =
+                    manually added blocks, spam_reported = spam report blocks,
+                    bounce = bounce blocks, system = system automatic blocks;
+                    defaults to "all")
+                  example: spam_reported
                 page:
                   type: integer
                   default: 1
                   description: >-
                     Page number (pagination parameter; starts from 1, defaults
-                    to 1)
+                    to 1 if not provided)
                   example: 1
                 pageSize:
                   type: integer
@@ -401,18 +390,15 @@ paths:
                   maximum: 500
                   description: >-
                     Number of results per page (pagination parameter; defaults
-                    to 100, maximum 500; exceeding will return error)
+                    to 100, maximum 500; exceeding will return a 400 error)
                   example: 50
-              required:
-                - apiUser
-                - apiKey
       x-codeSamples:
         - lang: Python
-          label: Query Block List (POST)
+          label: Query Block List (POST Method)
           source: |
             import requests
 
-            url = "https://api2.sendcloud.net/api/block/list"
+            url = "https://api.aurorasendcloud.com/api/block/list"
             data = {
                 "apiUser": "test_api_user",
                 "apiKey": "test_api_key",
@@ -424,18 +410,21 @@ paths:
             print(response.json())
   /api/block/add:
     post:
-      summary: Add Blocked Address
+      summary: Add Block Address
       description: >-
-        Manually add one or more email addresses to the block list. After
-        addition, the system will prohibit sending emails to these addresses.
-        Supports batch addition (up to 100 addresses per request, separated by
-        semicolons). Addresses already in the block list will be ignored.
-      operationId: addBlockedAddress
+        Add email addresses to the block list. Once added, these addresses will
+        be blocked from receiving emails sent via SendCloud. Supports adding
+        multiple addresses at once (maximum 1000 per request). This operation is
+        irreversible for manual blocks.
+      operationId: addBlockAddress
       tags:
-        - Block
+        - Block Management
+      security:
+        - apiUser: []
+        - apiKey: []
       responses:
         '200':
-          description: Add successful
+          description: Request successful
           content:
             application/json:
               schema:
@@ -443,37 +432,41 @@ paths:
                 properties:
                   statusCode:
                     type: integer
-                    description: >-
-                      Response status code (200 indicates add operation
-                      successful)
+                    description: Response status code (200 indicates success)
                     example: 200
                   message:
                     type: string
                     description: >-
-                      Add result message (e.g., "add block successful" or
-                      "partial addresses already blocked")
-                    example: add block successful
+                      Success or failure message (detailed error information for
+                      failure scenarios)
+                    example: request was successful
                   result:
                     type: boolean
                     description: >-
-                      Whether the overall add operation succeeded (true =
-                      all/partial addresses added; false = no addresses added)
+                      Whether the request succeeded (true = success, false =
+                      failure)
                     example: true
                   info:
                     type: object
                     properties:
                       count:
                         type: integer
-                        description: >-
-                          Number of successfully added blocked addresses
-                          (excludes duplicate or invalid addresses)
-                        example: 2
+                        description: Number of successfully added blocked addresses
+                        example: 3
+                      failedList:
+                        type: array
+                        description: List of failed addresses (empty if all succeeded)
+                        items:
+                          type: string
+                        example: []
         '400':
           description: >-
-            Bad request (e.g., invalid email format, exceeding 100 addresses per
-            request, empty email parameter, invalid reason length)
+            Bad request (e.g., invalid email format, duplicate addresses, more
+            than 1000 addresses)
         '401':
-          description: Authentication failed (invalid apiUser or apiKey)
+          description: >-
+            Authentication failed (invalid apiUser or apiKey; please verify
+            credentials in the SendCloud console -> Email API -> API_USER)
       requestBody:
         required: true
         content:
@@ -481,65 +474,52 @@ paths:
             schema:
               type: object
               properties:
-                apiUser:
+                emailAddress:
                   type: string
                   description: >-
-                    API_USER (authentication parameter; obtained from the
-                    SendCloud console -> API Settings)
-                  example: test_api_user
-                apiKey:
-                  type: string
-                  description: >-
-                    API_KEY (authentication parameter; obtained from the
-                    SendCloud console -> API Settings; keep confidential)
-                  example: test_api_key
-                email:
-                  type: string
-                  description: >-
-                    Email address(es) to block (supports multiple addresses
-                    separated by semicolons; max 100 addresses per request; must
-                    be valid RFC 5322 format)
-                  example: user1@example.com;user2@example.com
-                reason:
-                  type: string
-                  description: >-
-                    Block reason (custom description of why the address is
-                    blocked; max 200 characters; optional)
-                  example: Violates sending policy
+                    Email addresses to block (multiple addresses separated by
+                    semicolons; maximum 1000 addresses per request; must be
+                    valid RFC 5322 format)
+                  example: >-
+                    blocked1@example.com;blocked2@example.com;blocked3@example.com
               required:
-                - apiUser
-                - apiKey
-                - email
+                - emailAddress
       x-codeSamples:
         - lang: Python
-          label: Add Blocked Addresses
+          label: Add Multiple Block Addresses
           source: |
             import requests
 
-            url = "https://api2.sendcloud.net/api/block/add"
+            url = "https://api.aurorasendcloud.com/api/block/add"
             data = {
                 "apiUser": "test_api_user",
                 "apiKey": "test_api_key",
-                "email": "user1@example.com;user2@example.com",
-                "reason": "Violates sending policy"
+                "emailAddress": "spam1@example.com;spam2@example.com;spam3@example.com"
             }
 
             response = requests.post(url, data=data)
-            print(response.json())
+            result = response.json()
+            if result["result"]:
+                print(f"Successfully blocked {result['info']['count']} addresses")
+            else:
+                print(f"Failed to block addresses: {result['message']}")
   /api/block/remove:
     post:
-      summary: Remove Blocked Address
+      summary: Remove Block Address
       description: >-
-        Remove one or more email addresses from the block list. After removal,
-        emails can be sent to these addresses again. Supports batch removal (up
-        to 100 addresses per request, separated by semicolons). Addresses not in
-        the block list will be ignored.
-      operationId: removeBlockedAddress
+        Remove email addresses from the block list. Once removed, these
+        addresses will be able to receive emails sent via SendCloud again.
+        Supports removing multiple addresses at once (maximum 1000 per request).
+        Only addresses that were manually blocked can be removed.
+      operationId: removeBlockAddress
       tags:
-        - Block
+        - Block Management
+      security:
+        - apiUser: []
+        - apiKey: []
       responses:
         '200':
-          description: Remove successful
+          description: Request successful
           content:
             application/json:
               schema:
@@ -547,38 +527,41 @@ paths:
                 properties:
                   statusCode:
                     type: integer
-                    description: >-
-                      Response status code (200 indicates remove operation
-                      successful)
+                    description: Response status code (200 indicates success)
                     example: 200
                   message:
                     type: string
                     description: >-
-                      Remove result message (e.g., "remove block successful" or
-                      "partial addresses not found")
-                    example: remove block successful
+                      Success or failure message (detailed error information for
+                      failure scenarios)
+                    example: request was successful
                   result:
                     type: boolean
                     description: >-
-                      Whether the overall remove operation succeeded (true =
-                      all/partial addresses removed; false = no addresses
-                      removed)
+                      Whether the request succeeded (true = success, false =
+                      failure)
                     example: true
                   info:
                     type: object
                     properties:
                       count:
                         type: integer
-                        description: >-
-                          Number of successfully removed addresses (excludes
-                          addresses not in the block list)
-                        example: 1
+                        description: Number of successfully removed blocked addresses
+                        example: 2
+                      failedList:
+                        type: array
+                        description: List of failed addresses (empty if all succeeded)
+                        items:
+                          type: string
+                        example: []
         '400':
           description: >-
-            Bad request (e.g., invalid email format, exceeding 100 addresses per
-            request, empty email parameter)
+            Bad request (e.g., invalid email format, addresses not in block
+            list, more than 1000 addresses)
         '401':
-          description: Authentication failed (invalid apiUser or apiKey)
+          description: >-
+            Authentication failed (invalid apiUser or apiKey; please verify
+            credentials in the SendCloud console -> Email API -> API_USER)
       requestBody:
         required: true
         content:
@@ -586,55 +569,48 @@ paths:
             schema:
               type: object
               properties:
-                apiUser:
+                emailAddress:
                   type: string
                   description: >-
-                    API_USER (authentication parameter; obtained from the
-                    SendCloud console -> API Settings)
-                  example: test_api_user
-                apiKey:
-                  type: string
-                  description: >-
-                    API_KEY (authentication parameter; obtained from the
-                    SendCloud console -> API Settings; keep confidential)
-                  example: test_api_key
-                email:
-                  type: string
-                  description: >-
-                    Email address(es) to unblock (supports multiple addresses
-                    separated by semicolons; max 100 addresses per request;
-                    valid RFC 5322 format)
-                  example: user1@example.com;user2@example.com
+                    Email addresses to remove from block list (multiple
+                    addresses separated by semicolons; maximum 1000 addresses
+                    per request; must be valid RFC 5322 format)
+                  example: blocked1@example.com;blocked2@example.com
               required:
-                - apiUser
-                - apiKey
-                - email
+                - emailAddress
       x-codeSamples:
         - lang: Python
-          label: Remove Blocked Addresses
+          label: Remove Block Addresses
           source: |
             import requests
 
-            url = "https://api2.sendcloud.net/api/block/remove"
+            url = "https://api.aurorasendcloud.com/api/block/remove"
             data = {
                 "apiUser": "test_api_user",
                 "apiKey": "test_api_key",
-                "email": "user1@example.com;user2@example.com"
+                "emailAddress": "blocked1@example.com;blocked2@example.com"
             }
 
             response = requests.post(url, data=data)
-            print(response.json())
+            result = response.json()
+            if result["result"]:
+                print(f"Successfully removed {result['info']['count']} addresses from block list")
+            else:
+                print(f"Failed to remove addresses: {result['message']}")
   /api/block/export:
     post:
       summary: Export Block List
       description: >-
-        Export blocked address data within a specified time range to a CSV file.
-        The maximum export time range is 30 days, and the generated CSV file is
-        valid for 24 hours (after which the download URL expires). The CSV
-        includes fields: email, blockTime, blockType, reason, operator.
+        Export block list data to CSV file. Supports filtering by time range and
+        block type. The export is processed asynchronously. The maximum time
+        range is 30 days. Duplicate export tasks with the same conditions within
+        5 minutes will be rejected.
       operationId: exportBlockList
       tags:
-        - Block
+        - Block Management
+      security:
+        - apiUser: []
+        - apiKey: []
       responses:
         '200':
           description: Export task created successfully
@@ -645,15 +621,11 @@ paths:
                 properties:
                   statusCode:
                     type: integer
-                    description: >-
-                      Response status code (200 indicates task created
-                      successfully)
+                    description: Response status code (200 indicates success)
                     example: 200
                   message:
                     type: string
-                    description: >-
-                      Task creation result message (error information if
-                      creation fails, such as "time range exceeds 30 days")
+                    description: Success or failure message
                     example: export task created successfully
                   result:
                     type: boolean
@@ -709,18 +681,6 @@ paths:
             schema:
               type: object
               properties:
-                apiUser:
-                  type: string
-                  description: >-
-                    API_USER (authentication parameter; obtained from the
-                    SendCloud console -> API Settings)
-                  example: test_api_user
-                apiKey:
-                  type: string
-                  description: >-
-                    API_KEY (authentication parameter; obtained from the
-                    SendCloud console -> API Settings; keep confidential)
-                  example: test_api_key
                 startTime:
                   type: string
                   format: date-time
@@ -750,9 +710,6 @@ paths:
                     repeated bounce, system = system automatic; defaults to
                     "all")
                   example: all
-              required:
-                - apiUser
-                - apiKey
       x-codeSamples:
         - lang: Python
           label: Export Block List
@@ -761,7 +718,7 @@ paths:
             import time
 
             # Create export task
-            url = "https://api2.sendcloud.net/api/block/export"
+            url = "https://api.aurorasendcloud.com/api/block/export"
             data = {
                 "apiUser": "test_api_user",
                 "apiKey": "test_api_key",
@@ -774,7 +731,7 @@ paths:
             task_id = task_info["info"]["taskId"]
 
             # Poll task status
-            poll_url = "https://api2.sendcloud.net/api/block/export/status"
+            poll_url = "https://api.aurorasendcloud.com/api/block/export/status"
             while True:
                 poll_data = {
                     "apiUser": "test_api_user",
@@ -795,6 +752,102 @@ paths:
                     print(f"Export failed: {poll_result['message']}")
                     break
                 time.sleep(10)
+  /api/block/export/status:
+    post:
+      summary: Query Export Task Status
+      description: >-
+        Query the status of block list export task. Returns task progress,
+        status, and download URL when completed.
+      operationId: queryExportStatus
+      tags:
+        - Block Management
+      security:
+        - apiUser: []
+        - apiKey: []
+      responses:
+        '200':
+          description: Request successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    description: Response status code (200 indicates success)
+                    example: 200
+                  message:
+                    type: string
+                    description: Success or failure message
+                    example: request was successful
+                  result:
+                    type: boolean
+                    description: >-
+                      Whether the query succeeded (true = success, false =
+                      failure)
+                    example: true
+                  info:
+                    type: object
+                    properties:
+                      taskId:
+                        type: string
+                        description: Export task ID
+                        example: export_block_123456
+                      status:
+                        type: string
+                        enum:
+                          - processing
+                          - completed
+                          - failed
+                        description: >-
+                          Export task status (processing = being generated;
+                          completed = generated successfully; failed =
+                          generation failed)
+                        example: completed
+                      downloadUrl:
+                        type: string
+                        description: >-
+                          CSV download URL (empty when task is processing; valid
+                          for 24 hours after completion)
+                        example: https://download.sendcloud.net/block_export_123.csv
+                      progress:
+                        type: integer
+                        description: Export progress percentage (0-100)
+                        example: 100
+        '400':
+          description: Bad request (e.g., invalid taskId)
+        '401':
+          description: Authentication failed (invalid apiUser or apiKey)
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                taskId:
+                  type: string
+                  description: >-
+                    Export task ID (obtained from the export task creation
+                    response)
+                  example: export_block_123456
+              required:
+                - taskId
+      x-codeSamples:
+        - lang: Python
+          label: Query Export Task Status
+          source: |
+            import requests
+
+            url = "https://api.aurorasendcloud.com/api/block/export/status"
+            data = {
+                "apiUser": "test_api_user",
+                "apiKey": "test_api_key",
+                "taskId": "export_block_123456"
+            }
+
+            response = requests.post(url, data=data)
+            print(response.json())
   /api/block/check:
     get:
       summary: Check Block Status
@@ -803,7 +856,10 @@ paths:
         details if the address is blocked; returns empty values otherwise.
       operationId: checkBlockStatusGet
       tags:
-        - Block
+        - Block Management
+      security:
+        - apiUser: []
+        - apiKey: []
       responses:
         '200':
           description: Request successful
@@ -862,24 +918,6 @@ paths:
           description: Authentication failed (invalid apiUser or apiKey)
       parameters:
         - in: query
-          name: apiUser
-          schema:
-            type: string
-          required: true
-          description: >-
-            API_USER (authentication parameter; obtained from the SendCloud
-            console -> API Settings)
-          example: test_api_user
-        - in: query
-          name: apiKey
-          schema:
-            type: string
-          required: true
-          description: >-
-            API_KEY (authentication parameter; obtained from the SendCloud
-            console -> API Settings; keep confidential)
-          example: test_api_key
-        - in: query
           name: email
           schema:
             type: string
@@ -892,7 +930,7 @@ paths:
           source: |
             import requests
 
-            url = "https://api2.sendcloud.net/api/block/check"
+            url = "https://api.aurorasendcloud.com/api/block/check"
             params = {
                 "apiUser": "test_api_user",
                 "apiKey": "test_api_key",
@@ -902,7 +940,21 @@ paths:
             response = requests.get(url, params=params)
             print(response.json())
 components:
-  securitySchemes: {}
+  securitySchemes:
+    apiUser:
+      type: apiKey
+      in: query
+      name: apiUser
+      description: >-
+        API_USER (authentication parameter; obtained from the SendCloud console
+        -> Email API -> API_USER)
+    apiKey:
+      type: apiKey
+      in: query
+      name: apiKey
+      description: >-
+        API_KEY (authentication parameter; obtained from the SendCloud console
+        -> Email API -> API_USER; keep confidential to avoid leakage)
 x-readme:
   explorer-enabled: true
   proxy-enabled: true

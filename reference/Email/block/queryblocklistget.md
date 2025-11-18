@@ -1,5 +1,5 @@
 ---
-title: Query Block List
+title: Query Block List (GET)
 excerpt: >-
   Get list of blocked email addresses within a specified time range. Supports
   filtering by block type, email address, and time range. The maximum query time
