@@ -1,0 +1,1054 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Email
+servers:
+  - url: https://api2.sendcloud.net
+tags:
+  - name: Route
+    description: >-
+      Interfaces for managing email sending routes (query route list, get route
+      details, add/customize/update/delete routes, etc.). Routes determine the
+      transmission path of emails, supporting multi-dimensional configuration
+      such as IP pools, encryption types, and domain binding to optimize
+      delivery quality and compliance.
+paths:
+  /api/route/list:
+    get:
+      summary: Query Route List
+      description: >-
+        Get the list of all configured email sending routes under the account.
+        Supports filtering by route type, status, sender domain, and pagination.
+        The maximum number of results per page is 500, and time parameters use
+        Beijing time (GMT+8).
+      operationId: queryRouteListGet
+      tags:
+        - Route
+      responses:
+        '200':
+          description: Request successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    description: >-
+                      Response status code (200 = success; other codes indicate
+                      failure)
+                    example: 200
+                  message:
+                    type: string
+                    description: >-
+                      Success or failure message (detailed error information for
+                      failure scenarios)
+                    example: request was successful
+                  result:
+                    type: boolean
+                    description: >-
+                      Whether the request succeeded (true = success, false =
+                      failure)
+                    example: true
+                  info:
+                    type: object
+                    properties:
+                      dataList:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            routeId:
+                              type: integer
+                              description: >-
+                                Unique route ID (primary key for route
+                                operations; used for details query, update,
+                                delete)
+                              example: 1001
+                            routeName:
+                              type: string
+                              description: >-
+                                Customizable route name (max 50 characters;
+                                unique under the same account)
+                              example: International Standard Route
+                            routeType:
+                              type: string
+                              enum:
+                                - default
+                                - custom
+                                - dedicated
+                                - shared
+                              description: >-
+                                Route type (default = system-built default
+                                route, cannot be modified/deleted; custom =
+                                user-defined general route; dedicated =
+                                dedicated IP route (exclusive IP resources);
+                                shared = shared IP route (shared with other
+                                accounts))
+                              example: custom
+                            status:
+                              type: string
+                              enum:
+                                - enabled
+                                - disabled
+                              description: >-
+                                Route status (enabled = available for email
+                                sending; disabled = temporarily unavailable,
+                                emails will not use this route)
+                              example: enabled
+                            senderDomain:
+                              type: string
+                              description: >-
+                                Bound sender domain (supports multiple domains
+                                separated by semicolons; only verified domains
+                                can be bound; emails sent from these domains can
+                                use this route)
+                              example: example.com;sub.example.com
+                            priority:
+                              type: integer
+                              description: >-
+                                Route priority (range 1-10; smaller number =
+                                higher priority; when multiple routes are
+                                available, the system selects the highest
+                                priority enabled route)
+                              example: 3
+                            createTime:
+                              type: string
+                              format: date-time
+                              description: >-
+                                Route creation time (format: yyyy-MM-dd
+                                HH:mm:ss, Beijing time)
+                              example: '2025-09-15 10:30:00'
+                            updateTime:
+                              type: string
+                              format: date-time
+                              description: >-
+                                Route last update time (format: yyyy-MM-dd
+                                HH:mm:ss, Beijing time; updated when route
+                                configuration changes)
+                              example: '2025-10-20 14:15:00'
+                            remark:
+                              type: string
+                              description: >-
+                                Custom route remark (max 200 characters; used
+                                for business identification, e.g., "used for
+                                international customer emails")
+                              example: Used for international customer emails
+                      total:
+                        type: integer
+                        description: >-
+                          Total number of routes matching the query conditions
+                          (across all pages)
+                        example: 8
+                      count:
+                        type: integer
+                        description: >-
+                          Number of returned results in the current page
+                          (consistent with pageSize parameter)
+                        example: 8
+                      page:
+                        type: integer
+                        description: >-
+                          Current page number (starts from 1; defaults to 1 if
+                          not specified)
+                        example: 1
+                      pageSize:
+                        type: integer
+                        description: >-
+                          Number of results displayed per page (defaults to 100,
+                          maximum 500)
+                        example: 100
+        '401':
+          description: >-
+            Authentication failed (invalid apiUser or apiKey; verify credentials
+            in SendCloud console -> API Settings)
+        '403':
+          description: >-
+            Permission denied (no route management permission; contact account
+            administrator to assign permissions)
+      parameters:
+        - in: query
+          name: apiUser
+          schema:
+            type: string
+          required: true
+          description: >-
+            API_USER (authentication parameter; obtained from SendCloud console
+            -> API Settings)
+          example: test_api_user
+        - in: query
+          name: apiKey
+          schema:
+            type: string
+          required: true
+          description: >-
+            API_KEY (authentication parameter; obtained from SendCloud console
+            -> API Settings; keep confidential to avoid leakage)
+          example: test_api_key
+        - in: query
+          name: routeType
+          schema:
+            type: string
+            enum:
+              - all
+              - default
+              - custom
+              - dedicated
+              - shared
+            default: all
+          required: false
+          description: >-
+            Filter by route type (all = query all types; default = only system
+            default routes; custom = only user-defined routes; dedicated = only
+            dedicated IP routes; shared = only shared IP routes; defaults to
+            "all")
+          example: custom
+        - in: query
+          name: status
+          schema:
+            type: string
+            enum:
+              - all
+              - enabled
+              - disabled
+            default: all
+          required: false
+          description: >-
+            Filter by route status (all = query all statuses; enabled = only
+            available routes; disabled = only unavailable routes; defaults to
+            "all")
+          example: enabled
+        - in: query
+          name: senderDomain
+          schema:
+            type: string
+          required: false
+          description: >-
+            Filter by bound sender domain (exact match; only routes bound to the
+            specified domain will be returned; supports single domain only)
+          example: example.com
+        - in: query
+          name: page
+          schema:
+            type: integer
+            default: 1
+          required: false
+          description: >-
+            Page number (pagination parameter; starts from 1, defaults to 1 if
+            not provided)
+          example: 1
+        - in: query
+          name: pageSize
+          schema:
+            type: integer
+            default: 100
+            maximum: 500
+          required: false
+          description: >-
+            Number of results per page (pagination parameter; defaults to 100,
+            maximum 500; exceeding will return 400 error)
+          example: 50
+      x-codeSamples:
+        - lang: Python
+          label: Query Enabled Custom Routes
+          source: |
+            import requests
+
+            url = "https://api2.sendcloud.net/api/route/list"
+            params = {
+                "apiUser": "test_api_user",
+                "apiKey": "test_api_key",
+                "routeType": "custom",
+                "status": "enabled",
+                "pageSize": 50
+            }
+
+            response = requests.get(url, params=params)
+            print(response.json())
+    post:
+      summary: Query Route List (POST)
+      description: >-
+        Query email routes using POST method. Suitable for scenarios where
+        filter parameters are complex or long. Supports the same filtering
+        conditions and constraints as the GET method.
+      operationId: queryRouteListPost
+      tags:
+        - Route
+      responses:
+        '200':
+          description: Request successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    description: >-
+                      Response status code (200 = success; other codes indicate
+                      failure)
+                    example: 200
+                  message:
+                    type: string
+                    description: >-
+                      Success or failure message (detailed error information for
+                      failure scenarios)
+                    example: request was successful
+                  result:
+                    type: boolean
+                    description: >-
+                      Whether the request succeeded (true = success, false =
+                      failure)
+                    example: true
+                  info:
+                    type: object
+                    properties:
+                      dataList:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            routeId:
+                              type: integer
+                              description: Unique route ID
+                              example: 1001
+                            routeName:
+                              type: string
+                              description: Customizable route name
+                              example: International Standard Route
+                            routeType:
+                              type: string
+                              enum:
+                                - default
+                                - custom
+                                - dedicated
+                                - shared
+                              description: >-
+                                Route type (default/system-built,
+                                custom/user-defined, dedicated/dedicated IP,
+                                shared/shared IP)
+                              example: custom
+                            status:
+                              type: string
+                              enum:
+                                - enabled
+                                - disabled
+                              description: >-
+                                Route status (enabled/available,
+                                disabled/unavailable)
+                              example: enabled
+                            senderDomain:
+                              type: string
+                              description: >-
+                                Bound sender domain (multiple separated by
+                                semicolons)
+                              example: example.com;sub.example.com
+                            priority:
+                              type: integer
+                              description: Route priority (1-10, smaller = higher priority)
+                              example: 3
+                            createTime:
+                              type: string
+                              format: date-time
+                              description: Route creation time (Beijing time)
+                              example: '2025-09-15 10:30:00'
+                      total:
+                        type: integer
+                        description: Total number of matching routes
+                        example: 8
+                      count:
+                        type: integer
+                        description: Number of results in the current page
+                        example: 8
+        '401':
+          description: Authentication failed (invalid apiUser or apiKey)
+        '403':
+          description: Permission denied (no route management permission)
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                apiUser:
+                  type: string
+                  description: >-
+                    API_USER (authentication parameter; obtained from SendCloud
+                    console -> API Settings)
+                  example: test_api_user
+                apiKey:
+                  type: string
+                  description: >-
+                    API_KEY (authentication parameter; obtained from SendCloud
+                    console -> API Settings; keep confidential)
+                  example: test_api_key
+                routeType:
+                  type: string
+                  enum:
+                    - all
+                    - default
+                    - custom
+                    - dedicated
+                    - shared
+                  default: all
+                  description: >-
+                    Filter by route type (all = default; default = system
+                    routes; custom = user-defined; dedicated = dedicated IP;
+                    shared = shared IP)
+                  example: dedicated
+                status:
+                  type: string
+                  enum:
+                    - all
+                    - enabled
+                    - disabled
+                  default: all
+                  description: >-
+                    Filter by route status (all = default; enabled = available;
+                    disabled = unavailable)
+                  example: enabled
+                senderDomain:
+                  type: string
+                  description: >-
+                    Filter by bound sender domain (exact match; single domain
+                    only)
+                  example: example.com
+                page:
+                  type: integer
+                  default: 1
+                  description: >-
+                    Page number (pagination parameter; starts from 1, defaults
+                    to 1)
+                  example: 1
+                pageSize:
+                  type: integer
+                  default: 100
+                  maximum: 500
+                  description: Number of results per page (max 500, default 100)
+                  example: 50
+              required:
+                - apiUser
+                - apiKey
+      x-codeSamples:
+        - lang: Python
+          label: Query Route List (POST)
+          source: |
+            import requests
+
+            url = "https://api2.sendcloud.net/api/route/list"
+            data = {
+                "apiUser": "test_api_user",
+                "apiKey": "test_api_key",
+                "routeType": "dedicated",
+                "status": "enabled"
+            }
+
+            response = requests.post(url, data=data)
+            print(response.json())
+  /api/route/get:
+    get:
+      summary: Get Route Details
+      description: >-
+        Get the full configuration details of a specific route by routeId.
+        Returns all parameters of the route, including IP pool binding,
+        encryption type, DKIM/SPF status, etc.
+      operationId: getRouteDetailsGet
+      tags:
+        - Route
+      responses:
+        '200':
+          description: Request successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    description: >-
+                      Response status code (200 = success; other codes indicate
+                      failure)
+                    example: 200
+                  message:
+                    type: string
+                    description: >-
+                      Success or failure message (detailed error information for
+                      failure scenarios)
+                    example: request was successful
+                  result:
+                    type: boolean
+                    description: >-
+                      Whether the request succeeded (true = success, false =
+                      failure)
+                    example: true
+                  info:
+                    type: object
+                    properties:
+                      routeId:
+                        type: integer
+                        description: Unique route ID (primary key for route operations)
+                        example: 1001
+                      routeName:
+                        type: string
+                        description: Customizable route name (max 50 characters)
+                        example: International Standard Route
+                      routeType:
+                        type: string
+                        enum:
+                          - default
+                          - custom
+                          - dedicated
+                          - shared
+                        description: >-
+                          Route type (default = system-built, cannot be
+                          modified; custom = user-defined; dedicated = dedicated
+                          IP; shared = shared IP)
+                        example: custom
+                      status:
+                        type: string
+                        enum:
+                          - enabled
+                          - disabled
+                        description: >-
+                          Route status (enabled = available; disabled =
+                          unavailable)
+                        example: enabled
+                      senderDomain:
+                        type: string
+                        description: >-
+                          Bound sender domain (multiple separated by semicolons;
+                          only verified domains)
+                        example: example.com;sub.example.com
+                      priority:
+                        type: integer
+                        description: Route priority (1-10, smaller = higher priority)
+                        example: 3
+                      ipPool:
+                        type: string
+                        description: >-
+                          Bound IP pool (required for dedicated/shared routes;
+                          empty for default/custom routes; IP resources used for
+                          email sending)
+                        example: ip_pool_international_01
+                      smtpPort:
+                        type: integer
+                        description: >-
+                          SMTP port used by the route (common values: 25, 465,
+                          587; determined by the route's technical
+                          configuration)
+                        example: 25
+                      encryptionType:
+                        type: string
+                        enum:
+                          - none
+                          - tls
+                          - ssl
+                        description: >-
+                          Email transmission encryption type (none = no
+                          encryption; tls = TLS encryption; ssl = SSL
+                          encryption; defaults to TLS for security)
+                        example: tls
+                      dkimEnabled:
+                        type: boolean
+                        description: >-
+                          Whether DKIM signature is enabled (true = enable,
+                          improves email deliverability; false = disable;
+                          defaults to true)
+                        example: true
+                      spfEnabled:
+                        type: boolean
+                        description: >-
+                          Whether SPF verification is enabled (true = enable,
+                          prevents email spoofing; false = disable; defaults to
+                          true)
+                        example: true
+                      createTime:
+                        type: string
+                        format: date-time
+                        description: >-
+                          Route creation time (Beijing time, format: yyyy-MM-dd
+                          HH:mm:ss)
+                        example: '2025-09-15 10:30:00'
+                      updateTime:
+                        type: string
+                        format: date-time
+                        description: >-
+                          Route last update time (Beijing time; updated on
+                          configuration changes)
+                        example: '2025-10-20 14:15:00'
+                      remark:
+                        type: string
+                        description: >-
+                          Custom route remark (max 200 characters; business
+                          identification)
+                        example: Used for international customer emails
+        '400':
+          description: Bad request (e.g., routeId does not exist, invalid routeId format)
+        '401':
+          description: Authentication failed (invalid apiUser or apiKey)
+        '403':
+          description: Permission denied (no permission to view the route)
+      parameters:
+        - in: query
+          name: apiUser
+          schema:
+            type: string
+          required: true
+          description: >-
+            API_USER (authentication parameter; obtained from SendCloud console
+            -> API Settings)
+          example: test_api_user
+        - in: query
+          name: apiKey
+          schema:
+            type: string
+          required: true
+          description: >-
+            API_KEY (authentication parameter; obtained from SendCloud console
+            -> API Settings; keep confidential)
+          example: test_api_key
+        - in: query
+          name: routeId
+          schema:
+            type: integer
+          required: true
+          description: >-
+            Unique route ID (obtained from the route list query interface;
+            identifies the target route)
+          example: 1001
+      x-codeSamples:
+        - lang: Python
+          label: Get Route Details
+          source: |
+            import requests
+
+            url = "https://api2.sendcloud.net/api/route/get"
+            params = {
+                "apiUser": "test_api_user",
+                "apiKey": "test_api_key",
+                "routeId": 1001
+            }
+
+            response = requests.get(url, params=params)
+            print(response.json())
+  /api/route/add:
+    post:
+      summary: Add Custom Route
+      description: >-
+        Create a new custom email sending route (supports
+        custom/dedicated/shared route types). Requires route configuration
+        permission and bound verified sender domains. Dedicated/shared routes
+        also require pre-purchased IP pools.
+      operationId: addCustomRoute
+      tags:
+        - Route
+      responses:
+        '200':
+          description: Add successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    description: Response status code (200 = add operation successful)
+                    example: 200
+                  message:
+                    type: string
+                    description: >-
+                      Add result message (e.g., "add route successful" or "route
+                      name already exists")
+                    example: add route successful
+                  result:
+                    type: boolean
+                    description: >-
+                      Whether the add operation succeeded (true = success, false
+                      = failure)
+                    example: true
+                  info:
+                    type: object
+                    properties:
+                      routeId:
+                        type: integer
+                        description: >-
+                          Unique ID of the newly created route (used for
+                          subsequent details query, update, delete)
+                        example: 1008
+        '400':
+          description: >-
+            Bad request (e.g., duplicate route name, invalid priority (not
+            1-10), unbound sender domain, missing IP pool for dedicated/shared
+            routes, illegal domain format)
+        '401':
+          description: Authentication failed (invalid apiUser or apiKey)
+        '403':
+          description: >-
+            Permission denied (no custom route creation permission; contact
+            customer service to activate)
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                apiUser:
+                  type: string
+                  description: >-
+                    API_USER (authentication parameter; obtained from SendCloud
+                    console -> API Settings)
+                  example: test_api_user
+                apiKey:
+                  type: string
+                  description: >-
+                    API_KEY (authentication parameter; obtained from SendCloud
+                    console -> API Settings; keep confidential)
+                  example: test_api_key
+                routeName:
+                  type: string
+                  description: >-
+                    Custom route name (max 50 characters; unique under the same
+                    account; cannot duplicate existing route names)
+                  example: Europe Dedicated Route
+                routeType:
+                  type: string
+                  enum:
+                    - custom
+                    - dedicated
+                    - shared
+                  description: >-
+                    Route type (custom = general custom route; dedicated =
+                    dedicated IP route (exclusive IP); shared = shared IP route
+                    (shared with other accounts); cannot create "default" type
+                    routes)
+                  example: dedicated
+                senderDomain:
+                  type: string
+                  description: >-
+                    Bound sender domain (multiple domains separated by
+                    semicolons; must be verified in the SendCloud console;
+                    emails from these domains can use this route)
+                  example: europe.example.com
+                priority:
+                  type: integer
+                  description: >-
+                    Route priority (range 1-10; smaller number = higher
+                    priority; determines the route selection order when multiple
+                    routes are available)
+                  example: 2
+                ipPool:
+                  type: string
+                  description: >-
+                    Bound IP pool (required for dedicated/shared routes; must be
+                    a pre-purchased and available IP pool; empty for custom
+                    routes)
+                  example: ip_pool_europe_02
+                encryptionType:
+                  type: string
+                  enum:
+                    - none
+                    - tls
+                    - ssl
+                  default: tls
+                  description: >-
+                    Email transmission encryption type (none = no encryption;
+                    tls = TLS encryption (recommended); ssl = SSL encryption;
+                    defaults to "tls")
+                  example: tls
+                dkimEnabled:
+                  type: boolean
+                  default: true
+                  description: >-
+                    Whether to enable DKIM signature (true = enable, improves
+                    email deliverability and anti-spam effect; false = disable;
+                    defaults to true)
+                  example: true
+                spfEnabled:
+                  type: boolean
+                  default: true
+                  description: >-
+                    Whether to enable SPF verification (true = enable, prevents
+                    email spoofing; false = disable; defaults to true)
+                  example: true
+                remark:
+                  type: string
+                  description: >-
+                    Custom route remark (max 200 characters; optional; used for
+                    business scenario description)
+                  example: Dedicated route for European customers
+              required:
+                - apiUser
+                - apiKey
+                - routeName
+                - routeType
+                - senderDomain
+                - priority
+      x-codeSamples:
+        - lang: Python
+          label: Add Dedicated Route
+          source: |
+            import requests
+
+            url = "https://api2.sendcloud.net/api/route/add"
+            data = {
+                "apiUser": "test_api_user",
+                "apiKey": "test_api_key",
+                "routeName": "Europe Dedicated Route",
+                "routeType": "dedicated",
+                "senderDomain": "europe.example.com",
+                "priority": 2,
+                "ipPool": "ip_pool_europe_02",
+                "encryptionType": "tls",
+                "dkimEnabled": True,
+                "spfEnabled": True,
+                "remark": "Dedicated route for European customers"
+            }
+
+            response = requests.post(url, data=data)
+            print(response.json())
+  /api/route/update:
+    post:
+      summary: Update Route Configuration
+      description: >-
+        Modify the configuration of an existing route (supports
+        custom/dedicated/shared routes; cannot modify system default "default"
+        type routes). Modifiable parameters include route name, sender domain,
+        priority, status, IP pool, encryption type, etc.
+      operationId: updateRouteConfig
+      tags:
+        - Route
+      responses:
+        '200':
+          description: Update successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    description: Response status code (200 = update operation successful)
+                    example: 200
+                  message:
+                    type: string
+                    description: >-
+                      Update result message (e.g., "update route successful" or
+                      "route name already exists")
+                    example: update route successful
+                  result:
+                    type: boolean
+                    description: >-
+                      Whether the update operation succeeded (true = success,
+                      false = failure)
+                    example: true
+        '400':
+          description: >-
+            Bad request (e.g., routeId does not exist, duplicate route name,
+            invalid priority, unbound sender domain, illegal parameter format)
+        '401':
+          description: Authentication failed (invalid apiUser or apiKey)
+        '403':
+          description: >-
+            Permission denied (cannot modify system default routes, or no update
+            permission)
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                apiUser:
+                  type: string
+                  description: >-
+                    API_USER (authentication parameter; obtained from SendCloud
+                    console -> API Settings)
+                  example: test_api_user
+                apiKey:
+                  type: string
+                  description: >-
+                    API_KEY (authentication parameter; obtained from SendCloud
+                    console -> API Settings; keep confidential)
+                  example: test_api_key
+                routeId:
+                  type: integer
+                  description: >-
+                    Unique ID of the route to update (obtained from route list
+                    query; identifies the target route)
+                  example: 1008
+                routeName:
+                  type: string
+                  description: >-
+                    New route name (max 50 characters; unique under the same
+                    account; omit to keep the original name)
+                  example: Europe Premium Dedicated Route
+                senderDomain:
+                  type: string
+                  description: >-
+                    New bound sender domain (multiple separated by semicolons;
+                    must be verified; omit to keep the original domain)
+                  example: europe.example.com;eu.example.com
+                priority:
+                  type: integer
+                  description: >-
+                    New route priority (range 1-10; omit to keep the original
+                    priority)
+                  example: 1
+                status:
+                  type: string
+                  enum:
+                    - enabled
+                    - disabled
+                  description: >-
+                    New route status (enabled = available; disabled =
+                    unavailable; omit to keep the original status)
+                  example: enabled
+                ipPool:
+                  type: string
+                  description: >-
+                    New bound IP pool (for dedicated/shared routes only; must be
+                    an available IP pool; omit to keep the original IP pool)
+                  example: ip_pool_europe_premium_01
+                encryptionType:
+                  type: string
+                  enum:
+                    - none
+                    - tls
+                    - ssl
+                  description: >-
+                    New encryption type (omit to keep the original type;
+                    recommended to use TLS)
+                  example: tls
+                dkimEnabled:
+                  type: boolean
+                  description: >-
+                    Whether to enable DKIM signature (omit to keep the original
+                    setting)
+                  example: true
+                spfEnabled:
+                  type: boolean
+                  description: >-
+                    Whether to enable SPF verification (omit to keep the
+                    original setting)
+                  example: true
+                remark:
+                  type: string
+                  description: >-
+                    New route remark (max 200 characters; omit to keep the
+                    original remark; empty string to clear the remark)
+                  example: Premium dedicated route for European enterprise customers
+              required:
+                - apiUser
+                - apiKey
+                - routeId
+      x-codeSamples:
+        - lang: Python
+          label: Update Route Priority and Status
+          source: |
+            import requests
+
+            url = "https://api2.sendcloud.net/api/route/update"
+            data = {
+                "apiUser": "test_api_user",
+                "apiKey": "test_api_key",
+                "routeId": 1008,
+                "priority": 1,
+                "status": "enabled",
+                "remark": "Premium dedicated route for European enterprise customers"
+            }
+
+            response = requests.post(url, data=data)
+            print(response.json())
+  /api/route/delete:
+    post:
+      summary: Delete Custom Route
+      description: >-
+        Delete an existing custom/dedicated/shared route (cannot delete system
+        default "default" type routes). After deletion, the route is permanently
+        unavailable, and emails will no longer use this route.
+      operationId: deleteCustomRoute
+      tags:
+        - Route
+      responses:
+        '200':
+          description: Delete successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    description: Response status code (200 = delete operation successful)
+                    example: 200
+                  message:
+                    type: string
+                    description: >-
+                      Delete result message (e.g., "delete route successful" or
+                      "route does not exist")
+                    example: delete route successful
+                  result:
+                    type: boolean
+                    description: >-
+                      Whether the delete operation succeeded (true = success,
+                      false = failure)
+                    example: true
+        '400':
+          description: >-
+            Bad request (e.g., routeId does not exist, attempting to delete a
+            system default route)
+        '401':
+          description: Authentication failed (invalid apiUser or apiKey)
+        '403':
+          description: Permission denied (no route deletion permission)
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                apiUser:
+                  type: string
+                  description: >-
+                    API_USER (authentication parameter; obtained from SendCloud
+                    console -> API Settings)
+                  example: test_api_user
+                apiKey:
+                  type: string
+                  description: >-
+                    API_KEY (authentication parameter; obtained from SendCloud
+                    console -> API Settings; keep confidential)
+                  example: test_api_key
+                routeId:
+                  type: integer
+                  description: >-
+                    Unique ID of the route to delete (obtained from route list
+                    query; identifies the target route)
+                  example: 1008
+              required:
+                - apiUser
+                - apiKey
+                - routeId
+      x-codeSamples:
+        - lang: Python
+          label: Delete Custom Route
+          source: |
+            import requests
+
+            url = "https://api2.sendcloud.net/api/route/delete"
+            data = {
+                "apiUser": "test_api_user",
+                "apiKey": "test_api_key",
+                "routeId": 1008
+            }
+
+            response = requests.post(url, data=data)
+            print(response.json())
+components:
+  securitySchemes: {}
+x-readme:
+  explorer-enabled: true
+  proxy-enabled: true
