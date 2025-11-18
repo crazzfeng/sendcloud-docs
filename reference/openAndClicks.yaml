@@ -1,0 +1,821 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Email
+servers:
+  - url: https://api2.sendcloud.net
+tags:
+  - name: Opens And Clicks
+    description: >-
+      Interfaces for querying aggregated statistics of email open and link click
+      data. Supports multi-dimensional filtering (time range, label, sender
+      domain, etc.) and returns key metrics such as total sends, open rate,
+      click rate to help analyze email campaign effectiveness.
+paths:
+  /api/stat/openclick/summary:
+    get:
+      summary: Query Open & Click Aggregated Statistics
+      description: >-
+        Get aggregated statistics of email open and click data within a
+        specified time range. Supports filtering by multiple dimensions and
+        returns core metrics including send volume, open volume, click volume,
+        open rate, click rate. The maximum query time range is 90 days, and time
+        parameters use Beijing time (GMT+8).
+      operationId: queryOpenClickSummaryGet
+      tags:
+        - Opens And Clicks
+      responses:
+        '200':
+          description: Request successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    description: >-
+                      Response status code (200 = success; other codes indicate
+                      failure)
+                    example: 200
+                  message:
+                    type: string
+                    description: >-
+                      Success or failure message (detailed error information for
+                      failure scenarios)
+                    example: request was successful
+                  result:
+                    type: boolean
+                    description: >-
+                      Whether the request succeeded (true = success, false =
+                      failure)
+                    example: true
+                  info:
+                    type: object
+                    properties:
+                      totalSend:
+                        type: integer
+                        description: >-
+                          Total number of emails sent (excludes invalid
+                          addresses, bounced emails before delivery)
+                        example: 10000
+                      totalOpen:
+                        type: integer
+                        description: >-
+                          Total open volume (counts unique opens; repeated opens
+                          by the same recipient are counted once)
+                        example: 3250
+                      totalClick:
+                        type: integer
+                        description: >-
+                          Total click volume (counts unique clicks; repeated
+                          clicks on the same link by the same recipient are
+                          counted once)
+                        example: 860
+                      openRate:
+                        type: number
+                        format: float
+                        description: >-
+                          Open rate (calculation formula: totalOpen / totalSend;
+                          retains 4 decimal places)
+                        example: 0.325
+                      clickRate:
+                        type: number
+                        format: float
+                        description: >-
+                          Click rate (calculation formula: totalClick /
+                          totalSend; retains 4 decimal places)
+                        example: 0.086
+                      clickToOpenRate:
+                        type: number
+                        format: float
+                        description: >-
+                          Click-to-open rate (calculation formula: totalClick /
+                          totalOpen; retains 4 decimal places; 0 if totalOpen is
+                          0)
+                        example: 0.2646
+        '400':
+          description: >-
+            Bad request (e.g., time range exceeds 90 days, endTime earlier than
+            startTime, invalid filter parameters)
+        '401':
+          description: >-
+            Authentication failed (invalid apiUser or apiKey; verify credentials
+            in SendCloud console -> API Settings)
+      parameters:
+        - in: query
+          name: apiUser
+          schema:
+            type: string
+          required: true
+          description: >-
+            API_USER (authentication parameter; obtained from SendCloud console
+            -> API Settings)
+          example: test_api_user
+        - in: query
+          name: apiKey
+          schema:
+            type: string
+          required: true
+          description: >-
+            API_KEY (authentication parameter; obtained from SendCloud console
+            -> API Settings; keep confidential)
+          example: test_api_key
+        - in: query
+          name: startTime
+          schema:
+            type: string
+            format: date-time
+          required: true
+          description: >-
+            Query start time (format: yyyy-MM-dd HH:mm:ss, Beijing time; cannot
+            be earlier than 90 days before the current time)
+          example: '2025-10-01 00:00:00'
+        - in: query
+          name: endTime
+          schema:
+            type: string
+            format: date-time
+          required: true
+          description: >-
+            Query end time (format: yyyy-MM-dd HH:mm:ss, Beijing time; must be
+            later than startTime and cannot be later than the current time)
+          example: '2025-10-31 23:59:59'
+        - in: query
+          name: labelName
+          schema:
+            type: string
+          required: false
+          description: >-
+            Filter by email label (exact match with the label set when sending;
+            multiple labels can be separated by semicolons, e.g.,
+            "Promotion;Notification")
+          example: Promotion;Notification
+        - in: query
+          name: fromDomain
+          schema:
+            type: string
+          required: false
+          description: >-
+            Filter by sender domain (exact match with the domain part of the
+            sender's email address, e.g., "example.com" for
+            marketing@example.com; multiple domains can be separated by
+            semicolons)
+          example: example.com;sub.example.com
+        - in: query
+          name: tag
+          schema:
+            type: string
+          required: false
+          description: >-
+            Filter by send tag (exact match with the tag set when sending;
+            multiple tags can be separated by semicolons; matches any of the
+            tags)
+          example: tag1;tag2
+        - in: query
+          name: templateInvokeName
+          schema:
+            type: string
+          required: false
+          description: >-
+            Filter by template calling name (exact match with the template used
+            for sending; multiple template names can be separated by semicolons)
+          example: ifaxin_bill;ifaxin_notify
+      x-codeSamples:
+        - lang: Python
+          label: Query Open & Click Summary
+          source: |
+            import requests
+
+            url = "https://api2.sendcloud.net/api/stat/openclick/summary"
+            params = {
+                "apiUser": "test_api_user",
+                "apiKey": "test_api_key",
+                "startTime": "2025-10-01 00:00:00",
+                "endTime": "2025-10-31 23:59:59",
+                "labelName": "Promotion;Notification",
+                "fromDomain": "example.com"
+            }
+
+            response = requests.get(url, params=params)
+            print(response.json())
+    post:
+      summary: Query Open & Click Aggregated Statistics (POST)
+      description: >-
+        Query open & click aggregated statistics using POST method. Suitable for
+        scenarios with multiple filter parameters (e.g., multiple
+        labels/domains/tags). Supports the same filtering conditions and
+        constraints as the GET method.
+      operationId: queryOpenClickSummaryPost
+      tags:
+        - Opens And Clicks
+      responses:
+        '200':
+          description: Request successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    description: >-
+                      Response status code (200 = success; other codes indicate
+                      failure)
+                    example: 200
+                  message:
+                    type: string
+                    description: >-
+                      Success or failure message (detailed error information for
+                      failure scenarios)
+                    example: request was successful
+                  result:
+                    type: boolean
+                    description: >-
+                      Whether the request succeeded (true = success, false =
+                      failure)
+                    example: true
+                  info:
+                    type: object
+                    properties:
+                      totalSend:
+                        type: integer
+                        description: >-
+                          Total number of emails sent (excludes invalid
+                          addresses, bounced emails before delivery)
+                        example: 10000
+                      totalOpen:
+                        type: integer
+                        description: >-
+                          Total unique open volume (repeated opens by the same
+                          recipient are counted once)
+                        example: 3250
+                      totalClick:
+                        type: integer
+                        description: >-
+                          Total unique click volume (repeated clicks by the same
+                          recipient are counted once)
+                        example: 860
+                      openRate:
+                        type: number
+                        format: float
+                        description: >-
+                          Open rate (totalOpen / totalSend; retains 4 decimal
+                          places)
+                        example: 0.325
+                      clickRate:
+                        type: number
+                        format: float
+                        description: >-
+                          Click rate (totalClick / totalSend; retains 4 decimal
+                          places)
+                        example: 0.086
+                      clickToOpenRate:
+                        type: number
+                        format: float
+                        description: >-
+                          Click-to-open rate (totalClick / totalOpen; retains 4
+                          decimal places; 0 if totalOpen is 0)
+                        example: 0.2646
+        '400':
+          description: >-
+            Bad request (e.g., time range exceeds 90 days, invalid filter
+            parameter format)
+        '401':
+          description: Authentication failed (invalid apiUser or apiKey)
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                apiUser:
+                  type: string
+                  description: >-
+                    API_USER (authentication parameter; obtained from SendCloud
+                    console -> API Settings)
+                  example: test_api_user
+                apiKey:
+                  type: string
+                  description: >-
+                    API_KEY (authentication parameter; obtained from SendCloud
+                    console -> API Settings; keep confidential)
+                  example: test_api_key
+                startTime:
+                  type: string
+                  format: date-time
+                  description: >-
+                    Query start time (format: yyyy-MM-dd HH:mm:ss, Beijing time;
+                    max 90 days range)
+                  example: '2025-10-01 00:00:00'
+                endTime:
+                  type: string
+                  format: date-time
+                  description: >-
+                    Query end time (format: yyyy-MM-dd HH:mm:ss, Beijing time;
+                    must be after startTime)
+                  example: '2025-10-31 23:59:59'
+                labelName:
+                  type: string
+                  description: >-
+                    Filter by email label (exact match; multiple labels
+                    separated by semicolons)
+                  example: Promotion;Notification
+                fromDomain:
+                  type: string
+                  description: >-
+                    Filter by sender domain (exact match; multiple domains
+                    separated by semicolons)
+                  example: example.com;sub.example.com
+                tag:
+                  type: string
+                  description: >-
+                    Filter by send tag (exact match; multiple tags separated by
+                    semicolons)
+                  example: tag1;tag2
+                templateInvokeName:
+                  type: string
+                  description: >-
+                    Filter by template calling name (exact match; multiple
+                    templates separated by semicolons)
+                  example: ifaxin_bill;ifaxin_notify
+              required:
+                - apiUser
+                - apiKey
+                - startTime
+                - endTime
+      x-codeSamples:
+        - lang: Python
+          label: Query Open & Click Summary (POST)
+          source: |
+            import requests
+
+            url = "https://api2.sendcloud.net/api/stat/openclick/summary"
+            data = {
+                "apiUser": "test_api_user",
+                "apiKey": "test_api_key",
+                "startTime": "2025-10-01 00:00:00",
+                "endTime": "2025-10-31 23:59:59",
+                "tag": "tag1;tag2",
+                "templateInvokeName": "ifaxin_bill;ifaxin_notify"
+            }
+
+            response = requests.post(url, data=data)
+            print(response.json())
+  /api/stat/openclick/detail:
+    get:
+      summary: Query Open & Click Detailed Statistics
+      description: >-
+        Get time-series detailed statistics of email open and click data within
+        a specified time range. Supports daily/weekly/monthly aggregation and
+        multi-dimensional filtering. The maximum query time range is 90 days;
+        time parameters use Beijing time (GMT+8).
+      operationId: queryOpenClickDetailGet
+      tags:
+        - Opens And Clicks
+      responses:
+        '200':
+          description: Request successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    description: >-
+                      Response status code (200 = success; other codes indicate
+                      failure)
+                    example: 200
+                  message:
+                    type: string
+                    description: >-
+                      Success or failure message (detailed error information for
+                      failure scenarios)
+                    example: request was successful
+                  result:
+                    type: boolean
+                    description: >-
+                      Whether the request succeeded (true = success, false =
+                      failure)
+                    example: true
+                  info:
+                    type: object
+                    properties:
+                      dataList:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            date:
+                              type: string
+                              description: >-
+                                Aggregation time (format: yyyy-MM-dd for daily;
+                                yyyy-'W'ww for weekly; yyyy-MM for monthly)
+                              example: '2025-10-05'
+                            totalSend:
+                              type: integer
+                              description: Number of emails sent on the aggregated date
+                              example: 350
+                            totalOpen:
+                              type: integer
+                              description: Unique open volume on the aggregated date
+                              example: 112
+                            totalClick:
+                              type: integer
+                              description: Unique click volume on the aggregated date
+                              example: 28
+                            openRate:
+                              type: number
+                              format: float
+                              description: >-
+                                Open rate of the aggregated date (totalOpen /
+                                totalSend; retains 4 decimal places)
+                              example: 0.32
+                            clickRate:
+                              type: number
+                              format: float
+                              description: >-
+                                Click rate of the aggregated date (totalClick /
+                                totalSend; retains 4 decimal places)
+                              example: 0.08
+                            clickToOpenRate:
+                              type: number
+                              format: float
+                              description: >-
+                                Click-to-open rate of the aggregated date
+                                (totalClick / totalOpen; retains 4 decimal
+                                places; 0 if totalOpen is 0)
+                              example: 0.25
+                      totalSend:
+                        type: integer
+                        description: Total send volume across the entire query time range
+                        example: 10000
+                      totalOpen:
+                        type: integer
+                        description: >-
+                          Total unique open volume across the entire query time
+                          range
+                        example: 3250
+                      totalClick:
+                        type: integer
+                        description: >-
+                          Total unique click volume across the entire query time
+                          range
+                        example: 860
+                      openRate:
+                        type: number
+                        format: float
+                        description: >-
+                          Overall open rate across the entire query time range
+                          (retains 4 decimal places)
+                        example: 0.325
+                      clickRate:
+                        type: number
+                        format: float
+                        description: >-
+                          Overall click rate across the entire query time range
+                          (retains 4 decimal places)
+                        example: 0.086
+                      clickToOpenRate:
+                        type: number
+                        format: float
+                        description: >-
+                          Overall click-to-open rate across the entire query
+                          time range (retains 4 decimal places)
+                        example: 0.2646
+        '400':
+          description: >-
+            Bad request (e.g., time range exceeds 90 days, invalid granularity
+            type, endTime earlier than startTime)
+        '401':
+          description: Authentication failed (invalid apiUser or apiKey)
+      parameters:
+        - in: query
+          name: apiUser
+          schema:
+            type: string
+          required: true
+          description: >-
+            API_USER (authentication parameter; obtained from SendCloud console
+            -> API Settings)
+          example: test_api_user
+        - in: query
+          name: apiKey
+          schema:
+            type: string
+          required: true
+          description: >-
+            API_KEY (authentication parameter; obtained from SendCloud console
+            -> API Settings; keep confidential)
+          example: test_api_key
+        - in: query
+          name: startTime
+          schema:
+            type: string
+            format: date-time
+          required: true
+          description: >-
+            Query start time (format: yyyy-MM-dd HH:mm:ss, Beijing time; max 90
+            days range)
+          example: '2025-10-01 00:00:00'
+        - in: query
+          name: endTime
+          schema:
+            type: string
+            format: date-time
+          required: true
+          description: >-
+            Query end time (format: yyyy-MM-dd HH:mm:ss, Beijing time; must be
+            after startTime)
+          example: '2025-10-31 23:59:59'
+        - in: query
+          name: granularity
+          schema:
+            type: string
+            enum:
+              - day
+              - week
+              - month
+            default: day
+          required: false
+          description: >-
+            Aggregation granularity (day = daily aggregation; week = weekly
+            aggregation; month = monthly aggregation; defaults to "day")
+          example: day
+        - in: query
+          name: labelName
+          schema:
+            type: string
+          required: false
+          description: >-
+            Filter by email label (exact match; multiple labels separated by
+            semicolons)
+          example: Promotion;Notification
+        - in: query
+          name: fromDomain
+          schema:
+            type: string
+          required: false
+          description: >-
+            Filter by sender domain (exact match; multiple domains separated by
+            semicolons)
+          example: example.com
+        - in: query
+          name: tag
+          schema:
+            type: string
+          required: false
+          description: >-
+            Filter by send tag (exact match; multiple tags separated by
+            semicolons)
+          example: tag1;tag2
+        - in: query
+          name: templateInvokeName
+          schema:
+            type: string
+          required: false
+          description: >-
+            Filter by template calling name (exact match; multiple templates
+            separated by semicolons)
+          example: ifaxin_bill
+      x-codeSamples:
+        - lang: Python
+          label: Query Daily Open & Click Detail
+          source: |
+            import requests
+
+            url = "https://api2.sendcloud.net/api/stat/openclick/detail"
+            params = {
+                "apiUser": "test_api_user",
+                "apiKey": "test_api_key",
+                "startTime": "2025-10-01 00:00:00",
+                "endTime": "2025-10-31 23:59:59",
+                "granularity": "day",
+                "fromDomain": "example.com"
+            }
+
+            response = requests.get(url, params=params)
+            print(response.json())
+    post:
+      summary: Query Open & Click Detailed Statistics (POST)
+      description: >-
+        Query time-series open & click detailed statistics using POST method.
+        Suitable for scenarios with multiple filter parameters. Supports the
+        same aggregation granularity and filtering conditions as the GET method.
+      operationId: queryOpenClickDetailPost
+      tags:
+        - Opens And Clicks
+      responses:
+        '200':
+          description: Request successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    description: >-
+                      Response status code (200 = success; other codes indicate
+                      failure)
+                    example: 200
+                  message:
+                    type: string
+                    description: >-
+                      Success or failure message (detailed error information for
+                      failure scenarios)
+                    example: request was successful
+                  result:
+                    type: boolean
+                    description: >-
+                      Whether the request succeeded (true = success, false =
+                      failure)
+                    example: true
+                  info:
+                    type: object
+                    properties:
+                      dataList:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            date:
+                              type: string
+                              description: >-
+                                Aggregation time (day: yyyy-MM-dd; week:
+                                yyyy-'W'ww; month: yyyy-MM)
+                              example: 2025-W41
+                            totalSend:
+                              type: integer
+                              description: Send volume of the aggregated period
+                              example: 8500
+                            totalOpen:
+                              type: integer
+                              description: Unique open volume of the aggregated period
+                              example: 2750
+                            totalClick:
+                              type: integer
+                              description: Unique click volume of the aggregated period
+                              example: 720
+                            openRate:
+                              type: number
+                              format: float
+                              description: >-
+                                Open rate of the aggregated period (retains 4
+                                decimal places)
+                              example: 0.3235
+                            clickRate:
+                              type: number
+                              format: float
+                              description: >-
+                                Click rate of the aggregated period (retains 4
+                                decimal places)
+                              example: 0.0847
+                            clickToOpenRate:
+                              type: number
+                              format: float
+                              description: >-
+                                Click-to-open rate of the aggregated period
+                                (retains 4 decimal places)
+                              example: 0.2618
+                      totalSend:
+                        type: integer
+                        description: Total send volume across the entire query time range
+                        example: 10000
+                      totalOpen:
+                        type: integer
+                        description: >-
+                          Total unique open volume across the entire query time
+                          range
+                        example: 3250
+                      totalClick:
+                        type: integer
+                        description: >-
+                          Total unique click volume across the entire query time
+                          range
+                        example: 860
+                      openRate:
+                        type: number
+                        format: float
+                        description: >-
+                          Overall open rate of the query time range (retains 4
+                          decimal places)
+                        example: 0.325
+                      clickRate:
+                        type: number
+                        format: float
+                        description: >-
+                          Overall click rate of the query time range (retains 4
+                          decimal places)
+                        example: 0.086
+                      clickToOpenRate:
+                        type: number
+                        format: float
+                        description: >-
+                          Overall click-to-open rate of the query time range
+                          (retains 4 decimal places)
+                        example: 0.2646
+        '400':
+          description: >-
+            Bad request (e.g., invalid granularity type, time range exceeds 90
+            days)
+        '401':
+          description: Authentication failed (invalid apiUser or apiKey)
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                apiUser:
+                  type: string
+                  description: >-
+                    API_USER (authentication parameter; obtained from SendCloud
+                    console -> API Settings)
+                  example: test_api_user
+                apiKey:
+                  type: string
+                  description: >-
+                    API_KEY (authentication parameter; obtained from SendCloud
+                    console -> API Settings; keep confidential)
+                  example: test_api_key
+                startTime:
+                  type: string
+                  format: date-time
+                  description: >-
+                    Query start time (format: yyyy-MM-dd HH:mm:ss, Beijing time;
+                    max 90 days range)
+                  example: '2025-10-01 00:00:00'
+                endTime:
+                  type: string
+                  format: date-time
+                  description: >-
+                    Query end time (format: yyyy-MM-dd HH:mm:ss, Beijing time;
+                    must be after startTime)
+                  example: '2025-10-31 23:59:59'
+                granularity:
+                  type: string
+                  enum:
+                    - day
+                    - week
+                    - month
+                  default: day
+                  description: >-
+                    Aggregation granularity (day = daily; week = weekly; month =
+                    monthly; defaults to "day")
+                  example: week
+                labelName:
+                  type: string
+                  description: >-
+                    Filter by email label (exact match; multiple labels
+                    separated by semicolons)
+                  example: Promotion;Notification
+                fromDomain:
+                  type: string
+                  description: >-
+                    Filter by sender domain (exact match; multiple domains
+                    separated by semicolons)
+                  example: example.com;sub.example.com
+                tag:
+                  type: string
+                  description: >-
+                    Filter by send tag (exact match; multiple tags separated by
+                    semicolons)
+                  example: tag1;tag2
+                templateInvokeName:
+                  type: string
+                  description: >-
+                    Filter by template calling name (exact match; multiple
+                    templates separated by semicolons)
+                  example: ifaxin_bill;ifaxin_notify
+              required:
+                - apiUser
+                - apiKey
+                - startTime
+                - endTime
+      x-codeSamples:
+        - lang: Python
+          label: Query Weekly Open & Click Detail (POST)
+          source: |
+            import requests
+
+            url = "https://api2.sendcloud.net/api/stat/openclick/detail"
+            data = {
+                "apiUser": "test_api_user",
+                "apiKey": "test_api_key",
+                "startTime": "2025-10-01 00:00:00",
+                "endTime": "2025-10-31 23:59:59",
+                "granularity": "week",
+                "tag": "tag1;tag2"
+            }
+
+            response = requests.post(url, data=data)
+            print(response.json())
+components:
+  securitySchemes: {}
+x-readme:
+  explorer-enabled: true
+  proxy-enabled: true
