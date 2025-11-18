@@ -192,7 +192,7 @@ paths:
         '401':
           description: >-
             Authentication failed (invalid apiUser or apiKey; verify credentials
-            in SendCloud console -> API Settings)
+            in SendCloud console -> Email API -> API_USER)
         '403':
           description: >-
             Permission denied (no webhook management permission; contact account
@@ -205,7 +205,7 @@ paths:
           required: true
           description: >-
             API_USER (authentication parameter; obtained from SendCloud console
-            -> API Settings)
+            -> Email API -> API_USER)
           example: test_api_user
         - in: query
           name: apiKey
@@ -214,7 +214,7 @@ paths:
           required: true
           description: >-
             API_KEY (authentication parameter; obtained from SendCloud console
-            -> API Settings; keep confidential to avoid leakage)
+            -> Email API -> API_USER; keep confidential to avoid leakage)
           example: test_api_key
         - in: query
           name: eventType
@@ -406,13 +406,13 @@ paths:
                   type: string
                   description: >-
                     API_USER (authentication parameter; obtained from SendCloud
-                    console -> API Settings)
+                    console -> Email API -> API_USER)
                   example: test_api_user
                 apiKey:
                   type: string
                   description: >-
                     API_KEY (authentication parameter; obtained from SendCloud
-                    console -> API Settings; keep confidential)
+                    console -> Email API -> API_USER; keep confidential)
                   example: test_api_key
                 eventType:
                   type: string
@@ -612,7 +612,7 @@ paths:
           required: true
           description: >-
             API_USER (authentication parameter; obtained from SendCloud console
-            -> API Settings)
+            -> Email API -> API_USER)
           example: test_api_user
         - in: query
           name: apiKey
@@ -621,7 +621,7 @@ paths:
           required: true
           description: >-
             API_KEY (authentication parameter; obtained from SendCloud console
-            -> API Settings; keep confidential)
+            -> Email API -> API_USER; keep confidential)
           example: test_api_key
         - in: query
           name: webhookId
@@ -719,13 +719,13 @@ paths:
                   type: string
                   description: >-
                     API_USER (authentication parameter; obtained from SendCloud
-                    console -> API Settings)
+                    console -> Email API -> API_USER)
                   example: test_api_user
                 apiKey:
                   type: string
                   description: >-
                     API_KEY (authentication parameter; obtained from SendCloud
-                    console -> API Settings; keep confidential)
+                    console -> Email API -> API_USER; keep confidential)
                   example: test_api_key
                 webhookName:
                   type: string
@@ -872,13 +872,13 @@ paths:
                   type: string
                   description: >-
                     API_USER (authentication parameter; obtained from SendCloud
-                    console -> API Settings)
+                    console -> Email API -> API_USER)
                   example: test_api_user
                 apiKey:
                   type: string
                   description: >-
                     API_KEY (authentication parameter; obtained from SendCloud
-                    console -> API Settings; keep confidential)
+                    console -> Email API -> API_USER; keep confidential)
                   example: test_api_key
                 webhookId:
                   type: integer
@@ -1028,13 +1028,13 @@ paths:
                   type: string
                   description: >-
                     API_USER (authentication parameter; obtained from SendCloud
-                    console -> API Settings)
+                    console -> Email API -> API_USER)
                   example: test_api_user
                 apiKey:
                   type: string
                   description: >-
                     API_KEY (authentication parameter; obtained from SendCloud
-                    console -> API Settings; keep confidential)
+                    console -> Email API -> API_USER; keep confidential)
                   example: test_api_key
                 webhookId:
                   type: integer
@@ -1138,13 +1138,13 @@ paths:
                   type: string
                   description: >-
                     API_USER (authentication parameter; obtained from SendCloud
-                    console -> API Settings)
+                    console -> Email API -> API_USER)
                   example: test_api_user
                 apiKey:
                   type: string
                   description: >-
                     API_KEY (authentication parameter; obtained from SendCloud
-                    console -> API Settings; keep confidential)
+                    console -> Email API -> API_USER; keep confidential)
                   example: test_api_key
                 webhookId:
                   type: integer
