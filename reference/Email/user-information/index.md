@@ -1,4 +1,4 @@
 ---
 title: User Information
-hidden: false
+hidden: true
 ---
