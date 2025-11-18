@@ -3,7 +3,7 @@ info:
   version: 1.0.0
   title: Email
 servers:
-  - url: https://api2.sendcloud.net
+  - url: https://api.aurorasendcloud.com
 tags:
   - name: Webhook
     description: >-
@@ -23,6 +23,9 @@ paths:
       operationId: queryWebhookListGet
       tags:
         - Webhook
+      security:
+        - apiUser: []
+        - apiKey: []
       responses:
         '200':
           description: Request successful
@@ -199,24 +202,6 @@ paths:
             administrator to assign permissions)
       parameters:
         - in: query
-          name: apiUser
-          schema:
-            type: string
-          required: true
-          description: >-
-            API_USER (authentication parameter; obtained from SendCloud console
-            -> Email API -> API_USER)
-          example: test_api_user
-        - in: query
-          name: apiKey
-          schema:
-            type: string
-          required: true
-          description: >-
-            API_KEY (authentication parameter; obtained from SendCloud console
-            -> Email API -> API_USER; keep confidential to avoid leakage)
-          example: test_api_key
-        - in: query
           name: eventType
           schema:
             type: string
@@ -277,7 +262,7 @@ paths:
           source: |
             import requests
 
-            url = "https://api2.sendcloud.net/api/webhook/list"
+            url = "https://api.aurorasendcloud.com/api/webhook/list"
             params = {
                 "apiUser": "test_api_user",
                 "apiKey": "test_api_key",
@@ -297,6 +282,9 @@ paths:
       operationId: queryWebhookListPost
       tags:
         - Webhook
+      security:
+        - apiUser: []
+        - apiKey: []
       responses:
         '200':
           description: Request successful
@@ -402,18 +390,6 @@ paths:
             schema:
               type: object
               properties:
-                apiUser:
-                  type: string
-                  description: >-
-                    API_USER (authentication parameter; obtained from SendCloud
-                    console -> Email API -> API_USER)
-                  example: test_api_user
-                apiKey:
-                  type: string
-                  description: >-
-                    API_KEY (authentication parameter; obtained from SendCloud
-                    console -> Email API -> API_USER; keep confidential)
-                  example: test_api_key
                 eventType:
                   type: string
                   enum:
@@ -454,16 +430,13 @@ paths:
                   maximum: 500
                   description: Number of results per page (max 500, default 100)
                   example: 50
-              required:
-                - apiUser
-                - apiKey
       x-codeSamples:
         - lang: Python
           label: Query Webhook List (POST)
           source: |
             import requests
 
-            url = "https://api2.sendcloud.net/api/webhook/list"
+            url = "https://api.aurorasendcloud.com/api/webhook/list"
             data = {
                 "apiUser": "test_api_user",
                 "apiKey": "test_api_key",
@@ -483,6 +456,9 @@ paths:
       operationId: getWebhookDetailsGet
       tags:
         - Webhook
+      security:
+        - apiUser: []
+        - apiKey: []
       responses:
         '200':
           description: Request successful
@@ -606,24 +582,6 @@ paths:
           description: Permission denied (no permission to view the webhook)
       parameters:
         - in: query
-          name: apiUser
-          schema:
-            type: string
-          required: true
-          description: >-
-            API_USER (authentication parameter; obtained from SendCloud console
-            -> Email API -> API_USER)
-          example: test_api_user
-        - in: query
-          name: apiKey
-          schema:
-            type: string
-          required: true
-          description: >-
-            API_KEY (authentication parameter; obtained from SendCloud console
-            -> Email API -> API_USER; keep confidential)
-          example: test_api_key
-        - in: query
           name: webhookId
           schema:
             type: integer
@@ -638,7 +596,7 @@ paths:
           source: |
             import requests
 
-            url = "https://api2.sendcloud.net/api/webhook/get"
+            url = "https://api.aurorasendcloud.com/api/webhook/get"
             params = {
                 "apiUser": "test_api_user",
                 "apiKey": "test_api_key",
@@ -657,6 +615,9 @@ paths:
       operationId: addWebhook
       tags:
         - Webhook
+      security:
+        - apiUser: []
+        - apiKey: []
       responses:
         '200':
           description: Add successful
@@ -715,18 +676,6 @@ paths:
             schema:
               type: object
               properties:
-                apiUser:
-                  type: string
-                  description: >-
-                    API_USER (authentication parameter; obtained from SendCloud
-                    console -> Email API -> API_USER)
-                  example: test_api_user
-                apiKey:
-                  type: string
-                  description: >-
-                    API_KEY (authentication parameter; obtained from SendCloud
-                    console -> Email API -> API_USER; keep confidential)
-                  example: test_api_key
                 webhookName:
                   type: string
                   description: >-
@@ -792,8 +741,6 @@ paths:
                     for recording business scenarios)
                   example: Receives real-time notifications of email bounce events
               required:
-                - apiUser
-                - apiKey
                 - webhookName
                 - eventType
                 - url
@@ -803,7 +750,7 @@ paths:
           source: |
             import requests
 
-            url = "https://api2.sendcloud.net/api/webhook/add"
+            url = "https://api.aurorasendcloud.com/api/webhook/add"
             data = {
                 "apiUser": "test_api_user",
                 "apiKey": "test_api_key",
@@ -828,6 +775,9 @@ paths:
       operationId: updateWebhookConfig
       tags:
         - Webhook
+      security:
+        - apiUser: []
+        - apiKey: []
       responses:
         '200':
           description: Update successful
@@ -868,18 +818,6 @@ paths:
             schema:
               type: object
               properties:
-                apiUser:
-                  type: string
-                  description: >-
-                    API_USER (authentication parameter; obtained from SendCloud
-                    console -> Email API -> API_USER)
-                  example: test_api_user
-                apiKey:
-                  type: string
-                  description: >-
-                    API_KEY (authentication parameter; obtained from SendCloud
-                    console -> Email API -> API_USER; keep confidential)
-                  example: test_api_key
                 webhookId:
                   type: integer
                   description: >-
@@ -953,8 +891,6 @@ paths:
                     Receives real-time notifications of email bounce and sending
                     failure events
               required:
-                - apiUser
-                - apiKey
                 - webhookId
       x-codeSamples:
         - lang: Python
@@ -962,7 +898,7 @@ paths:
           source: |
             import requests
 
-            url = "https://api2.sendcloud.net/api/webhook/update"
+            url = "https://api.aurorasendcloud.com/api/webhook/update"
             data = {
                 "apiUser": "test_api_user",
                 "apiKey": "test_api_key",
@@ -985,6 +921,9 @@ paths:
       operationId: deleteWebhook
       tags:
         - Webhook
+      security:
+        - apiUser: []
+        - apiKey: []
       responses:
         '200':
           description: Delete successful
@@ -1024,18 +963,6 @@ paths:
             schema:
               type: object
               properties:
-                apiUser:
-                  type: string
-                  description: >-
-                    API_USER (authentication parameter; obtained from SendCloud
-                    console -> Email API -> API_USER)
-                  example: test_api_user
-                apiKey:
-                  type: string
-                  description: >-
-                    API_KEY (authentication parameter; obtained from SendCloud
-                    console -> Email API -> API_USER; keep confidential)
-                  example: test_api_key
                 webhookId:
                   type: integer
                   description: >-
@@ -1043,8 +970,6 @@ paths:
                     list query; identifies the target webhook)
                   example: 2007
               required:
-                - apiUser
-                - apiKey
                 - webhookId
       x-codeSamples:
         - lang: Python
@@ -1052,7 +977,7 @@ paths:
           source: |
             import requests
 
-            url = "https://api2.sendcloud.net/api/webhook/delete"
+            url = "https://api.aurorasendcloud.com/api/webhook/delete"
             data = {
                 "apiUser": "test_api_user",
                 "apiKey": "test_api_key",
@@ -1071,6 +996,9 @@ paths:
       operationId: testWebhook
       tags:
         - Webhook
+      security:
+        - apiUser: []
+        - apiKey: []
       responses:
         '200':
           description: Test request sent successfully
@@ -1134,18 +1062,6 @@ paths:
             schema:
               type: object
               properties:
-                apiUser:
-                  type: string
-                  description: >-
-                    API_USER (authentication parameter; obtained from SendCloud
-                    console -> Email API -> API_USER)
-                  example: test_api_user
-                apiKey:
-                  type: string
-                  description: >-
-                    API_KEY (authentication parameter; obtained from SendCloud
-                    console -> Email API -> API_USER; keep confidential)
-                  example: test_api_key
                 webhookId:
                   type: integer
                   description: >-
@@ -1153,8 +1069,6 @@ paths:
                     query; must be enabled)
                   example: 2007
               required:
-                - apiUser
-                - apiKey
                 - webhookId
       x-codeSamples:
         - lang: Python
@@ -1162,7 +1076,7 @@ paths:
           source: |
             import requests
 
-            url = "https://api2.sendcloud.net/api/webhook/test"
+            url = "https://api.aurorasendcloud.com/api/webhook/test"
             data = {
                 "apiUser": "test_api_user",
                 "apiKey": "test_api_key",
@@ -1172,7 +1086,17 @@ paths:
             response = requests.post(url, data=data)
             print(response.json())
 components:
-  securitySchemes: {}
+  securitySchemes:
+    apiUser:
+      type: apiKey
+      in: query
+      name: apiUser
+      description: Authentication parameter (API_USER, obtained from the SendCloud console)
+    apiKey:
+      type: apiKey
+      in: query
+      name: apiKey
+      description: Authentication parameter (API_KEY, obtained from the SendCloud console)
 x-readme:
   explorer-enabled: true
   proxy-enabled: true
