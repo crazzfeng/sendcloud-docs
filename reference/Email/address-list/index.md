@@ -1,4 +1,4 @@
 ---
 title: Address List
-hidden: true
+hidden: false
 ---
