@@ -3,7 +3,10 @@ info:
   version: 1.0.0
   title: Email
 servers:
-  - url: https://api2.sendcloud.net
+  - url: https://api.aurorasendcloud.com
+    description: Production API server
+  - url: https://api.sendcloud.net
+    description: Alternative production server
 tags:
   - name: Statistics
     description: >-
@@ -116,24 +119,6 @@ paths:
           description: Authentication failed (invalid apiUser or apiKey)
       parameters:
         - in: query
-          name: apiUser
-          schema:
-            type: string
-          required: true
-          description: >-
-            API_USER (authentication parameter, obtained from the SendCloud
-            console)
-          example: test_api_user
-        - in: query
-          name: apiKey
-          schema:
-            type: string
-          required: true
-          description: >-
-            API_KEY (authentication parameter, obtained from the SendCloud
-            console)
-          example: test_api_key
-        - in: query
           name: startTime
           schema:
             type: string
@@ -169,13 +154,16 @@ paths:
           required: false
           description: Filter by label name (query all labels if not specified)
           example: Marketing Campaigns
+      security:
+        - apiUser: []
+          apiKey: []
       x-codeSamples:
         - lang: Python
           label: Query Monthly Sending Summary
           source: |
             import requests
 
-            url = "https://api2.sendcloud.net/api/stats/summary"
+            url = "https://api.aurorasendcloud.com/api/stats/summary"
             params = {
                 "apiUser": "test_api_user",
                 "apiKey": "test_api_key",
@@ -299,24 +287,6 @@ paths:
           description: Authentication failed (invalid apiUser or apiKey)
       parameters:
         - in: query
-          name: apiUser
-          schema:
-            type: string
-          required: true
-          description: >-
-            API_USER (authentication parameter, obtained from the SendCloud
-            console)
-          example: test_api_user
-        - in: query
-          name: apiKey
-          schema:
-            type: string
-          required: true
-          description: >-
-            API_KEY (authentication parameter, obtained from the SendCloud
-            console)
-          example: test_api_key
-        - in: query
           name: startTime
           schema:
             type: string
@@ -352,16 +322,17 @@ paths:
           required: false
           description: Filter by label name (query all labels if not specified)
           example: Marketing Campaigns
+      security:
+        - apiUser: []
+          apiKey: []
       x-codeSamples:
         - lang: Python
           label: Query Sending Summary (POST Method)
           source: |
             import requests
 
-            url = "https://api2.sendcloud.net/api/stats/summary"
+            url = "https://api.aurorasendcloud.com/api/stats/summary"
             params = {
-                "apiUser": "test_api_user",
-                "apiKey": "test_api_key",
                 "startTime": "2025-10-01 00:00:00",
                 "endTime": "2025-10-31 23:59:59"
             }
@@ -467,24 +438,6 @@ paths:
           description: Authentication failed (invalid apiUser or apiKey)
       parameters:
         - in: query
-          name: apiUser
-          schema:
-            type: string
-          required: true
-          description: >-
-            API_USER (authentication parameter, obtained from the SendCloud
-            console)
-          example: test_api_user
-        - in: query
-          name: apiKey
-          schema:
-            type: string
-          required: true
-          description: >-
-            API_KEY (authentication parameter, obtained from the SendCloud
-            console)
-          example: test_api_key
-        - in: query
           name: startTime
           schema:
             type: string
@@ -519,14 +472,17 @@ paths:
             type: string
           required: false
           description: Filter by label name (query all labels if not specified)
-          example: Weekly Newsletter
+          example: Marketing Campaigns
+      security:
+        - apiUser: []
+          apiKey: []
       x-codeSamples:
         - lang: Python
           label: Query Weekly Daily Sending Stats
           source: |
             import requests
 
-            url = "https://api2.sendcloud.net/api/stats/daily"
+            url = "https://api.aurorasendcloud.com/api/stats/daily"
             params = {
                 "apiUser": "test_api_user",
                 "apiKey": "test_api_key",
@@ -638,24 +594,6 @@ paths:
           description: Authentication failed (invalid apiUser or apiKey)
       parameters:
         - in: query
-          name: apiUser
-          schema:
-            type: string
-          required: true
-          description: >-
-            API_USER (authentication parameter, obtained from the SendCloud
-            console)
-          example: test_api_user
-        - in: query
-          name: apiKey
-          schema:
-            type: string
-          required: true
-          description: >-
-            API_KEY (authentication parameter, obtained from the SendCloud
-            console)
-          example: test_api_key
-        - in: query
           name: startTime
           schema:
             type: string
@@ -691,13 +629,16 @@ paths:
           required: false
           description: Filter by label name (query all labels if not specified)
           example: Weekly Newsletter
+      security:
+        - apiUser: []
+          apiKey: []
       x-codeSamples:
         - lang: Python
           label: Query Daily Sending Stats (POST)
           source: |
             import requests
 
-            url = "https://api2.sendcloud.net/api/stats/daily"
+            url = "https://api.aurorasendcloud.com/api/stats/daily"
             params = {
                 "apiUser": "test_api_user",
                 "apiKey": "test_api_key",
