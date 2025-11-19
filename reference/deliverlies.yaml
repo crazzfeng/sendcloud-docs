@@ -17,6 +17,9 @@ paths:
       operationId: sendRegularEmail
       tags:
         - Deliverlies
+      security:
+        - apiUser: []
+          apiKey: []
       requestBody:
         required: true
         content:
@@ -24,14 +27,6 @@ paths:
             schema:
               type: object
               properties:
-                apiUser:
-                  type: string
-                  description: API_USER
-                  example: test_api_user
-                apiKey:
-                  type: string
-                  description: API_KEY
-                  example: test_api_key
                 from:
                   type: string
                   description: >-
@@ -147,8 +142,6 @@ paths:
                     Whether to use address list (e.g.,
                     to=group1@maillist.sendcloud.org;group2@maillist.sendcloud.org)
               required:
-                - apiUser
-                - apiKey
                 - from
                 - subject
       responses:
@@ -184,6 +177,8 @@ paths:
                             1447054895514_15555555_32350_1350.sc-inbound0$ben@ifaxin.com
         '400':
           description: Bad request (e.g., missing required parameters, invalid format)
+        '401':
+          description: Authentication failed (invalid apiUser or apiKey)
         '490':
           description: >-
             Unknown exception occurred in mail processing (e.g., invalid headers
@@ -197,6 +192,9 @@ paths:
       operationId: sendTemplateEmail
       tags:
         - Deliverlies
+      security:
+        - apiUser: []
+          apiKey: []
       parameters: []
       requestBody:
         required: true
@@ -205,14 +203,6 @@ paths:
             schema:
               type: object
               properties:
-                apiUser:
-                  type: string
-                  description: API_USER
-                  example: test_api_user
-                apiKey:
-                  type: string
-                  description: API_KEY
-                  example: test_api_key
                 from:
                   type: string
                   description: >-
@@ -258,51 +248,53 @@ paths:
                   example: IFAXIN customer service
                 cc:
                   type: string
-                  description: >-
-                    CC addresses (separated by semicolons). Invalid if using
-                    address list
-                  example: cc@ifaxin.com
+                  description: CC addresses (separated by semicolons)
+                  example: cc@ifaxin.com;cc2@ifaxin.com
                 bcc:
                   type: string
-                  description: >-
-                    BCC addresses (separated by semicolons). Invalid if using
-                    address list
-                  example: bcc@ifaxin.com
+                  description: BCC addresses (separated by semicolons)
+                  example: bcc@ifaxin.com;bcc2@ifaxin.com
                 replyTo:
                   type: string
                   description: >-
                     Default reply addresses (separated by semicolons, max 3).
                     Defaults to "from" if empty or null
-                  example: reply@ifaxin.com
+                  example: reply@ifaxin.com;reply2@ifaxin.com
                 labelName:
                   type: string
                   description: >-
                     Label for this send. Automatically created if not existing
                     in the account
-                  example: Bill Notifications
+                  example: Test Label
                 sendTags:
                   type: string
                   description: >-
                     Tags for the request (separated by ";", max 5 tags, each up
                     to 50 characters)
-                  example: bill;monthly;notification
+                  example: tag1;tag2;test
                 headers:
                   type: string
                   description: >-
                     Email headers in JSON format (e.g., {"header1": "value1",
                     "header2": "value2"})
                   example: '{"header1": "value1", "header2": "value2"}'
-                sendRequestId:
-                  type: string
-                  description: >-
-                    Max 128 characters. Duplicate values within 1 hour are only
-                    processed once
-                  example: req_template_123456
                 attachments:
                   type: object
                   description: >-
                     Email attachments. Must use multipart/form-data when
                     submitting
+                plain:
+                  type: string
+                  description: >-
+                    Email content in text/plain format. Required if html is
+                    empty
+                  example: Hello World. This is a test email.
+                sendRequestId:
+                  type: string
+                  description: >-
+                    Max 128 characters. Duplicate values within 1 hour are only
+                    processed once
+                  example: req_1234567890abcdef
                 respEmailId:
                   type: string
                   enum:
@@ -329,8 +321,6 @@ paths:
                     Whether to use address list (e.g.,
                     to=group1@maillist.sendcloud.org;group2@maillist.sendcloud.org)
               required:
-                - apiUser
-                - apiKey
                 - from
                 - templateInvokeName
       responses:
@@ -365,22 +355,15 @@ paths:
                           - >-
                             1447054895514_15555555_32350_1350.sc-inbound0$ben@ifaxin.com
                       maillistTaskId:
-                        type: array
-                        items:
-                          type: integer
+                        type: integer
                         description: >-
                           Address list task ID (returned when using address
                           list)
-                        example:
-                          - 267131
+                        example: 267131
         '400':
           description: >-
             Bad request (e.g., missing required parameters, invalid template
             name)
-        '482':
-          description: The address list task was created successfully
-        '486':
-          description: The Parameter to has a list of addresses that do not exist
   /api/mail/sendcalendar:
     post:
       summary: Send Meeting Calendar
@@ -611,21 +594,10 @@ paths:
       operationId: queryAddressListTask
       tags:
         - Deliverlies
+      security:
+        - apiUser: []
+          apiKey: []
       parameters:
-        - name: apiUser
-          in: query
-          schema:
-            type: string
-          required: true
-          description: API_USER
-          example: test_api_user
-        - name: apiKey
-          in: query
-          schema:
-            type: string
-          required: true
-          description: API_KEY
-          example: test_api_key
         - name: maillistTaskId
           in: query
           schema:
@@ -691,12 +663,19 @@ paths:
                             description: >-
                               Address list request status (e.g., Completion of
                               the request)
+        '400':
+          description: Bad request (e.g., missing required parameters, invalid format)
+        '401':
+          description: Authentication failed (invalid apiUser or apiKey)
     post:
       summary: Query Address List Task (POST)
       description: Query the status and details of an address list email task (POST method)
       operationId: queryAddressListTaskPost
       tags:
         - Deliverlies
+      security:
+        - apiUser: []
+          apiKey: []
       parameters: []
       requestBody:
         required: true
@@ -705,21 +684,11 @@ paths:
             schema:
               type: object
               properties:
-                apiUser:
-                  type: string
-                  description: API_USER
-                  example: test_api_user
-                apiKey:
-                  type: string
-                  description: API_KEY
-                  example: test_api_key
                 maillistTaskId:
                   type: integer
                   description: Returned maillistTaskId from sendtemplate request
                   example: 267131
               required:
-                - apiUser
-                - apiKey
                 - maillistTaskId
       responses:
         '200':
@@ -779,8 +748,22 @@ paths:
                               Address list request status (e.g., Completion of
                               the request)
                             example: Completion of the request
+        '400':
+          description: Bad request (e.g., missing required parameters, invalid format)
+        '401':
+          description: Authentication failed (invalid apiUser or apiKey)
 components:
-  securitySchemes: {}
+  securitySchemes:
+    apiUser:
+      type: apiKey
+      in: query
+      name: apiUser
+      description: API_USER (authentication parameter; obtained from SendCloud console)
+    apiKey:
+      type: apiKey
+      in: query
+      name: apiKey
+      description: API_KEY (authentication parameter; keep confidential)
 x-readme:
   explorer-enabled: true
   proxy-enabled: true
