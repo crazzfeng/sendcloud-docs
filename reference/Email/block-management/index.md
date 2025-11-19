@@ -1,4 +1,4 @@
 ---
 title: Block Management
-hidden: false
+hidden: true
 ---
