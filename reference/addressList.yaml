@@ -21,7 +21,7 @@ paths:
         - Address List
       security:
         - apiUser: []
-        - apiKey: []
+          apiKey: []
       responses:
         '200':
           description: Address list added successfully
