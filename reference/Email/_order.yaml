@@ -1,7 +1,6 @@
 - send-email
 - email-label
 - domain
-- tracking-domain
 - user-information
 - statistics
 - delivery-response
