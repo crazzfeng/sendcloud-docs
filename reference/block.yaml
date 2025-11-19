@@ -5,7 +5,7 @@ info:
 servers:
   - url: https://api.aurorasendcloud.com
 tags:
-  - name: Block Management
+  - name: Block
     description: >-
       Interfaces for querying block lists, adding blocked addresses, and
       removing blocked addresses
@@ -20,7 +20,7 @@ paths:
         per page is 500. Time parameters use Beijing time (GMT+8).
       operationId: queryBlockListGet
       tags:
-        - Block Management
+        - Block
       security:
         - apiUser: []
         - apiKey: []
@@ -224,7 +224,7 @@ paths:
         constraints as the GET method.
       operationId: queryBlockListPost
       tags:
-        - Block Management
+        - Block
       security:
         - apiUser: []
         - apiKey: []
@@ -418,7 +418,7 @@ paths:
         irreversible for manual blocks.
       operationId: addBlockAddress
       tags:
-        - Block Management
+        - Block
       security:
         - apiUser: []
         - apiKey: []
@@ -513,7 +513,7 @@ paths:
         Only addresses that were manually blocked can be removed.
       operationId: removeBlockAddress
       tags:
-        - Block Management
+        - Block
       security:
         - apiUser: []
         - apiKey: []
@@ -607,7 +607,7 @@ paths:
         5 minutes will be rejected.
       operationId: exportBlockList
       tags:
-        - Block Management
+        - Block
       security:
         - apiUser: []
         - apiKey: []
@@ -760,7 +760,7 @@ paths:
         status, and download URL when completed.
       operationId: queryExportStatus
       tags:
-        - Block Management
+        - Block
       security:
         - apiUser: []
         - apiKey: []
@@ -856,7 +856,7 @@ paths:
         details if the address is blocked; returns empty values otherwise.
       operationId: checkBlockStatusGet
       tags:
-        - Block Management
+        - Block
       security:
         - apiUser: []
         - apiKey: []
