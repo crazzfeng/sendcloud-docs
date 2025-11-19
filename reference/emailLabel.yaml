@@ -19,25 +19,17 @@ paths:
       operationId: label-list
       tags:
         - Email Label
+      security:
+        - apiUser: []
+          apiKey: []
       parameters:
-        - name: apiUser
-          in: query
-          required: true
-          schema:
-            type: string
-          description: API_USER (identity identifier)
-        - name: apiKey
-          in: query
-          required: true
-          schema:
-            type: string
-          description: API_KEY (identity verification key)
         - name: query
           in: query
           required: false
           schema:
             type: string
           description: Key word of fuzzy query (matches label name)
+          example: test label
         - name: start
           in: query
           required: false
@@ -46,6 +38,7 @@ paths:
             minimum: 0
             default: 0
           description: Start position, defaults to 0
+          example: 0
         - name: limit
           in: query
           required: false
@@ -55,6 +48,7 @@ paths:
             maximum: 100
             default: 100
           description: 'Amount, defaults to 100 (range: 0-100)'
+          example: 10
       responses:
         '200':
           description: Request was successful
@@ -120,25 +114,17 @@ paths:
       operationId: label-get
       tags:
         - Email Label
+      security:
+        - apiUser: []
+          apiKey: []
       parameters:
-        - name: apiUser
-          in: query
-          required: true
-          schema:
-            type: string
-          description: API_USER (identity identifier)
-        - name: apiKey
-          in: query
-          required: true
-          schema:
-            type: string
-          description: API_KEY (identity verification key)
         - name: labelId
           in: query
           required: true
           schema:
             type: integer
           description: Label ID (unique identifier)
+          example: 111
       responses:
         '200':
           description: Request was successful
@@ -189,25 +175,17 @@ paths:
       operationId: label-add
       tags:
         - Email Label
+      security:
+        - apiUser: []
+          apiKey: []
       parameters:
-        - name: apiUser
-          in: query
-          required: true
-          schema:
-            type: string
-          description: API_USER (identity identifier)
-        - name: apiKey
-          in: query
-          required: true
-          schema:
-            type: string
-          description: API_KEY (identity verification key)
         - name: labelName
           in: query
           required: true
           schema:
             type: string
           description: Label name to be created
+          example: test label
       responses:
         '200':
           description: Request was successful
@@ -256,25 +234,17 @@ paths:
       operationId: label-delete
       tags:
         - Email Label
+      security:
+        - apiUser: []
+          apiKey: []
       parameters:
-        - name: apiUser
-          in: query
-          required: true
-          schema:
-            type: string
-          description: API_USER (identity identifier)
-        - name: apiKey
-          in: query
-          required: true
-          schema:
-            type: string
-          description: API_KEY (identity verification key)
         - name: labelId
           in: query
           required: true
           schema:
             type: integer
           description: Label ID to be deleted
+          example: 111
       responses:
         '200':
           description: Request was successful
@@ -307,31 +277,24 @@ paths:
       operationId: label-update
       tags:
         - Email Label
+      security:
+        - apiUser: []
+          apiKey: []
       parameters:
-        - name: apiUser
-          in: query
-          required: true
-          schema:
-            type: string
-          description: API_USER (identity identifier)
-        - name: apiKey
-          in: query
-          required: true
-          schema:
-            type: string
-          description: API_KEY (identity verification key)
         - name: labelId
           in: query
           required: true
           schema:
             type: integer
           description: Label ID to be modified
+          example: 111
         - name: labelName
           in: query
           required: true
           schema:
             type: string
           description: New label name
+          example: test label
       responses:
         '200':
           description: Request was successful
@@ -361,6 +324,17 @@ paths:
                           Number of successfully modified labels (usually 1; 0
                           if label ID does not exist)
 components:
+  securitySchemes:
+    apiUser:
+      type: apiKey
+      in: query
+      name: apiUser
+      description: API_USER (authentication parameter; obtained from SendCloud console)
+    apiKey:
+      type: apiKey
+      in: query
+      name: apiKey
+      description: API_KEY (authentication parameter; keep confidential)
   schemas:
     ErrorResponse:
       type: object
