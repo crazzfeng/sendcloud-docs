@@ -1,8 +1,3 @@
-- createaddresslist
-- batchqueryaddresslistsget
-- batchqueryaddresslistspost
-- getsingleaddresslistget
-- getsingleaddresslistpost
 - updateaddresslist
 - deleteaddresslist
 - addmemberstoaddresslist
@@ -10,3 +5,9 @@
 - queryaddresslistmembersget
 - queryaddresslistmemberspost
 - clearaddresslistmembers
+- addaddresslist
+- getaddresslist
+- getaddresslistpost
+- getmemberdetails
+- getmemberdetailspost
+- updatememberinfo

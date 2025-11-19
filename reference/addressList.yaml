@@ -10,18 +10,21 @@ tags:
       Interfaces for creating, querying, updating, deleting address lists and
       managing members
 paths:
-  /api/maillist/create:
+  /api/addresslist/add:
     post:
-      summary: Create Address List
+      summary: Add Address List
       description: >-
-        Create a new email address list (supports setting list name and
+        Add a new email address list (supports setting list name and
         description)
-      operationId: createAddressList
+      operationId: addAddressList
       tags:
         - Address List
+      security:
+        - apiUser: []
+        - apiKey: []
       responses:
         '200':
-          description: Address list created successfully
+          description: Address list added successfully
           content:
             application/json:
               schema:
@@ -45,89 +48,108 @@ paths:
                     example: true
                   info:
                     type: object
-                    description: Detailed information of the newly created address list
+                    description: Detailed information of the newly added address list
                     properties:
-                      name:
-                        type: string
-                        description: Address list name (unique identifier)
-                        example: test_maillist
-                      displayName:
-                        type: string
-                        description: Address list display name (for management display)
-                        example: Test Address List
-                      description:
-                        type: string
-                        description: Address list description (optional)
-                        example: This is a test address list
-                      memberCount:
-                        type: integer
-                        description: Number of members in the address list (0 for new list)
-                        example: 0
-                      gmtCreated:
-                        type: string
-                        format: date-time
-                        description: >-
-                          Address list creation time (format: yyyy-MM-dd
-                          HH:mm:ss)
-                        example: '2025-10-01 14:30:00'
+                      data:
+                        type: object
+                        properties:
+                          address:
+                            type: string
+                            description: >-
+                              Alias address of the address list (formatted as
+                              xxx@maillist.sendcloud.org)
+                            example: test@maillist.sendcloud.org
+                          name:
+                            type: string
+                            description: Address list name
+                            example: test
+                          description:
+                            type: string
+                            description: Address list description (optional)
+                            example: This is a test address list
+                          memberCount:
+                            type: integer
+                            description: >-
+                              Number of members in the address list (0 for new
+                              list)
+                            example: 0
+                          listType:
+                            type: integer
+                            description: List type
+                            example: 0
+                          gmtCreated:
+                            type: string
+                            format: date-time
+                            description: >-
+                              Address list creation time (format: yyyy-MM-dd
+                              HH:mm:ss)
+                            example: '2015-09-28 17:59:15'
+                          gmtUpdated:
+                            type: string
+                            format: date-time
+                            description: >-
+                              Address list last update time (format: yyyy-MM-dd
+                              HH:mm:ss)
+                            example: '2015-09-28 17:59:15'
         '400':
           description: Bad request (e.g., duplicate list name, missing required parameters)
       parameters:
         - in: query
+          name: address
+          schema:
+            type: string
+          required: true
+          description: >-
+            Alias address of the address list (formatted as
+            xxx@maillist.sendcloud.org, used for invoking the list in sending
+            emails)
+          example: test@maillist.sendcloud.org
+        - in: query
           name: name
           schema:
             type: string
           required: true
-          description: >-
-            Address list name (unique under the current apiUser, used for
-            invoking the list in sending emails)
-          example: test_maillist
+          description: Address list name
+          example: test
         - in: query
-          name: displayName
-          schema:
-            type: string
-          required: true
-          description: >-
-            Address list display name (used for management display in the
-            console)
-          example: Test Address List
-        - in: query
-          name: description
+          name: desc
           schema:
             type: string
           required: false
-          description: Address list description (optional, used for备注说明)
+          description: Address list description (optional)
           example: This is a test address list
       x-codeSamples:
         - lang: Python
-          label: Create Address List (Basic)
+          label: Add Address List (Basic)
           source: |
             import requests
 
-            url = "https://api.aurorasendcloud.com/api/maillist/create"
+            url = "https://api.aurorasendcloud.com/api/addresslist/add"
             params = {
                 "apiUser": "test_api_user",
                 "apiKey": "test_api_key",
-                "name": "marketing_maillist",
-                "displayName": "Marketing Promotion List",
-                "description": "Address list for marketing promotion emails"
+                "address": "test@maillist.sendcloud.org",
+                "name": "test",
+                "desc": "This is a test address list"
             }
 
             response = requests.post(url, params=params)
             print(response.json())
-      security:
-        - apiUser: []
-          apiKey: []
-  /api/maillist/list:
+  /api/addresslist/list:
     get:
-      summary: Batch Query Address Lists
-      description: Query basic information of multiple address lists (supports pagination)
-      operationId: batchQueryAddressListsGet
+      summary: Get Address List
+      description: >-
+        Get the address list under the current apiUser (supports pagination
+        query)
+      operationId: getAddressList
       tags:
         - Address List
+      security:
+        - apiUser: []
+        - apiKey: []
       responses:
         '200':
-          description: Request successful
+          description: Address list retrieved successfully
           content:
             application/json:
               schema:
@@ -151,50 +173,200 @@ paths:
                     example: true
                   info:
                     type: object
-                    description: Batch query result data of address lists
+                    description: Detailed information of the address list
                     properties:
-                      dataList:
+                      total:
+                        type: integer
+                        description: Total number of address lists
+                        example: 5
+                      data:
                         type: array
-                        description: List of address list basic information
+                        description: List of address list objects
                         items:
                           type: object
                           properties:
+                            address:
+                              type: string
+                              description: >-
+                                Alias address of the address list (formatted as
+                                xxx@maillist.sendcloud.org)
+                              example: test@maillist.sendcloud.org
                             name:
                               type: string
-                              description: Address list name (unique identifier)
-                              example: test_maillist
-                            displayName:
-                              type: string
-                              description: Address list display name
-                              example: Test Address List
+                              description: Address list name
+                              example: test
                             description:
                               type: string
-                              description: Address list description
+                              description: Address list description (optional)
                               example: This is a test address list
                             memberCount:
                               type: integer
                               description: Number of members in the address list
-                              example: 50
+                              example: 150
+                            listType:
+                              type: integer
+                              description: List type
+                              example: 0
                             gmtCreated:
                               type: string
                               format: date-time
-                              description: Address list creation time
-                              example: '2025-10-01 14:30:00'
+                              description: >-
+                                Address list creation time (format: yyyy-MM-dd
+                                HH:mm:ss)
+                              example: '2015-09-28 17:59:15'
                             gmtUpdated:
                               type: string
                               format: date-time
-                              description: Address list last update time
-                              example: '2025-10-02 10:15:00'
+                              description: >-
+                                Address list last update time (format:
+                                yyyy-MM-dd HH:mm:ss)
+                              example: '2015-09-28 17:59:15'
+        '400':
+          description: Bad request (e.g., invalid pagination parameters)
+      parameters:
+        - in: query
+          name: page
+          schema:
+            type: integer
+            default: 1
+            minimum: 1
+          required: false
+          description: Page number (starting from 1, default 1)
+          example: 1
+        - in: query
+          name: pageSize
+          schema:
+            type: integer
+            default: 100
+            minimum: 1
+            maximum: 500
+          required: false
+          description: Number of items per page (default 100, max 500)
+          example: 20
+        - in: query
+          name: keyword
+          schema:
+            type: string
+          required: false
+          description: Keyword search (supports searching by name or address)
+          example: test
+      x-codeSamples:
+        - lang: Python
+          label: Get Address List (Basic)
+          source: |
+            import requests
+
+            url = "https://api.aurorasendcloud.com/api/addresslist/list"
+            params = {
+                "apiUser": "test_api_user",
+                "apiKey": "test_api_key",
+                "page": 1,
+                "pageSize": 20
+            }
+
+            response = requests.get(url, params=params)
+            print(response.json())
+        - lang: Python
+          label: Get Address List (With Keyword Search)
+          source: |
+            import requests
+
+            url = "https://api.aurorasendcloud.com/api/addresslist/list"
+            params = {
+                "apiUser": "test_api_user",
+                "apiKey": "test_api_key",
+                "page": 1,
+                "pageSize": 50,
+                "keyword": "marketing"
+            }
+
+            response = requests.get(url, params=params)
+            print(response.json())
+    post:
+      summary: Get Address List (POST)
+      description: >-
+        Get the address list under the current apiUser (supports pagination
+        query, POST method recommended for complex parameters)
+      operationId: getAddressListPost
+      tags:
+        - Address List
+      security:
+        - apiUser: []
+        - apiKey: []
+      responses:
+        '200':
+          description: Address list retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    description: Response status code (200 indicates success)
+                    example: 200
+                  message:
+                    type: string
+                    description: >-
+                      Prompt message for request result (success/failure
+                      description)
+                    example: request was successful
+                  result:
+                    type: boolean
+                    description: >-
+                      Whether the request was processed successfully (true =
+                      success, false = failure)
+                    example: true
+                  info:
+                    type: object
+                    description: Detailed information of the address list
+                    properties:
                       total:
                         type: integer
-                        description: >-
-                          Total number of address lists under the current
-                          apiUser
-                        example: 10
-                      count:
-                        type: integer
-                        description: Number of address lists returned in the current query
-                        example: 3
+                        description: Total number of address lists
+                        example: 5
+                      data:
+                        type: array
+                        description: List of address list objects
+                        items:
+                          type: object
+                          properties:
+                            address:
+                              type: string
+                              description: >-
+                                Alias address of the address list (formatted as
+                                xxx@maillist.sendcloud.org)
+                              example: test@maillist.sendcloud.org
+                            name:
+                              type: string
+                              description: Address list name
+                              example: test
+                            description:
+                              type: string
+                              description: Address list description (optional)
+                              example: This is a test address list
+                            memberCount:
+                              type: integer
+                              description: Number of members in the address list
+                              example: 150
+                            listType:
+                              type: integer
+                              description: List type
+                              example: 0
+                            gmtCreated:
+                              type: string
+                              format: date-time
+                              description: >-
+                                Address list creation time (format: yyyy-MM-dd
+                                HH:mm:ss)
+                              example: '2015-09-28 17:59:15'
+                            gmtUpdated:
+                              type: string
+                              format: date-time
+                              description: >-
+                                Address list last update time (format:
+                                yyyy-MM-dd HH:mm:ss)
+                              example: '2015-09-28 17:59:15'
         '400':
           description: Bad request (e.g., invalid pagination parameters)
       parameters:
@@ -221,342 +393,56 @@ paths:
           example: 5
       x-codeSamples:
         - lang: Python
-          label: Batch Query Address Lists (Pagination)
+          label: Get Address List (POST with JSON)
           source: |
             import requests
+            import json
 
-            url = "https://api.aurorasendcloud.com/api/maillist/list"
+            url = "https://api.aurorasendcloud.com/api/addresslist/list"
             params = {
                 "apiUser": "test_api_user",
-                "apiKey": "test_api_key",
-                "start": 0,
-                "limit": 10
+                "apiKey": "test_api_key"
+            }
+            data = {
+                "page": 1,
+                "pageSize": 20
             }
 
-            response = requests.get(url, params=params)
+            response = requests.post(url, params=params, json=data)
             result = response.json()
             print(f"Total address lists: {result['info']['total']}")
             print("Address list details:")
-            for list_info in result['info']['dataList']:
-                print(f"- Name: {list_info['name']}, DisplayName: {list_info['displayName']}, Members: {list_info['memberCount']}")
-      security:
-        - apiUser: []
-          apiKey: []
-    post:
-      summary: Batch Query Address Lists (POST)
-      description: Batch query address lists using POST method (supports pagination)
-      operationId: batchQueryAddressListsPost
-      tags:
-        - Address List
-      responses:
-        '200':
-          description: Request successful
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  statusCode:
-                    type: integer
-                    description: Response status code (200 indicates success)
-                    example: 200
-                  message:
-                    type: string
-                    description: >-
-                      Prompt message for request result (success/failure
-                      description)
-                    example: request was successful
-                  result:
-                    type: boolean
-                    description: >-
-                      Whether the request was processed successfully (true =
-                      success, false = failure)
-                    example: true
-                  info:
-                    type: object
-                    description: Batch query result data of address lists
-                    properties:
-                      dataList:
-                        type: array
-                        description: List of address list basic information
-                        items:
-                          type: object
-                          properties:
-                            name:
-                              type: string
-                              description: Address list name (unique identifier)
-                              example: test_maillist
-                            displayName:
-                              type: string
-                              description: Address list display name
-                              example: Test Address List
-                            description:
-                              type: string
-                              description: Address list description
-                              example: This is a test address list
-                            memberCount:
-                              type: integer
-                              description: Number of members in the address list
-                              example: 50
-                            gmtCreated:
-                              type: string
-                              format: date-time
-                              description: Address list creation time
-                              example: '2025-10-01 14:30:00'
-                            gmtUpdated:
-                              type: string
-                              format: date-time
-                              description: Address list last update time
-                              example: '2025-10-02 10:15:00'
-                      total:
-                        type: integer
-                        description: >-
-                          Total number of address lists under the current
-                          apiUser
-                        example: 10
-                      count:
-                        type: integer
-                        description: Number of address lists returned in the current query
-                        example: 3
-        '400':
-          description: Bad request (e.g., invalid pagination parameters)
-      parameters:
-        - in: query
-          name: start
-          schema:
-            type: integer
-            default: 0
-            minimum: 0
-          required: false
-          description: Query start position (pagination parameter, defaults to 0)
-          example: 0
-        - in: query
-          name: limit
-          schema:
-            type: integer
-            default: 100
-            minimum: 0
-            maximum: 100
-          required: false
-          description: >-
-            Number of results returned per query (pagination parameter, range
-            0-100, defaults to 100)
-          example: 5
-      x-codeSamples:
+            for list_info in result['info']['data']:
+                print(f"- Address: {list_info['address']}, Name: {list_info['name']}, Members: {list_info['memberCount']}")
         - lang: Python
-          label: Batch Query Address Lists (POST Method)
+          label: Get Address List (POST with Form Data)
           source: |
             import requests
 
-            url = "https://api.aurorasendcloud.com/api/maillist/list"
-            params = {
+            url = "https://api.aurorasendcloud.com/api/addresslist/list"
+            data = {
                 "apiUser": "test_api_user",
                 "apiKey": "test_api_key",
-                "start": 5,
-                "limit": 8
+                "page": 1,
+                "pageSize": 20
             }
 
-            response = requests.post(url, params=params)
-            print(response.json())
-      security:
-        - apiUser: []
-          apiKey: []
-  /api/maillist/get:
-    get:
-      summary: Query Single Address List
-      description: Get detailed information of a specific address list by list name
-      operationId: getSingleAddressListGet
-      tags:
-        - Address List
-      responses:
-        '200':
-          description: Request successful
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  statusCode:
-                    type: integer
-                    description: Response status code (200 indicates success)
-                    example: 200
-                  message:
-                    type: string
-                    description: >-
-                      Prompt message for request result (success/failure
-                      description)
-                    example: request was successful
-                  result:
-                    type: boolean
-                    description: >-
-                      Whether the request was processed successfully (true =
-                      success, false = failure)
-                    example: true
-                  info:
-                    type: object
-                    description: Detailed information of the queried address list
-                    properties:
-                      data:
-                        type: object
-                        properties:
-                          name:
-                            type: string
-                            description: Address list name (unique identifier)
-                            example: test_maillist
-                          displayName:
-                            type: string
-                            description: Address list display name
-                            example: Test Address List
-                          description:
-                            type: string
-                            description: Address list description
-                            example: This is a test address list
-                          memberCount:
-                            type: integer
-                            description: Number of members in the address list
-                            example: 50
-                          gmtCreated:
-                            type: string
-                            format: date-time
-                            description: Address list creation time
-                            example: '2025-10-01 14:30:00'
-                          gmtUpdated:
-                            type: string
-                            format: date-time
-                            description: Address list last update time
-                            example: '2025-10-02 10:15:00'
-        '404':
-          description: Address list not found (invalid list name)
-      parameters:
-        - in: query
-          name: name
-          schema:
-            type: string
-          required: true
-          description: Name of the target address list (unique identifier)
-          example: test_maillist
-      x-codeSamples:
-        - lang: Python
-          label: Query Single Address List (GET)
-          source: |
-            import requests
-
-            url = "https://api.aurorasendcloud.com/api/maillist/get"
-            params = {
-                "apiUser": "test_api_user",
-                "apiKey": "test_api_key",
-                "name": "marketing_maillist"
-            }
-
-            response = requests.get(url, params=params)
-            list_info = response.json()
-            if list_info["result"]:
-                data = list_info["info"]["data"]
-                print(f"List Name: {data['name']}")
-                print(f"Display Name: {data['displayName']}")
-                print(f"Member Count: {data['memberCount']}")
-                print(f"Created Time: {data['gmtCreated']}")
-      security:
-        - apiUser: []
-          apiKey: []
-    post:
-      summary: Query Single Address List (POST)
-      description: Get detailed information of a specific address list using POST method
-      operationId: getSingleAddressListPost
-      tags:
-        - Address List
-      responses:
-        '200':
-          description: Request successful
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  statusCode:
-                    type: integer
-                    description: Response status code (200 indicates success)
-                    example: 200
-                  message:
-                    type: string
-                    description: >-
-                      Prompt message for request result (success/failure
-                      description)
-                    example: request was successful
-                  result:
-                    type: boolean
-                    description: >-
-                      Whether the request was processed successfully (true =
-                      success, false = failure)
-                    example: true
-                  info:
-                    type: object
-                    description: Detailed information of the queried address list
-                    properties:
-                      data:
-                        type: object
-                        properties:
-                          name:
-                            type: string
-                            description: Address list name (unique identifier)
-                            example: test_maillist
-                          displayName:
-                            type: string
-                            description: Address list display name
-                            example: Test Address List
-                          description:
-                            type: string
-                            description: Address list description
-                            example: This is a test address list
-                          memberCount:
-                            type: integer
-                            description: Number of members in the address list
-                            example: 50
-                          gmtCreated:
-                            type: string
-                            format: date-time
-                            description: Address list creation time
-                            example: '2025-10-01 14:30:00'
-                          gmtUpdated:
-                            type: string
-                            format: date-time
-                            description: Address list last update time
-                            example: '2025-10-02 10:15:00'
-        '404':
-          description: Address list not found (invalid list name)
-      parameters:
-        - in: query
-          name: name
-          schema:
-            type: string
-          required: true
-          description: Name of the target address list (unique identifier)
-          example: test_maillist
-      x-codeSamples:
-        - lang: Python
-          label: Query Single Address List (POST)
-          source: |
-            import requests
-
-            url = "https://api.aurorasendcloud.com/api/maillist/get"
-            params = {
-                "apiUser": "test_api_user",
-                "apiKey": "test_api_key",
-                "name": "marketing_maillist"
-            }
-
-            response = requests.post(url, params=params)
-            print(response.json())
-      security:
-        - apiUser: []
-          apiKey: []
-  /api/maillist/update:
+            response = requests.post(url, data=data)
+            result = response.json()
+            print(f"Total address lists: {result['info']['total']}")
+            print("Address list details:")
+            for list_info in result['info']['data']:
+                print(f"- Address: {list_info['address']}, Name: {list_info['name']}, Members: {list_info['memberCount']}")
+  /api/addresslist/update:
     post:
       summary: Update Address List
       description: Modify the display name or description of an existing address list
       operationId: updateAddressList
       tags:
         - Address List
+      security:
+        - apiUser: []
+        - apiKey: []
       responses:
         '200':
           description: Address list updated successfully
@@ -597,23 +483,30 @@ paths:
           description: Address list not found (invalid list name)
       parameters:
         - in: query
-          name: name
+          name: address
           schema:
             type: string
           required: true
           description: >-
-            Name of the address list to update (unique identifier, cannot be
+            Address of the address list to update (unique identifier, cannot be
             modified)
-          example: test_maillist
+          example: test@maillist.sendcloud.org
         - in: query
-          name: displayName
+          name: newAddress
+          schema:
+            type: string
+          required: false
+          description: New address (optional, leave empty to keep the original)
+          example: new_test@maillist.sendcloud.org
+        - in: query
+          name: name
           schema:
             type: string
           required: false
           description: New display name (optional, leave empty to keep the original)
           example: Updated Test Address List
         - in: query
-          name: description
+          name: desc
           schema:
             type: string
           required: false
@@ -627,21 +520,18 @@ paths:
           source: |
             import requests
 
-            url = "https://api.aurorasendcloud.com/api/maillist/update"
+            url = "https://api.aurorasendcloud.com/api/addresslist/update"
             params = {
                 "apiUser": "test_api_user",
                 "apiKey": "test_api_key",
-                "name": "marketing_maillist",
-                "displayName": "Updated Marketing List",
-                "description": "Updated address list for 2025 marketing campaigns"
+                "address": "marketing@maillist.sendcloud.org",
+                "name": "Updated Marketing List",
+                "desc": "Updated address list for 2025 marketing campaigns"
             }
 
             response = requests.post(url, params=params)
             print(response.json())
-      security:
-        - apiUser: []
-          apiKey: []
-  /api/maillist/delete:
+  /api/addresslist/delete:
     post:
       summary: Delete Address List
       description: >-
@@ -650,6 +540,9 @@ paths:
       operationId: deleteAddressList
       tags:
         - Address List
+      security:
+        - apiUser: []
+        - apiKey: []
       responses:
         '200':
           description: Address list deleted successfully
@@ -688,31 +581,249 @@ paths:
           description: Address list not found (invalid list name)
       parameters:
         - in: query
-          name: name
+          name: address
           schema:
             type: string
           required: true
-          description: Name of the address list to delete (unique identifier)
-          example: test_maillist
+          description: Address of the address list to delete (unique identifier)
+          example: test@maillist.sendcloud.org
       x-codeSamples:
         - lang: Python
           label: Delete Address List
           source: |
             import requests
 
-            url = "https://api.aurorasendcloud.com/api/maillist/delete"
+            url = "https://api.aurorasendcloud.com/api/addresslist/delete"
             params = {
                 "apiUser": "test_api_user",
                 "apiKey": "test_api_key",
-                "name": "obsolete_maillist"
+                "address": "obsolete@maillist.sendcloud.org"
             }
 
             response = requests.post(url, params=params)
             print(response.json())
+  /api/addressmember/get:
+    get:
+      summary: Get Member Details
+      description: Get detailed information of a specific member in an address list
+      operationId: getMemberDetails
+      tags:
+        - Address List
       security:
         - apiUser: []
-          apiKey: []
-  /api/maillist/member/add:
+        - apiKey: []
+      responses:
+        '200':
+          description: Member details retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    description: Response status code (200 indicates success)
+                    example: 200
+                  message:
+                    type: string
+                    description: >-
+                      Prompt message for request result (success/failure
+                      description)
+                    example: request was successful
+                  result:
+                    type: boolean
+                    description: >-
+                      Whether the request was processed successfully (true =
+                      success, false = failure)
+                    example: true
+                  info:
+                    type: object
+                    description: Detailed information of the queried member
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          member:
+                            type: string
+                            description: Email address of the member
+                            example: user@example.com
+                          address:
+                            type: string
+                            description: >-
+                              Address list alias (formatted as
+                              xxx@maillist.sendcloud.org)
+                            example: test@maillist.sendcloud.org
+                          name:
+                            type: string
+                            description: Member name (optional)
+                            example: John Doe
+                          vars:
+                            type: object
+                            description: Custom variables for the member (optional)
+                            additionalProperties:
+                              type: string
+                            example:
+                              city: Beijing
+                              age: '30'
+                          gmtCreated:
+                            type: string
+                            format: date-time
+                            description: 'Member addition time (format: yyyy-MM-dd HH:mm:ss)'
+                            example: '2015-09-28 17:59:15'
+                          gmtUpdated:
+                            type: string
+                            format: date-time
+                            description: >-
+                              Member last update time (format: yyyy-MM-dd
+                              HH:mm:ss)
+                            example: '2015-09-28 17:59:15'
+        '404':
+          description: Member not found (invalid address or member email)
+      parameters:
+        - in: query
+          name: address
+          schema:
+            type: string
+          required: true
+          description: Address list alias (formatted as xxx@maillist.sendcloud.org)
+          example: test@maillist.sendcloud.org
+        - in: query
+          name: member
+          schema:
+            type: string
+          required: true
+          description: Email address of the member to query
+          example: user@example.com
+      x-codeSamples:
+        - lang: Python
+          label: Get Member Details
+          source: |
+            import requests
+
+            url = "https://api.aurorasendcloud.com/api/addressmember/get"
+            params = {
+                "apiUser": "test_api_user",
+                "apiKey": "test_api_key",
+                "address": "test@maillist.sendcloud.org",
+                "member": "user@example.com"
+            }
+
+            response = requests.get(url, params=params)
+            member_info = response.json()
+            if member_info["result"]:
+                data = member_info["info"]["data"]
+                print(f"Member: {data['member']}")
+                print(f"Name: {data['name']}")
+                print(f"Address List: {data['address']}")
+                print(f"Added Time: {data['gmtCreated']}")
+    post:
+      summary: Get Member Details (POST)
+      description: Get detailed information of a specific member using POST method
+      operationId: getMemberDetailsPost
+      tags:
+        - Address List
+      security:
+        - apiUser: []
+        - apiKey: []
+      responses:
+        '200':
+          description: Member details retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    description: Response status code (200 indicates success)
+                    example: 200
+                  message:
+                    type: string
+                    description: >-
+                      Prompt message for request result (success/failure
+                      description)
+                    example: request was successful
+                  result:
+                    type: boolean
+                    description: >-
+                      Whether the request was processed successfully (true =
+                      success, false = failure)
+                    example: true
+                  info:
+                    type: object
+                    description: Detailed information of the queried member
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          member:
+                            type: string
+                            description: Email address of the member
+                            example: user@example.com
+                          address:
+                            type: string
+                            description: >-
+                              Address list alias (formatted as
+                              xxx@maillist.sendcloud.org)
+                            example: test@maillist.sendcloud.org
+                          name:
+                            type: string
+                            description: Member name (optional)
+                            example: John Doe
+                          vars:
+                            type: object
+                            description: Custom variables for the member (optional)
+                            additionalProperties:
+                              type: string
+                            example:
+                              city: Beijing
+                              age: '30'
+                          gmtCreated:
+                            type: string
+                            format: date-time
+                            description: 'Member addition time (format: yyyy-MM-dd HH:mm:ss)'
+                            example: '2015-09-28 17:59:15'
+                          gmtUpdated:
+                            type: string
+                            format: date-time
+                            description: >-
+                              Member last update time (format: yyyy-MM-dd
+                              HH:mm:ss)
+                            example: '2015-09-28 17:59:15'
+        '404':
+          description: Member not found (invalid address or member email)
+      parameters:
+        - in: query
+          name: address
+          schema:
+            type: string
+          required: true
+          description: Address list alias (formatted as xxx@maillist.sendcloud.org)
+          example: test@maillist.sendcloud.org
+        - in: query
+          name: member
+          schema:
+            type: string
+          required: true
+          description: Email address of the member to query
+          example: user@example.com
+      x-codeSamples:
+        - lang: Python
+          label: Get Member Details (POST)
+          source: |
+            import requests
+
+            url = "https://api.aurorasendcloud.com/api/addressmember/get"
+            params = {
+                "apiUser": "test_api_user",
+                "apiKey": "test_api_key",
+                "address": "test@maillist.sendcloud.org",
+                "member": "user@example.com"
+            }
+
+            response = requests.post(url, params=params)
+            print(response.json())
+  /api/addressmember/add:
     post:
       summary: Add Members to Address List
       description: >-
@@ -721,6 +832,9 @@ paths:
       operationId: addMembersToAddressList
       tags:
         - Address List
+      security:
+        - apiUser: []
+        - apiKey: []
       responses:
         '200':
           description: Members added successfully
@@ -767,14 +881,14 @@ paths:
           description: Address list not found (invalid list name)
       parameters:
         - in: query
-          name: maillistName
+          name: address
           schema:
             type: string
           required: true
-          description: Name of the target address list (to which members are added)
-          example: test_maillist
+          description: Address of the target address list (to which members are added)
+          example: test@maillist.sendcloud.org
         - in: query
-          name: emails
+          name: members
           schema:
             type: string
           required: true
@@ -789,7 +903,7 @@ paths:
             import requests
 
 
-            url = "https://api.aurorasendcloud.com/api/maillist/member/add"
+            url = "https://api.aurorasendcloud.com/api/addressmember/add"
 
             # Batch add multiple emails (separated by semicolons)
 
@@ -799,8 +913,8 @@ paths:
             params = {
                 "apiUser": "test_api_user",
                 "apiKey": "test_api_key",
-                "maillistName": "marketing_maillist",
-                "emails": emails
+                "address": "marketing@maillist.sendcloud.org",
+                "members": emails
             }
 
 
@@ -813,10 +927,107 @@ paths:
             print(f"Already existing: {result['info']['existCount']}")
 
             print(f"Invalid emails: {result['info']['invalidCount']}")
+  /api/addressmember/update:
+    post:
+      summary: Update Member Information
+      description: >-
+        Update member information in an address list (supports updating name and
+        custom variables)
+      operationId: updateMemberInfo
+      tags:
+        - Address List
       security:
         - apiUser: []
-          apiKey: []
-  /api/maillist/member/delete:
+        - apiKey: []
+      responses:
+        '200':
+          description: Member information updated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    description: Response status code (200 indicates success)
+                    example: 200
+                  message:
+                    type: string
+                    description: >-
+                      Prompt message for request result (success/failure
+                      description)
+                    example: request was successful
+                  result:
+                    type: boolean
+                    description: >-
+                      Whether the request was processed successfully (true =
+                      success, false = failure)
+                    example: true
+                  info:
+                    type: object
+                    description: Update result statistics
+                    properties:
+                      count:
+                        type: integer
+                        description: >-
+                          Number of members successfully updated (1 = success, 0
+                          = no update)
+                        example: 1
+        '400':
+          description: Bad request (e.g., no parameters to update)
+        '404':
+          description: Member not found (invalid address or member email)
+      parameters:
+        - in: query
+          name: address
+          schema:
+            type: string
+          required: true
+          description: Address list alias (formatted as xxx@maillist.sendcloud.org)
+          example: test@maillist.sendcloud.org
+        - in: query
+          name: member
+          schema:
+            type: string
+          required: true
+          description: Email address of the member to update
+          example: user@example.com
+        - in: query
+          name: name
+          schema:
+            type: string
+          required: false
+          description: New member name (optional, leave empty to keep the original)
+          example: John Smith
+        - in: query
+          name: vars
+          schema:
+            type: string
+          required: false
+          description: >-
+            Custom variables in JSON format (optional, e.g.,
+            {"city":"Beijing","age":"30"})
+          example: '{"city": "Shanghai", "age": "25"}'
+      x-codeSamples:
+        - lang: Python
+          label: Update Member Information
+          source: |
+            import requests
+            import json
+
+            url = "https://api.aurorasendcloud.com/api/addressmember/update"
+            params = {
+                "apiUser": "test_api_user",
+                "apiKey": "test_api_key",
+                "address": "test@maillist.sendcloud.org",
+                "member": "user@example.com",
+                "name": "John Smith",
+                "vars": json.dumps({"city": "Shanghai", "age": "25"})
+            }
+
+            response = requests.post(url, params=params)
+            print(response.json())
+  /api/addressmember/delete:
     post:
       summary: Remove Members from Address List
       description: >-
@@ -825,6 +1036,9 @@ paths:
       operationId: removeMembersFromAddressList
       tags:
         - Address List
+      security:
+        - apiUser: []
+        - apiKey: []
       responses:
         '200':
           description: Members removed successfully
@@ -861,14 +1075,14 @@ paths:
           description: Address list not found (invalid list name)
       parameters:
         - in: query
-          name: maillistName
+          name: address
           schema:
             type: string
           required: true
-          description: Name of the target address list (from which members are removed)
-          example: test_maillist
+          description: Address of the target address list (from which members are removed)
+          example: test@maillist.sendcloud.org
         - in: query
-          name: emails
+          name: members
           schema:
             type: string
           required: true
@@ -882,28 +1096,28 @@ paths:
           source: |
             import requests
 
-            url = "https://api.aurorasendcloud.com/api/maillist/member/delete"
+            url = "https://api.aurorasendcloud.com/api/addressmember/delete"
             # Batch remove multiple emails (separated by semicolons)
             emails = "bob@example.com;dave@example.com"
             params = {
                 "apiUser": "test_api_user",
                 "apiKey": "test_api_key",
-                "maillistName": "marketing_maillist",
-                "emails": emails
+                "address": "marketing@maillist.sendcloud.org",
+                "members": emails
             }
 
             response = requests.post(url, params=params)
             print(response.json())
-      security:
-        - apiUser: []
-          apiKey: []
-  /api/maillist/member/list:
+  /api/addressmember/list:
     get:
       summary: Query Members of Address List
       description: Query all email members in a specific address list (supports pagination)
       operationId: queryAddressListMembersGet
       tags:
         - Address List
+      security:
+        - apiUser: []
+        - apiKey: []
       responses:
         '200':
           description: Request successful
@@ -932,7 +1146,7 @@ paths:
                     type: object
                     description: Member query result data
                     properties:
-                      dataList:
+                      data:
                         type: array
                         description: List of email members in the address list
                         items:
@@ -951,23 +1165,23 @@ paths:
           description: Address list not found (invalid list name)
       parameters:
         - in: query
-          name: maillistName
+          name: address
           schema:
             type: string
           required: true
-          description: Name of the target address list (to query members)
-          example: test_maillist
+          description: Address of the target address list (to query members)
+          example: test@maillist.sendcloud.org
         - in: query
-          name: start
+          name: page
           schema:
             type: integer
-            default: 0
-            minimum: 0
+            default: 1
+            minimum: 1
           required: false
-          description: Query start position (pagination parameter, defaults to 0)
-          example: 0
+          description: Query page number (pagination parameter, defaults to 1)
+          example: 1
         - in: query
-          name: limit
+          name: pageSize
           schema:
             type: integer
             default: 100
@@ -984,30 +1198,30 @@ paths:
           source: |
             import requests
 
-            url = "https://api.aurorasendcloud.com/api/maillist/member/list"
+            url = "https://api.aurorasendcloud.com/api/addressmember/list"
             params = {
                 "apiUser": "test_api_user",
                 "apiKey": "test_api_key",
-                "maillistName": "marketing_maillist",
-                "start": 0,
-                "limit": 20
+                "address": "marketing@maillist.sendcloud.org",
+                "page": 1,
+                "pageSize": 20
             }
 
             response = requests.get(url, params=params)
             result = response.json()
             print(f"Total members: {result['info']['total']}")
             print("Members in current page:")
-            for email in result['info']['dataList']:
+            for email in result['info']['data']:
                 print(f"- {email}")
-      security:
-        - apiUser: []
-          apiKey: []
     post:
       summary: Query Members of Address List (POST)
       description: Query members of an address list using POST method (supports pagination)
       operationId: queryAddressListMembersPost
       tags:
         - Address List
+      security:
+        - apiUser: []
+        - apiKey: []
       responses:
         '200':
           description: Request successful
@@ -1036,7 +1250,7 @@ paths:
                     type: object
                     description: Member query result data
                     properties:
-                      dataList:
+                      data:
                         type: array
                         description: List of email members in the address list
                         items:
@@ -1055,23 +1269,23 @@ paths:
           description: Address list not found (invalid list name)
       parameters:
         - in: query
-          name: maillistName
+          name: address
           schema:
             type: string
           required: true
-          description: Name of the target address list (to query members)
-          example: test_maillist
+          description: Address of the target address list (to query members)
+          example: test@maillist.sendcloud.org
         - in: query
-          name: start
+          name: page
           schema:
             type: integer
-            default: 0
-            minimum: 0
+            default: 1
+            minimum: 1
           required: false
-          description: Query start position (pagination parameter, defaults to 0)
-          example: 0
+          description: Query page number (pagination parameter, defaults to 1)
+          example: 1
         - in: query
-          name: limit
+          name: pageSize
           schema:
             type: integer
             default: 100
@@ -1088,21 +1302,18 @@ paths:
           source: |
             import requests
 
-            url = "https://api.aurorasendcloud.com/api/maillist/member/list"
+            url = "https://api.aurorasendcloud.com/api/addressmember/list"
             params = {
                 "apiUser": "test_api_user",
                 "apiKey": "test_api_key",
-                "maillistName": "marketing_maillist",
-                "start": 20,
-                "limit": 15
+                "address": "marketing@maillist.sendcloud.org",
+                "page": 2,
+                "pageSize": 15
             }
 
             response = requests.post(url, params=params)
             print(response.json())
-      security:
-        - apiUser: []
-          apiKey: []
-  /api/maillist/member/clear:
+  /api/addressmember/clear:
     post:
       summary: Clear All Members
       description: >-
@@ -1111,6 +1322,9 @@ paths:
       operationId: clearAddressListMembers
       tags:
         - Address List
+      security:
+        - apiUser: []
+        - apiKey: []
       responses:
         '200':
           description: All members cleared successfully
@@ -1149,30 +1363,27 @@ paths:
           description: Address list not found (invalid list name)
       parameters:
         - in: query
-          name: maillistName
+          name: address
           schema:
             type: string
           required: true
-          description: Name of the target address list (to clear members)
-          example: test_maillist
+          description: Address of the target address list (to clear members)
+          example: test@maillist.sendcloud.org
       x-codeSamples:
         - lang: Python
           label: Clear All Members from Address List
           source: |
             import requests
 
-            url = "https://api.aurorasendcloud.com/api/maillist/member/clear"
+            url = "https://api.aurorasendcloud.com/api/addressmember/clear"
             params = {
                 "apiUser": "test_api_user",
                 "apiKey": "test_api_key",
-                "maillistName": "marketing_maillist"
+                "address": "marketing@maillist.sendcloud.org"
             }
 
             response = requests.post(url, params=params)
             print(response.json())
-      security:
-        - apiUser: []
-          apiKey: []
 components:
   securitySchemes:
     apiUser:
