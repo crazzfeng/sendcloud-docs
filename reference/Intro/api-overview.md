@@ -30,11 +30,11 @@ Before you begin, ensure you have:
 
 Choose the base URL that matches your account's region for email, contact management, templates, and other core services. All requests must use **HTTPS**, and responses are returned in **JSON** format.
 
-| Region             | Base URL                              | Coverage                                  |
-| ------------------ | ------------------------------------- | ----------------------------------------- |
-| Singapore (SG)     | `https://api.aurorasendcloud.com/`    | Default region for APAC users             |
-| United States (US) | `https://api-us.aurorasendcloud.com/` | For North American users and services     |
-| Hong Kong (HK)     | `https://api-hk.aurorasendcloud.com/` | For Greater China and nearby APAC regions |
+| Region             | Base URL                              |
+| ------------------ | ------------------------------------- |
+| Singapore (SG)     | `https://api.aurorasendcloud.com/`    |
+| United States (US) | `https://api-us.aurorasendcloud.com/` |
+| Hong Kong (HK)     | `https://api-hk.aurorasendcloud.com/` |
 
 > ℹ️ **Note**: Your account is tied to a specific region during sign-up. Using a non-matching base URL for email/core APIs will cause authentication failures or data inconsistencies. Confirm your region in your account settings.
 
@@ -42,11 +42,11 @@ Choose the base URL that matches your account's region for email, contact manage
 
 For applications that require SMTP integration, use the regional SMTP server that corresponds to your account's region. All SMTP connections require **authentication** and support both **SSL/TLS** encryption.
 
-| Region             | SMTP Server                   | Port (SSL/TLS) | Port (STARTTLS) | Coverage                                  |
-| ------------------ | ----------------------------- | -------------- | --------------- | ----------------------------------------- |
-| Singapore (SG)     | `smtp.aurorasendcloud.com`    | 465            | 587             | Default region for APAC users             |
-| United States (US) | `smtp-us.aurorasendcloud.com` | 465            | 587             | For North American users and services     |
-| Hong Kong (HK)     | `smtp-hk.aurorasendcloud.com` | 465            | 587             | For Greater China and nearby APAC regions |
+| Region             | SMTP Server                   | Port (SSL/TLS) | Port (STARTTLS) |
+| ------------------ | ----------------------------- | -------------- | --------------- |
+| Singapore (SG)     | `smtp.aurorasendcloud.com`    | 465            | 587             |
+| United States (US) | `smtp-us.aurorasendcloud.com` | 465            | 587             |
+| Hong Kong (HK)     | `smtp-hk.aurorasendcloud.com` | 465            | 587             |
 
 #### SMTP Authentication
 
