@@ -1,4 +1,4 @@
 ---
 title: Route
-hidden: false
+hidden: true
 ---
