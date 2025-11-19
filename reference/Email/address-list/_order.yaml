@@ -1,1 +1,13 @@
-[]
+- addaddresslist
+- getaddresslist
+- getaddresslistpost
+- updateaddresslist
+- deleteaddresslist
+- getmemberdetails
+- getmemberdetailspost
+- addmemberstoaddresslist
+- updatememberinfo
+- removemembersfromaddresslist
+- queryaddresslistmembersget
+- queryaddresslistmemberspost
+- clearaddresslistmembers
