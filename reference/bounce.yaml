@@ -3,7 +3,7 @@ info:
   version: 1.0.0
   title: Email
 servers:
-  - url: https://api2.sendcloud.net
+  - url: https://api.aurorasendcloud.com
 tags:
   - name: Bounce
     description: >-
@@ -164,24 +164,6 @@ paths:
             the authentication parameters are correct)
       parameters:
         - in: query
-          name: apiUser
-          schema:
-            type: string
-          required: true
-          description: >-
-            API_USER (authentication parameter; obtained from the SendCloud
-            console)
-          example: test_api_user
-        - in: query
-          name: apiKey
-          schema:
-            type: string
-          required: true
-          description: >-
-            API_KEY (authentication parameter; obtained from the SendCloud
-            console, keep confidential)
-          example: test_api_key
-        - in: query
           name: startTime
           schema:
             type: string
@@ -261,13 +243,16 @@ paths:
             Number of results per page (pagination parameter; default is 100,
             maximum is 500, exceeding will return an error)
           example: 50
+      security:
+        - apiUser: []
+          apiKey: []
       x-codeSamples:
         - lang: Python
           label: Query Hard Bounced Emails
           source: |
             import requests
 
-            url = "https://api2.sendcloud.net/api/bounce/list"
+            url = "https://api.aurorasendcloud.com/api/bounce/list"
             params = {
                 "apiUser": "test_api_user",
                 "apiKey": "test_api_key",
@@ -418,16 +403,6 @@ paths:
             schema:
               type: object
               properties:
-                apiUser:
-                  type: string
-                  description: >-
-                    API_USER (authentication parameter; obtained from SendCloud
-                    console)
-                  example: test_api_user
-                apiKey:
-                  type: string
-                  description: API_KEY (authentication parameter; keep confidential)
-                  example: test_api_key
                 startTime:
                   type: string
                   format: date-time
@@ -477,8 +452,6 @@ paths:
                   description: Number of results per page (max 500, default 100)
                   example: 50
               required:
-                - apiUser
-                - apiKey
                 - startTime
                 - endTime
       x-codeSamples:
@@ -487,7 +460,7 @@ paths:
           source: |
             import requests
 
-            url = "https://api2.sendcloud.net/api/bounce/list"
+            url = "https://api.aurorasendcloud.com/api/bounce/list"
             data = {
                 "apiUser": "test_api_user",
                 "apiKey": "test_api_key",
@@ -626,19 +599,21 @@ paths:
                     the specified label)
                   example: Marketing Campaigns
               required:
-                - apiUser
-                - apiKey
                 - startTime
                 - endTime
       x-codeSamples:
         - lang: Python
           label: Export Bounced Emails
-          source: |
+          source: >
             import requests
+
             import time
 
+
             # Create export task
-            url = "https://api2.sendcloud.net/api/bounce/export"
+
+            url = "https://api.aurorasendcloud.com/api/bounce/export"
+
             data = {
                 "apiUser": "test_api_user",
                 "apiKey": "test_api_key",
@@ -646,12 +621,19 @@ paths:
                 "endTime": "2025-10-31 23:59:59",
                 "bounceType": "all"
             }
+
             response = requests.post(url, data=data)
+
             task_info = response.json()
+
             task_id = task_info["info"]["taskId"]
 
+
             # Poll task status
-            poll_url = "https://api2.sendcloud.net/api/bounce/export/status"
+
+            poll_url =
+            "https://api.aurorasendcloud.com/api/bounce/export/status"
+
             while True:
                 poll_data = {
                     "apiUser": "test_api_user",
@@ -730,16 +712,6 @@ paths:
             schema:
               type: object
               properties:
-                apiUser:
-                  type: string
-                  description: >-
-                    API_USER (authentication parameter; obtained from SendCloud
-                    console)
-                  example: test_api_user
-                apiKey:
-                  type: string
-                  description: API_KEY (authentication parameter; keep confidential)
-                  example: test_api_key
                 email:
                   type: string
                   description: >-
@@ -747,16 +719,17 @@ paths:
                     per request; must be a permanent bounced address)
                   example: invalid@example.com
               required:
-                - apiUser
-                - apiKey
                 - email
+      security:
+        - apiUser: []
+          apiKey: []
       x-codeSamples:
         - lang: Python
           label: Unblock Bounced Address
           source: |
             import requests
 
-            url = "https://api2.sendcloud.net/api/bounce/unblock"
+            url = "https://api.aurorasendcloud.com/api/bounce/unblock"
             data = {
                 "apiUser": "test_api_user",
                 "apiKey": "test_api_key",
@@ -824,20 +797,6 @@ paths:
           description: Authentication failed (invalid apiUser or apiKey)
       parameters:
         - in: query
-          name: apiUser
-          schema:
-            type: string
-          required: true
-          description: API_USER (authentication parameter; obtained from SendCloud console)
-          example: test_api_user
-        - in: query
-          name: apiKey
-          schema:
-            type: string
-          required: true
-          description: API_KEY (authentication parameter; keep confidential)
-          example: test_api_key
-        - in: query
           name: startTime
           schema:
             type: string
@@ -866,13 +825,16 @@ paths:
             Filter by sending domain (exact match; only count bounces from the
             specified domain)
           example: example.com
+      security:
+        - apiUser: []
+          apiKey: []
       x-codeSamples:
         - lang: Python
           label: Get Bounce Count
           source: |
             import requests
 
-            url = "https://api2.sendcloud.net/api/bounce/count"
+            url = "https://api.aurorasendcloud.com/api/bounce/count"
             params = {
                 "apiUser": "test_api_user",
                 "apiKey": "test_api_key",
@@ -884,7 +846,19 @@ paths:
             response = requests.get(url, params=params)
             print(response.json())
 components:
-  securitySchemes: {}
+  securitySchemes:
+    apiUser:
+      type: apiKey
+      in: query
+      name: apiUser
+      description: API_USER (authentication parameter; obtained from the SendCloud console)
+    apiKey:
+      type: apiKey
+      in: query
+      name: apiKey
+      description: >-
+        API_KEY (authentication parameter; obtained from the SendCloud console,
+        keep confidential)
 x-readme:
   explorer-enabled: true
   proxy-enabled: true
