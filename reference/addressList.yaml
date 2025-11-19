@@ -1399,3 +1399,6 @@ components:
 x-readme:
   explorer-enabled: true
   proxy-enabled: true
+security:
+  - apiUser: []
+    apiKey: []
