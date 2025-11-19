@@ -1,0 +1,608 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Email
+servers:
+  - url: https://api.aurorasendcloud.com
+    description: Production server
+  - url: https://api.sendcloud.net
+    description: Alternative production server
+tags:
+  - name: Delivery Response
+    description: >-
+      Interfaces for querying email delivery status and detailed response
+      information
+paths:
+  /api/deliver/query:
+    get:
+      summary: Query Email Delivery Status
+      description: >-
+        Get delivery status of specific emails by emailId, sendRequestId, or
+        recipient email
+      operationId: queryEmailDeliveryStatusGet
+      tags:
+        - Delivery Response
+      security:
+        - apiUser: []
+          apiKey: []
+      parameters:
+        - in: query
+          name: emailId
+          schema:
+            type: string
+          required: false
+          description: >-
+            Query by emailId (unique identifier of a single email; cannot be
+            used with sendRequestId or to)
+          example: 1447054895514_15555555_32350_1350.sc-inbound0$ben@example.com
+        - in: query
+          name: sendRequestId
+          schema:
+            type: string
+          required: false
+          description: >-
+            Query by sendRequestId (custom ID set when sending; returns all
+            emails under the request)
+          example: req_1234567890abcdef
+        - in: query
+          name: to
+          schema:
+            type: string
+          required: false
+          description: Query by recipient email (returns all emails sent to this address)
+          example: ben@example.com
+        - in: query
+          name: startTime
+          schema:
+            type: string
+            format: date-time
+          required: false
+          description: >-
+            Filter by sending start time (format: yyyy-MM-dd HH:mm:ss; used with
+            endTime)
+          example: '2025-10-01 00:00:00'
+        - in: query
+          name: endTime
+          schema:
+            type: string
+            format: date-time
+          required: false
+          description: >-
+            Filter by sending end time (format: yyyy-MM-dd HH:mm:ss; must be
+            later than startTime)
+          example: '2025-10-31 23:59:59'
+        - in: query
+          name: page
+          schema:
+            type: integer
+            default: 1
+          required: false
+          description: Page number (pagination parameter; default 1)
+          example: 1
+        - in: query
+          name: limit
+          schema:
+            type: integer
+            default: 100
+            maximum: 500
+          required: false
+          description: Number of results per page (max 500; default 100)
+          example: 100
+      responses:
+        '200':
+          description: Request successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    description: Response status code (200 indicates success)
+                    example: 200
+                  message:
+                    type: string
+                    description: >-
+                      Prompt message for request result (success/failure
+                      description)
+                    example: request was successful
+                  result:
+                    type: boolean
+                    description: >-
+                      Whether the request was processed successfully (true =
+                      success, false = failure)
+                    example: true
+                  info:
+                    type: object
+                    description: Email delivery status details
+                    properties:
+                      dataList:
+                        type: array
+                        description: List of email delivery status
+                        items:
+                          type: object
+                          properties:
+                            emailId:
+                              type: string
+                              description: >-
+                                Unique email ID (returned when sending the
+                                email)
+                              example: >-
+                                1447054895514_15555555_32350_1350.sc-inbound0$ben@example.com
+                            sendRequestId:
+                              type: string
+                              description: Custom request ID (set when sending the email)
+                              example: req_1234567890abcdef
+                            from:
+                              type: string
+                              description: Sender email address
+                              example: support@example.com
+                            to:
+                              type: string
+                              description: Recipient email address
+                              example: ben@example.com
+                            subject:
+                              type: string
+                              description: Email subject
+                              example: Test Email Subject
+                            sendTime:
+                              type: string
+                              format: date-time
+                              description: 'Email sending time (format: yyyy-MM-dd HH:mm:ss)'
+                              example: '2025-10-15 14:30:00'
+                            deliveryStatus:
+                              type: string
+                              description: >-
+                                Delivery status (sent = sent, delivered =
+                                delivered, bounced = bounced, failed = sending
+                                failed)
+                              example: delivered
+                            deliveryTime:
+                              type: string
+                              format: date-time
+                              description: Email delivery time (empty if not delivered)
+                              example: '2025-10-15 14:32:15'
+                            response:
+                              type: string
+                              description: >-
+                                Delivery response information (e.g., success
+                                message, bounce reason)
+                              example: 'OK: Message delivered to recipient mailbox'
+                            labelName:
+                              type: string
+                              description: Email label (empty if not set)
+                              example: Test Label
+                            domain:
+                              type: string
+                              description: Sending domain
+                              example: example.com
+                      total:
+                        type: integer
+                        description: Total number of matching emails
+                        example: 2
+                      count:
+                        type: integer
+                        description: >-
+                          Number of returned emails (pagination supported,
+                          default 100 per page)
+                        example: 2
+        '400':
+          description: Bad request (e.g., missing query conditions, invalid emailId format)
+        '401':
+          description: Authentication failed (invalid apiUser or apiKey)
+    post:
+      summary: Query Email Delivery Status (POST)
+      description: >
+        Query email delivery status using POST method.
+
+        Same functionality as GET method but supports POST request format for
+        better compatibility with certain systems.
+      operationId: queryEmailDeliveryStatusPost
+      tags:
+        - Delivery Response
+      security:
+        - apiUser: []
+          apiKey: []
+      parameters:
+        - in: query
+          name: emailId
+          schema:
+            type: string
+          required: false
+          description: >-
+            Query by emailId (unique identifier of a single email; cannot be
+            used with sendRequestId or to)
+          example: 1447054895514_15555555_32350_1350.sc-inbound0$ben@example.com
+        - in: query
+          name: sendRequestId
+          schema:
+            type: string
+          required: false
+          description: >-
+            Query by sendRequestId (custom ID set when sending; returns all
+            emails under the request)
+          example: req_1234567890abcdef
+        - in: query
+          name: to
+          schema:
+            type: string
+          required: false
+          description: Query by recipient email (returns all emails sent to this address)
+          example: ben@example.com
+        - in: query
+          name: startTime
+          schema:
+            type: string
+            format: date-time
+          required: false
+          description: >-
+            Filter by sending start time (format: yyyy-MM-dd HH:mm:ss; used with
+            endTime)
+          example: '2025-10-01 00:00:00'
+        - in: query
+          name: endTime
+          schema:
+            type: string
+            format: date-time
+          required: false
+          description: >-
+            Filter by sending end time (format: yyyy-MM-dd HH:mm:ss; must be
+            later than startTime)
+          example: '2025-10-31 23:59:59'
+        - in: query
+          name: page
+          schema:
+            type: integer
+            default: 1
+          required: false
+          description: Page number (pagination parameter; default 1)
+          example: 1
+        - in: query
+          name: limit
+          schema:
+            type: integer
+            default: 100
+            maximum: 500
+          required: false
+          description: Number of results per page (max 500; default 100)
+          example: 100
+      responses:
+        '200':
+          description: Request successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    description: Response status code (200 indicates success)
+                    example: 200
+                  message:
+                    type: string
+                    description: >-
+                      Prompt message for request result (success/failure
+                      description)
+                    example: request was successful
+                  result:
+                    type: boolean
+                    description: >-
+                      Whether the request was processed successfully (true =
+                      success, false = failure)
+                    example: true
+                  info:
+                    type: object
+                    description: Email delivery status details
+                    properties:
+                      dataList:
+                        type: array
+                        description: List of email delivery status
+                        items:
+                          type: object
+                          properties:
+                            emailId:
+                              type: string
+                              description: >-
+                                Unique email ID (returned when sending the
+                                email)
+                              example: >-
+                                1447054895514_15555555_32350_1350.sc-inbound0$ben@example.com
+                            sendRequestId:
+                              type: string
+                              description: Custom request ID (set when sending the email)
+                              example: req_1234567890abcdef
+                            from:
+                              type: string
+                              description: Sender email address
+                              example: support@example.com
+                            to:
+                              type: string
+                              description: Recipient email address
+                              example: ben@example.com
+                            subject:
+                              type: string
+                              description: Email subject
+                              example: Test Email Subject
+                            sendTime:
+                              type: string
+                              format: date-time
+                              description: 'Email sending time (format: yyyy-MM-dd HH:mm:ss)'
+                              example: '2025-10-15 14:30:00'
+                            deliveryStatus:
+                              type: string
+                              description: >-
+                                Delivery status (sent = sent, delivered =
+                                delivered, bounced = bounced, failed = sending
+                                failed)
+                              example: delivered
+                            deliveryTime:
+                              type: string
+                              format: date-time
+                              description: Email delivery time (empty if not delivered)
+                              example: '2025-10-15 14:32:15'
+                            response:
+                              type: string
+                              description: >-
+                                Delivery response information (e.g., success
+                                message, bounce reason)
+                              example: 'OK: Message delivered to recipient mailbox'
+                            labelName:
+                              type: string
+                              description: Email label (empty if not set)
+                              example: Test Label
+                            domain:
+                              type: string
+                              description: Sending domain
+                              example: example.com
+                      total:
+                        type: integer
+                        description: Total number of matching emails
+                        example: 2
+                      count:
+                        type: integer
+                        description: >-
+                          Number of returned emails (pagination supported,
+                          default 100 per page)
+                        example: 2
+        '400':
+          description: Bad request (e.g., missing query conditions, invalid emailId format)
+        '401':
+          description: Authentication failed (invalid apiUser or apiKey)
+  /api/deliver/export:
+    post:
+      summary: Export Delivery Status Data
+      description: >
+        Export email delivery status data within a specified time range to a CSV
+        file.
+
+
+        Features:
+
+        - Support for large data volume export
+
+        - Asynchronous processing with task tracking
+
+        - Multiple filtering options (domain, label, delivery status)
+
+        - CSV file download with 24-hour validity
+
+        - Maximum time range of 30 days
+      operationId: exportDeliveryStatusData
+      tags:
+        - Delivery Response
+      security:
+        - apiUser: []
+          apiKey: []
+      parameters:
+        - in: query
+          name: startTime
+          schema:
+            type: string
+            format: date-time
+          required: true
+          description: >-
+            Export start time (format: yyyy-MM-dd HH:mm:ss; maximum time range:
+            30 days)
+          example: '2025-10-01 00:00:00'
+        - in: query
+          name: endTime
+          schema:
+            type: string
+            format: date-time
+          required: true
+          description: >-
+            Export end time (format: yyyy-MM-dd HH:mm:ss; must be later than
+            startTime)
+          example: '2025-10-31 23:59:59'
+        - in: query
+          name: domain
+          schema:
+            type: string
+          required: false
+          description: >-
+            Filter by sending domain (e.g., example.com; export all domains if
+            not specified)
+          example: example.com
+        - in: query
+          name: labelName
+          schema:
+            type: string
+          required: false
+          description: Filter by label name (export all labels if not specified)
+          example: Marketing Campaigns
+        - in: query
+          name: deliveryStatus
+          schema:
+            type: string
+            enum:
+              - all
+              - sent
+              - delivered
+              - bounced
+              - failed
+            default: all
+          required: false
+          description: Filter by delivery status (all = all statuses; default all)
+          example: delivered
+      responses:
+        '200':
+          description: Export task created successfully (return download URL)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    description: Response status code (200 indicates success)
+                    example: 200
+                  message:
+                    type: string
+                    description: >-
+                      Prompt message for request result (success/failure
+                      description)
+                    example: export task created successfully
+                  result:
+                    type: boolean
+                    description: >-
+                      Whether the request was processed successfully (true =
+                      success, false = failure)
+                    example: true
+                  info:
+                    type: object
+                    description: Export task information
+                    properties:
+                      taskId:
+                        type: string
+                        description: Unique export task ID (used to query export status)
+                        example: export_1234567890abcdef
+                      downloadUrl:
+                        type: string
+                        description: >-
+                          CSV file download URL (valid for 24 hours; empty if
+                          export is in progress)
+                        example: https://download.sendcloud.net/export/delivery_123.csv
+                      status:
+                        type: string
+                        description: >-
+                          Export task status (processing = in progress,
+                          completed = completed, failed = failed)
+                        example: processing
+                      estimatedTime:
+                        type: integer
+                        description: >-
+                          Estimated completion time (seconds; for large data
+                          volume)
+                        example: 120
+        '400':
+          description: Bad request (e.g., invalid time range, time range exceeding 30 days)
+        '401':
+          description: Authentication failed (invalid apiUser or apiKey)
+  /api/deliver/export/status:
+    get:
+      summary: Query Export Task Status
+      description: >
+        Query the status of an export task and get download information when
+        completed.
+
+
+        Returns:
+
+        - Task status (processing, completed, failed)
+
+        - Download URL when completed
+
+        - Progress information
+      operationId: queryExportTaskStatus
+      tags:
+        - Delivery Response
+      security:
+        - apiUser: []
+          apiKey: []
+      parameters:
+        - in: query
+          name: taskId
+          schema:
+            type: string
+          required: true
+          description: Export task ID (returned from export request)
+          example: export_1234567890abcdef
+      responses:
+        '200':
+          description: Request successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    description: Response status code (200 indicates success)
+                    example: 200
+                  message:
+                    type: string
+                    description: >-
+                      Prompt message for request result (success/failure
+                      description)
+                    example: request was successful
+                  result:
+                    type: boolean
+                    description: >-
+                      Whether the request was processed successfully (true =
+                      success, false = failure)
+                    example: true
+                  info:
+                    type: object
+                    description: Export task status information
+                    properties:
+                      taskId:
+                        type: string
+                        description: Export task ID
+                        example: export_1234567890abcdef
+                      status:
+                        type: string
+                        description: >-
+                          Export task status (processing = in progress,
+                          completed = completed, failed = failed)
+                        example: completed
+                      downloadUrl:
+                        type: string
+                        description: >-
+                          CSV file download URL (valid for 24 hours; empty if
+                          not completed)
+                        example: https://download.sendcloud.net/export/delivery_123.csv
+                      createdAt:
+                        type: string
+                        format: date-time
+                        description: Task creation time
+                        example: '2025-10-15 14:30:00'
+                      completedAt:
+                        type: string
+                        format: date-time
+                        description: Task completion time (empty if not completed)
+                        example: '2025-10-15 14:32:15'
+                      fileSize:
+                        type: integer
+                        description: Exported file size in bytes (empty if not completed)
+                        example: 1048576
+        '400':
+          description: Bad request (e.g., invalid taskId)
+        '401':
+          description: Authentication failed (invalid apiUser or apiKey)
+        '404':
+          description: Export task not found
+components:
+  securitySchemes:
+    apiUser:
+      type: apiKey
+      in: query
+      name: apiUser
+      description: API_USER (authentication parameter, obtained from the SendCloud console)
+    apiKey:
+      type: apiKey
+      in: query
+      name: apiKey
+      description: API_KEY (authentication parameter, obtained from the SendCloud console)
+x-readme:
+  explorer-enabled: true
+  proxy-enabled: true
