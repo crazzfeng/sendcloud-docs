@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  title: Aurora SendCloud Email Label API
+  title: Email
   description: >-
     API for managing Email Labels on Aurora SendCloud, supporting query, add,
     delete, and modify operations.

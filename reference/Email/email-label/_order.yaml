@@ -1,1 +1,6 @@
-[]
+- label-list
+- label-get
+- label-add
+- get_api-label-delete
+- post_api-label-delete
+- label-update
