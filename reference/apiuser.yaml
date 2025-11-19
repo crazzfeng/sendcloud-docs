@@ -1,0 +1,748 @@
+openapi: 3.0.3
+info:
+  title: Email
+  description: >-
+    SendCloud sub-API user management API documentation. This API provides
+    comprehensive functionality for creating, querying, updating, and managing
+    sub-API users under a main account with granular permission control and
+    email notification features.
+  version: 1.0.0
+  contact:
+    name: SendCloud Support
+    url: https://www.sendcloud.net
+    email: support@sendcloud.net
+  license:
+    name: SendCloud API License
+    url: https://www.sendcloud.net/license
+servers:
+  - url: https://api.aurorasendcloud.com
+    description: Production server
+  - url: https://api.sendcloud.net
+    description: Alternative production server
+tags:
+  - name: Sub-API User
+    description: Sub-API user management operations
+paths:
+  /api/apiuser/create:
+    post:
+      summary: Create Sub-API User
+      description: >-
+        Create a sub-API user under the main account (supports setting
+        permissions and email notification switches)
+      operationId: createSubApiUser
+      tags:
+        - Sub-API User
+      security:
+        - apiUser: []
+        - apiKey: []
+      responses:
+        '200':
+          description: Sub-API user created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    description: Response status code (200 indicates success)
+                    example: 200
+                  message:
+                    type: string
+                    description: >-
+                      Prompt message for request result (success/failure
+                      description)
+                    example: request was successful
+                  result:
+                    type: boolean
+                    description: >-
+                      Whether the request was processed successfully (true =
+                      success, false = failure)
+                    example: true
+                  info:
+                    type: object
+                    description: Detailed information of the created sub-API user
+                    properties:
+                      apiUser:
+                        type: string
+                        description: Sub-API user name (unique under the main account)
+                        example: sub_test_api_user
+                      apiKey:
+                        type: string
+                        description: Sub-API user key (used for API authentication)
+                        example: sub_test_api_key_123456
+                      gmtCreated:
+                        type: string
+                        format: date-time
+                        description: >-
+                          Creation time of the sub-API user (format: yyyy-MM-dd
+                          HH:mm:ss)
+                        example: '2025-10-10 15:20:00'
+        '400':
+          description: >-
+            Bad request (e.g., duplicate sub-API user name, invalid permission
+            configuration)
+      parameters:
+        - in: query
+          name: subApiUser
+          schema:
+            type: string
+          required: true
+          description: >-
+            Sub-API user name (unique under the main account, 4-32 characters,
+            supports letters, numbers, and underscores)
+          example: sub_test_api_user
+        - in: query
+          name: permission
+          schema:
+            type: string
+          required: true
+          description: >-
+            Permission configuration (JSON format, specifies which APIs the
+            sub-user can call)
+          example: >-
+            {"mail": {"send": true, "sendtemplate": true}, "maillist":
+            {"create": false}}
+        - in: query
+          name: notifyEmail
+          schema:
+            type: string
+          required: false
+          description: >-
+            Notification email (receives sub-user operation and status
+            notifications; multiple emails separated by semicolons)
+          example: admin1@example.com;admin2@example.com
+        - in: query
+          name: isNotify
+          schema:
+            type: string
+            enum:
+              - true
+              - false
+            default: false
+          required: false
+          description: >-
+            Whether to enable email notifications (takes effect only if
+            notifyEmail is set)
+          example: 'true'
+      x-codeSamples:
+        - lang: Python
+          label: Create Sub-API User (With Permissions)
+          source: >
+            import requests
+
+            import json
+
+
+            url = "https://api.aurorasendcloud.com/api/apiuser/create"
+
+            # Permission configuration: allow sending regular emails and
+            template emails, prohibit address list operations
+
+            permission = {
+                "mail": {"send": True, "sendtemplate": True, "sendcalendar": False},
+                "maillist": {"create": False, "list": False},
+                "label": {"create": False}
+            }
+
+            params = {
+                "apiUser": "test_api_user",
+                "apiKey": "test_api_key",
+                "subApiUser": "sub_marketing_user",
+                "permission": json.dumps(permission),
+                "notifyEmail": "marketing_admin@example.com",
+                "isNotify": "true"
+            }
+
+
+            response = requests.post(url, params=params)
+
+            print(response.json())
+  /api/apiuser/list:
+    get:
+      summary: Query Sub-API User List (GET)
+      description: Query basic information of all sub-API users under the main account
+      operationId: listSubApiUsersGet
+      tags:
+        - Sub-API User
+      security:
+        - apiUser: []
+        - apiKey: []
+      responses:
+        '200':
+          description: Request successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    description: Response status code (200 indicates success)
+                    example: 200
+                  message:
+                    type: string
+                    description: >-
+                      Prompt message for request result (success/failure
+                      description)
+                    example: request was successful
+                  result:
+                    type: boolean
+                    description: >-
+                      Whether the request was processed successfully (true =
+                      success, false = failure)
+                    example: true
+                  info:
+                    type: object
+                    description: Query result data of sub-API users
+                    properties:
+                      data:
+                        type: array
+                        description: List of sub-API user basic information
+                        items:
+                          type: object
+                          properties:
+                            apiUser:
+                              type: string
+                              description: Sub-API user name
+                              example: sub_test_api_user
+                            permission:
+                              type: string
+                              description: Permission configuration (JSON string)
+                              example: >-
+                                {"mail": {"send": true}, "maillist": {"create":
+                                false}}
+                            notifyEmail:
+                              type: string
+                              description: Notification email (empty if not set)
+                              example: admin1@example.com;admin2@example.com
+                            isNotify:
+                              type: boolean
+                              description: Whether email notifications are enabled
+                              example: true
+                            gmtCreated:
+                              type: string
+                              format: date-time
+                              description: Creation time of the sub-API user
+                              example: '2025-10-10 15:20:00'
+                            gmtUpdated:
+                              type: string
+                              format: date-time
+                              description: Last update time of the sub-API user
+                              example: '2025-10-11 09:30:00'
+                      total:
+                        type: integer
+                        description: Total number of sub-API users under the main account
+                        example: 5
+        '400':
+          description: Bad request (e.g., invalid query parameters)
+      x-codeSamples:
+        - lang: Python
+          label: Query All Sub-API Users
+          source: |
+            import requests
+
+            url = "https://api.aurorasendcloud.com/api/apiuser/list"
+            params = {
+                "apiUser": "test_api_user",
+                "apiKey": "test_api_key"
+            }
+
+            response = requests.get(url, params=params)
+            result = response.json()
+            print(f"Total sub-API users: {result['info']['total']}")
+            for user in result['info']['data']:
+                print(f"- User: {user['apiUser']}, Notify: {user['isNotify']}, Created: {user['gmtCreated']}")
+    post:
+      summary: Query Sub-API User List (POST)
+      description: >-
+        Query basic information of all sub-API users under the main account
+        using POST method
+      operationId: listSubApiUsersPost
+      tags:
+        - Sub-API User
+      security:
+        - apiUser: []
+        - apiKey: []
+      responses:
+        '200':
+          description: Request successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    description: Response status code (200 indicates success)
+                    example: 200
+                  message:
+                    type: string
+                    description: >-
+                      Prompt message for request result (success/failure
+                      description)
+                    example: request was successful
+                  result:
+                    type: boolean
+                    description: >-
+                      Whether the request was processed successfully (true =
+                      success, false = failure)
+                    example: true
+                  info:
+                    type: object
+                    description: Query result data of sub-API users
+                    properties:
+                      data:
+                        type: array
+                        description: List of sub-API user basic information
+                        items:
+                          type: object
+                          properties:
+                            apiUser:
+                              type: string
+                              description: Sub-API user name
+                              example: sub_test_api_user
+                            permission:
+                              type: string
+                              description: Permission configuration (JSON string)
+                              example: >-
+                                {"mail": {"send": true}, "maillist": {"create":
+                                false}}
+                            notifyEmail:
+                              type: string
+                              description: Notification email (empty if not set)
+                              example: admin1@example.com;admin2@example.com
+                            isNotify:
+                              type: boolean
+                              description: Whether email notifications are enabled
+                              example: true
+                            gmtCreated:
+                              type: string
+                              format: date-time
+                              description: Creation time of the sub-API user
+                              example: '2025-10-10 15:20:00'
+                            gmtUpdated:
+                              type: string
+                              format: date-time
+                              description: Last update time of the sub-API user
+                              example: '2025-10-11 09:30:00'
+                      total:
+                        type: integer
+                        description: Total number of sub-API users under the main account
+                        example: 5
+        '400':
+          description: Bad request (e.g., invalid request parameters)
+      x-codeSamples:
+        - lang: Python
+          label: Query Sub-API Users (POST Method)
+          source: |
+            import requests
+
+            url = "https://api.aurorasendcloud.com/api/apiuser/list"
+            params = {
+                "apiUser": "test_api_user",
+                "apiKey": "test_api_key"
+            }
+
+            response = requests.post(url, params=params)
+            print(response.json())
+  /api/apiuser/get:
+    get:
+      summary: Query Specific Sub-API User
+      description: Query detailed information of a specific sub-API user
+      operationId: getSubApiUser
+      tags:
+        - Sub-API User
+      security:
+        - apiUser: []
+        - apiKey: []
+      responses:
+        '200':
+          description: Request successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    description: Response status code (200 indicates success)
+                    example: 200
+                  message:
+                    type: string
+                    description: >-
+                      Prompt message for request result (success/failure
+                      description)
+                    example: request was successful
+                  result:
+                    type: boolean
+                    description: >-
+                      Whether the request was processed successfully (true =
+                      success, false = failure)
+                    example: true
+                  info:
+                    type: object
+                    description: Detailed information of the sub-API user
+                    properties:
+                      apiUser:
+                        type: string
+                        description: Sub-API user name
+                        example: sub_test_api_user
+                      permission:
+                        type: string
+                        description: Permission configuration (JSON string)
+                        example: >-
+                          {"mail": {"send": true, "sendtemplate": true},
+                          "maillist": {"create": false}}
+                      notifyEmail:
+                        type: string
+                        description: Notification email (empty if not set)
+                        example: admin1@example.com;admin2@example.com
+                      isNotify:
+                        type: boolean
+                        description: Whether email notifications are enabled
+                        example: true
+                      gmtCreated:
+                        type: string
+                        format: date-time
+                        description: Creation time of the sub-API user
+                        example: '2025-10-10 15:20:00'
+                      gmtUpdated:
+                        type: string
+                        format: date-time
+                        description: Last update time of the sub-API user
+                        example: '2025-10-11 09:30:00'
+        '404':
+          description: >-
+            Sub-API user not found (user name does not exist under the main
+            account)
+      parameters:
+        - in: query
+          name: subApiUser
+          schema:
+            type: string
+          required: true
+          description: Name of the sub-API user to query
+          example: sub_test_api_user
+      x-codeSamples:
+        - lang: Python
+          label: Query Specific Sub-API User
+          source: |
+            import requests
+
+            url = "https://api.aurorasendcloud.com/api/apiuser/get"
+            params = {
+                "apiUser": "test_api_user",
+                "apiKey": "test_api_key",
+                "subApiUser": "sub_marketing_user"
+            }
+
+            response = requests.get(url, params=params)
+            user_info = response.json()
+            if user_info["result"]:
+                info = user_info["info"]
+                print(f"User: {info['apiUser']}")
+                print(f"Permissions: {info['permission']}")
+                print(f"Email notifications: {info['isNotify']}")
+  /api/apiuser/update:
+    post:
+      summary: Update Sub-API User
+      description: >-
+        Update information of an existing sub-API user (supports modifying
+        permissions, notification email, and notification switch)
+      operationId: updateSubApiUser
+      tags:
+        - Sub-API User
+      security:
+        - apiUser: []
+        - apiKey: []
+      responses:
+        '200':
+          description: Sub-API user updated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    description: Response status code (200 indicates success)
+                    example: 200
+                  message:
+                    type: string
+                    description: >-
+                      Prompt message for request result (success/failure
+                      description)
+                    example: request was successful
+                  result:
+                    type: boolean
+                    description: >-
+                      Whether the request was processed successfully (true =
+                      success, false = failure)
+                    example: true
+                  info:
+                    type: object
+                    description: Update result information
+                    properties:
+                      apiUser:
+                        type: string
+                        description: Sub-API user name
+                        example: sub_test_api_user
+                      updatedFields:
+                        type: array
+                        description: List of updated fields
+                        items:
+                          type: string
+                        example:
+                          - permission
+                          - notifyEmail
+                          - isNotify
+        '400':
+          description: Bad request (e.g., invalid permission configuration format)
+        '404':
+          description: >-
+            Sub-API user not found (user name does not exist under the main
+            account)
+      parameters:
+        - in: query
+          name: subApiUser
+          schema:
+            type: string
+          required: true
+          description: Name of the sub-API user to update (cannot be modified)
+          example: sub_test_api_user
+        - in: query
+          name: permission
+          schema:
+            type: string
+          required: false
+          description: >-
+            New permission configuration (JSON format; leave empty to keep
+            original)
+          example: >-
+            {"mail": {"send": true, "sendtemplate": true, "sendcalendar": true},
+            "maillist": {"create": true}}
+        - in: query
+          name: notifyEmail
+          schema:
+            type: string
+          required: false
+          description: >-
+            New notification email (multiple emails separated by semicolons;
+            leave empty to keep original; pass empty string to clear)
+          example: new_admin@example.com
+        - in: query
+          name: isNotify
+          schema:
+            type: string
+            enum:
+              - true
+              - false
+          required: false
+          description: New notification switch status; leave empty to keep original
+          example: 'false'
+      x-codeSamples:
+        - lang: Python
+          label: Update Sub-API User (Permissions & Notify Switch)
+          source: >
+            import requests
+
+            import json
+
+
+            url = "https://api.aurorasendcloud.com/api/apiuser/update"
+
+            # Updated permission configuration: add calendar sending and address
+            list creation permissions
+
+            new_permission = {
+                "mail": {"send": True, "sendtemplate": True, "sendcalendar": True},
+                "maillist": {"create": True, "list": True},
+                "label": {"create": False}
+            }
+
+            params = {
+                "apiUser": "test_api_user",
+                "apiKey": "test_api_key",
+                "subApiUser": "sub_marketing_user",
+                "permission": json.dumps(new_permission),
+                "isNotify": "false"  # Disable email notifications
+            }
+
+
+            response = requests.post(url, params=params)
+
+            print(response.json())
+  /api/apiuser/delete:
+    post:
+      summary: Delete Sub-API User
+      description: >-
+        Delete an existing sub-API user (the user's historical data is retained,
+        but the user can no longer use the API)
+      operationId: deleteSubApiUser
+      tags:
+        - Sub-API User
+      security:
+        - apiUser: []
+        - apiKey: []
+      responses:
+        '200':
+          description: Sub-API user deleted successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    description: Response status code (200 indicates success)
+                    example: 200
+                  message:
+                    type: string
+                    description: >-
+                      Prompt message for request result (success/failure
+                      description)
+                    example: request was successful
+                  result:
+                    type: boolean
+                    description: >-
+                      Whether the request was processed successfully (true =
+                      success, false = failure)
+                    example: true
+                  info:
+                    type: object
+                    description: Deletion result statistics
+                    properties:
+                      count:
+                        type: integer
+                        description: >-
+                          Number of sub-API users successfully deleted (1 =
+                          success, 0 = no deletion)
+                        example: 1
+        '404':
+          description: >-
+            Sub-API user not found (user name does not exist under the main
+            account)
+      parameters:
+        - in: query
+          name: subApiUser
+          schema:
+            type: string
+          required: true
+          description: Name of the sub-API user to delete
+          example: sub_test_api_user
+      x-codeSamples:
+        - lang: Python
+          label: Delete Sub-API User
+          source: |
+            import requests
+
+            url = "https://api.aurorasendcloud.com/api/apiuser/delete"
+            params = {
+                "apiUser": "test_api_user",
+                "apiKey": "test_api_key",
+                "subApiUser": "obsolete_sub_user"
+            }
+
+            response = requests.post(url, params=params)
+            print(response.json())
+  /api/apiuser/reset:
+    post:
+      summary: Reset Sub-API User Key
+      description: >-
+        Regenerate the API key of an existing sub-API user (the old key will
+        become invalid immediately)
+      operationId: resetSubApiUserKey
+      tags:
+        - Sub-API User
+      security:
+        - apiUser: []
+        - apiKey: []
+      responses:
+        '200':
+          description: Sub-API user key reset successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    description: Response status code (200 indicates success)
+                    example: 200
+                  message:
+                    type: string
+                    description: >-
+                      Prompt message for request result (success/failure
+                      description)
+                    example: api key reset successfully
+                  result:
+                    type: boolean
+                    description: >-
+                      Whether the request was processed successfully (true =
+                      success, false = failure)
+                    example: true
+                  info:
+                    type: object
+                    description: New API key information
+                    properties:
+                      apiUser:
+                        type: string
+                        description: Sub-API user name
+                        example: sub_test_api_user
+                      newApiKey:
+                        type: string
+                        description: >-
+                          New API key (replace the old key for subsequent API
+                          calls)
+                        example: new_sub_api_key_654321
+        '404':
+          description: >-
+            Sub-API user not found (user name does not exist under the main
+            account)
+      parameters:
+        - in: query
+          name: subApiUser
+          schema:
+            type: string
+          required: true
+          description: Name of the sub-API user to reset the key
+          example: sub_test_api_user
+      x-codeSamples:
+        - lang: Python
+          label: Reset Sub-API User Key
+          source: |
+            import requests
+
+            url = "https://api.aurorasendcloud.com/api/apiuser/reset"
+            params = {
+                "apiUser": "test_api_user",
+                "apiKey": "test_api_key",
+                "subApiUser": "sub_marketing_user"
+            }
+
+            response = requests.post(url, params=params)
+            reset_info = response.json()
+            if reset_info["result"]:
+                print(f"Sub-API User: {reset_info['info']['apiUser']}")
+                print(f"New API Key: {reset_info['info']['newApiKey']}")
+                print("Warning: The old API key is now invalid. Update your configuration immediately.")
+components:
+  securitySchemes:
+    apiUser:
+      type: apiKey
+      in: query
+      name: apiUser
+      description: >-
+        Main account API_USER (authentication parameter, obtained from the
+        SendCloud console)
+    apiKey:
+      type: apiKey
+      in: query
+      name: apiKey
+      description: >-
+        Main account API_KEY (authentication parameter, obtained from the
+        SendCloud console)
+x-readme:
+  explorer-enabled: true
+  proxy-enabled: true
