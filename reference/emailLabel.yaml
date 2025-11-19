@@ -214,12 +214,46 @@ paths:
           content:
             application/json:
               schema:
-                $ref: >-
-                  #/paths/~1api~1label~1add/post/responses/200/content/application~1json/schema
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 200
+                  message:
+                    type: string
+                    example: request was successful
+                  result:
+                    type: boolean
+                    example: true
+                  info:
+                    type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          labelId:
+                            type: integer
+                            description: Newly created label ID (unique identifier)
+                          labelName:
+                            type: string
+                            description: Newly created label name
+                          gmtCreated:
+                            type: string
+                            format: date-time
+                            description: >-
+                              Time of label creation (format: yyyy-MM-dd
+                              HH:mm:ss)
+                          gmtUpdated:
+                            type: string
+                            format: date-time
+                            description: >-
+                              Time of label modification (format: yyyy-MM-dd
+                              HH:mm:ss)
   /api/label/delete:
     get:
       summary: Delete Label
       description: Delete a specified label by label ID.
+      operationId: label-delete
       tags:
         - Email Label
       parameters:
@@ -266,38 +300,6 @@ paths:
                         description: >-
                           Number of successfully deleted labels (usually 1; 0 if
                           label ID does not exist)
-    post:
-      summary: Delete Label (POST)
-      description: Same as GET method, supports POST request for label deletion.
-      tags:
-        - Email Label
-      parameters:
-        - name: apiUser
-          in: query
-          required: true
-          schema:
-            type: string
-          description: API_USER (identity identifier)
-        - name: apiKey
-          in: query
-          required: true
-          schema:
-            type: string
-          description: API_KEY (identity verification key)
-        - name: labelId
-          in: query
-          required: true
-          schema:
-            type: integer
-          description: Label ID to be deleted
-      responses:
-        '200':
-          description: Request was successful
-          content:
-            application/json:
-              schema:
-                $ref: >-
-                  #/paths/~1api~1label~1delete/get/responses/200/content/application~1json/schema
   /api/label/update:
     post:
       summary: Modify Label (POST)
@@ -336,8 +338,28 @@ paths:
           content:
             application/json:
               schema:
-                $ref: >-
-                  #/paths/~1api~1label~1update/post/responses/200/content/application~1json/schema
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 200
+                  message:
+                    type: string
+                    example: request was successful
+                  result:
+                    type: boolean
+                    description: >-
+                      Whether the request was processed successfully (true =
+                      success, false = failure)
+                    example: true
+                  info:
+                    type: object
+                    properties:
+                      count:
+                        type: integer
+                        description: >-
+                          Number of successfully modified labels (usually 1; 0
+                          if label ID does not exist)
 components:
   schemas:
     ErrorResponse:
