@@ -225,31 +225,33 @@ paths:
           description: Bad request (e.g., invalid pagination parameters)
       parameters:
         - in: query
-          name: page
-          schema:
-            type: integer
-            default: 1
-            minimum: 1
-          required: false
-          description: Page number (starting from 1, default 1)
-          example: 1
-        - in: query
-          name: pageSize
-          schema:
-            type: integer
-            default: 100
-            minimum: 1
-            maximum: 500
-          required: false
-          description: Number of items per page (default 100, max 500)
-          example: 20
-        - in: query
-          name: keyword
+          name: address
           schema:
             type: string
           required: false
-          description: Keyword search (supports searching by name or address)
-          example: test
+          description: Lists of alias addresses, separated by semicolons
+          example: test@maillist.sendcloud.org;marketing@maillist.sendcloud.org
+        - in: query
+          name: start
+          schema:
+            type: integer
+            default: 0
+            minimum: 0
+          required: false
+          description: Start position (pagination parameter, defaults to 0)
+          example: 0
+        - in: query
+          name: limit
+          schema:
+            type: integer
+            default: 100
+            minimum: 0
+            maximum: 100
+          required: false
+          description: >-
+            Amount of results returned (pagination parameter, range 0-100,
+            defaults to 100)
+          example: 15
       x-codeSamples:
         - lang: Python
           label: Get Address List (Basic)
@@ -371,13 +373,20 @@ paths:
           description: Bad request (e.g., invalid pagination parameters)
       parameters:
         - in: query
+          name: address
+          schema:
+            type: string
+          required: false
+          description: Lists of alias addresses, separated by semicolons
+          example: test@maillist.sendcloud.org;marketing@maillist.sendcloud.org
+        - in: query
           name: start
           schema:
             type: integer
             default: 0
             minimum: 0
           required: false
-          description: Query start position (pagination parameter, defaults to 0)
+          description: Start position (pagination parameter, defaults to 0)
           example: 0
         - in: query
           name: limit
@@ -388,9 +397,9 @@ paths:
             maximum: 100
           required: false
           description: >-
-            Number of results returned per query (pagination parameter, range
-            0-100, defaults to 100)
-          example: 5
+            Amount of results returned (pagination parameter, range 0-100,
+            defaults to 100)
+          example: 15
       x-codeSamples:
         - lang: Python
           label: Get Address List (POST with JSON)
@@ -688,12 +697,12 @@ paths:
           description: Address list alias (formatted as xxx@maillist.sendcloud.org)
           example: test@maillist.sendcloud.org
         - in: query
-          name: member
+          name: members
           schema:
             type: string
           required: true
-          description: Email address of the member to query
-          example: user@example.com
+          description: Member email addresses, separated by semicolons
+          example: user1@example.com;user2@example.com
       x-codeSamples:
         - lang: Python
           label: Get Member Details
@@ -801,12 +810,12 @@ paths:
           description: Address list alias (formatted as xxx@maillist.sendcloud.org)
           example: test@maillist.sendcloud.org
         - in: query
-          name: member
+          name: members
           schema:
             type: string
           required: true
-          description: Email address of the member to query
-          example: user@example.com
+          description: Member email addresses, separated by semicolons
+          example: user1@example.com;user2@example.com
       x-codeSamples:
         - lang: Python
           label: Get Member Details (POST)
@@ -986,12 +995,12 @@ paths:
           description: Address list alias (formatted as xxx@maillist.sendcloud.org)
           example: test@maillist.sendcloud.org
         - in: query
-          name: member
+          name: members
           schema:
             type: string
           required: true
-          description: Email address of the member to update
-          example: user@example.com
+          description: Member email addresses, separated by semicolons
+          example: user1@example.com;user2@example.com
         - in: query
           name: name
           schema:
@@ -1172,16 +1181,16 @@ paths:
           description: Address of the target address list (to query members)
           example: test@maillist.sendcloud.org
         - in: query
-          name: page
+          name: start
           schema:
             type: integer
-            default: 1
-            minimum: 1
+            default: 0
+            minimum: 0
           required: false
-          description: Query page number (pagination parameter, defaults to 1)
-          example: 1
+          description: Start position (pagination parameter, defaults to 0)
+          example: 0
         - in: query
-          name: pageSize
+          name: limit
           schema:
             type: integer
             default: 100
@@ -1189,8 +1198,8 @@ paths:
             maximum: 100
           required: false
           description: >-
-            Number of results returned per query (pagination parameter, range
-            0-100, defaults to 100)
+            Amount of results returned (pagination parameter, range 0-100,
+            defaults to 100)
           example: 15
       x-codeSamples:
         - lang: Python
@@ -1276,16 +1285,16 @@ paths:
           description: Address of the target address list (to query members)
           example: test@maillist.sendcloud.org
         - in: query
-          name: page
+          name: start
           schema:
             type: integer
-            default: 1
-            minimum: 1
+            default: 0
+            minimum: 0
           required: false
-          description: Query page number (pagination parameter, defaults to 1)
-          example: 1
+          description: Start position (pagination parameter, defaults to 0)
+          example: 0
         - in: query
-          name: pageSize
+          name: limit
           schema:
             type: integer
             default: 100
@@ -1293,8 +1302,8 @@ paths:
             maximum: 100
           required: false
           description: >-
-            Number of results returned per query (pagination parameter, range
-            0-100, defaults to 100)
+            Amount of results returned (pagination parameter, range 0-100,
+            defaults to 100)
           example: 15
       x-codeSamples:
         - lang: Python
@@ -1309,77 +1318,6 @@ paths:
                 "address": "marketing@maillist.sendcloud.org",
                 "page": 2,
                 "pageSize": 15
-            }
-
-            response = requests.post(url, params=params)
-            print(response.json())
-  /api/addressmember/clear:
-    post:
-      summary: Clear All Members
-      description: >-
-        Remove all email members from an existing address list (the list itself
-        is retained)
-      operationId: clearAddressListMembers
-      tags:
-        - Address List
-      security:
-        - apiUser: []
-          apiKey: []
-      responses:
-        '200':
-          description: All members cleared successfully
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  statusCode:
-                    type: integer
-                    description: Response status code (200 indicates success)
-                    example: 200
-                  message:
-                    type: string
-                    description: >-
-                      Prompt message for request result (success/failure
-                      description)
-                    example: request was successful
-                  result:
-                    type: boolean
-                    description: >-
-                      Whether the request was processed successfully (true =
-                      success, false = failure)
-                    example: true
-                  info:
-                    type: object
-                    description: Clear result statistics
-                    properties:
-                      count:
-                        type: integer
-                        description: >-
-                          Number of members cleared (equals total members before
-                          clearing)
-                        example: 50
-        '404':
-          description: Address list not found (invalid list name)
-      parameters:
-        - in: query
-          name: address
-          schema:
-            type: string
-          required: true
-          description: Address of the target address list (to clear members)
-          example: test@maillist.sendcloud.org
-      x-codeSamples:
-        - lang: Python
-          label: Clear All Members from Address List
-          source: |
-            import requests
-
-            url = "https://api.aurorasendcloud.com/api/addressmember/clear"
-            params = {
-                "apiUser": "test_api_user",
-                "apiKey": "test_api_key",
-                "address": "marketing@maillist.sendcloud.org"
             }
 
             response = requests.post(url, params=params)
