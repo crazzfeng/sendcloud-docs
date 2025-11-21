@@ -1,5 +1,10 @@
-- label-list
-- label-get
-- label-add
-- label-update
-- label-delete
+- label-list-get
+- label-list-post
+- label-get-get
+- label-get-post
+- label-add-get
+- label-add-post
+- label-delete-get
+- label-delete-post
+- label-update-get
+- label-update-post

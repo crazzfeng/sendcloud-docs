@@ -1,8 +1,8 @@
 ---
-title: Delete Label
+title: Delete
 excerpt: Delete a specified label by label ID.
 api:
   file: emailLabel.yaml
-  operationId: label-delete
+  operationId: label-delete-get
 hidden: false
 ---
