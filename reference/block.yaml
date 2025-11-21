@@ -308,6 +308,8 @@ paths:
                   required:
                     - expireTime
                   description: Expiration time, formatted with yyyy-MM-dd HH:mm:ss
+              required:
+                - expireTime
   /api/block/delete:
     post:
       summary: Delete Block Address
