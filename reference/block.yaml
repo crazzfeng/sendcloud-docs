@@ -4,6 +4,9 @@ info:
   title: Email
 servers:
   - url: https://api.aurorasendcloud.com
+    description: Production server
+  - url: https://api.sendcloud.net
+    description: Alternative production server
 tags:
   - name: Block
     description: >-
@@ -14,16 +17,15 @@ paths:
     get:
       summary: Query Block List (GET)
       description: >-
-        Get list of blocked email addresses within a specified time range.
-        Supports filtering by block type, email address, and time range. The
-        maximum query time range is 90 days, and the maximum number of results
-        per page is 500. Time parameters use Beijing time (GMT+8).
+        Get list of blocked email addresses or domains. Supports filtering by
+        API user, domain name, email address, and time range. The maximum query
+        time range is 3 months.
       operationId: queryBlockListGet
       tags:
         - Block
       security:
         - apiUser: []
-        - apiKey: []
+          apiKey: []
       responses:
         '200':
           description: Request successful
@@ -34,15 +36,11 @@ paths:
                 properties:
                   statusCode:
                     type: integer
-                    description: >-
-                      Response status code (200 indicates success; other codes
-                      indicate failure)
+                    description: Response status code (200 indicates success)
                     example: 200
                   message:
                     type: string
-                    description: >-
-                      Success or failure message (detailed error information for
-                      failure scenarios)
+                    description: Success or failure message
                     example: request was successful
                   result:
                     type: boolean
@@ -58,176 +56,98 @@ paths:
                         items:
                           type: object
                           properties:
+                            apiUserBlock:
+                              type: string
+                              description: Block API_USER
+                              example: all
+                            domain:
+                              type: string
+                              description: Block receiving domain
+                              example: ''
                             email:
                               type: string
-                              description: >-
-                                Blocked email address (standard RFC 5322 format;
-                                exact match for filtering)
-                              example: blocked@example.com
-                            blockTime:
+                              description: Block email address
+                              example: 0.0.vallin@gmail.com
+                            createTime:
                               type: string
-                              format: date-time
-                              description: >-
-                                Block time (format: yyyy-MM-dd HH:mm:ss, Beijing
-                                time; accurate to the second)
-                              example: '2025-10-18 10:20:30'
-                            blockType:
+                              description: Create time
+                              example: '2021-03-01 17:24:34'
+                            expireTime:
                               type: string
-                              enum:
-                                - manual
-                                - spam_reported
-                                - bounce
-                                - system
-                              description: >-
-                                Block type (manual = added via API/console;
-                                spam_reported = blocked due to recipient's spam
-                                report; bounce = blocked due to repeated email
-                                bounces; system = automatically blocked by the
-                                system for violation of sending rules)
-                              example: spam_reported
-                            reason:
-                              type: string
-                              description: >-
-                                Block reason (detailed explanation of why the
-                                address was blocked; empty if not specified)
-                              example: Reported as spam by recipient
-                            operator:
-                              type: string
-                              description: >-
-                                Operator (apiUser for manual block; system for
-                                automatic block by the system)
-                              example: system
-                      total:
-                        type: integer
-                        description: >-
-                          Total number of blocked addresses matching the query
-                          conditions (across all pages)
-                        example: 36
+                              description: Expire time
+                              example: '2021-10-01 00:00:00'
                       count:
                         type: integer
-                        description: >-
-                          Number of returned results in the current page
-                          (consistent with pageSize parameter)
-                        example: 20
-                      page:
-                        type: integer
-                        description: >-
-                          Current page number (starts from 1; defaults to 1 if
-                          not specified)
-                        example: 1
-                      pageSize:
-                        type: integer
-                        description: >-
-                          Number of results displayed per page (defaults to 100,
-                          maximum 500)
-                        example: 20
+                        description: Number of returned results
+                        example: 2
         '400':
           description: >-
-            Bad request (e.g., time range exceeds 90 days, invalid block type,
-            pageSize > 500, endTime earlier than startTime)
+            Bad request (e.g., time range exceeds 3 months, missing required
+            parameters)
         '401':
-          description: >-
-            Authentication failed (invalid apiUser or apiKey; please verify
-            credentials in the SendCloud console -> Email API -> API_USER)
+          description: Authentication failed (invalid apiUser or apiKey)
       parameters:
         - in: query
-          name: startTime
+          name: apiUserBlock
           schema:
             type: string
-            format: date-time
           required: false
-          description: >-
-            Query start time (format: yyyy-MM-dd HH:mm:ss, Beijing time; no
-            limit if not specified; cannot be earlier than 90 days before the
-            current time)
-          example: '2025-10-01 00:00:00'
+          description: Block API_USER
         - in: query
-          name: endTime
+          name: domainName
           schema:
             type: string
-            format: date-time
           required: false
-          description: >-
-            Query end time (format: yyyy-MM-dd HH:mm:ss, Beijing time; must be
-            after startTime if specified; cannot be later than the current time)
-          example: '2025-10-31 23:59:59'
+          description: Block receiving domain
         - in: query
           name: email
           schema:
             type: string
           required: false
-          description: >-
-            Filter by specific email address (exact match; only one address can
-            be queried at a time)
-          example: blocked@example.com
+          description: Block email address
         - in: query
-          name: blockType
-          schema:
-            type: string
-            enum:
-              - all
-              - manual
-              - spam_reported
-              - bounce
-              - system
-            default: all
-          required: false
-          description: >-
-            Filter by block type (all = query all block types, manual = manually
-            added blocks, spam_reported = spam report blocks, bounce = bounce
-            blocks, system = system automatic blocks; defaults to "all")
-          example: spam_reported
-        - in: query
-          name: page
+          name: days
           schema:
             type: integer
-            default: 1
           required: false
-          description: >-
-            Page number (pagination parameter; starts from 1, defaults to 1 if
-            not provided)
-          example: 1
+          description: Stats in the past [days] days (days=1 means today)
         - in: query
-          name: pageSize
+          name: startDate
+          schema:
+            type: string
+          required: false
+          description: Start date, formatted with yyyy-MM-dd
+        - in: query
+          name: endDate
+          schema:
+            type: string
+          required: false
+          description: End date, formatted with yyyy-MM-dd
+        - in: query
+          name: start
           schema:
             type: integer
             default: 100
-            maximum: 500
           required: false
-          description: >-
-            Number of results per page (pagination parameter; defaults to 100,
-            maximum 500; exceeding will return a 400 error)
-          example: 50
-      x-codeSamples:
-        - lang: Python
-          label: Query Spam-Reported Block List
-          source: |
-            import requests
-
-            url = "https://api.aurorasendcloud.com/api/block/list"
-            params = {
-                "apiUser": "test_api_user",
-                "apiKey": "test_api_key",
-                "startTime": "2025-10-01 00:00:00",
-                "endTime": "2025-10-31 23:59:59",
-                "blockType": "spam_reported",
-                "pageSize": 50
-            }
-
-            response = requests.get(url, params=params)
-            print(response.json())
+          description: Amount, [0-100], defaults to 100
+        - in: query
+          name: limit
+          schema:
+            type: integer
+            default: 100
+          required: false
+          description: Amount, [0-100], defaults to 100
     post:
       summary: Query Block List (POST)
       description: >-
-        Query blocked addresses using POST method. Suitable for scenarios where
-        query parameters are long. Supports the same filtering conditions and
-        constraints as the GET method.
+        Query blocked addresses or domains using POST method. Supports the same
+        parameters as GET method.
       operationId: queryBlockListPost
       tags:
         - Block
       security:
         - apiUser: []
-        - apiKey: []
+          apiKey: []
       responses:
         '200':
           description: Request successful
@@ -238,15 +158,11 @@ paths:
                 properties:
                   statusCode:
                     type: integer
-                    description: >-
-                      Response status code (200 indicates success; other codes
-                      indicate failure)
+                    description: Response status code (200 indicates success)
                     example: 200
                   message:
                     type: string
-                    description: >-
-                      Success or failure message (detailed error information for
-                      failure scenarios)
+                    description: Success or failure message
                     example: request was successful
                   result:
                     type: boolean
@@ -262,77 +178,36 @@ paths:
                         items:
                           type: object
                           properties:
+                            apiUserBlock:
+                              type: string
+                              description: Block API_USER
+                              example: all
+                            domain:
+                              type: string
+                              description: Block receiving domain
+                              example: ''
                             email:
                               type: string
-                              description: >-
-                                Blocked email address (standard RFC 5322 format;
-                                exact match for filtering)
-                              example: blocked@example.com
-                            blockTime:
+                              description: Block email address
+                              example: 0.0.vallin@gmail.com
+                            createTime:
                               type: string
-                              format: date-time
-                              description: >-
-                                Block time (format: yyyy-MM-dd HH:mm:ss, Beijing
-                                time; accurate to the second)
-                              example: '2025-10-18 10:20:30'
-                            blockType:
+                              description: Create time
+                              example: '2021-03-01 17:24:34'
+                            expireTime:
                               type: string
-                              enum:
-                                - manual
-                                - spam_reported
-                                - bounce
-                                - system
-                              description: >-
-                                Block type (manual = added via API/console;
-                                spam_reported = blocked due to recipient's spam
-                                report; bounce = blocked due to repeated email
-                                bounces; system = automatically blocked by the
-                                system for violation of sending rules)
-                              example: spam_reported
-                            reason:
-                              type: string
-                              description: >-
-                                Block reason (detailed explanation of why the
-                                address was blocked; empty if not specified)
-                              example: Reported as spam by recipient
-                            operator:
-                              type: string
-                              description: >-
-                                Operator (apiUser for manual block; system for
-                                automatic block by the system)
-                              example: system
-                      total:
-                        type: integer
-                        description: >-
-                          Total number of blocked addresses matching the query
-                          conditions (across all pages)
-                        example: 36
+                              description: Expire time
+                              example: '2021-10-01 00:00:00'
                       count:
                         type: integer
-                        description: >-
-                          Number of returned results in the current page
-                          (consistent with pageSize parameter)
-                        example: 20
-                      page:
-                        type: integer
-                        description: >-
-                          Current page number (starts from 1; defaults to 1 if
-                          not specified)
-                        example: 1
-                      pageSize:
-                        type: integer
-                        description: >-
-                          Number of results displayed per page (defaults to 100,
-                          maximum 500)
-                        example: 20
+                        description: Number of returned results
+                        example: 2
         '400':
           description: >-
-            Bad request (e.g., time range exceeds 90 days, invalid block type,
-            pageSize > 500, endTime earlier than startTime)
+            Bad request (e.g., time range exceeds 3 months, missing required
+            parameters)
         '401':
-          description: >-
-            Authentication failed (invalid apiUser or apiKey; please verify
-            credentials in the SendCloud console -> Email API -> API_USER)
+          description: Authentication failed (invalid apiUser or apiKey)
       requestBody:
         required: true
         content:
@@ -340,430 +215,44 @@ paths:
             schema:
               type: object
               properties:
-                startTime:
+                apiUserBlock:
                   type: string
-                  format: date-time
-                  description: >-
-                    Query start time (format: yyyy-MM-dd HH:mm:ss, Beijing time;
-                    no limit if not specified; cannot be earlier than 90 days
-                    before the current time)
-                  example: '2025-10-01 00:00:00'
-                endTime:
+                  description: Block API_USER
+                domainName:
                   type: string
-                  format: date-time
-                  description: >-
-                    Query end time (format: yyyy-MM-dd HH:mm:ss, Beijing time;
-                    must be after startTime if specified; cannot be later than
-                    the current time)
-                  example: '2025-10-31 23:59:59'
+                  description: Block receiving domain
                 email:
                   type: string
-                  description: >-
-                    Filter by specific email address (exact match; only one
-                    address can be queried at a time)
-                  example: blocked@example.com
-                blockType:
-                  type: string
-                  enum:
-                    - all
-                    - manual
-                    - spam_reported
-                    - bounce
-                    - system
-                  default: all
-                  description: >-
-                    Filter by block type (all = query all block types, manual =
-                    manually added blocks, spam_reported = spam report blocks,
-                    bounce = bounce blocks, system = system automatic blocks;
-                    defaults to "all")
-                  example: spam_reported
-                page:
+                  description: Block email address
+                days:
                   type: integer
-                  default: 1
-                  description: >-
-                    Page number (pagination parameter; starts from 1, defaults
-                    to 1 if not provided)
-                  example: 1
-                pageSize:
+                  description: Stats in the past [days] days (days=1 means today)
+                startDate:
+                  type: string
+                  description: Start date, formatted with yyyy-MM-dd
+                endDate:
+                  type: string
+                  description: End date, formatted with yyyy-MM-dd
+                start:
                   type: integer
                   default: 100
-                  maximum: 500
-                  description: >-
-                    Number of results per page (pagination parameter; defaults
-                    to 100, maximum 500; exceeding will return a 400 error)
-                  example: 50
-      x-codeSamples:
-        - lang: Python
-          label: Query Block List (POST Method)
-          source: |
-            import requests
-
-            url = "https://api.aurorasendcloud.com/api/block/list"
-            data = {
-                "apiUser": "test_api_user",
-                "apiKey": "test_api_key",
-                "blockType": "manual",
-                "pageSize": 100
-            }
-
-            response = requests.post(url, data=data)
-            print(response.json())
+                  description: Amount, [0-100], defaults to 100
+                limit:
+                  type: integer
+                  default: 100
+                  description: Amount, [0-100], defaults to 100
   /api/block/add:
     post:
       summary: Add Block Address
       description: >-
-        Add email addresses to the block list. Once added, these addresses will
-        be blocked from receiving emails sent via SendCloud. Supports adding
-        multiple addresses at once (maximum 1000 per request). This operation is
-        irreversible for manual blocks.
+        Add email address or domain to block list. You must specify either email
+        or domainName, and expireTime is required.
       operationId: addBlockAddress
       tags:
         - Block
       security:
         - apiUser: []
-        - apiKey: []
-      responses:
-        '200':
-          description: Request successful
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  statusCode:
-                    type: integer
-                    description: Response status code (200 indicates success)
-                    example: 200
-                  message:
-                    type: string
-                    description: >-
-                      Success or failure message (detailed error information for
-                      failure scenarios)
-                    example: request was successful
-                  result:
-                    type: boolean
-                    description: >-
-                      Whether the request succeeded (true = success, false =
-                      failure)
-                    example: true
-                  info:
-                    type: object
-                    properties:
-                      count:
-                        type: integer
-                        description: Number of successfully added blocked addresses
-                        example: 3
-                      failedList:
-                        type: array
-                        description: List of failed addresses (empty if all succeeded)
-                        items:
-                          type: string
-                        example: []
-        '400':
-          description: >-
-            Bad request (e.g., invalid email format, duplicate addresses, more
-            than 1000 addresses)
-        '401':
-          description: >-
-            Authentication failed (invalid apiUser or apiKey; please verify
-            credentials in the SendCloud console -> Email API -> API_USER)
-      requestBody:
-        required: true
-        content:
-          application/x-www-form-urlencoded:
-            schema:
-              type: object
-              properties:
-                emailAddress:
-                  type: string
-                  description: >-
-                    Email addresses to block (multiple addresses separated by
-                    semicolons; maximum 1000 addresses per request; must be
-                    valid RFC 5322 format)
-                  example: >-
-                    blocked1@example.com;blocked2@example.com;blocked3@example.com
-              required:
-                - emailAddress
-      x-codeSamples:
-        - lang: Python
-          label: Add Multiple Block Addresses
-          source: |
-            import requests
-
-            url = "https://api.aurorasendcloud.com/api/block/add"
-            data = {
-                "apiUser": "test_api_user",
-                "apiKey": "test_api_key",
-                "emailAddress": "spam1@example.com;spam2@example.com;spam3@example.com"
-            }
-
-            response = requests.post(url, data=data)
-            result = response.json()
-            if result["result"]:
-                print(f"Successfully blocked {result['info']['count']} addresses")
-            else:
-                print(f"Failed to block addresses: {result['message']}")
-  /api/block/remove:
-    post:
-      summary: Remove Block Address
-      description: >-
-        Remove email addresses from the block list. Once removed, these
-        addresses will be able to receive emails sent via SendCloud again.
-        Supports removing multiple addresses at once (maximum 1000 per request).
-        Only addresses that were manually blocked can be removed.
-      operationId: removeBlockAddress
-      tags:
-        - Block
-      security:
-        - apiUser: []
-        - apiKey: []
-      responses:
-        '200':
-          description: Request successful
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  statusCode:
-                    type: integer
-                    description: Response status code (200 indicates success)
-                    example: 200
-                  message:
-                    type: string
-                    description: >-
-                      Success or failure message (detailed error information for
-                      failure scenarios)
-                    example: request was successful
-                  result:
-                    type: boolean
-                    description: >-
-                      Whether the request succeeded (true = success, false =
-                      failure)
-                    example: true
-                  info:
-                    type: object
-                    properties:
-                      count:
-                        type: integer
-                        description: Number of successfully removed blocked addresses
-                        example: 2
-                      failedList:
-                        type: array
-                        description: List of failed addresses (empty if all succeeded)
-                        items:
-                          type: string
-                        example: []
-        '400':
-          description: >-
-            Bad request (e.g., invalid email format, addresses not in block
-            list, more than 1000 addresses)
-        '401':
-          description: >-
-            Authentication failed (invalid apiUser or apiKey; please verify
-            credentials in the SendCloud console -> Email API -> API_USER)
-      requestBody:
-        required: true
-        content:
-          application/x-www-form-urlencoded:
-            schema:
-              type: object
-              properties:
-                emailAddress:
-                  type: string
-                  description: >-
-                    Email addresses to remove from block list (multiple
-                    addresses separated by semicolons; maximum 1000 addresses
-                    per request; must be valid RFC 5322 format)
-                  example: blocked1@example.com;blocked2@example.com
-              required:
-                - emailAddress
-      x-codeSamples:
-        - lang: Python
-          label: Remove Block Addresses
-          source: |
-            import requests
-
-            url = "https://api.aurorasendcloud.com/api/block/remove"
-            data = {
-                "apiUser": "test_api_user",
-                "apiKey": "test_api_key",
-                "emailAddress": "blocked1@example.com;blocked2@example.com"
-            }
-
-            response = requests.post(url, data=data)
-            result = response.json()
-            if result["result"]:
-                print(f"Successfully removed {result['info']['count']} addresses from block list")
-            else:
-                print(f"Failed to remove addresses: {result['message']}")
-  /api/block/export:
-    post:
-      summary: Export Block List
-      description: >-
-        Export block list data to CSV file. Supports filtering by time range and
-        block type. The export is processed asynchronously. The maximum time
-        range is 30 days. Duplicate export tasks with the same conditions within
-        5 minutes will be rejected.
-      operationId: exportBlockList
-      tags:
-        - Block
-      security:
-        - apiUser: []
-        - apiKey: []
-      responses:
-        '200':
-          description: Export task created successfully
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  statusCode:
-                    type: integer
-                    description: Response status code (200 indicates success)
-                    example: 200
-                  message:
-                    type: string
-                    description: Success or failure message
-                    example: export task created successfully
-                  result:
-                    type: boolean
-                    description: >-
-                      Whether the task was created successfully (true = success,
-                      false = failure)
-                    example: true
-                  info:
-                    type: object
-                    properties:
-                      taskId:
-                        type: string
-                        description: >-
-                          Export task ID (used to query task status or
-                          troubleshoot issues with technical support)
-                        example: export_block_123456
-                      downloadUrl:
-                        type: string
-                        description: >-
-                          CSV download URL (empty when the task is processing;
-                          valid for 24 hours after task completion; expired URLs
-                          cannot be reused)
-                        example: https://download.sendcloud.net/block_export_123.csv
-                      status:
-                        type: string
-                        enum:
-                          - processing
-                          - completed
-                          - failed
-                        description: >-
-                          Export task status (processing = being generated;
-                          completed = generated successfully; failed =
-                          generation failed due to data volume or parameter
-                          issues)
-                        example: processing
-                      estimatedTime:
-                        type: integer
-                        description: >-
-                          Estimated completion time (seconds; for reference
-                          only, subject to data volume)
-                        example: 40
-        '400':
-          description: >-
-            Bad request (e.g., time range exceeds 30 days, endTime earlier than
-            startTime, duplicate export tasks for the same conditions within 5
-            minutes)
-        '401':
-          description: Authentication failed (invalid apiUser or apiKey)
-      requestBody:
-        required: true
-        content:
-          application/x-www-form-urlencoded:
-            schema:
-              type: object
-              properties:
-                startTime:
-                  type: string
-                  format: date-time
-                  description: >-
-                    Export start time (format: yyyy-MM-dd HH:mm:ss, Beijing
-                    time; max 30 days range)
-                  example: '2025-10-01 00:00:00'
-                endTime:
-                  type: string
-                  format: date-time
-                  description: >-
-                    Export end time (format: yyyy-MM-dd HH:mm:ss, Beijing time;
-                    must be after startTime if specified)
-                  example: '2025-10-31 23:59:59'
-                blockType:
-                  type: string
-                  enum:
-                    - all
-                    - manual
-                    - spam_reported
-                    - bounce
-                    - system
-                  default: all
-                  description: >-
-                    Filter by block type (all = export all types, manual =
-                    manually added, spam_reported = spam report, bounce =
-                    repeated bounce, system = system automatic; defaults to
-                    "all")
-                  example: all
-      x-codeSamples:
-        - lang: Python
-          label: Export Block List
-          source: |
-            import requests
-            import time
-
-            # Create export task
-            url = "https://api.aurorasendcloud.com/api/block/export"
-            data = {
-                "apiUser": "test_api_user",
-                "apiKey": "test_api_key",
-                "startTime": "2025-10-01 00:00:00",
-                "endTime": "2025-10-31 23:59:59",
-                "blockType": "all"
-            }
-            response = requests.post(url, data=data)
-            task_info = response.json()
-            task_id = task_info["info"]["taskId"]
-
-            # Poll task status
-            poll_url = "https://api.aurorasendcloud.com/api/block/export/status"
-            while True:
-                poll_data = {
-                    "apiUser": "test_api_user",
-                    "apiKey": "test_api_key",
-                    "taskId": task_id
-                }
-                poll_response = requests.post(poll_url, data=poll_data)
-                poll_result = poll_response.json()
-                if poll_result["info"]["status"] == "completed":
-                    download_url = poll_result["info"]["downloadUrl"]
-                    # Download CSV
-                    csv_response = requests.get(download_url)
-                    with open("block_export.csv", "wb") as f:
-                        f.write(csv_response.content)
-                    print("Export completed and saved as block_export.csv")
-                    break
-                elif poll_result["info"]["status"] == "failed":
-                    print(f"Export failed: {poll_result['message']}")
-                    break
-                time.sleep(10)
-  /api/block/export/status:
-    post:
-      summary: Query Export Task Status
-      description: >-
-        Query the status of block list export task. Returns task progress,
-        status, and download URL when completed.
-      operationId: queryExportStatus
-      tags:
-        - Block
-      security:
-        - apiUser: []
-        - apiKey: []
+          apiKey: []
       responses:
         '200':
           description: Request successful
@@ -783,39 +272,18 @@ paths:
                   result:
                     type: boolean
                     description: >-
-                      Whether the query succeeded (true = success, false =
+                      Whether the request succeeded (true = success, false =
                       failure)
                     example: true
                   info:
                     type: object
                     properties:
-                      taskId:
-                        type: string
-                        description: Export task ID
-                        example: export_block_123456
-                      status:
-                        type: string
-                        enum:
-                          - processing
-                          - completed
-                          - failed
-                        description: >-
-                          Export task status (processing = being generated;
-                          completed = generated successfully; failed =
-                          generation failed)
-                        example: completed
-                      downloadUrl:
-                        type: string
-                        description: >-
-                          CSV download URL (empty when task is processing; valid
-                          for 24 hours after completion)
-                        example: https://download.sendcloud.net/block_export_123.csv
-                      progress:
+                      addSuccessCount:
                         type: integer
-                        description: Export progress percentage (0-100)
-                        example: 100
+                        description: Number of addresses successfully added
+                        example: 1
         '400':
-          description: Bad request (e.g., invalid taskId)
+          description: Bad request (e.g., missing required parameters, invalid format)
         '401':
           description: Authentication failed (invalid apiUser or apiKey)
       requestBody:
@@ -825,41 +293,33 @@ paths:
             schema:
               type: object
               properties:
-                taskId:
+                email:
                   type: string
                   description: >-
-                    Export task ID (obtained from the export task creation
-                    response)
-                  example: export_block_123456
-              required:
-                - taskId
-      x-codeSamples:
-        - lang: Python
-          label: Query Export Task Status
-          source: |
-            import requests
-
-            url = "https://api.aurorasendcloud.com/api/block/export/status"
-            data = {
-                "apiUser": "test_api_user",
-                "apiKey": "test_api_key",
-                "taskId": "export_block_123456"
-            }
-
-            response = requests.post(url, data=data)
-            print(response.json())
-  /api/block/check:
-    get:
-      summary: Check Block Status
+                    Email address to block (either email or domainName must be
+                    specified)
+                domainName:
+                  type: string
+                  description: >-
+                    Domain name to block (either email or domainName must be
+                    specified)
+                expireTime:
+                  type: string
+                  required:
+                    - expireTime
+                  description: Expiration time, formatted with yyyy-MM-dd HH:mm:ss
+  /api/block/delete:
+    post:
+      summary: Delete Block Address
       description: >-
-        Verify if a specific email address is in the block list. Returns block
-        details if the address is blocked; returns empty values otherwise.
-      operationId: checkBlockStatusGet
+        Delete email address or domain from block list. You must specify either
+        email or domainName.
+      operationId: deleteBlockAddress
       tags:
         - Block
       security:
         - apiUser: []
-        - apiKey: []
+          apiKey: []
       responses:
         '200':
           description: Request successful
@@ -870,75 +330,46 @@ paths:
                 properties:
                   statusCode:
                     type: integer
-                    description: Response status code (200 indicates query successful)
+                    description: Response status code (200 indicates success)
                     example: 200
                   message:
                     type: string
-                    description: >-
-                      Query result message (e.g., "request was successful" or
-                      "invalid email format")
+                    description: Success or failure message
                     example: request was successful
                   result:
                     type: boolean
                     description: >-
-                      Whether the query succeeded (true = success; false =
-                      invalid parameter)
+                      Whether the request succeeded (true = success, false =
+                      failure)
                     example: true
                   info:
                     type: object
                     properties:
-                      isBlocked:
-                        type: boolean
-                        description: >-
-                          Whether the email address is blocked (true = blocked;
-                          false = not blocked)
-                        example: true
-                      blockTime:
-                        type: string
-                        format: date-time
-                        description: >-
-                          Block time (format: yyyy-MM-dd HH:mm:ss, Beijing time;
-                          empty if not blocked)
-                        example: '2025-10-18 10:20:30'
-                      blockType:
-                        type: string
-                        description: >-
-                          Block type (empty if not blocked; values:
-                          manual/spam_reported/bounce/system)
-                        example: spam_reported
-                      reason:
-                        type: string
-                        description: >-
-                          Block reason (empty if not blocked or no reason was
-                          set)
-                        example: Reported as spam by recipient
+                      deleteSuccessCount:
+                        type: integer
+                        description: Number of addresses successfully deleted
+                        example: 1
         '400':
-          description: Bad request (e.g., invalid email format, empty email parameter)
+          description: Bad request (e.g., missing required parameters, invalid format)
         '401':
           description: Authentication failed (invalid apiUser or apiKey)
-      parameters:
-        - in: query
-          name: email
-          schema:
-            type: string
-          required: true
-          description: Email address to check (must be a valid RFC 5322 format address)
-          example: blocked@example.com
-      x-codeSamples:
-        - lang: Python
-          label: Check Block Status
-          source: |
-            import requests
-
-            url = "https://api.aurorasendcloud.com/api/block/check"
-            params = {
-                "apiUser": "test_api_user",
-                "apiKey": "test_api_key",
-                "email": "blocked@example.com"
-            }
-
-            response = requests.get(url, params=params)
-            print(response.json())
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: >-
+                    Email address to delete (either email or domainName must be
+                    specified)
+                domainName:
+                  type: string
+                  description: >-
+                    Domain name to delete (either email or domainName must be
+                    specified)
 components:
   securitySchemes:
     apiUser:

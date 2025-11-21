@@ -1,7 +1,4 @@
 - queryblocklistget
 - queryblocklistpost
 - addblockaddress
-- removeblockaddress
-- exportblocklist
-- queryexportstatus
-- checkblockstatusget
+- deleteblockaddress

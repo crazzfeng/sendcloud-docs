@@ -1,10 +1,8 @@
 ---
 title: Add Block Address
 excerpt: >-
-  Add email addresses to the block list. Once added, these addresses will be
-  blocked from receiving emails sent via SendCloud. Supports adding multiple
-  addresses at once (maximum 1000 per request). This operation is irreversible
-  for manual blocks.
+  Add email address or domain to block list. You must specify either email or
+  domainName, and expireTime is required.
 api:
   file: block.yaml
   operationId: addBlockAddress

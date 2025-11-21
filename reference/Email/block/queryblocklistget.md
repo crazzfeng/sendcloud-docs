@@ -1,10 +1,9 @@
 ---
 title: Query Block List (GET)
 excerpt: >-
-  Get list of blocked email addresses within a specified time range. Supports
-  filtering by block type, email address, and time range. The maximum query time
-  range is 90 days, and the maximum number of results per page is 500. Time
-  parameters use Beijing time (GMT+8).
+  Get list of blocked email addresses or domains. Supports filtering by API
+  user, domain name, email address, and time range. The maximum query time range
+  is 3 months.
 api:
   file: block.yaml
   operationId: queryBlockListGet
