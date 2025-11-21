@@ -128,6 +128,7 @@ paths:
                   description: >-
                     Whether to return emailId. Returns a list for multiple
                     recipients
+                  example: true
                 useNotification:
                   type: string
                   enum:
@@ -135,6 +136,7 @@ paths:
                     - false
                   default: false
                   description: Whether to enable notification
+                  example: false
                 useAddressList:
                   type: string
                   enum:
@@ -144,6 +146,7 @@ paths:
                   description: >-
                     Whether to use address list (e.g.,
                     to=group1@maillist.sendcloud.org;group2@maillist.sendcloud.org)
+                  example: false
               required:
                 - from
                 - subject
@@ -179,26 +182,85 @@ paths:
                           - >-
                             1447054895514_15555555_32350_1350.sc-inbound0$ben@ifaxin.com
         '400':
-          description: Bad request (e.g., missing required parameters, invalid format)
-        '401':
-          description: Authentication failed (invalid apiUser or apiKey)
-        '490':
           description: >-
-            Unknown exception occurred in mail processing (e.g., invalid headers
-            with SC-Custom- prefix)
+            Bad request (invalid parameters, e.g., missing required fields,
+            illegal email format, oversized attachments)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 400
+                  message:
+                    type: string
+                    example: 'invalid parameter: from email is not verified'
+                  result:
+                    type: boolean
+                    example: false
+        '401':
+          description: Authentication failed (invalid apiUser, apiKey, or signature)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 401
+                  message:
+                    type: string
+                    example: 'authentication failed: invalid apiKey'
+                  result:
+                    type: boolean
+                    example: false
+        '403':
+          description: >-
+            Permission denied (no email sending permission or sender domain not
+            verified)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 403
+                  message:
+                    type: string
+                    example: 'permission denied: sender domain not verified'
+                  result:
+                    type: boolean
+                    example: false
+        '500':
+          description: Server error (internal service exception, please retry later)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 500
+                  message:
+                    type: string
+                    example: 'server error: please try again later'
+                  result:
+                    type: boolean
+                    example: false
   /api/mail/sendtemplate:
     post:
-      summary: Template Email Delivery
+      summary: Send Template Email
       description: >-
-        Send emails using pre-approved templates (supports address lists,
-        variables, etc.)
-      operationId: sendTemplateEmail
+        Send emails by calling preset templates through template call names,
+        supporting dynamic parameter replacement.
+      operationId: send-template-email
       tags:
         - Deliverlies
       security:
         - apiUser: []
           apiKey: []
-      parameters: []
       requestBody:
         required: true
         content:
@@ -286,12 +348,6 @@ paths:
                   description: >-
                     Email attachments. Must use multipart/form-data when
                     submitting
-                plain:
-                  type: string
-                  description: >-
-                    Email content in text/plain format. Required if html is
-                    empty
-                  example: Hello World. This is a test email.
                 sendRequestId:
                   type: string
                   description: >-
@@ -307,6 +363,7 @@ paths:
                   description: >-
                     Whether to return emailId. Returns a list for multiple
                     recipients
+                  example: true
                 useNotification:
                   type: string
                   enum:
@@ -314,6 +371,7 @@ paths:
                     - false
                   default: false
                   description: Whether to enable notification
+                  example: false
                 useAddressList:
                   type: string
                   enum:
@@ -323,12 +381,13 @@ paths:
                   description: >-
                     Whether to use address list (e.g.,
                     to=group1@maillist.sendcloud.org;group2@maillist.sendcloud.org)
+                  example: false
               required:
                 - from
                 - templateInvokeName
       responses:
         '200':
-          description: Request successful
+          description: Template email sent successfully
           content:
             application/json:
               schema:
@@ -336,15 +395,12 @@ paths:
                 properties:
                   statusCode:
                     type: integer
-                    description: Response status code
                     example: 200
                   message:
                     type: string
-                    description: Success or failure message
-                    example: request was successful
+                    example: send email successful
                   result:
                     type: boolean
-                    description: Whether the request succeeded
                     example: true
                   info:
                     type: object
@@ -357,26 +413,88 @@ paths:
                         example:
                           - >-
                             1447054895514_15555555_32350_1350.sc-inbound0$ben@ifaxin.com
-                      maillistTaskId:
-                        type: integer
-                        description: >-
-                          Address list task ID (returned when using address
-                          list)
-                        example: 267131
         '400':
           description: >-
-            Bad request (e.g., missing required parameters, invalid template
-            name)
+            Bad request (invalid template call name, incorrect templateData
+            format, missing parameters)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 400
+                  message:
+                    type: string
+                    example: 'invalid parameter: templateData is not a valid JSON string'
+                  result:
+                    type: boolean
+                    example: false
+        '401':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 401
+                  message:
+                    type: string
+                    example: 'authentication failed: invalid apiKey'
+                  result:
+                    type: boolean
+                    example: false
+        '403':
+          description: >-
+            Permission denied (no template sending permission or template not
+            authorized)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 403
+                  message:
+                    type: string
+                    example: >-
+                      permission denied: template not authorized for this
+                      apiUser
+                  result:
+                    type: boolean
+                    example: false
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 500
+                  message:
+                    type: string
+                    example: 'server error: please try again later'
+                  result:
+                    type: boolean
+                    example: false
   /api/mail/sendcalendar:
     post:
       summary: Send Meeting Calendar
       description: >-
-        Send meeting calendar invitations (requires prior permission from
-        customer service)
-      operationId: sendMeetingCalendar
+        Send calendar invitations containing meeting information, supporting
+        cancellation/updates of calendars.
+      operationId: send-calendar
       tags:
         - Deliverlies
-      parameters: []
+      security:
+        - apiUser: []
+          apiKey: []
       requestBody:
         required: true
         content:
@@ -384,14 +502,6 @@ paths:
             schema:
               type: object
               properties:
-                apiUser:
-                  type: string
-                  description: API_USER
-                  example: test_api_user
-                apiKey:
-                  type: string
-                  description: API_KEY
-                  example: test_api_key
                 from:
                   type: string
                   description: >-
@@ -536,8 +646,6 @@ paths:
                   default: false
                   description: Whether to update the calendar
               required:
-                - apiUser
-                - apiKey
                 - from
                 - to
                 - subject
@@ -551,7 +659,7 @@ paths:
                 - participatorNames
       responses:
         '200':
-          description: Request successful
+          description: Calendar invitation sent successfully
           content:
             application/json:
               schema:
@@ -585,32 +693,92 @@ paths:
                         description: Calendar UID (for future cancellation/update)
                         example: cal_123456789
         '400':
-          description: Bad request (e.g., missing required parameters, invalid time format)
-        '490':
           description: >-
-            Unknown exception occurred in mail processing (e.g., invalid headers
-            with SC-Custom- prefix)
+            Bad request (invalid time format, missing UID for
+            cancellation/update, etc.)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 400
+                  message:
+                    type: string
+                    example: 'invalid parameter: uid is required for cancel operation'
+                  result:
+                    type: boolean
+                    example: false
+        '401':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 401
+                  message:
+                    type: string
+                    example: 'authentication failed: invalid apiKey'
+                  result:
+                    type: boolean
+                    example: false
+        '403':
+          description: Permission denied (no calendar sending permission)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 403
+                  message:
+                    type: string
+                    example: 'permission denied: no calendar sending permission'
+                  result:
+                    type: boolean
+                    example: false
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 500
+                  message:
+                    type: string
+                    example: 'server error: please try again later'
+                  result:
+                    type: boolean
+                    example: false
   /api/mail/taskinfo:
     get:
       summary: Query Address List Task
       description: Query the status and details of an address list email task
-      operationId: queryAddressListTask
+      operationId: query-task
       tags:
         - Deliverlies
       security:
         - apiUser: []
           apiKey: []
       parameters:
-        - name: maillistTaskId
-          in: query
+        - in: query
+          name: maillistTaskId
           schema:
-            type: integer
+            type: string
           required: true
           description: Returned maillistTaskId from sendtemplate request
           example: 267131
       responses:
         '200':
-          description: Request successful
+          description: Task status query successful
           content:
             application/json:
               schema:
@@ -618,15 +786,12 @@ paths:
                 properties:
                   statusCode:
                     type: integer
-                    description: Response status code
                     example: 200
                   message:
                     type: string
-                    description: Success or failure message
-                    example: request was successful
+                    example: query successful
                   result:
                     type: boolean
-                    description: Whether the request succeeded
                     example: true
                   info:
                     type: object
@@ -667,35 +832,7 @@ paths:
                               Address list request status (e.g., Completion of
                               the request)
         '400':
-          description: Bad request (e.g., missing required parameters, invalid format)
-        '401':
-          description: Authentication failed (invalid apiUser or apiKey)
-    post:
-      summary: Query Address List Task (POST)
-      description: Query the status and details of an address list email task (POST method)
-      operationId: queryAddressListTaskPost
-      tags:
-        - Deliverlies
-      security:
-        - apiUser: []
-          apiKey: []
-      parameters: []
-      requestBody:
-        required: true
-        content:
-          application/x-www-form-urlencoded:
-            schema:
-              type: object
-              properties:
-                maillistTaskId:
-                  type: integer
-                  description: Returned maillistTaskId from sendtemplate request
-                  example: 267131
-              required:
-                - maillistTaskId
-      responses:
-        '200':
-          description: Request successful
+          description: Bad request (missing taskId, invalid pagination parameters)
           content:
             application/json:
               schema:
@@ -703,58 +840,63 @@ paths:
                 properties:
                   statusCode:
                     type: integer
-                    description: Response status code
-                    example: 200
+                    example: 400
                   message:
                     type: string
-                    description: Success or failure message
-                    example: request was successful
+                    example: 'invalid parameter: taskId is required'
                   result:
                     type: boolean
-                    description: Whether the request succeeded
-                    example: true
-                  info:
-                    type: object
-                    properties:
-                      data:
-                        type: object
-                        properties:
-                          maillistTaskId:
-                            type: integer
-                            description: Address list task ID
-                            example: 267131
-                          apiUser:
-                            type: string
-                            description: Called apiUser
-                            example: test_api_user
-                          addressList:
-                            type: string
-                            description: Alias of the called address list
-                            example: group1@maillist.sendcloud.org
-                          memberCount:
-                            type: integer
-                            description: Number of addresses in the list
-                            example: 300
-                          gmtCreated:
-                            type: string
-                            format: date-time
-                            description: Task creation time
-                            example: '2015-11-26 14:38:09'
-                          gmtUpdated:
-                            type: string
-                            format: date-time
-                            description: Task modification time
-                            example: '2015-11-26 14:38:23'
-                          status:
-                            type: string
-                            description: >-
-                              Address list request status (e.g., Completion of
-                              the request)
-                            example: Completion of the request
-        '400':
-          description: Bad request (e.g., missing required parameters, invalid format)
+                    example: false
         '401':
-          description: Authentication failed (invalid apiUser or apiKey)
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 401
+                  message:
+                    type: string
+                    example: 'authentication failed: invalid apiKey'
+                  result:
+                    type: boolean
+                    example: false
+        '403':
+          description: >-
+            Permission denied (no task query permission or task not belonging to
+            the apiUser)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 403
+                  message:
+                    type: string
+                    example: 'permission denied: task does not belong to this apiUser'
+                  result:
+                    type: boolean
+                    example: false
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 500
+                  message:
+                    type: string
+                    example: 'server error: please try again later'
+                  result:
+                    type: boolean
+                    example: false
 components:
   securitySchemes:
     apiUser:

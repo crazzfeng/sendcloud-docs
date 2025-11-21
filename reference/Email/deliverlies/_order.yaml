@@ -1,5 +1,4 @@
 - send-regular-email
-- sendtemplateemail
-- sendmeetingcalendar
-- queryaddresslisttask
-- queryaddresslisttaskpost
+- send-template-email
+- send-calendar
+- query-task
