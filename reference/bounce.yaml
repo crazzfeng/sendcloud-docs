@@ -15,12 +15,11 @@ tags:
 paths:
   /api/bounce/list:
     get:
-      summary: Query Bounced Emails
+      summary: Query Bounce List
       description: >-
-        Get list of bounced emails within a specified time range (supports
-        filtering by bounce type, recipient, etc.). The maximum query time range
-        is 90 days, and the maximum number of results per page is 500.
-      operationId: queryBouncedEmailsGet
+        Query emails in the bounce list. Can search by time range or specific
+        email address. Time frame cannot exceed 3 months.
+      operationId: queryBounceListGet
       tags:
         - Bounce
       responses:
@@ -33,15 +32,11 @@ paths:
                 properties:
                   statusCode:
                     type: integer
-                    description: >-
-                      Response status code (200 indicates success; other codes
-                      indicate failure)
+                    description: Response status code (200 indicates success)
                     example: 200
                   message:
                     type: string
-                    description: >-
-                      Success or failure message (detailed error information for
-                      failure)
+                    description: Success or failure message
                     example: request was successful
                   result:
                     type: boolean
@@ -57,195 +52,99 @@ paths:
                         items:
                           type: object
                           properties:
-                            emailId:
+                            email:
                               type: string
-                              description: >-
-                                Unique email ID of the bounced email (generated
-                                by SendCloud when sending, used to trace the
-                                original email)
+                              description: Email address
+                              example: b@qq.com
+                            reason:
+                              type: string
+                              description: Bounce reason
                               example: >-
-                                1447054895514_15555555_32350_1350.sc-inbound0$invalid@example.com
-                            to:
+                                Mailbox not found.
+                                http://service.mail.qq.com/cgi-bin/help?subtype=1&&id=20022&&no=1000728
+                            domain:
                               type: string
-                              description: >-
-                                Recipient email address (the address that
-                                bounced)
-                              example: invalid@example.com
-                            from:
-                              type: string
-                              description: >-
-                                Sender email address (configured when sending
-                                the email)
-                              example: support@example.com
-                            subject:
-                              type: string
-                              description: >-
-                                Email subject (consistent with the original sent
-                                email)
-                              example: Test Email Subject
-                            sendTime:
-                              type: string
-                              format: date-time
-                              description: >-
-                                Email sending time (format: yyyy-MM-dd HH:mm:ss,
-                                Beijing time)
-                              example: '2025-10-15 14:30:00'
+                              description: Bounce domain
+                              example: qq.com
                             bounceTime:
                               type: string
                               format: date-time
-                              description: >-
-                                Bounce occurrence time (format: yyyy-MM-dd
-                                HH:mm:ss, Beijing time; the time when the bounce
-                                response is received from the recipient's mail
-                                server)
-                              example: '2025-10-15 14:32:30'
-                            bounceType:
+                              description: Bounce time (formated yyyy-MM-dd HH:mm:ss)
+                              example: '2016-02-01 14:53:20'
+                            expireTime:
                               type: string
-                              enum:
-                                - hard
-                                - soft
-                              description: >-
-                                Bounce type (hard = permanent failure, cannot be
-                                retried; soft = temporary failure, can be
-                                retried later)
-                              example: hard
-                            bounceReason:
-                              type: string
-                              description: >-
-                                Detailed bounce reason (original response
-                                message from the recipient's SMTP server,
-                                including specific failure cause)
-                              example: >-
-                                550 5.1.1 Recipient address rejected: User
-                                unknown
-                            bounceCode:
-                              type: string
-                              description: >-
-                                SMTP bounce code (3-digit code defined by SMTP
-                                protocol, indicating the bounce category; e.g.,
-                                550=permanent failure, 450=temporary failure)
-                              example: '550'
-                            domain:
-                              type: string
-                              description: >-
-                                Sending domain (the domain part of the sender's
-                                email address)
-                              example: example.com
-                            labelName:
-                              type: string
-                              description: >-
-                                Email label (custom label set when sending the
-                                email; empty if no label was set)
-                              example: Marketing Campaigns
-                      total:
-                        type: integer
-                        description: >-
-                          Total number of bounced emails matching the query
-                          conditions
-                        example: 15
+                              format: date-time
+                              description: Expire time (formated yyyy-MM-dd HH:mm:ss)
+                              example: '2021-07-09 00:59:37'
                       count:
                         type: integer
-                        description: Number of returned results in the current page
-                        example: 10
-                      page:
-                        type: integer
-                        description: Current page number (starts from 1)
+                        description: Number of returned results
                         example: 1
-                      pageSize:
-                        type: integer
-                        description: >-
-                          Number of results displayed per page (consistent with
-                          the query parameter)
-                        example: 10
         '400':
           description: >-
-            Bad request (e.g., invalid time range, invalid bounce type, pageSize
-            exceeding 500)
+            Bad request (e.g., invalid time range, time range exceeding 3
+            months)
         '401':
-          description: >-
-            Authentication failed (invalid apiUser or apiKey; please check if
-            the authentication parameters are correct)
+          description: Authentication failed (invalid apiUser or apiKey)
       parameters:
         - in: query
-          name: startTime
-          schema:
-            type: string
-            format: date-time
-          required: true
-          description: >-
-            Query start time (format: yyyy-MM-dd HH:mm:ss, Beijing time; cannot
-            be earlier than 90 days before the current time)
-          example: '2025-10-01 00:00:00'
-        - in: query
-          name: endTime
-          schema:
-            type: string
-            format: date-time
-          required: true
-          description: >-
-            Query end time (format: yyyy-MM-dd HH:mm:ss, Beijing time; must be
-            after startTime and cannot be later than the current time)
-          example: '2025-10-31 23:59:59'
-        - in: query
-          name: bounceType
-          schema:
-            type: string
-            enum:
-              - all
-              - hard
-              - soft
-            default: all
-          required: false
-          description: >-
-            Filter by bounce type (all = query all bounce types, hard = query
-            only permanent bounces, soft = query only temporary bounces)
-          example: hard
-        - in: query
-          name: to
-          schema:
-            type: string
-          required: false
-          description: >-
-            Filter by recipient email address (exact match; multiple addresses
-            are not supported, query one address at a time)
-          example: invalid@example.com
-        - in: query
-          name: domain
-          schema:
-            type: string
-          required: false
-          description: >-
-            Filter by sending domain (exact match; the domain part of the
-            sender's email address)
-          example: example.com
-        - in: query
-          name: labelName
-          schema:
-            type: string
-          required: false
-          description: >-
-            Filter by email label (exact match; only emails with the specified
-            label are queried)
-          example: Marketing Campaigns
-        - in: query
-          name: page
+          name: days
           schema:
             type: integer
-            default: 1
           required: false
-          description: Page number (pagination parameter; starts from 1, default is 1)
-          example: 1
+          description: >-
+            Stats in the past [days] days (days=1 means today). Either days or
+            (startDate and endDate) must be provided.
+          example: 100
         - in: query
-          name: pageSize
+          name: startDate
+          schema:
+            type: string
+            format: date
+          required: false
+          description: >-
+            Start date in yyyy-MM-dd format. Either days or (startDate and
+            endDate) must be provided. Time frame cannot exceed 3 months.
+          example: '2025-10-01'
+        - in: query
+          name: endDate
+          schema:
+            type: string
+            format: date
+          required: false
+          description: >-
+            End date in yyyy-MM-dd format. Must be provided together with
+            startDate and be after startDate.
+          example: '2025-10-31'
+        - in: query
+          name: email
+          schema:
+            type: string
+          required: false
+          description: >-
+            Email address to query in the bounce list. If provided, time
+            parameters will be ignored.
+          example: invalid@example.com
+        - in: query
+          name: start
+          schema:
+            type: integer
+            default: 0
+            minimum: 0
+            maximum: 100
+          required: false
+          description: Start index for pagination (range 0-100, default is 0)
+          example: 0
+        - in: query
+          name: limit
           schema:
             type: integer
             default: 100
-            maximum: 500
+            minimum: 0
+            maximum: 100
           required: false
-          description: >-
-            Number of results per page (pagination parameter; default is 100,
-            maximum is 500, exceeding will return an error)
-          example: 50
+          description: Number of results per page (range 0-100, default is 100)
+          example: 100
       security:
         - apiUser: []
           apiKey: []
@@ -437,212 +336,13 @@ paths:
               required:
                 - startTime
                 - endTime
-  /api/bounce/export:
+  /api/bounce/delete:
     post:
-      summary: Export Bounced Emails
+      summary: Delete Bounced Email
       description: >-
-        Export bounced email data within a specified time range to CSV file. The
-        maximum export time range is 30 days, and the export file is valid for
-        24 hours after generation.
-      operationId: exportBouncedEmails
-      tags:
-        - Bounce
-      responses:
-        '200':
-          description: Export task created successfully
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  statusCode:
-                    type: integer
-                    description: Response status code (200 indicates task creation success)
-                    example: 200
-                  message:
-                    type: string
-                    description: >-
-                      Task creation result message (error information if
-                      creation fails)
-                    example: export task created successfully
-                  result:
-                    type: boolean
-                    description: >-
-                      Whether the task was created successfully (true=success,
-                      false=failure)
-                    example: true
-                  info:
-                    type: object
-                    properties:
-                      taskId:
-                        type: string
-                        description: >-
-                          Export task ID (used to query the export status and
-                          download the file later)
-                        example: export_bounce_123456
-                      downloadUrl:
-                        type: string
-                        description: >-
-                          CSV download URL (empty when the task is processing;
-                          valid for 24 hours after the task is completed)
-                        example: https://download.sendcloud.net/bounce_export_123.csv
-                      status:
-                        type: string
-                        enum:
-                          - processing
-                          - completed
-                          - failed
-                        description: >-
-                          Export task status (processing=being generated,
-                          completed=generated successfully, failed=generation
-                          failed)
-                        example: processing
-                      estimatedTime:
-                        type: integer
-                        description: >-
-                          Estimated completion time (seconds; for reference
-                          only, subject to actual generation speed)
-                        example: 60
-        '400':
-          description: >-
-            Bad request (e.g., time range exceeds 30 days, invalid parameters,
-            duplicate export tasks for the same conditions)
-        '401':
-          description: Authentication failed (invalid apiUser or apiKey)
-      requestBody:
-        required: true
-        content:
-          application/x-www-form-urlencoded:
-            schema:
-              type: object
-              properties:
-                apiUser:
-                  type: string
-                  description: >-
-                    API_USER (authentication parameter; obtained from SendCloud
-                    console)
-                  example: test_api_user
-                apiKey:
-                  type: string
-                  description: API_KEY (authentication parameter; keep confidential)
-                  example: test_api_key
-                startTime:
-                  type: string
-                  format: date-time
-                  description: >-
-                    Export start time (format: yyyy-MM-dd HH:mm:ss, Beijing
-                    time; max 30 days range)
-                  example: '2025-10-01 00:00:00'
-                endTime:
-                  type: string
-                  format: date-time
-                  description: >-
-                    Export end time (format: yyyy-MM-dd HH:mm:ss, Beijing time;
-                    must be after startTime)
-                  example: '2025-10-31 23:59:59'
-                bounceType:
-                  type: string
-                  enum:
-                    - all
-                    - hard
-                    - soft
-                  default: all
-                  description: >-
-                    Filter by bounce type (all=export all types, hard=permanent
-                    bounces, soft=temporary bounces)
-                  example: all
-                domain:
-                  type: string
-                  description: >-
-                    Filter by sending domain (exact match; only export emails
-                    from the specified domain)
-                  example: example.com
-                labelName:
-                  type: string
-                  description: >-
-                    Filter by email label (exact match; only export emails with
-                    the specified label)
-                  example: Marketing Campaigns
-              required:
-                - startTime
-                - endTime
-  /api/bounce/unblock:
-    post:
-      summary: Unblock Bounced Address
-      description: >-
-        Remove a bounced email address from the bounce list (after unblocking,
-        you can send emails to this address again). Only permanent bounced
-        addresses (hard bounce) can be unblocked; temporary bounced addresses
-        (soft bounce) do not need to be unblocked.
-      operationId: unblockBouncedAddress
-      tags:
-        - Bounce
-      responses:
-        '200':
-          description: Unblock successful
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  statusCode:
-                    type: integer
-                    description: Response status code (200 indicates unblock success)
-                    example: 200
-                  message:
-                    type: string
-                    description: >-
-                      Unblock result message (error information if unblock
-                      fails)
-                    example: unblock successful
-                  result:
-                    type: boolean
-                    description: >-
-                      Whether the unblock was successful (true=success,
-                      false=failure)
-                    example: true
-                  info:
-                    type: object
-                    properties:
-                      count:
-                        type: integer
-                        description: >-
-                          Number of successfully unblocked addresses (excludes
-                          addresses not in the bounce list or temporary bounced
-                          addresses)
-                        example: 1
-        '400':
-          description: >-
-            Bad request (e.g., address not in the bounce list, temporary bounced
-            address, invalid email format)
-        '401':
-          description: Authentication failed (invalid apiUser or apiKey)
-      requestBody:
-        required: true
-        content:
-          application/x-www-form-urlencoded:
-            schema:
-              type: object
-              properties:
-                email:
-                  type: string
-                  description: >-
-                    Bounced email address to unblock (only supports one address
-                    per request; must be a permanent bounced address)
-                  example: invalid@example.com
-              required:
-                - email
-      security:
-        - apiUser: []
-          apiKey: []
-  /api/bounce/count:
-    get:
-      summary: Get Bounce Count
-      description: >-
-        Get total number of bounced emails within a specified time range
-        (supports statistical classification by bounce type). The maximum query
-        time range is 90 days.
-      operationId: getBounceCountGet
+        Remove a specified email address from the bounce list. This function is
+        the same as adding to the sending unblocking list.
+      operationId: deleteBouncedEmailPost
       tags:
         - Bounce
       responses:
@@ -670,58 +370,77 @@ paths:
                   info:
                     type: object
                     properties:
-                      total:
+                      count:
                         type: integer
-                        description: >-
-                          Total number of bounced emails matching the query
-                          conditions (sum of hard and soft bounces)
-                        example: 156
-                      hardBounce:
-                        type: integer
-                        description: >-
-                          Number of permanent bounces (hard bounce; cannot be
-                          retried)
-                        example: 89
-                      softBounce:
-                        type: integer
-                        description: >-
-                          Number of temporary bounces (soft bounce; can be
-                          retried)
-                        example: 67
+                        description: Number of successfully unblocked addresses
+                        example: 1
         '400':
-          description: Bad request (e.g., invalid time range, time range exceeding 90 days)
+          description: Bad request (e.g., invalid email format)
+        '401':
+          description: Authentication failed (invalid apiUser or apiKey)
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: Email address to remove from the bounce list
+                  example: invalid@example.com
+              required:
+                - email
+      security:
+        - apiUser: []
+          apiKey: []
+    get:
+      summary: Delete Bounced Email (GET)
+      description: Remove a specified email address from the bounce list using GET method
+      operationId: deleteBouncedEmailGet
+      tags:
+        - Bounce
+      responses:
+        '200':
+          description: Request successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    description: Response status code (200 indicates success)
+                    example: 200
+                  message:
+                    type: string
+                    description: Success or failure message
+                    example: request was successful
+                  result:
+                    type: boolean
+                    description: >-
+                      Whether the request succeeded (true=success,
+                      false=failure)
+                    example: true
+                  info:
+                    type: object
+                    properties:
+                      count:
+                        type: integer
+                        description: Number of successfully unblocked addresses
+                        example: 1
+        '400':
+          description: Bad request (e.g., invalid email format)
         '401':
           description: Authentication failed (invalid apiUser or apiKey)
       parameters:
         - in: query
-          name: startTime
+          name: email
           schema:
             type: string
-            format: date-time
           required: true
-          description: >-
-            Query start time (format: yyyy-MM-dd HH:mm:ss, Beijing time; max 90
-            days range)
-          example: '2025-10-01 00:00:00'
-        - in: query
-          name: endTime
-          schema:
-            type: string
-            format: date-time
-          required: true
-          description: >-
-            Query end time (format: yyyy-MM-dd HH:mm:ss, Beijing time; must be
-            after startTime)
-          example: '2025-10-31 23:59:59'
-        - in: query
-          name: domain
-          schema:
-            type: string
-          required: false
-          description: >-
-            Filter by sending domain (exact match; only count bounces from the
-            specified domain)
-          example: example.com
+          description: Email address to remove from the bounce list
+          example: invalid@example.com
       security:
         - apiUser: []
           apiKey: []

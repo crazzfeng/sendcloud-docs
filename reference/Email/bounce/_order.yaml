@@ -1,5 +1,4 @@
-- querybouncedemailsget
 - querybouncedemailspost
-- exportbouncedemails
-- unblockbouncedaddress
-- getbouncecountget
+- querybouncelistget
+- deletebouncedemailpost
+- deletebouncedemailget
