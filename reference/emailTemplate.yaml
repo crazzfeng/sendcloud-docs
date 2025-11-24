@@ -4,6 +4,9 @@ info:
   title: Email
 servers:
   - url: https://api.aurorasendcloud.com
+    description: Production server
+  - url: https://api.sendcloud.net
+    description: Alternative production server
 tags:
   - name: Email Template
     description: Interfaces for querying, adding, updating, and deleting email templates
@@ -148,38 +151,6 @@ paths:
       security:
         - apiUser: []
           apiKey: []
-      x-codeSamples:
-        - lang: Python
-          label: Batch Query Templates (Basic Filter)
-          source: |
-            import requests
-
-            url = "https://api.aurorasendcloud.com/api/template/list"
-            params = {
-                "apiUser": "test_api_user",
-                "apiKey": "test_api_key",
-                "templateType": 0,  # Transactional templates
-                "start": 0,
-                "limit": 10
-            }
-
-            response = requests.get(url, params=params)
-            print(response.json())
-        - lang: Python
-          label: Batch Query Templates (By InvokeName)
-          source: |
-            import requests
-
-            url = "https://api.aurorasendcloud.com/api/template/list"
-            params = {
-                "apiUser": "test_api_user",
-                "apiKey": "test_api_key",
-                "invokeName": "ifaxin_bill",
-                "limit": 1
-            }
-
-            response = requests.get(url, params=params)
-            print(response.json())
     post:
       summary: Batch Query Email Templates (POST)
       description: >-
@@ -319,23 +290,6 @@ paths:
       security:
         - apiUser: []
           apiKey: []
-      x-codeSamples:
-        - lang: Python
-          label: Batch Query Templates (POST Method)
-          source: |
-            import requests
-
-            url = "https://api.aurorasendcloud.com/api/template/list"
-            params = {
-                "apiUser": "test_api_user",
-                "apiKey": "test_api_key",
-                "templateType": 1,  # Marketing templates
-                "start": 10,
-                "limit": 20
-            }
-
-            response = requests.post(url, params=params)
-            print(response.json())
   /api/template/get:
     get:
       summary: Query Single Email Template
@@ -446,23 +400,6 @@ paths:
       security:
         - apiUser: []
           apiKey: []
-      x-codeSamples:
-        - lang: Python
-          label: Query Single Template (GET)
-          source: |
-            import requests
-
-            url = "https://api.aurorasendcloud.com/api/template/get"
-            params = {
-                "apiUser": "test_api_user",
-                "apiKey": "test_api_key",
-                "invokeName": "test_invoke"
-            }
-
-            response = requests.get(url, params=params)
-            template_info = response.json()
-            print("Template Subject:", template_info["info"]["data"]["subject"])
-            print("Template HTML:", template_info["info"]["data"]["html"])
     post:
       summary: Query Single Email Template (POST)
       description: Get detailed template information using POST method
@@ -572,21 +509,6 @@ paths:
       security:
         - apiUser: []
           apiKey: []
-      x-codeSamples:
-        - lang: Python
-          label: Query Single Template (POST)
-          source: |
-            import requests
-
-            url = "https://api.aurorasendcloud.com/api/template/get"
-            params = {
-                "apiUser": "test_api_user",
-                "apiKey": "test_api_key",
-                "invokeName": "test_invoke"
-            }
-
-            response = requests.post(url, params=params)
-            print(response.json())
   /api/template/add:
     get:
       summary: Add Email Template (GET)
@@ -736,25 +658,6 @@ paths:
       security:
         - apiUser: []
           apiKey: []
-      x-codeSamples:
-        - lang: Python
-          label: Add Template (GET, Simple Content)
-          source: |
-            import requests
-
-            url = "https://api.aurorasendcloud.com/api/template/add"
-            params = {
-                "apiUser": "test_api_user",
-                "apiKey": "test_api_key",
-                "invokeName": "new_test_template",
-                "name": "Test Template",
-                "html": "<h1>Hello {{name}}</h1><p>Your order {{order_id}} is confirmed</p>",
-                "subject": "Order Confirmation",
-                "templateType": 0  # Transactional template
-            }
-
-            response = requests.get(url, params=params)
-            print(response.json())
     post:
       summary: Add Email Template (POST)
       description: >-
@@ -905,26 +808,6 @@ paths:
       security:
         - apiUser: []
           apiKey: []
-      x-codeSamples:
-        - lang: Python
-          label: Add Template (POST, Special Characters)
-          source: |
-            import requests
-
-            url = "https://api.aurorasendcloud.com/api/template/add"
-            params = {
-                "apiUser": "test_api_user",
-                "apiKey": "test_api_key",
-                "invokeName": "special_char_template",
-                "name": "Template with Special Chars",
-                "html": "<p>Welcome &amp; Hello! This is a template with &lt;tags&gt; and \"quotes\"</p>",
-                "text": "Welcome & Hello! This is a plain text template",
-                "subject": "Special Characters Test",
-                "templateType": 1  # Marketing template
-            }
-
-            response = requests.post(url, params=params)
-            print(response.json())
   /api/template/delete:
     get:
       summary: Delete Email Template (GET)
@@ -979,21 +862,6 @@ paths:
       security:
         - apiUser: []
           apiKey: []
-      x-codeSamples:
-        - lang: Python
-          label: Delete Template (GET)
-          source: |
-            import requests
-
-            url = "https://api.aurorasendcloud.com/api/template/delete"
-            params = {
-                "apiUser": "test_api_user",
-                "apiKey": "test_api_key",
-                "invokeName": "template_to_delete"
-            }
-
-            response = requests.get(url, params=params)
-            print(response.json())
     post:
       summary: Delete Email Template (POST)
       description: Delete an existing email template using POST method
@@ -1047,21 +915,6 @@ paths:
       security:
         - apiUser: []
           apiKey: []
-      x-codeSamples:
-        - lang: Python
-          label: Delete Template (POST)
-          source: |
-            import requests
-
-            url = "https://api.aurorasendcloud.com/api/template/delete"
-            params = {
-                "apiUser": "test_api_user",
-                "apiKey": "test_api_key",
-                "invokeName": "template_to_delete"
-            }
-
-            response = requests.post(url, params=params)
-            print(response.json())
   /api/template/update:
     get:
       summary: Update Email Template (GET)
@@ -1155,24 +1008,6 @@ paths:
       security:
         - apiUser: []
           apiKey: []
-      x-codeSamples:
-        - lang: Python
-          label: Update Template (GET, Basic Fields)
-          source: |
-            import requests
-
-            url = "https://api.aurorasendcloud.com/api/template/update"
-            params = {
-                "apiUser": "test_api_user",
-                "apiKey": "test_api_key",
-                "invokeName": "template_to_update",
-                "name": "Updated Template Name",
-                "subject": "Updated Subject Line",
-                "templateType": 0  # Change to transactional
-            }
-
-            response = requests.get(url, params=params)
-            print(response.json())
     post:
       summary: Update Email Template (POST)
       description: >-
@@ -1265,23 +1100,6 @@ paths:
       security:
         - apiUser: []
           apiKey: []
-      x-codeSamples:
-        - lang: Python
-          label: Update Template (POST, HTML Content)
-          source: |
-            import requests
-
-            url = "https://api.aurorasendcloud.com/api/template/update"
-            params = {
-                "apiUser": "test_api_user",
-                "apiKey": "test_api_key",
-                "invokeName": "template_to_update",
-                "html": "<div><h2>Updated HTML Content</h2><p>Supports &amp; special characters and {{variables}}</p></div>",
-                "text": "Updated plain text content with special chars & symbols"
-            }
-
-            response = requests.post(url, params=params)
-            print(response.json())
 components:
   securitySchemes:
     apiUser:
