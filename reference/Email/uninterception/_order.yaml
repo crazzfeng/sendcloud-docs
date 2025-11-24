@@ -1,5 +1,3 @@
-- queryuninterceptlistget
-- queryuninterceptlistpost
-- adduninterceptaddress
-- removeuninterceptaddress
-- checkuninterceptstatusget
+- query-uninterception-list
+- add-uninterception-get
+- delete-uninterception-get
