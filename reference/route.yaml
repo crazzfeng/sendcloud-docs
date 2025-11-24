@@ -30,6 +30,7 @@ paths:
           schema:
             type: string
           description: Domain name (fuzzy filter)
+          example: post.sc.com
         - name: start
           in: query
           required: false
@@ -147,6 +148,7 @@ paths:
           schema:
             type: integer
           description: Route ID (unique identifier for the route)
+          example: 1
       responses:
         '200':
           description: Request successful
@@ -276,18 +278,21 @@ paths:
           description: >-
             Receiving route; format is "regular expression@domain" or a specific
             email address
+          example: '*@post.sc.com'
         - name: action
           in: query
           required: true
           schema:
             type: string
           description: Target URL or email address
+          example: admin@post.sc.com
         - name: apiUserRoute
           in: query
           required: false
           schema:
             type: string
           description: Required when action is set to an email address
+          example: sctest
       responses:
         '200':
           description: Request successful
@@ -419,24 +424,28 @@ paths:
           schema:
             type: integer
           description: Route ID (unique identifier for the route to modify)
+          example: 1
         - name: expression
           in: query
           required: true
           schema:
             type: string
           description: Updated receiving route
+          example: '*@post.sc.com'
         - name: action
           in: query
           required: true
           schema:
             type: string
           description: Updated target URL or email address
+          example: admin@post.sc.com
         - name: apiUserRoute
           in: query
           required: false
           schema:
             type: string
           description: Required when the updated action is set to an email address
+          example: sctest
       responses:
         '200':
           description: Request successful
@@ -544,6 +553,7 @@ paths:
           schema:
             type: integer
           description: Route ID (unique identifier for the route to delete)
+          example: 1
       responses:
         '200':
           description: Request successful
