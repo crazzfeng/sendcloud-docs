@@ -1,6 +1,5 @@
-- queryunsubscribelistget
-- queryunsubscribelistpost
-- exportunsubscribelist
-- checkunsubscribestatusget
-- addunsubscribe
-- removeunsubscribe
+- query-unsubscribe-list
+- add-unsubscribe-get
+- add-unsubscribe-post
+- delete-unsubscribe-get
+- delete-unsubscribe-post
