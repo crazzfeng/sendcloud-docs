@@ -4,116 +4,46 @@ info:
   title: Email
 servers:
   - url: https://api.aurorasendcloud.com
-    description: SendCloud API production server
+    description: Production server
+  - url: https://api.sendcloud.net
+    description: Alternative production server
 tags:
   - name: Tracking Domain
     description: Interfaces for managing email tracking domains
 paths:
-  /api/trackdomain/add:
-    post:
-      summary: Add Tracking Domain
+  /api/trackDomain/list:
+    get:
+      summary: Query Tracking Domain List (Batch Query)
       description: >-
-        Add a custom tracking domain (used to replace the default SendCloud
-        tracking domain for email click/open tracking)
-      operationId: addTrackingDomain
+        Batch query configured tracking domains under the account. Supports
+        filtering by track name and pagination.
+      operationId: query-trackDomain-list-get
       tags:
         - Tracking Domain
       security:
         - apiUser: []
-        - apiKey: []
-      responses:
-        '200':
-          description: Tracking domain added successfully (pending DNS verification)
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  statusCode:
-                    type: integer
-                    description: Response status code (200 indicates success)
-                    example: 200
-                  message:
-                    type: string
-                    description: >-
-                      Prompt message for request result (success/failure
-                      description)
-                    example: request was successful
-                  result:
-                    type: boolean
-                    description: >-
-                      Whether the request was processed successfully (true =
-                      success, false = failure)
-                    example: true
-                  info:
-                    type: object
-                    description: Detailed information of the added tracking domain
-                    properties:
-                      trackDomain:
-                        type: string
-                        description: Added custom tracking domain name
-                        example: track.example.com
-                      cnameRecord:
-                        type: string
-                        description: >-
-                          Required CNAME record (to be configured in DNS, points
-                          to SendCloud's tracking server)
-                        example: track.sendcloud.net
-                      status:
-                        type: string
-                        description: >-
-                          Tracking domain status (pending = pending
-                          verification, verified = verified, rejected =
-                          rejected)
-                        example: pending
-                      gmtCreated:
-                        type: string
-                        format: date-time
-                        description: >-
-                          Tracking domain addition time (format: yyyy-MM-dd
-                          HH:mm:ss)
-                        example: '2025-10-12 10:00:00'
-        '400':
-          description: >-
-            Bad request (e.g., invalid domain format, duplicate tracking domain,
-            domain not owned by the account)
+          apiKey: []
       parameters:
-        - in: query
-          name: trackDomain
+        - name: name
+          in: query
+          required: false
           schema:
             type: string
-          required: true
-          description: >-
-            Custom tracking domain name (subdomain of the verified sending
-            domain, e.g., track.example.com)
-          example: track.example.com
-      x-codeSamples:
-        - lang: Python
-          label: Add Custom Tracking Domain
-          source: |
-            import requests
-
-            url = "https://api.aurorasendcloud.com/api/trackdomain/add"
-            params = {
-                "apiUser": "test_api_user",
-                "apiKey": "test_api_key",
-                "trackDomain": "track.mycompany.com"  # Subdomain of the verified sending domain (e.g., mycompany.com)
-            }
-
-            response = requests.post(url, params=params)
-            print(response.json())
-  /api/trackdomain/list:
-    get:
-      summary: Batch Query Tracking Domains
-      description: >-
-        Query basic information of all added custom tracking domains under the
-        current apiUser
-      operationId: batchQueryTrackingDomainsGet
-      tags:
-        - Tracking Domain
-      security:
-        - apiUser: []
-        - apiKey: []
+          description: Track name; multiple names separated by semicolons
+        - name: start
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 0
+          description: 'Start position (range: 0-100), defaults to 0'
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 100
+          description: 'Number of results per page (range: 0-100), defaults to 100'
       responses:
         '200':
           description: Request successful
@@ -124,212 +54,79 @@ paths:
                 properties:
                   statusCode:
                     type: integer
-                    description: Response status code (200 indicates success)
                     example: 200
                   message:
                     type: string
-                    description: >-
-                      Prompt message for request result (success/failure
-                      description)
                     example: request was successful
                   result:
                     type: boolean
-                    description: >-
-                      Whether the request was processed successfully (true =
-                      success, false = failure)
                     example: true
                   info:
                     type: object
-                    description: Batch query result data of tracking domains
                     properties:
                       dataList:
                         type: array
-                        description: List of tracking domain basic information
                         items:
                           type: object
                           properties:
-                            trackDomain:
+                            id:
+                              type: integer
+                              description: Track ID
+                              example: 999225
+                            name:
                               type: string
-                              description: Custom tracking domain name
-                              example: track.example.com
-                            cnameRecord:
-                              type: string
-                              description: Required CNAME record (configured in DNS)
-                              example: track.sendcloud.net
-                            status:
-                              type: string
-                              description: >-
-                                Tracking domain status (pending = pending
-                                verification, verified = verified, rejected =
-                                rejected)
-                              example: verified
-                            isDefault:
+                              description: Track name
+                              example: track2.test.com
+                            cname:
                               type: boolean
                               description: >-
-                                Whether it is the default tracking domain (only
-                                one default can be set)
-                              example: true
-                            gmtCreated:
-                              type: string
-                              format: date-time
-                              description: Tracking domain addition time
-                              example: '2025-10-12 10:00:00'
-                            gmtVerified:
-                              type: string
-                              format: date-time
-                              description: >-
-                                Tracking domain verification time (empty if not
-                                verified)
-                              example: '2025-10-12 11:30:00'
-                      total:
-                        type: integer
-                        description: >-
-                          Total number of tracking domains under the current
-                          apiUser
-                        example: 2
-                      count:
-                        type: integer
-                        description: >-
-                          Number of tracking domains returned (equals total for
-                          this interface)
-                        example: 2
-      x-codeSamples:
-        - lang: Python
-          label: Batch Query Tracking Domains (GET)
-          source: |
-            import requests
-
-            url = "https://api.aurorasendcloud.com/api/trackdomain/list"
-            params = {
-                "apiUser": "test_api_user",
-                "apiKey": "test_api_key"
-            }
-
-            response = requests.get(url, params=params)
-            result = response.json()
-            print(f"Total tracking domains: {result['info']['total']}")
-            print("Tracking domain details:")
-            for domain in result['info']['dataList']:
-                print(f"- Domain: {domain['trackDomain']}, Status: {domain['status']}, Default: {domain['isDefault']}")
-    post:
-      summary: Batch Query Tracking Domains (POST)
-      description: >-
-        Query tracking domains using POST method (same functionality as GET
-        method)
-      operationId: batchQueryTrackingDomainsPost
-      tags:
-        - Tracking Domain
-      security:
-        - apiUser: []
-        - apiKey: []
-      responses:
-        '200':
-          description: Request successful
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  statusCode:
-                    type: integer
-                    description: Response status code (200 indicates success)
-                    example: 200
-                  message:
-                    type: string
-                    description: >-
-                      Prompt message for request result (success/failure
-                      description)
-                    example: request was successful
-                  result:
-                    type: boolean
-                    description: >-
-                      Whether the request was processed successfully (true =
-                      success, false = failure)
-                    example: true
-                  info:
-                    type: object
-                    description: Batch query result data of tracking domains
-                    properties:
-                      dataList:
-                        type: array
-                        description: List of tracking domain basic information
-                        items:
-                          type: object
-                          properties:
-                            trackDomain:
-                              type: string
-                              description: Custom tracking domain name
-                              example: track.example.com
-                            cnameRecord:
-                              type: string
-                              description: Required CNAME record (configured in DNS)
-                              example: track.sendcloud.net
-                            status:
-                              type: string
-                              description: >-
-                                Tracking domain status (pending = pending
-                                verification, verified = verified, rejected =
-                                rejected)
-                              example: verified
-                            isDefault:
-                              type: boolean
-                              description: >-
-                                Whether it is the default tracking domain (only
-                                one default can be set)
+                                CNAME configuration status (true: passed, false:
+                                failed)
                               example: false
                             gmtCreated:
                               type: string
-                              format: date-time
-                              description: Tracking domain addition time
-                              example: '2025-10-12 10:00:00'
-                            gmtVerified:
+                              description: Time of track creation
+                              example: '2014-11-01 22:41:52'
+                            gmtUpdated:
                               type: string
-                              format: date-time
+                              description: Time of track modification
+                              example: '2015-09-25 10:56:06'
+                            cname domain:
+                              type: string
+                              description: Track host records
+                              example: test.com
+                            cname.value:
+                              type: string
+                              description: Record value to configure for track
+                              example: test.com
+                            https:
+                              type: boolean
                               description: >-
-                                Tracking domain verification time (empty if not
-                                verified)
-                              example: '2025-10-12 11:30:00'
+                                HTTPS configuration status (true: configured,
+                                false: not configured)
+                              example: false
+                            certiValidityStart:
+                              type: string
+                              description: >-
+                                Start time of the SSL certificate validity
+                                period (format: yyyy-MM-dd HH:mm:ss)
+                              example: ''
+                            certiValidityEnd:
+                              type: string
+                              description: >-
+                                End time of the SSL certificate validity period
+                                (format: yyyy-MM-dd HH:mm:ss)
+                              example: ''
                       total:
                         type: integer
-                        description: >-
-                          Total number of tracking domains under the current
-                          apiUser
+                        description: Total number of tracking domains
                         example: 2
                       count:
                         type: integer
-                        description: >-
-                          Number of tracking domains returned (equals total for
-                          this interface)
+                        description: Number of returned tracking domains
                         example: 2
-      x-codeSamples:
-        - lang: Python
-          label: Batch Query Tracking Domains (POST)
-          source: |
-            import requests
-
-            url = "https://api.aurorasendcloud.com/api/trackdomain/list"
-            data = {
-                "apiUser": "test_api_user",
-                "apiKey": "test_api_key"
-            }
-
-            response = requests.post(url, data=data)
-            print(response.json())
-  /api/trackdomain/verify:
-    post:
-      summary: Verify Tracking Domain
-      description: >-
-        Verify DNS configuration of a tracking domain (CNAME record must be
-        configured in DNS before verification)
-      operationId: verifyTrackingDomain
-      tags:
-        - Tracking Domain
-      security:
-        - apiUser: []
-        - apiKey: []
-      responses:
-        '200':
-          description: Verification successful
+        '401':
+          description: Authentication failed (invalid apiUser or apiKey)
           content:
             application/json:
               schema:
@@ -337,85 +134,15 @@ paths:
                 properties:
                   statusCode:
                     type: integer
-                    description: Response status code (200 indicates success)
-                    example: 200
+                    example: 401
                   message:
                     type: string
-                    description: >-
-                      Prompt message for request result (success/failure
-                      description)
-                    example: verify track domain successful
+                    example: 'authentication failed: invalid apiKey'
                   result:
                     type: boolean
-                    description: >-
-                      Whether the request was processed successfully (true =
-                      success, false = failure)
-                    example: true
-                  info:
-                    type: object
-                    description: Verification result details
-                    properties:
-                      trackDomain:
-                        type: string
-                        description: Verified tracking domain name
-                        example: track.example.com
-                      status:
-                        type: string
-                        description: >-
-                          Tracking domain status after verification (verified =
-                          verification successful)
-                        example: verified
-                      gmtVerified:
-                        type: string
-                        format: date-time
-                        description: Verification completion time
-                        example: '2025-10-12 11:30:00'
-        '400':
-          description: >-
-            Bad request (e.g., tracking domain not in pending status, CNAME
-            record not configured correctly)
-        '404':
-          description: >-
-            Tracking domain not found (domain not added or does not belong to
-            the current apiUser)
-      parameters:
-        - in: query
-          name: trackDomain
-          schema:
-            type: string
-          required: true
-          description: Tracking domain name to verify (must be in pending status)
-          example: track.example.com
-      x-codeSamples:
-        - lang: Python
-          label: Verify Tracking Domain (After CNAME Configuration)
-          source: |
-            import requests
-
-            url = "https://api.aurorasendcloud.com/api/trackdomain/verify"
-            params = {
-                "apiUser": "test_api_user",
-                "apiKey": "test_api_key",
-                "trackDomain": "track.mycompany.com"  # Replace with actual tracking domain (configured with CNAME)
-            }
-
-            response = requests.post(url, params=params)
-            print(response.json())
-  /api/trackdomain/setdefault:
-    post:
-      summary: Set Default Tracking Domain
-      description: >-
-        Set a verified tracking domain as the default (used for all email
-        tracking if no specific domain is specified)
-      operationId: setDefaultTrackingDomain
-      tags:
-        - Tracking Domain
-      security:
-        - apiUser: []
-        - apiKey: []
-      responses:
-        '200':
-          description: Default tracking domain set successfully
+                    example: false
+        '500':
+          description: Server error (internal service exception)
           content:
             application/json:
               schema:
@@ -423,76 +150,62 @@ paths:
                 properties:
                   statusCode:
                     type: integer
-                    description: Response status code (200 indicates success)
-                    example: 200
+                    example: 500
                   message:
                     type: string
-                    description: >-
-                      Prompt message for request result (success/failure
-                      description)
-                    example: default track domain set successfully
+                    example: 'server error: please try again later'
                   result:
                     type: boolean
-                    description: >-
-                      Whether the request was processed successfully (true =
-                      success, false = failure)
-                    example: true
-                  info:
-                    type: object
-                    description: Default setting result
-                    properties:
-                      trackDomain:
-                        type: string
-                        description: Tracking domain set as default
-                        example: track.example.com
-                      isDefault:
-                        type: boolean
-                        description: Whether it is the default tracking domain
-                        example: true
-        '400':
-          description: Bad request (e.g., tracking domain not verified)
-        '404':
-          description: >-
-            Tracking domain not found (domain not added or does not belong to
-            the current apiUser)
-      parameters:
-        - in: query
-          name: trackDomain
-          schema:
-            type: string
-          required: true
-          description: Verified tracking domain name to set as default
-          example: track.example.com
-      x-codeSamples:
-        - lang: Python
-          label: Set Default Tracking Domain
-          source: |
-            import requests
-
-            url = "https://api.aurorasendcloud.com/api/trackdomain/setdefault"
-            params = {
-                "apiUser": "test_api_user",
-                "apiKey": "test_api_key",
-                "trackDomain": "track.mycompany.com"  # Must be a verified tracking domain
-            }
-
-            response = requests.post(url, params=params)
-            print(response.json())
-  /api/trackdomain/delete:
+                    example: false
+  /api/trackDomain/add:
     post:
-      summary: Delete Tracking Domain
+      summary: Add Tracking Domain
       description: >-
-        Delete an existing tracking domain (cannot delete the default tracking
-        domain; please set another default first)
-      operationId: deleteTrackingDomain
+        Add a new tracking domain. The tracking domain cannot be the same as any
+        sending domain. A user can add a maximum of 5 tracking domains; contact
+        customer support for more.
+      operationId: add-trackDomain-post
       tags:
         - Tracking Domain
       security:
         - apiUser: []
-        - apiKey: []
+          apiKey: []
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                apiUser:
+                  type: string
+                  description: API_USER for identity verification
+                  example: '***'
+                apiKey:
+                  type: string
+                  description: API_KEY for identity verification
+                  example: '***'
+                name:
+                  type: string
+                  description: >-
+                    Track name; comply with domain name specifications, length
+                    no more than 255 characters
+                  example: test.com
+                certContent:
+                  type: string
+                  description: Certificate content (PEM format)
+                  example: ''
+                certKey:
+                  type: string
+                  description: Certificate private key (PEM format)
+                  example: ''
+              required:
+                - apiUser
+                - apiKey
+                - name
       responses:
         '200':
-          description: Tracking domain deleted successfully
+          description: Request successful
           content:
             application/json:
               schema:
@@ -500,82 +213,615 @@ paths:
                 properties:
                   statusCode:
                     type: integer
-                    description: Response status code (200 indicates success)
                     example: 200
                   message:
                     type: string
-                    description: >-
-                      Prompt message for request result (success/failure
-                      description)
                     example: request was successful
                   result:
                     type: boolean
-                    description: >-
-                      Whether the request was processed successfully (true =
-                      success, false = failure)
                     example: true
                   info:
                     type: object
-                    description: Deletion result statistics
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            description: Track ID
+                            example: 999224
+                          name:
+                            type: string
+                            description: Track name
+                            example: track.test.com
+                          cname:
+                            type: boolean
+                            description: >-
+                              CNAME configuration status (true: passed, false:
+                              failed)
+                            example: false
+                          gmtCreated:
+                            type: string
+                            description: Time of track creation
+                            example: '2014-11-01 22:41:52'
+                          gmtUpdated:
+                            type: string
+                            description: Time of track modification
+                            example: '2015-09-25 10:56:06'
+                          cname domain:
+                            type: string
+                            description: Track host records
+                            example: test.com
+                          cname.value:
+                            type: string
+                            description: Record value to configure for track
+                            example: test.com
+                          https:
+                            type: boolean
+                            description: >-
+                              HTTPS configuration status (true: configured,
+                              false: not configured)
+                            example: false
+                          certiValidityStart:
+                            type: string
+                            description: >-
+                              Start time of the SSL certificate validity period
+                              (format: yyyy-MM-dd HH:mm:ss)
+                            example: ''
+                          certiValidityEnd:
+                            type: string
+                            description: >-
+                              End time of the SSL certificate validity period
+                              (format: yyyy-MM-dd HH:mm:ss)
+                            example: ''
+        '400':
+          description: >-
+            Bad request (invalid parameters, e.g., certContent and certKey not
+            both empty or filled)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 400
+                  message:
+                    type: string
+                    example: >-
+                      invalid parameter: certContent and certKey must both be
+                      empty or pass values simultaneously
+                  result:
+                    type: boolean
+                    example: false
+        '401':
+          description: Authentication failed (invalid apiUser or apiKey)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 401
+                  message:
+                    type: string
+                    example: 'authentication failed: invalid apiKey'
+                  result:
+                    type: boolean
+                    example: false
+        '409':
+          description: Conflict (tracking domain same as sending domain)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 409
+                  message:
+                    type: string
+                    example: tracking domain cannot be the same as sending domain
+                  result:
+                    type: boolean
+                    example: false
+        '500':
+          description: Server error (internal service exception)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 500
+                  message:
+                    type: string
+                    example: 'server error: please try again later'
+                  result:
+                    type: boolean
+                    example: false
+  /api/trackDomain/update:
+    post:
+      summary: Modify Tracking Domain
+      description: >-
+        Update configuration of an existing tracking domain, including track
+        name and SSL certificate information.
+      operationId: update-trackDomain-post
+      tags:
+        - Tracking Domain
+      security:
+        - apiUser: []
+          apiKey: []
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                apiUser:
+                  type: string
+                  description: API_USER for identity verification
+                  example: '***'
+                apiKey:
+                  type: string
+                  description: API_KEY for identity verification
+                  example: '***'
+                id:
+                  type: integer
+                  description: Track ID
+                  example: 68554
+                name:
+                  type: string
+                  description: New track name
+                  example: test.com
+                certContent:
+                  type: string
+                  description: Certificate content (PEM format)
+                  example: ''
+                certKey:
+                  type: string
+                  description: Certificate private key (PEM format)
+                  example: ''
+              required:
+                - apiUser
+                - apiKey
+                - id
+      responses:
+        '200':
+          description: Request successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 200
+                  message:
+                    type: string
+                    example: request was successful
+                  result:
+                    type: boolean
+                    example: true
+                  info:
+                    type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            description: Track ID
+                            example: 999224
+                          name:
+                            type: string
+                            description: Track name
+                            example: track.test.com
+                          cname:
+                            type: boolean
+                            description: >-
+                              CNAME configuration status (true: passed, false:
+                              failed)
+                            example: false
+                          gmtCreated:
+                            type: string
+                            description: Time of track creation
+                            example: '2014-11-01 22:41:52'
+                          gmtUpdated:
+                            type: string
+                            description: Time of track modification
+                            example: '2015-09-25 10:56:06'
+                          cname.domain:
+                            type: string
+                            description: Track host records
+                            example: test.com
+                          cname.value:
+                            type: string
+                            description: Record value to configure for track
+                            example: test.com
+                          https:
+                            type: boolean
+                            description: >-
+                              HTTPS configuration status (true: configured,
+                              false: not configured)
+                            example: false
+                          certiValidityStart:
+                            type: string
+                            description: >-
+                              Start time of the SSL certificate validity period
+                              (format: yyyy-MM-dd HH:mm:ss)
+                            example: ''
+                          certiValidityEnd:
+                            type: string
+                            description: >-
+                              End time of the SSL certificate validity period
+                              (format: yyyy-MM-dd HH:mm:ss)
+                            example: ''
+        '400':
+          description: Bad request (invalid parameters, e.g., missing id)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 400
+                  message:
+                    type: string
+                    example: 'invalid parameter: id is required'
+                  result:
+                    type: boolean
+                    example: false
+        '401':
+          description: Authentication failed (invalid apiUser or apiKey)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 401
+                  message:
+                    type: string
+                    example: 'authentication failed: invalid apiKey'
+                  result:
+                    type: boolean
+                    example: false
+        '404':
+          description: Not found (tracking domain does not exist)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 404
+                  message:
+                    type: string
+                    example: tracking domain not found
+                  result:
+                    type: boolean
+                    example: false
+        '500':
+          description: Server error (internal service exception)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 500
+                  message:
+                    type: string
+                    example: 'server error: please try again later'
+                  result:
+                    type: boolean
+                    example: false
+  /api/trackDomain/checkConfig:
+    post:
+      summary: Verify Tracking Domain Configuration
+      description: >-
+        Verify the configuration (e.g., CNAME) of tracking domains. Calling this
+        interface will update the CNAME status.
+      operationId: verify-trackDomain-config-post
+      tags:
+        - Tracking Domain
+      security:
+        - apiUser: []
+          apiKey: []
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                apiUser:
+                  type: string
+                  description: API_USER for identity verification
+                  example: '***'
+                apiKey:
+                  type: string
+                  description: API_KEY for identity verification
+                  example: '***'
+                id:
+                  type: string
+                  description: Track ID; multiple IDs separated by semicolons
+                  example: '68554'
+                name:
+                  type: string
+                  description: Track name; multiple names separated by semicolons
+                  example: track.test.com
+              required:
+                - apiUser
+                - apiKey
+      responses:
+        '200':
+          description: Request successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 200
+                  message:
+                    type: string
+                    example: request was successful
+                  result:
+                    type: boolean
+                    example: true
+                  info:
+                    type: object
+                    properties:
+                      dataList:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                              description: Track ID
+                              example: 999225
+                            name:
+                              type: string
+                              description: Track name
+                              example: track2.test.com
+                            cname:
+                              type: boolean
+                              description: >-
+                                CNAME configuration status (true: passed, false:
+                                failed)
+                              example: false
+                            gmtCreated:
+                              type: string
+                              description: Time of track creation
+                              example: '2014-11-01 22:41:52'
+                            gmtUpdated:
+                              type: string
+                              description: Time of track modification
+                              example: '2015-09-25 10:56:06'
+                            cname domain:
+                              type: string
+                              description: Track host records
+                              example: test.com
+                            cname.value:
+                              type: string
+                              description: Record value to configure for track
+                              example: test.com
+                            https:
+                              type: boolean
+                              description: >-
+                                HTTPS configuration status (true: configured,
+                                false: not configured)
+                              example: false
+                            certiValidityStart:
+                              type: string
+                              description: >-
+                                Start time of the SSL certificate validity
+                                period (format: yyyy-MM-dd HH:mm:ss)
+                              example: ''
+                            certiValidityEnd:
+                              type: string
+                              description: >-
+                                End time of the SSL certificate validity period
+                                (format: yyyy-MM-dd HH:mm:ss)
+                              example: ''
+                      count:
+                        type: integer
+                        description: Number of verified tracking domains
+                        example: 2
+        '400':
+          description: Bad request (invalid parameters, e.g., both id and name are blank)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 400
+                  message:
+                    type: string
+                    example: >-
+                      invalid parameter: both id and name cannot be blank
+                      simultaneously
+                  result:
+                    type: boolean
+                    example: false
+        '401':
+          description: Authentication failed (invalid apiUser or apiKey)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 401
+                  message:
+                    type: string
+                    example: 'authentication failed: invalid apiKey'
+                  result:
+                    type: boolean
+                    example: false
+        '500':
+          description: Server error (internal service exception)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 500
+                  message:
+                    type: string
+                    example: 'server error: please try again later'
+                  result:
+                    type: boolean
+                    example: false
+  /api/trackDomain/delete:
+    post:
+      summary: Delete Tracking Domain
+      description: Delete an existing tracking domain by track ID.
+      operationId: delete-trackDomain-post
+      tags:
+        - Tracking Domain
+      security:
+        - apiUser: []
+          apiKey: []
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                apiUser:
+                  type: string
+                  description: API_USER for identity verification
+                  example: '***'
+                apiKey:
+                  type: string
+                  description: API_KEY for identity verification
+                  example: '***'
+                id:
+                  type: integer
+                  description: Track ID
+                  example: 68554
+              required:
+                - apiUser
+                - apiKey
+                - id
+      responses:
+        '200':
+          description: Request successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 200
+                  message:
+                    type: string
+                    example: request was successful
+                  result:
+                    type: boolean
+                    example: true
+                  info:
+                    type: object
                     properties:
                       count:
                         type: integer
-                        description: >-
-                          Number of tracking domains successfully deleted (1 =
-                          success, 0 = no deletion)
+                        description: Count of deleted track domains
                         example: 1
         '400':
-          description: Bad request (e.g., trying to delete the default tracking domain)
+          description: Bad request (invalid parameters, e.g., missing id)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 400
+                  message:
+                    type: string
+                    example: 'invalid parameter: id is required'
+                  result:
+                    type: boolean
+                    example: false
+        '401':
+          description: Authentication failed (invalid apiUser or apiKey)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 401
+                  message:
+                    type: string
+                    example: 'authentication failed: invalid apiKey'
+                  result:
+                    type: boolean
+                    example: false
         '404':
-          description: >-
-            Tracking domain not found (domain not added or does not belong to
-            the current apiUser)
-      parameters:
-        - in: query
-          name: trackDomain
-          schema:
-            type: string
-          required: true
-          description: Tracking domain name to delete
-          example: track.example.com
-      x-codeSamples:
-        - lang: Python
-          label: Delete Tracking Domain (Non-Default)
-          source: >
-            import requests
-
-
-            # First ensure the domain is not the default (set another default if
-            needed)
-
-            url = "https://api.aurorasendcloud.com/api/trackdomain/delete"
-
-            params = {
-                "apiUser": "test_api_user",
-                "apiKey": "test_api_key",
-                "trackDomain": "obsolete-track.mycompany.com"  # Non-default tracking domain
-            }
-
-
-            response = requests.post(url, params=params)
-
-            print(response.json())
+          description: Not found (tracking domain does not exist)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 404
+                  message:
+                    type: string
+                    example: tracking domain not found
+                  result:
+                    type: boolean
+                    example: false
+        '500':
+          description: Server error (internal service exception)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 500
+                  message:
+                    type: string
+                    example: 'server error: please try again later'
+                  result:
+                    type: boolean
+                    example: false
 components:
   securitySchemes:
     apiUser:
       type: apiKey
       in: query
       name: apiUser
-      description: >-
-        API_USER (authentication parameter, obtained from SendCloud console ->
-        Email API -> API_USER)
+      description: API_USER for identity verification
     apiKey:
       type: apiKey
       in: query
       name: apiKey
-      description: >-
-        API_KEY (authentication parameter, obtained from SendCloud console ->
-        Email API -> API_USER; keep confidential)
+      description: API_KEY for identity verification
 x-readme:
   explorer-enabled: true
   proxy-enabled: true
