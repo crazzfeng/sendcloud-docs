@@ -86,13 +86,13 @@ Traditional wire transfer option. **Important**: <Anchor label="Contact us" targ
   <Card title="Monthly Settlement" icon="calendar-check">
     **1st of Each Month**
 
-    Automatic processing and settlement of all previous month's charges in Hong Kong timezone.
+    Automatic processing and settlement of all previous month's charges in **Hong Kong timezone**.
   </Card>
 
   <Card title="Billing Email" icon="envelope">
     **5th of Each Month**
 
-    Detailed billing email delivered to your inbox in Hong Kong timezone for consistent billing cycles.
+    Detailed billing email delivered to your inbox in **Hong Kong timezone** for consistent billing cycles.
   </Card>
 </Cards>
 
