@@ -3,10 +3,21 @@ info:
   version: 1.0.0
   title: Email
 servers:
-  - url: https://api.aurorasendcloud.com
-    description: Production server
-  - url: https://api.sendcloud.net
-    description: Alternative production server
+  - url: https://api.aurorasendcloud.com/
+    description: |
+      Singapore (SG) Region
+      - Base URL: https://api.aurorasendcloud.com/
+      - Coverage: Default region for APAC users (Asia-Pacific)
+  - url: https://api-us.aurorasendcloud.com/
+    description: |
+      United States (US) Region
+      - Base URL: https://api-us.aurorasendcloud.com/
+      - Coverage: For North American users and services
+  - url: https://api-hk.aurorasendcloud.com/
+    description: |
+      Hong Kong (HK) Region
+      - Base URL: https://api-hk.aurorasendcloud.com/
+      - Coverage: For Greater China and nearby APAC regions
 tags:
   - name: Deliverlies
     description: Regular delivery, templates delivery
