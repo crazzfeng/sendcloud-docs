@@ -13,183 +13,86 @@ tags:
       Interfaces for querying email sending statistics (volume, open rate, click
       rate, etc.)
 paths:
-  /api/stats/summary:
+  /api/statday/list:
     get:
-      summary: Query Sending Summary Statistics
+      summary: Query Daily Delivery Statistics
       description: >-
-        Get summary statistics of email sending within a specified time range
-        (total sent, delivered, opened, clicked, etc.)
-      operationId: querySendingSummaryStatsGet
+        Query email delivery data counted by day. Requires a specified time span
+        (startDate & endDate or days); time span cannot exceed 3 months.
+        Supports filtering by API_USER, label, domain, and data aggregation.
+      operationId: query-daily-statistics-get
       tags:
         - Statistics
-      responses:
-        '200':
-          description: Request successful
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  statusCode:
-                    type: integer
-                    description: Response status code (200 indicates success)
-                    example: 200
-                  message:
-                    type: string
-                    description: >-
-                      Prompt message for request result (success/failure
-                      description)
-                    example: request was successful
-                  result:
-                    type: boolean
-                    description: >-
-                      Whether the request was processed successfully (true =
-                      success, false = failure)
-                    example: true
-                  info:
-                    type: object
-                    description: Sending summary statistics
-                    properties:
-                      startTime:
-                        type: string
-                        format: date-time
-                        description: 'Query start time (format: yyyy-MM-dd HH:mm:ss)'
-                        example: '2025-10-01 00:00:00'
-                      endTime:
-                        type: string
-                        format: date-time
-                        description: 'Query end time (format: yyyy-MM-dd HH:mm:ss)'
-                        example: '2025-10-31 23:59:59'
-                      totalSent:
-                        type: integer
-                        description: Total number of emails sent
-                        example: 8500
-                      totalDelivered:
-                        type: integer
-                        description: Total number of emails successfully delivered
-                        example: 8200
-                      deliveryRate:
-                        type: number
-                        format: float
-                        description: Delivery rate (totalDelivered / totalSent,保留2位小数)
-                        example: 96.47
-                      totalOpened:
-                        type: integer
-                        description: Total number of emails opened (unique users)
-                        example: 3280
-                      openRate:
-                        type: number
-                        format: float
-                        description: Open rate (totalOpened / totalDelivered, 保留2位小数)
-                        example: 40
-                      totalClicked:
-                        type: integer
-                        description: Total number of links clicked (unique users)
-                        example: 984
-                      clickRate:
-                        type: number
-                        format: float
-                        description: Click rate (totalClicked / totalDelivered, 保留2位小数)
-                        example: 12
-                      totalBounced:
-                        type: integer
-                        description: Total number of bounced emails
-                        example: 300
-                      bounceRate:
-                        type: number
-                        format: float
-                        description: Bounce rate (totalBounced / totalSent, 保留2位小数)
-                        example: 3.53
-                      totalUnsubscribed:
-                        type: integer
-                        description: Total number of unsubscribes
-                        example: 170
-                      unsubscribeRate:
-                        type: number
-                        format: float
-                        description: >-
-                          Unsubscribe rate (totalUnsubscribed / totalDelivered,
-                          保留2位小数)
-                        example: 2.07
-        '400':
-          description: >-
-            Bad request (e.g., invalid time range, end time earlier than start
-            time)
-        '401':
-          description: Authentication failed (invalid apiUser or apiKey)
-      parameters:
-        - in: query
-          name: startTime
-          schema:
-            type: string
-            format: date-time
-          required: true
-          description: >-
-            Query start time (format: yyyy-MM-dd HH:mm:ss; maximum time range:
-            90 days)
-          example: '2025-10-01 00:00:00'
-        - in: query
-          name: endTime
-          schema:
-            type: string
-            format: date-time
-          required: true
-          description: >-
-            Query end time (format: yyyy-MM-dd HH:mm:ss; must be later than
-            startTime)
-          example: '2025-10-31 23:59:59'
-        - in: query
-          name: domain
-          schema:
-            type: string
-          required: false
-          description: >-
-            Filter by sending domain (e.g., example.com; query all domains if
-            not specified)
-          example: example.com
-        - in: query
-          name: labelName
-          schema:
-            type: string
-          required: false
-          description: Filter by label name (query all labels if not specified)
-          example: Marketing Campaigns
       security:
         - apiUser: []
           apiKey: []
-      x-codeSamples:
-        - lang: Python
-          label: Query Monthly Sending Summary
-          source: |
-            import requests
-
-            url = "https://api.aurorasendcloud.com/api/stats/summary"
-            params = {
-                "apiUser": "test_api_user",
-                "apiKey": "test_api_key",
-                "startTime": "2025-10-01 00:00:00",
-                "endTime": "2025-10-31 23:59:59",
-                "domain": "example.com",  # Optional: filter by sending domain
-                "labelName": "Marketing Campaigns"  # Optional: filter by label
-            }
-
-            response = requests.get(url, params=params)
-            stats = response.json()
-            if stats["result"]:
-                info = stats["info"]
-                print(f"Time Range: {info['startTime']} - {info['endTime']}")
-                print(f"Total Sent: {info['totalSent']}")
-                print(f"Delivery Rate: {info['deliveryRate']}%")
-                print(f"Open Rate: {info['openRate']}%")
-                print(f"Click Rate: {info['clickRate']}%")
-                print(f"Bounce Rate: {info['bounceRate']}%")
-                print(f"Unsubscribe Rate: {info['unsubscribeRate']}%")
-    post:
-      summary: Query Sending Summary Statistics (POST)
-      description: Get sending summary statistics using POST method
-      operationId: querySendingSummaryStatsPost
-      tags:
-        - Statistics
+      parameters:
+        - name: days
+          in: query
+          required: false
+          schema:
+            type: integer
+          description: >-
+            Stats in the past [days] days (days=1 means today); required if
+            startDate and endDate are not filled
+        - name: startDate
+          in: query
+          required: false
+          schema:
+            type: string
+          description: >-
+            Start date (format: yyyy-MM-dd); required with endDate if days is
+            not filled
+        - name: endDate
+          in: query
+          required: false
+          schema:
+            type: string
+          description: >-
+            End date (format: yyyy-MM-dd); required with startDate if days is
+            not filled
+        - name: apiUserList
+          in: query
+          required: false
+          schema:
+            type: string
+          description: >-
+            Obtain stats of specified API_USERs; multiple separated by
+            semicolons (e.g. "a;b;c")
+        - name: labelIdList
+          in: query
+          required: false
+          schema:
+            type: string
+          description: >-
+            Obtain stats of specified labels; multiple separated by semicolons
+            (e.g. "a;b;c")
+        - name: labelNameList
+          in: query
+          required: false
+          schema:
+            type: string
+          description: >-
+            Obtain stats of specified label names; multiple separated by
+            semicolons (Chinese encoded in UTF-8, e.g. "a;b;c")
+        - name: domainList
+          in: query
+          required: false
+          schema:
+            type: string
+          description: >-
+            Obtain stats of specified domains; multiple separated by semicolons
+            (e.g. "a;b;c")
+        - name: aggregate
+          in: query
+          required: false
+          schema:
+            type: boolean
+            enum:
+              - true
+              - false
+            default: false
+          description: Whether to return aggregated data (1=true, 0=false); defaults to 0
       responses:
         '200':
           description: Request successful
@@ -200,154 +103,311 @@ paths:
                 properties:
                   statusCode:
                     type: integer
-                    description: Response status code (200 indicates success)
                     example: 200
                   message:
                     type: string
-                    description: >-
-                      Prompt message for request result (success/failure
-                      description)
                     example: request was successful
                   result:
                     type: boolean
-                    description: >-
-                      Whether the request was processed successfully (true =
-                      success, false = failure)
                     example: true
                   info:
                     type: object
-                    description: Sending summary statistics
                     properties:
-                      startTime:
-                        type: string
-                        format: date-time
-                        description: 'Query start time (format: yyyy-MM-dd HH:mm:ss)'
-                        example: '2025-10-01 00:00:00'
-                      endTime:
-                        type: string
-                        format: date-time
-                        description: 'Query end time (format: yyyy-MM-dd HH:mm:ss)'
-                        example: '2025-10-31 23:59:59'
-                      totalSent:
-                        type: integer
-                        description: Total number of emails sent
-                        example: 8500
-                      totalDelivered:
-                        type: integer
-                        description: Total number of emails successfully delivered
-                        example: 8200
-                      deliveryRate:
-                        type: number
-                        format: float
-                        description: Delivery rate (totalDelivered / totalSent, 保留2位小数)
-                        example: 96.47
-                      totalOpened:
-                        type: integer
-                        description: Total number of emails opened (unique users)
-                        example: 3280
-                      openRate:
-                        type: number
-                        format: float
-                        description: Open rate (totalOpened / totalDelivered, 保留2位小数)
-                        example: 40
-                      totalClicked:
-                        type: integer
-                        description: Total number of links clicked (unique users)
-                        example: 984
-                      clickRate:
-                        type: number
-                        format: float
-                        description: Click rate (totalClicked / totalDelivered, 保留2位小数)
-                        example: 12
-                      totalBounced:
-                        type: integer
-                        description: Total number of bounced emails
-                        example: 300
-                      bounceRate:
-                        type: number
-                        format: float
-                        description: Bounce rate (totalBounced / totalSent, 保留2位小数)
-                        example: 3.53
-                      totalUnsubscribed:
-                        type: integer
-                        description: Total number of unsubscribes
-                        example: 170
-                      unsubscribeRate:
-                        type: number
-                        format: float
-                        description: >-
-                          Unsubscribe rate (totalUnsubscribed / totalDelivered,
-                          保留2位小数)
-                        example: 2.07
+                      dataList:
+                        oneOf:
+                          - type: array
+                            items:
+                              type: object
+                              properties:
+                                sendDate:
+                                  type: string
+                                  description: Send date
+                                  example: '2015-03-12'
+                                apiUser:
+                                  type: string
+                                  description: API_USER
+                                  example: postmaster@delong.sendcloud.org
+                                domain:
+                                  type: string
+                                  description: Domain
+                                  example: qq.com
+                                labelId:
+                                  type: integer
+                                  description: Label ID
+                                  example: 0
+                                labelName:
+                                  type: string
+                                  nullable: true
+                                  description: Label name
+                                  example: null
+                                requestNum:
+                                  type: integer
+                                  description: Total requests
+                                  example: 27
+                                deliveredNum:
+                                  type: integer
+                                  description: Deliveries
+                                  example: 27
+                                clickNum:
+                                  type: integer
+                                  description: Clicks
+                                  example: 0
+                                openNum:
+                                  type: integer
+                                  description: Opens
+                                  example: 0
+                                bounceNum:
+                                  type: integer
+                                  description: Bounces
+                                  example: 0
+                                spamReportedNum:
+                                  type: integer
+                                  description: Number of spam reporting
+                                  example: 0
+                                unsubscribeNum:
+                                  type: integer
+                                  description: Unsubscribes
+                                  example: 0
+                                uniqueOpensNum:
+                                  type: integer
+                                  description: Unique opens
+                                  example: 0
+                                uniqueClicksNum:
+                                  type: integer
+                                  description: Unique clicks
+                                  example: 0
+                                invalidEmailsNum:
+                                  type: integer
+                                  description: Number of invalid emails
+                                  example: 0
+                                deliveredPercent:
+                                  type: number
+                                  description: Percentage of deliveries
+                                  example: 100
+                                clickPercent:
+                                  type: number
+                                  description: Percentage of clicks
+                                  example: 0
+                                openPercent:
+                                  type: number
+                                  description: Percentage of opens
+                                  example: 0
+                                bouncePercent:
+                                  type: number
+                                  description: Percentage of bounces
+                                  example: 0
+                                spamReportedPercent:
+                                  type: number
+                                  description: Percentage of spam reporting
+                                  example: 0
+                                unsubscribePercent:
+                                  type: number
+                                  description: Percentage of unsubscribes
+                                  example: 0
+                                uniqueOpensPercent:
+                                  type: number
+                                  description: Percentage of unique opens
+                                  example: 0
+                                uniqueClicksPercent:
+                                  type: number
+                                  description: Percentage of unique clicks
+                                  example: 0
+                                invalidEmailsPercent:
+                                  type: number
+                                  description: Percentage of invalid emails
+                                  example: 0
+                                openRatePercent:
+                                  type: number
+                                  description: Reading conversion ratio
+                                  example: 0
+                          - type: object
+                            properties:
+                              requestNum:
+                                type: integer
+                                description: Total requests
+                                example: 48
+                              deliveredNum:
+                                type: integer
+                                description: Deliveries
+                                example: 28
+                              clickNum:
+                                type: integer
+                                description: Clicks
+                                example: 0
+                              openNum:
+                                type: integer
+                                description: Opens
+                                example: 0
+                              bounceNum:
+                                type: integer
+                                description: Bounces
+                                example: 0
+                              spamReportedNum:
+                                type: integer
+                                description: Number of spam reporting
+                                example: 0
+                              unsubscribeNum:
+                                type: integer
+                                description: Unsubscribes
+                                example: 0
+                              uniqueOpenNum:
+                                type: integer
+                                description: Unique opens
+                                example: 0
+                              uniqueClickNum:
+                                type: integer
+                                description: Unique clicks
+                                example: 0
+                              invalidEmailNum:
+                                type: integer
+                                description: Number of invalid emails
+                                example: 20
+                              deliveredPercent:
+                                type: number
+                                description: Percentage of deliveries
+                                example: 58.33
+                              clickPercent:
+                                type: number
+                                description: Percentage of clicks
+                                example: 0
+                              openPercent:
+                                type: number
+                                description: Percentage of opens
+                                example: 0
+                              bouncePercent:
+                                type: number
+                                description: Percentage of bounces
+                                example: 0
+                              spamReportedPercent:
+                                type: number
+                                description: Percentage of spam reporting
+                                example: 0
+                              unsubscribePercent:
+                                type: number
+                                description: Percentage of unsubscribes
+                                example: 0
+                              uniqueOpensPercent:
+                                type: number
+                                description: Percentage of unique opens
+                                example: 0
+                              uniqueClicksPercent:
+                                type: number
+                                description: Percentage of unique clicks
+                                example: 0
+                              invalidEmailsPercent:
+                                type: number
+                                description: Percentage of invalid emails
+                                example: 41.66
         '400':
-          description: >-
-            Bad request (e.g., invalid time range, end time earlier than start
-            time)
+          description: Bad request (invalid parameters, e.g. missing time span)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 400
+                  message:
+                    type: string
+                    example: 'invalid parameter: startDate/endDate or days is required'
+                  result:
+                    type: boolean
+                    example: false
         '401':
           description: Authentication failed (invalid apiUser or apiKey)
-      parameters:
-        - in: query
-          name: startTime
-          schema:
-            type: string
-            format: date-time
-          required: true
-          description: >-
-            Query start time (format: yyyy-MM-dd HH:mm:ss; maximum time range:
-            90 days)
-          example: '2025-10-01 00:00:00'
-        - in: query
-          name: endTime
-          schema:
-            type: string
-            format: date-time
-          required: true
-          description: >-
-            Query end time (format: yyyy-MM-dd HH:mm:ss; must be later than
-            startTime)
-          example: '2025-10-31 23:59:59'
-        - in: query
-          name: domain
-          schema:
-            type: string
-          required: false
-          description: >-
-            Filter by sending domain (e.g., example.com; query all domains if
-            not specified)
-          example: example.com
-        - in: query
-          name: labelName
-          schema:
-            type: string
-          required: false
-          description: Filter by label name (query all labels if not specified)
-          example: Marketing Campaigns
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 401
+                  message:
+                    type: string
+                    example: 'authentication failed: invalid apiKey'
+                  result:
+                    type: boolean
+                    example: false
+        '500':
+          description: Server error (internal service exception)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 500
+                  message:
+                    type: string
+                    example: 'server error: please try again later'
+                  result:
+                    type: boolean
+                    example: false
+  /api/stathour/list:
+    get:
+      summary: Query Hourly Delivery Statistics
+      description: >-
+        Query email delivery data counted by hour. Requires a specified time
+        span (startDate & endDate or days); time span cannot exceed 3 months.
+        Supports filtering by API_USER and label.
+      operationId: query-hourly-statistics-get
+      tags:
+        - Statistics
       security:
         - apiUser: []
           apiKey: []
-      x-codeSamples:
-        - lang: Python
-          label: Query Sending Summary (POST Method)
-          source: |
-            import requests
-
-            url = "https://api.aurorasendcloud.com/api/stats/summary"
-            params = {
-                "startTime": "2025-10-01 00:00:00",
-                "endTime": "2025-10-31 23:59:59"
-            }
-
-            response = requests.post(url, params=params)
-            print(response.json())
-  /api/stats/daily:
-    get:
-      summary: Query Daily Sending Statistics
-      description: >-
-        Get daily breakdown of email sending statistics within a specified time
-        range
-      operationId: queryDailySendingStatsGet
-      tags:
-        - Statistics
+      parameters:
+        - name: days
+          in: query
+          required: false
+          schema:
+            type: integer
+          description: >-
+            Stats in the past [days] days (days=1 means today); required if
+            startDate and endDate are not filled
+        - name: startDate
+          in: query
+          required: false
+          schema:
+            type: string
+          description: >-
+            Start date (format: yyyy-MM-dd); required with endDate if days is
+            not filled
+        - name: endDate
+          in: query
+          required: false
+          schema:
+            type: string
+          description: >-
+            End date (format: yyyy-MM-dd); required with startDate if days is
+            not filled
+        - name: apiUserList
+          in: query
+          required: false
+          schema:
+            type: string
+          description: >-
+            Obtain stats of specified API_USERs; multiple separated by
+            semicolons (e.g. "a;b;c")
+        - name: labelIdList
+          in: query
+          required: false
+          schema:
+            type: string
+          description: >-
+            Obtain stats of specified labels; multiple separated by semicolons
+            (e.g. "a;b;c")
+        - name: labelNameList
+          in: query
+          required: false
+          schema:
+            type: string
+          description: >-
+            Obtain stats of specified label names; multiple separated by
+            semicolons (Chinese encoded in UTF-8, e.g. "a;b;c")
       responses:
         '200':
           description: Request successful
@@ -358,152 +418,249 @@ paths:
                 properties:
                   statusCode:
                     type: integer
-                    description: Response status code (200 indicates success)
                     example: 200
                   message:
                     type: string
-                    description: >-
-                      Prompt message for request result (success/failure
-                      description)
                     example: request was successful
                   result:
                     type: boolean
-                    description: >-
-                      Whether the request was processed successfully (true =
-                      success, false = failure)
                     example: true
                   info:
                     type: object
-                    description: Daily sending statistics
                     properties:
-                      startTime:
-                        type: string
-                        format: date-time
-                        description: 'Query start time (format: yyyy-MM-dd HH:mm:ss)'
-                        example: '2025-10-01 00:00:00'
-                      endTime:
-                        type: string
-                        format: date-time
-                        description: 'Query end time (format: yyyy-MM-dd HH:mm:ss)'
-                        example: '2025-10-07 23:59:59'
                       dataList:
                         type: array
-                        description: Daily statistics list
                         items:
                           type: object
                           properties:
-                            date:
+                            sendDate:
                               type: string
-                              format: date
-                              description: 'Statistical date (format: yyyy-MM-dd)'
-                              example: '2025-10-01'
-                            totalSent:
+                              description: Send date
+                              example: '2015-03-12'
+                            apiUser:
+                              type: string
+                              description: API_USER
+                              example: postmaster@delong.sendcloud.org
+                            labelId:
                               type: integer
-                              description: Number of emails sent on the date
-                              example: 1200
-                            totalDelivered:
+                              description: Label ID
+                              example: 0
+                            labelName:
+                              type: string
+                              description: Label name
+                              example: ''
+                            sendHour:
                               type: integer
-                              description: Number of emails delivered on the date
-                              example: 1152
-                            deliveryRate:
+                              description: 'Hour (range: 0-23)'
+                              example: 10
+                            requestNum:
+                              type: integer
+                              description: Total requests
+                              example: 8
+                            deliveredNum:
+                              type: integer
+                              description: Deliveries
+                              example: 3
+                            clickNum:
+                              type: integer
+                              description: Clicks
+                              example: 0
+                            openNum:
+                              type: integer
+                              description: Opens
+                              example: 0
+                            bounceNum:
+                              type: integer
+                              description: Bounces
+                              example: 0
+                            spamReportedNum:
+                              type: integer
+                              description: Number of spam reporting
+                              example: 0
+                            unsubscribeNum:
+                              type: integer
+                              description: Unsubscribes
+                              example: 0
+                            uniqueOpensNum:
+                              type: integer
+                              description: Unique opens
+                              example: 0
+                            uniqueClicksNum:
+                              type: integer
+                              description: Unique clicks
+                              example: 0
+                            invalidEmailsNum:
+                              type: integer
+                              description: Number of invalid emails
+                              example: 5
+                            deliveredPercent:
                               type: number
-                              format: float
-                              description: Delivery rate on the date (保留2位小数)
-                              example: 96
-                            totalOpened:
-                              type: integer
-                              description: Number of emails opened on the date
-                              example: 461
-                            openRate:
+                              description: Percentage of deliveries
+                              example: 75
+                            clickPercent:
                               type: number
-                              format: float
-                              description: Open rate on the date (保留2位小数)
-                              example: 40
-                            totalClicked:
-                              type: integer
-                              description: Number of links clicked on the date
-                              example: 138
-                            clickRate:
+                              description: Percentage of clicks
+                              example: 0
+                            openPercent:
                               type: number
-                              format: float
-                              description: Click rate on the date (保留2位小数)
-                              example: 12
-                      totalDays:
-                        type: integer
-                        description: Number of statistical days (endTime - startTime + 1)
-                        example: 7
+                              description: Percentage of opens
+                              example: 0
+                            bouncePercent:
+                              type: number
+                              description: Percentage of bounces
+                              example: 0
+                            spamReportedPercent:
+                              type: number
+                              description: Percentage of spam reporting
+                              example: 0
+                            unsubscribePercent:
+                              type: number
+                              description: Percentage of unsubscribes
+                              example: 0
+                            uniqueOpensPercent:
+                              type: number
+                              description: Percentage of unique opens
+                              example: 0
+                            uniqueClickspercent:
+                              type: number
+                              description: Percentage of unique clicks
+                              example: 0
+                            invalidEmailsPercent:
+                              type: number
+                              description: Percentage of invalid emails
+                              example: 62.5
+                            openRatePercent:
+                              type: number
+                              description: Reading conversion ratio
+                              example: 0
         '400':
-          description: Bad request (e.g., invalid time range, time range exceeding 90 days)
+          description: Bad request (invalid parameters, e.g. missing time span)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 400
+                  message:
+                    type: string
+                    example: 'invalid parameter: startDate/endDate or days is required'
+                  result:
+                    type: boolean
+                    example: false
         '401':
           description: Authentication failed (invalid apiUser or apiKey)
-      parameters:
-        - in: query
-          name: startTime
-          schema:
-            type: string
-            format: date-time
-          required: true
-          description: >-
-            Query start time (format: yyyy-MM-dd HH:mm:ss; maximum time range:
-            90 days)
-          example: '2025-10-01 00:00:00'
-        - in: query
-          name: endTime
-          schema:
-            type: string
-            format: date-time
-          required: true
-          description: >-
-            Query end time (format: yyyy-MM-dd HH:mm:ss; must be later than
-            startTime)
-          example: '2025-10-07 23:59:59'
-        - in: query
-          name: domain
-          schema:
-            type: string
-          required: false
-          description: >-
-            Filter by sending domain (e.g., example.com; query all domains if
-            not specified)
-          example: example.com
-        - in: query
-          name: labelName
-          schema:
-            type: string
-          required: false
-          description: Filter by label name (query all labels if not specified)
-          example: Marketing Campaigns
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 401
+                  message:
+                    type: string
+                    example: 'authentication failed: invalid apiKey'
+                  result:
+                    type: boolean
+                    example: false
+        '500':
+          description: Server error (internal service exception)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 500
+                  message:
+                    type: string
+                    example: 'server error: please try again later'
+                  result:
+                    type: boolean
+                    example: false
+  /api/invalidstat/list:
+    get:
+      summary: Query Invalid Email Statistics
+      description: >-
+        Query classified stats of invalid emails. Requires a specified time span
+        (startDate & endDate or days). Supports filtering by API_USER, label,
+        domain, and data aggregation.
+      operationId: query-invalid-email-statistics-get
+      tags:
+        - Statistics
       security:
         - apiUser: []
           apiKey: []
-      x-codeSamples:
-        - lang: Python
-          label: Query Weekly Daily Sending Stats
-          source: |
-            import requests
-
-            url = "https://api.aurorasendcloud.com/api/stats/daily"
-            params = {
-                "apiUser": "test_api_user",
-                "apiKey": "test_api_key",
-                "startTime": "2025-10-01 00:00:00",
-                "endTime": "2025-10-07 23:59:59",
-                "labelName": "Weekly Newsletter"
-            }
-
-            response = requests.get(url, params=params)
-            stats = response.json()
-            if stats["result"]:
-                print(f"Time Range: {stats['info']['startTime']} - {stats['info']['endTime']}")
-                print("Daily Statistics:")
-                for day in stats['info']['dataList']:
-                    print(f"- {day['date']}: Sent={day['totalSent']}, Delivered={day['totalDelivered']}, OpenRate={day['openRate']}%")
-    post:
-      summary: Query Daily Sending Statistics (POST)
-      description: Get daily sending statistics using POST method
-      operationId: queryDailySendingStatsPost
-      tags:
-        - Statistics
+      parameters:
+        - name: days
+          in: query
+          required: false
+          schema:
+            type: integer
+          description: >-
+            Stats in the past [days] days (days=1 means today); required if
+            startDate and endDate are not filled
+        - name: startDate
+          in: query
+          required: false
+          schema:
+            type: string
+          description: >-
+            Start date (format: yyyy-MM-dd); required with endDate if days is
+            not filled
+        - name: endDate
+          in: query
+          required: false
+          schema:
+            type: string
+          description: >-
+            End date (format: yyyy-MM-dd); required with startDate if days is
+            not filled
+        - name: apiUserList
+          in: query
+          required: false
+          schema:
+            type: string
+          description: >-
+            Obtain stats of specified API_USERs; multiple separated by
+            semicolons (e.g. "a;b;c")
+        - name: labelIdList
+          in: query
+          required: false
+          schema:
+            type: string
+          description: >-
+            Obtain stats of specified labels; multiple separated by semicolons
+            (e.g. "a;b;c")
+        - name: labelNameList
+          in: query
+          required: false
+          schema:
+            type: string
+          description: >-
+            Obtain stats of specified label names; multiple separated by
+            semicolons (Chinese encoded in UTF-8, e.g. "a;b;c")
+        - name: domainList
+          in: query
+          required: false
+          schema:
+            type: string
+          description: >-
+            Obtain stats of specified domains; multiple separated by semicolons
+            (e.g. "a;b;c")
+        - name: aggregate
+          in: query
+          required: false
+          schema:
+            type: integer
+            enum:
+              - 0
+              - 1
+            default: 0
+          description: Whether to return aggregated data (1=yes, 0=no); defaults to 0
       responses:
         '200':
           description: Request successful
@@ -514,152 +671,176 @@ paths:
                 properties:
                   statusCode:
                     type: integer
-                    description: Response status code (200 indicates success)
                     example: 200
                   message:
                     type: string
-                    description: >-
-                      Prompt message for request result (success/failure
-                      description)
                     example: request was successful
                   result:
                     type: boolean
-                    description: >-
-                      Whether the request was processed successfully (true =
-                      success, false = failure)
                     example: true
                   info:
                     type: object
-                    description: Daily sending statistics
                     properties:
-                      startTime:
-                        type: string
-                        format: date-time
-                        description: 'Query start time (format: yyyy-MM-dd HH:mm:ss)'
-                        example: '2025-10-01 00:00:00'
-                      endTime:
-                        type: string
-                        format: date-time
-                        description: 'Query end time (format: yyyy-MM-dd HH:mm:ss)'
-                        example: '2025-10-07 23:59:59'
                       dataList:
-                        type: array
-                        description: Daily statistics list
-                        items:
-                          type: object
-                          properties:
-                            date:
-                              type: string
-                              format: date
-                              description: 'Statistical date (format: yyyy-MM-dd)'
-                              example: '2025-10-01'
-                            totalSent:
-                              type: integer
-                              description: Number of emails sent on the date
-                              example: 1200
-                            totalDelivered:
-                              type: integer
-                              description: Number of emails delivered on the date
-                              example: 1152
-                            deliveryRate:
-                              type: number
-                              format: float
-                              description: Delivery rate on the date (保留2位小数)
-                              example: 96
-                            totalOpened:
-                              type: integer
-                              description: Number of emails opened on the date
-                              example: 461
-                            openRate:
-                              type: number
-                              format: float
-                              description: Open rate on the date (保留2位小数)
-                              example: 40
-                            totalClicked:
-                              type: integer
-                              description: Number of links clicked on the date
-                              example: 138
-                            clickRate:
-                              type: number
-                              format: float
-                              description: Click rate on the date (保留2位小数)
-                              example: 12
-                      totalDays:
-                        type: integer
-                        description: Number of statistical days (endTime - startTime + 1)
-                        example: 7
+                        oneOf:
+                          - type: array
+                            items:
+                              type: object
+                              properties:
+                                sendDate:
+                                  type: string
+                                  description: 'Send date (format: yyyy-MM-dd)'
+                                  example: '2016-02-01'
+                                apiUser:
+                                  type: string
+                                  description: API_USER
+                                  example: postmaster@delong.sendcloud.org
+                                labelId:
+                                  type: integer
+                                  description: Label ID
+                                  example: 5285
+                                labelName:
+                                  type: string
+                                  description: Label name
+                                  example: test
+                                domain:
+                                  type: string
+                                  description: Domain
+                                  example: gmail.com
+                                sendcloudBlacklist:
+                                  type: integer
+                                  description: Count of emails in SendCloud blacklist
+                                  example: 1
+                                ubsubscribe:
+                                  type: integer
+                                  description: Count of emails in unsubscribe list
+                                  example: 0
+                                espUnvaliable:
+                                  type: integer
+                                  description: Unavailable ESP servers
+                                  example: 0
+                                recipientAddressError:
+                                  type: integer
+                                  description: Invalid recipient addresses
+                                  example: 0
+                                ipOrDomainRejected:
+                                  type: integer
+                                  description: Rejected IPs or domains
+                                  example: 0
+                                recipientNotFound:
+                                  type: integer
+                                  description: Nonexistent recipients
+                                  example: 0
+                                spamEmail:
+                                  type: integer
+                                  description: Count of spam emails
+                                  example: 0
+                                senderOrRecipientRejected:
+                                  type: integer
+                                  description: Rejected senders or recipients
+                                  example: 0
+                                others:
+                                  type: integer
+                                  description: Other invalid types
+                                  example: 0
+                          - type: object
+                            properties:
+                              sendcloudBlacklist:
+                                type: integer
+                                description: Count of emails in SendCloud blacklist
+                                example: 2
+                              ubsubscribe:
+                                type: integer
+                                description: Count of emails in unsubscribe list
+                                example: 1
+                              espUnvaliable:
+                                type: integer
+                                description: Unavailable ESP servers
+                                example: 0
+                              recipientAddressError:
+                                type: integer
+                                description: Invalid recipient addresses
+                                example: 3
+                              ipOrDomainRejected:
+                                type: integer
+                                description: Rejected IPs or domains
+                                example: 0
+                              recipientNotFound:
+                                type: integer
+                                description: Nonexistent recipients
+                                example: 1
+                              spamEmail:
+                                type: integer
+                                description: Count of spam emails
+                                example: 0
+                              senderOrRecipientRejected:
+                                type: integer
+                                description: Rejected senders or recipients
+                                example: 0
+                              others:
+                                type: integer
+                                description: Other invalid types
+                                example: 0
         '400':
-          description: Bad request (e.g., invalid time range, time range exceeding 90 days)
+          description: Bad request (invalid parameters, e.g. missing time span)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 400
+                  message:
+                    type: string
+                    example: 'invalid parameter: startDate/endDate or days is required'
+                  result:
+                    type: boolean
+                    example: false
         '401':
           description: Authentication failed (invalid apiUser or apiKey)
-      parameters:
-        - in: query
-          name: startTime
-          schema:
-            type: string
-            format: date-time
-          required: true
-          description: >-
-            Query start time (format: yyyy-MM-dd HH:mm:ss; maximum time range:
-            90 days)
-          example: '2025-10-01 00:00:00'
-        - in: query
-          name: endTime
-          schema:
-            type: string
-            format: date-time
-          required: true
-          description: >-
-            Query end time (format: yyyy-MM-dd HH:mm:ss; must be later than
-            startTime)
-          example: '2025-10-07 23:59:59'
-        - in: query
-          name: domain
-          schema:
-            type: string
-          required: false
-          description: >-
-            Filter by sending domain (e.g., example.com; query all domains if
-            not specified)
-          example: example.com
-        - in: query
-          name: labelName
-          schema:
-            type: string
-          required: false
-          description: Filter by label name (query all labels if not specified)
-          example: Weekly Newsletter
-      security:
-        - apiUser: []
-          apiKey: []
-      x-codeSamples:
-        - lang: Python
-          label: Query Daily Sending Stats (POST)
-          source: |
-            import requests
-
-            url = "https://api.aurorasendcloud.com/api/stats/daily"
-            params = {
-                "apiUser": "test_api_user",
-                "apiKey": "test_api_key",
-                "startTime": "2025-10-01 00:00:00",
-                "endTime": "2025-10-07 23:59:59"
-            }
-
-            response = requests.post(url, params=params)
-            print(response.json())
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 401
+                  message:
+                    type: string
+                    example: 'authentication failed: invalid apiKey'
+                  result:
+                    type: boolean
+                    example: false
+        '500':
+          description: Server error (internal service exception)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 500
+                  message:
+                    type: string
+                    example: 'server error: please try again later'
+                  result:
+                    type: boolean
+                    example: false
 components:
   securitySchemes:
     apiUser:
       type: apiKey
       in: query
       name: apiUser
-      description: API_USER (authentication parameter, obtained from the SendCloud console)
+      description: API_USER for identity verification
     apiKey:
       type: apiKey
       in: query
       name: apiKey
-      description: API_KEY (authentication parameter, obtained from the SendCloud console)
+      description: API_KEY for identity verification
 x-readme:
   explorer-enabled: true
   proxy-enabled: true
