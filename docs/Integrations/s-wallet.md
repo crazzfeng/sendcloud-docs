@@ -11,8 +11,9 @@ link:
 metadata:
   title: S-Wallet - Digital Wallet for SMS & WhatsApp | Aurora SendCloud
   description: >-
-    Aurora SendCloud's digital wallet for SMS and WhatsApp messaging with
-    automatic billing, real-time balance tracking, and flexible payment options.
+    Aurora SendCloud's integrated digital wallet for SMS and WhatsApp messaging
+    with automatic billing, real-time balance tracking, and flexible payment
+    options.
   keywords:
     - S-Wallet
     - digital wallet
@@ -81,14 +82,7 @@ Traditional wire transfer option. **Important**: <Anchor label="Contact us" targ
 
 ### Billing Schedule
 
-<Cards columns={2}>
-  <Card title="Monthly Settlement" icon="calendar-check">
-    Your S-Wallet automatically processes and settles all previous month's charges on the **1st of each month** in Hong Kong timezone. This ensures consistent and predictable billing cycles for your messaging operations.
-  </Card>
-  <Card title="Billing Reports" icon="envelope">
-    You'll receive your detailed billing email on the **5th of each month** in Hong Kong timezone, providing comprehensive financial transparency for all your messaging expenses.
-  </Card>
-</Cards>
+Your S-Wallet automatically processes and settles all previous month's charges on the **1st of each month** in Hong Kong timezone. You'll receive your detailed billing email on the **5th of each month** in Hong Kong timezone, ensuring consistent and predictable billing cycles.
 
 ### Detailed Reporting
 
