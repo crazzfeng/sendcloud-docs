@@ -4,6 +4,9 @@ info:
   title: Email
 servers:
   - url: https://api.aurorasendcloud.com
+    description: Production server
+  - url: https://api.sendcloud.net
+    description: Alternative production server
 tags:
   - name: User Information
     description: Interfaces for querying account basic information and configuration
@@ -19,7 +22,7 @@ paths:
         - User Information
       security:
         - apiUser: []
-        - apiKey: []
+          apiKey: []
       responses:
         '200':
           description: Request successful
@@ -97,27 +100,6 @@ paths:
                         example: '2024-01-15 09:30:00'
         '401':
           description: Authentication failed (invalid apiUser or apiKey)
-      x-codeSamples:
-        - lang: Python
-          label: Query Account Basic Information (GET)
-          source: |
-            import requests
-
-            url = "https://api.aurorasendcloud.com/api/user/info"
-            params = {
-                "apiUser": "test_api_user",
-                "apiKey": "test_api_key"
-            }
-
-            response = requests.get(url, params=params)
-            user_info = response.json()
-            if user_info["result"]:
-                info = user_info["info"]
-                print(f"API User: {info['apiUser']}")
-                print(f"Account Type: {info['accountType']}")
-                print(f"Remaining Quota: {info['remainingQuota']}/{info['totalQuota']}")
-                print(f"Contact Email: {info['contactEmail']}")
-                print(f"Account Created: {info['gmtCreated']}")
     post:
       summary: Query Account Basic Information (POST)
       description: Get account basic information using POST method
@@ -126,7 +108,7 @@ paths:
         - User Information
       security:
         - apiUser: []
-        - apiKey: []
+          apiKey: []
       responses:
         '200':
           description: Request successful
@@ -204,20 +186,6 @@ paths:
                         example: '2024-01-15 09:30:00'
         '401':
           description: Authentication failed (invalid apiUser or apiKey)
-      x-codeSamples:
-        - lang: Python
-          label: Query Account Basic Information (POST)
-          source: |
-            import requests
-
-            url = "https://api.aurorasendcloud.com/api/user/info"
-            params = {
-                "apiUser": "test_api_user",
-                "apiKey": "test_api_key"
-            }
-
-            response = requests.post(url, params=params)
-            print(response.json())
   /api/user/configuration:
     get:
       summary: Query Account Configuration
@@ -229,7 +197,7 @@ paths:
         - User Information
       security:
         - apiUser: []
-        - apiKey: []
+          apiKey: []
       responses:
         '200':
           description: Request successful
@@ -294,27 +262,6 @@ paths:
                         example: pdf,doc,xls,zip,jpg,png
         '401':
           description: Authentication failed (invalid apiUser or apiKey)
-      x-codeSamples:
-        - lang: Python
-          label: Query Account Configuration (GET)
-          source: |
-            import requests
-
-            url = "https://api.aurorasendcloud.com/api/user/configuration"
-            params = {
-                "apiUser": "test_api_user",
-                "apiKey": "test_api_key"
-            }
-
-            response = requests.get(url, params=params)
-            config = response.json()
-            if config["result"]:
-                info = config["info"]
-                print(f"Send Speed Limit: {info['sendSpeedLimit']} emails/min")
-                print(f"Max Recipients Per Email: {info['maxRecipientsPerEmail']}")
-                print(f"Click Tracking Enabled: {info['isClickTrackingEnabled']}")
-                print(f"Max Attachment Size: {info['maxAttachmentSize']}MB")
-                print(f"Supported Attachment Types: {info['supportedAttachmentTypes']}")
     post:
       summary: Query Account Configuration (POST)
       description: Get account system configuration using POST method
@@ -323,7 +270,7 @@ paths:
         - User Information
       security:
         - apiUser: []
-        - apiKey: []
+          apiKey: []
       responses:
         '200':
           description: Request successful
@@ -388,20 +335,6 @@ paths:
                         example: pdf,doc,xls,zip,jpg,png
         '401':
           description: Authentication failed (invalid apiUser or apiKey)
-      x-codeSamples:
-        - lang: Python
-          label: Query Account Configuration (POST)
-          source: |
-            import requests
-
-            url = "https://api.aurorasendcloud.com/api/user/configuration"
-            params = {
-                "apiUser": "test_api_user",
-                "apiKey": "test_api_key"
-            }
-
-            response = requests.post(url, params=params)
-            print(response.json())
 components:
   securitySchemes:
     apiUser:
