@@ -6,6 +6,6 @@ excerpt: >-
   webhooks.
 api:
   file: webhook.yaml
-  operationId: addWebhook
+  operationId: add-webhook
 hidden: false
 ---

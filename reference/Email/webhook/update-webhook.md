@@ -6,6 +6,6 @@ excerpt: >-
   secret can be updated (will invalidate the old secret).
 api:
   file: webhook.yaml
-  operationId: updateWebhookConfig
+  operationId: update-webhook
 hidden: false
 ---

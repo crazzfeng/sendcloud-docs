@@ -6,6 +6,6 @@ excerpt: >-
   URL.
 api:
   file: webhook.yaml
-  operationId: deleteWebhook
+  operationId: delete-webhook
 hidden: false
 ---

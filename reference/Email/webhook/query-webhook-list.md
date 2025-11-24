@@ -6,6 +6,6 @@ excerpt: >-
   per page is 500, and time parameters use Beijing time (GMT+8).
 api:
   file: webhook.yaml
-  operationId: queryWebhookListGet
+  operationId: query-webhook-list
 hidden: false
 ---
