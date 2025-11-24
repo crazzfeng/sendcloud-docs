@@ -81,7 +81,14 @@ Traditional wire transfer option. **Important**: <Anchor label="Contact us" targ
 
 ### Billing Schedule
 
-Your S-Wallet automatically processes and settles all previous month's charges on the **1st of each month** in Hong Kong timezone. You'll receive your detailed billing email on the **5th of each month** in Hong Kong timezone, ensuring consistent and predictable billing cycles.
+<Cards columns={2}>
+  <Card title="Monthly Settlement" icon="calendar-check">
+    Your S-Wallet automatically processes and settles all previous month's charges on the **1st of each month** in Hong Kong timezone. This ensures consistent and predictable billing cycles for your messaging operations.
+  </Card>
+  <Card title="Billing Reports" icon="envelope">
+    You'll receive your detailed billing email on the **5th of each month** in Hong Kong timezone, providing comprehensive financial transparency for all your messaging expenses.
+  </Card>
+</Cards>
 
 ### Detailed Reporting
 
