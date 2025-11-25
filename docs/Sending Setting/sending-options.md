@@ -115,9 +115,9 @@ Prevent emails from being sent during specific time periods to improve user expe
   * Helps maintain good sender reputation
 </Callout>
 
-### Sending Uninterception
+### Allow List
 
-Override Aurora SendCloud's automatic blacklist filtering for specific addresses or domains:
+Override Aurora SendCloud's automatic blocklist filtering for specific addresses or domains:
 
 <Callout theme="default">
   * Add addresses or domains to bypass interception
