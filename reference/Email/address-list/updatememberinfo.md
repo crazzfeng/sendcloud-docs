@@ -1,5 +1,5 @@
 ---
-title: Update Member Information
+title: Update Members Information
 excerpt: >-
   Update member information in an address list (supports updating name and
   custom variables)
