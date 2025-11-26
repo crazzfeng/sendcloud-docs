@@ -1,15 +1,18 @@
 ---
 title: Authentication
+excerpt: >-
+  Complete guide to authenticating with Aurora SendCloud's Email and SMS APIs
+  using parameter-based authentication methods
 deprecated: false
 hidden: true
+link:
+  new_tab: false
 metadata:
   robots: index
 ---
-<br />
-
 ## Email API Authentication
 
-The Email API uses parameter-based authentication, requiring all requests to include your credentials as request parameters.
+The Email API uses parameter-based authentication, requiring you to include your credentials as request parameters in all API calls.
 
 ### Required Parameters
 
@@ -20,7 +23,7 @@ Every Email API request must include the following parameters:
 | apiUser   | Your [API_USER](doc:api-user) | mycompany_api   |
 | apiKey    | Your API_KEY                  | abc123def456... |
 
-> ⚠️ **Important**: These parameters must be included directly in the request parameters, not passed through HTTPS basic authentication or request headers.
+> ⚠️ **Important**: You must include these parameters directly in the request parameters—do not pass them through HTTPS basic authentication or request headers.
 
 ### Request Examples
 
@@ -51,23 +54,23 @@ curl -X POST "https://api.aurorasendcloud.com/email/send" \
 
 **Available actions:**
 
-* ✅ Create new  API_USER  (following platform naming conventions)
-* 🔑 Generate associated API_KEY for users
+* ✅ Create a new API_USER (following platform naming conventions)
+* 🔑 Generate an associated API_KEY for users
 * 🔄 Reset existing API_KEY
 
 ### Email API_KEY Reset Process
 
-When resetting API_KEY for the Email API, Aurora SendCloud provides a secure 15-minute grace period:
+When you reset an API_KEY for the Email API, Aurora SendCloud provides a secure 15-minute grace period:
 
 * ⏰ **15-minute grace period**: After reset, the old key remains valid for 15 minutes
-* 🔄 **Smooth transition**: Provides ample time to update integration configurations
+* 🔄 **Smooth transition**: Provides sufficient time to update integration configurations
 * ⚡ **Automatic expiration**: The old key automatically expires after the grace period
 
 **Best practices for key reset:**
 
 1. Reset the key in your dashboard
 2. Update your application configuration with the new key
-3. Ensure the update is completed within 15 minutes
+3. Ensure you complete the update within 15 minutes
 4. Monitor your application for successful authentication
 
 ## SMS API Authentication
@@ -83,7 +86,7 @@ Every SMS API request must include the following parameters:
 | smsUser   | Your SMS_USER | mycompany_sms   |
 | smsKey    | Your SMS_KEY  | xyz789uvw123... |
 
-> ⚠️ **Important**: Similar to the Email API, these parameters need to be included directly in the request parameters.
+> ⚠️ **Important**: Like the Email API, you must include these parameters directly in the request parameters.
 
 ### Request Examples
 
@@ -114,24 +117,24 @@ curl -X POST "https://api.aurorasendcloud.com/smsapi/send" \
 
 **Available actions:**
 
-* ➕ Add new  SMS_USER
-* 🔑 Generate associated  SMS_KEY for users
+* ➕ Add a new SMS_USER
+* 🔑 Generate an associated SMS_KEY for users
 * 🔄 Reset existing SMS_KEY
 
 ### SMS_KEY Reset Process
 
-When resetting SMS_KEY, the process is immediate:
+When you reset an SMS_KEY, the process takes effect immediately:
 
-* ⚡ **Immediate effect**: New SMS_KEY takes effect immediately after reset
+* ⚡ **Immediate effect**: The new SMS_KEY takes effect immediately after reset
 * ❌ **Old key invalidated**: The old key is immediately invalidated with no grace period
-* 🚨 **Immediate update required**: Integration configuration must be updated immediately to avoid service interruption
+* 🚨 **Immediate update required**: You must update your integration configuration immediately to avoid service interruption
 
 **Reset process recommendations:**
 
-1. Prepare your application for key update
+1. Prepare your application for the key update
 2. Reset the key in your dashboard
 3. Immediately update your application configuration
-4. Verify your application can authenticate successfully
+4. Verify that your application can authenticate successfully
 
 ## Security Best Practices
 
@@ -140,7 +143,7 @@ When resetting SMS_KEY, the process is immediate:
 * **Environment variable storage**: Store API keys in environment variables
 * **Regular rotation**: Periodically change API keys
 * **Least privilege**: Create different API users for different purposes
-* **Usage monitoring**: Regularly check API usage logs
+* **Usage monitoring**: Regularly review API usage logs
 
 **Recommended environment variable setup:**
 
@@ -171,25 +174,25 @@ if (response.status === 401) {
 
 ### Authentication Failed (401 Unauthorized)
 
-* Verify parameter names are correct (`apiUser`/`apiKey` vs `smsUser`/`smsKey`)
-* Confirm credentials haven't expired or been reset
-* Check parameter values don't have extra spaces or special characters
+* Verify that parameter names are correct (`apiUser`/`apiKey` vs `smsUser`/`smsKey`)
+* Confirm that credentials haven't expired or been reset
+* Check that parameter values don't contain extra spaces or special characters
 * Ensure you're using the correct Aurora SendCloud API endpoint
 
 ### Unable to Access After Key Reset
 
 * **Email API**: Check if you're within the 15-minute grace period
-* **SMS API**: Confirm immediate update to new key was successful
+* **SMS API**: Confirm that the immediate update to the new key was successful
 
 ### Parameter Passing Issues
 
-* Ensure parameters are in request body or query string, not request headers
-* Verify URL encoding is correct for special characters
-* Check POST request Content-Type is set to `application/x-www-form-urlencoded`
+* Ensure parameters are in the request body or query string, not in request headers
+* Verify that URL encoding is correct for special characters
+* Check that POST request Content-Type is set to `application/x-www-form-urlencoded`
 * **Email API**: Don't forget the required `from` parameter
 
 ### Network and Connectivity Issues
 
-* Verify API endpoint URLs are correct
-* Check firewall settings allow outbound HTTPS requests
+* Verify that API endpoint URLs are correct
+* Check that firewall settings allow outbound HTTPS requests
 * Test with different network connections if possible
