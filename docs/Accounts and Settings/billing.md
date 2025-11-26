@@ -30,8 +30,6 @@ We charge for email delivery based on actual delivery results, not just emails s
 * **Consumption tracking**: Real-time monitoring of your email delivery volume
 * **Detailed reporting**: Monthly consumption reports with itemized details
 
-<br />
-
 ### Billing Schedule
 
 <Cards columns="2">
