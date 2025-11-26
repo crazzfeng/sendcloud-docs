@@ -1,5 +1,5 @@
 ---
-title: Delete Sending Domain (POST)
+title: Delete Sending Domain
 excerpt: >-
   Delete an added sending domain using POST method, will not affect actual email
   sending

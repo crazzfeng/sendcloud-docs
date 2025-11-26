@@ -1,5 +1,5 @@
 ---
-title: Query Domain (Batch Query)
+title: Get Sending Domains List
 excerpt: Query domain through this interface
 api:
   file: domain.yaml

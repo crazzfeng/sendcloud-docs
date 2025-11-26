@@ -1,5 +1,5 @@
 ---
-title: Add Domain (POST)
+title: Add Sending Domain
 excerpt: Add domains through this interface using POST method
 api:
   file: domain.yaml

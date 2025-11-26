@@ -3,182 +3,29 @@ info:
   version: 1.0.0
   title: Email
 servers:
-  - url: https://api.aurorasendcloud.com
-    description: Production server
-  - url: https://api.sendcloud.net
-    description: Alternative production server
+  - url: https://api.aurorasendcloud.com/
+    description: |
+      Singapore Region
+      - Base URL: https://api.aurorasendcloud.com/
+  - url: https://api-us.aurorasendcloud.com/
+    description: |
+      US (Silicon Valley) Region
+      - Base URL: https://api-us.aurorasendcloud.com/
+  - url: https://api-hk.aurorasendcloud.com/
+    description: |
+      CN (Hong Kong SAR) Region
+      - Base URL: https://api-hk.aurorasendcloud.com/
 tags:
-  - name: Domain
+  - name: Sending Domain
     description: Interfaces for managing email sending domains
 paths:
-  /api/domain/add:
-    get:
-      summary: Add Domain
-      description: Add domains through this interface
-      operationId: addDomainGet
-      tags:
-        - Domain
-      security:
-        - apiUser: []
-          apiKey: []
-      responses:
-        '200':
-          description: Domain added successfully
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  statusCode:
-                    type: integer
-                    description: Response status code
-                    example: 200
-                  message:
-                    type: string
-                    description: Prompt message for request result
-                    example: request was successful
-                  result:
-                    type: boolean
-                    description: Whether the request was processed successfully
-                    example: true
-                  info:
-                    type: object
-                    description: Domain information
-                    properties:
-                      data:
-                        type: object
-                        properties:
-                          name:
-                            type: string
-                            description: Domain name
-                            example: test.com
-                          type:
-                            type: string
-                            description: Domain type
-                            example: ordinary
-                          verify:
-                            type: integer
-                            description: Verification value
-                            example: 0
-                          spf.domain:
-                            type: string
-                            description: Host record of SPF
-                          spf.value:
-                            type: string
-                            description: Configuration value of SPF
-                          dkim.domain:
-                            type: string
-                            description: Host record of DKIM
-                          dkim.value:
-                            type: string
-                            description: Configuration value of DKIM
-                          dmarc.domain:
-                            type: string
-                            description: Host record of DMARC
-                          dmarc.value:
-                            type: string
-                            description: Configuration value of DMARC
-                          gmtCreated:
-                            type: string
-                            description: Time of domain creation
-                          gmtUpdated:
-                            type: string
-                            description: Time of domain modification
-      parameters:
-        - in: query
-          name: name
-          schema:
-            type: string
-          required: true
-          description: Domain name
-          example: mail.liubida.cn
-    post:
-      summary: Add Domain (POST)
-      description: Add domains through this interface using POST method
-      operationId: addDomainPost
-      tags:
-        - Domain
-      security:
-        - apiUser: []
-          apiKey: []
-      responses:
-        '200':
-          description: Domain added successfully
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  statusCode:
-                    type: integer
-                    description: Response status code
-                    example: 200
-                  message:
-                    type: string
-                    description: Prompt message for request result
-                    example: request was successful
-                  result:
-                    type: boolean
-                    description: Whether the request was processed successfully
-                    example: true
-                  info:
-                    type: object
-                    description: Domain information
-                    properties:
-                      data:
-                        type: object
-                        properties:
-                          name:
-                            type: string
-                            description: Domain name
-                            example: test.com
-                          type:
-                            type: string
-                            description: Domain type
-                            example: ordinary
-                          verify:
-                            type: integer
-                            description: Verification value
-                            example: 0
-                          spf.domain:
-                            type: string
-                            description: Host record of SPF
-                          spf.value:
-                            type: string
-                            description: Configuration value of SPF
-                          dkim.domain:
-                            type: string
-                            description: Host record of DKIM
-                          dkim.value:
-                            type: string
-                            description: Configuration value of DKIM
-                          dmarc.domain:
-                            type: string
-                            description: Host record of DMARC
-                          dmarc.value:
-                            type: string
-                            description: Configuration value of DMARC
-                          gmtCreated:
-                            type: string
-                            description: Time of domain creation
-                          gmtUpdated:
-                            type: string
-                            description: Time of domain modification
-      parameters:
-        - in: query
-          name: name
-          schema:
-            type: string
-          required: true
-          description: Domain name
-          example: mail.liubida.cn
   /api/domain/list:
     get:
-      summary: Query Domain (Batch Query)
+      summary: Get Sending Domains List
       description: Query domain through this interface
       operationId: queryDomainGet
       tags:
-        - Domain
+        - Sending Domain
       security:
         - apiUser: []
           apiKey: []
@@ -280,18 +127,19 @@ paths:
             type: string
           required: false
           description: Domain verification value
+  /api/domain/add:
     post:
-      summary: Query Domain (Batch Query POST)
-      description: Query domain through this interface using POST method
-      operationId: queryDomainPost
+      summary: Add Sending Domain
+      description: Add domains through this interface using POST method
+      operationId: addDomainPost
       tags:
-        - Domain
+        - Sending Domain
       security:
         - apiUser: []
           apiKey: []
       responses:
         '200':
-          description: Request successful
+          description: Domain added successfully
           content:
             application/json:
               schema:
@@ -311,179 +159,274 @@ paths:
                     example: true
                   info:
                     type: object
-                    description: Domain list information
-                    properties:
-                      dataList:
-                        type: array
-                        description: List of domain information
-                        items:
-                          type: object
-                          properties:
-                            name:
-                              type: string
-                              description: Domain name
-                              example: test456.com
-                            type:
-                              type: string
-                              description: Domain type
-                              example: ordinary
-                            verify:
-                              type: integer
-                              description: Verification value
-                              example: 0
-                            spf.domain:
-                              type: string
-                              description: Host record of SPF
-                            spf.value:
-                              type: string
-                              description: Configuration value of SPF
-                            dkim.domain:
-                              type: string
-                              description: Host record of DKIM
-                            dkim.value:
-                              type: string
-                              description: Configuration value of DKIM
-                            mx.domain:
-                              type: string
-                              description: Host record of MX
-                            mx.value:
-                              type: string
-                              description: Configuration value of MX
-                            dmarc.domain:
-                              type: string
-                              description: Host record of DMARC
-                            dmarc.value:
-                              type: string
-                              description: Configuration value of DMARC
-                            gmtCreated:
-                              type: string
-                              description: Time of domain creation
-                            gmtUpdated:
-                              type: string
-                              description: Time of domain modification
-                            ipType:
-                              type: integer
-                              description: IP type， 0 share, 1 independent
-                      count:
-                        type: integer
-                        description: Number of domains returned
-                        example: 1
-      parameters:
-        - in: query
-          name: name
-          schema:
-            type: string
-          required: false
-          description: Domain name, multiple names are separated by semicolons
-        - in: query
-          name: type
-          schema:
-            type: integer
-          required: false
-          description: Domain type， 0 (testing domain), 1(common domain)
-        - in: query
-          name: verify
-          schema:
-            type: string
-          required: false
-          description: Domain verification value
-  /api/domain/checkConfig:
-    get:
-      summary: Verify Domain Configuration
-      description: >-
-        Check if domain configuration is correct, including SPF, DKIM, and DMARC
-        record verification
-      operationId: checkDomainConfigGet
-      tags:
-        - Domain
-      security:
-        - apiUser: []
-          apiKey: []
-      responses:
-        '200':
-          description: Request successful
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  statusCode:
-                    type: integer
-                    description: Status code, 200 indicates success
-                    example: 200
-                  message:
-                    type: string
-                    description: Request result message
-                    example: request was successful
-                  result:
-                    type: boolean
-                    description: Whether the request was processed successfully
-                    example: true
-                  info:
-                    type: object
-                    description: Domain configuration check information
+                    description: Domain information
                     properties:
                       data:
                         type: object
                         properties:
                           name:
                             type: string
-                            description: Sending domain name
-                            example: example.com
-                          status:
+                            description: Domain name
+                            example: test.com
+                          type:
                             type: string
-                            description: Domain status
-                            example: verified
-                          spfStatus:
+                            description: Domain type
+                            example: ordinary
+                          verify:
+                            type: integer
+                            description: Verification value
+                            example: 0
+                          spf.domain:
                             type: string
-                            description: SPF record verification status
-                            example: pass
-                          spfRecord:
+                            description: Host record of SPF
+                          spf.value:
                             type: string
-                            description: Configured SPF record
-                            example: v=spf1 include:spf.sendcloud.net ~all
-                          dkimStatus:
+                            description: Configuration value of SPF
+                          dkim.domain:
                             type: string
-                            description: DKIM record verification status
-                            example: pass
-                          dkimSelector:
+                            description: Host record of DKIM
+                          dkim.value:
                             type: string
-                            description: DKIM selector
-                            example: sc-selector
-                          dkimPublicKey:
+                            description: Configuration value of DKIM
+                          dmarc.domain:
                             type: string
-                            description: DKIM public key
-                            example: v=DKIM1; k=rsa; p=MIIBIjANBgkqhkiG9w0BAQEFAAO...
-                          dmarcStatus:
+                            description: Host record of DMARC
+                          dmarc.value:
                             type: string
-                            description: DMARC record verification status
-                            example: pass
-                          dmarcRecord:
+                            description: Configuration value of DMARC
+                          gmtCreated:
                             type: string
-                            description: DMARC record
-                            example: >-
-                              v=DMARC1; p=none; sp=none;
-                              rua=mailto:dmarc@example.com
-        '400':
-          description: Parameter error or verification failed
-        '404':
-          description: Domain not found
+                            description: Time of domain creation
+                          gmtUpdated:
+                            type: string
+                            description: Time of domain modification
       parameters:
         - in: query
           name: name
           schema:
             type: string
           required: true
-          description: Sending domain
-          example: example.com
+          description: Domain name
+          example: mail.liubida.cn
+  /api/domain/update:
     post:
-      summary: Verify Domain Configuration (POST)
+      summary: Update Sending Domain
+      description: Update an existing sending domain name
+      operationId: updateDomainPost
+      tags:
+        - Sending Domain
+      security:
+        - apiUser: []
+          apiKey: []
+      responses:
+        '200':
+          description: Domain updated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    description: Status code
+                    example: 200
+                  message:
+                    type: string
+                    description: Status message
+                    example: success
+                  result:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                        description: Sending domain name
+                        example: example.com
+                      type:
+                        type: integer
+                        description: >-
+                          Domain type, 0 for SPF only, 1 for DKIM verification
+                          domain
+                        example: 0
+                      verifyValue:
+                        type: string
+                        description: Domain verification value
+                        example: ''
+                      dnsRecord:
+                        type: object
+                        description: Domain DNS record information
+                        properties:
+                          spf:
+                            type: object
+                            description: SPF record information
+                            properties:
+                              type:
+                                type: string
+                                description: Record type
+                                example: TXT
+                              host:
+                                type: string
+                                description: Record host
+                                example: example.com
+                              value:
+                                type: string
+                                description: Record value
+                                example: v=spf1 include:spf.sendcloud.net ~all
+                              status:
+                                type: integer
+                                description: >-
+                                  Verification status, 0 for not verified, 1 for
+                                  verified, -1 for verification failed
+                                example: 0
+                          dkim:
+                            type: object
+                            description: DKIM record information
+                            properties:
+                              type:
+                                type: string
+                                description: Record type
+                                example: TXT
+                              host:
+                                type: string
+                                description: Record host
+                                example: mail._domainkey.example.com
+                              value:
+                                type: string
+                                description: Record value
+                                example: v=DKIM1; k=rsa; p=...
+                              status:
+                                type: integer
+                                description: >-
+                                  Verification status, 0 for not verified, 1 for
+                                  verified, -1 for verification failed
+                                example: 0
+                          dmarc:
+                            type: object
+                            description: DMARC record information
+                            properties:
+                              type:
+                                type: string
+                                description: Record type
+                                example: TXT
+                              host:
+                                type: string
+                                description: Record host
+                                example: _dmarc.example.com
+                              value:
+                                type: string
+                                description: Record value
+                                example: v=DMARC1; p=none
+                              status:
+                                type: integer
+                                description: >-
+                                  Verification status, 0 for not verified, 1 for
+                                  verified, -1 for verification failed
+                                example: 0
+                          returnPath:
+                            type: object
+                            description: Return-Path record information
+                            properties:
+                              type:
+                                type: string
+                                description: Record type
+                                example: MX
+                              host:
+                                type: string
+                                description: Record host
+                                example: feedback.example.com
+                              value:
+                                type: string
+                                description: Record value
+                                example: feedback.sendcloud.net
+                              status:
+                                type: integer
+                                description: >-
+                                  Verification status, 0 for not verified, 1 for
+                                  verified, -1 for verification failed
+                                example: 0
+                      createTime:
+                        type: integer
+                        description: Creation timestamp
+                        example: 1616505600
+                      updateTime:
+                        type: integer
+                        description: Last update timestamp
+                        example: 1616505600
+                      status:
+                        type: integer
+                        description: >-
+                          Domain status, 0 for not verified, 1 for verified, -1
+                          for verification failed
+                        example: 0
+                  info:
+                    type: object
+                    properties:
+                      balance:
+                        type: number
+                        description: Account balance
+                        example: 0
+        '400':
+          description: Invalid parameter
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 400
+                  message:
+                    type: string
+                    example: Invalid parameter
+        '401':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 401
+                  message:
+                    type: string
+                    example: Authentication failed
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 500
+                  message:
+                    type: string
+                    example: Server error
+      parameters:
+        - in: query
+          name: name
+          schema:
+            type: string
+          required: true
+          description: Original domain name
+          example: example.com
+        - in: query
+          name: newName
+          schema:
+            type: string
+          required: true
+          description: New domain name
+          example: newexample.com
+  /api/domain/checkConfig:
+    get:
+      summary: Get Sending Domain Verify Status
       description: >-
         Check if domain configuration is correct using POST method, including
         SPF, DKIM, and DMARC record verification
       operationId: checkDomainConfigPost
       tags:
-        - Domain
+        - Sending Domain
       security:
         - apiUser: []
           apiKey: []
@@ -565,55 +508,14 @@ paths:
           description: Sending domain
           example: example.com
   /api/domain/delete:
-    get:
-      summary: Delete Sending Domain
-      description: Delete an added sending domain, will not affect actual email sending
-      operationId: deleteSendingDomainGet
-      tags:
-        - Domain
-      security:
-        - apiUser: []
-          apiKey: []
-      responses:
-        '200':
-          description: Request successful
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  statusCode:
-                    type: integer
-                    description: Status code, 200 indicates success
-                    example: 200
-                  message:
-                    type: string
-                    description: Request result message
-                    example: request was successful
-                  result:
-                    type: boolean
-                    description: Whether the request was processed successfully
-                    example: true
-        '400':
-          description: Parameter error or deletion failed
-        '404':
-          description: Domain not found
-      parameters:
-        - in: query
-          name: name
-          schema:
-            type: string
-          required: true
-          description: Sending domain
-          example: example.com
     post:
-      summary: Delete Sending Domain (POST)
+      summary: Delete Sending Domain
       description: >-
         Delete an added sending domain using POST method, will not affect actual
         email sending
       operationId: deleteSendingDomainPost
       tags:
-        - Domain
+        - Sending Domain
       security:
         - apiUser: []
           apiKey: []
@@ -649,425 +551,6 @@ paths:
           required: true
           description: Sending domain
           example: example.com
-  /api/domain/update:
-    get:
-      summary: Modify Domain
-      description: Update an existing sending domain name
-      operationId: updateDomainGet
-      tags:
-        - Domain
-      security:
-        - apiUser: []
-          apiKey: []
-      responses:
-        '200':
-          description: Domain updated successfully
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  statusCode:
-                    type: integer
-                    description: Status code
-                    example: 200
-                  message:
-                    type: string
-                    description: Status message
-                    example: success
-                  result:
-                    type: object
-                    properties:
-                      name:
-                        type: string
-                        description: Sending domain name
-                        example: example.com
-                      type:
-                        type: integer
-                        description: >-
-                          Domain type, 0 for SPF only, 1 for DKIM verification
-                          domain
-                        example: 0
-                      verifyValue:
-                        type: string
-                        description: Domain verification value
-                        example: ''
-                      dnsRecord:
-                        type: object
-                        description: Domain DNS record information
-                        properties:
-                          spf:
-                            type: object
-                            description: SPF record information
-                            properties:
-                              type:
-                                type: string
-                                description: Record type
-                                example: TXT
-                              host:
-                                type: string
-                                description: Record host
-                                example: example.com
-                              value:
-                                type: string
-                                description: Record value
-                                example: v=spf1 include:spf.sendcloud.net ~all
-                              status:
-                                type: integer
-                                description: >-
-                                  Verification status, 0 for not verified, 1 for
-                                  verified, -1 for verification failed
-                                example: 0
-                          dkim:
-                            type: object
-                            description: DKIM record information
-                            properties:
-                              type:
-                                type: string
-                                description: Record type
-                                example: TXT
-                              host:
-                                type: string
-                                description: Record host
-                                example: mail._domainkey.example.com
-                              value:
-                                type: string
-                                description: Record value
-                                example: v=DKIM1; k=rsa; p=...
-                              status:
-                                type: integer
-                                description: >-
-                                  Verification status, 0 for not verified, 1 for
-                                  verified, -1 for verification failed
-                                example: 0
-                          dmarc:
-                            type: object
-                            description: DMARC record information
-                            properties:
-                              type:
-                                type: string
-                                description: Record type
-                                example: TXT
-                              host:
-                                type: string
-                                description: Record host
-                                example: _dmarc.example.com
-                              value:
-                                type: string
-                                description: Record value
-                                example: v=DMARC1; p=none
-                              status:
-                                type: integer
-                                description: >-
-                                  Verification status, 0 for not verified, 1 for
-                                  verified, -1 for verification failed
-                                example: 0
-                          returnPath:
-                            type: object
-                            description: Return-Path record information
-                            properties:
-                              type:
-                                type: string
-                                description: Record type
-                                example: MX
-                              host:
-                                type: string
-                                description: Record host
-                                example: feedback.example.com
-                              value:
-                                type: string
-                                description: Record value
-                                example: feedback.sendcloud.net
-                              status:
-                                type: integer
-                                description: >-
-                                  Verification status, 0 for not verified, 1 for
-                                  verified, -1 for verification failed
-                                example: 0
-                      createTime:
-                        type: integer
-                        description: Creation timestamp
-                        example: 1616505600
-                      updateTime:
-                        type: integer
-                        description: Last update timestamp
-                        example: 1616505600
-                      status:
-                        type: integer
-                        description: >-
-                          Domain status, 0 for not verified, 1 for verified, -1
-                          for verification failed
-                        example: 0
-                  info:
-                    type: object
-                    properties:
-                      balance:
-                        type: number
-                        description: Account balance
-                        example: 0
-        '400':
-          description: Invalid parameter
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  statusCode:
-                    type: integer
-                    example: 400
-                  message:
-                    type: string
-                    example: Invalid parameter
-        '401':
-          description: Authentication failed
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  statusCode:
-                    type: integer
-                    example: 401
-                  message:
-                    type: string
-                    example: Authentication failed
-        '500':
-          description: Server error
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  statusCode:
-                    type: integer
-                    example: 500
-                  message:
-                    type: string
-                    example: Server error
-      parameters:
-        - in: query
-          name: name
-          schema:
-            type: string
-          required: true
-          description: Original domain name
-          example: example.com
-        - in: query
-          name: newName
-          schema:
-            type: string
-          required: true
-          description: New domain name
-          example: newexample.com
-    post:
-      summary: Modify Domain
-      description: Update an existing sending domain name
-      operationId: updateDomainPost
-      tags:
-        - Domain
-      security:
-        - apiUser: []
-          apiKey: []
-      responses:
-        '200':
-          description: Domain updated successfully
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  statusCode:
-                    type: integer
-                    description: Status code
-                    example: 200
-                  message:
-                    type: string
-                    description: Status message
-                    example: success
-                  result:
-                    type: object
-                    properties:
-                      name:
-                        type: string
-                        description: Sending domain name
-                        example: example.com
-                      type:
-                        type: integer
-                        description: >-
-                          Domain type, 0 for SPF only, 1 for DKIM verification
-                          domain
-                        example: 0
-                      verifyValue:
-                        type: string
-                        description: Domain verification value
-                        example: ''
-                      dnsRecord:
-                        type: object
-                        description: Domain DNS record information
-                        properties:
-                          spf:
-                            type: object
-                            description: SPF record information
-                            properties:
-                              type:
-                                type: string
-                                description: Record type
-                                example: TXT
-                              host:
-                                type: string
-                                description: Record host
-                                example: example.com
-                              value:
-                                type: string
-                                description: Record value
-                                example: v=spf1 include:spf.sendcloud.net ~all
-                              status:
-                                type: integer
-                                description: >-
-                                  Verification status, 0 for not verified, 1 for
-                                  verified, -1 for verification failed
-                                example: 0
-                          dkim:
-                            type: object
-                            description: DKIM record information
-                            properties:
-                              type:
-                                type: string
-                                description: Record type
-                                example: TXT
-                              host:
-                                type: string
-                                description: Record host
-                                example: mail._domainkey.example.com
-                              value:
-                                type: string
-                                description: Record value
-                                example: v=DKIM1; k=rsa; p=...
-                              status:
-                                type: integer
-                                description: >-
-                                  Verification status, 0 for not verified, 1 for
-                                  verified, -1 for verification failed
-                                example: 0
-                          dmarc:
-                            type: object
-                            description: DMARC record information
-                            properties:
-                              type:
-                                type: string
-                                description: Record type
-                                example: TXT
-                              host:
-                                type: string
-                                description: Record host
-                                example: _dmarc.example.com
-                              value:
-                                type: string
-                                description: Record value
-                                example: v=DMARC1; p=none
-                              status:
-                                type: integer
-                                description: >-
-                                  Verification status, 0 for not verified, 1 for
-                                  verified, -1 for verification failed
-                                example: 0
-                          returnPath:
-                            type: object
-                            description: Return-Path record information
-                            properties:
-                              type:
-                                type: string
-                                description: Record type
-                                example: MX
-                              host:
-                                type: string
-                                description: Record host
-                                example: feedback.example.com
-                              value:
-                                type: string
-                                description: Record value
-                                example: feedback.sendcloud.net
-                              status:
-                                type: integer
-                                description: >-
-                                  Verification status, 0 for not verified, 1 for
-                                  verified, -1 for verification failed
-                                example: 0
-                      createTime:
-                        type: integer
-                        description: Creation timestamp
-                        example: 1616505600
-                      updateTime:
-                        type: integer
-                        description: Last update timestamp
-                        example: 1616505600
-                      status:
-                        type: integer
-                        description: >-
-                          Domain status, 0 for not verified, 1 for verified, -1
-                          for verification failed
-                        example: 0
-                  info:
-                    type: object
-                    properties:
-                      balance:
-                        type: number
-                        description: Account balance
-                        example: 0
-        '400':
-          description: Invalid parameter
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  statusCode:
-                    type: integer
-                    example: 400
-                  message:
-                    type: string
-                    example: Invalid parameter
-        '401':
-          description: Authentication failed
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  statusCode:
-                    type: integer
-                    example: 401
-                  message:
-                    type: string
-                    example: Authentication failed
-        '500':
-          description: Server error
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  statusCode:
-                    type: integer
-                    example: 500
-                  message:
-                    type: string
-                    example: Server error
-      parameters:
-        - in: query
-          name: name
-          schema:
-            type: string
-          required: true
-          description: Original domain name
-          example: example.com
-        - in: query
-          name: newName
-          schema:
-            type: string
-          required: true
-          description: New domain name
-          example: newexample.com
 components:
   securitySchemes:
     apiUser:
