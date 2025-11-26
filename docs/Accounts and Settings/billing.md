@@ -30,6 +30,28 @@ We charge for email delivery based on actual delivery results, not just emails s
 * **Consumption tracking**: Real-time monitoring of your email delivery volume
 * **Detailed reporting**: Monthly consumption reports with itemized details
 
+<br />
+
+### Billing Schedule
+
+<Cards columns="2">
+  <Card title="Monthly Settlement" icon="calendar-check">
+    **1st of Each Month**
+
+    Automatic processing and settlement of all previous month's charges in **UTC+8**.
+  </Card>
+
+  <Card title="Billing Email" icon="envelope">
+    **5th of Each Month**
+
+    Detailed billing email delivered to your inbox in **UTC+8** for consistent billing cycles.
+  </Card>
+</Cards>
+
+> **Key Benefits**: Predictable billing schedule ensures you always know when charges are processed and when to expect your detailed statements.
+
+<br />
+
 ### Billing Result Types
 
 Your email charges are based on the following delivery result categories:
