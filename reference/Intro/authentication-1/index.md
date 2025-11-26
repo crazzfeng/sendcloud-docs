@@ -12,13 +12,6 @@ metadata:
 ---
 <br />
 
-```javascript
-if (response.status === 401) {
-  console.error('Authentication failed, please check API credentials');
-  // Implement retry or alerting logic
-}
-```
-
 ## Troubleshooting Authentication Issues
 
 ### Authentication Failed (401 Unauthorized)
