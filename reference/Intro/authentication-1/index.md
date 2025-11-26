@@ -4,7 +4,7 @@ excerpt: >-
   Complete guide to authenticating with Aurora SendCloud's Email and SMS APIs
   using parameter-based authentication methods
 deprecated: false
-hidden: true
+hidden: false
 link:
   new_tab: false
 metadata:
