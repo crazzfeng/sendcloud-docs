@@ -21,7 +21,7 @@ tags:
 paths:
   /api/mail/send:
     post:
-      summary: Regular Email Delivery
+      summary: Basic Send
       description: >-
         Send regular emails with custom content (supports attachments, CC/BCC,
         address lists, etc.)
@@ -259,7 +259,7 @@ paths:
                     example: false
   /api/mail/sendtemplate:
     post:
-      summary: Send Template Email
+      summary: Send Email via Template
       description: >-
         Send emails by calling preset templates through template call names,
         supporting dynamic parameter replacement.
@@ -493,7 +493,7 @@ paths:
                     example: false
   /api/mail/sendcalendar:
     post:
-      summary: Send Meeting Calendar
+      summary: Send Calendar Email
       description: >-
         Send calendar invitations containing meeting information, supporting
         cancellation/updates of calendars.
@@ -768,7 +768,7 @@ paths:
                     example: false
   /api/mail/taskinfo:
     get:
-      summary: Query Address List Task
+      summary: Status of Sending by Address List
       description: Query the status and details of an address list email task
       operationId: query-task
       tags:

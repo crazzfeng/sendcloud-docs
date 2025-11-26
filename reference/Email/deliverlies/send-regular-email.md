@@ -1,5 +1,5 @@
 ---
-title: Regular Email Delivery
+title: Basic Send
 excerpt: >-
   Send regular emails with custom content (supports attachments, CC/BCC, address
   lists, etc.)
