@@ -1,8 +1,8 @@
 ---
 title: Authentication
 excerpt: >-
-  Complete guide to authenticating with Aurora SendCloud's Email and SMS APIs
-  using parameter-based authentication methods
+  Authentication overview and quick access to Email and SMS API authentication
+  guides for Aurora SendCloud services
 deprecated: false
 hidden: false
 link:
@@ -12,23 +12,28 @@ metadata:
 ---
 # Authentication Overview
 
-Aurora SendCloud uses parameter-based authentication to secure access to both Email and SMS APIs. This page provides an overview of authentication methods and requirements across all services.
+Aurora SendCloud provides secure parameter-based authentication for both Email and SMS APIs. This page serves as your starting point for understanding and implementing authentication across all services.
 
-## Authentication Methods
+## Authentication Methods by Service
 
-Aurora SendCloud supports different authentication parameters depending on the service:
+<Cards columns="2">
+  <Card title="Email API Authentication" href="/authentication/email" icon="envelope">
+    Complete guide to Email API authentication using `apiUser` and `apiKey` parameters, including domain verification and advanced security features.
+  </Card>
+  
+  <Card title="SMS API Authentication" href="/authentication/sms" icon="sms">
+    Comprehensive SMS API authentication guide covering `smsUser` and `smsKey` parameters, template management, and regional considerations.
+  </Card>
+</Cards>
 
-### Email API Authentication
-- **apiUser**: Your Email API username
-- **apiKey**: Your Email API secret key
+## Quick Reference
 
-### SMS API Authentication  
-- **smsUser**: Your SMS API username
-- **smsKey**: Your SMS API secret key
+### Parameter Types
+- **Email API**: `apiUser` + `apiKey`
+- **SMS API**: `smsUser` + `smsKey`
 
-## How Authentication Works
-
-Authentication parameters can be passed in two ways:
+### Authentication Methods
+Authentication parameters can be passed via:
 
 1. **Query Parameters** (GET requests)
    ```
@@ -70,47 +75,7 @@ Choose the appropriate endpoint based on your region:
 
 </Accordion>
 
-## Common Authentication Scenarios
-
-### Basic Email Sending
-```bash
-curl -X POST https://api.aurorasendcloud.com/api/mail/send \
-  -d "apiUser=your_email_user" \
-  -d "apiKey=your_email_key" \
-  -d "from=sender@yourdomain.com" \
-  -d "to=recipient@example.com" \
-  -d "subject=Test Email" \
-  -d "html=<h1>Hello World</h1>"
-```
-
-### Basic SMS Sending  
-```bash
-curl -X POST https://api.aurorasendcloud.com/smsapi/send \
-  -d "smsUser=your_sms_user" \
-  -d "smsKey=your_sms_key" \
-  -d "templateId=12345" \
-  -d "phone=+1234567890"
-```
-
-## Key Differences Between Services
-
-<Cards columns="2">
-  <Card title="Email API" icon="envelope">
-    - Uses `apiUser` and `apiKey`
-    - 15-minute grace period during key resets
-    - Requires `from` parameter in requests
-    - Supports template and regular sending
-  </Card>
-  
-  <Card title="SMS API" icon="sms">
-    - Uses `smsUser` and `smsKey`  
-    - Immediate key updates (no grace period)
-    - Requires approved template ID
-    - Template-based sending only
-  </Card>
-</Cards>
-
-## Quick Troubleshooting
+## Common Authentication Issues
 
 ### Authentication Failed (401 Unauthorized)
 - ✅ Verify correct parameter names (`apiUser`/`apiKey` vs `smsUser`/`smsKey`)
@@ -122,38 +87,44 @@ curl -X POST https://api.aurorasendcloud.com/smsapi/send \
 - ✅ Use request body or query string, not headers
 - ✅ Set `Content-Type: application/x-www-form-urlencoded` for POST
 - ✅ URL-encode special characters properly
-- ✅ Include required `from` parameter for Email API
+- ✅ Include all required parameters for your specific API
 
 ### Network Issues
 - ✅ Verify API endpoint URLs are correct
 - ✅ Check firewall allows outbound HTTPS requests
 - ✅ Test with different network connections
 
-## Next Steps
+## Get Started
 
 <Tabs>
   <Tab title="Email Authentication">
-    Learn more about Email API authentication, including advanced security features and domain verification requirements.
+    [Set up Email API authentication →](/authentication/email)
+    
+    Learn about Email API credentials, domain verification, and implementation examples.
   </Tab>
   
   <Tab title="SMS Authentication">
-    Explore SMS API authentication details, template management, and regional considerations.
+    [Set up SMS API authentication →](/authentication/sms)
+    
+    Explore SMS API credentials, template requirements, and regional setup.
   </Tab>
   
   <Tab title="Error Handling">
-    Understand common authentication errors and implement robust error handling in your applications.
+    [View error handling guide →](/error-handling)
+    
+    Understand common authentication errors and implement robust error handling.
   </Tab>
 </Tabs>
 
-## Getting Help
+## Need Help?
 
-If you continue experiencing authentication issues:
+If you're experiencing authentication issues:
 
-1. Check the specific API documentation for your service
-2. Verify your account status and API limits
-3. Contact Aurora SendCloud support with request details
-4. Review our comprehensive troubleshooting guides
+1. **Check the specific guide**: Visit the [Email](/authentication/email) or [SMS](/authentication/sms) authentication pages
+2. **Verify account status**: Ensure your API limits and account status are active
+3. **Contact support**: Reach out with specific request details for faster resolution
+4. **Review examples**: Check our implementation examples in each service guide
 
 ---
 
-*For detailed authentication guides specific to each service, please refer to the dedicated sections in the sidebar.*
+*For detailed authentication instructions and code examples, please visit the specific service pages linked above.*
