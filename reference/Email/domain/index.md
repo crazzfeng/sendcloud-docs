@@ -1,4 +1,4 @@
 ---
-title: Domain
-hidden: true
+title: Sending Domain
+hidden: false
 ---
