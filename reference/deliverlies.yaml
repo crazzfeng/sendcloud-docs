@@ -5,21 +5,18 @@ info:
 servers:
   - url: https://api.aurorasendcloud.com/
     description: |
-      Singapore (SG) Region
+      Singapore Region
       - Base URL: https://api.aurorasendcloud.com/
-      - Coverage: Default region for APAC users (Asia-Pacific)
   - url: https://api-us.aurorasendcloud.com/
     description: |
-      United States (US) Region
+      US (Silicon Valley) Region
       - Base URL: https://api-us.aurorasendcloud.com/
-      - Coverage: For North American users and services
   - url: https://api-hk.aurorasendcloud.com/
     description: |
-      Hong Kong (HK) Region
+      CN (Hong Kong SAR) Region
       - Base URL: https://api-hk.aurorasendcloud.com/
-      - Coverage: For Greater China and nearby APAC regions
 tags:
-  - name: Deliverlies
+  - name: Send Email
     description: Regular delivery, templates delivery
 paths:
   /api/mail/send:
@@ -30,7 +27,7 @@ paths:
         address lists, etc.)
       operationId: send-regular-email
       tags:
-        - Deliverlies
+        - Send Emai
       security:
         - apiUser: []
           apiKey: []
@@ -268,7 +265,7 @@ paths:
         supporting dynamic parameter replacement.
       operationId: send-template-email
       tags:
-        - Deliverlies
+        - Send Emai
       security:
         - apiUser: []
           apiKey: []
@@ -502,7 +499,7 @@ paths:
         cancellation/updates of calendars.
       operationId: send-calendar
       tags:
-        - Deliverlies
+        - Send Emai
       security:
         - apiUser: []
           apiKey: []
@@ -775,7 +772,7 @@ paths:
       description: Query the status and details of an address list email task
       operationId: query-task
       tags:
-        - Deliverlies
+        - Send Emai
       security:
         - apiUser: []
           apiKey: []
