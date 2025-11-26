@@ -131,8 +131,6 @@ Please note the following requirements when uploading your business license:
   The billing email dispatch has been moved to the 5th of the month (UTC+8) to ensure the data included is fully finalized and accurate. This change only affects the email; the invoice is available in the console on the 1st.
 </Accordion>
 
-<br />
-
 <Accordion title="Can I still see costs for a single region?">
   Yes. Use the "Details" drill-down feature on any service in the summary table to see its cost allocation across all regions.
 </Accordion>
