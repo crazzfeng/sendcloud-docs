@@ -9,14 +9,22 @@ tags:
   - name: Email Label
     description: Email label management operations
 servers:
-  - url: https://api.aurorasendcloud.com
-    description: Production server
-  - url: https://api.sendcloud.net
-    description: Alternative production server
+  - url: https://api.aurorasendcloud.com/
+    description: |
+      Singapore Region
+      - Base URL: https://api.aurorasendcloud.com/
+  - url: https://api-us.aurorasendcloud.com/
+    description: |
+      US (Silicon Valley) Region
+      - Base URL: https://api-us.aurorasendcloud.com/
+  - url: https://api-hk.aurorasendcloud.com/
+    description: |
+      CN (Hong Kong SAR) Region
+      - Base URL: https://api-hk.aurorasendcloud.com/
 paths:
   /api/label/list:
     get:
-      summary: Query (Batch Query)
+      summary: Get Labels List
       description: List of returned labels with optional fuzzy search and pagination.
       operationId: label-list-get
       tags:
@@ -96,90 +104,9 @@ paths:
                       count:
                         type: integer
                         description: Number of labels returned currently
-    post:
-      summary: Query (Batch Query)
-      description: List of returned labels with optional fuzzy search and pagination.
-      operationId: label-list-post
-      tags:
-        - Email Label
-      security:
-        - apiUser: []
-          apiKey: []
-      parameters:
-        - name: query
-          in: query
-          required: false
-          schema:
-            type: string
-          description: Key word of fuzzy query
-          example: edm
-        - name: start
-          in: query
-          required: false
-          schema:
-            type: integer
-            minimum: 0
-            default: 0
-          description: Start position, [0-], defaults to 0
-          example: 0
-        - name: limit
-          in: query
-          required: false
-          schema:
-            type: integer
-            minimum: 0
-            maximum: 100
-            default: 100
-          description: Amount, [0-100], defaults to 100
-          example: 200
-      responses:
-        '200':
-          description: Request was successful
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  statusCode:
-                    type: integer
-                    example: 200
-                  message:
-                    type: string
-                    example: request was successful
-                  result:
-                    type: boolean
-                    example: true
-                  info:
-                    type: object
-                    properties:
-                      dataList:
-                        type: array
-                        items:
-                          type: object
-                          properties:
-                            labelId:
-                              type: integer
-                              description: Label ID
-                            labelName:
-                              type: string
-                              description: Label name
-                            gmtCreated:
-                              type: string
-                              format: date-time
-                              description: Time of label creation
-                            gmtUpdated:
-                              type: string
-                              format: date-time
-                              description: Time of label modification
-                      total:
-                        type: integer
-                        description: Total number of matching labels
-                      count:
-                        type: integer
-                        description: Number of labels returned currently
   /api/label/get:
     get:
-      summary: Query
+      summary: Get Label
       description: Get a single label's details by label ID.
       operationId: label-get-get
       tags:
@@ -232,117 +159,9 @@ paths:
                             type: string
                             format: date-time
                             description: Time of label modification
-    post:
-      summary: Query
-      description: Get a single label's details by label ID.
-      operationId: label-get-post
-      tags:
-        - Email Label
-      security:
-        - apiUser: []
-          apiKey: []
-      parameters:
-        - name: labelId
-          in: query
-          required: true
-          schema:
-            type: integer
-          description: Label ID
-          example: 89
-      responses:
-        '200':
-          description: Request was successful
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  statusCode:
-                    type: integer
-                    example: 200
-                  message:
-                    type: string
-                    example: request was successful
-                  result:
-                    type: boolean
-                    example: true
-                  info:
-                    type: object
-                    properties:
-                      data:
-                        type: object
-                        properties:
-                          labelId:
-                            type: integer
-                            description: Label ID
-                          labelName:
-                            type: string
-                            description: Label name
-                          gmtCreated:
-                            type: string
-                            format: date-time
-                            description: Time of label creation
-                          gmtUpdated:
-                            type: string
-                            format: date-time
-                            description: Time of label modification
   /api/label/add:
-    get:
-      summary: Add
-      description: Add a new label (upper limit of 100000 labels per account).
-      operationId: label-add-get
-      tags:
-        - Email Label
-      security:
-        - apiUser: []
-          apiKey: []
-      parameters:
-        - name: labelName
-          in: query
-          required: true
-          schema:
-            type: string
-          description: Label name to be added
-          example: test
-      responses:
-        '200':
-          description: Request was successful
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  statusCode:
-                    type: integer
-                    example: 200
-                  message:
-                    type: string
-                    example: request was successful
-                  result:
-                    type: boolean
-                    example: true
-                  info:
-                    type: object
-                    properties:
-                      data:
-                        type: object
-                        properties:
-                          labelId:
-                            type: integer
-                            description: Label ID
-                          labelName:
-                            type: string
-                            description: Label name
-                          gmtCreated:
-                            type: string
-                            format: date-time
-                            description: Time of label creation
-                          gmtUpdated:
-                            type: string
-                            format: date-time
-                            description: Time of label modification
     post:
-      summary: Add
+      summary: Add Label
       description: Add a new label (upper limit of 100000 labels per account).
       operationId: label-add-post
       tags:
@@ -396,48 +215,8 @@ paths:
                             format: date-time
                             description: Time of label modification
   /api/label/delete:
-    get:
-      summary: Delete
-      description: Delete a specified label by label ID.
-      operationId: label-delete-get
-      tags:
-        - Email Label
-      security:
-        - apiUser: []
-          apiKey: []
-      parameters:
-        - name: labelId
-          in: query
-          required: true
-          schema:
-            type: integer
-          description: Label ID to be deleted
-          example: 89
-      responses:
-        '200':
-          description: Request was successful
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  statusCode:
-                    type: integer
-                    example: 200
-                  message:
-                    type: string
-                    example: request was successful
-                  result:
-                    type: boolean
-                    example: true
-                  info:
-                    type: object
-                    properties:
-                      count:
-                        type: integer
-                        description: Amount of deleted labels
     post:
-      summary: Delete
+      summary: Deletle Label
       description: Delete a specified label by label ID.
       operationId: label-delete-post
       tags:
@@ -477,55 +256,8 @@ paths:
                         type: integer
                         description: Amount of deleted labels
   /api/label/update:
-    get:
-      summary: Modify
-      description: Modify an existing label by label ID.
-      operationId: label-update-get
-      tags:
-        - Email Label
-      security:
-        - apiUser: []
-          apiKey: []
-      parameters:
-        - name: labelId
-          in: query
-          required: true
-          schema:
-            type: integer
-          description: Label ID to be modified
-          example: 89
-        - name: labelName
-          in: query
-          required: true
-          schema:
-            type: string
-          description: New label name
-          example: testnew
-      responses:
-        '200':
-          description: Request was successful
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  statusCode:
-                    type: integer
-                    example: 200
-                  message:
-                    type: string
-                    example: request was successful
-                  result:
-                    type: boolean
-                    example: true
-                  info:
-                    type: object
-                    properties:
-                      count:
-                        type: integer
-                        description: Count of modified labels
     post:
-      summary: Modify
+      summary: Update Label
       description: Modify an existing label by label ID.
       operationId: label-update-post
       tags:

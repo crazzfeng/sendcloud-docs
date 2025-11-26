@@ -1,5 +1,5 @@
 ---
-title: Query (Batch Query)
+title: Get Labels List
 excerpt: List of returned labels with optional fuzzy search and pagination.
 api:
   file: emailLabel.yaml
