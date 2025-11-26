@@ -55,8 +55,7 @@ Permanent delivery failures including:
 * **Reject**: Emails rejected by the recipient server
 * **Junk Mail**: Emails marked as spam or junk
 
-## How to understand the Billing ?
-
+## How to understand the Billing
 
 This is your central hub for viewing and analyzing costs.
 
@@ -103,10 +102,6 @@ Click the repay overdrawn​. A payment page will open with the total amount due
 
 Follow the prompts to complete the payment using your preferred method.
 
-
-
-
-
 ## Managing Billing Information
 
 The following information will be used to issue invoices. Please fill it in correctly. If any modifications are needed, please contact us.
@@ -128,22 +123,20 @@ Please note the following requirements when uploading your business license:
 
 ## FAQS
 
-<Accordion title="When is the bill generated each month?" >
-Bill generation occurs on the first day of each month after 15:00 UTC+8. You can view and download it from the console at that time.
+<Accordion title="When is the bill generated each month?">
+  Bill generation occurs on the first day of each month after 15:00 UTC+8. You can view and download it from the console at that time.
 </Accordion>
 
-<Accordion title="Why will I receive the billing email on the 5th instead of the 1st?" >
-The billing email dispatch has been moved to the 5th of the month (UTC+8) to ensure the data included is fully finalized and accurate. This change only affects the email; the invoice is available in the console on the 1st.
+<Accordion title="Why will I receive the billing email on the 5th instead of the 1st?">
+  The billing email dispatch has been moved to the 5th of the month (UTC+8) to ensure the data included is fully finalized and accurate. This change only affects the email; the invoice is available in the console on the 1st.
 </Accordion>
 
 <br />
 
 <Accordion title="Can I still see costs for a single region?">
- Yes. Use the "Details" drill-down feature on any service in the summary table to see its cost allocation across all regions.
+  Yes. Use the "Details" drill-down feature on any service in the summary table to see its cost allocation across all regions.
 </Accordion>
 
 <Accordion title="What data is included in the downloaded CSV report?">
-The CSV report includes detailed line-item data visible in the Billing Details page, making it perfect for custom analysis and financial reconciliation.
+  The CSV report includes detailed line-item data visible in the Billing Details page, making it perfect for custom analysis and financial reconciliation.
 </Accordion>
-
-
