@@ -1,5 +1,5 @@
 ---
-title: Modify API_USER
+title: Update API_USER
 excerpt: |
   Update configuration of an existing API_USER (only supports POST method).
   Tips:

@@ -1,5 +1,5 @@
 ---
-title: Add API_USER (POST)
+title: Add API_USER
 excerpt: |
   Same as GET method, supports POST request for API_USER creation.
   Tips:

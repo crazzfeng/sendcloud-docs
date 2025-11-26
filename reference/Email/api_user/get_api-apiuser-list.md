@@ -1,5 +1,5 @@
 ---
-title: Batch Query API_USER
+title: Get API_USER List
 excerpt: >-
   Get basic information of API_USER in batches with optional filtering
   conditions.

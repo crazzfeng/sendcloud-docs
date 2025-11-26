@@ -1,5 +1,3 @@
 - get_api-apiuser-list
-- post_api-apiuser-list
-- get_api-apiuser-add
 - post_api-apiuser-add
 - post_api-apiuser-update
