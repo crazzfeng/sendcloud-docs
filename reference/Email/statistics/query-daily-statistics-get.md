@@ -1,5 +1,5 @@
 ---
-title: Query Daily Delivery Statistics
+title: Get Statistics by Day
 excerpt: >-
   Query email delivery data counted by day. Requires a specified time span
   (startDate & endDate or days); time span cannot exceed 3 months. Supports

@@ -3,10 +3,18 @@ info:
   version: 1.0.0
   title: Email
 servers:
-  - url: https://api.aurorasendcloud.com
-    description: Production API server
-  - url: https://api.sendcloud.net
-    description: Alternative production server
+  - url: https://api.aurorasendcloud.com/
+    description: |
+      Singapore Region
+      - Base URL: https://api.aurorasendcloud.com/
+  - url: https://api-us.aurorasendcloud.com/
+    description: |
+      US (Silicon Valley) Region
+      - Base URL: https://api-us.aurorasendcloud.com/
+  - url: https://api-hk.aurorasendcloud.com/
+    description: |
+      CN (Hong Kong SAR) Region
+      - Base URL: https://api-hk.aurorasendcloud.com/
 tags:
   - name: Statistics
     description: >-
@@ -15,7 +23,7 @@ tags:
 paths:
   /api/statday/list:
     get:
-      summary: Query Daily Delivery Statistics
+      summary: Get Statistics by Day
       description: >-
         Query email delivery data counted by day. Requires a specified time span
         (startDate & endDate or days); time span cannot exceed 3 months.
@@ -348,7 +356,7 @@ paths:
                     example: false
   /api/stathour/list:
     get:
-      summary: Query Hourly Delivery Statistics
+      summary: Get Statistics by Hour
       description: >-
         Query email delivery data counted by hour. Requires a specified time
         span (startDate & endDate or days); time span cannot exceed 3 months.
@@ -583,7 +591,7 @@ paths:
                     example: false
   /api/invalidstat/list:
     get:
-      summary: Query Invalid Email Statistics
+      summary: Get Invalid Emails Classifications Statistics by Day
       description: >-
         Query classified stats of invalid emails. Requires a specified time span
         (startDate & endDate or days). Supports filtering by API_USER, label,
