@@ -270,8 +270,8 @@ paths:
         - apiUser: []
           apiKey: []
   /api/template/add:
-    get:
-      summary: Add Email Template (GET)
+    post:
+      summary: Add Email Template
       description: >-
         Create a new email template (use POST for long/special character
         content)
@@ -419,8 +419,8 @@ paths:
         - apiUser: []
           apiKey: []
   /api/template/delete:
-    get:
-      summary: Delete Email Template (GET)
+    post:
+      summary: Delete Email Template
       description: Delete an existing email template by invokeName
       operationId: deleteTemplateGet
       tags:
@@ -473,100 +473,8 @@ paths:
         - apiUser: []
           apiKey: []
   /api/template/update:
-    get:
-      summary: Update Email Template (GET)
-      description: >-
-        Modify an existing email template (use POST for long/special character
-        content)
-      operationId: updateTemplateGet
-      tags:
-        - Email Template
-      responses:
-        '200':
-          description: Template updated successfully
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  statusCode:
-                    type: integer
-                    description: Response status code (200 indicates success)
-                    example: 200
-                  message:
-                    type: string
-                    description: >-
-                      Prompt message for request result (success/failure
-                      description)
-                    example: request was successful
-                  result:
-                    type: boolean
-                    description: >-
-                      Whether the request was processed successfully (true =
-                      success, false = failure)
-                    example: true
-                  info:
-                    type: object
-                    description: Update result statistics
-                    properties:
-                      count:
-                        type: integer
-                        description: >-
-                          Number of templates successfully updated (1 = success,
-                          0 = no template updated)
-                        example: 1
-      parameters:
-        - in: query
-          name: invokeName
-          schema:
-            type: string
-          required: true
-          description: >-
-            Calling name of the template to update (unique identifier for the
-            template)
-          example: testtemplate
-        - in: query
-          name: name
-          schema:
-            type: string
-          required: false
-          description: New template name (optional, leave empty to keep the original name)
-          example: updated_test
-        - in: query
-          name: html
-          schema:
-            type: string
-          required: false
-          description: >-
-            New HTML content (optional, supports variable substitution, leave
-            empty to keep the original content)
-          example: <p>update template</p>
-        - in: query
-          name: subject
-          schema:
-            type: string
-          required: false
-          description: >-
-            New template subject (optional, leave empty to keep the original
-            subject)
-          example: updated_test_subject
-        - in: query
-          name: templateType
-          schema:
-            type: integer
-            enum:
-              - 0
-              - 1
-          required: false
-          description: >-
-            New template type (optional, 0 = transactional, 1 = marketing, leave
-            empty to keep the original type)
-          example: 1
-      security:
-        - apiUser: []
-          apiKey: []
     post:
-      summary: Update Email Template (POST)
+      summary: Update Email Template
       description: >-
         Modify an existing email template (recommended for long/special
         character content)

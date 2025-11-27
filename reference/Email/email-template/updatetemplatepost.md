@@ -1,5 +1,5 @@
 ---
-title: Update Email Template (POST)
+title: Update Email Template
 excerpt: >-
   Modify an existing email template (recommended for long/special character
   content)
