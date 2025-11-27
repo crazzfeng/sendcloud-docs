@@ -295,8 +295,8 @@ paths:
                 xsmtpapi:
                   type: string
                   description: >-
-                    SMTP extension. See X-SMTPAPI for details. Required if not
-                    using to (address list)
+                    SMTP extension. See [→ X-SMTPAPI](X-SMTPAPI) for details.
+                    Required if not using to (address list)
                   example: >-
                     {"to": ["ben@ifaxin.com", "joe@ifaxin.com"], "sub":
                     {"%name%": ["Ben", "Joe"], "%money%": [288, 497]}}
