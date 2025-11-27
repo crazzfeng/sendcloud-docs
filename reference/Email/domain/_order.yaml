@@ -1,5 +1,5 @@
 - querydomainget
 - adddomainpost
+- updatedomainpost
 - checkdomainconfigpost
 - deletesendingdomainpost
-- updatedomainpost
