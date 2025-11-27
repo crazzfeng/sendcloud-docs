@@ -3,17 +3,25 @@ info:
   version: 1.0.0
   title: Email
 servers:
-  - url: https://api.aurorasendcloud.com
-    description: Production server
-  - url: https://api.sendcloud.net
-    description: Alternative production server
+  - url: https://api.aurorasendcloud.com/
+    description: |
+      Singapore Region
+      - Base URL: https://api.aurorasendcloud.com/
+  - url: https://api-us.aurorasendcloud.com/
+    description: |
+      US (Silicon Valley) Region
+      - Base URL: https://api-us.aurorasendcloud.com/
+  - url: https://api-hk.aurorasendcloud.com/
+    description: |
+      CN (Hong Kong SAR) Region
+      - Base URL: https://api-hk.aurorasendcloud.com/
 tags:
   - name: Tracking Domain
     description: Interfaces for managing email tracking domains
 paths:
   /api/trackDomain/list:
     get:
-      summary: Query Tracking Domain List (Batch Query)
+      summary: Get Tracking Domains List
       description: >-
         Batch query configured tracking domains under the account. Supports
         filtering by track name and pagination.
@@ -344,7 +352,7 @@ paths:
                     example: false
   /api/trackDomain/update:
     post:
-      summary: Modify Tracking Domain
+      summary: Update Tracking Domain
       description: >-
         Update configuration of an existing tracking domain, including track
         name and SSL certificate information.
@@ -526,7 +534,7 @@ paths:
                     example: false
   /api/trackDomain/checkConfig:
     post:
-      summary: Verify Tracking Domain Configuration
+      summary: Get Tracking Domain Verify Status
       description: >-
         Verify the configuration (e.g., CNAME) of tracking domains. Calling this
         interface will update the CNAME status.

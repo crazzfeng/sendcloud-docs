@@ -1,5 +1,5 @@
 ---
-title: Query Tracking Domain List (Batch Query)
+title: Get Tracking Domains List
 excerpt: >-
   Batch query configured tracking domains under the account. Supports filtering
   by track name and pagination.
