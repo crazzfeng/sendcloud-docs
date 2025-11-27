@@ -1,5 +1,5 @@
 ---
-title: Query Account Basic Information
+title: Get Account Info
 excerpt: >-
   Get basic information of the current API account (including account type,
   quota, contact information, etc.)

@@ -21,7 +21,7 @@ tags:
 paths:
   /api/user/info:
     get:
-      summary: Query Account Basic Information
+      summary: Get Account Info
       description: >-
         Get basic information of the current API account (including account
         type, quota, contact information, etc.)
