@@ -1032,7 +1032,7 @@ paths:
         email or domainName.
       operationId: deleteBlockAddress
       tags:
-        - Block
+        - Suppressions
       security:
         - apiUser: []
           apiKey: []
@@ -1094,7 +1094,7 @@ paths:
         API_USER, receiving domain, email address, and pagination.
       operationId: query-uninterception-list
       tags:
-        - Uninterception
+        - Suppressions
       security:
         - apiUser: []
           apiKey: []
@@ -1221,7 +1221,7 @@ paths:
         domainName and email splits into two records.
       operationId: add-uninterception-get
       tags:
-        - Uninterception
+        - Suppressions
       security:
         - apiUser: []
           apiKey: []
@@ -1347,7 +1347,7 @@ paths:
         apiUserName+email respectively.
       operationId: delete-uninterception-get
       tags:
-        - Uninterception
+        - Suppressions
       security:
         - apiUser: []
           apiKey: []
