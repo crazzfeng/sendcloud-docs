@@ -88,12 +88,6 @@ paths:
                         type: integer
                         description: Number of returned results
                         example: 1
-        '400':
-          description: >-
-            Bad request (e.g., invalid time range, time range exceeding 3
-            months)
-        '401':
-          description: Authentication failed (invalid apiUser or apiKey)
       parameters:
         - in: query
           name: days
@@ -194,10 +188,6 @@ paths:
                         type: integer
                         description: Number of successfully unblocked addresses
                         example: 1
-        '400':
-          description: Bad request (e.g., invalid email format)
-        '401':
-          description: Authentication failed (invalid apiUser or apiKey)
       requestBody:
         required: true
         content:
@@ -354,54 +344,6 @@ paths:
                         type: integer
                         description: Number of returned email addresses
                         example: 1
-        '400':
-          description: Bad request (invalid parameters, e.g. missing required time frame)
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  statusCode:
-                    type: integer
-                    example: 400
-                  message:
-                    type: string
-                    example: 'invalid parameter: startDate/endDate or days is required'
-                  result:
-                    type: boolean
-                    example: false
-        '401':
-          description: Authentication failed (invalid apiUser or apiKey)
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  statusCode:
-                    type: integer
-                    example: 401
-                  message:
-                    type: string
-                    example: 'authentication failed: invalid apiKey'
-                  result:
-                    type: boolean
-                    example: false
-        '500':
-          description: Server error (internal service exception)
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  statusCode:
-                    type: integer
-                    example: 500
-                  message:
-                    type: string
-                    example: 'server error: please try again later'
-                  result:
-                    type: boolean
-                    example: false
   /api/unsubscribe/add:
     get:
       summary: Add Address to Unsubscribe List
@@ -464,54 +406,6 @@ paths:
                             type: string
                             description: Unsubscribe time (addition time)
                             example: '2014-11-19 10:57:24'
-        '400':
-          description: Bad request (invalid parameters, e.g. missing email)
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  statusCode:
-                    type: integer
-                    example: 400
-                  message:
-                    type: string
-                    example: 'invalid parameter: email is required'
-                  result:
-                    type: boolean
-                    example: false
-        '401':
-          description: Authentication failed (invalid apiUser or apiKey)
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  statusCode:
-                    type: integer
-                    example: 401
-                  message:
-                    type: string
-                    example: 'authentication failed: invalid apiKey'
-                  result:
-                    type: boolean
-                    example: false
-        '500':
-          description: Server error (internal service exception)
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  statusCode:
-                    type: integer
-                    example: 500
-                  message:
-                    type: string
-                    example: 'server error: please try again later'
-                  result:
-                    type: boolean
-                    example: false
   /api/unsubscribe/delete:
     get:
       summary: Delete Addresses from Unsubscribe List
@@ -581,54 +475,6 @@ paths:
                         type: integer
                         description: Count of deleted addresses
                         example: 1
-        '400':
-          description: Bad request (invalid parameters, e.g. missing required time frame)
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  statusCode:
-                    type: integer
-                    example: 400
-                  message:
-                    type: string
-                    example: 'invalid parameter: startDate/endDate or days is required'
-                  result:
-                    type: boolean
-                    example: false
-        '401':
-          description: Authentication failed (invalid apiUser or apiKey)
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  statusCode:
-                    type: integer
-                    example: 401
-                  message:
-                    type: string
-                    example: 'authentication failed: invalid apiKey'
-                  result:
-                    type: boolean
-                    example: false
-        '500':
-          description: Server error (internal service exception)
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  statusCode:
-                    type: integer
-                    example: 500
-                  message:
-                    type: string
-                    example: 'server error: please try again later'
-                  result:
-                    type: boolean
-                    example: false
   /api/complaint/list:
     get:
       summary: Get Info from Complaint List
@@ -848,12 +694,6 @@ paths:
                         type: integer
                         description: Number of returned results
                         example: 2
-        '400':
-          description: >-
-            Bad request (e.g., time range exceeds 3 months, missing required
-            parameters)
-        '401':
-          description: Authentication failed (invalid apiUser or apiKey)
       parameters:
         - in: query
           name: apiUserBlock
@@ -946,10 +786,6 @@ paths:
                         type: integer
                         description: Number of addresses successfully added
                         example: 1
-        '400':
-          description: Bad request (e.g., missing required parameters, invalid format)
-        '401':
-          description: Authentication failed (invalid apiUser or apiKey)
       requestBody:
         required: true
         content:
@@ -1015,10 +851,6 @@ paths:
                         type: integer
                         description: Number of addresses successfully deleted
                         example: 1
-        '400':
-          description: Bad request (e.g., missing required parameters, invalid format)
-        '401':
-          description: Authentication failed (invalid apiUser or apiKey)
       requestBody:
         required: true
         content:
@@ -1128,38 +960,6 @@ paths:
                         type: integer
                         description: Number of returned entries
                         example: 2
-        '401':
-          description: Authentication failed (invalid apiUser or apiKey)
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  statusCode:
-                    type: integer
-                    example: 401
-                  message:
-                    type: string
-                    example: 'authentication failed: invalid apiKey'
-                  result:
-                    type: boolean
-                    example: false
-        '500':
-          description: Server error (internal service exception)
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  statusCode:
-                    type: integer
-                    example: 500
-                  message:
-                    type: string
-                    example: 'server error: please try again later'
-                  result:
-                    type: boolean
-                    example: false
   /api/unintercept/add:
     get:
       summary: Add Address to Allow List
@@ -1235,58 +1035,6 @@ paths:
                               type: string
                               description: Create time
                               example: '2021-07-19 11:30:00'
-        '400':
-          description: >-
-            Bad request (invalid parameters, e.g. domainName and email both
-            empty)
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  statusCode:
-                    type: integer
-                    example: 400
-                  message:
-                    type: string
-                    example: >-
-                      invalid parameter: domainName and email cannot be empty at
-                      the same time
-                  result:
-                    type: boolean
-                    example: false
-        '401':
-          description: Authentication failed (invalid apiUser or apiKey)
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  statusCode:
-                    type: integer
-                    example: 401
-                  message:
-                    type: string
-                    example: 'authentication failed: invalid apiKey'
-                  result:
-                    type: boolean
-                    example: false
-        '500':
-          description: Server error (internal service exception)
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  statusCode:
-                    type: integer
-                    example: 500
-                  message:
-                    type: string
-                    example: 'server error: please try again later'
-                  result:
-                    type: boolean
-                    example: false
   /api/unintercept/delete:
     get:
       summary: Delete Addresses from Allow  List
@@ -1348,58 +1096,6 @@ paths:
                         type: integer
                         description: Number of successfully deleted entries
                         example: 1
-        '400':
-          description: >-
-            Bad request (invalid parameters, e.g. domainName and email both
-            empty)
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  statusCode:
-                    type: integer
-                    example: 400
-                  message:
-                    type: string
-                    example: >-
-                      invalid parameter: domainName and email cannot be empty at
-                      the same time
-                  result:
-                    type: boolean
-                    example: false
-        '401':
-          description: Authentication failed (invalid apiUser or apiKey)
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  statusCode:
-                    type: integer
-                    example: 401
-                  message:
-                    type: string
-                    example: 'authentication failed: invalid apiKey'
-                  result:
-                    type: boolean
-                    example: false
-        '500':
-          description: Server error (internal service exception)
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  statusCode:
-                    type: integer
-                    example: 500
-                  message:
-                    type: string
-                    example: 'server error: please try again later'
-                  result:
-                    type: boolean
-                    example: false
 components:
   securitySchemes:
     apiUser:
