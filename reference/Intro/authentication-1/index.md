@@ -117,8 +117,8 @@ Choose the appropriate endpoint based on your region:
 
 For detailed implementation instructions:
 
-1. **Email API**: Visit the [Email Authentication](/authentication/email) guide
-2. **SMS API**: Visit the [SMS Authentication](/authentication/sms) guide
+1. **Email API**: Visit the [Email Authentication](email-api-authentication) guide
+2. **SMS API**: Visit the [SMS Authentication](sms-api-authentication) guide
 3. **Support**: Contact our team with specific request details for faster resolution
 
 ***
