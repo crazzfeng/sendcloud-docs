@@ -99,22 +99,18 @@ Choose the appropriate endpoint based on your region:
 
 <Tabs>
   <Tab title="Email Authentication">
-    [→ Email API Authentication Guide](/authentication/email)
+    [→ Email API Authentication Guide](email-api-authentication)
 
     Learn about Email API credentials, domain verification, and multi-region setup.
   </Tab>
 
   <Tab title="SMS Authentication">
-    [→ SMS API Authentication Guide](/authentication/sms)
+    [→ SMS API Authentication Guide](sms-api-authentication)
 
     Explore SMS API credentials, template requirements, and implementation examples.
   </Tab>
 
-  <Tab title="Error Handling">
-    [→ Error Handling Guide](/error-handling)
 
-    Understand authentication errors and implement robust error handling.
-  </Tab>
 </Tabs>
 
 ## Need Help?
