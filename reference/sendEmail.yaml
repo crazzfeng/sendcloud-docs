@@ -107,11 +107,13 @@ paths:
                     "header2": "value2"})
                   example: '{"header1": "value1", "header2": "value2"}'
                 attachments:
-                  type: string
-                  format: binary
+                  type: array
                   description: >-
                     Email attachments. Must use multipart/form-data when
                     submitting
+                  items:
+                    type: string
+                    format: binary
                 xsmtpapi:
                   type: string
                   description: SMTP extension. See X-SMTPAPI for details
