@@ -102,8 +102,6 @@ paths:
                               Address list last update time (format: yyyy-MM-dd
                               HH:mm:ss)
                             example: '2015-09-28 17:59:15'
-        '400':
-          description: Bad request (e.g., duplicate list name, missing required parameters)
       parameters:
         - in: query
           name: address
@@ -215,8 +213,6 @@ paths:
                                 Address list last update time (format:
                                 yyyy-MM-dd HH:mm:ss)
                               example: '2015-09-28 17:59:15'
-        '400':
-          description: Bad request (e.g., invalid pagination parameters)
       parameters:
         - in: query
           name: address
@@ -290,10 +286,6 @@ paths:
                           Number of address lists successfully updated (1 =
                           success, 0 = no update)
                         example: 1
-        '400':
-          description: Bad request (e.g., no parameters to update)
-        '404':
-          description: Address list not found (invalid list name)
       parameters:
         - in: query
           name: address
@@ -373,8 +365,6 @@ paths:
                           Number of address lists successfully deleted (1 =
                           success, 0 = no deletion)
                         example: 1
-        '404':
-          description: Address list not found (invalid list name)
       parameters:
         - in: query
           name: address
@@ -436,8 +426,6 @@ paths:
                         type: integer
                         description: Number of members returned in the current query
                         example: 10
-        '404':
-          description: Address list not found (invalid list name)
       parameters:
         - in: query
           name: address
@@ -542,8 +530,6 @@ paths:
                               Member last update time (format: yyyy-MM-dd
                               HH:mm:ss)
                             example: '2015-09-28 17:59:15'
-        '404':
-          description: Member not found (invalid address or member email)
       parameters:
         - in: query
           name: address
@@ -613,8 +599,6 @@ paths:
                         type: integer
                         description: Number of invalid email addresses (not added)
                         example: 1
-        '404':
-          description: Address list not found (invalid list name)
       parameters:
         - in: query
           name: address
@@ -753,8 +737,6 @@ paths:
                         type: integer
                         description: Number of members successfully removed
                         example: 3
-        '404':
-          description: Address list not found (invalid list name)
       parameters:
         - in: query
           name: address
