@@ -1,4 +1,4 @@
 ---
-title: User Information
-hidden: true
+title: Account
+hidden: false
 ---
