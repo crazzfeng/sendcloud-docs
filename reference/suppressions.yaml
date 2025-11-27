@@ -214,56 +214,6 @@ paths:
       security:
         - apiUser: []
           apiKey: []
-    get:
-      summary: Delete Address from Bounce List (GET)
-      description: Remove a specified email address from the bounce list using GET method
-      operationId: deleteBouncedEmailGet
-      tags:
-        - Suppressions
-      responses:
-        '200':
-          description: Request successful
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  statusCode:
-                    type: integer
-                    description: Response status code (200 indicates success)
-                    example: 200
-                  message:
-                    type: string
-                    description: Success or failure message
-                    example: request was successful
-                  result:
-                    type: boolean
-                    description: >-
-                      Whether the request succeeded (true=success,
-                      false=failure)
-                    example: true
-                  info:
-                    type: object
-                    properties:
-                      count:
-                        type: integer
-                        description: Number of successfully unblocked addresses
-                        example: 1
-        '400':
-          description: Bad request (e.g., invalid email format)
-        '401':
-          description: Authentication failed (invalid apiUser or apiKey)
-      parameters:
-        - in: query
-          name: email
-          schema:
-            type: string
-          required: true
-          description: Email address to remove from the bounce list
-          example: invalid@example.com
-      security:
-        - apiUser: []
-          apiKey: []
   /api/unsubscribe/list:
     get:
       summary: Get Info from Unsubscribe List
