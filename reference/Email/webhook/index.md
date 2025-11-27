@@ -1,5 +1,6 @@
 ---
 title: Webhook
+excerpt: 'A webhook is a mechanism for asynchronously receiving event notifications. '
 hidden: false
 ---
 <br />
