@@ -364,45 +364,6 @@ paths:
                         type: number
                         description: Account balance
                         example: 0
-        '400':
-          description: Invalid parameter
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  statusCode:
-                    type: integer
-                    example: 400
-                  message:
-                    type: string
-                    example: Invalid parameter
-        '401':
-          description: Authentication failed
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  statusCode:
-                    type: integer
-                    example: 401
-                  message:
-                    type: string
-                    example: Authentication failed
-        '500':
-          description: Server error
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  statusCode:
-                    type: integer
-                    example: 500
-                  message:
-                    type: string
-                    example: Server error
       parameters:
         - in: query
           name: name
@@ -495,10 +456,6 @@ paths:
                             example: >-
                               v=DMARC1; p=none; sp=none;
                               rua=mailto:dmarc@example.com
-        '400':
-          description: Parameter error or verification failed
-        '404':
-          description: Domain not found
       parameters:
         - in: query
           name: name
@@ -539,10 +496,6 @@ paths:
                     type: boolean
                     description: Whether the request was processed successfully
                     example: true
-        '400':
-          description: Parameter error or deletion failed
-        '404':
-          description: Domain not found
       parameters:
         - in: query
           name: name
