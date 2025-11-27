@@ -112,38 +112,6 @@ paths:
                         type: integer
                         description: Number of returned WebHook configurations
                         example: 6
-        '401':
-          description: Authentication failed (invalid apiUser or apiKey)
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  statusCode:
-                    type: integer
-                    example: 401
-                  message:
-                    type: string
-                    example: 'authentication failed: invalid apiKey'
-                  result:
-                    type: boolean
-                    example: false
-        '500':
-          description: Server error (internal service exception)
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  statusCode:
-                    type: integer
-                    example: 500
-                  message:
-                    type: string
-                    example: 'server error: please try again later'
-                  result:
-                    type: boolean
-                    example: false
   /api/webhook/add:
     post:
       summary: Add Webhook
@@ -197,61 +165,6 @@ paths:
                   result:
                     type: boolean
                     example: true
-        '400':
-          description: Bad request
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  statusCode:
-                    type: integer
-                    example: 400
-                  message:
-                    type: string
-                    example: 'invalid parameter: categoryName is required'
-                  result:
-                    type: boolean
-                    example: false
-        '401':
-          description: Authentication failed
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  statusCode:
-                    type: integer
-                    example: 401
-                  message:
-                    type: string
-                    example: 'authentication failed: invalid apiKey'
-                  result:
-                    type: boolean
-                    example: false
-                  info:
-                    type: object
-                    properties:
-                      count:
-                        type: integer
-                        description: Number of updated WebHook configurations
-                        example: 1
-        '500':
-          description: Server error
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  statusCode:
-                    type: integer
-                    example: 500
-                  message:
-                    type: string
-                    example: 'server error: please try again later'
-                  result:
-                    type: boolean
-                    example: false
   /api/webhook/update:
     post:
       summary: Update Webhook
@@ -327,56 +240,6 @@ paths:
                         type: integer
                         description: Number of updated WebHook configurations
                         example: 1
-        '400':
-          description: Bad request
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  statusCode:
-                    type: integer
-                    example: 400
-                  message:
-                    type: string
-                    example: >-
-                      invalid parameter: only one of newCategoryName, newUrl,
-                      newEvent can be modified
-                  result:
-                    type: boolean
-                    example: false
-        '401':
-          description: Authentication failed
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  statusCode:
-                    type: integer
-                    example: 401
-                  message:
-                    type: string
-                    example: 'authentication failed: invalid apiKey'
-                  result:
-                    type: boolean
-                    example: false
-        '500':
-          description: Server error
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  statusCode:
-                    type: integer
-                    example: 500
-                  message:
-                    type: string
-                    example: 'server error: please try again later'
-                  result:
-                    type: boolean
-                    example: false
   /api/webhook/delete:
     post:
       summary: Delete Webhook
@@ -438,54 +301,6 @@ paths:
                         type: integer
                         description: Number of deleted WebHook configurations
                         example: 1
-        '400':
-          description: Bad request
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  statusCode:
-                    type: integer
-                    example: 400
-                  message:
-                    type: string
-                    example: 'invalid parameter: categoryName and event are required'
-                  result:
-                    type: boolean
-                    example: false
-        '401':
-          description: Authentication failed
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  statusCode:
-                    type: integer
-                    example: 401
-                  message:
-                    type: string
-                    example: 'authentication failed: invalid apiKey'
-                  result:
-                    type: boolean
-                    example: false
-        '500':
-          description: Server error
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  statusCode:
-                    type: integer
-                    example: 500
-                  message:
-                    type: string
-                    example: 'server error: please try again later'
-                  result:
-                    type: boolean
-                    example: false
 components:
   securitySchemes:
     apiUser:
