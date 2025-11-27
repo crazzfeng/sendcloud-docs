@@ -107,7 +107,8 @@ paths:
                     "header2": "value2"})
                   example: '{"header1": "value1", "header2": "value2"}'
                 attachments:
-                  type: object
+                  type: string
+                  format: binary
                   description: >-
                     Email attachments. Must use multipart/form-data when
                     submitting
