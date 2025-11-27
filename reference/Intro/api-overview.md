@@ -574,7 +574,7 @@ format of variable: `%` at head and tail, between which is the customized variab
 ```
 Hi,%name%: # name is variable
 
-    Welcome to register SendCloud, this is your verification code: %active_code%. # active_code is variable
+    Welcome to register Aurora SendCloud, this is your verification code: %active_code%. # active_code is variable
 ```
 
 Usages of variable:
