@@ -1,0 +1,125 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Email
+servers:
+  - url: https://api.aurorasendcloud.com/
+    description: |
+      Singapore Region
+      - Base URL: https://api.aurorasendcloud.com/
+  - url: https://api-us.aurorasendcloud.com/
+    description: |
+      US (Silicon Valley) Region
+      - Base URL: https://api-us.aurorasendcloud.com/
+  - url: https://api-hk.aurorasendcloud.com/
+    description: |
+      CN (Hong Kong SAR) Region
+      - Base URL: https://api-hk.aurorasendcloud.com/
+tags:
+  - name: Accout
+    description: Interfaces for querying account basic information and configuration
+paths:
+  /api/user/info:
+    get:
+      summary: Get Account Info
+      description: >-
+        Get basic information of the current API account (including account
+        type, quota, contact information, etc.)
+      operationId: queryAccountBasicInfoGet
+      tags:
+        - Accout
+      security:
+        - apiUser: []
+          apiKey: []
+      responses:
+        '200':
+          description: Request successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    description: Response status code (200 indicates success)
+                    example: 200
+                  message:
+                    type: string
+                    description: >-
+                      Prompt message for request result (success/failure
+                      description)
+                    example: request was successful
+                  result:
+                    type: boolean
+                    description: >-
+                      Whether the request was processed successfully (true =
+                      success, false = failure)
+                    example: true
+                  info:
+                    type: object
+                    description: Account basic information
+                    properties:
+                      apiUser:
+                        type: string
+                        description: Current API user name
+                        example: test_api_user
+                      accountType:
+                        type: string
+                        description: Account type (e.g., free, standard, enterprise)
+                        example: standard
+                      companyName:
+                        type: string
+                        description: Company name registered with the account
+                        example: IFAXIN Technology Co., Ltd.
+                      contactPerson:
+                        type: string
+                        description: Contact person for the account
+                        example: John Doe
+                      contactEmail:
+                        type: string
+                        description: Contact email for the account
+                        example: contact@example.com
+                      contactPhone:
+                        type: string
+                        description: >-
+                          Contact phone number for the account (hidden middle
+                          digits if not verified)
+                        example: 138****1234
+                      remainingQuota:
+                        type: integer
+                        description: >-
+                          Remaining email sending quota (0 = unlimited for
+                          enterprise accounts)
+                        example: 5000
+                      totalQuota:
+                        type: integer
+                        description: Total email sending quota per cycle (0 = unlimited)
+                        example: 10000
+                      cycleType:
+                        type: string
+                        description: >-
+                          Quota cycle type (monthly = monthly reset, annual =
+                          annual reset)
+                        example: monthly
+                      gmtCreated:
+                        type: string
+                        format: date-time
+                        description: 'Account creation time (format: yyyy-MM-dd HH:mm:ss)'
+                        example: '2024-01-15 09:30:00'
+        '401':
+          description: Authentication failed (invalid apiUser or apiKey)
+components:
+  securitySchemes:
+    apiUser:
+      type: apiKey
+      in: query
+      name: apiUser
+      description: API_USER (authentication parameter, obtained from the SendCloud console)
+    apiKey:
+      type: apiKey
+      in: query
+      name: apiKey
+      description: API_KEY (authentication parameter, obtained from the SendCloud console)
+x-readme:
+  explorer-enabled: true
+  proxy-enabled: true
