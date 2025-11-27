@@ -8,8 +8,6 @@ api:
   operationId: basic-email
 hidden: false
 ---
-<br />
-
 Tips:
 
 1. Assuming that “from” is `IFAXIN support<support@ifaxin.com>`.If “fromName” is empty, “IFAXIN support” will be set as “fromName”; if not, no processing is needed.
