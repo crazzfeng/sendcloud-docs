@@ -5,6 +5,6 @@ excerpt: >-
   lists, etc.)
 api:
   file: sendEmail.yaml
-  operationId: send-regular-email
+  operationId: basic-email
 hidden: false
 ---

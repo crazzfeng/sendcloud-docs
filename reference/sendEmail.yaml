@@ -25,7 +25,7 @@ paths:
       description: >-
         Send regular emails with custom content (supports attachments, CC/BCC,
         address lists, etc.)
-      operationId: send-regular-email
+      operationId: basic-email
       tags:
         - Send Emai
       security:
@@ -192,74 +192,6 @@ paths:
                         example:
                           - >-
                             1447054895514_15555555_32350_1350.sc-inbound0$ben@ifaxin.com
-        '400':
-          description: >-
-            Bad request (invalid parameters, e.g., missing required fields,
-            illegal email format, oversized attachments)
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  statusCode:
-                    type: integer
-                    example: 400
-                  message:
-                    type: string
-                    example: 'invalid parameter: from email is not verified'
-                  result:
-                    type: boolean
-                    example: false
-        '401':
-          description: Authentication failed (invalid apiUser, apiKey, or signature)
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  statusCode:
-                    type: integer
-                    example: 401
-                  message:
-                    type: string
-                    example: 'authentication failed: invalid apiKey'
-                  result:
-                    type: boolean
-                    example: false
-        '403':
-          description: >-
-            Permission denied (no email sending permission or sender domain not
-            verified)
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  statusCode:
-                    type: integer
-                    example: 403
-                  message:
-                    type: string
-                    example: 'permission denied: sender domain not verified'
-                  result:
-                    type: boolean
-                    example: false
-        '500':
-          description: Server error (internal service exception, please retry later)
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  statusCode:
-                    type: integer
-                    example: 500
-                  message:
-                    type: string
-                    example: 'server error: please try again later'
-                  result:
-                    type: boolean
-                    example: false
   /api/mail/sendtemplate:
     post:
       summary: Send Email via Template
@@ -427,76 +359,6 @@ paths:
                         example:
                           - >-
                             1447054895514_15555555_32350_1350.sc-inbound0$ben@ifaxin.com
-        '400':
-          description: >-
-            Bad request (invalid template call name, incorrect templateData
-            format, missing parameters)
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  statusCode:
-                    type: integer
-                    example: 400
-                  message:
-                    type: string
-                    example: 'invalid parameter: templateData is not a valid JSON string'
-                  result:
-                    type: boolean
-                    example: false
-        '401':
-          description: Authentication failed
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  statusCode:
-                    type: integer
-                    example: 401
-                  message:
-                    type: string
-                    example: 'authentication failed: invalid apiKey'
-                  result:
-                    type: boolean
-                    example: false
-        '403':
-          description: >-
-            Permission denied (no template sending permission or template not
-            authorized)
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  statusCode:
-                    type: integer
-                    example: 403
-                  message:
-                    type: string
-                    example: >-
-                      permission denied: template not authorized for this
-                      apiUser
-                  result:
-                    type: boolean
-                    example: false
-        '500':
-          description: Server error
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  statusCode:
-                    type: integer
-                    example: 500
-                  message:
-                    type: string
-                    example: 'server error: please try again later'
-                  result:
-                    type: boolean
-                    example: false
   /api/mail/sendcalendar:
     post:
       summary: Send Calendar Email
@@ -709,72 +571,6 @@ paths:
                         type: string
                         description: Calendar UID (for future cancellation/update)
                         example: cal_123456789
-        '400':
-          description: >-
-            Bad request (invalid time format, missing UID for
-            cancellation/update, etc.)
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  statusCode:
-                    type: integer
-                    example: 400
-                  message:
-                    type: string
-                    example: 'invalid parameter: uid is required for cancel operation'
-                  result:
-                    type: boolean
-                    example: false
-        '401':
-          description: Authentication failed
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  statusCode:
-                    type: integer
-                    example: 401
-                  message:
-                    type: string
-                    example: 'authentication failed: invalid apiKey'
-                  result:
-                    type: boolean
-                    example: false
-        '403':
-          description: Permission denied (no calendar sending permission)
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  statusCode:
-                    type: integer
-                    example: 403
-                  message:
-                    type: string
-                    example: 'permission denied: no calendar sending permission'
-                  result:
-                    type: boolean
-                    example: false
-        '500':
-          description: Server error
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  statusCode:
-                    type: integer
-                    example: 500
-                  message:
-                    type: string
-                    example: 'server error: please try again later'
-                  result:
-                    type: boolean
-                    example: false
   /api/mail/taskinfo:
     get:
       summary: Status of Sending by Address List
@@ -848,72 +644,6 @@ paths:
                             description: >-
                               Address list request status (e.g., Completion of
                               the request)
-        '400':
-          description: Bad request (missing taskId, invalid pagination parameters)
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  statusCode:
-                    type: integer
-                    example: 400
-                  message:
-                    type: string
-                    example: 'invalid parameter: taskId is required'
-                  result:
-                    type: boolean
-                    example: false
-        '401':
-          description: Authentication failed
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  statusCode:
-                    type: integer
-                    example: 401
-                  message:
-                    type: string
-                    example: 'authentication failed: invalid apiKey'
-                  result:
-                    type: boolean
-                    example: false
-        '403':
-          description: >-
-            Permission denied (no task query permission or task not belonging to
-            the apiUser)
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  statusCode:
-                    type: integer
-                    example: 403
-                  message:
-                    type: string
-                    example: 'permission denied: task does not belong to this apiUser'
-                  result:
-                    type: boolean
-                    example: false
-        '500':
-          description: Server error
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  statusCode:
-                    type: integer
-                    example: 500
-                  message:
-                    type: string
-                    example: 'server error: please try again later'
-                  result:
-                    type: boolean
-                    example: false
 components:
   securitySchemes:
     apiUser:
