@@ -1,0 +1,10 @@
+- querybouncelistget
+- deletebouncedemailpost
+- deletebouncedemailget
+- query-unsubscribe-list-1
+- add-unsubscribe-get-1
+- delete-unsubscribe-get-1
+- querycomplaintlistget
+- deletecomplaint
+- queryblocklistget
+- addblockaddress
