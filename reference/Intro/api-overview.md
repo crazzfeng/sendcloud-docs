@@ -154,6 +154,7 @@ For applications that require SMTP integration, use the regional SMTP server tha
   </Tab>
 </Tabs>
 
+
 ### SMS API (Single Region)
 
 The SMS API uses a **unified global base URL** (no regional endpoints required):
@@ -515,3 +516,71 @@ All API responses (email and SMS) follow a consistent JSON structure:
 </Cards>
 
 **Ready to start building?** Use the REST API examples for advanced integrations or configure SMTP settings for simple email sending. Both methods support the same regional optimization and authentication credentials.
+
+<br />
+
+# Regular Use
+
+## Preparation
+
+1. Before formal use, please make sure to create another **domain name** and **API_ USER**, do not use the test domain name and API_USER.
+2. Estimate your own sending volume and purchase the sending volume of e-mail
+3. Sendcloud has a limit on the sending quota for each account. For details, please refer to request quota of the day. If the quota cannot meet the business needs, please contact customer service
+
+<br />
+
+## Optimize Sending
+
+How to improve the transmission efficiency and effect can be seen in the following points:
+
+* Trigger and bulk mail under the same domain name, do not send mixed
+* Reduce the situation that email address does not exist and format error
+* Don't violate the rules and regulations, don't fabricate the contents of e-mail, and don't use the same contents repeatedly
+* There are more optimization schemes for **s +**, which can be opened on demand
+
+<br />
+
+# Interpretation
+
+## Amount requested on the same day
+
+The quota that users can request every day, that is, the maximum number of mail that can be sent to sendcloud every day
+The amount requested on the day is a variable value, which will be increased or decreased according to the reputation and daily circulation
+
+> When the user request exceeds this value, the user will receive an error prompt of 'request quota exceeded'
+
+**Free users**
+Register account, activate email, provide daily quota: 50
+
+**Paying users**
+Recharge, provide the basic quota of 3000, and then increase or decrease the quota automatically according to the credit rating.
+
+## Credibility
+
+The user's reputation score on sendcloud platform. "Reputation" and "request quota of the day" are two highly positive correlation values. When the reputation is less than 0, the request quota of the day is 0
+The score is calculated in real time by sendcloud based on the user's email data
+
+* ++ high quality "delivery rate", "open rate" and "click through rate" will lead to bonus points
+* -- a large number of "invalid addresses", "spam reports" and "unsubscribe" will result in score reduction
+
+**Note: the proliferation of "invalid addresses" and "spam reports" in a short period of time will directly lead to negative reputation, and users cannot continue to request.**
+
+## Variable
+
+variable」is allowed in emails.
+
+format of variable: `%` at head and tail, between which is the customized variable. Example:
+
+```
+Hi,%name%: # name is variable
+
+    Welcome to register SendCloud, this is your verification code: %active_code%. # active_code is variable
+```
+
+Usages of variable:
+
+1. Used as placeholder in _regular delivery_ and _template delivery_
+2. Set variable value in _address list_, _X-SMTPAPI_
+3. SendCloud will replace corresponding variable value in emails according to different recipients
+
+**Note**: email subject can include  variables
