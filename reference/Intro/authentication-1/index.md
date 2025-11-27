@@ -17,11 +17,11 @@ Aurora SendCloud provides secure parameter-based authentication for both Email a
 ## Authentication by Service
 
 <Cards columns="2">
-  <Card title="Email API Authentication" href="/email-api-authentication" icon="envelope">
+  <Card title="Email API Authentication" href="email-api-authentication" icon="envelope">
     Complete guide to Email API authentication, including `apiUser` and `apiKey` parameters, domain verification, and regional endpoints.
   </Card>
 
-  <Card title="SMS API Authentication" href="/sms-api-authentication" icon="sms">
+  <Card title="SMS API Authentication" href="sms-api-authentication" icon="sms">
     Comprehensive SMS API authentication guide covering `smsUser` and `smsKey` parameters, template management, and implementation.
   </Card>
 </Cards>
