@@ -1,3 +1,4 @@
+- send-emai
 - email-template
 - address-list
 - email-label
@@ -10,4 +11,3 @@
 - suppressions
 - inbound-route
 - webhook
-- send-emai
