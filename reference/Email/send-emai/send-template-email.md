@@ -7,25 +7,77 @@ api:
   file: sendEmail.yaml
   operationId: send-template-email
 hidden: false
+link:
+  new_tab: false
 ---
-Tips:
+## Important Guidelines
 
-1. Assuming that “from” is `IFAXIN support<support@ifaxin.com>`.If “fromName” is empty, “IFAXIN support” will be set as “fromName”; if not, no processing is needed.
+<Accordion title="Email Sender Configuration" icon="envelope">
 
-2. When sending emails with address lists, specify lists with parameter “to”. Each address included in the email will be sent individually. Address lists cannot be more than 5. cc, bcc and xsmtpapi turn to invalid now.
+**Default Sender**: All emails are sent from `IFAXIN support<support@ifaxin.com>` by default.
 
-3. When sending emails without address list, designate recipients with “to”. Multiple recipients are sent through multi-transmission (all recipients will be displayed). Designate cc recipients with parameter “cc”, and bcc recipients with “bcc”.
+- If `fromName` is empty → automatically set to "IFAXIN support"
+- If `fromName` is provided → use the provided value as-is
 
-4. When sending emails without address list, specify recipients with xsmtpapi. Multiple recipients are sent individually. Parameters “to”, “cc” and “bcc” turn to invalid now.
+</Accordion>
 
-5. Recipients of “to”, “cc” and “bcc” cannot be more than 100; recipients of “to” in xsmtpapi cannot be more than 100.
+<Accordion title="Address List vs Individual Recipients" icon="users">
 
-6. Email subject defaults to the topic of emails. If both are empty, an error is received.
+### Using Address Lists (`useAddressList = true`)
+- Specify recipients using the `to` parameter
+- Each address receives an **individual email** (not visible to other recipients)  
+- **Limit**: Maximum 5 addresses per request
+- **Note**: `cc`, `bcc`, and `xsmtpapi` parameters are ignored
 
-7. Variable. is allowed in subject, html and plain. As special character, “%” needs to be processed in HTTP request.
+### Sending to Multiple Recipients (without address list)
+Choose one of these methods:
 
-8. When using return receipt, recipients can choose whether to send reading receipt to “from” after receiving emails.
+**Method 1: Standard Multi-transmission**
+- Use `to` for primary recipients (all recipients visible to each other)
+- Use `cc` for carbon copy recipients  
+- Use `bcc` for blind carbon copy recipients
+- **Limit**: Maximum 100 recipients total across all fields
 
-9. If a Key in the parameter headers starts with "SC-Custom-", this Key:Value will be returned to the user through WebHook. Key:Value must be a string, and Value must not contain special characters '.'. When a Key is passed in, the corresponding Value cannot be empty, otherwise an error 40902, "Unknown exception occurred in mail processing" will be returned.
+**Method 2: Individual Delivery via xsmtpapi**
+- Specify recipients in `xsmtpapi` parameter
+- Each recipient gets an **individual email** (not visible to others)
+- **Limit**: Maximum 100 recipients in xsmtpapi
+- **Note**: `to`, `cc`, and `bcc` parameters are ignored when using this method
 
-10. When using an address list (useAddressList = true), headers do not exceed 1024 bytes.
+</Accordion>
+
+<Accordion title="Email Subject and Content" icon="edit">
+
+### Subject Line
+- **Default**: Uses the email template's subject
+- **Fallback**: If both template subject and provided subject are empty, an error occurs
+- **Variables**: Supports dynamic variables (e.g., `%variable_name%`)
+
+### Email Body  
+- Supports variables in both HTML (`html`) and plain text (`plain`) content
+- **Special Character**: `%` must be properly encoded in HTTP requests
+
+</Accordion>
+
+<Accordion title="Advanced Features" icon="cog">
+
+### Read Receipts
+When enabled, recipients can choose to send reading confirmation back to the sender (`from` address).
+
+### Custom Headers
+- Headers starting with `"SC-Custom-"` will be returned via WebHook
+- **Format**: Key:Value must be strings
+- **Restriction**: Values cannot contain special characters like `.`
+- **Required**: When a Key is provided, Value cannot be empty (error 40902 will occur)
+- **Size Limit**: When using address lists, headers cannot exceed 1024 bytes
+
+</Accordion>
+
+## Quick Reference
+
+| Feature | Limit | Notes |
+|---------|-------|-------|
+| Address List Recipients | 5 max | Individual delivery |
+| Standard Recipients (to/cc/bcc) | 100 max total | Multi-transmission |
+| xsmtpapi Recipients | 100 max | Individual delivery |
+| Custom Headers | 1024 bytes | With address lists only |
