@@ -23,7 +23,7 @@ tags:
 paths:
   /api/data/emailStatus:
     get:
-      summary: Email Status List
+      summary: Get Emails Status
       description: Check status of emails in the list
       operationId: emailStatusGet
       tags:
