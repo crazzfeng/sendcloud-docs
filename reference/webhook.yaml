@@ -2,11 +2,23 @@ openapi: 3.0.0
 info:
   version: 1.0.0
   title: Email
+  description: >-
+    Webhook is a mechanism for sendcloud to asynchronously push the data of
+    customers' attention to certain events to the customer's callback URL.  You
+    can use API to query, add, update and delete callback URL
 servers:
-  - url: https://api.aurorasendcloud.com
-    description: Production server
-  - url: https://api.sendcloud.net
-    description: Alternative production server
+  - url: https://api.aurorasendcloud.com/
+    description: |
+      Singapore Region
+      - Base URL: https://api.aurorasendcloud.com/
+  - url: https://api-us.aurorasendcloud.com/
+    description: |
+      US (Silicon Valley) Region
+      - Base URL: https://api-us.aurorasendcloud.com/
+  - url: https://api-hk.aurorasendcloud.com/
+    description: |
+      CN (Hong Kong SAR) Region
+      - Base URL: https://api-hk.aurorasendcloud.com/
 tags:
   - name: Webhook
     description: >-
@@ -17,7 +29,7 @@ tags:
 paths:
   /api/webhook/list:
     get:
-      summary: Query Webhook List
+      summary: Get WebHooks List
       description: >-
         Get the list of all configured webhooks under the account. Supports
         filtering by event type, webhook status, and pagination. The maximum
@@ -242,7 +254,7 @@ paths:
                     example: false
   /api/webhook/update:
     post:
-      summary: Update Webhook Configuration
+      summary: Update Webhook
       description: >-
         Modify the configuration of an existing webhook. Supports updating
         webhook name, event type, callback URL, status, retry settings, etc. The

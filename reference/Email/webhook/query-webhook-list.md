@@ -1,5 +1,5 @@
 ---
-title: Query Webhook List
+title: Get WebHooks List
 excerpt: >-
   Get the list of all configured webhooks under the account. Supports filtering
   by event type, webhook status, and pagination. The maximum number of results

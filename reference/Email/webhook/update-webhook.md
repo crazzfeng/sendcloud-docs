@@ -1,5 +1,5 @@
 ---
-title: Update Webhook Configuration
+title: Update Webhook
 excerpt: >-
   Modify the configuration of an existing webhook. Supports updating webhook
   name, event type, callback URL, status, retry settings, etc. The signature
