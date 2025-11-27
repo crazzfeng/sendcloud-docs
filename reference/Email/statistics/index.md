@@ -1,4 +1,4 @@
 ---
 title: Statistics
-hidden: true
+hidden: false
 ---
