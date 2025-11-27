@@ -2,6 +2,7 @@
 - email-template
 - address-list
 - email-label
+- sending-domain
 - api_user
 - tracking-domain
 - user-information
@@ -10,4 +11,3 @@
 - suppressions
 - inbound-route
 - webhook
-- sending-domain
