@@ -203,12 +203,6 @@ paths:
                             subStatusDesc:
                               type: string
                               description: Sub status description
-        '400':
-          description: Bad request
-        '401':
-          description: Authentication failed
-        '500':
-          description: Server error
   /api/openandclick/list:
     get:
       summary: Get Email Tracking Data
