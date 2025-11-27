@@ -306,54 +306,6 @@ paths:
                                 type: number
                                 description: Percentage of invalid emails
                                 example: 41.66
-        '400':
-          description: Bad request (invalid parameters, e.g. missing time span)
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  statusCode:
-                    type: integer
-                    example: 400
-                  message:
-                    type: string
-                    example: 'invalid parameter: startDate/endDate or days is required'
-                  result:
-                    type: boolean
-                    example: false
-        '401':
-          description: Authentication failed (invalid apiUser or apiKey)
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  statusCode:
-                    type: integer
-                    example: 401
-                  message:
-                    type: string
-                    example: 'authentication failed: invalid apiKey'
-                  result:
-                    type: boolean
-                    example: false
-        '500':
-          description: Server error (internal service exception)
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  statusCode:
-                    type: integer
-                    example: 500
-                  message:
-                    type: string
-                    example: 'server error: please try again later'
-                  result:
-                    type: boolean
-                    example: false
   /api/stathour/list:
     get:
       summary: Get Statistics by Hour
@@ -541,54 +493,6 @@ paths:
                               type: number
                               description: Reading conversion ratio
                               example: 0
-        '400':
-          description: Bad request (invalid parameters, e.g. missing time span)
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  statusCode:
-                    type: integer
-                    example: 400
-                  message:
-                    type: string
-                    example: 'invalid parameter: startDate/endDate or days is required'
-                  result:
-                    type: boolean
-                    example: false
-        '401':
-          description: Authentication failed (invalid apiUser or apiKey)
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  statusCode:
-                    type: integer
-                    example: 401
-                  message:
-                    type: string
-                    example: 'authentication failed: invalid apiKey'
-                  result:
-                    type: boolean
-                    example: false
-        '500':
-          description: Server error (internal service exception)
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  statusCode:
-                    type: integer
-                    example: 500
-                  message:
-                    type: string
-                    example: 'server error: please try again later'
-                  result:
-                    type: boolean
-                    example: false
   /api/invalidstat/list:
     get:
       summary: Get Invalid Emails Classifications Statistics by Day
@@ -789,54 +693,6 @@ paths:
                                 type: integer
                                 description: Other invalid types
                                 example: 0
-        '400':
-          description: Bad request (invalid parameters, e.g. missing time span)
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  statusCode:
-                    type: integer
-                    example: 400
-                  message:
-                    type: string
-                    example: 'invalid parameter: startDate/endDate or days is required'
-                  result:
-                    type: boolean
-                    example: false
-        '401':
-          description: Authentication failed (invalid apiUser or apiKey)
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  statusCode:
-                    type: integer
-                    example: 401
-                  message:
-                    type: string
-                    example: 'authentication failed: invalid apiKey'
-                  result:
-                    type: boolean
-                    example: false
-        '500':
-          description: Server error (internal service exception)
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  statusCode:
-                    type: integer
-                    example: 500
-                  message:
-                    type: string
-                    example: 'server error: please try again later'
-                  result:
-                    type: boolean
-                    example: false
 components:
   securitySchemes:
     apiUser:
