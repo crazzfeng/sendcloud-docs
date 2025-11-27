@@ -116,7 +116,7 @@ paths:
                     format: binary
                 xsmtpapi:
                   type: string
-                  description: SMTP extension. See X-SMTPAPI for details
+                  description: SMTP extension. See [X-SMTPAPI](X-SMTPAPI) for details
                   example: '{"to": ["ben@ifaxin.com", "joe@ifaxin.com"]}'
                 plain:
                   type: string
