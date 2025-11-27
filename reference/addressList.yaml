@@ -678,10 +678,6 @@ paths:
                           Number of members successfully updated (1 = success, 0
                           = no update)
                         example: 1
-        '400':
-          description: Bad request (e.g., no parameters to update)
-        '404':
-          description: Member not found (invalid address or member email)
       parameters:
         - in: query
           name: address
