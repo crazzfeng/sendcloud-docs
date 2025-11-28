@@ -359,62 +359,58 @@ paths:
                               Template default subject (can be overridden when
                               sending emails)
                             example: test_subject
-      parameters:
-        - in: query
-          name: invokeName
-          schema:
-            type: string
-          required: true
-          description: >-
-            Calling name of the new template (must be unique under the current
-            apiUser)
-          example: testtemplate
-        - in: query
-          name: name
-          schema:
-            type: string
-          required: true
-          description: >-
-            Name of the new template (used for management display in the
-            console)
-          example: test
-        - in: query
-          name: html
-          schema:
-            type: string
-          required: true
-          description: >-
-            Template content in HTML format (supports variable substitution with
-            {{variable}} syntax)
-          example: <p>add new template</p>
-        - in: query
-          name: text
-          schema:
-            type: string
-          required: false
-          description: >-
-            Template content in plain text format (optional, used when the email
-            client does not support HTML)
-          example: add new template
-        - in: query
-          name: subject
-          schema:
-            type: string
-          required: true
-          description: >-
-            Default subject of the new template (can be modified when sending
-            emails)
-          example: test_subject
-        - in: query
-          name: templateType
-          schema:
-            type: integer
-            enum:
-              - 0
-              - 1
-          required: true
-          description: Template type (0 = transactional template, 1 = marketing template)
-          example: 1
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+                - invokeName
+                - name
+                - html
+                - subject
+                - templateType
+              properties:
+                invokeName:
+                  type: string
+                  description: >-
+                    Calling name of the new template (must be unique under the
+                    current apiUser)
+                  example: testtemplate
+                name:
+                  type: string
+                  description: >-
+                    Name of the new template (used for management display in the
+                    console)
+                  example: test
+                html:
+                  type: string
+                  description: >-
+                    Template content in HTML format (supports variable
+                    substitution with {{variable}} syntax)
+                  example: <p>add new template</p>
+                text:
+                  type: string
+                  description: >-
+                    Template content in plain text format (optional, used when
+                    the email client does not support HTML)
+                  example: add new template
+                subject:
+                  type: string
+                  description: >-
+                    Default subject of the new template (can be modified when
+                    sending emails)
+                  example: test_subject
+                templateType:
+                  type: integer
+                  enum:
+                    - 0
+                    - 1
+                  description: >-
+                    Template type (0 = transactional template, 1 = marketing
+                    template)
+                  example: 1
       security:
         - apiUser: []
           apiKey: []
@@ -515,53 +511,48 @@ paths:
                           Number of templates successfully updated (1 = success,
                           0 = no template updated)
                         example: 1
-      parameters:
-        - in: query
-          name: invokeName
-          schema:
-            type: string
-          required: true
-          description: >-
-            Calling name of the template to update (unique identifier for the
-            template)
-          example: testtemplate
-        - in: query
-          name: name
-          schema:
-            type: string
-          required: false
-          description: New template name (optional, leave empty to keep the original name)
-          example: updated_test
-        - in: query
-          name: html
-          schema:
-            type: string
-          required: false
-          description: >-
-            New HTML content (optional, supports variable substitution, leave
-            empty to keep the original content)
-          example: '<p>update template with special characters: &<>"''</p>'
-        - in: query
-          name: subject
-          schema:
-            type: string
-          required: false
-          description: >-
-            New template subject (optional, leave empty to keep the original
-            subject)
-          example: updated_test_subject
-        - in: query
-          name: templateType
-          schema:
-            type: integer
-            enum:
-              - 0
-              - 1
-          required: false
-          description: >-
-            New template type (optional, 0 = transactional, 1 = marketing, leave
-            empty to keep the original type)
-          example: 1
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+                - invokeName
+              properties:
+                invokeName:
+                  type: string
+                  description: >-
+                    Calling name of the template to update (unique identifier
+                    for the template)
+                  example: testtemplate
+                name:
+                  type: string
+                  description: >-
+                    New template name (optional, leave empty to keep the
+                    original name)
+                  example: updated_test
+                html:
+                  type: string
+                  description: >-
+                    New HTML content (optional, supports variable substitution,
+                    leave empty to keep the original content)
+                  example: '<p>update template with special characters: &<>"''</p>'
+                subject:
+                  type: string
+                  description: >-
+                    New template subject (optional, leave empty to keep the
+                    original subject)
+                  example: updated_test_subject
+                templateType:
+                  type: integer
+                  enum:
+                    - 0
+                    - 1
+                  description: >-
+                    New template type (optional, 0 = transactional, 1 =
+                    marketing, leave empty to keep the original type)
+                  example: 1
       security:
         - apiUser: []
           apiKey: []
