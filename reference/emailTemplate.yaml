@@ -401,9 +401,7 @@ paths:
                   enum:
                     - 0
                     - 1
-                  description: >-
-                    Template type (0 = transactional template, 1 = marketing
-                    template)
+                  description: Template type (0 = triggered, 1 = bulk)
                   example: 1
       security:
         - apiUser: []
