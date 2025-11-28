@@ -153,14 +153,6 @@ paths:
             schema:
               type: object
               properties:
-                apiUser:
-                  type: string
-                  description: API_USER for identity verification
-                  example: '***'
-                apiKey:
-                  type: string
-                  description: API_KEY for identity verification
-                  example: '***'
                 name:
                   type: string
                   description: >-
@@ -176,8 +168,6 @@ paths:
                   description: Certificate private key (PEM format)
                   example: ''
               required:
-                - apiUser
-                - apiKey
                 - name
       responses:
         '200':
@@ -269,14 +259,6 @@ paths:
             schema:
               type: object
               properties:
-                apiUser:
-                  type: string
-                  description: API_USER for identity verification
-                  example: '***'
-                apiKey:
-                  type: string
-                  description: API_KEY for identity verification
-                  example: '***'
                 id:
                   type: integer
                   description: Track ID
@@ -294,8 +276,6 @@ paths:
                   description: Certificate private key (PEM format)
                   example: ''
               required:
-                - apiUser
-                - apiKey
                 - id
       responses:
         '200':
@@ -387,14 +367,6 @@ paths:
             schema:
               type: object
               properties:
-                apiUser:
-                  type: string
-                  description: API_USER for identity verification
-                  example: '***'
-                apiKey:
-                  type: string
-                  description: API_KEY for identity verification
-                  example: '***'
                 id:
                   type: string
                   description: Track ID; multiple IDs separated by semicolons
@@ -403,9 +375,6 @@ paths:
                   type: string
                   description: Track name; multiple names separated by semicolons
                   example: track.test.com
-              required:
-                - apiUser
-                - apiKey
       responses:
         '200':
           description: Request successful
@@ -500,21 +469,11 @@ paths:
             schema:
               type: object
               properties:
-                apiUser:
-                  type: string
-                  description: API_USER for identity verification
-                  example: '***'
-                apiKey:
-                  type: string
-                  description: API_KEY for identity verification
-                  example: '***'
                 id:
                   type: integer
                   description: Track ID
                   example: 68554
               required:
-                - apiUser
-                - apiKey
                 - id
       responses:
         '200':
