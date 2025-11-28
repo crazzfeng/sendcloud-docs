@@ -19,7 +19,7 @@ tags:
   - name: Accout
     description: Interfaces for querying account basic information and configuration
 paths:
-  /api/user/info:
+  /api/userinfo/get:
     get:
       summary: Get Account Info
       description: >-
