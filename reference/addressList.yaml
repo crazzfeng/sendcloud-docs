@@ -530,9 +530,7 @@ paths:
                             description: Custom variables for the member (optional)
                             additionalProperties:
                               type: string
-                            example:
-                              city: Beijing
-                              age: '30'
+                            example: '{"city": "Beijing", "age": "30"}'
                           gmtCreated:
                             type: string
                             format: date-time
