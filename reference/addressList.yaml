@@ -465,6 +465,21 @@ paths:
       security:
         - apiUser: []
           apiKey: []
+      parameters:
+        - in: query
+          name: address
+          schema:
+            type: string
+          required: true
+          description: Address list alias (formatted as xxx@maillist.sendcloud.org)
+          example: test@maillist.sendcloud.org
+        - in: query
+          name: members
+          schema:
+            type: string
+          required: true
+          description: Member email addresses, separated by semicolons
+          example: user1@example.com;user2@example.com
       responses:
         '200':
           description: Member details retrieved successfully
@@ -530,21 +545,6 @@ paths:
                               Member last update time (format: yyyy-MM-dd
                               HH:mm:ss)
                             example: '2015-09-28 17:59:15'
-      parameters:
-        - in: query
-          name: address
-          schema:
-            type: string
-          required: true
-          description: Address list alias (formatted as xxx@maillist.sendcloud.org)
-          example: test@maillist.sendcloud.org
-        - in: query
-          name: members
-          schema:
-            type: string
-          required: true
-          description: Member email addresses, separated by semicolons
-          example: user1@example.com;user2@example.com
   /api/addressmember/add:
     post:
       summary: Add Members to Address List
