@@ -861,6 +861,9 @@ paths:
             schema:
               type: object
               properties:
+                apiUserBlock:
+                  type: string
+                  description: Block API_USER
                 email:
                   type: string
                   description: >-
