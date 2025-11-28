@@ -571,7 +571,7 @@ paths:
       security:
         - apiUser: []
           apiKey: []
-  /apiv2/complaint/delete:
+  /api/complaint/delete:
     post:
       summary: Delete Addresses from Complaint List
       description: >-
