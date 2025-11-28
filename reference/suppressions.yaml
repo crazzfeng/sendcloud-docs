@@ -345,7 +345,7 @@ paths:
                         description: Number of returned email addresses
                         example: 1
   /api/unsubscribe/add:
-    get:
+    post:
       summary: Add Address to Unsubscribe List
       description: >-
         Add a specified email address to the unsubscribe list. No more emails
@@ -407,7 +407,7 @@ paths:
                             description: Unsubscribe time (addition time)
                             example: '2014-11-19 10:57:24'
   /api/unsubscribe/delete:
-    get:
+    post:
       summary: Delete Addresses from Unsubscribe List
       description: >-
         Delete email addresses from the unsubscribe list. Supports deleting by
@@ -961,7 +961,7 @@ paths:
                         description: Number of returned entries
                         example: 2
   /api/unintercept/add:
-    get:
+    post:
       summary: Add Address to Allow List
       description: >-
         Add email address or receiving domain to the uninterception list.
@@ -1036,7 +1036,7 @@ paths:
                               description: Create time
                               example: '2021-07-19 11:30:00'
   /api/unintercept/delete:
-    get:
+    post:
       summary: Delete Addresses from Allow  List
       description: >-
         Delete entries from the uninterception list. apiUserName defaults to
