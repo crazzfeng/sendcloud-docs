@@ -301,7 +301,7 @@ paths:
           apiKey: []
       requestBody:
         content:
-          application/form-data:
+          application/x-www-form-urlencoded:
             schema:
               type: object
               properties:
