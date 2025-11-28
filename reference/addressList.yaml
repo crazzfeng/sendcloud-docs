@@ -557,6 +557,38 @@ paths:
       security:
         - apiUser: []
           apiKey: []
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                address:
+                  type: string
+                  description: >-
+                    Address of the target address list (to which members are
+                    added)
+                  example: test@maillist.sendcloud.org
+                members:
+                  type: string
+                  description: >-
+                    Email addresses to add (separated by semicolons, supports
+                    batch addition)
+                  example: user1@example.com;user2@example.com;user3@example.com
+                names:
+                  type: string
+                  description: Member names are separated by semicolons
+                  example: John Smith;Jane Doe
+                vars:
+                  type: string
+                  description: >-
+                    Substitution variables are corresponding to members, and
+                    formatted as {"money":"1000"}; separated by semicolons
+                  example: '{"money":"1000"};{"money":"2000"}'
+              required:
+                - address
+                - members
       responses:
         '200':
           description: Members added successfully
@@ -585,37 +617,32 @@ paths:
                     type: object
                     description: Member addition result statistics
                     properties:
-                      successCount:
+                      count:
                         type: integer
-                        description: Number of members successfully added
-                        example: 10
-                      existCount:
-                        type: integer
-                        description: >-
-                          Number of members already existing in the list (not
-                          added again)
+                        description: Number of email addresses added successfully
                         example: 2
                       invalidCount:
                         type: integer
-                        description: Number of invalid email addresses (not added)
+                        description: Number of email addresses that failed to be added
                         example: 1
-      parameters:
-        - in: query
-          name: address
-          schema:
-            type: string
-          required: true
-          description: Address of the target address list (to which members are added)
-          example: test@maillist.sendcloud.org
-        - in: query
-          name: members
-          schema:
-            type: string
-          required: true
-          description: >-
-            Email addresses to add (separated by semicolons, supports batch
-            addition)
-          example: user1@example.com;user2@example.com;user3@example.com
+                      invalidAddressList:
+                        type: array
+                        items:
+                          type: string
+                        description: Details of email addresses that failed to be added
+                        example:
+                          - wang3.@gmail.com
+                      reasonList:
+                        type: array
+                        items:
+                          type: string
+                        description: >-
+                          The reason for the failed email address to be added
+                          (corresponding to the address details)
+                        example:
+                          - >-
+                            Member address does not meet the email address
+                            specification
   /api/addressmember/update:
     post:
       summary: Update Members Information
@@ -628,6 +655,43 @@ paths:
       security:
         - apiUser: []
           apiKey: []
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                address:
+                  type: string
+                  description: Address list alias (formatted as xxx@maillist.sendcloud.org)
+                  example: test@maillist.sendcloud.org
+                members:
+                  type: string
+                  description: >-
+                    Former addresses of the updated members, separated by
+                    semicolons
+                  example: user1@example.com;user2@example.com
+                newMembers:
+                  type: string
+                  description: >-
+                    Updated addresses of the updated members, separated by
+                    semicolons; corresponding to the members
+                  example: newuser1@example.com;newuser2@example.com
+                names:
+                  type: string
+                  description: Names of list members, separated by semicolons
+                  example: John Smith;Jane Doe
+                vars:
+                  type: string
+                  description: >-
+                    Substitution variables, corresponding to members, are
+                    formatted as {"money":"1000"}; separated by semicolons
+                  example: '{"money":"199"};{"money":"1900"}'
+              required:
+                - address
+                - members
+                - newMembers
       responses:
         '200':
           description: Member information updated successfully
@@ -658,41 +722,36 @@ paths:
                     properties:
                       count:
                         type: integer
-                        description: >-
-                          Number of members successfully updated (1 = success, 0
-                          = no update)
+                        description: Number of email addresses added successfully
                         example: 1
-      parameters:
-        - in: query
-          name: address
-          schema:
-            type: string
-          required: true
-          description: Address list alias (formatted as xxx@maillist.sendcloud.org)
-          example: test@maillist.sendcloud.org
-        - in: query
-          name: members
-          schema:
-            type: string
-          required: true
-          description: Member email addresses, separated by semicolons
-          example: user1@example.com;user2@example.com
-        - in: query
-          name: name
-          schema:
-            type: string
-          required: false
-          description: New member name (optional, leave empty to keep the original)
-          example: John Smith
-        - in: query
-          name: vars
-          schema:
-            type: string
-          required: false
-          description: >-
-            Custom variables in JSON format (optional, e.g.,
-            {"city":"Beijing","age":"30"})
-          example: '{"city": "Shanghai", "age": "25"}'
+                      addressNotExistCount:
+                        type: integer
+                        description: Email address does not exist
+                        example: 1
+                      invalidCount:
+                        type: integer
+                        description: Number of email addresses that failed to be added
+                        example: 2
+                      invalidAddressList:
+                        type: array
+                        items:
+                          type: string
+                        description: Details of email addresses that failed to be added
+                        example:
+                          - wang2.@gmail.com
+                          - wang0@gmail.com
+                      reasonList:
+                        type: array
+                        items:
+                          type: string
+                        description: >-
+                          The reason for the failed email address to be added
+                          (corresponding to the address details)
+                        example:
+                          - >-
+                            Member address does not meet the email address
+                            specification
+                          - address not found
   /api/addressmember/delete:
     post:
       summary: Delete Members in Address List
