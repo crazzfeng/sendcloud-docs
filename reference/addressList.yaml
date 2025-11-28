@@ -530,6 +530,7 @@ paths:
                             description: Custom variables for the member (optional)
                             additionalProperties:
                               type: string
+                            example: ''
                           gmtCreated:
                             type: string
                             format: date-time
