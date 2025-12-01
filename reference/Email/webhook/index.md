@@ -312,7 +312,6 @@ Substat's Return Code and Description
 | labelId         | int    | Parent email customized label ID                                                                                                                                  |
 | labelName       | string | Parent email customized label Name                                                                                                                                |
 
-
 Note:
 
 1. When you do not pass in a custom Message-ID, the Message-ID in reference is automatically generated according to the platform rules, and the prefix of the Message-ID is the same as the prefix of the emailid. When you pass in a custom Message-ID through an SMTP request, the Message-ID in reference will be the Message-ID you passed in. When the reply email does not match the parent email, it will be empty.
@@ -324,3 +323,54 @@ Note:
 <br />
 
 <br />
+
+## Code examples
+
+### Python example
+
+```java
+import javax.crypto.Mac;
+import javax.crypto.spec.SecretKeySpec;
+
+import org.apache.commons.codec.binary.Hex;
+
+public boolean verify(String appkey, String token, long timestamp,
+            String signature) throws NoSuchAlgorithmException, InvalidKeyException {
+    Mac sha256HMAC = Mac.getInstance("HmacSHA256");
+    SecretKeySpec secretKey = new SecretKeySpec(appkey.getBytes(),"HmacSHA256");
+    sha256HMAC.init(secretKey);
+    StringBuffer buf = new StringBuffer();
+    buf.append(timestamp).append(token);
+    String signatureCal = new String(Hex.encodeHex(sha256HMAC.doFinal(buf
+            .toString().getBytes())));
+    return signatureCal.equals(signature);
+}
+
+```
+```python
+import hashlib, hmac
+def verify(appkey, token, timestamp, signature):
+    return signature == hmac.new(
+        key=appkey,
+        msg='{}{}'.format(timestamp, token),
+        digestmod=hashlib.sha256).hexdigest()
+
+```
+```php
+function verify($appkey,$token,$timestamp,$signature){
+    $hash="sha256";
+    $result=hash_hmac($hash,$timestamp.$token,$appkey);
+    return strcmp($result,$signature)==0?1:0;
+}
+
+```
+
+<br />
+
+Experience Now
+
+If you don’t have url to receive data,try services of requestb.in (opens new window)or request 纷云版 (opens new window)to experience WebHook.
+
+Click Create a RequestBin to generate an url
+Configure the URL in SendCloud to receive event data from WebHook
+After an operation (request, deliver, open), you can see all POST data of the event in requestb.in
