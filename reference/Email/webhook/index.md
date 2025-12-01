@@ -90,27 +90,15 @@ After successfully receiving and processing the data, your server should return 
 
 **Delivery ( deliver )**
 
-| Parameter                                                                                               | Type | Description |   |
-| :------------------------------------------------------------------------------------------------------ | :--- | :---------- | - |
-| ![](https://files.readme.io/f9532bce97fdf7c35d31d459bca643abae889d2cf0ba6cc4922d1120e244bd7c-image.png) |      |             |   |
-|                                                                                                         |      |             |   |
-|                                                                                                         |      |             |   |
-|                                                                                                         |      |             |   |
-|                                                                                                         |      |             |   |
-|                                                                                                         |      |             |   |
-|                                                                                                         |      |             |   |
-|                                                                                                         |      |             |   |
-|                                                                                                         |      |             |   |
-|                                                                                                         |      |             |   |
-|                                                                                                         |      |             |   |
-|                                                                                                         |      |             |   |
-|                                                                                                         |      |             |   |
-|                                                                                                         |      |             |   |
-|                                                                                                         |      |             |   |
-|                                                                                                         |      |             |   |
-|                                                                                                         |      |             |   |
-|                                                                                                         |      |             |   |
-|                                                                                                         |      |             |   |
+| Parameter | Type | Description |   |
+| :-------- | :--- | :---------- | - |
+|           |      |             |   |
+|           |      |             |   |
+|           |      |             |   |
+|           |      |             |   |
+|           |      |             |   |
+|           |      |             |   |
+|           |      |             |   |
 
 <br />
 
@@ -163,10 +151,18 @@ custom header with start of “SC-Custom”
 #
 
 Open ( open )
-Parameter description
-parameter
-type
-description
+
+| Parameter | Type | Description |   |
+| :-------- | :--- | :---------- | - |
+|           |      |             |   |
+|           |      |             |   |
+|           |      |             |   |
+|           |      |             |   |
+|           |      |             |   |
+|           |      |             |   |
+|           |      |             |   |
+
+
 event
 string
 event type: ”open”
@@ -228,10 +224,18 @@ custom header with start of “SC-Custom”
 #
 
 Click ( click )
-Parameter description
-parameter
-type
-description
+
+| Parameter | Type | Description |   |
+| :-------- | :--- | :---------- | - |
+|           |      |             |   |
+|           |      |             |   |
+|           |      |             |   |
+|           |      |             |   |
+|           |      |             |   |
+|           |      |             |   |
+|           |      |             |   |
+
+
 event
 string
 event type: “type”
@@ -296,10 +300,18 @@ custom header with start of “SC-Custom”
 #
 
 Unsubscribe ( unsubscribe )
-Parameter description
-parameter
-type
-description
+
+| Parameter | Type | Description |   |
+| :-------- | :--- | :---------- | - |
+|           |      |             |   |
+|           |      |             |   |
+|           |      |             |   |
+|           |      |             |   |
+|           |      |             |   |
+|           |      |             |   |
+|           |      |             |   |
+
+
 event
 string
 event type: ”unsubscribe”
@@ -361,10 +373,18 @@ custom header with start of “SC-Custom”
 #
 
 Spam Reporting ( report_spam )
-Parameter description
-parameter
-type
-description
+
+| Parameter | Type | Description |   |
+| :-------- | :--- | :---------- | - |
+|           |      |             |   |
+|           |      |             |   |
+|           |      |             |   |
+|           |      |             |   |
+|           |      |             |   |
+|           |      |             |   |
+|           |      |             |   |
+
+
 event
 string
 event type: ” report_spam”
@@ -405,10 +425,18 @@ custom header with start of “SC-Custom”
 #
 
 Invalid Email ( invalid )
-Parameter description
-parameter
-type
-description
+
+| Parameter | Type | Description |   |
+| :-------- | :--- | :---------- | - |
+|           |      |             |   |
+|           |      |             |   |
+|           |      |             |   |
+|           |      |             |   |
+|           |      |             |   |
+|           |      |             |   |
+|           |      |             |   |
+
+
 event
 string
 event type: ”invalid”
@@ -466,10 +494,18 @@ Substat's return code and description：
 #
 
 Soft Bounce ( soft_bounce )
-Parameter description
-parameter
-type
-description
+
+| Parameter | Type | Description |   |
+| :-------- | :--- | :---------- | - |
+|           |      |             |   |
+|           |      |             |   |
+|           |      |             |   |
+|           |      |             |   |
+|           |      |             |   |
+|           |      |             |   |
+|           |      |             |   |
+
+
 event
 string
 event type: ” soft_bounce”
@@ -540,10 +576,18 @@ others
 #
 
 Mail Routing (route)
-Parameter description
-parameter
-type
-description
+
+| Parameter | Type | Description |   |
+| :-------- | :--- | :---------- | - |
+|           |      |             |   |
+|           |      |             |   |
+|           |      |             |   |
+|           |      |             |   |
+|           |      |             |   |
+|           |      |             |   |
+|           |      |             |   |
+
+
 event
 string
 event type: ” route”
