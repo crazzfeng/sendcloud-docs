@@ -1,0 +1,661 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Email
+servers:
+  - url: https://api.aurorasendcloud.com/
+    description: |
+      Singapore Region
+      - Base URL: https://api.aurorasendcloud.com/
+  - url: https://api-us.aurorasendcloud.com/
+    description: |
+      US (Silicon Valley) Region
+      - Base URL: https://api-us.aurorasendcloud.com/
+  - url: https://api-hk.aurorasendcloud.com/
+    description: |
+      CN (Hong Kong SAR) Region
+      - Base URL: https://api-hk.aurorasendcloud.com/
+tags:
+  - name: Send Email
+    description: Regular delivery, templates delivery
+paths:
+  /api/mail/send:
+    post:
+      summary: Basic Send
+      description: >-
+        Send regular emails with custom content (supports attachments, CC/BCC,
+        address lists, etc.)
+      operationId: basic-email
+      tags:
+        - Send Email
+      security:
+        - apiUser: []
+          apiKey: []
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                from:
+                  type: string
+                  description: >-
+                    Sender email address (e.g., support@ifaxin.com). After
+                    configuring DMARC, SendCloud uses the current domain as the
+                    suffix of "from"
+                  example: support@ifaxin.com
+                to:
+                  type: string
+                  description: >-
+                    Recipient email addresses (separated by semicolons, e.g.,
+                    ben@ifaxin.com;joe@ifaxin.com). Required if not using
+                    xsmtpapi or address list
+                  example: ben@ifaxin.com;joe@ifaxin.com
+                subject:
+                  type: string
+                  description: Email subject (cannot be empty)
+                  example: Test Email Subject
+                html:
+                  type: string
+                  description: >-
+                    Email content in text/html format. Required if plain is
+                    empty
+                  example: <h1>Hello World</h1><p>This is a test email</p>
+                contentSummary:
+                  type: string
+                  description: >-
+                    Content summary. Replaces existing summary if present; added
+                    if not. Only valid with html
+                  example: Test email summary
+                fromName:
+                  type: string
+                  description: >-
+                    Sender name (shown as "IFAXIN customer service
+                    <support@ifaxin.com>")
+                  example: IFAXIN customer service
+                cc:
+                  type: string
+                  description: CC addresses (separated by semicolons)
+                  example: cc@ifaxin.com;cc2@ifaxin.com
+                bcc:
+                  type: string
+                  description: BCC addresses (separated by semicolons)
+                  example: bcc@ifaxin.com;bcc2@ifaxin.com
+                replyTo:
+                  type: string
+                  description: >-
+                    Default reply addresses (separated by semicolons, max 3).
+                    Defaults to "from" if empty or null
+                  example: reply@ifaxin.com;reply2@ifaxin.com
+                labelName:
+                  type: string
+                  description: >-
+                    Label for this send. Automatically created if not existing
+                    in the account
+                  example: Test Label
+                sendTags:
+                  type: string
+                  description: >-
+                    Tags for the request (separated by ";", max 5 tags, each up
+                    to 50 characters)
+                  example: tag1;tag2;test
+                headers:
+                  type: string
+                  description: >-
+                    Email headers in JSON format (e.g., {"header1": "value1",
+                    "header2": "value2"})
+                  example: '{"header1": "value1", "header2": "value2"}'
+                attachments:
+                  type: array
+                  description: >-
+                    Email attachments. Must use multipart/form-data when
+                    submitting
+                  items:
+                    type: string
+                    format: binary
+                xsmtpapi:
+                  type: string
+                  description: SMTP extension. See [→ X-SMTPAPI](X-SMTPAPI) for details
+                  example: '{"to": ["ben@ifaxin.com", "joe@ifaxin.com"]}'
+                plain:
+                  type: string
+                  description: >-
+                    Email content in text/plain format. Required if html is
+                    empty
+                  example: Hello World. This is a test email.
+                sendRequestId:
+                  type: string
+                  description: >-
+                    Max 128 characters. Duplicate values within 1 hour are only
+                    processed once
+                  example: req_1234567890abcdef
+                respEmailId:
+                  type: string
+                  enum:
+                    - true
+                    - false
+                  default: true
+                  description: >-
+                    Whether to return emailId. Returns a list for multiple
+                    recipients
+                  example: true
+                useNotification:
+                  type: string
+                  enum:
+                    - true
+                    - false
+                  default: false
+                  description: Whether to enable notification
+                  example: false
+                useAddressList:
+                  type: string
+                  enum:
+                    - true
+                    - false
+                  default: false
+                  description: >-
+                    Whether to use address list (e.g.,
+                    to=group1@maillist.sendcloud.org;group2@maillist.sendcloud.org)
+                  example: false
+              required:
+                - from
+                - subject
+      responses:
+        '200':
+          description: Request successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    description: Response status code
+                    example: 200
+                  message:
+                    type: string
+                    description: Success or failure message
+                    example: request was successful
+                  result:
+                    type: boolean
+                    description: Whether the request succeeded
+                    example: true
+                  info:
+                    type: object
+                    properties:
+                      emailIdList:
+                        type: array
+                        items:
+                          type: string
+                        description: List of emailIds for successful sends
+                        example:
+                          - >-
+                            1447054895514_15555555_32350_1350.sc-inbound0$ben@ifaxin.com
+  /api/mail/sendtemplate:
+    post:
+      summary: Send Email via Template
+      description: >-
+        Send emails by calling preset templates through template call names,
+        supporting dynamic parameter replacement.
+      operationId: send-template-email
+      tags:
+        - Send Email
+      security:
+        - apiUser: []
+          apiKey: []
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                from:
+                  type: string
+                  description: >-
+                    Sender email address (e.g., support@ifaxin.com). After
+                    configuring DMARC, SendCloud uses the current domain as the
+                    suffix of "from"
+                  example: support@ifaxin.com
+                to:
+                  type: string
+                  description: >-
+                    Address list (used when useAddressList=true). Required if
+                    useAddressList is true
+                  example: group1@maillist.sendcloud.org;group2@maillist.sendcloud.org
+                xsmtpapi:
+                  type: string
+                  description: >-
+                    SMTP extension. See [→ X-SMTPAPI](X-SMTPAPI) for details.
+                    Required if not using to (address list)
+                  example: >-
+                    {"to": ["ben@ifaxin.com", "joe@ifaxin.com"], "sub":
+                    {"%name%": ["Ben", "Joe"], "%money%": [288, 497]}}
+                subject:
+                  type: string
+                  description: >-
+                    Email subject. Defaults to template subject; required if
+                    template subject is empty
+                  example: Monthly Bill Notification
+                templateInvokeName:
+                  type: string
+                  description: Calling name of the email template
+                  example: ifaxin_bill
+                contentSummary:
+                  type: string
+                  description: >-
+                    Content summary. Replaces existing summary if present; added
+                    if not
+                  example: Monthly consumption bill
+                fromName:
+                  type: string
+                  description: >-
+                    Sender name (shown as "IFAXIN customer service
+                    <support@ifaxin.com>")
+                  example: IFAXIN customer service
+                cc:
+                  type: string
+                  description: CC addresses (separated by semicolons)
+                  example: cc@ifaxin.com;cc2@ifaxin.com
+                bcc:
+                  type: string
+                  description: BCC addresses (separated by semicolons)
+                  example: bcc@ifaxin.com;bcc2@ifaxin.com
+                replyTo:
+                  type: string
+                  description: >-
+                    Default reply addresses (separated by semicolons, max 3).
+                    Defaults to "from" if empty or null
+                  example: reply@ifaxin.com;reply2@ifaxin.com
+                labelName:
+                  type: string
+                  description: >-
+                    Label for this send. Automatically created if not existing
+                    in the account
+                  example: Test Label
+                sendTags:
+                  type: string
+                  description: >-
+                    Tags for the request (separated by ";", max 5 tags, each up
+                    to 50 characters)
+                  example: tag1;tag2;test
+                headers:
+                  type: string
+                  description: >-
+                    Email headers in JSON format (e.g., {"header1": "value1",
+                    "header2": "value2"})
+                  example: '{"header1": "value1", "header2": "value2"}'
+                attachments:
+                  type: array
+                  description: >-
+                    Email attachments. Must use multipart/form-data when
+                    submitting
+                  items:
+                    type: string
+                    format: binary
+                sendRequestId:
+                  type: string
+                  description: >-
+                    Max 128 characters. Duplicate values within 1 hour are only
+                    processed once
+                  example: req_1234567890abcdef
+                respEmailId:
+                  type: string
+                  enum:
+                    - true
+                    - false
+                  default: true
+                  description: >-
+                    Whether to return emailId. Returns a list for multiple
+                    recipients
+                  example: true
+                useNotification:
+                  type: string
+                  enum:
+                    - true
+                    - false
+                  default: false
+                  description: Whether to enable notification
+                  example: false
+                useAddressList:
+                  type: string
+                  enum:
+                    - true
+                    - false
+                  default: false
+                  description: >-
+                    Whether to use address list (e.g.,
+                    to=group1@maillist.sendcloud.org;group2@maillist.sendcloud.org)
+                  example: false
+              required:
+                - from
+                - templateInvokeName
+      responses:
+        '200':
+          description: Template email sent successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 200
+                  message:
+                    type: string
+                    example: send email successful
+                  result:
+                    type: boolean
+                    example: true
+                  info:
+                    type: object
+                    properties:
+                      emailIdList:
+                        type: array
+                        items:
+                          type: string
+                        description: List of emailIds for successful sends
+                        example:
+                          - >-
+                            1447054895514_15555555_32350_1350.sc-inbound0$ben@ifaxin.com
+  /api/mail/sendcalendar:
+    post:
+      summary: Send Calendar Email
+      description: >-
+        Send calendar invitations containing meeting information, supporting
+        cancellation/updates of calendars.
+      operationId: send-calendar
+      tags:
+        - Send Email
+      security:
+        - apiUser: []
+          apiKey: []
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                from:
+                  type: string
+                  description: >-
+                    Sender email address (e.g., support@ifaxin.com). After
+                    configuring DMARC, SendCloud uses the current domain as the
+                    suffix of "from"
+                  example: support@ifaxin.com
+                to:
+                  type: string
+                  description: >-
+                    Recipient email addresses (separated by semicolons, e.g.,
+                    ben@ifaxin.com;joe@ifaxin.com)
+                  example: ben@ifaxin.com;joe@ifaxin.com
+                subject:
+                  type: string
+                  description: Email subject (cannot be empty)
+                  example: 'Meeting Invitation: Project Kickoff'
+                html:
+                  type: string
+                  description: >-
+                    Email content in text/html format. Required if plain is
+                    empty
+                  example: <h1>Project Kickoff Meeting</h1><p>Please attend on time</p>
+                fromName:
+                  type: string
+                  description: >-
+                    Sender name (shown as "IFAXIN customer
+                    <support@ifaxin.com>")
+                  example: Project Manager
+                cc:
+                  type: string
+                  description: CC addresses (separated by semicolons)
+                  example: cc@ifaxin.com
+                bcc:
+                  type: string
+                  description: BCC addresses (separated by semicolons)
+                  example: bcc@ifaxin.com
+                replyTo:
+                  type: string
+                  description: >-
+                    Default reply addresses (separated by semicolons, max 3).
+                    Defaults to "from" if empty or null
+                  example: reply@ifaxin.com
+                labelName:
+                  type: string
+                  description: >-
+                    Label for this send. Automatically created if not existing
+                    in the account
+                  example: Meeting Invitations
+                headers:
+                  type: string
+                  description: >-
+                    Email headers in JSON format (e.g., {"header1": "value1",
+                    "header2": "value2"})
+                  example: '{"header1": "value1", "header2": "value2"}'
+                attachments:
+                  type: array
+                  description: >-
+                    Email attachments. Must use multipart/form-data when
+                    submitting
+                  items:
+                    type: string
+                    format: binary
+                xsmtpapi:
+                  type: string
+                  description: SMTP extension. See [→ X-SMTPAPI](X-SMTPAPI) for details
+                  example: '{"to": ["ben@ifaxin.com", "joe@ifaxin.com"]}'
+                plain:
+                  type: string
+                  description: >-
+                    Email content in text/plain format. Required if html is
+                    empty
+                  example: Project Kickoff Meeting. Please attend on time.
+                sendRequestId:
+                  type: string
+                  description: >-
+                    Max 128 characters. Duplicate values within 1 hour are only
+                    processed once
+                  example: req_calendar_123456
+                respEmailId:
+                  type: string
+                  enum:
+                    - true
+                    - false
+                  default: true
+                  description: >-
+                    Whether to return emailId. Returns a list for multiple
+                    recipients
+                startTime:
+                  type: string
+                  format: date-time
+                  description: Meeting start time (formatted as yyyy-MM-dd HH:mm:ss)
+                  example: '2025-10-01 10:00:00'
+                endTime:
+                  type: string
+                  format: date-time
+                  description: Meeting end time (formatted as yyyy-MM-dd HH:mm:ss)
+                  example: '2025-10-01 11:30:00'
+                title:
+                  type: string
+                  description: Meeting title
+                  example: Project Kickoff Meeting
+                organizerName:
+                  type: string
+                  description: Organizer name
+                  example: John Doe
+                organizerEmail:
+                  type: string
+                  description: Organizer email address
+                  example: organizer@ifaxin.com
+                location:
+                  type: string
+                  description: Meeting location
+                  example: Conference Room A, 5th Floor
+                description:
+                  type: string
+                  description: Meeting description
+                  example: Discuss project timeline and responsibilities
+                participatorNames:
+                  type: string
+                  description: Participant names (separated by semicolons)
+                  example: Ben;Joe;Alice
+                participatorEmails:
+                  type: string
+                  description: Participant email addresses (separated by semicolons)
+                  example: ben@ifaxin.com;joe@ifaxin.com;alice@ifaxin.com
+                uid:
+                  type: string
+                  description: >-
+                    Required for cancelling/updating calendar. Returned in the
+                    first send request
+                  example: cal_123456789
+                isCancel:
+                  type: string
+                  enum:
+                    - true
+                    - false
+                  default: false
+                  description: Whether to cancel the calendar
+                isUpdate:
+                  type: string
+                  enum:
+                    - true
+                    - false
+                  default: false
+                  description: Whether to update the calendar
+              required:
+                - from
+                - to
+                - subject
+                - html
+                - startTime
+                - endTime
+                - title
+                - organizerName
+                - organizerEmail
+                - location
+                - participatorNames
+      responses:
+        '200':
+          description: Calendar invitation sent successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    description: Response status code
+                    example: 200
+                  message:
+                    type: string
+                    description: Success or failure message
+                    example: request was successful
+                  result:
+                    type: boolean
+                    description: Whether the request succeeded
+                    example: true
+                  info:
+                    type: object
+                    properties:
+                      emailIdList:
+                        type: array
+                        items:
+                          type: string
+                        description: List of emailIds for successful sends
+                        example:
+                          - >-
+                            1447054895514_15555555_32350_1350.sc-inbound0$ben@ifaxin.com
+                      uid:
+                        type: string
+                        description: Calendar UID (for future cancellation/update)
+                        example: cal_123456789
+  /api/mail/taskinfo:
+    get:
+      summary: Status of Sending by Address List
+      description: Query the status and details of an address list email task
+      operationId: query-task
+      tags:
+        - Send Email
+      security:
+        - apiUser: []
+          apiKey: []
+      parameters:
+        - in: query
+          name: maillistTaskId
+          schema:
+            type: string
+          required: true
+          description: Returned maillistTaskId from sendtemplate request
+          example: 267131
+      responses:
+        '200':
+          description: Task status query successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 200
+                  message:
+                    type: string
+                    example: query successful
+                  result:
+                    type: boolean
+                    example: true
+                  info:
+                    type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          maillistTaskId:
+                            type: integer
+                            description: Address list task ID
+                            example: 267131
+                          apiUser:
+                            type: string
+                            description: Called apiUser
+                            example: test_api_user
+                          addressList:
+                            type: string
+                            description: Alias of the called address list
+                            example: group1@maillist.sendcloud.org
+                          memberCount:
+                            type: integer
+                            description: Number of addresses in the list
+                            example: 300
+                          gmtCreated:
+                            type: string
+                            format: date-time
+                            description: Task creation time
+                            example: '2015-11-26 14:38:09'
+                          gmtUpdated:
+                            type: string
+                            format: date-time
+                            description: Task modification time
+                            example: '2015-11-26 14:38:23'
+                          status:
+                            type: string
+                            example: Completion of the request
+                            description: >-
+                              Address list request status (e.g., Completion of
+                              the request)
+components:
+  securitySchemes:
+    apiUser:
+      type: apiKey
+      in: query
+      name: apiUser
+      description: API_USER (authentication parameter; obtained from SendCloud console)
+    apiKey:
+      type: apiKey
+      in: query
+      name: apiKey
+      description: API_KEY (authentication parameter; keep confidential)
+x-readme:
+  explorer-enabled: true
+  proxy-enabled: true
