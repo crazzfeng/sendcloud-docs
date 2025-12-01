@@ -26,17 +26,27 @@ Before you begin, ensure you have:
 
 ## Regional Base URLs & Endpoints
 
-### Email & Core APIs (Multi-Region)
+### Email APIs & SMTP Servers (Multi-Region)
 
-Choose the base URL that matches your account's region for email, contact management, templates, and other core services. All requests must use **HTTPS**, and responses are returned in **JSON** format.
+Choose the base URL and SMTP server that matches your account's region for email services, contact management, templates, and other core services. All REST API requests must use **HTTPS**, and responses are returned in **JSON** format.
+
+#### REST API Endpoints
 
 | Region              | Base URL                              |
 | ------------------- | ------------------------------------- |
 | Singapore           | `https://api.aurorasendcloud.com/`    |
 | US (Silicon Valley) | `https://api-us.aurorasendcloud.com/` |
-| CN (Hong Kong SAR   | `https://api-hk.aurorasendcloud.com/` |
+| CN (Hong Kong SAR)  | `https://api-hk.aurorasendcloud.com/` |
 
-> ⚠️ **Important**: Your account is tied to a specific region. Using a non-matching base URL will cause authentication failures. Verify your region in account settings.
+#### SMTP Servers
+
+| Region              | SMTP Server                   | SSL Port | STARTTLS Port |
+| ------------------- | ----------------------------- | -------- | ------------- |
+| Singapore           | `smtp.aurorasendcloud.com`    | 465      | 587           |
+| US (Silicon Valley) | `smtp-us.aurorasendcloud.com` | 465      | 587           |
+| CN (Hong Kong SAR)  | `smtp-hk.aurorasendcloud.com` | 465      | 587           |
+
+> ⚠️ **Important**: Your account is tied to a specific region. Using a non-matching base URL or SMTP server will cause authentication failures. Verify your region in account settings.
 
 ### SMS API (Single Global Endpoint)
 
@@ -46,7 +56,7 @@ The SMS API uses a unified global endpoint regardless of your account region:
 
 ## Authentication
 
-All API requests require authentication using these parameters:
+All API and SMTP requests require authentication using these parameters:
 
 * `api_user`: Your AuroraSendCloud API username
 * `api_key`: Your AuroraSendCloud API key
@@ -55,9 +65,11 @@ All API requests require authentication using these parameters:
   ### **Security Best Practice**: Never expose API credentials in client-side code. Use server-side implementations and rotate keys regularly.
 </Callout>
 
-## Your First API Call
+## Email Integration Options
 
-### Send an Email
+AuroraSendCloud offers two methods for sending emails: **REST API** for advanced features and programmatic control, and **SMTP** for simple integration with existing email clients and applications.
+
+### REST API - Send an Email
 
 <Tabs>
   <Tab title="cURL">
@@ -114,54 +126,18 @@ All API requests require authentication using these parameters:
   </Tab>
 </Tabs>
 
-### Send an SMS
-
-<Tabs>
-  <Tab title="cURL">
-    ```bash
-    curl -X POST "https://api.aurorasendcloud.com/smsapi/send" \
-      -d "smsUser=YOUR_SMS_USER" \
-      -d "smsKey=YOUR_SMS_KEY" \
-      -d "templateId=123456" \
-      -d "phone=+1234567890" \
-      -d "vars={\"code\":\"123456\"}"
-    ```
-  </Tab>
-
-  <Tab title="Python">
-    ```python
-    import requests
-
-    url = "https://api.aurorasendcloud.com/smsapi/send"
-    data = {
-        "smsUser": "YOUR_SMS_USER",
-        "smsKey": "YOUR_SMS_KEY",
-        "templateId": "123456",
-        "phone": "+1234567890",
-        "vars": '{"code":"123456"}'
-    }
-
-    response = requests.post(url, data=data)
-    print(response.json())
-    ```
-  </Tab>
-</Tabs>
-
-## SMTP Integration
+### SMTP Integration
 
 For applications requiring SMTP integration, use our regional SMTP servers with SSL/TLS encryption:
 
-| Region              | SMTP Server                   | SSL Port | STARTTLS Port |
-| ------------------- | ----------------------------- | -------- | ------------- |
-| Singapore           | `smtp.aurorasendcloud.com`    | 465      | 587           |
-| US (Silicon Valley) | `smtp-us.aurorasendcloud.com` | 465      | 587           |
-| CN (Hong Kong SAR)  | `smtp-hk.aurorasendcloud.com` | 465      | 587           |
-
-### SMTP Authentication
+#### SMTP Configuration
 
 * **Username**: Your API username (`api_user`)
 * **Password**: Your API key (`api_key`)
 * **Encryption**: SSL/TLS (port 465) or STARTTLS (port 587)
+* **Authentication**: Required for all connections
+
+#### SMTP Code Examples
 
 <Tabs>
   <Tab title="Python (smtplib)">
@@ -170,8 +146,10 @@ For applications requiring SMTP integration, use our regional SMTP servers with 
     from email.mime.text import MIMEText
     from email.mime.multipart import MIMEMultipart
 
-    # Configuration
-    smtp_server = "smtp.aurorasendcloud.com"  # Use regional server
+    # Configuration - Use regional SMTP server
+    smtp_server = "smtp.aurorasendcloud.com"  # Singapore
+    # smtp_server = "smtp-us.aurorasendcloud.com"  # US
+    # smtp_server = "smtp-hk.aurorasendcloud.com"  # CN
     smtp_port = 465  # SSL/TLS
     username = "YOUR_API_USER"
     password = "YOUR_API_KEY"
@@ -198,7 +176,7 @@ For applications requiring SMTP integration, use our regional SMTP servers with 
     const nodemailer = require('nodemailer');
 
     const transporter = nodemailer.createTransporter({
-      host: 'smtp.aurorasendcloud.com',
+      host: 'smtp.aurorasendcloud.com', // Use regional server
       port: 465,
       secure: true, // SSL/TLS
       auth: {
@@ -234,9 +212,9 @@ For applications requiring SMTP integration, use our regional SMTP servers with 
     $mail = new PHPMailer(true);
 
     try {
-        // Server settings
+        // Server settings - Use regional SMTP server
         $mail->isSMTP();
-        $mail->Host       = 'smtp.aurorasendcloud.com';
+        $mail->Host       = 'smtp.aurorasendcloud.com'; // Singapore
         $mail->SMTPAuth   = true;
         $mail->Username   = 'YOUR_API_USER';
         $mail->Password   = 'YOUR_API_KEY';
@@ -258,6 +236,94 @@ For applications requiring SMTP integration, use our regional SMTP servers with 
         echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
     }
     ?>
+    ```
+  </Tab>
+
+  <Tab title="Java (JavaMail)">
+    ```java
+    import java.util.Properties;
+    import javax.mail.*;
+    import javax.mail.internet.*;
+
+    public class SMTPExample {
+        public static void main(String[] args) {
+            String host = "smtp.aurorasendcloud.com"; // Use regional server
+            String username = "YOUR_API_USER";
+            String password = "YOUR_API_KEY";
+
+            Properties props = new Properties();
+            props.put("mail.smtp.host", host);
+            props.put("mail.smtp.port", "465");
+            props.put("mail.smtp.ssl.enable", "true");
+            props.put("mail.smtp.auth", "true");
+
+            Session session = Session.getInstance(props, new Authenticator() {
+                protected PasswordAuthentication getPasswordAuthentication() {
+                    return new PasswordAuthentication(username, password);
+                }
+            });
+
+            try {
+                Message message = new MimeMessage(session);
+                message.setFrom(new InternetAddress("sender@yourdomain.com"));
+                message.setRecipients(Message.RecipientType.TO,
+                    InternetAddress.parse("recipient@example.com"));
+                message.setSubject("Test Email via SMTP");
+                message.setText("Hello from AuroraSendCloud SMTP!");
+
+                Transport.send(message);
+                System.out.println("Email sent successfully!");
+
+            } catch (MessagingException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+    ```
+  </Tab>
+</Tabs>
+
+### SMTP vs REST API Comparison
+
+| Feature                    | SMTP                | REST API           |
+| -------------------------- | ------------------- | ------------------ |
+| **Setup Complexity**      | Simple              | Moderate           |
+| **Advanced Features**      | Limited             | Full access        |
+| **Template Support**       | Basic               | Advanced           |
+| **Tracking & Analytics**   | Basic               | Comprehensive      |
+| **Bulk Sending**           | Good                | Optimized          |
+| **Real-time Status**       | Basic               | Detailed           |
+| **Integration Effort**     | Minimal             | Moderate           |
+
+## SMS Integration
+
+<Tabs>
+  <Tab title="cURL">
+    ```bash
+    curl -X POST "https://api.aurorasendcloud.com/smsapi/send" \
+      -d "smsUser=YOUR_SMS_USER" \
+      -d "smsKey=YOUR_SMS_KEY" \
+      -d "templateId=123456" \
+      -d "phone=+1234567890" \
+      -d "vars={\"code\":\"123456\"}"
+    ```
+  </Tab>
+
+  <Tab title="Python">
+    ```python
+    import requests
+
+    url = "https://api.aurorasendcloud.com/smsapi/send"
+    data = {
+        "smsUser": "YOUR_SMS_USER",
+        "smsKey": "YOUR_SMS_KEY",
+        "templateId": "123456",
+        "phone": "+1234567890",
+        "vars": '{"code":"123456"}'
+    }
+
+    response = requests.post(url, data=data)
+    print(response.json())
     ```
   </Tab>
 </Tabs>
