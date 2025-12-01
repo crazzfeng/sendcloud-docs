@@ -216,3 +216,13 @@ Explanation of usage:
 * Customers can use the same API_USER. By means of the `send_domain` field, they can make emails be sent from the domain name specified by the customer.
 * If customers pass in the `send_domain` field when sending emails, the sending resources and settings configured for that domain name will be used for scheduling.
   See the following example:
+
+```json
+
+x_smtpapi = 
+
+{
+    "send_domain":"customer.domain.com"
+}
+
+```
