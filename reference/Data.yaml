@@ -25,7 +25,7 @@ paths:
     get:
       summary: Get Emails Status
       description: Check status of emails in the list
-      operationId: emailStatusGet
+      operationId: get-emails-status
       tags:
         - Data
       security:
@@ -219,6 +219,7 @@ paths:
 
         3. If apiUserList is not specified, all records will be queried by
         default.
+      operationId: get-email-tracking-data
       tags:
         - Data
       security:

@@ -14,6 +14,6 @@ excerpt: >
   3. If apiUserList is not specified, all records will be queried by default.
 api:
   file: Data.yaml
-  operationId: get_api-openandclick-list
+  operationId: get-email-tracking-data
 hidden: false
 ---
