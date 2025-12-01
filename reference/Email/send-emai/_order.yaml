@@ -2,3 +2,4 @@
 - send-template-email
 - send-calendar
 - query-task
+- x-smtpapi-1
