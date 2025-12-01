@@ -371,6 +371,6 @@ Experience Now
 
 If you don’t have url to receive data,try services of requestb.in (opens new window)or request 纷云版 (opens new window)to experience WebHook.
 
-Click Create a RequestBin to generate an url
-Configure the URL in SendCloud to receive event data from WebHook
-After an operation (request, deliver, open), you can see all POST data of the event in requestb.in
+ 1.Click Create a RequestBin to generate an url
+ 2.Configure the URL in SendCloud to receive event data from WebHook
+ 3.After an operation (request, deliver, open), you can see all POST data of the event in requestb.in
