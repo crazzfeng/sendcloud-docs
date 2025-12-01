@@ -1,4 +1,4 @@
-- x-smtpapi-1
+- x-smtpapi
 - basic-send
 - send-email-via-template
 - send-calendar-email
