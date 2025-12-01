@@ -162,7 +162,7 @@ Parameter description
 | signature   | string | signature string                        |
 | userHeaders | string | custom header with start of “SC-Custom” |
 
-## Invalid Email ( invalid )
+## Invalid Email
 
 Parameter description
 
@@ -188,8 +188,6 @@ Parameter description
 
 Substat's return code and description：
 
-<br />
-
 | subStat | subStatDesc                 |
 | :------ | :-------------------------- |
 | 401     | in SendCloud blocklist      |
@@ -202,11 +200,9 @@ Substat's return code and description：
 | 408     | sender / recipient rejected |
 | 409     | others                      |
 
-## Soft Bounce ( soft_bounce )
+## Soft Bounce
 
 Parameter description
-
-<br />
 
 | Parameter         | Type    | Description                                                      |
 | :---------------- | :------ | :--------------------------------------------------------------- |
@@ -240,11 +236,9 @@ Substat's return code and description：
 | 508     | sender / recipient rejected  |
 | 509     | others                       |
 
-Mail Routing (route)
+## Mail Routing
 
 Parameter description
-
-<br />
 
 | Parameter       | Type   | Description                                                                                                                                                      |
 | :-------------- | :----- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------- |
