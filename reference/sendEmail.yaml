@@ -25,7 +25,7 @@ paths:
       description: >-
         Send regular emails with custom content (supports attachments, CC/BCC,
         address lists, etc.)
-      operationId: basic-email
+      operationId: basic-send
       tags:
         - Send Email
       security:
@@ -198,7 +198,7 @@ paths:
       description: >-
         Send emails by calling preset templates through template call names,
         supporting dynamic parameter replacement.
-      operationId: send-template-email
+      operationId: send-email-via-template
       tags:
         - Send Email
       security:
@@ -365,7 +365,7 @@ paths:
       description: >-
         Send calendar invitations containing meeting information, supporting
         cancellation/updates of calendars.
-      operationId: send-calendar
+      operationId: send-calendar-email
       tags:
         - Send Email
       security:
@@ -575,7 +575,7 @@ paths:
     get:
       summary: Status of Sending by Address List
       description: Query the status and details of an address list email task
-      operationId: query-task
+      operationId: status-of-sending-by-address-list
       tags:
         - Send Email
       security:
