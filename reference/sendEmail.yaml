@@ -27,7 +27,7 @@ paths:
         address lists, etc.)
       operationId: basic-email
       tags:
-        - Send Emai
+        - Send Email
       security:
         - apiUser: []
           apiKey: []
@@ -200,7 +200,7 @@ paths:
         supporting dynamic parameter replacement.
       operationId: send-template-email
       tags:
-        - Send Emai
+        - Send Email
       security:
         - apiUser: []
           apiKey: []
@@ -367,7 +367,7 @@ paths:
         cancellation/updates of calendars.
       operationId: send-calendar
       tags:
-        - Send Emai
+        - Send Email
       security:
         - apiUser: []
           apiKey: []
@@ -577,7 +577,7 @@ paths:
       description: Query the status and details of an address list email task
       operationId: query-task
       tags:
-        - Send Emai
+        - Send Email
       security:
         - apiUser: []
           apiKey: []
