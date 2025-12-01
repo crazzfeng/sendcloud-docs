@@ -25,7 +25,7 @@ paths:
       description: >-
         Get basic information of the current API account (including account
         type, quota, contact information, etc.)
-      operationId: queryAccountBasicInfoGet
+      operationId: get-account-info
       tags:
         - Account
       security:

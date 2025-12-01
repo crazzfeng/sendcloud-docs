@@ -5,6 +5,6 @@ excerpt: >-
   quota, contact information, etc.)
 api:
   file: account.yaml
-  operationId: queryAccountBasicInfoGet
+  operationId: get-account-info
 hidden: false
 ---
