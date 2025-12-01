@@ -5,7 +5,7 @@ excerpt: >-
   click, unsubscribe, spam, bounce, and routing events with detailed parameters
   and response codes.
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   title: Webhook Events API Reference - Email Event Types & Parameters
   description: >-
