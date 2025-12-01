@@ -4,9 +4,6 @@ excerpt: >-
   This documentation will guide you through setting up and managing API
   credentials to ensure your applications can securely access Aurora SendCloud
   services.
-api:
-  file: send.json
-  operationId: get_new-endpoint
 api_config: authentication
 hidden: true
 icon: icon-key1
