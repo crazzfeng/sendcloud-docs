@@ -5,6 +5,6 @@ excerpt: >-
   together)
 api:
   file: addressList.yaml
-  operationId: deleteAddressList
+  operationId: delete-address-list
 hidden: false
 ---

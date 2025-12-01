@@ -5,6 +5,6 @@ excerpt: >-
   addition)
 api:
   file: addressList.yaml
-  operationId: addMembersToAddressList
+  operationId: add-members-to-address-list
 hidden: false
 ---

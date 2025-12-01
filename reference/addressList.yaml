@@ -27,7 +27,7 @@ paths:
       description: >-
         Add a new email address list (supports setting list name and
         description)
-      operationId: addAddressList
+      operationId: add-address-list
       tags:
         - Address List
       security:
@@ -133,7 +133,7 @@ paths:
       description: >-
         Get the address list under the current apiUser (supports pagination
         query)
-      operationId: getAddressList
+      operationId: get-list-of-address-lists
       tags:
         - Address List
       security:
@@ -246,7 +246,7 @@ paths:
     post:
       summary: Update Address List
       description: Modify the display name or description of an existing address list
-      operationId: updateAddressList
+      operationId: update-address-list
       tags:
         - Address List
       security:
@@ -325,7 +325,7 @@ paths:
       description: >-
         Delete an existing address list (all members in the list will be deleted
         together)
-      operationId: deleteAddressList
+      operationId: delete-address-list
       tags:
         - Address List
       security:
@@ -377,7 +377,7 @@ paths:
     get:
       summary: Get Members List of Address List
       description: Query all email members in a specific address list (supports pagination)
-      operationId: queryAddressListMembersGet
+      operationId: get-members-list-of-address-list
       tags:
         - Address List
       security:
@@ -459,7 +459,7 @@ paths:
     get:
       summary: Get Member Info from Address List
       description: Get detailed information of a specific member in an address list
-      operationId: getMemberDetails
+      operationId: get-member-info-from-address-list
       tags:
         - Address List
       security:
@@ -549,7 +549,7 @@ paths:
       description: >-
         Add one or more email addresses to an existing address list (supports
         batch addition)
-      operationId: addMembersToAddressList
+      operationId: add-members-to-address-list
       tags:
         - Address List
       security:
@@ -647,7 +647,7 @@ paths:
       description: >-
         Update member information in an address list (supports updating name and
         custom variables)
-      operationId: updateMemberInfo
+      operationId: update-members-information
       tags:
         - Address List
       security:
@@ -756,7 +756,7 @@ paths:
       description: >-
         Remove one or more email addresses from an existing address list
         (supports batch removal)
-      operationId: removeMembersFromAddressList
+      operationId: delete-members-in-address-list
       tags:
         - Address List
       security:

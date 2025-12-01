@@ -5,6 +5,6 @@ excerpt: >-
   custom variables)
 api:
   file: addressList.yaml
-  operationId: updateMemberInfo
+  operationId: update-members-information
 hidden: false
 ---

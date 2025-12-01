@@ -5,6 +5,6 @@ excerpt: >-
   batch removal)
 api:
   file: addressList.yaml
-  operationId: removeMembersFromAddressList
+  operationId: delete-members-in-address-list
 hidden: false
 ---
