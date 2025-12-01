@@ -35,7 +35,7 @@ paths:
         filtering by event type, webhook status, and pagination. The maximum
         number of results per page is 500, and time parameters use Beijing time
         (GMT+8).
-      operationId: query-webhook-list
+      operationId: get-webhooks-list
       tags:
         - Webhook
       security:
