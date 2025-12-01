@@ -5,6 +5,6 @@ excerpt: >-
   sending
 api:
   file: sendingDomain.yaml
-  operationId: deleteSendingDomainPost
+  operationId: delete-sending-domain
 hidden: false
 ---

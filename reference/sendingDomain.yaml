@@ -23,7 +23,7 @@ paths:
     get:
       summary: Get Sending Domains List
       description: Query domain through this interface
-      operationId: queryDomainGet
+      operationId: get-sending-domains-list
       tags:
         - Sending Domain
       security:
@@ -131,7 +131,7 @@ paths:
     post:
       summary: Add Sending Domain
       description: Add domains through this interface using POST method
-      operationId: addDomainPost
+      operationId: add-sending-domain
       tags:
         - Sending Domain
       security:
@@ -212,7 +212,7 @@ paths:
     post:
       summary: Update Sending Domain
       description: Update an existing sending domain name
-      operationId: updateDomainPost
+      operationId: update-sending-domain
       tags:
         - Sending Domain
       security:
@@ -385,7 +385,7 @@ paths:
       description: >-
         Check if domain configuration is correct using POST method, including
         SPF, DKIM, and DMARC record verification
-      operationId: checkDomainConfigPost
+      operationId: get-sending-domain-verify-status
       tags:
         - Sending Domain
       security:
@@ -470,7 +470,7 @@ paths:
       description: >-
         Delete an added sending domain using POST method, will not affect actual
         email sending
-      operationId: deleteSendingDomainPost
+      operationId: delete-sending-domain
       tags:
         - Sending Domain
       security:

@@ -5,6 +5,6 @@ excerpt: >-
   DKIM, and DMARC record verification
 api:
   file: sendingDomain.yaml
-  operationId: checkDomainConfigPost
+  operationId: get-sending-domain-verify-status
 hidden: false
 ---

@@ -1,5 +1,5 @@
-- querydomainget
-- adddomainpost
-- updatedomainpost
-- checkdomainconfigpost
-- deletesendingdomainpost
+- get-sending-domains-list
+- add-sending-domain
+- update-sending-domain
+- get-sending-domain-verify-status
+- delete-sending-domain

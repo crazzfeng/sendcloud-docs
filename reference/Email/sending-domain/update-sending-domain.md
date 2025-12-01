@@ -3,6 +3,6 @@ title: Update Sending Domain
 excerpt: Update an existing sending domain name
 api:
   file: sendingDomain.yaml
-  operationId: updateDomainPost
+  operationId: update-sending-domain
 hidden: false
 ---
