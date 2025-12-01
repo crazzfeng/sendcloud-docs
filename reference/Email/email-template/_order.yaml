@@ -1,5 +1,5 @@
-- getsingletemplateget
-- addtemplateget
-- deletetemplateget
-- updatetemplatepost
 - get-email-templates-list
+- get-email-template
+- add-email-template
+- delete-email-template
+- update-email-template

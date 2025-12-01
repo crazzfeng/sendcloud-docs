@@ -5,6 +5,6 @@ excerpt: >-
   content)
 api:
   file: emailTemplate.yaml
-  operationId: updateTemplatePost
+  operationId: update-email-template
 hidden: false
 ---

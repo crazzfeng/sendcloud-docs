@@ -161,7 +161,7 @@ paths:
     get:
       summary: Get Email Template
       description: Get detailed information of a specific email template by invokeName
-      operationId: getSingleTemplateGet
+      operationId: get-email-template
       tags:
         - Email Template
       responses:
@@ -271,7 +271,7 @@ paths:
       description: >-
         Create a new email template (use POST for long/special character
         content)
-      operationId: addTemplateGet
+      operationId: add-email-template
       tags:
         - Email Template
       responses:
@@ -410,7 +410,7 @@ paths:
     post:
       summary: Delete Email Template
       description: Delete an existing email template by invokeName
-      operationId: deleteTemplateGet
+      operationId: delete-email-template
       tags:
         - Email Template
       responses:
@@ -466,7 +466,7 @@ paths:
       description: >-
         Modify an existing email template (recommended for long/special
         character content)
-      operationId: updateTemplatePost
+      operationId: update-email-template
       tags:
         - Email Template
       responses:
@@ -542,8 +542,8 @@ paths:
                     - 0
                     - 1
                   description: >-
-                    New template type (optional, 0 = transactional, 1 =
-                    marketing, leave empty to keep the original type)
+                    New template type (optional, 0 = Trigger, 1 = Batch, leave
+                    empty to keep the original type)
                   example: 1
       security:
         - apiUser: []
