@@ -1,8 +1,17 @@
 ---
 title: Webhook Event
+excerpt: >-
+  Complete webhook events API documentation including request, delivery, open,
+  click, unsubscribe, spam, bounce, and routing events with detailed parameters
+  and response codes.
 deprecated: false
 hidden: true
 metadata:
+  title: Webhook Events API Reference - Email Event Types & Parameters
+  description: >-
+    Complete webhook events API documentation including request, delivery, open,
+    click, unsubscribe, spam, bounce, and routing events with detailed
+    parameters and response codes.
   robots: index
 ---
 <br />
