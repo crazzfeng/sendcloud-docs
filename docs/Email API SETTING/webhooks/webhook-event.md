@@ -9,101 +9,142 @@ metadata:
 
 ## Request ( request )
 
+Parameter description
 
-参数说明
+| Parameter         | Type   | Description                                                      |
+| :---------------- | :----- | :--------------------------------------------------------------- |
+| event             | string | event type: “request”                                            |
+| message           | string | message content                                                  |
+| maillistTaskId    | long   | task ID will be generated when you send emails with address list |
+| mail_list_task_id | long   | task ID will be generated when you send emails with address list |
+| messageId         | string | messageId                                                        |
+| apiUser           | string | API_USER                                                         |
+| category          | string | API_USER ID                                                      |
+| recipientArray    | list   | recipients                                                       |
+| emailIds          | list   | emailId array                                                    |
+| labelId           | int    | custom label ID                                                  |
+| labelName         | string | custom label name                                                |
+| recipientSize     | int    | count of requests                                                |
+| timestamp         | long   | timestamp                                                        |
+| token             | string | random string of 50 characters                                   |
+| signature         | string | signature string                                                |
+| userHeaders       | string | custom header with start of “SC-Custom”                          |
 
-| Parameter | Type   | Description           |
-| :-------- | :----- | :-------------------- |
-| event     | string | event type: “request” |
-|           |        |                       |
+Delivery ( deliver )
+
+
+
+Parameter description
 
 <br />
 
-parameter	type	description
-event	string	event type: “request”
-message	string	message content
-maillistTaskId	long	task ID will be generated when you send emails with address list
-mail_list_task_id	long	task ID will be generated when you send emails with address list
-messageId	string	messageId
-apiUser	string	API_USER
-category	string	message ID
-recipientArray	list	recipients
-emailIds	list	emailId array
-labelId	int	custom label ID
-labelName	string	custom label name
-recipientSize	int	count of requests
-timestamp	long	timestamp
-token	string	random string of 50 characters
-signature	string	signature string
-userHeaders	string	custom header with start of “SC-Custom”
-#Delivery ( deliver )
+| Parameter         | Type   | Description                                                      |
+| :---------------- | :----- | :--------------------------------------------------------------- |
+| event             | string | event type: “deliver”                                            |
+| message           | string | message content                                                  |
+| maillistTaskId    | long   | task ID will be generated when you send emails with address list |
+| mail_list_task_id | long   | task ID will be generated when you send emails with address list |
+| apiUser           | string | API_USER                                                         |
+| category          | string | API_USER ID                                                      |
+| emailId           | string | unique ID of each email                                          |
+| recipient         | string | recipients                                                       |
+| outIp             | string | outbound IP address                                              |
+| labelId           | int    | custom label ID                                                  |
+| labelName         | string | custom label name                                                |
+| timestamp         | long   | timestamp                                                        |
+| token             | string | random string of 50 characters                                   |
+| signature         | string | signature string                                                 |
+| userHeaders       | string | custom header with start of “SC-Custom”                          |
+
+
+
+Open ( open )
+
+
 Parameter description
 
-parameter	type	description
-event	string	event type: “deliver”
-message	string	message content
-apiUser	string	API_USER
-category	string	API_USER
-maillistTaskId	long	task ID will be generated when you send emails with address list
-mail_list_task_id	long	task ID will be generated when you send emails with address list
-emailId	string	unique ID of each email
-outIp	string	outbound IP address
-recipient	string	recipients
-labelId	int	custom label ID
-labelName	string	custom label name
-timestamp	long	timestamp
-token	string	random string of 50 characters
-signature	string	signature string
-userHeaders	string	custom header with start of “SC-Custom”
-#Open ( open )
+| Parameter         | Type   | Description                                                      |
+| :---------------- | :----- | :--------------------------------------------------------------- |
+| event             | string | event type: “open”                                               |
+| message           | string | message content                                                  |
+| maillistTaskId    | long   | task ID will be generated when you send emails with address list |
+| mail_list_task_id | long   | task ID will be generated when you send emails with address list |
+| apiUser           | string | API_USER                                                         |
+| category          | string | API_USER ID                                                      |
+| emailId           | string | unique ID of each email                                          |
+| recipient         | string | recipients                                                       |
+| labelId           | int    | custom label ID                                                  |
+| labelName         | string | custom label name                                                |
+| ip                | string | opened IP address                                                |
+| explorerName      | string | browser name                                                     |
+| explorerVer       | string | browser version                                                  |
+| oSName            | string | OS name                                                          |
+| oSVer             | string | OS version                                                       |
+| timestamp         | long   | timestamp                                                        |
+| token             | string | random string of 50 characters                                   |
+| signature         | string | signature string                                                 |
+| userHeaders       | string | custom header with start of “SC-Custom”                          |
+
+Click ( click )
+
+
+
 Parameter description
 
-parameter	type	description
-event	string	event type: ”open”
-message	string	message content
-apiUser	string	API_USER
-category	string	API_USER
-maillistTaskId	long	task ID will be generated when you send emails with address list
-mail_list_task_id	long	task ID will be generated when you send emails with address list
-emailId	string	unique ID of each email
-recipient	string	recipients
-labelId	int	custom label ID
-labelName	string	custom label name
-ip	string	opened IP address
-explorerName	string	browser name
-explorerVer	string	browser version
-oSName	string	OS name
-oSVer	string	OS version
-timestamp	long	timestamp
-token	string	random string of 50 characters
-signature	string	signature string
-userHeaders	string	custom header with start of “SC-Custom”
-#Click ( click )
+| Parameter         | Type   | Description                                                      |
+| :---------------- | :----- | :--------------------------------------------------------------- |
+| event             | string | event type: “click”                                              |
+| message           | string | message content                                                  |
+| maillistTaskId    | long   | task ID will be generated when you send emails with address list |
+| mail_list_task_id | long   | task ID will be generated when you send emails with address list |
+| apiUser           | string | API_USER                                                         |
+| category          | string | API_USER ID                                                      |
+| emailId           | string | unique ID of each email                                          |
+| recipient         | string | recipients                                                       |
+| labelId           | int    | custom label ID                                                  |
+| labelName         | string | custom label name                                                |
+| url               | string | clicked links                                                    |
+| ip                | string | clicked IP address                                               |
+| explorerName      | string | browser name                                                     |
+| explorerVer       | string | browser version                                                  |
+| oSName            | string | OS name                                                          |
+| oSVer             | string | OS version                                                       |
+| timestamp         | long   | timestamp                                                        |
+| token             | string | random string of 50 characters                                   |
+| signature         | string | signature string                                                 |
+| userHeaders       | string | custom header with start of “SC-Custom”                          |
+
+
+
+Unsubscribe ( unsubscribe )
+
+
 Parameter description
 
-parameter	type	description
-event	string	event type: “type”
-message	string	message content
-apiUser	string	API_USER
-category	string	API_USER
-maillistTaskId	long	task ID will be generated when you send emails with address list
-mail_list_task_id	long	task ID will be generated when you send emails with address list
-emailId	string	unique ID of each email
-recipient	string	recipients
-labelId	int	custom label ID
-labelName	string	custom label name
-url	string	clicked links
-ip	string	clicked IP addresses
-explorerName	string	browser name
-explorerVer	string	browser version
-oSName	string	OS name
-oSVer	string	OS version
-timestamp	long	timestamp
-token	string	random string of 50 characters
-signature	string	signature string
-userHeaders	string	custom header with start of “SC-Custom”
-#Unsubscribe ( unsubscribe )
-Parameter description
+<br />
+
+| Parameter         | Type   | Description                                                      |
+| :---------------- | :----- | :--------------------------------------------------------------- |
+| event             | string | event type: “click”                                              |
+| message           | string | message content                                                  |
+| maillistTaskId    | long   | task ID will be generated when you send emails with address list |
+| mail_list_task_id | long   | task ID will be generated when you send emails with address list |
+| apiUser           | string | API_USER                                                         |
+| category          | string | API_USER ID                                                      |
+| emailId           | string | unique ID of each email                                          |
+| recipient         | string | recipients                                                       |
+| labelId           | int    | custom label ID                                                  |
+| labelName         | string | custom label name                                                |
+| url               | string | clicked links                                                    |
+| ip                | string | clicked IP address                                               |
+| explorerName      | string | browser name                                                     |
+| explorerVer       | string | browser version                                                  |
+| oSName            | string | OS name                                                          |
+| oSVer             | string | OS version                                                       |
+| timestamp         | long   | timestamp                                                        |
+| token             | string | random string of 50 characters                                   |
+| signature         | string | signature string                                                 |
+| userHeaders       | string | custom header with start of “SC-Custom”                          |
 
 parameter	type	description
 event	string	event type: ”unsubscribe”
@@ -167,8 +208,6 @@ Substat's return code and description：
 |subStat|subStatDesc| |401 | in SendCloud blacklist| |402 | unsubscribe| |403 | server unreachable| |404 | address format error| |405 IP and domain rejected| |406 | address does not exist| |407 | spam| |408 | sender / recipient rejected| |409 | others|
 
 Soft Bounce ( soft_bounce )
-
-
 
 Parameter description
 
