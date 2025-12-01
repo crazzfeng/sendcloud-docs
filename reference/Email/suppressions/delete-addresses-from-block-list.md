@@ -5,6 +5,6 @@ excerpt: >-
   or domainName.
 api:
   file: suppressions.yaml
-  operationId: deleteBlockAddress
+  operationId: delete-addresses-from-block-list
 hidden: false
 ---

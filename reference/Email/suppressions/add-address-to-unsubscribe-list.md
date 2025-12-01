@@ -5,6 +5,6 @@ excerpt: >-
   sent to this address after addition.
 api:
   file: suppressions.yaml
-  operationId: add-unsubscribe-get
+  operationId: add-address-to-unsubscribe-list
 hidden: false
 ---

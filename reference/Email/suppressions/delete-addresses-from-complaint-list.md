@@ -5,6 +5,6 @@ excerpt: >-
   or by date range.
 api:
   file: suppressions.yaml
-  operationId: deleteComplaint
+  operationId: delete-addresses-from-complaint-list
 hidden: false
 ---

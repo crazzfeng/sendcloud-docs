@@ -6,6 +6,6 @@ excerpt: >-
   deletes records for apiUserName+domainName and apiUserName+email respectively.
 api:
   file: suppressions.yaml
-  operationId: delete-uninterception-get
+  operationId: delete-addresses-from-allow-list
 hidden: false
 ---

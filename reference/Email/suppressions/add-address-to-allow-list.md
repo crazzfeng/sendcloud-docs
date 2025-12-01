@@ -8,6 +8,6 @@ excerpt: >-
   two records.
 api:
   file: suppressions.yaml
-  operationId: add-uninterception-get
+  operationId: add-address-to-allow-list
 hidden: false
 ---

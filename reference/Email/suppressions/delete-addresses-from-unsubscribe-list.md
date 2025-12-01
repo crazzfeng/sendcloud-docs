@@ -7,6 +7,6 @@ excerpt: >-
   specified).
 api:
   file: suppressions.yaml
-  operationId: delete-unsubscribe-get
+  operationId: delete-addresses-from-unsubscribe-list
 hidden: false
 ---

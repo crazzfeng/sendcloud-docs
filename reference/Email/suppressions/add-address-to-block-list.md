@@ -5,6 +5,6 @@ excerpt: >-
   domainName, and expireTime is required.
 api:
   file: suppressions.yaml
-  operationId: addBlockAddress
+  operationId: add-address-to-block-list
 hidden: false
 ---

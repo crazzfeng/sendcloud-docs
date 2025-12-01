@@ -7,6 +7,6 @@ excerpt: >-
   invalid if email is specified).
 api:
   file: suppressions.yaml
-  operationId: query-unsubscribe-list
+  operationId: get-info-from-unsubscribe-list
 hidden: false
 ---

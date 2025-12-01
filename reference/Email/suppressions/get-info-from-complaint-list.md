@@ -6,6 +6,6 @@ excerpt: >-
   intercepted until the expiration time. You may search in the spam list.
 api:
   file: suppressions.yaml
-  operationId: queryComplaintListGet
+  operationId: get-info-from-complaint-list
 hidden: false
 ---

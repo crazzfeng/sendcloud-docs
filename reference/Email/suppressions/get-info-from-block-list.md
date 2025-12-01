@@ -6,6 +6,6 @@ excerpt: >-
   is 3 months.
 api:
   file: suppressions.yaml
-  operationId: queryBlockListGet
+  operationId: get-info-from-block-list
 hidden: false
 ---

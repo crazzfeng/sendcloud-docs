@@ -5,6 +5,6 @@ excerpt: >-
   same as adding to the sending unblocking list.
 api:
   file: suppressions.yaml
-  operationId: deleteBouncedEmailPost
+  operationId: delete-address-from-bounce-list
 hidden: false
 ---

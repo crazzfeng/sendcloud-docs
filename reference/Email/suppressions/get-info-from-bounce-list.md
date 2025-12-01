@@ -5,6 +5,6 @@ excerpt: >-
   address. Time frame cannot exceed 3 months.
 api:
   file: suppressions.yaml
-  operationId: queryBounceListGet
+  operationId: get-info-from-bounce-list
 hidden: false
 ---

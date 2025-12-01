@@ -5,6 +5,6 @@ excerpt: >-
   receiving domain, email address, and pagination.
 api:
   file: suppressions.yaml
-  operationId: query-uninterception-list
+  operationId: get-info-from-allow-list
 hidden: false
 ---

@@ -27,7 +27,7 @@ paths:
       description: >-
         Query emails in the bounce list. Can search by time range or specific
         email address. Time frame cannot exceed 3 months.
-      operationId: queryBounceListGet
+      operationId: get-info-from-bounce-list
       tags:
         - Suppressions
       responses:
@@ -156,7 +156,7 @@ paths:
       description: >-
         Remove a specified email address from the bounce list. This function is
         the same as adding to the sending unblocking list.
-      operationId: deleteBouncedEmailPost
+      operationId: delete-address-from-bounce-list
       tags:
         - Suppressions
       responses:
@@ -212,7 +212,7 @@ paths:
         time frame, email address, API_USER, labels, and pagination. Time frame
         cannot be longer than 3 months; startDate & endDate or days is required
         (time frame is invalid if email is specified).
-      operationId: query-unsubscribe-list
+      operationId: get-info-from-unsubscribe-list
       tags:
         - Suppressions
       security:
@@ -350,7 +350,7 @@ paths:
       description: >-
         Add a specified email address to the unsubscribe list. No more emails
         will be sent to this address after addition.
-      operationId: add-unsubscribe-get
+      operationId: add-address-to-unsubscribe-list
       tags:
         - Suppressions
       security:
@@ -414,7 +414,7 @@ paths:
         time frame or specific email address. Time frame cannot be longer than 3
         months; startDate & endDate or days is required (time frame is invalid
         if email is specified).
-      operationId: delete-unsubscribe-get
+      operationId: delete-addresses-from-unsubscribe-list
       tags:
         - Suppressions
       security:
@@ -483,7 +483,7 @@ paths:
         added to the list of spam reporting. Email addresses in this list will
         be intercepted until the expiration time. You may search in the spam
         list.
-      operationId: queryComplaintListGet
+      operationId: get-info-from-complaint-list
       tags:
         - Suppressions
       responses:
@@ -577,7 +577,7 @@ paths:
       description: >-
         Delete complaint records from the spam list. You can delete by email
         address or by date range.
-      operationId: deleteComplaint
+      operationId: delete-addresses-from-complaint-list
       tags:
         - Suppressions
       responses:
@@ -634,7 +634,7 @@ paths:
         Get list of blocked email addresses or domains. Supports filtering by
         API user, domain name, email address, and time range. The maximum query
         time range is 3 months.
-      operationId: queryBlockListGet
+      operationId: get-info-from-block-list
       tags:
         - Suppressions
       security:
@@ -751,7 +751,7 @@ paths:
       description: >-
         Add email address or domain to block list. You must specify either email
         or domainName, and expireTime is required.
-      operationId: addBlockAddress
+      operationId: add-address-to-block-list
       tags:
         - Suppressions
       security:
@@ -819,7 +819,7 @@ paths:
       description: >-
         Delete email address or domain from block list. You must specify either
         email or domainName.
-      operationId: deleteBlockAddress
+      operationId: delete-addresses-from-block-list
       tags:
         - Suppressions
       security:
@@ -880,7 +880,7 @@ paths:
       description: >-
         Query entries in the uninterception list. Supports filtering by
         API_USER, receiving domain, email address, and pagination.
-      operationId: query-uninterception-list
+      operationId: get-info-from-allow-list
       tags:
         - Suppressions
       security:
@@ -975,7 +975,7 @@ paths:
         empty at the same time. Duplicate data (judged by apiUserName+domainName
         or apiUserName+email) will not be added repeatedly; filling both
         domainName and email splits into two records.
-      operationId: add-uninterception-get
+      operationId: add-address-to-allow-list
       tags:
         - Suppressions
       security:
@@ -1049,7 +1049,7 @@ paths:
         "all" if empty; domainName and email cannot be empty at the same time.
         Filling both deletes records for apiUserName+domainName and
         apiUserName+email respectively.
-      operationId: delete-uninterception-get
+      operationId: delete-addresses-from-allow-list
       tags:
         - Suppressions
       security:
