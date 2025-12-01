@@ -5,6 +5,6 @@ excerpt: >-
   interface will update the CNAME status.
 api:
   file: trackingDomain.yaml
-  operationId: verify-trackDomain-config-post
+  operationId: get-tracking-domain-verify-status
 hidden: false
 ---

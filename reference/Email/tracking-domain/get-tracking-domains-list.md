@@ -5,6 +5,6 @@ excerpt: >-
   by track name and pagination.
 api:
   file: trackingDomain.yaml
-  operationId: query-trackDomain-list-get
+  operationId: get-tracking-domains-list
 hidden: false
 ---

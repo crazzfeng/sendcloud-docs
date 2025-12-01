@@ -5,6 +5,6 @@ excerpt: >-
   SSL certificate information.
 api:
   file: trackingDomain.yaml
-  operationId: update-trackDomain-post
+  operationId: update-tracking-domain
 hidden: false
 ---

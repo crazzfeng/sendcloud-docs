@@ -6,6 +6,6 @@ excerpt: >-
   customer support for more.
 api:
   file: trackingDomain.yaml
-  operationId: add-trackDomain-post
+  operationId: add-tracking-domain
 hidden: false
 ---

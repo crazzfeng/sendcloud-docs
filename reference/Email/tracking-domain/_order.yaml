@@ -1,5 +1,5 @@
-- query-trackdomain-list-get
-- add-trackdomain-post
-- update-trackdomain-post
-- verify-trackdomain-config-post
-- delete-trackdomain-post
+- get-tracking-domains-list
+- add-tracking-domain
+- update-tracking-domain
+- get-tracking-domain-verify-status
+- delete-tracking-domain
