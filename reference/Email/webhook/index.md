@@ -65,95 +65,56 @@ After successfully receiving and processing the data, your server should return 
 
 ## Webhook Event Description
 
-Request ( request )
+**Request ( request )**
 
-<Columns layout="auto">
-  <Column>
-    parameter
-  </Column>
+| Parameter         | Type   | Description                                                      |
+| :---------------- | :----- | :--------------------------------------------------------------- |
+| event             | string | event type: “request”                                            |
+| message           | string | message content                                                  |
+| maillistTaskId    | long   | task ID will be generated when you send emails with address list |
+| mail_list_task_id | long   | task ID will be generated when you send emails with address list |
+| messageId         | string | messageId                                                        |
+| apiUser           | string | API_USER                                                         |
+| category          | string | message ID                                                       |
+| recipientArray    | list   | recipients                                                       |
+| emailIds          | list   | emailId array                                                    |
+| labelId           | int    | custom label ID                                                  |
+| labelName         | string | custom label name                                                |
+| recipientSize     | int    | count of requests                                                |
+| timestamp         | long   | timestamp                                                        |
+| token             | string | random string of 50 characters                                   |
+| signature         | string | signature string                                                 |
+| userHeaders       | string | custom header with start of “SC-Custom”                          |
 
-  <Column>
-    type
-  </Column>
+<br />
 
-  <Column>
-    description
-  </Column>
-</Columns>
+**Delivery ( deliver )**
 
-<Tabs>
-  <Tab title="First Tab">
-    parameter
-  </Tab>
+| Parameter | Type | Description |
+| :-------- | :--- | :---------- |
+|           |      |             |
+|           |      |             |
+|           |      |             |
+|           |      |             |
+|           |      |             |
+|           |      |             |
+|           |      |             |
+|           |      |             |
+|           |      |             |
+|           |      |             |
+|           |      |             |
+|           |      |             |
+|           |      |             |
+|           |      |             |
+|           |      |             |
+|           |      |             |
+|           |      |             |
+|           |      |             |
+|           |      |             |
 
-  <Tab title="Second Tab">
-    type
-  </Tab>
+<br />
 
-  <Tab title="Third Tab">
-    description
-  </Tab>
-</Tabs>
 
-parameter
-type
-description
-event
-string
-event type: “request”
-message
-string
-message content
-maillistTaskId
-long
-task ID will be generated when you send emails with address list
-mail_list_task_id
-long
-task ID will be generated when you send emails with address list
-messageId
-string
-messageId
-apiUser
-string
-API_USER
-category
-string
-message ID
-recipientArray
-list
-recipients
-emailIds
-list
-emailId array
-labelId
-int
-custom label ID
-labelName
-string
-custom label name
-recipientSize
-int
-count of requests
-timestamp
-long
-timestamp
-token
-string
-random string of 50 characters
-signature
-string
-signature string
-userHeaders
-string
-custom header with start of “SC-Custom”
-
-#
-
-Delivery ( deliver )
-Parameter description
-parameter
-type
-description
 event
 string
 event type: “deliver”
