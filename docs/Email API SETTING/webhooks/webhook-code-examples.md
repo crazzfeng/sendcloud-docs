@@ -5,7 +5,7 @@ excerpt: >-
   examples in Python, Java, and PHP. Secure your webhook endpoints with HMAC
   SHA256 authentication.
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   robots: index
 ---
