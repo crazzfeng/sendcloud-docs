@@ -1,4 +1,4 @@
 ---
 title: Email Template
-hidden: false
+hidden: true
 ---
