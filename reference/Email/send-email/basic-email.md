@@ -6,5 +6,5 @@ excerpt: >-
 api:
   file: sendEmail.yaml
   operationId: basic-email
-hidden: false
+hidden: true
 ---
