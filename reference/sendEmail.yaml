@@ -18,6 +18,13 @@ servers:
 tags:
   - name: Send Email
     description: Regular delivery, templates delivery
+  - name: Send Email/X-SMTPAPI
+    description: >-
+      X - SMTPAPI is a method provided by Aurora SendCloud for developers to
+      customize emails. Aurora SendCloud will search for the header field with
+      the key of X-SMTPAPI. If this header field is found, it will parse the
+      value to change the way the email is processed. Developers can use this
+      field when accessing via SMTP and API.
 paths:
   /api/mail/send:
     post:
