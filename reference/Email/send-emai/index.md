@@ -1,4 +1,4 @@
 ---
-title: Send Emai
+title: Send Email
 hidden: false
 ---
