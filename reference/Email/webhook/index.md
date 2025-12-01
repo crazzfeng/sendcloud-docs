@@ -67,8 +67,6 @@ After successfully receiving and processing the data, your server should return 
 
 Request ( request )
 
-
-
 <Columns layout="auto">
   <Column>
     parameter
@@ -77,14 +75,25 @@ Request ( request )
   <Column>
     type
   </Column>
-  
+
   <Column>
     description
   </Column>
 </Columns>
 
-<br />
+<Tabs>
+  <Tab title="First Tab">
+    parameter
+  </Tab>
 
+  <Tab title="Second Tab">
+    type
+  </Tab>
+
+  <Tab title="Third Tab">
+    description
+  </Tab>
+</Tabs>
 
 parameter
 type
