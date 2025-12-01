@@ -18,7 +18,7 @@ def verify(appkey, token, timestamp, signature):
 
 ## Java examples
 
-(Dependent <Anchor label="apache codec" target="_blank" href="https://commons.apache.org/proper/commons-codec/download_codec.cgi">apache codec</Anchor> )
+(Dependent <Anchor label="apache codec" target="_blank" href="https://commons.apache.org/proper/commons-codec/download_codec.cgi">apache codec</Anchor> )
 
 ```
 import javax.crypto.Mac;
@@ -39,14 +39,9 @@ public boolean verify(String appkey, String token, long timestamp,
 }
 ```
 
-    
 [WebHook analysis Sample download](https://www.aurorasendcloud.com/docs/downloads/java/CallBackController.zip)
 
-
-
-PHP examples
-
-
+## PHP examples
 
 ```
 function verify($appkey,$token,$timestamp,$signature){
@@ -58,8 +53,6 @@ function verify($appkey,$token,$timestamp,$signature){
 
 **Experience Now**
 If you don’t have url to receive data,try services of <Anchor label="requestb.in" target="_blank" href="http://requestb.in/">requestb.in</Anchor> or<Anchor label=" request 纷云版 " target="_blank" href="http://request.lesschat.com/"> request 纷云版 </Anchor> to experience WebHook.
-
-
 
 1. Click **Create a RequestBin** to generate an **url   **
 2. Configure the **URL** in SendCloud to receive event data from **WebHook**
