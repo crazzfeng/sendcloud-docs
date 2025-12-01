@@ -1,8 +1,6 @@
 ---
-title: Send SMS
-excerpt: >-
-  Learn how to send SMS templates to single or multiple recipients using our SMS
-  API. Complete documentation with code examples and implementation guides.
+title: New Endpoint
+excerpt: This is your first endpoint! Edit this page to start documenting your API.
 api:
   file: send.json
   operationId: get_new-endpoint
