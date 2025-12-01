@@ -25,7 +25,7 @@ paths:
       description: >-
         Query basic information of multiple email templates (supports filtering
         and pagination)
-      operationId: batchQueryTemplatesGet
+      operationId: get-email-templates-list
       tags:
         - Email Template
       responses:

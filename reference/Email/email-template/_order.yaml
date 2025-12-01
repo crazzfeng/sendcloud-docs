@@ -1,5 +1,5 @@
-- batchquerytemplatesget
 - getsingletemplateget
 - addtemplateget
 - deletetemplateget
 - updatetemplatepost
+- get-email-templates-list

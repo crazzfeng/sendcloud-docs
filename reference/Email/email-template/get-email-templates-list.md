@@ -5,6 +5,6 @@ excerpt: >-
   pagination)
 api:
   file: emailTemplate.yaml
-  operationId: batchQueryTemplatesGet
+  operationId: get-email-templates-list
 hidden: false
 ---
