@@ -6,6 +6,6 @@ excerpt: >-
   and data aggregation.
 api:
   file: statistics.yaml
-  operationId: query-invalid-email-statistics-get
+  operationId: get-invalid-emails-classifications-statistics-by-day
 hidden: false
 ---

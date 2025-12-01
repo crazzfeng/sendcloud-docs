@@ -6,6 +6,6 @@ excerpt: >-
   filtering by API_USER and label.
 api:
   file: statistics.yaml
-  operationId: query-hourly-statistics-get
+  operationId: get-statistics-by-hour
 hidden: false
 ---

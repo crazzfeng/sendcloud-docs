@@ -6,6 +6,6 @@ excerpt: >-
   filtering by API_USER, label, domain, and data aggregation.
 api:
   file: statistics.yaml
-  operationId: query-daily-statistics-get
+  operationId: get-statistics-by-day
 hidden: false
 ---
