@@ -1,5 +1,9 @@
 ---
 title: Code examples
+excerpt: >-
+  Learn how to implement webhook signature verification with complete code
+  examples in Python, Java, and PHP. Secure your webhook endpoints with HMAC
+  SHA256 authentication.
 deprecated: false
 hidden: true
 metadata:
