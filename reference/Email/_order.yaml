@@ -5,9 +5,9 @@
 - sending-domain
 - api_user
 - tracking-domain
+- account
 - statistics
 - data
 - suppressions
 - inbound-route
 - webhook
-- account
