@@ -7,6 +7,6 @@ excerpt: |
     2. When trackDomainName is the system default tracking domain name (track2.sendcloud.net), reading tracking and click tracking cannot be enabled.
 api:
   file: apiuser.yaml
-  operationId: post_api-apiuser-add
+  operationId: add-api-user
 hidden: false
 ---

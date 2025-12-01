@@ -25,6 +25,7 @@ paths:
       description: >-
         Get basic information of API_USER in batches with optional filtering
         conditions.
+      operationId: get-api-user-list
       tags:
         - API_USER
       security:
@@ -39,7 +40,7 @@ paths:
             enum:
               - 0
               - 1
-          description: 'Email type: 0 (transactional), 1 (marketing)'
+          description: 'Email type: 0 (Trigger), 1 (Batch)'
           example: 0
         - name: cType
           in: query
@@ -88,10 +89,10 @@ paths:
                           properties:
                             name:
                               type: string
-                              description: API_USER 名称
+                              description: API_USER name
                             cType:
                               type: string
-                              description: API_USER 类型
+                              description: API_USER type
                               example: non-test
                             emailType:
                               type: string
@@ -135,6 +136,7 @@ paths:
         Tips:
           1. To enable click-tracking, you need to make sure the bound domain has passed "cname" configuration validation.
           2. When trackDomainName is the system default tracking domain name (track2.sendcloud.net), reading tracking and click tracking cannot be enabled.
+      operationId: add-api-user
       tags:
         - API_USER
       security:
@@ -156,7 +158,7 @@ paths:
             enum:
               - 0
               - 1
-          description: 'Email type: 0 (transactional), 1 (marketing)'
+          description: 'Email type: 0 (Trigger), 1 (Batch)'
           example: 1
         - name: domainName
           in: query
@@ -294,6 +296,7 @@ paths:
         Tips:
           1. Unsubscribe tracking will be forcibly enabled by the system for free users.
           2. If the trackDomainName is set to the default tracking domain name (track2.sendcloud.net), it is not possible to enable read and click tracking.
+      operationId: update-api-user
       tags:
         - API_USER
       security:
@@ -389,7 +392,7 @@ paths:
                             enum:
                               - 0
                               - 1
-                            description: 'Email type: 0 (transactional), 1 (marketing)'
+                            description: 'Email type: 0 (Trigger), 1 (Batch)'
                             example: 0
                           domainName:
                             type: string

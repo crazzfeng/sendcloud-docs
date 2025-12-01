@@ -5,6 +5,6 @@ excerpt: >-
   conditions.
 api:
   file: apiuser.yaml
-  operationId: get_api-apiuser-list
+  operationId: get-api-user-list
 hidden: false
 ---
