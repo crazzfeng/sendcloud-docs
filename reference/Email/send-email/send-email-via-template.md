@@ -1,5 +1,5 @@
 ---
-title: Send Email Template
+title: Send Template Email
 excerpt: >-
   Send emails by calling preset templates through template call names,
   supporting dynamic parameter replacement.
