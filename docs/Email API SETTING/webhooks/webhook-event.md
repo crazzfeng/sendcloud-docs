@@ -16,7 +16,7 @@ metadata:
 ---
 <br />
 
-## Request ( request )
+## Request
 
 Parameter description
 
@@ -40,7 +40,7 @@ Parameter description
 |                   |        |                                                                  |
 | userHeaders       | string | custom header with start of “SC-Custom”                          |
 
-Delivery ( deliver )
+## Delivery
 
 Parameter description
 
@@ -64,7 +64,7 @@ Parameter description
 | signature         | string | signature string                                                 |
 | userHeaders       | string | custom header with start of “SC-Custom”                          |
 
-Open ( open )
+## Open
 
 Parameter description
 
@@ -90,7 +90,7 @@ Parameter description
 | signature         | string | signature string                                                 |
 | userHeaders       | string | custom header with start of “SC-Custom”                          |
 
-Click ( click )
+## Click
 
 Parameter description
 
@@ -117,7 +117,7 @@ Parameter description
 | signature         | string | signature string                                                 |
 | userHeaders       | string | custom header with start of “SC-Custom”                          |
 
-Unsubscribe ( unsubscribe )
+## Unsubscribe
 
 Parameter description
 
@@ -143,10 +143,7 @@ Parameter description
 | signature         | string | signature string                                                 |
 | userHeaders       | string | custom header with start of “SC-Custom”                          |
 
-
-
-Spam Reporting ( report_spam )
-
+## Spam Reporting
 
 Parameter description
 
@@ -165,10 +162,7 @@ Parameter description
 | signature   | string | signature string                        |
 | userHeaders | string | custom header with start of “SC-Custom” |
 
-
-
-Invalid Email ( invalid )
-
+## Invalid Email ( invalid )
 
 Parameter description
 
@@ -192,7 +186,7 @@ Parameter description
 | substatdesc       | string  | invalid subclass description                                     |
 | substat           | integer | invalid subclass                                                 |
 
-Substat's return code and description：
+Substat's return code and description：
 
 <br />
 
@@ -235,7 +229,7 @@ Parameter description
 | substat           | integer | soft drop back subclass                                          |
 | cause             | string  | reasons for soft credit withdrawal                               |
 
-Substat's return code and description：
+Substat's return code and description：
 
 | subStat | subStatDesc                  |
 | :------ | :--------------------------- |
@@ -246,10 +240,7 @@ Parameter description
 | 508     | sender / recipient rejected  |
 | 509     | others                       |
 
-
-
 Mail Routing (route)
-
 
 Parameter description
 
@@ -279,7 +270,6 @@ Parameter description
 | emailId         | string | The unique id of the parent email. This field allows the reply email to be associated with the parent email. This value is parsed from reference and In-Reply-To |
 | labelId         | int    | Parent email customized label ID                                                                                                                                 |
 | labelName       | string | Parent email customized label Name                                                                                                                               |
-
 
 Note:
 
