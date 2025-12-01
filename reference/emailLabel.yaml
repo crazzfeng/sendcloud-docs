@@ -26,7 +26,7 @@ paths:
     get:
       summary: Get Labels List
       description: List of returned labels with optional fuzzy search and pagination.
-      operationId: label-list-get
+      operationId: get-labels-list
       tags:
         - Email Label
       security:
@@ -108,7 +108,7 @@ paths:
     get:
       summary: Get Label
       description: Get a single label's details by label ID.
-      operationId: label-get-get
+      operationId: get-label
       tags:
         - Email Label
       security:
@@ -163,7 +163,7 @@ paths:
     post:
       summary: Add Label
       description: Add a new label (upper limit of 100000 labels per account).
-      operationId: label-add-post
+      operationId: add-label
       tags:
         - Email Label
       security:
@@ -216,9 +216,9 @@ paths:
                             description: Time of label modification
   /api/label/delete:
     post:
-      summary: Deletle Label
+      summary: Delete Label
       description: Delete a specified label by label ID.
-      operationId: label-delete-post
+      operationId: delete-label
       tags:
         - Email Label
       security:
@@ -259,7 +259,7 @@ paths:
     post:
       summary: Update Label
       description: Modify an existing label by label ID.
-      operationId: label-update-post
+      operationId: update-label
       tags:
         - Email Label
       security:

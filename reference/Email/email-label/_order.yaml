@@ -1,5 +1,5 @@
-- label-list-get
-- label-get-get
-- label-add-post
-- label-delete-post
-- label-update-post
+- get-labels-list
+- get-label
+- add-label
+- delete-label
+- update-label
