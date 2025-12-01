@@ -1,4 +1,4 @@
 ---
-title: Accout
+title: Account
 hidden: false
 ---
