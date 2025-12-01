@@ -6,5 +6,5 @@ excerpt: >-
 api:
   file: sendEmail.yaml
   operationId: send-template-email
-hidden: false
+hidden: true
 ---
