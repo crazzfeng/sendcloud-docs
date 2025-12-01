@@ -50,7 +50,7 @@ Currently, Aurora SendCloud supports notifications for the following event types
 | soft_bounce   | Soft bounce (temporary delivery failure)                      |
 | route         | Routing status event                                          |
 
-For the complete official list of event types and their detailed payload formats, please refer to the [Webhook Event Format Documentation].
+For the complete official list of event types and their detailed payload formats, please refer to the [Webhook Event Documentation](https://docs.aurorasendcloud.com/reference/webhook#/webhook-event-description).
 
 ## Configuration & Usage Steps
 
