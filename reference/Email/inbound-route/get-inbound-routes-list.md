@@ -5,6 +5,6 @@ excerpt: >-
   domain name and pagination.
 api:
   file: InboundRoute.yaml
-  operationId: batch-query-route-list-get
+  operationId: get-inbound-routes-list
 hidden: false
 ---

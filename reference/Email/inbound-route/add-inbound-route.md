@@ -6,6 +6,6 @@ excerpt: >-
   action is an email address.
 api:
   file: InboundRoute.yaml
-  operationId: add-route-get
+  operationId: add-inbound-route
 hidden: false
 ---

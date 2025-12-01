@@ -1,5 +1,5 @@
-- batch-query-route-list-get
-- query-single-route-get
-- add-route-get
-- update-route-get
-- delete-route-get
+- get-inbound-routes-list
+- get-inbound-route
+- add-inbound-route
+- update-inbound-route
+- delete-inbound-route

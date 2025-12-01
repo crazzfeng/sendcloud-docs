@@ -5,6 +5,6 @@ excerpt: >-
   if the updated action is an email address.
 api:
   file: InboundRoute.yaml
-  operationId: update-route-get
+  operationId: update-inbound-route
 hidden: false
 ---
