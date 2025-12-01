@@ -90,30 +90,29 @@ After successfully receiving and processing the data, your server should return 
 
 **Delivery ( deliver )**
 
-| Parameter | Type | Description |
-| :-------- | :--- | :---------- |
-|           |      |             |
-|           |      |             |
-|           |      |             |
-|           |      |             |
-|           |      |             |
-|           |      |             |
-|           |      |             |
-|           |      |             |
-|           |      |             |
-|           |      |             |
-|           |      |             |
-|           |      |             |
-|           |      |             |
-|           |      |             |
-|           |      |             |
-|           |      |             |
-|           |      |             |
-|           |      |             |
-|           |      |             |
+| Parameter                                                                                               | Type | Description |   |
+| :------------------------------------------------------------------------------------------------------ | :--- | :---------- | - |
+| ![](https://files.readme.io/f9532bce97fdf7c35d31d459bca643abae889d2cf0ba6cc4922d1120e244bd7c-image.png) |      |             |   |
+|                                                                                                         |      |             |   |
+|                                                                                                         |      |             |   |
+|                                                                                                         |      |             |   |
+|                                                                                                         |      |             |   |
+|                                                                                                         |      |             |   |
+|                                                                                                         |      |             |   |
+|                                                                                                         |      |             |   |
+|                                                                                                         |      |             |   |
+|                                                                                                         |      |             |   |
+|                                                                                                         |      |             |   |
+|                                                                                                         |      |             |   |
+|                                                                                                         |      |             |   |
+|                                                                                                         |      |             |   |
+|                                                                                                         |      |             |   |
+|                                                                                                         |      |             |   |
+|                                                                                                         |      |             |   |
+|                                                                                                         |      |             |   |
+|                                                                                                         |      |             |   |
 
 <br />
-
 
 event
 string
