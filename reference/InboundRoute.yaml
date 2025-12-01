@@ -1,0 +1,373 @@
+openapi: 3.0.0
+info:
+  title: Email
+  version: 1.0.0
+servers:
+  - url: https://api.aurorasendcloud.com/
+    description: |
+      Singapore Region
+      - Base URL: https://api.aurorasendcloud.com/
+  - url: https://api-us.aurorasendcloud.com/
+    description: |
+      US (Silicon Valley) Region
+      - Base URL: https://api-us.aurorasendcloud.com/
+  - url: https://api-hk.aurorasendcloud.com/
+    description: |
+      CN (Hong Kong SAR) Region
+      - Base URL: https://api-hk.aurorasendcloud.com/
+tags:
+  - name: Inbound Route
+    description: Email sending route management operations
+paths:
+  /api/route/list:
+    get:
+      summary: Get Inbound Routes List
+      description: >-
+        Batch query all route configurations under the account. Supports
+        filtering by domain name and pagination.
+      operationId: batch-query-route-list-get
+      tags:
+        - Inbound Route
+      security:
+        - apiUser: []
+          apiKey: []
+      parameters:
+        - name: domain
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Domain name (fuzzy filter)
+          example: post.sc.com
+        - name: start
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 0
+          description: 'Start position (range: 0-), defaults to 0'
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 100
+          description: 'Number of results per page (range: 0-100), defaults to 100'
+      responses:
+        '200':
+          description: Request successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 200
+                  message:
+                    type: string
+                    example: request was successful
+                  result:
+                    type: boolean
+                    example: true
+                  info:
+                    type: object
+                    properties:
+                      dataList:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                              description: Route ID
+                              example: 1
+                            domain:
+                              type: string
+                              description: Domain name
+                              example: post.sc.com
+                            expression:
+                              type: string
+                              description: Receiving route
+                              example: '*@post.sc.com'
+                            action:
+                              type: string
+                              description: Target URL or email address
+                              example: http://requestb.in/13kup3a1
+                            apiUserRoute:
+                              type: string
+                              nullable: true
+                              description: Required when action is an email address
+                              example: sctest
+                      total:
+                        type: integer
+                        description: Total number of route configurations
+                        example: 2
+                      count:
+                        type: integer
+                        description: Number of returned route configurations
+                        example: 2
+  /api/route/get:
+    get:
+      summary: Get Inbound Route
+      description: Query details of a specific route configuration by route ID.
+      operationId: query-single-route-get
+      tags:
+        - Inbound Route
+      security:
+        - apiUser: []
+          apiKey: []
+      parameters:
+        - name: routeId
+          in: query
+          required: false
+          schema:
+            type: integer
+          description: Route ID (unique identifier for the route)
+          example: 1
+      responses:
+        '200':
+          description: Request successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 200
+                  message:
+                    type: string
+                    example: request was successful
+                  result:
+                    type: boolean
+                    example: true
+                  info:
+                    type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            description: Route ID
+                            example: 1
+                          domain:
+                            type: string
+                            description: Domain name
+                            example: post.sc.com
+                          expression:
+                            type: string
+                            description: Receiving route
+                            example: '*@post.sc.com'
+                          action:
+                            type: string
+                            description: Target URL or email address
+                            example: admin@post.sc.com
+                          apiUserRoute:
+                            type: string
+                            description: API_USER associated with the route
+                            example: sctest
+  /api/route/add:
+    post:
+      summary: Add Inbound Route
+      description: >-
+        Create a new route configuration. The domain/email domain in the
+        expression must be a verified or usable sending domain. apiUserRoute is
+        required if action is an email address.
+      operationId: add-route-get
+      tags:
+        - Inbound Route
+      security:
+        - apiUser: []
+          apiKey: []
+      parameters:
+        - name: expression
+          in: query
+          required: true
+          schema:
+            type: string
+          description: >-
+            Receiving route; format is "regular expression@domain" or a specific
+            email address
+          example: '*@post.sc.com'
+        - name: action
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Target URL or email address
+          example: admin@post.sc.com
+        - name: apiUserRoute
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Required when action is set to an email address
+          example: sctest
+      responses:
+        '200':
+          description: Request successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 200
+                  message:
+                    type: string
+                    example: request was successful
+                  result:
+                    type: boolean
+                    example: true
+                  info:
+                    type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            description: Route ID (auto-generated)
+                            example: 1
+                          domain:
+                            type: string
+                            description: Domain name (extracted from expression)
+                            example: post.sc.com
+                          expression:
+                            type: string
+                            description: Receiving route
+                            example: '*@post.sc.com'
+                          action:
+                            type: string
+                            description: Target URL or email address
+                            example: admin@post.sc.com
+                          apiUserRoute:
+                            type: string
+                            nullable: true
+                            description: Required when action is an email address
+                            example: sctest
+  /api/route/update:
+    post:
+      summary: Update Inbound Route
+      description: >-
+        Update an existing route configuration by route ID. apiUserRoute is
+        required if the updated action is an email address.
+      operationId: update-route-get
+      tags:
+        - Inbound Route
+      security:
+        - apiUser: []
+          apiKey: []
+      parameters:
+        - name: routeId
+          in: query
+          required: true
+          schema:
+            type: integer
+          description: Route ID (unique identifier for the route to modify)
+          example: 1
+        - name: expression
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Updated receiving route
+          example: '*@post.sc.com'
+        - name: action
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Updated target URL or email address
+          example: admin@post.sc.com
+        - name: apiUserRoute
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Required when the updated action is set to an email address
+          example: sctest
+      responses:
+        '200':
+          description: Request successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 200
+                  message:
+                    type: string
+                    example: request was successful
+                  result:
+                    type: boolean
+                    example: true
+                  info:
+                    type: object
+                    properties:
+                      count:
+                        type: integer
+                        description: Number of modified route configurations
+                        example: 1
+  /api/route/delete:
+    post:
+      summary: Delete Inbound Route
+      description: Delete an existing route configuration by route ID.
+      operationId: delete-route-get
+      tags:
+        - Inbound Route
+      security:
+        - apiUser: []
+          apiKey: []
+      parameters:
+        - name: routeId
+          in: query
+          required: true
+          schema:
+            type: integer
+          description: Route ID (unique identifier for the route to delete)
+          example: 1
+      responses:
+        '200':
+          description: Request successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 200
+                  message:
+                    type: string
+                    example: request was successful
+                  result:
+                    type: boolean
+                    example: true
+                  info:
+                    type: object
+                    properties:
+                      count:
+                        type: integer
+                        description: Number of deleted route configurations
+                        example: 1
+components:
+  securitySchemes:
+    apiUser:
+      type: apiKey
+      in: query
+      name: apiUser
+      description: API_USER for identity verification
+    apiKey:
+      type: apiKey
+      in: query
+      name: apiKey
+      description: API_KEY for identity verification
+x-readme:
+  explorer-enabled: true
+  proxy-enabled: true

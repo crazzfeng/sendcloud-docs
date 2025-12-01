@@ -1,0 +1,828 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Email
+servers:
+  - url: https://api.aurorasendcloud.com/
+    description: |
+      Singapore Region
+      - Base URL: https://api.aurorasendcloud.com/
+  - url: https://api-us.aurorasendcloud.com/
+    description: |
+      US (Silicon Valley) Region
+      - Base URL: https://api-us.aurorasendcloud.com/
+  - url: https://api-hk.aurorasendcloud.com/
+    description: |
+      CN (Hong Kong SAR) Region
+      - Base URL: https://api-hk.aurorasendcloud.com/
+tags:
+  - name: Address List
+    description: >-
+      Interfaces for creating, querying, updating, deleting address lists and
+      managing members
+paths:
+  /api/addresslist/add:
+    post:
+      summary: Add Address List
+      description: >-
+        Add a new email address list (supports setting list name and
+        description)
+      operationId: addAddressList
+      tags:
+        - Address List
+      security:
+        - apiUser: []
+          apiKey: []
+      responses:
+        '200':
+          description: Address list added successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    description: Response status code (200 indicates success)
+                    example: 200
+                  message:
+                    type: string
+                    description: >-
+                      Prompt message for request result (success/failure
+                      description)
+                    example: request was successful
+                  result:
+                    type: boolean
+                    description: >-
+                      Whether the request was processed successfully (true =
+                      success, false = failure)
+                    example: true
+                  info:
+                    type: object
+                    description: Detailed information of the newly added address list
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          address:
+                            type: string
+                            description: >-
+                              Alias address of the address list (formatted as
+                              xxx@maillist.sendcloud.org)
+                            example: test@maillist.sendcloud.org
+                          name:
+                            type: string
+                            description: Address list name
+                            example: test
+                          description:
+                            type: string
+                            description: Address list description (optional)
+                            example: This is a test address list
+                          memberCount:
+                            type: integer
+                            description: >-
+                              Number of members in the address list (0 for new
+                              list)
+                            example: 0
+                          listType:
+                            type: integer
+                            description: List type
+                            example: 0
+                          gmtCreated:
+                            type: string
+                            format: date-time
+                            description: >-
+                              Address list creation time (format: yyyy-MM-dd
+                              HH:mm:ss)
+                            example: '2015-09-28 17:59:15'
+                          gmtUpdated:
+                            type: string
+                            format: date-time
+                            description: >-
+                              Address list last update time (format: yyyy-MM-dd
+                              HH:mm:ss)
+                            example: '2015-09-28 17:59:15'
+      parameters:
+        - in: query
+          name: address
+          schema:
+            type: string
+          required: true
+          description: >-
+            Alias address of the address list (formatted as
+            xxx@maillist.sendcloud.org, used for invoking the list in sending
+            emails)
+          example: test@maillist.sendcloud.org
+        - in: query
+          name: name
+          schema:
+            type: string
+          required: true
+          description: Address list name
+          example: test
+        - in: query
+          name: desc
+          schema:
+            type: string
+          required: false
+          description: Address list description (optional)
+          example: This is a test address list
+  /api/addresslist/list:
+    get:
+      summary: Get List of Address Lists
+      description: >-
+        Get the address list under the current apiUser (supports pagination
+        query)
+      operationId: getAddressList
+      tags:
+        - Address List
+      security:
+        - apiUser: []
+          apiKey: []
+      responses:
+        '200':
+          description: Address list retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    description: Response status code (200 indicates success)
+                    example: 200
+                  message:
+                    type: string
+                    description: >-
+                      Prompt message for request result (success/failure
+                      description)
+                    example: request was successful
+                  result:
+                    type: boolean
+                    description: >-
+                      Whether the request was processed successfully (true =
+                      success, false = failure)
+                    example: true
+                  info:
+                    type: object
+                    description: Detailed information of the address list
+                    properties:
+                      total:
+                        type: integer
+                        description: Total number of address lists
+                        example: 5
+                      data:
+                        type: array
+                        description: List of address list objects
+                        items:
+                          type: object
+                          properties:
+                            address:
+                              type: string
+                              description: >-
+                                Alias address of the address list (formatted as
+                                xxx@maillist.sendcloud.org)
+                              example: test@maillist.sendcloud.org
+                            name:
+                              type: string
+                              description: Address list name
+                              example: test
+                            description:
+                              type: string
+                              description: Address list description (optional)
+                              example: This is a test address list
+                            memberCount:
+                              type: integer
+                              description: Number of members in the address list
+                              example: 150
+                            listType:
+                              type: integer
+                              description: List type
+                              example: 0
+                            gmtCreated:
+                              type: string
+                              format: date-time
+                              description: >-
+                                Address list creation time (format: yyyy-MM-dd
+                                HH:mm:ss)
+                              example: '2015-09-28 17:59:15'
+                            gmtUpdated:
+                              type: string
+                              format: date-time
+                              description: >-
+                                Address list last update time (format:
+                                yyyy-MM-dd HH:mm:ss)
+                              example: '2015-09-28 17:59:15'
+      parameters:
+        - in: query
+          name: address
+          schema:
+            type: string
+          required: false
+          description: Lists of alias addresses, separated by semicolons
+          example: test@maillist.sendcloud.org;marketing@maillist.sendcloud.org
+        - in: query
+          name: start
+          schema:
+            type: integer
+            default: 0
+            minimum: 0
+          required: false
+          description: Start position (pagination parameter, defaults to 0)
+          example: 0
+        - in: query
+          name: limit
+          schema:
+            type: integer
+            default: 100
+            minimum: 0
+            maximum: 100
+          required: false
+          description: >-
+            Amount of results returned (pagination parameter, range 0-100,
+            defaults to 100)
+          example: 15
+  /api/addresslist/update:
+    post:
+      summary: Update Address List
+      description: Modify the display name or description of an existing address list
+      operationId: updateAddressList
+      tags:
+        - Address List
+      security:
+        - apiUser: []
+          apiKey: []
+      responses:
+        '200':
+          description: Address list updated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    description: Response status code (200 indicates success)
+                    example: 200
+                  message:
+                    type: string
+                    description: >-
+                      Prompt message for request result (success/failure
+                      description)
+                    example: request was successful
+                  result:
+                    type: boolean
+                    description: >-
+                      Whether the request was processed successfully (true =
+                      success, false = failure)
+                    example: true
+                  info:
+                    type: object
+                    description: Update result statistics
+                    properties:
+                      count:
+                        type: integer
+                        description: >-
+                          Number of address lists successfully updated (1 =
+                          success, 0 = no update)
+                        example: 1
+      parameters:
+        - in: query
+          name: address
+          schema:
+            type: string
+          required: true
+          description: >-
+            Address of the address list to update (unique identifier, cannot be
+            modified)
+          example: test@maillist.sendcloud.org
+        - in: query
+          name: newAddress
+          schema:
+            type: string
+          required: false
+          description: New address (optional, leave empty to keep the original)
+          example: new_test@maillist.sendcloud.org
+        - in: query
+          name: name
+          schema:
+            type: string
+          required: false
+          description: New display name (optional, leave empty to keep the original)
+          example: Updated Test Address List
+        - in: query
+          name: desc
+          schema:
+            type: string
+          required: false
+          description: >-
+            New description (optional, leave empty to keep the original; pass
+            empty string to clear)
+          example: Updated description for test address list
+  /api/addresslist/delete:
+    post:
+      summary: Delete Address List
+      description: >-
+        Delete an existing address list (all members in the list will be deleted
+        together)
+      operationId: deleteAddressList
+      tags:
+        - Address List
+      security:
+        - apiUser: []
+          apiKey: []
+      responses:
+        '200':
+          description: Address list deleted successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    description: Response status code (200 indicates success)
+                    example: 200
+                  message:
+                    type: string
+                    description: >-
+                      Prompt message for request result (success/failure
+                      description)
+                    example: request was successful
+                  result:
+                    type: boolean
+                    description: >-
+                      Whether the request was processed successfully (true =
+                      success, false = failure)
+                    example: true
+                  info:
+                    type: object
+                    description: Deletion result statistics
+                    properties:
+                      count:
+                        type: integer
+                        description: >-
+                          Number of address lists successfully deleted (1 =
+                          success, 0 = no deletion)
+                        example: 1
+      parameters:
+        - in: query
+          name: address
+          schema:
+            type: string
+          required: true
+          description: Address of the address list to delete (unique identifier)
+          example: test@maillist.sendcloud.org
+  /api/addressmember/list:
+    get:
+      summary: Get Members List of Address List
+      description: Query all email members in a specific address list (supports pagination)
+      operationId: queryAddressListMembersGet
+      tags:
+        - Address List
+      security:
+        - apiUser: []
+          apiKey: []
+      responses:
+        '200':
+          description: Request successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    description: Response status code (200 indicates success)
+                    example: 200
+                  message:
+                    type: string
+                    description: >-
+                      Prompt message for request result (success/failure
+                      description)
+                    example: request was successful
+                  result:
+                    type: boolean
+                    description: >-
+                      Whether the request was processed successfully (true =
+                      success, false = failure)
+                    example: true
+                  info:
+                    type: object
+                    description: Member query result data
+                    properties:
+                      data:
+                        type: array
+                        description: List of email members in the address list
+                        items:
+                          type: string
+                          description: Email address of the member
+                          example: user1@example.com
+                      total:
+                        type: integer
+                        description: Total number of members in the address list
+                        example: 50
+                      count:
+                        type: integer
+                        description: Number of members returned in the current query
+                        example: 10
+      parameters:
+        - in: query
+          name: address
+          schema:
+            type: string
+          required: true
+          description: Address of the target address list (to query members)
+          example: test@maillist.sendcloud.org
+        - in: query
+          name: start
+          schema:
+            type: integer
+            default: 0
+            minimum: 0
+          required: false
+          description: Start position (pagination parameter, defaults to 0)
+          example: 0
+        - in: query
+          name: limit
+          schema:
+            type: integer
+            default: 100
+            minimum: 0
+            maximum: 100
+          required: false
+          description: >-
+            Amount of results returned (pagination parameter, range 0-100,
+            defaults to 100)
+          example: 15
+  /api/addressmember/get:
+    get:
+      summary: Get Member Info from Address List
+      description: Get detailed information of a specific member in an address list
+      operationId: getMemberDetails
+      tags:
+        - Address List
+      security:
+        - apiUser: []
+          apiKey: []
+      parameters:
+        - in: query
+          name: address
+          schema:
+            type: string
+          required: true
+          description: Address list alias (formatted as xxx@maillist.sendcloud.org)
+          example: test@maillist.sendcloud.org
+        - in: query
+          name: members
+          schema:
+            type: string
+          required: true
+          description: Member email addresses, separated by semicolons
+          example: user1@example.com;user2@example.com
+      responses:
+        '200':
+          description: Member details retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    description: Response status code (200 indicates success)
+                    example: 200
+                  message:
+                    type: string
+                    description: >-
+                      Prompt message for request result (success/failure
+                      description)
+                    example: request was successful
+                  result:
+                    type: boolean
+                    description: >-
+                      Whether the request was processed successfully (true =
+                      success, false = failure)
+                    example: true
+                  info:
+                    type: object
+                    description: Detailed information of the queried member
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          member:
+                            type: string
+                            description: Email address of the member
+                            example: user@example.com
+                          address:
+                            type: string
+                            description: >-
+                              Address list alias (formatted as
+                              xxx@maillist.sendcloud.org)
+                            example: test@maillist.sendcloud.org
+                          name:
+                            type: string
+                            description: Member name (optional)
+                            example: John Doe
+                          vars:
+                            type: object
+                            description: Custom variables for the member (optional)
+                            additionalProperties:
+                              type: string
+                            example: ''
+                          gmtCreated:
+                            type: string
+                            format: date-time
+                            description: 'Member addition time (format: yyyy-MM-dd HH:mm:ss)'
+                            example: '2015-09-28 17:59:15'
+                          gmtUpdated:
+                            type: string
+                            format: date-time
+                            description: >-
+                              Member last update time (format: yyyy-MM-dd
+                              HH:mm:ss)
+                            example: '2015-09-28 17:59:15'
+  /api/addressmember/add:
+    post:
+      summary: Add Members to Address List
+      description: >-
+        Add one or more email addresses to an existing address list (supports
+        batch addition)
+      operationId: addMembersToAddressList
+      tags:
+        - Address List
+      security:
+        - apiUser: []
+          apiKey: []
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                address:
+                  type: string
+                  description: >-
+                    Address of the target address list (to which members are
+                    added)
+                  example: test@maillist.sendcloud.org
+                members:
+                  type: string
+                  description: >-
+                    Email addresses to add (separated by semicolons, supports
+                    batch addition)
+                  example: user1@example.com;user2@example.com;user3@example.com
+                names:
+                  type: string
+                  description: Member names are separated by semicolons
+                  example: John Smith;Jane Doe
+                vars:
+                  type: string
+                  description: >-
+                    Substitution variables are corresponding to members, and
+                    formatted as {"money":"1000"}; separated by semicolons
+                  example: '{"money":"1000"};{"money":"2000"}'
+              required:
+                - address
+                - members
+      responses:
+        '200':
+          description: Members added successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    description: Response status code (200 indicates success)
+                    example: 200
+                  message:
+                    type: string
+                    description: >-
+                      Prompt message for request result (success/failure
+                      description)
+                    example: request was successful
+                  result:
+                    type: boolean
+                    description: >-
+                      Whether the request was processed successfully (true =
+                      success, false = failure)
+                    example: true
+                  info:
+                    type: object
+                    description: Member addition result statistics
+                    properties:
+                      count:
+                        type: integer
+                        description: Number of email addresses added successfully
+                        example: 2
+                      invalidCount:
+                        type: integer
+                        description: Number of email addresses that failed to be added
+                        example: 1
+                      invalidAddressList:
+                        type: array
+                        items:
+                          type: string
+                        description: Details of email addresses that failed to be added
+                        example:
+                          - wang3.@gmail.com
+                      reasonList:
+                        type: array
+                        items:
+                          type: string
+                        description: >-
+                          The reason for the failed email address to be added
+                          (corresponding to the address details)
+                        example:
+                          - >-
+                            Member address does not meet the email address
+                            specification
+  /api/addressmember/update:
+    post:
+      summary: Update Members Information
+      description: >-
+        Update member information in an address list (supports updating name and
+        custom variables)
+      operationId: updateMemberInfo
+      tags:
+        - Address List
+      security:
+        - apiUser: []
+          apiKey: []
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                address:
+                  type: string
+                  description: Address list alias (formatted as xxx@maillist.sendcloud.org)
+                  example: test@maillist.sendcloud.org
+                members:
+                  type: string
+                  description: >-
+                    Former addresses of the updated members, separated by
+                    semicolons
+                  example: user1@example.com;user2@example.com
+                newMembers:
+                  type: string
+                  description: >-
+                    Updated addresses of the updated members, separated by
+                    semicolons; corresponding to the members
+                  example: newuser1@example.com;newuser2@example.com
+                names:
+                  type: string
+                  description: Names of list members, separated by semicolons
+                  example: John Smith;Jane Doe
+                vars:
+                  type: string
+                  description: >-
+                    Substitution variables, corresponding to members, are
+                    formatted as {"money":"1000"}; separated by semicolons
+                  example: '{"money":"199"};{"money":"1900"}'
+              required:
+                - address
+                - members
+                - newMembers
+      responses:
+        '200':
+          description: Member information updated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    description: Response status code (200 indicates success)
+                    example: 200
+                  message:
+                    type: string
+                    description: >-
+                      Prompt message for request result (success/failure
+                      description)
+                    example: request was successful
+                  result:
+                    type: boolean
+                    description: >-
+                      Whether the request was processed successfully (true =
+                      success, false = failure)
+                    example: true
+                  info:
+                    type: object
+                    description: Update result statistics
+                    properties:
+                      count:
+                        type: integer
+                        description: Number of email addresses added successfully
+                        example: 1
+                      addressNotExistCount:
+                        type: integer
+                        description: Email address does not exist
+                        example: 1
+                      invalidCount:
+                        type: integer
+                        description: Number of email addresses that failed to be added
+                        example: 2
+                      invalidAddressList:
+                        type: array
+                        items:
+                          type: string
+                        description: Details of email addresses that failed to be added
+                        example:
+                          - wang2.@gmail.com
+                          - wang0@gmail.com
+                      reasonList:
+                        type: array
+                        items:
+                          type: string
+                        description: >-
+                          The reason for the failed email address to be added
+                          (corresponding to the address details)
+                        example:
+                          - >-
+                            Member address does not meet the email address
+                            specification
+                          - address not found
+  /api/addressmember/delete:
+    post:
+      summary: Delete Members in Address List
+      description: >-
+        Remove one or more email addresses from an existing address list
+        (supports batch removal)
+      operationId: removeMembersFromAddressList
+      tags:
+        - Address List
+      security:
+        - apiUser: []
+          apiKey: []
+      responses:
+        '200':
+          description: Members removed successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    description: Response status code (200 indicates success)
+                    example: 200
+                  message:
+                    type: string
+                    description: >-
+                      Prompt message for request result (success/failure
+                      description)
+                    example: request was successful
+                  result:
+                    type: boolean
+                    description: >-
+                      Whether the request was processed successfully (true =
+                      success, false = failure)
+                    example: true
+                  info:
+                    type: object
+                    description: Member removal result statistics
+                    properties:
+                      count:
+                        type: integer
+                        description: Number of members successfully removed
+                        example: 3
+      parameters:
+        - in: query
+          name: address
+          schema:
+            type: string
+          required: true
+          description: Address of the target address list (from which members are removed)
+          example: test@maillist.sendcloud.org
+        - in: query
+          name: members
+          schema:
+            type: string
+          required: true
+          description: >-
+            Email addresses to remove (separated by semicolons, supports batch
+            removal)
+          example: user1@example.com;user2@example.com
+components:
+  securitySchemes:
+    apiUser:
+      type: apiKey
+      in: query
+      name: apiUser
+      description: Authentication parameter (API_USER, obtained from the SendCloud console)
+    apiKey:
+      type: apiKey
+      in: query
+      name: apiKey
+      description: Authentication parameter (API_KEY, obtained from the SendCloud console)
+x-readme:
+  explorer-enabled: true
+  proxy-enabled: true

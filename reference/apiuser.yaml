@@ -1,0 +1,447 @@
+openapi: 3.0.0
+info:
+  title: Email
+  version: 1.0.0
+servers:
+  - url: https://api.aurorasendcloud.com/
+    description: |
+      Singapore Region
+      - Base URL: https://api.aurorasendcloud.com/
+  - url: https://api-us.aurorasendcloud.com/
+    description: |
+      US (Silicon Valley) Region
+      - Base URL: https://api-us.aurorasendcloud.com/
+  - url: https://api-hk.aurorasendcloud.com/
+    description: |
+      CN (Hong Kong SAR) Region
+      - Base URL: https://api-hk.aurorasendcloud.com/
+tags:
+  - name: API_USER
+    description: API_USER management operations
+paths:
+  /api/apiuser/list:
+    get:
+      summary: Get API_USER List
+      description: >-
+        Get basic information of API_USER in batches with optional filtering
+        conditions.
+      tags:
+        - API_USER
+      security:
+        - apiUser: []
+          apiKey: []
+      parameters:
+        - name: emailType
+          in: query
+          required: false
+          schema:
+            type: integer
+            enum:
+              - 0
+              - 1
+          description: 'Email type: 0 (transactional), 1 (marketing)'
+          example: 0
+        - name: cType
+          in: query
+          required: false
+          schema:
+            type: integer
+            enum:
+              - 0
+              - 1
+          description: 'API_USER type: 0 (test), 1 (general)'
+          example: 1
+        - name: domainName
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Bound domain name
+          example: test@example.com
+      responses:
+        '200':
+          description: Request was successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 200
+                  message:
+                    type: string
+                    example: request was successful
+                  result:
+                    type: boolean
+                    example: true
+                  info:
+                    type: object
+                    properties:
+                      count:
+                        type: integer
+                        description: Number of returned API_USER records
+                      dataList:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            name:
+                              type: string
+                              description: API_USER 名称
+                            cType:
+                              type: string
+                              description: API_USER 类型
+                              example: non-test
+                            emailType:
+                              type: string
+                              description: API_USER email type
+                              example: Trigger
+                            domainName:
+                              type: string
+                              description: API_USER bound domain
+                            trackDomainName:
+                              type: string
+                              description: The tracking domain name bound to API_USER
+                            click:
+                              type: integer
+                              enum:
+                                - 0
+                                - 1
+                              description: >-
+                                Whether to enable click-tracking: 0 (disable), 1
+                                (enable)
+                            open:
+                              type: integer
+                              enum:
+                                - 0
+                                - 1
+                              description: >-
+                                Whether to enable open-tracking: 0 (disable), 1
+                                (enable)
+                            unsubscribe:
+                              type: integer
+                              enum:
+                                - 0
+                                - 1
+                              description: >-
+                                Whether to enable unsubscribe-tracking: 0
+                                (disable), 1 (enable)
+  /api/apiuser/add:
+    post:
+      summary: Add API_USER
+      description: |
+        Same as GET method, supports POST request for API_USER creation.
+        Tips:
+          1. To enable click-tracking, you need to make sure the bound domain has passed "cname" configuration validation.
+          2. When trackDomainName is the system default tracking domain name (track2.sendcloud.net), reading tracking and click tracking cannot be enabled.
+      tags:
+        - API_USER
+      security:
+        - apiUser: []
+          apiKey: []
+      parameters:
+        - name: name
+          in: query
+          required: true
+          schema:
+            type: string
+          description: API_USER name
+          example: test api user
+        - name: emailType
+          in: query
+          required: true
+          schema:
+            type: integer
+            enum:
+              - 0
+              - 1
+          description: 'Email type: 0 (transactional), 1 (marketing)'
+          example: 1
+        - name: domainName
+          in: query
+          required: true
+          schema:
+            type: string
+          description: API_USER bound domain name
+          example: test@example.com
+        - name: trackDomainName
+          in: query
+          required: false
+          schema:
+            type: string
+          description: API_USER bound track name
+          example: test1@example.com
+        - name: unsubscribePageId
+          in: query
+          required: false
+          schema:
+            type: integer
+          description: Unsubscribe page ID
+          example: 1
+        - name: open
+          in: query
+          required: false
+          schema:
+            type: integer
+            enum:
+              - 0
+              - 1
+            default: 0
+          description: >-
+            Whether to enable open-tracking: 0 (disable), 1 (enable); disable by
+            default
+          example: 1
+        - name: click
+          in: query
+          required: false
+          schema:
+            type: integer
+            enum:
+              - 0
+              - 1
+            default: 0
+          description: >-
+            Whether to enable click-tracking: 0 (disable), 1 (enable); disable
+            by default
+          example: 0
+        - name: unsubscribe
+          in: query
+          required: false
+          schema:
+            type: integer
+            enum:
+              - 0
+              - 1
+            default: 1
+          description: >-
+            Whether to enable unsubscribe-tracking: 0 (disable), 1 (enable);
+            enabled by default
+          example: 1
+      responses:
+        '200':
+          description: Request successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 200
+                  message:
+                    type: string
+                    example: Request successful
+                  result:
+                    type: boolean
+                    example: true
+                  info:
+                    type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          name:
+                            type: string
+                            description: API_USER name
+                          nameKey:
+                            type: string
+                            description: API_KEY name
+                            example: '********'
+                          cType:
+                            type: string
+                            description: API_USER type
+                            example: non-test
+                          emailType:
+                            type: string
+                            description: API_USER email type
+                            example: trigger
+                          domainName:
+                            type: string
+                            description: API_USER bound domain
+                          trackDomainName:
+                            type: string
+                            description: The tracking domain name bound to API_USER
+                            example: track2.sendcloud.net
+                          click:
+                            type: integer
+                            enum:
+                              - 0
+                              - 1
+                            description: Whether to enable click-tracking
+                            example: 1
+                          open:
+                            type: integer
+                            enum:
+                              - 0
+                              - 1
+                            description: Whether to enable open-tracking
+                            example: 1
+                          unsubscribe:
+                            type: integer
+                            enum:
+                              - 0
+                              - 1
+                            description: Whether to enable unsubscribe-tracking
+                            example: 1
+  /api/apiuser/update:
+    post:
+      summary: Update API_USER
+      description: >
+        Update configuration of an existing API_USER (only supports POST
+        method).
+
+        Tips:
+          1. Unsubscribe tracking will be forcibly enabled by the system for free users.
+          2. If the trackDomainName is set to the default tracking domain name (track2.sendcloud.net), it is not possible to enable read and click tracking.
+      tags:
+        - API_USER
+      security:
+        - apiUser: []
+          apiKey: []
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: API_USER name (existing name to be modified)
+                  example: test api user
+                newName:
+                  type: string
+                  description: New API_USER name
+                  example: test1 api user
+                domainName:
+                  type: string
+                  description: API_USER bound domain name
+                  example: test@example.com
+                trackDomainName:
+                  type: string
+                  description: API_USER bound track name
+                  example: test1@example.com
+                unsubscribePageId:
+                  type: integer
+                  description: Unsubscribe page ID
+                  example: 1
+                open:
+                  type: integer
+                  enum:
+                    - 0
+                    - 1
+                  description: 'Whether to enable open-tracking: 0 (disable), 1 (enable)'
+                  example: 0
+                click:
+                  type: integer
+                  enum:
+                    - 0
+                    - 1
+                  description: 'Whether to enable click-tracking: 0 (disable), 1 (enable)'
+                  example: 0
+                unsubscribe:
+                  type: integer
+                  enum:
+                    - 0
+                    - 1
+                  description: >-
+                    Whether to enable unsubscribe-tracking: 0 (disable), 1
+                    (enable)
+                  example: 0
+              required:
+                - name
+                - newName
+      responses:
+        '200':
+          description: Request was successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 200
+                  message:
+                    type: string
+                    example: request was successful
+                  result:
+                    type: boolean
+                    example: true
+                  info:
+                    type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          name:
+                            type: string
+                            description: API_USER name
+                          cType:
+                            type: integer
+                            enum:
+                              - 0
+                              - 1
+                            description: 'API_USER type: 0(test), 1(normal)'
+                            example: 1
+                          emailType:
+                            type: integer
+                            enum:
+                              - 0
+                              - 1
+                            description: 'Email type: 0 (transactional), 1 (marketing)'
+                            example: 0
+                          domainName:
+                            type: string
+                            description: API_USER bound domain name
+                            example: delong.com
+                          trackDomainName:
+                            type: string
+                            description: API_USER bound track name
+                            example: track2.sendcloud.net
+                          click:
+                            type: integer
+                            enum:
+                              - 0
+                              - 1
+                            description: Whether to enable click-tracking
+                            example: 1
+                          open:
+                            type: integer
+                            enum:
+                              - 0
+                              - 1
+                            description: Whether to enable open-tracking
+                            example: 1
+                          unsubscribe:
+                            type: integer
+                            enum:
+                              - 0
+                              - 1
+                            description: Whether to enable unsubscribe-tracking
+                            example: 1
+components:
+  securitySchemes:
+    apiUser:
+      type: apiKey
+      in: query
+      name: apiUser
+      description: API user name for authentication
+    apiKey:
+      type: apiKey
+      in: query
+      name: apiKey
+      description: API key for authentication
+  schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        statusCode:
+          type: integer
+          example: 400
+        message:
+          type: string
+          example: 'Invalid parameter: name is required'
+        result:
+          type: boolean
+          example: false

@@ -1,0 +1,516 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Email
+servers:
+  - url: https://api.aurorasendcloud.com/
+    description: |
+      Singapore Region
+      - Base URL: https://api.aurorasendcloud.com/
+  - url: https://api-us.aurorasendcloud.com/
+    description: |
+      US (Silicon Valley) Region
+      - Base URL: https://api-us.aurorasendcloud.com/
+  - url: https://api-hk.aurorasendcloud.com/
+    description: |
+      CN (Hong Kong SAR) Region
+      - Base URL: https://api-hk.aurorasendcloud.com/
+tags:
+  - name: Tracking Domain
+    description: Interfaces for managing email tracking domains
+paths:
+  /api/trackDomain/list:
+    get:
+      summary: Get Tracking Domains List
+      description: >-
+        Batch query configured tracking domains under the account. Supports
+        filtering by track name and pagination.
+      operationId: query-trackDomain-list-get
+      tags:
+        - Tracking Domain
+      security:
+        - apiUser: []
+          apiKey: []
+      parameters:
+        - name: name
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Track name; multiple names separated by semicolons
+        - name: start
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 0
+          description: 'Start position (range: 0-100), defaults to 0'
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 100
+          description: 'Number of results per page (range: 0-100), defaults to 100'
+      responses:
+        '200':
+          description: Request successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 200
+                  message:
+                    type: string
+                    example: request was successful
+                  result:
+                    type: boolean
+                    example: true
+                  info:
+                    type: object
+                    properties:
+                      dataList:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                              description: Track ID
+                              example: 999225
+                            name:
+                              type: string
+                              description: Track name
+                              example: track2.test.com
+                            cname:
+                              type: boolean
+                              description: >-
+                                CNAME configuration status (true: passed, false:
+                                failed)
+                              example: false
+                            gmtCreated:
+                              type: string
+                              description: Time of track creation
+                              example: '2014-11-01 22:41:52'
+                            gmtUpdated:
+                              type: string
+                              description: Time of track modification
+                              example: '2015-09-25 10:56:06'
+                            cname domain:
+                              type: string
+                              description: Track host records
+                              example: test.com
+                            cname.value:
+                              type: string
+                              description: Record value to configure for track
+                              example: test.com
+                            https:
+                              type: boolean
+                              description: >-
+                                HTTPS configuration status (true: configured,
+                                false: not configured)
+                              example: false
+                            certiValidityStart:
+                              type: string
+                              description: >-
+                                Start time of the SSL certificate validity
+                                period (format: yyyy-MM-dd HH:mm:ss)
+                              example: ''
+                            certiValidityEnd:
+                              type: string
+                              description: >-
+                                End time of the SSL certificate validity period
+                                (format: yyyy-MM-dd HH:mm:ss)
+                              example: ''
+                      total:
+                        type: integer
+                        description: Total number of tracking domains
+                        example: 2
+                      count:
+                        type: integer
+                        description: Number of returned tracking domains
+                        example: 2
+  /api/trackDomain/add:
+    post:
+      summary: Add Tracking Domain
+      description: >-
+        Add a new tracking domain. The tracking domain cannot be the same as any
+        sending domain. A user can add a maximum of 5 tracking domains; contact
+        customer support for more.
+      operationId: add-trackDomain-post
+      tags:
+        - Tracking Domain
+      security:
+        - apiUser: []
+          apiKey: []
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: >-
+                    Track name; comply with domain name specifications, length
+                    no more than 255 characters
+                  example: test.com
+                certContent:
+                  type: string
+                  description: Certificate content (PEM format)
+                  example: ''
+                certKey:
+                  type: string
+                  description: Certificate private key (PEM format)
+                  example: ''
+              required:
+                - name
+      responses:
+        '200':
+          description: Request successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 200
+                  message:
+                    type: string
+                    example: request was successful
+                  result:
+                    type: boolean
+                    example: true
+                  info:
+                    type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            description: Track ID
+                            example: 999224
+                          name:
+                            type: string
+                            description: Track name
+                            example: track.test.com
+                          cname:
+                            type: boolean
+                            description: >-
+                              CNAME configuration status (true: passed, false:
+                              failed)
+                            example: false
+                          gmtCreated:
+                            type: string
+                            description: Time of track creation
+                            example: '2014-11-01 22:41:52'
+                          gmtUpdated:
+                            type: string
+                            description: Time of track modification
+                            example: '2015-09-25 10:56:06'
+                          cname domain:
+                            type: string
+                            description: Track host records
+                            example: test.com
+                          cname.value:
+                            type: string
+                            description: Record value to configure for track
+                            example: test.com
+                          https:
+                            type: boolean
+                            description: >-
+                              HTTPS configuration status (true: configured,
+                              false: not configured)
+                            example: false
+                          certiValidityStart:
+                            type: string
+                            description: >-
+                              Start time of the SSL certificate validity period
+                              (format: yyyy-MM-dd HH:mm:ss)
+                            example: ''
+                          certiValidityEnd:
+                            type: string
+                            description: >-
+                              End time of the SSL certificate validity period
+                              (format: yyyy-MM-dd HH:mm:ss)
+                            example: ''
+  /api/trackDomain/update:
+    post:
+      summary: Update Tracking Domain
+      description: >-
+        Update configuration of an existing tracking domain, including track
+        name and SSL certificate information.
+      operationId: update-trackDomain-post
+      tags:
+        - Tracking Domain
+      security:
+        - apiUser: []
+          apiKey: []
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: integer
+                  description: Track ID
+                  example: 68554
+                name:
+                  type: string
+                  description: New track name
+                  example: test.com
+                certContent:
+                  type: string
+                  description: Certificate content (PEM format)
+                  example: ''
+                certKey:
+                  type: string
+                  description: Certificate private key (PEM format)
+                  example: ''
+              required:
+                - id
+      responses:
+        '200':
+          description: Request successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 200
+                  message:
+                    type: string
+                    example: request was successful
+                  result:
+                    type: boolean
+                    example: true
+                  info:
+                    type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            description: Track ID
+                            example: 999224
+                          name:
+                            type: string
+                            description: Track name
+                            example: track.test.com
+                          cname:
+                            type: boolean
+                            description: >-
+                              CNAME configuration status (true: passed, false:
+                              failed)
+                            example: false
+                          gmtCreated:
+                            type: string
+                            description: Time of track creation
+                            example: '2014-11-01 22:41:52'
+                          gmtUpdated:
+                            type: string
+                            description: Time of track modification
+                            example: '2015-09-25 10:56:06'
+                          cname.domain:
+                            type: string
+                            description: Track host records
+                            example: test.com
+                          cname.value:
+                            type: string
+                            description: Record value to configure for track
+                            example: test.com
+                          https:
+                            type: boolean
+                            description: >-
+                              HTTPS configuration status (true: configured,
+                              false: not configured)
+                            example: false
+                          certiValidityStart:
+                            type: string
+                            description: >-
+                              Start time of the SSL certificate validity period
+                              (format: yyyy-MM-dd HH:mm:ss)
+                            example: ''
+                          certiValidityEnd:
+                            type: string
+                            description: >-
+                              End time of the SSL certificate validity period
+                              (format: yyyy-MM-dd HH:mm:ss)
+                            example: ''
+  /api/trackDomain/checkConfig:
+    post:
+      summary: Get Tracking Domain Verify Status
+      description: >-
+        Verify the configuration (e.g., CNAME) of tracking domains. Calling this
+        interface will update the CNAME status.
+      operationId: verify-trackDomain-config-post
+      tags:
+        - Tracking Domain
+      security:
+        - apiUser: []
+          apiKey: []
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: string
+                  description: Track ID; multiple IDs separated by semicolons
+                  example: '68554'
+                name:
+                  type: string
+                  description: Track name; multiple names separated by semicolons
+                  example: track.test.com
+      responses:
+        '200':
+          description: Request successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 200
+                  message:
+                    type: string
+                    example: request was successful
+                  result:
+                    type: boolean
+                    example: true
+                  info:
+                    type: object
+                    properties:
+                      dataList:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                              description: Track ID
+                              example: 999225
+                            name:
+                              type: string
+                              description: Track name
+                              example: track2.test.com
+                            cname:
+                              type: boolean
+                              description: >-
+                                CNAME configuration status (true: passed, false:
+                                failed)
+                              example: false
+                            gmtCreated:
+                              type: string
+                              description: Time of track creation
+                              example: '2014-11-01 22:41:52'
+                            gmtUpdated:
+                              type: string
+                              description: Time of track modification
+                              example: '2015-09-25 10:56:06'
+                            cname domain:
+                              type: string
+                              description: Track host records
+                              example: test.com
+                            cname.value:
+                              type: string
+                              description: Record value to configure for track
+                              example: test.com
+                            https:
+                              type: boolean
+                              description: >-
+                                HTTPS configuration status (true: configured,
+                                false: not configured)
+                              example: false
+                            certiValidityStart:
+                              type: string
+                              description: >-
+                                Start time of the SSL certificate validity
+                                period (format: yyyy-MM-dd HH:mm:ss)
+                              example: ''
+                            certiValidityEnd:
+                              type: string
+                              description: >-
+                                End time of the SSL certificate validity period
+                                (format: yyyy-MM-dd HH:mm:ss)
+                              example: ''
+                      count:
+                        type: integer
+                        description: Number of verified tracking domains
+                        example: 2
+  /api/trackDomain/delete:
+    post:
+      summary: Delete Tracking Domain
+      description: Delete an existing tracking domain by track ID.
+      operationId: delete-trackDomain-post
+      tags:
+        - Tracking Domain
+      security:
+        - apiUser: []
+          apiKey: []
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: integer
+                  description: Track ID
+                  example: 68554
+              required:
+                - id
+      responses:
+        '200':
+          description: Request successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 200
+                  message:
+                    type: string
+                    example: request was successful
+                  result:
+                    type: boolean
+                    example: true
+                  info:
+                    type: object
+                    properties:
+                      count:
+                        type: integer
+                        description: Count of deleted track domains
+                        example: 1
+components:
+  securitySchemes:
+    apiUser:
+      type: apiKey
+      in: query
+      name: apiUser
+      description: API_USER for identity verification
+    apiKey:
+      type: apiKey
+      in: query
+      name: apiKey
+      description: API_KEY for identity verification
+x-readme:
+  explorer-enabled: true
+  proxy-enabled: true
