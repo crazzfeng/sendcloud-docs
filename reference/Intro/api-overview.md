@@ -19,22 +19,22 @@ Get started with AuroraSendCloud's powerful APIs to send emails, manage contacts
 
 Before you begin, ensure you have:
 
-- ✅ An active AuroraSendCloud account ([Sign up here](https://www.aurorasendcloud.com/))
-- ✅ Your **API Key** and **API User** from [API Key Management](https://www.aurorasendcloud.com/web/#/api/apiuser)
-- ✅ A supported HTTP client (cURL, Postman, Python, Node.js, etc.)
-- ✅ Your account **region** (Singapore, US, or Hong Kong) for optimal performance
+* ✅ An active AuroraSendCloud account ([Sign up here](https://www.aurorasendcloud.com/))
+* ✅ Your **API Key** and **API User** from [API Key Management](https://www.aurorasendcloud.com/web/#/api/apiuser)
+* ✅ A supported HTTP client (cURL, Postman, Python, Node.js, etc.)
+* ✅ Your account **region** (Singapore, US, or Hong Kong) for optimal performance
 
 ## Regional Base URLs & Endpoints
 
 ### Email & Core APIs (Multi-Region)
 
-Choose the base URL that matches your account's region for optimal performance and compliance:
+Choose the base URL that matches your account's region for email, contact management, templates, and other core services. All requests must use **HTTPS**, and responses are returned in **JSON** format.
 
-| Region | Base URL | SMTP Server | Coverage |
-|--------|----------|-------------|----------|
-| **Singapore (SG)** | `https://api.aurorasendcloud.com/` | `smtp.aurorasendcloud.com` | Default APAC region |
-| **United States (US)** | `https://api-us.aurorasendcloud.com/` | `smtp-us.aurorasendcloud.com` | North America |
-| **Hong Kong (HK)** | `https://api-hk.aurorasendcloud.com/` | `smtp-hk.aurorasendcloud.com` | Greater China & APAC |
+| Region             | Base URL                              |
+| ------------------ | ------------------------------------- |
+| Singapore (SG)     | `https://api.aurorasendcloud.com/`    |
+| United States (US) | `https://api-us.aurorasendcloud.com/` |
+| Hong Kong (HK)     | `https://api-hk.aurorasendcloud.com/` |
 
 > ⚠️ **Important**: Your account is tied to a specific region. Using a non-matching base URL will cause authentication failures. Verify your region in account settings.
 
@@ -42,16 +42,18 @@ Choose the base URL that matches your account's region for optimal performance a
 
 The SMS API uses a unified global endpoint regardless of your account region:
 
-- **Base URL**: `https://api.aurorasendcloud.com/`
+* **Base URL**: `https://api.aurorasendcloud.com/`
 
 ## Authentication
 
 All API requests require authentication using these parameters:
 
-- `api_user`: Your AuroraSendCloud API username
-- `api_key`: Your AuroraSendCloud API key
+* `api_user`: Your AuroraSendCloud API username
+* `api_key`: Your AuroraSendCloud API key
 
-> 🔐 **Security Best Practice**: Never expose API credentials in client-side code. Use server-side implementations and rotate keys regularly.
+<Callout icon="🔐" theme="default">
+  ### **Security Best Practice**: Never expose API credentials in client-side code. Use server-side implementations and rotate keys regularly.
+</Callout>
 
 ## Your First API Call
 
@@ -149,16 +151,17 @@ All API requests require authentication using these parameters:
 
 For applications requiring SMTP integration, use our regional SMTP servers with SSL/TLS encryption:
 
-| Region | SMTP Server | SSL Port | STARTTLS Port |
-|--------|-------------|----------|---------------|
-| Singapore | `smtp.aurorasendcloud.com` | 465 | 587 |
-| US | `smtp-us.aurorasendcloud.com` | 465 | 587 |
-| Hong Kong | `smtp-hk.aurorasendcloud.com` | 465 | 587 |
+| Region    | SMTP Server                   | SSL Port | STARTTLS Port |
+| --------- | ----------------------------- | -------- | ------------- |
+| Singapore | `smtp.aurorasendcloud.com`    | 465      | 587           |
+| US        | `smtp-us.aurorasendcloud.com` | 465      | 587           |
+| Hong Kong | `smtp-hk.aurorasendcloud.com` | 465      | 587           |
 
 ### SMTP Authentication
-- **Username**: Your API username (`api_user`)
-- **Password**: Your API key (`api_key`)
-- **Encryption**: SSL/TLS (port 465) or STARTTLS (port 587)
+
+* **Username**: Your API username (`api_user`)
+* **Password**: Your API key (`api_key`)
+* **Encryption**: SSL/TLS (port 465) or STARTTLS (port 587)
 
 <Tabs>
   <Tab title="Python (smtplib)">
@@ -264,6 +267,7 @@ For applications requiring SMTP integration, use our regional SMTP servers with 
 All API responses follow a consistent JSON structure:
 
 ### Success Response
+
 ```json
 {
   "result": true,
@@ -276,6 +280,7 @@ All API responses follow a consistent JSON structure:
 ```
 
 ### Error Response
+
 ```json
 {
   "result": false,
@@ -286,186 +291,187 @@ All API responses follow a consistent JSON structure:
 ```
 
 ### Response Fields
-- `result`: Boolean indicating success (`true`) or failure (`false`)
-- `statusCode`: Numeric status code (see complete reference below)
-- `message`: Human-readable description of the result
-- `info`: Contains response data on success, empty object on failure
+
+* `result`: Boolean indicating success (`true`) or failure (`false`)
+* `statusCode`: Numeric status code (see complete reference below)
+* `message`: Human-readable description of the result
+* `info`: Contains response data on success, empty object on failure
 
 ## Complete Status Code Reference
 
 ### Common Status Codes
 
-| Status Code | Meaning |
-|-------------|---------|
-| **200** | Request was successful |
-| **40005** | Authentication failed - verify `api_user` and `api_key` |
-| **40903** | Email sent successfully |
-| **40901** | Email sending failed |
-| **50000** | Rate limit exceeded - implement retry logic |
-| **501** | Server exception |
-| **6001** | Access permission denied |
+| Status Code | Meaning                                                 |
+| ----------- | ------------------------------------------------------- |
+| **200**     | Request was successful                                  |
+| **40005**   | Authentication failed - verify `api_user` and `api_key` |
+| **40903**   | Email sent successfully                                 |
+| **40901**   | Email sending failed                                    |
+| **50000**   | Rate limit exceeded - implement retry logic             |
+| **501**     | Server exception                                        |
+| **6001**    | Access permission denied                                |
 
 ### Parameter Validation Errors (40001-40017)
 
-| Status Code | Meaning |
-|-------------|---------|
-| **40001** | `start` parameter cannot be empty |
-| **40002** | Invalid `start` parameter format |
-| **40003** | `limit` parameter cannot be empty |
-| **40004** | Invalid `limit` parameter format |
-| **40006** | Invalid `days` format - must be integer > 0 |
-| **40007** | Invalid `startDate` format - use yyyy-MM-dd |
-| **40008** | Invalid `endDate` format - use yyyy-MM-dd |
-| **40009** | `labelIdList` cannot be empty |
-| **40010** | `apiUserList` cannot be empty |
-| **40011** | Email address cannot be empty |
-| **40012** | Invalid email address format |
-| **40013** | `domainList` cannot be empty |
-| **40014** | Label ID cannot be empty |
-| **40015** | Invalid label ID format |
-| **40016** | Invalid `apiUserList` format |
-| **40017** | Invalid aggregation parameter format |
+| Status Code | Meaning                                     |
+| ----------- | ------------------------------------------- |
+| **40001**   | `start` parameter cannot be empty           |
+| **40002**   | Invalid `start` parameter format            |
+| **40003**   | `limit` parameter cannot be empty           |
+| **40004**   | Invalid `limit` parameter format            |
+| **40006**   | Invalid `days` format - must be integer > 0 |
+| **40007**   | Invalid `startDate` format - use yyyy-MM-dd |
+| **40008**   | Invalid `endDate` format - use yyyy-MM-dd   |
+| **40009**   | `labelIdList` cannot be empty               |
+| **40010**   | `apiUserList` cannot be empty               |
+| **40011**   | Email address cannot be empty               |
+| **40012**   | Invalid email address format                |
+| **40013**   | `domainList` cannot be empty                |
+| **40014**   | Label ID cannot be empty                    |
+| **40015**   | Invalid label ID format                     |
+| **40016**   | Invalid `apiUserList` format                |
+| **40017**   | Invalid aggregation parameter format        |
 
 ### Label Management (40100-40113)
 
-| Status Code | Meaning |
-|-------------|---------|
-| **40100** | Label created successfully |
-| **40101** | Label creation failed |
-| **40102** | Label ID cannot be empty |
-| **40103** | Invalid label ID |
-| **40104** | Label name cannot be empty |
-| **40105** | Label name must be 1-255 characters |
-| **40106** | Label ID does not exist |
-| **40107** | Label deleted successfully |
-| **40108** | Label deletion failed |
-| **40109** | Label updated successfully |
-| **40110** | Label update failed |
-| **40111** | Query parameter cannot be empty |
-| **40112** | Query must be 1-255 characters |
-| **40113** | Label name already exists |
+| Status Code | Meaning                             |
+| ----------- | ----------------------------------- |
+| **40100**   | Label created successfully          |
+| **40101**   | Label creation failed               |
+| **40102**   | Label ID cannot be empty            |
+| **40103**   | Invalid label ID                    |
+| **40104**   | Label name cannot be empty          |
+| **40105**   | Label name must be 1-255 characters |
+| **40106**   | Label ID does not exist             |
+| **40107**   | Label deleted successfully          |
+| **40108**   | Label deletion failed               |
+| **40109**   | Label updated successfully          |
+| **40110**   | Label update failed                 |
+| **40111**   | Query parameter cannot be empty     |
+| **40112**   | Query must be 1-255 characters      |
+| **40113**   | Label name already exists           |
 
 ### Template Management (40201-40229)
 
-| Status Code | Meaning |
-|-------------|---------|
-| **40201** | `invokeName` cannot be empty |
-| **40202** | Invalid `invokeName` format |
-| **40203** | Template type cannot be empty |
-| **40204** | Invalid template type - must be 0 or 1 |
-| **40205** | `templateStat` cannot be empty |
-| **40206** | Invalid `templateStat` - must be -1, -2, 1, or 0 |
-| **40207** | Template name cannot be empty |
-| **40208** | Invalid template name format |
-| **40209** | Template subject cannot be empty |
-| **40210** | Invalid template subject format |
-| **40211** | Template HTML cannot be empty |
-| **40212** | Invalid template HTML format |
-| **40213** | Template text cannot be empty |
-| **40214** | Invalid template text format |
-| **40215** | Template creation failed |
-| **40216** | Template with `invokeName` does not exist |
-| **40217** | Template deletion failed |
-| **40218** | Template update failed |
-| **40219** | Maximum 50 templates per user exceeded |
-| **40220** | `invokeName` already exists |
-| **40221** | `isSubmitAudit` cannot be empty |
-| **40222** | Invalid `isSubmitAudit` format |
-| **40223** | Template pending approval - cannot modify |
-| **40224** | Cancel parameter cannot be empty |
-| **40225** | Invalid cancel parameter format |
-| **40226** | Template already pending approval |
-| **40227** | Template already approved |
-| **40228** | Template not approved - cannot withdraw |
-| **40229** | Template not submitted - cannot withdraw |
+| Status Code | Meaning                                          |
+| ----------- | ------------------------------------------------ |
+| **40201**   | `invokeName` cannot be empty                     |
+| **40202**   | Invalid `invokeName` format                      |
+| **40203**   | Template type cannot be empty                    |
+| **40204**   | Invalid template type - must be 0 or 1           |
+| **40205**   | `templateStat` cannot be empty                   |
+| **40206**   | Invalid `templateStat` - must be -1, -2, 1, or 0 |
+| **40207**   | Template name cannot be empty                    |
+| **40208**   | Invalid template name format                     |
+| **40209**   | Template subject cannot be empty                 |
+| **40210**   | Invalid template subject format                  |
+| **40211**   | Template HTML cannot be empty                    |
+| **40212**   | Invalid template HTML format                     |
+| **40213**   | Template text cannot be empty                    |
+| **40214**   | Invalid template text format                     |
+| **40215**   | Template creation failed                         |
+| **40216**   | Template with `invokeName` does not exist        |
+| **40217**   | Template deletion failed                         |
+| **40218**   | Template update failed                           |
+| **40219**   | Maximum 50 templates per user exceeded           |
+| **40220**   | `invokeName` already exists                      |
+| **40221**   | `isSubmitAudit` cannot be empty                  |
+| **40222**   | Invalid `isSubmitAudit` format                   |
+| **40223**   | Template pending approval - cannot modify        |
+| **40224**   | Cancel parameter cannot be empty                 |
+| **40225**   | Invalid cancel parameter format                  |
+| **40226**   | Template already pending approval                |
+| **40227**   | Template already approved                        |
+| **40228**   | Template not approved - cannot withdraw          |
+| **40229**   | Template not submitted - cannot withdraw         |
 
 ### Address List Management (40501-40522)
 
-| Status Code | Meaning |
-|-------------|---------|
-| **40501** | Address list name cannot be empty |
-| **40502** | Address list name must be 1-48 characters |
-| **40503** | Address list addresses cannot be empty |
-| **40504** | Address list alias must be 1-48 characters |
-| **40505** | Address list alias already exists |
-| **40506** | Address list description cannot be empty |
-| **40507** | Address list description must be 1-250 characters |
-| **40508** | Address list creation failed |
-| **40514** | Address list must have > 0 members |
-| **40515** | Address list cannot exceed 1000 members |
-| **40516** | Failed to add member to address list |
-| **40517** | Address list does not belong to user |
-| **40518** | Invalid member address format |
-| **40519** | Failed to delete member from address list |
-| **40522** | Variables parameter is not valid JSON |
+| Status Code | Meaning                                           |
+| ----------- | ------------------------------------------------- |
+| **40501**   | Address list name cannot be empty                 |
+| **40502**   | Address list name must be 1-48 characters         |
+| **40503**   | Address list addresses cannot be empty            |
+| **40504**   | Address list alias must be 1-48 characters        |
+| **40505**   | Address list alias already exists                 |
+| **40506**   | Address list description cannot be empty          |
+| **40507**   | Address list description must be 1-250 characters |
+| **40508**   | Address list creation failed                      |
+| **40514**   | Address list must have > 0 members                |
+| **40515**   | Address list cannot exceed 1000 members           |
+| **40516**   | Failed to add member to address list              |
+| **40517**   | Address list does not belong to user              |
+| **40518**   | Invalid member address format                     |
+| **40519**   | Failed to delete member from address list         |
+| **40522**   | Variables parameter is not valid JSON             |
 
 ### Email Sending Parameters (40801-40880)
 
-| Status Code | Meaning |
-|-------------|---------|
-| **40801** | Sender address (`from`) cannot be empty |
-| **40802** | Invalid sender address format |
-| **40803** | Sender name (`fromName`) cannot be empty |
-| **40804** | Invalid sender name format |
-| **40805** | Recipient address cannot be empty |
-| **40806** | Invalid recipient addresses in list |
-| **40807** | Maximum 100 recipient addresses per request |
-| **40808** | Email subject cannot be empty |
-| **40809** | Invalid email subject format |
-| **40810** | Reply-to address cannot be empty |
-| **40811** | Invalid reply-to address format |
-| **40870** | Both HTML and plain text cannot be empty |
-| **40871** | Invalid HTML format |
-| **40879** | Maximum 3 reply-to addresses allowed |
-| **40880** | Invalid email format in X-SMTPAPI "to" field |
+| Status Code | Meaning                                      |
+| ----------- | -------------------------------------------- |
+| **40801**   | Sender address (`from`) cannot be empty      |
+| **40802**   | Invalid sender address format                |
+| **40803**   | Sender name (`fromName`) cannot be empty     |
+| **40804**   | Invalid sender name format                   |
+| **40805**   | Recipient address cannot be empty            |
+| **40806**   | Invalid recipient addresses in list          |
+| **40807**   | Maximum 100 recipient addresses per request  |
+| **40808**   | Email subject cannot be empty                |
+| **40809**   | Invalid email subject format                 |
+| **40810**   | Reply-to address cannot be empty             |
+| **40811**   | Invalid reply-to address format              |
+| **40870**   | Both HTML and plain text cannot be empty     |
+| **40871**   | Invalid HTML format                          |
+| **40879**   | Maximum 3 reply-to addresses allowed         |
+| **40880**   | Invalid email format in X-SMTPAPI "to" field |
 
 ### Email Sending Results (40901-40913)
 
-| Status Code | Meaning |
-|-------------|---------|
-| **40901** | Email sending failed |
-| **40902** | Unknown error processing email |
-| **40903** | Email sent successfully |
-| **40904** | Quota check failed |
-| **40905** | Quota check passed |
-| **40906** | Quota check temporarily passed |
-| **40907** | No template matching required for API_USER |
-| **40908** | Email content does not match template |
-| **40909** | Email content matches template |
-| **40910** | Email content temporarily matches template |
-| **40911** | Error matching email content with template |
-| **40912** | Insufficient account balance - please recharge |
-| **40913** | Request quota exceeded |
+| Status Code | Meaning                                        |
+| ----------- | ---------------------------------------------- |
+| **40901**   | Email sending failed                           |
+| **40902**   | Unknown error processing email                 |
+| **40903**   | Email sent successfully                        |
+| **40904**   | Quota check failed                             |
+| **40905**   | Quota check passed                             |
+| **40906**   | Quota check temporarily passed                 |
+| **40907**   | No template matching required for API_USER     |
+| **40908**   | Email content does not match template          |
+| **40909**   | Email content matches template                 |
+| **40910**   | Email content temporarily matches template     |
+| **40911**   | Error matching email content with template     |
+| **40912**   | Insufficient account balance - please recharge |
+| **40913**   | Request quota exceeded                         |
 
 ### Domain & API User Management (41001-41119)
 
-| Status Code | Meaning |
-|-------------|---------|
-| **41001** | Domain name cannot be empty |
-| **41002** | Domain name must be 1-250 characters |
-| **41003** | Invalid domain name format |
-| **41008** | Invalid domain type |
-| **41012** | Maximum 5 domains per user |
-| **41014** | Domain does not exist |
-| **41015** | Domain creation failed |
-| **41016** | Domain modification failed |
-| **41109** | User information does not exist |
-| **41111** | Invalid API user name (6-32 chars, letters/numbers only) |
-| **41112** | Maximum 10 API users per account |
-| **41119** | API user creation failed |
+| Status Code | Meaning                                                  |
+| ----------- | -------------------------------------------------------- |
+| **41001**   | Domain name cannot be empty                              |
+| **41002**   | Domain name must be 1-250 characters                     |
+| **41003**   | Invalid domain name format                               |
+| **41008**   | Invalid domain type                                      |
+| **41012**   | Maximum 5 domains per user                               |
+| **41014**   | Domain does not exist                                    |
+| **41015**   | Domain creation failed                                   |
+| **41016**   | Domain modification failed                               |
+| **41109**   | User information does not exist                          |
+| **41111**   | Invalid API user name (6-32 chars, letters/numbers only) |
+| **41112**   | Maximum 10 API users per account                         |
+| **41119**   | API user creation failed                                 |
 
 ### System & Server Errors (49901-50001)
 
-| Status Code | Meaning |
-|-------------|---------|
-| **49901** | Invalid URL format |
-| **49902** | Abnormal HTTP request |
-| **49903** | HTTP request failed |
-| **49904** | HTTP request successful |
-| **49905** | HTTP response parsing error |
-| **49906** | Other system errors |
-| **50000** | Rate limit exceeded |
-| **50001** | Email sending failed - frequency limited |
+| Status Code | Meaning                                  |
+| ----------- | ---------------------------------------- |
+| **49901**   | Invalid URL format                       |
+| **49902**   | Abnormal HTTP request                    |
+| **49903**   | HTTP request failed                      |
+| **49904**   | HTTP request successful                  |
+| **49905**   | HTTP response parsing error              |
+| **49906**   | Other system errors                      |
+| **50000**   | Rate limit exceeded                      |
+| **50001**   | Email sending failed - frequency limited |
 
 ## Best Practices
 
@@ -497,16 +503,16 @@ All API responses follow a consistent JSON structure:
 
 Your account has a daily request quota that varies based on account type and reputation:
 
-- **Free users**: 50 emails/day after email verification
-- **Paid users**: Base quota of 3,000 emails/day, automatically adjusted based on reputation
+* **Free users**: 50 emails/day after email verification
+* **Paid users**: Base quota of 3,000 emails/day, automatically adjusted based on reputation
 
 ### Reputation System
 
 AuroraSendCloud uses a reputation scoring system that affects your daily quota:
 
-- **Positive factors**: High delivery rates, open rates, click rates
-- **Negative factors**: Invalid addresses, spam reports, unsubscribes
-- **Critical**: Rapid increases in invalid addresses or spam reports can suspend sending
+* **Positive factors**: High delivery rates, open rates, click rates
+* **Negative factors**: Invalid addresses, spam reports, unsubscribes
+* **Critical**: Rapid increases in invalid addresses or spam reports can suspend sending
 
 ### Variables in Email Content
 
@@ -518,9 +524,10 @@ Welcome to AuroraSendCloud! Your verification code is: %active_code%
 ```
 
 Variables can be used in:
-- Email subject lines
-- HTML and plain text content
-- Template content with X-SMTPAPI substitution
+
+* Email subject lines
+* HTML and plain text content
+* Template content with X-SMTPAPI substitution
 
 ## Next Steps
 
@@ -535,12 +542,15 @@ Now that you understand the basics:
   <Card title="Email Templates" href="/docs/email-templates" icon="file-alt">
     Create and manage reusable email templates with dynamic content
   </Card>
+
   <Card title="Webhook Integration" href="/docs/webhooks" icon="webhook">
     Set up real-time event notifications for email tracking
   </Card>
+
   <Card title="Domain Configuration" href="/docs/domains" icon="globe">
     Configure sending domains for better deliverability
   </Card>
+
   <Card title="Statistics & Analytics" href="/docs/statistics" icon="chart-bar">
     Monitor email performance and delivery metrics
   </Card>
