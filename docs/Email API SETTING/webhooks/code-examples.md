@@ -5,7 +5,7 @@ hidden: true
 metadata:
   robots: index
 ---
-## Python example
+## Python examples
 
 ```
 import hashlib, hmac
