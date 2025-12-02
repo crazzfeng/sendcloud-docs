@@ -285,15 +285,15 @@ For applications requiring SMTP integration, use our regional SMTP servers with 
 
 ### SMTP vs REST API Comparison
 
-| Feature                    | SMTP                | REST API           |
-| -------------------------- | ------------------- | ------------------ |
-| **Setup Complexity**      | Simple              | Moderate           |
-| **Advanced Features**      | Limited             | Full access        |
-| **Template Support**       | Basic               | Advanced           |
-| **Tracking & Analytics**   | Basic               | Comprehensive      |
-| **Bulk Sending**           | Good                | Optimized          |
-| **Real-time Status**       | Basic               | Detailed           |
-| **Integration Effort**     | Minimal             | Moderate           |
+| Feature                  | SMTP    | REST API      |
+| ------------------------ | ------- | ------------- |
+| **Setup Complexity**     | Simple  | Moderate      |
+| **Advanced Features**    | Limited | Full access   |
+| **Template Support**     | Basic   | Advanced      |
+| **Tracking & Analytics** | Basic   | Comprehensive |
+| **Bulk Sending**         | Good    | Optimized     |
+| **Real-time Status**     | Basic   | Detailed      |
+| **Integration Effort**   | Minimal | Moderate      |
 
 ## SMS Integration
 
@@ -605,19 +605,19 @@ Now that you understand the basics:
 4. **Monitor performance** - Track delivery rates and optimize your sending
 
 <Cards>
-  <Card title="Email Templates" href="/docs/email-templates" icon="file-alt">
+  <Card title="Email Templates" href="/docs/email-template" >
     Create and manage reusable email templates with dynamic content
   </Card>
 
-  <Card title="Webhook Integration" href="/docs/webhooks" icon="webhook">
+  <Card title="Webhook Integration" href="/docs/webhooks" >
     Set up real-time event notifications for email tracking
   </Card>
 
-  <Card title="Domain Configuration" href="/docs/domains" icon="globe">
+  <Card title="Domain Configuration" href="/docs/domain" >
     Configure sending domains for better deliverability
   </Card>
 
-  <Card title="Statistics & Analytics" href="/docs/statistics" icon="chart-bar">
+  <Card title="Statistics & Analytics" href="/docs/statistics">
     Monitor email performance and delivery metrics
   </Card>
 </Cards>
