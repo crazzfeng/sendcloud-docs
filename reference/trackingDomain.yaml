@@ -268,15 +268,15 @@ paths:
                   description: New track name
                   example: test.com
                 certContent:
-                  type: object
+                  type: string
                   description: Certificate content (PEM format)
                   example: ''
-                  properties: {}
+                  format: byte
                 certKey:
-                  type: object
+                  type: string
                   description: Certificate private key (PEM format)
                   example: ''
-                  properties: {}
+                  format: byte
               required:
                 - id
       responses:
