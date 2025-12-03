@@ -271,12 +271,12 @@ paths:
                   example: test.com
                 certContent:
                   type: string
-                  format: multi-line
+                  format: byte
                   description: Certificate content (PEM format)
                   example: ''
                 certKey:
                   type: string
-                  format: multi-line
+                  format: byte
                   description: Certificate private key (PEM format)
                   example: ''
               required:
