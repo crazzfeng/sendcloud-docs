@@ -268,17 +268,13 @@ paths:
                   description: New track name
                   example: test.com
                 certContent:
-                  type: array
+                  type: string
                   description: Certificate content (PEM format)
                   example: ''
-                  items:
-                    type: string
                 certKey:
-                  type: array
+                  type: string
                   description: Certificate private key (PEM format)
                   example: ''
-                  items:
-                    type: string
               required:
                 - id
       responses:
