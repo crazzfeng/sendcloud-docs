@@ -161,12 +161,12 @@ paths:
                   example: test.com
                 certContent:
                   type: string
-                  format: text
+                  format: multi-line
                   description: Certificate content (PEM format)
                   example: ''
                 certKey:
                   type: string
-                  format: text
+                  format: multi-line
                   description: Certificate private key (PEM format)
                   example: ''
               required:
@@ -271,12 +271,12 @@ paths:
                   example: test.com
                 certContent:
                   type: string
-                  format: text
+                  format: multi-line
                   description: Certificate content (PEM format)
                   example: ''
                 certKey:
                   type: string
-                  format: text
+                  format: multi-line
                   description: Certificate private key (PEM format)
                   example: ''
               required:
