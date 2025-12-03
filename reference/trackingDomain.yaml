@@ -271,12 +271,12 @@ paths:
                   type: string
                   description: Certificate content (PEM format)
                   example: ''
-                  format: byte
+                  format: binary
                 certKey:
                   type: string
                   description: Certificate private key (PEM format)
                   example: ''
-                  format: byte
+                  format: binary
               required:
                 - id
       responses:
