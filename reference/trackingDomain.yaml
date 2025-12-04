@@ -448,11 +448,11 @@ paths:
 
               --header 'Content-Type: application/x-www-form-urlencoded' \
 
-              --data-urlencode 'apiUser=your_api_user' \
+              --data-urlencode 'apiUser={{apiUser}}' \
 
-              --data-urlencode 'apiKey=your_api_key' \
+              --data-urlencode 'apiKey={{apiKey}}' \
 
-              --data-urlencode 'id=265445' \
+              --data-urlencode 'id={{id}}' \
 
               --data-urlencode 'certContent=-----BEGIN CERTIFICATE-----
 
