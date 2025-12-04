@@ -281,6 +281,10 @@ paths:
                   example: ''
               required:
                 - id
+            examples:
+              New Example:
+                summary: New Example
+                value: "{\n  \"id\": 213546\n\t\"certContent\":\"----BEGIN CERTIFICATE----- MIIGFTCCBP2gAwIBAgIQBeOnvnb05OX5qsRFcIwQgDANBgkqhkiG9w0BAQsFADBu MQswCQYDVQQGEwJVUzEVMBMGA1UEChMMRGlnaUNlcnQgSW5jMRkwFwYDVQQLExB3 d3cuZGlnaWNlcnQuY29tMS0wKwYDVQQDEyRFbmNyeXB0aW9uIEV2ZXJ5d2hlcmUg RFYgVExTIENBIC0gRzIwHhcNMjUxMDI3MDAwMDAwWhcNMjYwMTI0MjM1OTU5WjAd MRswGQYDVQQDExJ0cmFjay5ndW96dGVzdC50b3AwggEiMA0GCSqGSIb3DQEBAQUA A4IBDwAwggEKAoIBAQDCCx8/28WRMSlO3AMlxvS3mCj025kiAXHRljLpEvc4BQ+p WHr5FnUu/2s0Jh8IlmXP1AoeeXdzzS0wYlEuu7magxekml7i+5k4ThCrClnSvlZ7 Imh3hA8hFjS7yhVmIEz8I1WYVHsi36MM2+Ehi5CUg0ahI3/9uSmqC8wjf9Jbvu4/ 8Vp3LM8hJ4KWqNOpwPF6RkP0y2ciaB+lSrhT04dVsZfD1trFUhjEWW4dmaL6pfo1 NTyrRWNRym0/W7VwSXe32KOkPyT3CO9LDJyCoG1jsDU5bDNnB+Elr17k+K8IvitG UHfo01/gbc4zFF2y66K/2NmXhjFDsR6P+05UgMCfAgMBAAGjggL+MIIC+jAfBgNV HSMEGDAWgBR435GQX+7erPbFdevVTFVT7yRKtjAdBgNVHQ4EFgQUdsyi8kpNQo05 V3Q0236C5aM5LCowNQYDVR0RBC4wLIISdHJhY2suZ3VvenRlc3QudG9wghZ3d3cu dHJhY2suZ3VvenRlc3QudG9wMD4GA1UdIAQ3MDUwMwYGZ4EMAQIBMCkwJwYIKwYB BQUHAgEWG2h0dHA6Ly93d3cuZGlnaWNlcnQuY29tL0NQUzAOBgNVHQ8BAf8EBAMC BaAwHQYDVR0lBBYwFAYIKwYBBQUHAwEGCCsGAQUFBwMCMIGABggrBgEFBQcBAQR0 MHIwJAYIKwYBBQUHMAGGGGh0dHA6Ly9vY3NwLmRpZ2ljZXJ0LmNvbTBKBggrBgEF BQcwAoY+aHR0cDovL2NhY2VydHMuZGlnaWNlcnQuY29tL0VuY3J5cHRpb25FdmVy eXdoZXJlRFZUTFNDQS1HMi5jcnQwDAYDVR0TAQH/BAIwADCCAX8GCisGAQQB1nkC BAIEggFvBIIBawFpAHcADleUvPOuqT4zGyyZB7P3kN+bwj1xMiXdIaklrGHFTiEA AAGaJOXe+AAABAMASDBGAiEA+KqFyEmmx23I0eCGCjhtz/XLZeK28V921TIxBKLQ tLkCIQDVZFj0Merc/NzLqDlcJ/K/bwGkTXoY5XbbMilyzTHCowB2AGQRxGykEuyn iRyiAi4AvKtPKAfUHjUnq+r+1QPJfc3wAAABmiTl3zwAAAQDAEcwRQIgVCrN8Fob 4xA3cbXEwgtblO9jElA9iM1GU8D7VYe+ticCIQD8fP6xwJTVa1TBFtGQYuDyEPPH fTIv0OjDAy+tqf4M3AB2AEmcm2neHXzs/DbezYdkprhbrwqHgBnRVVL76esp3fjD AAABmiTl30sAAAQDAEcwRQIgLn6oxyuP7u33g6LkIcLmafasD87Fpf6LRboBTzyz jwECIQC/VaTCXh2sFz15gYxzULR4aVoJvlGo2OT5xqlywxKcljANBgkqhkiG9w0B AQsFAAOCAQEAcEWzA2vDk9ThR/qA06KwAPyWeo5swVRT8eXWyzoDvvGD5DDktlK6 vamiIGdE6v4sdBRQ3yTEJcdKH/s5YvAiq/giCPTmbzptdCTITXpvbWvp6T1xSqq0 cHf/q/oc/R8pjj8Xh5d8GXunFKx0iePf1HG1F6Y+7R7qPImwbk515rOU0YMjEU3/ hL9T32qjeDYobDjCVtuSjZ2N1crazci+sGhRqeyTbX0JqE9iK4ckai8V4kct0eIF Fjlhddd2qSCb/E36nX5KR9jKR/W+reeKP6Gvai6cm15V7CD1kOya5/JpmmZ5OqSg eO84z08Ve7y5Bf8r5pt1g3EaLBv6XISVmQ== -----END CERTIFICATE-----\"\n}"
       responses:
         '200':
           description: Request successful
@@ -352,6 +356,13 @@ paths:
                               End time of the SSL certificate validity period
                               (format: yyyy-MM-dd HH:mm:ss)
                             example: ''
+      x-readme:
+        code-samples:
+          - code: ''
+            language: shell
+            name: ''
+        samples-languages:
+          - shell
   /api/trackDomain/checkConfig:
     post:
       summary: Get Tracking Domain Verify Status
