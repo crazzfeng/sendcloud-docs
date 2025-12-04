@@ -249,11 +249,11 @@ paths:
 
               --header 'Content-Type: application/x-www-form-urlencoded' \
 
-              --data-urlencode 'apiUser=your_api_user' \
+              --data-urlencode 'apiUser={{apiUser}}' \
 
-              --data-urlencode 'apiKey=your_api_key' \
+              --data-urlencode 'apiKey={{apiKey}}' \
 
-              --data-urlencode 'name=your_track_domain' \
+              --data-urlencode 'name={{name}}' \
 
               --data-urlencode 'certContent=-----BEGIN CERTIFICATE-----
 
