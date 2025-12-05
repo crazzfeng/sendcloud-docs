@@ -1,5 +1,5 @@
 ---
-title: Inbox Insight
+title: Inbox Placement
 excerpt: >-
   Inbox Insight takes the guesswork out of delivery - get real inbox placement
   across Gmail, Outlook & more.
@@ -36,11 +36,11 @@ metadata:
     - transactional email delivery
   robots: index
 ---
-## What is Inbox Insight?
+## What is Inbox Placement?
 
 **Eliminate email delivery uncertainty with real-time inbox placement analytics across Gmail, Outlook, and other providers.**
 
-Stop wondering where your emails land. Inbox Insight provides instant visibility into your email delivery performance, automated domain reputation management, and intelligent warm-up processes—all seamlessly integrated with Aurora SendCloud.
+Stop wondering where your emails land. Inbox Placement provides instant visibility into your email delivery performance, automated domain reputation management, and intelligent warm-up processes—all seamlessly integrated with Aurora SendCloud.
 
 <br />
 
