@@ -1,7 +1,7 @@
 ---
 title: Inbox Placement
 excerpt: >-
-  Inbox Insight takes the guesswork out of delivery - get real inbox placement
+  Inbox Placement takes the guesswork out of delivery - get real inbox placement
   across Gmail, Outlook & more.
 deprecated: false
 hidden: false
@@ -44,11 +44,11 @@ Stop wondering where your emails land. Inbox Placement provides instant visibili
 
 <br />
 
-<Image align="center" alt="Inbox Insight Dashboard Overview" border={false} caption="Real-time email placement analytics across all major providers" src="https://files.readme.io/897d32fe614aa2886292a5a0c9afdd11576076d73611e2a9c681586b4596c561-image.png" />
+<Image align="center" alt="Inbox Placement Dashboard Overview" border={false} caption="Real-time email placement analytics across all major providers" src="https://files.readme.io/897d32fe614aa2886292a5a0c9afdd11576076d73611e2a9c681586b4596c561-image.png" />
 
 <br />
 
-## What You Get With Inbox Insight
+## What You Get With Inbox Placement
 
 <Cards columns={3}>
   <Card title="Real-Time Placement Tracking" icon="crosshairs">
@@ -109,7 +109,7 @@ Stop wondering where your emails land. Inbox Placement provides instant visibili
 
 ## Quick Start Guide
 
-Ready to get started? Here's how to activate Inbox Insight in under 5 minutes:
+Ready to get started? Here's how to activate Inbox Placement in under 5 minutes:
 
 ### Step 1: Choose Your Sending Domain
 
@@ -119,9 +119,9 @@ Ensure you have at least one verified sending domain in Aurora SendCloud. If you
 
 Upload one of your email templates for more effective warm-up. We'll use your actual content in controlled proportions to build authentic sending patterns.
 
-### Step 3: Activate Inbox Insight
+### Step 3: Activate Inbox Placement
 
-Click "Enable Inbox Insight" in your dashboard. No complex configuration needed—we handle the setup automatically.
+Click "Enable Inbox Placement" in your dashboard. No complex configuration needed—we handle the setup automatically.
 
 ### Step 4: Start Monitoring
 
@@ -129,11 +129,11 @@ Access your comprehensive delivery analytics through the Data Analysis dashboard
 
 <br />
 
-<Image align="center" alt="Inbox Insight Analytics Dashboard" border={false} caption="Track delivery trends and identify issues before they impact your campaigns" src="https://files.readme.io/bee6f00ec284f3de8ba1b44a8e2adde52cee68644ed962144c24f4ed89358025-image.png" />
+<Image align="center" alt="Inbox Placement Analytics Dashboard" border={false} caption="Track delivery trends and identify issues before they impact your campaigns" src="https://files.readme.io/bee6f00ec284f3de8ba1b44a8e2adde52cee68644ed962144c24f4ed89358025-image.png" />
 
 <br />
 
-## What Makes Inbox Insight Different
+## What Makes Inbox Placement Different
 
 <Columns layout="auto">
   <Column>
